@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY - Consulta Demora</name>
+    <style>freeForm</style>
+    <subject>Consulta Demora</subject>
+    <textOnly>Estimada XXX, es un gusto saludarte.
+Estimado XXX, es un gusto saludarte.
+
+Te contactamos en respuesta a tu reclamo por el pedido que hiciste el día XX/XX en XXX. Lamentamos las molestias generadas por la demora en la entrega del pedido.
+
+Para poder hacer el reclamo debidamente al local, necesitamos que nos indiques si en definitiva recibiste el pedido. Lamentamos la demora en la respuesta, dado que por esta vía las solicitudes serán gestionada en el correr de 24 horas. 
+
+Aguardamos tu respuesta y quedamos a tu disposición.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

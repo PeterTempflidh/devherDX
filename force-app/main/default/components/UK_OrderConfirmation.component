@@ -1,0 +1,864 @@
+<apex:component controller="CtrOrderConfirmation">
+    <apex:attribute name="lead" type="String" description="Placeholder" assignTo="{!leadId}"/>
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <body>
+    <div id="comissions" class="slds">
+        <div class="slds-page-header" role="banner">
+            <div class="slds-media">
+                <div class="slds-media__figure">
+                    <img src="{!URLFOR($Resource.hungryhouse)}" style="width:64px;float:right;"/>
+                </div>
+                <div class="slds-media__body">
+                  <p class="slds-page-header__title slds-truncate slds-align-middle" title="Rohde Corp - 80,000 Widgets">Partnership Agreement</p>
+                  <p class="slds-text-body--small slds-page-header__info"><font color="red">Hungryhouse Ltd</font> 78 York Street, London W1H 1DP hungryhouse.co.uk 0800 612 33 33</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <table border="0">
+                <tr>
+                    <td>
+                      <div id="salutationAppend" class="slds-form-element slds-m-horizontal--x-small slds-m-top--small">
+                        <label class="slds-form-element__label" for="salutation">Salutation:</label>
+                        <div class="slds-select_container">
+                          <select id="salutation" class="slds-select">
+                            <option></option>
+                            <option>Mr.</option>
+                            <option>Ms.</option>
+                            <option>Mrs.</option>
+                          </select>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                          <div id="nameAppend" class="slds-form-element slds-m-horizontal--x-small slds-m-top--small">
+                            <label class="slds-form-element__label" for="name">Name: </label>
+                            <div class="slds-form-element__control">
+                              <input id="name" class="slds-input" type="text" />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div id="restNameAppend" class="slds-form-element slds-m-horizontal--x-small ">
+                        <label class="slds-form-element__label" for="restName">Rest. Name:</label>
+                        <div class="slds-form-element__control ">
+                          <input id="restName" class="slds-input" type="text" />
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div id="phoneAppend" class="slds-form-element slds-m-horizontal--x-small">
+                            <label class="slds-form-element__label" for="phone">Phone:</label>
+                            <div class="slds-form-element__control">
+                              <input id="phone" class="slds-input" type="text" />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>  
+                         <div id="streetAppend" class="slds-form-element slds-m-horizontal--x-small">
+                        <label class="slds-form-element__label" for="street">Address:</label>
+                        <div class="slds-form-element__control">
+                          <input id="street" class="slds-input" type="text" placeholder="Street" />
+                        </div>
+                      </div>
+                 </td>
+                    <td>
+                          <div id="mobileAppend" class="slds-form-element slds-m-horizontal--x-small">
+                            <label class="slds-form-element__label" for="mobile">Mobile:</label>
+                            <div class="slds-form-element__control">
+                              <input id="mobile" class="slds-input" type="text"  />
+                            </div>
+                        </div>
+                       
+                    </td>
+                </tr>
+                <tr>
+                    <td>  
+                         <div id="postalCodeAppend" class="slds-form-element slds-m-horizontal--x-small" style="max-width: 100%">
+                        <label class="slds-form-element__label" for="postalCode">&nbsp;</label>
+                        <div class="slds-form-element__control">
+                          <input id="postalCode" class="slds-input" type="text" placeholder="Postal Code" />
+                        </div>
+                      </div>
+                     </td>
+                    <td>
+                       <div id="otherPhoneAppend" class="slds-form-element slds-m-horizontal--x-small">
+                            <label class="slds-form-element__label" for="otherPhone">Other Phone:</label>
+                            <div class="slds-form-element__control">
+                              <input id="otherPhone" class="slds-input" type="text" />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>  
+                       <div id="cityAppend" class="slds-form-element slds-m-horizontal--x-small">
+                        <label class="slds-form-element__label" for="city">&nbsp;</label>
+                        <div class="slds-form-element__control">
+                          <input id="city" class="slds-input" type="text" placeholder="City" />
+                        </div>
+                      </div>
+                     </td>
+                    <td>
+                         <div id="emailAppend" class="slds-form-element slds-m-horizontal--x-small">
+                            <label class="slds-form-element__label" for="email">Email:</label>
+                            <div class="slds-form-element__control">
+                              <input id="email" class="slds-input" type="text" />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>  
+                    
+                     </td>
+                    <td>
+                       
+                    </td>
+                </tr>
+                <tr>
+                    <td>  
+                    
+                     </td>
+                    <td>
+                      
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>  
+                           <div class="slds-form-element slds-m-horizontal--x-small">
+                        <label class="slds-form-element__label" for="date">Date:</label>
+                        <div class="slds-form-element__control">
+                          <input id="date" class="slds-input" type="date" readonly="true" />
+                        </div>
+                      </div>
+                     </td>
+                    <td>
+                        <div class="slds-form-element slds-m-horizontal--x-small">
+                            <label class="slds-form-element__label" for="preparedBy">Prepared by:</label>
+                            <div class="slds-form-element__control">
+                              <input id="preparedBy" class="slds-input" type="text" readonly="true" />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class="slds-text-body--small slds-m-horizontal--x-small slds-m-top--x-large">
+                Dear Restaurant Partner,
+            </div>
+            <div class="slds-text-body--small slds-m-around--x-small">
+                This is to confirm the registration of your restaurant on our online ordering platform www.hungryhouse.co.uk
+            </div>
+            <div class="slds-text-body--small slds-m-around--x-small">
+                As per our conversation, we will set up your account with the following conditions:
+            </div>
+            <table class="slds-table slds-table--bordered" style="max-width:400px">
+                <tbody>
+                  <tr class="slds-hint-parent">
+                    <td class="slds-truncate" data-label="commissionLabel">Commission per submitted order*</td>
+                    <td class="slds-truncate" data-label="commissionValue">                     
+                        <div id="commissionAppend" class="slds-form-element slds-size--1-of-1">
+                            <div class="slds-form-element__control ">
+                                <input id="commission" class="slds-input" type="number" style="max-width:60px" />
+                            </div>
+                        </div>
+                    </td>
+                    <td class="slds-truncate" data-label="commissionPercentage">%</td>
+                  </tr>
+                  <tr class="slds-hint-parent">
+                    <td class="slds-truncate" data-label="monthlyAdmLabel">Monthly administration fee**</td>
+                    <td class="slds-truncate" data-label="monthlyAdmValue">14.95</td>
+                    <td class="slds-truncate" data-label="monthlyAdmCurrency">GBP</td>
+                  </tr>
+                </tbody>
+            </table>
+            <div class="slds-text-body--small slds-m-around--x-small">
+                *+VAT (20%) based on gross order value
+            </div>
+            <div class="slds-text-body--small slds-m-around--x-small">
+                **Monthly fee is payable once a minimum of 20 orders has been reached within the current month
+            </div>
+            <table class="slds-table slds-table--bordered" style="max-width:400px">
+                <tbody>
+                  <tr class="slds-hint-parent">
+                    <td class="slds-truncate" data-label="commissionLabel"></td>
+                    <td class="slds-truncate" data-label="commissionValue">Total Price</td>
+                    <td class="slds-truncate" data-label="commissionPercentage">Installments</td>
+                  </tr>
+                  <tr class="slds-hint-parent">
+                    <td class="slds-truncate" data-label="monthlyAdmLabel">Setup Fee +VAT(20%)</td>
+                    <td class="slds-truncate" data-label="commissionValue">                     
+                        <div id="setupFeeAppend" class="slds-form-element slds-size--1-of-1">
+                            <div class="slds-form-element__control ">
+                                <input id="setupFee" class="slds-input" type="number" />
+                            </div>
+                        </div>
+                    </td>
+                    <td class="slds-truncate" data-label="commissionValue">                     
+                        <div id="installmentsAppend" class="slds-form-element slds-size--1-of-1">
+                            <div class="slds-form-element__control ">
+                                <input id="installments" class="slds-input" type="number" />
+                            </div>
+                        </div>
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+            <div class="slds-text-heading--x-small slds-m-around--x-small">
+                Relay method chosen:
+            </div>
+            <div class="slds-text-body--small slds-m-around--x-small">
+                The Manufacturers warranty will apply for all components of the TabLink
+            </div>
+            <fieldset id="tariffAppend" class="slds-form-element is-required" required="true">
+                <table>
+                    <tr>
+                        <td style="width:150px">
+                            <div class="slds-form-element__control slds-m-left--x-small">
+                                <label class="slds-radio" for="tgtablink">
+                                    <input type="radio" name="tablink" id="tgtablink" />
+                                    <span class="slds-radio--faux" style="width: 24px; height:24px"></span>
+                                    <span class="slds-text-body--small">3G Tablink</span>
+                                </label>
+                                <label class="slds-radio" for="wifitablink">
+                                    <input type="radio" name="tablink" id="wifitablink" />
+                                    <span class="slds-radio--faux" style="width: 24px; height:24px"></span>
+                                    <span class="slds-text-body--small">WIFI Tablink</span>
+                                </label>
+                            </div>
+                        </td>
+                        <td style="width:150px">
+                            <div class="slds-form-element__control slds-m-left--x-small hideForRegional">
+                                <label class="slds-radio" for="tablinktakeover">
+                                    <input type="radio" name="tablink" id="tablinktakeover"  />
+                                    <span class="slds-radio--faux" style="width: 24px; height:24px"></span>
+                                    <span class="slds-text-body--small">Tablink Takeover</span>
+                                </label>
+                                <label class="slds-radio" for="tablinksharing">
+                                    <input type="radio" name="tablink" id="tablinksharing"  />
+                                    <span class="slds-radio--faux" style="width: 24px; height:24px"></span>
+                                    <span class="slds-text-body--small">Tablink Sharing</span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="slds-form-element__control slds-m-left--x-small hideForRegional">
+                                <label class="slds-radio" for="livelinktakeover">
+                                    <input type="radio" name="tablink" id="livelinktakeover"  />
+                                    <span class="slds-radio--faux" style="width: 24px; height:24px"></span>
+                                    <span class="slds-text-body--small">LiveLink Takeover</span>
+                                </label>
+                                <label class="slds-radio" for="livelinklinked">
+                                    <input type="radio" name="tablink" id="livelinklinked"  />
+                                    <span class="slds-radio--faux" style="width: 24px; height:24px"></span>
+                                    <span class="slds-text-body--small">LiveLink Linked</span>
+                                </label>
+                            </div>
+                        </td>
+                     </tr>
+                 </table>
+            </fieldset>
+            <div >
+                <div class="slds-text-heading--x-small slds-m-around--x-small" id="rewardStamp">
+                     <label class="slds-checkbox">
+                        <input type="checkbox" name="options" id="rewardStamps"  />
+                        <span class="slds-checkbox--faux" style="width: 24px; height:24px"></span>
+                        <span class="slds-text-body--small">Reward Stamps</span>
+                      </label>
+                </div>
+                <fieldset id="regionalTariffAppend" class="slds-form-element is-required" required="true">
+                    <div class="slds-form-element__control slds-m-left--x-small">
+                        <label class="slds-radio" for="tasteTest">
+                            <input type="radio" name="regionalTariff" id="tasteTest"  onclick="splOfferSelect()"  />
+                            <span class="slds-radio--faux" style="width: 24px; height:24px"></span>
+                            <span class="slds-text-body--small">Taste Test</span>
+                        </label>
+                        <label class="slds-radio" for="splOffer">
+                            <input type="radio" name="regionalTariff" id="splOffer"  onclick="splOfferSelect()" />
+                            <span class="slds-radio--faux" style="width: 24px; height:24px"></span>
+                            <span class="slds-text-body--small">Exclusive Special Offer</span>
+                        </label>
+                        <!--<div class="slds-text-heading--x-small slds-m-around--x-small" id="splOfferText" style="display:none">-->
+                          
+                       <!-- </div>-->
+                       
+                    </div>
+                </fieldset>
+                 <div class="slds-form-element slds-size--1-of-1">
+                            <div class="slds-form-element "   id="commissionAppendRT"  >
+                                <input id="commissionRT" class="slds-input" type="text" value="20% off Orders over £25" style="Width:50%"  />
+                            </div>
+                             </div>
+            </div>
+            <div class="slds-text-heading--x-small slds-m-around--x-small">
+                Branding option
+            </div>
+            <div class="slds-form-element slds-m-around--x-small slds-text-body--small">
+                <div class="slds-form-element__control">
+                  <label class="slds-checkbox">
+                    <input type="checkbox" name="options" id="bladeSign" onclick="bladeSignChecked()"/>
+                    <span class="slds-checkbox--faux" style="width: 24px; height:24px"></span>
+                    <span class="slds-text-body--small">Blade Sign</span>
+                  </label>
+                </div>
+            </div>
+            
+            <div id="bladeSignText" >
+                <div class="slds-text-body--small slds-m-around--x-small">
+                    I <span id="name"></span> agree to the installation of a hungryhouse restaurant blade sign for promotional purposes. The blade sign and installation of the blade sign are free of charge subject to the following conditions:
+                </div>
+                <ul class="slds-list--dotted">
+                    <li class="slds-text-body--small slds-m-around--x-small">The hungryhouse blade sign will be fitted by an employee or service provider to hungryhouse.com Ltd</li>
+                    <li class="slds-text-body--small slds-m-around--x-small">The hungryhouse blade sign will be fitted at a height not lower than 6 feet and 5 inches</li>
+                    <li class="slds-text-body--small slds-m-around--x-small">The hungryhouse blade sign will be fitted either inside or outside of normal business hours</li>
+                    <li class="slds-text-body--small slds-m-around--x-small">The hungryhouse blade sign will remain in place for not less than 2 years beginning from the date of installation</li>
+                    <li class="slds-text-body--small slds-m-around--x-small">If the hungryhouse blade sign is removed or sufficiently damaged as to require removal, the restaurant owner will be liable for a charge of  100 pounds plus VAT</li>
+                    <li class="slds-text-body--small slds-m-around--x-small">Any damage will be reported to the relevant City Development Manager without unreasonable delay</li>
+                    <li class="slds-text-body--small slds-m-around--x-small">hungryhouse.com Ltd retain permanent ownership of the restaurant blade sign</li>
+                    <li class="slds-text-body--small slds-m-around--x-small">hungryhouse will arrange any blade sign to be fitted under the assumption that you, the restaurant owner, has permission from any landlord, council or regulatory body.</li>
+                </ul>
+            </div>
+            <div id="regionalTariffTC" >
+                <div class="slds-text-heading--x-small slds-m-around--x-small">
+                    Regional Tariff Terms and Conditions
+                </div>
+                <ul class="slds-list--dotted">
+                    <li class="slds-text-body--small slds-m-around--x-small">Restaurant must have a blade sign installed by hungryhouse on shop front.</li>
+                    <li class="slds-text-body--small slds-m-around--x-small">Restaurant must be on Livelink or Tablink ordering system</li>
+                    <li class="slds-text-body--small slds-m-around--x-small">Restaurant must have at least one visible window sticker on display shop front</li>
+                    <li class="slds-text-body--small slds-m-around--x-small">Restaurant must provide an exclusive offer(e.g. taste test or menu deal)</li>
+                    <!--<li class="slds-text-body--small slds-m-around--x-small">Restaurant must be signed up to the Reward Stamps loyalty scheme</li>-->
+                    <li class="slds-text-body--small slds-m-around--x-small">hungryhouse has the right to increase the commission to the premium tariff of 14% with immediate effect if restaurant fails to comply with above conditions.</li>
+                </ul>
+                <div class="slds-text-body--small slds-m-around--x-small">
+                    As long as these terms and conditions are met,this offer is valid for a minimum of two years.
+                </div>
+            </div>
+            <div class="slds-text-heading--x-small slds-m-around--x-small">
+                The services that come with the above agreement can be found below
+            </div>
+            <span class="slds-icon_container">
+              <svg aria-hidden="true" class="slds-icon slds-icon-text-default slds-icon--x-small slds-m-left--xx-large">
+                <use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"></use>
+              </svg>
+              <span class="slds-text-body--small">No minimum contract period</span>
+            </span><br/>
+            <span class="slds-icon_container">
+              <svg aria-hidden="true" class="slds-icon slds-icon-text-default slds-icon--x-small slds-m-left--xx-large">
+                <use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"></use>
+              </svg>
+              <span class="slds-text-body--small">Your own website including online ordering</span>
+            </span><br/>
+            <span class="slds-icon_container">
+              <svg aria-hidden="true" class="slds-icon slds-icon-text-default slds-icon--x-small slds-m-left--xx-large">
+                <use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"></use>
+              </svg>
+              <span class="slds-text-body--small">Free menu changes</span>
+            </span><br/>
+            <span class="slds-icon_container">
+              <svg aria-hidden="true" class="slds-icon slds-icon-text-default slds-icon--x-small slds-m-left--xx-large">
+                <use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"></use>
+              </svg>
+              <span class="slds-text-body--small">Free restaurant hotline 24h at 0800 612 3333</span>
+            </span><br/>
+            <span class="slds-icon_container">
+              <svg aria-hidden="true" class="slds-icon slds-icon-text-default slds-icon--x-small slds-m-left--xx-large">
+                <use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"></use>
+              </svg>
+              <span class="slds-text-body--small">Online payment option for your customers</span>
+            </span><br/>
+            <span class="slds-icon_container">
+              <svg aria-hidden="true" class="slds-icon slds-icon-text-default slds-icon--x-small slds-m-left--xx-large">
+                <use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"></use>
+              </svg>
+              <span class="slds-text-body--small">Fraud Insurance</span>
+            </span>
+            <br /><br />
+            <div class="slds-grid slds-wrap slds-grid--pull-padded">
+                <div class="slds-col--padded">
+                    <table class="slds-table slds-table--bordered">
+                        <tbody>
+                          <tr class="slds-hint-parent">
+                            <td class="slds-truncate" style="width:60%" data-label="minOrderValForDelivery">Minimum order value for delivery</td>
+                            <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                <div class="slds-form-element slds-size--1-of-1">
+                                    <div class="slds-form-element__control ">
+                                        <input id="minOrderDelivery" class="slds-input" type="text" />
+                                    </div>
+                                </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                    <table class="slds-table slds-table--bordered">
+                        <tbody>
+                          <tr class="slds-hint-parent">
+                            <td class="slds-truncate" style="width:60%" data-label="minOrderValForDelivery">Minimum order value for FREE delivery</td>
+                            <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                <div class="slds-form-element slds-size--1-of-1">
+                                    <div class="slds-form-element__control ">
+                                        <input id="minOrderFreeDelivery" class="slds-input" type="text" />
+                                    </div>
+                                </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                   <!-- <table class="slds-table slds-table--bordered">
+                        <tbody>
+                          <tr class="slds-hint-parent">
+                            <td class="slds-truncate" style="width:60%" data-label="minOrderValForDelivery">Delivery charge</td>
+                            <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                <div class="slds-form-element slds-size--1-of-1">
+                                    <div class="slds-form-element__control ">
+                                        <input id="deliveryCharge" class="slds-input" type="text"/>
+                                    </div>
+                                </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                    </table>-->
+                    <table class="slds-table slds-table--bordered">
+                        <tbody>
+                          <tr class="slds-hint-parent">
+                            <td class="slds-truncate" style="width:60%" data-label="minOrderValForDelivery">Cuisine type 1 / 2</td>
+                            <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                              <div class="slds-form-element__control">
+                                  <input id="cuisine" class="slds-input" type="text" readonly="true" />
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                     <table class="slds-table slds-table--bordered">
+                        <tbody>
+                          <tr class="slds-hint-parent">
+                            <td class="slds-truncate" style="width:60%" data-label="minOrderValForDelivery">Cuisine Notes</td>
+                            <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                              <div class="slds-form-element__control">
+                                  <input id="cuisineNote" class="slds-input" type="text" />
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                    <table class="slds-table slds-table--bordered">
+                        <tbody>
+                            <tr class="slds-hint-parent">
+                                <td class="slds-truncate" colspan="3">Postcode delivery areas</td>
+                                <td class="slds-truncate">Postcode delivery fee</td>
+                            </tr>
+                            <tr class="slds-hint-parent">
+                                <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1">
+                                        <div class="slds-form-element__control ">
+                                            <input id="zip1" class="slds-input" type="text" />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1">
+                                        <div class="slds-form-element__control ">
+                                            <input id="zip2" class="slds-input" type="text" />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1">
+                                        <div class="slds-form-element__control ">
+                                            <input id="zip3" class="slds-input" type="text" />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1">
+                                        <div class="slds-form-element__control ">
+                                            <input id="zipFee1" class="slds-input" type="text" />
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="slds-hint-parent">
+                                <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1">
+                                        <div class="slds-form-element__control ">
+                                            <input id="zip4" class="slds-input" type="text" />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1">
+                                        <div class="slds-form-element__control ">
+                                            <input id="zip5" class="slds-input" type="text" />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1">
+                                        <div class="slds-form-element__control ">
+                                            <input id="zip6" class="slds-input" type="text" />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1">
+                                        <div class="slds-form-element__control ">
+                                            <input id="zipFee2" class="slds-input" type="text" />
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="slds-hint-parent">
+                                <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1">
+                                        <div class="slds-form-element__control ">
+                                            <input id="zip7" class="slds-input" type="text"  />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1">
+                                        <div class="slds-form-element__control ">
+                                            <input id="zip8" class="slds-input" type="text"  />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1">
+                                        <div class="slds-form-element__control ">
+                                            <input id="zip9" class="slds-input" type="text"  />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1">
+                                        <div class="slds-form-element__control ">
+                                            <input id="zipFee3" class="slds-input" type="text"  />
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="slds-hint-parent">
+                                <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1">
+                                        <div class="slds-form-element__control ">
+                                            <input id="zip10" class="slds-input" type="text"  />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1">
+                                        <div class="slds-form-element__control ">
+                                            <input id="zip11" class="slds-input" type="text"  />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1">
+                                        <div class="slds-form-element__control ">
+                                            <input id="zip12" class="slds-input" type="text"  />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1">
+                                        <div class="slds-form-element__control ">
+                                            <input id="zipFee4" class="slds-input" type="text"  />
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="slds-hint-parent">
+                                <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1">
+                                        <div class="slds-form-element__control ">
+                                            <input id="zip13" class="slds-input" type="text"  />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1">
+                                        <div class="slds-form-element__control ">
+                                            <input id="zip14" class="slds-input" type="text"  />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1">
+                                        <div class="slds-form-element__control ">
+                                            <input id="zip15" class="slds-input" type="text"  />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1">
+                                        <div class="slds-form-element__control ">
+                                            <input id="zipFee5" class="slds-input" type="text"  />
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="slds-hint-parent">
+                                <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1">
+                                        <div class="slds-form-element__control ">
+                                            <input id="zip16" class="slds-input" type="text"  />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1">
+                                        <div class="slds-form-element__control ">
+                                            <input id="zip17" class="slds-input" type="text"  />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1">
+                                        <div class="slds-form-element__control ">
+                                            <input id="zip18" class="slds-input" type="text" />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="slds-truncate" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1">
+                                        <div class="slds-form-element__control ">
+                                            <input id="zipFee6" class="slds-input" type="text"  />
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="slds-col--padded">
+                    <table class="slds-table slds-table--bordered">
+                        <tbody>
+                          <tr class="slds-hint-parent">
+                            <th class="slds-truncate"  data-label="commissionLabel">DAY</th>
+                            <th class="slds-truncate"  data-label="commissionLabel">Delivery time starts</th>
+                            <th class="slds-truncate"  data-label="commissionPercentage">Delivery time ends</th>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <td class="slds-truncate"  data-label="monthlyAdmLabel">Friday</td>
+                                <td class="slds-truncate" data-label="commissionValue">     
+                                <div class="slds-form-element slds-size--1-of-1">
+                                    <div class="slds-form-element__control ">
+                                        <input id="fridayStarts" class="slds-input" type="text" />
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="slds-truncate" data-label="commissionValue">
+                                <div class="slds-form-element slds-size--1-of-1">
+                                    <div class="slds-form-element__control ">
+                                        <input id="fridayEnds" class="slds-input" type="text" />
+                                    </div>
+                                </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <td class="slds-truncate"  data-label="monthlyAdmLabel">Saturday</td>
+                                <td class="slds-truncate" data-label="commissionValue">     
+                                <div class="slds-form-element slds-size--1-of-1">
+                                    <div class="slds-form-element__control ">
+                                        <input id="saturdayStarts" class="slds-input" type="text" />
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="slds-truncate" data-label="commissionValue">
+                                <div class="slds-form-element slds-size--1-of-1">
+                                    <div class="slds-form-element__control ">
+                                        <input id="saturdayEnds" class="slds-input" type="text" />
+                                    </div>
+                                </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <td class="slds-truncate"  data-label="monthlyAdmLabel">Sunday</td>
+                                <td class="slds-truncate" data-label="commissionValue">     
+                                <div class="slds-form-element slds-size--1-of-1">
+                                    <div class="slds-form-element__control ">
+                                        <input id="sundayStarts" class="slds-input" type="text" />
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="slds-truncate" data-label="commissionValue">
+                                <div class="slds-form-element slds-size--1-of-1">
+                                    <div class="slds-form-element__control ">
+                                        <input id="sundayEnds" class="slds-input" type="text" />
+                                    </div>
+                                </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <td class="slds-truncate"  data-label="monthlyAdmLabel">Monday</td>
+                                <td class="slds-truncate" data-label="commissionValue">     
+                                <div class="slds-form-element slds-size--1-of-1">
+                                    <div class="slds-form-element__control ">
+                                        <input id="mondayStarts" class="slds-input" type="text" />
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="slds-truncate" data-label="commissionValue">
+                                <div class="slds-form-element slds-size--1-of-1">
+                                    <div class="slds-form-element__control ">
+                                        <input id="mondayEnds" class="slds-input" type="text" />
+                                    </div>
+                                </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <td class="slds-truncate" data-label="monthlyAdmLabel">Tuesday</td>
+                                <td class="slds-truncate" data-label="commissionValue">     
+                                <div class="slds-form-element slds-size--1-of-1">
+                                    <div class="slds-form-element__control ">
+                                        <input id="tuesdayStarts" class="slds-input" type="text" />
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="slds-truncate" data-label="commissionValue">
+                                <div class="slds-form-element slds-size--1-of-1">
+                                    <div class="slds-form-element__control ">
+                                        <input id="tuesdayEnds" class="slds-input" type="text" />
+                                    </div>
+                                </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <td class="slds-truncate"  data-label="monthlyAdmLabel">Wednesday</td>
+                                <td class="slds-truncate" data-label="commissionValue">     
+                                <div class="slds-form-element slds-size--1-of-1">
+                                    <div class="slds-form-element__control ">
+                                        <input id="wednesdayStarts" class="slds-input" type="text" />
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="slds-truncate" data-label="commissionValue">
+                                <div class="slds-form-element slds-size--1-of-1">
+                                    <div class="slds-form-element__control ">
+                                        <input id="wednesdayEnds" class="slds-input" type="text" />
+                                    </div>
+                                </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <td class="slds-truncate"  data-label="monthlyAdmLabel">Thursday</td>
+                                <td class="slds-truncate" data-label="commissionValue">     
+                                <div class="slds-form-element slds-size--1-of-1">
+                                    <div class="slds-form-element__control ">
+                                        <input id="thursdayStarts" class="slds-input" type="text" />
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="slds-truncate" data-label="commissionValue">
+                                <div class="slds-form-element slds-size--1-of-1">
+                                    <div class="slds-form-element__control ">
+                                        <input id="thursdayEnds" class="slds-input" type="text" />
+                                    </div>
+                                </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <td class="slds-truncate"  data-label="monthlyAdmLabel">Bank Holidays</td>
+                                <td class="slds-truncate" data-label="commissionValue">     
+                                <div class="slds-form-element slds-size--1-of-1">
+                                    <div class="slds-form-element__control ">
+                                        <input id="bankholidaysStarts" class="slds-input" type="text" />
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="slds-truncate" data-label="commissionValue">
+                                <div class="slds-form-element slds-size--1-of-1">
+                                    <div class="slds-form-element__control ">
+                                        <input id="bankholidaysEnds" class="slds-input" type="text" />
+                                    </div>
+                                </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                    </table>    
+                </div>
+            </div>
+            <div class="slds-text-heading--x-small slds-m-around--x-small">
+                Best time to contact:
+            </div>
+            <div class="slds-form-element slds-m-horizontal--x-small slds-m-top--small">
+                <div class="slds-form-element__control ">
+                  <input id="bestTimeContact" class="slds-input" type="text" style="max-width: 120px" />
+                </div>
+            </div>
+            <div class="slds-text-heading--x-small slds-m-around--x-small">
+                Other restaurant on hungryhouse:
+            </div>
+            <fieldset class="slds-form-element is-required" id="otherRest">
+                <div class="slds-form-element__control slds-m-left--x-small">
+                <table style="max-width:500px;">
+                    <tr>
+                        <td style="width: 100px;">
+                            <label class="slds-radio" for="yes">
+                                <input type="radio" name="otherRest" id="yes" onclick="otherRestYes()" />
+                                <span class="slds-radio--faux" style="width: 24px; height:24px"></span>
+                                <span class="slds-text-body--small">Yes:</span>
+                            </label>
+                        </td>
+                        <td class="slds-truncate" data-label="commissionValue"  >
+                            <div id="otherRestNameAppend" class="slds-form-element slds-size--1-of-1">
+                                <div class="slds-form-element__control ">
+                                    <input id="otherRestName" class="slds-input" type="text" placeholder="Name" readonly="true" style="max-width:95%"/>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="slds-truncate" data-label="commissionValue" style="max-width:80px">
+                            <div id="otherRestZipAppend" class="slds-form-element slds-size--1-of-1">
+                                <div class="slds-form-element__control ">
+                                    <input id="otherRestZip" readonly="true" class="slds-input" type="text" placeholder="Postcode"  />
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="slds-radio" for="no">
+                                <input type="radio" name="otherRest" id="no" onclick="otherRestNo()" />
+                                <span class="slds-radio--faux" style="width: 24px; height:24px"></span>
+                                <span class="slds-text-body--small">No</span>
+                            </label>
+                        </td>
+                    </tr>
+                </table>
+                 </div>
+            </fieldset>
+            <div class="slds-form-element slds-m-around--x-small slds-text-body--small">
+                <div class="slds-form-element__control">
+                  <label class="slds-checkbox">
+                    <input type="checkbox" name="options" id="termsConditions" onclick="checkboxChecked()"/>
+                    <span class="slds-checkbox--faux" style="width: 24px; height:24px"></span>
+                    <span class="slds-text-body--small">I hereby accept the product described above and agree to hungryhouse.com ltd’s terms and conditions</span>
+                  </label>
+                </div>
+            </div>
+            <div class="slds-form-element slds-m-around--x-small">
+                <div class="slds-form-element__control">
+                  <label class="slds-checkbox">
+                    <input type="checkbox" name="options" id="advertMaterial" onclick="checkboxChecked()" />
+                    <span class="slds-checkbox--faux" style="width: 24px; height:24px"></span>
+                    <span class="slds-text-body--small">I consent to receive advertising material about hungryhouse’s offers from hungryhouse.com ltd including by telephone</span>
+                  </label>
+                </div>
+            </div>
+        </div>
+        <button id="confirmOrder" class="slds-button slds-button--brand slds-size--1-of-1" disabled="true" onclick="convertLead(this)">Confirm Order</button>
+        <br /><br /><br /><br /><br />
+    </div>
+    </body>
+    </html>
+</apex:component>

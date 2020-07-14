@@ -1,0 +1,145 @@
+<apex:page id="applyChainOpportunityDeals" standardController="Opportunity" extensions="ChainOpportunityController"
+           sideBar="false" showHeader="false" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false"
+           docType="html-5.0">
+           
+    <html xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:v-once="http://vue/fake" 
+          xmlns:v-html="http://vue/fake"
+          xmlns:v-bind="http://vue/fake"
+          xmlns:v-if="http://vue/fake"
+          xmlns:v-on="http://vue/fake"
+          xmlns:v-model="http://vue/fake"
+          xmlns:v-cloak="http://vue/fake">
+
+
+        <head> 
+        	<title>Apply Deal</title>
+            <apex:slds />
+            <style>
+                #datepicker-app {
+                    font-family: Salesforce Sans, Arial, sans-serif;
+                },
+                [v-cloak] {
+                    display: none !important;
+                } 
+            </style>
+        </head>
+
+	    <body>
+	    	
+	    	<div id="app" class="slds-scope" v-cloak="">
+	    		<div v-if="!result.isError">
+		    		<header-section />
+		    		<button-section v-on:applydeal = "applyDeal" v-bind:disabled = "result.isJobEnqueued"/>
+		    		<account-table v-bind:accounts = "result.accounts" />
+	    		</div>
+	    		<div v-if="result.isError || result.isJobEnqueued">
+	    			<message-section v-bind:message="result.message" 
+	    							 v-bind:iserror ="result.isError"/>
+	    		</div>
+
+	    		<spinner v-bind:open="loaderState.state.isLoading"></spinner>
+	            <error-handler
+	                    v-bind:message="errorState.state.message"
+	                    v-bind:type="errorState.state.type"
+	                    v-bind:timeout="errorState.state.timeout"
+	                    v-bind:callback="errorState.state.callback"
+	                    v-on:closed="errorState.clearErrorMsg()">
+	            </error-handler>
+	    	</div>
+	    	
+	    	<script src="/support/console/35.0/integration.js"></script>
+	        <script src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>
+	        <c:VueCommonComponents />
+	        <c:VueChainOpportunityComponents />
+
+	        <script>
+	        	function initVue() {
+		        	var app = new Vue({
+			            el: "#app",
+			            data: {
+			                oppId 		: "{!opp.Id}",
+			                loaderState	: loaderSharedState,
+                        	errorState	: errorHandlerSharedState,
+                        	result		: new Object()
+			            },
+			            created: function(){
+			            	this.loadChildBranches();
+			            },
+			            methods:{
+			            	loadChildBranches: function(){
+			            		var self = this;
+			                    this.loaderState.startLoadingSpinner();
+			                    this.errorState.clearErrorMsg();
+			                    
+			            		Visualforce.remoting.Manager.invokeAction(
+			                        '{!$RemoteAction.ChainOpportunityController.fetchBranches}',
+			                        self.oppId,
+			                        function(result, event) {
+			                        	self.loaderState.stopLoadingSpinner();
+			                        	
+			                            // Checks event status
+			                            if (!event.status) {
+			                                console.error('Error is: ', event.message)
+			                                self.errorState.setErrorMsg({
+					                            msg: "Error in fetching branches " + event.message,
+					                            type: "error"
+					                        });
+			                                return;
+			                            }
+										
+			                            self.result = result;
+			                            console.log("Account inside " + self.result.accounts.length);
+			                        }, {
+			                            escape: false,
+			                            buffer: false
+			                        }
+			                    ); 
+			            	},
+			            	applyDeal: function(){
+			            		var self = this;
+			            		this.loaderState.startLoadingSpinner();
+			                    this.errorState.clearErrorMsg();
+			                    
+			                    Visualforce.remoting.Manager.invokeAction(
+			                        '{!$RemoteAction.ChainOpportunityController.applyDeals}',
+			                        JSON.stringify(self.result.accounts),self.oppId,
+			                        function(result, event) {
+			                        	self.loaderState.stopLoadingSpinner();
+			                        	
+			                            // Checks event status
+			                            if (!event.status) {
+			                                console.error('Error is: ', event.message)
+			                                self.errorState.setErrorMsg({
+					                            msg: event.message,
+					                            type: "error"
+					                        });
+			                                return;
+			                            }
+			                            	
+			                            self.result = result;
+			                            console.log("Deals created successfully");
+			                            
+			                            self.errorState.setErrorMsg({
+		                                    msg: result.message,
+		                                    type: "success"
+		                                });
+			                        }, {
+			                            escape: false,
+			                            buffer: false
+			                        }
+			                    ); 
+			            	}
+			            }
+			        });
+		        }
+		        
+		        window.addEventListener("load", function() {
+		            initVue();
+		        });
+	        </script>
+	    </body>
+    </html>
+	
+</apex:page>

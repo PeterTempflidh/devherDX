@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Public Holiday 9th March 2015</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DH_AU_Letterhead</letterhead>
+    <name>Public Holiday 9th March 2015</name>
+    <style>freeForm</style>
+    <subject>Labour Day Public Holiday 9th March 2015</subject>
+    <textOnly>3/3/2015
+
+Dear Restaurant - {!Account.Name},
+
+We would like to know if you will be open and doing delivery on the upcoming public holiday on Monday 9th March and if you charge a public holiday surcharge. Please note our website is not able to add any public holiday surcharges, so unfortunately we will have to close your restaurant for that day if you do have a surcharge.
+
+
+It would be greatly appreciated if you could please reply to this email to let us know:
+
+
+a-  If you will be open for delivery on Monday 9th March
+
+
+b- If yes, if you will have different operating hours AND
+
+
+c- If you intend to charge a public holiday surcharge?
+
+
+Alternatively, you may contact us at any time on our direct contact number 1300 GO HERO (1300 46 4376).
+
+
+Please note that if we do not receive confirmation that you will be open, we will have to close your restaurant for the Public Holidays.
+
+Yours Truly
+Delivery Hero Customer and Restaurant Care</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

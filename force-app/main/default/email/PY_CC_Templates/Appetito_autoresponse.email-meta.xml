@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email template for auto response for Appetito24  SCC-220</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>PY_Letterhead_Appetito24</letterhead>
+    <name>Appetito autoresponse</name>
+    <style>formalLetter</style>
+    <subject>Gracias por Contactarnos - # {!Case.CaseNumber}</subject>
+    <textOnly>Gracias por contactarte con Appetito24.
+
+Recibimos tu consulta y estamos trabajando para resolverla cuanto antes. Estaremos en contacto contigo a la brevedad.
+
+Saludos,
+Equipo de soporte.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

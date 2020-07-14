@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>DH_AU_Shared_Documents/Order_Now_Buttons_zip.zip</attachedDocuments>
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>DH_AU_Letterhead</letterhead>
+    <name>DH AU Confirmation – Order Now Button</name>
+    <style>freeForm</style>
+    <subject>Order Now Button Installation - Delivery Hero</subject>
+    <textOnly>Hi {!Contact.FirstName},
+Thanks for your interest in implementing an &quot;Order Now&quot; button from Delivery Hero! This will enable online ordering from your own website, and drive more orders for your restaurant.
+
+Here is the information your web-master/web-designer needs to implement on your website. Please forward this email to them at your earliest convenience.
+
+Please choose from the attached graphic files as your Order Now button(s)
+We recommend that you place it prominently on every page of your website to gain maximum exposure, with high order conversions
+Make sure to link your Order Now button to this URL, so visitors will be directed to the menu page and be able to order: [Mediaplex-URL]
+Please add the URL as a “do-follow” link to increase the chances of your menu getting a good Google rank to gain more orders
+
+[OPTIONAL]:
+I also confirm that we will charge a discounted commission of [net commission]% for orders that are accessed via this Order Now button link.
+
+Thanks {!Contact.FirstName}! Feel free to get back to us if you have any questions or need further assisitance, we&apos;ll be happy to help.
+
+Kind regards,
+{!User.Name}
+{!User.Phone}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,182 @@
+<!-- 
+    CD fields set for Branding Content 
+    This component assumes to be included inside an apex:form and that
+    slds styleshhets has been already included by parent page
+-->
+<apex:component >
+
+    <apex:attribute name="record" type="Branding_Content__c" required="true" description="Current Branding Content record" />
+
+
+    <div class="slds-form-element__group">
+        <fieldset class="slds-form--compound">  
+            <legend class="slds-form-element__label slds-text-title--caps">Information</legend>
+            <div class="slds-p-around--small">
+                <div class="slds-grid slds-wrap slds-box">
+
+                    <!-- name -->
+                    <div class="slds-col slds-size--1-of-2 slds-m-bottom--small">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.bName}">
+                                {!$ObjectType.Branding_Content__c.fields.Name.Label}
+                            </label>
+                            <apex:inputText id="bName" styleClass="slds-input" value="{!record.Name}" disabled="true" />
+                        </div>
+                    </div>
+
+                    <!-- opportunity -->
+                    <div class="slds-col slds-size--1-of-2 slds-m-bottom--small slds-p-left--small">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.opps}">
+                                {!$ObjectType.Branding_Content__c.fields.Opportunity__c.Label}
+                            </label>
+                            <div class="slds-form-element__control lookupContainer">
+                                <apex:inputField id="opps" value="{!record.Opportunity__c}" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- restaurant name -->
+                    <div class="slds-col slds-size--1-of-2 slds-m-bottom--small">                               
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.restaurant}">
+                                {!$ObjectType.Branding_Content__c.fields.Restaurant_Name__c.Label}
+                            </label>
+                            <div class="slds-form-element__control lookupContainer">
+                                <apex:inputField id="restaurant" value="{!record.Restaurant_Name__c}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size--1-of-2 slds-m-bottom--small slds-p-left--small" >
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.product}">
+                                <abbr class="slds-required" title="required">*</abbr>{!$ObjectType.Branding_Content__c.fields.product__c.Label}
+                            </label>
+                            <div class="slds-form-element__control lookupContainer">
+                                <apex:inputField id="product" value="{!record.Product__c}"  rendered="{!IF(record.Id_Opportunity_Quote_Line_Item__c!=null,false,true)}" required="true"/>
+                                <apex:outputField id="product2" value="{!record.product__r.Product_Name__c}"  rendered="{!IF(record.Id_Opportunity_Quote_Line_Item__c!=null,true,false)}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="slds-col slds-size--1-of-2 slds-m-bottom--small"></div>
+
+
+                    <!-- owner -->
+                    <div class="slds-col slds-size--1-of-2 slds-m-bottom--small slds-p-left--small">                                
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.owner}">
+                                {!$ObjectType.Branding_Content__c.fields.OwnerId.Label}
+                            </label>
+                            <div class="slds-form-element__control lookupContainer">
+                                <apex:inputField id="owner" value="{!record.OwnerId}" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- type -->
+                    <div class="slds-col slds-size--1-of-2 slds-m-bottom--small">                               
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.type}">
+                                {!$ObjectType.Branding_Content__c.fields.type__c.Label}
+                            </label>
+                            <apex:inputField id="type" value="{!record.Type__c}" styleClass="slds-select" rendered="{!record.Type__c != 'Exclusive Special Offer'}" />
+                            <apex:inputText id="type2" value="{!record.Type__c}" styleClass="slds-input" rendered="{!record.Type__c = 'Exclusive Special Offer'}" disabled="true"/>
+                        </div>
+                    </div>
+
+                    <!-- location -->
+                    <div class="slds-col slds-size--1-of-2 slds-m-bottom--small slds-p-left--small">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.location}">
+                                {!$ObjectType.Branding_Content__c.fields.Location__c.Label}
+                            </label>
+                            <apex:inputField id="location" value="{!record.Location__c}" styleClass="slds-select" />
+                        </div>
+                    </div>
+
+                    <!-- size  -->
+                    <div class="slds-col slds-size--1-of-2 slds-m-bottom--small">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.size}">
+                                {!$ObjectType.Branding_Content__c.fields.Size__c.Label}
+                            </label>
+                            <apex:inputField id="size" value="{!record.Size__c}" styleClass="slds-select" />
+                        </div>
+                    </div>
+
+                    <!-- quantity -->
+                    <div class="slds-col slds-size--6-of-12 slds-m-bottom--small slds-p-left--small">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.quantity}">
+                                {!$ObjectType.Branding_Content__c.fields.Quantity__c.Label}
+                            </label>
+                            <div class="slds-form-element__control">
+                                <apex:inputField id="quantity" value="{!record.Quantity__c}" styleClass="slds-input" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--just for alignment-->
+                    <div class="slds-col slds-size--1-of-2"></div>
+
+                    <!-- status  -->
+                    <div class="slds-col slds-size--1-of-2 slds-m-bottom--small slds-p-left--small">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.status}">
+                                {!$ObjectType.Branding_Content__c.fields.Status__c.Label}
+                            </label>
+                            <apex:inputField id="status" value="{!record.Status__c}" styleClass="slds-select" rendered="{!record.Type__c != 'Exclusive Special Offer'}" />
+                            <apex:inputText id="status2" value="{!record.Status__c}" styleClass="slds-input" rendered="{!record.Type__c = 'Exclusive Special Offer'}" disabled="true"/>
+                        </div>
+                    </div>
+
+                    <!-- installation date  -->
+                    <div class="slds-col slds-size--4-of-12 slds-m-bottom--small">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.instdate}">
+                                {!$ObjectType.Branding_Content__c.fields.Installation_Date__c.Label}
+                            </label>
+                            <div class="slds-form-element__control">
+                                <apex:inputField id="instdate" styleClass="slds-input" value="{!record.Installation_Date__c}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size--2-of-12"></div>
+
+                    <!-- end date  -->
+                    <div class="slds-col slds-size--4-of-12 slds-m-bottom--small slds-p-left--small">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.enddate}">
+                                {!$ObjectType.Branding_Content__c.fields.End_date__c.Label}
+                            </label>
+                            <div class="slds-form-element__control">
+                                <apex:inputField id="enddate" styleClass="slds-input" value="{!record.End_date__c}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size--2-of-12"></div>
+
+                    <!-- description  -->
+                    <apex:outputPanel rendered="{!record.Type__c != 'Exclusive Special Offer'}" layout="none">
+                        <div class="slds-col slds-size--1-of-1 slds-m-bottom--small">
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="{!$Component.description}">
+                                    {!$ObjectType.Branding_Content__c.fields.Description__c.Label}
+                                </label>
+                                <div class="slds-form-element__control">
+                                    <apex:inputTextarea id="description" styleClass="slds-textarea" value="{!record.Description__c}" />
+                                </div>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+
+                </div>
+
+            </div>
+        </fieldset>
+    </div>
+
+
+</apex:component>

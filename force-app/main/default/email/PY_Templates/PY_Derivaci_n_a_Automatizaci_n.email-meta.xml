@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY - Derivación a Automatización</name>
+    <style>freeForm</style>
+    <subject>Gracias por Contactarnos - # {!Case.CaseNumber}</subject>
+    <textOnly>Estimado xxx Nombre xxx, es un gusto saludarte. 
+
+Nos comunicamos en respuesta a tu consulta sobre tu medio de recepción, te pedimos disculpas por los inconvenientes (Si amerita).
+
+Te comentamos que hemos derivado la información de la situación al sector correspondiente para que puedan gestionarla a la brevedad.
+
+¿Necesitás más ayuda? Te invitamos a conocer el nuevo Centro de Ayuda en Partner Portal. Ahí encontrarás explicaciones y tutoriales sobre todas las funcionalidades para autogestionar tu perfil, además de artículos sobre nuestras herramientas para mejorar tu desempeño y mucho más en el siguiente enlace:   https://portal.pedidosya.com/app/#/help-center/home
+
+Quedamos a las órdenes ante cualquier consulta. 
+
+Saludos, 
+Nombre + Inicial del apellido - Claims Operator 
+PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

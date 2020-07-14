@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- List Product Price --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- List Product Price --></value>
+    </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>List Price Product Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- ListPrice Name --></nameFieldLabel>
+    <recordTypes>
+        <label><!-- AT List Product Price --></label>
+        <name>AT_List_Product_Price</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- CD List Product Price --></label>
+        <name>CD_List_Product_Price</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Czech Republic List Product Price --></description>
+        <label><!-- CZ List Product Price --></label>
+        <name>CZ_List_Product_Price</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DE List Product Price --></label>
+        <name>DE_List_Product_Price</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DH AU List Product Price --></label>
+        <name>DH_AU_List_Product_Price</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FI List Product Price --></label>
+        <name>FI_List_Product_Price</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FP List Product Price --></label>
+        <name>FP_List_Product_Price</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Hungary List Product Price --></description>
+        <label><!-- HU List Product Price --></label>
+        <name>HU_List_Product_Price</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Record type for Pedidos Ya and in future to be global for all countries --></description>
+        <label><!-- PY List Product Price --></label>
+        <name>PY_List_Product_Price</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SE List Product Price --></label>
+        <name>SE_List_Product_Price</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Talabat List Product Price --></label>
+        <name>Talabat_List_Product_Price</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- UK List Product Price --></label>
+        <name>UK_List_Product_Price</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Yogiyo List Product Price --></label>
+        <name>Yogiyo_List_Product_Price</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Product group required --></errorMessage>
+        <name>List_Product_Group_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- List price is required --></errorMessage>
+        <name>List_price_shall_not_be_empty</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Product name is required --></errorMessage>
+        <name>Product_name_shall_not_be_empty</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Default quantity is required --></errorMessage>
+        <name>Quantity_shall_not_be_empty</name>
+    </validationRules>
+</CustomObjectTranslation>

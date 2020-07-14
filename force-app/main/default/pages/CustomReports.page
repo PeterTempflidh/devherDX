@@ -1,0 +1,16 @@
+<apex:page id="CustomReports" readOnly="true">
+    <apex:includeLightning />
+
+    <div style="max-width:96vw" id="lightningContainer" ></div>
+
+    <script>
+        $Lightning.use("c:CustomReportVFAccess", function() {
+            $Lightning.createComponent("c:CustomReportList",
+                {},
+                "lightningContainer",
+                function(cmp) {
+                    console.log("Component is created!");
+                });
+        });
+     </script>
+</apex:page>

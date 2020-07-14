@@ -1,0 +1,1072 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataCategoryGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <dataCategory>
+        <dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>ETA is stuck or increasing</label>
+                        <name>ETA_is_stuck_or_increasing</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Order marked as delivered but didn&apos;t rec</label>
+                        <name>Order_marked_as_delivered_but_didn_t_rec</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Restaurant hasn&apos;t started preparing the</label>
+                        <name>Restaurant_hasn_t_started_preparing_the</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Didn&apos;t receive order confirmation</label>
+                        <name>Didn_t_receive_order_confirmation</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Order tracking issue</label>
+                        <name>Order_tracking_issue</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Order will not be processed</label>
+                        <name>Order_will_not_be_processed</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Check order status</label>
+                        <name>Check_order_status</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Complain about late order</label>
+                        <name>Complain_about_late_order</name>
+                    </dataCategory>
+                    <label>Order status</label>
+                    <name>Order_status</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Food items</label>
+                        <name>Food_items</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Payment method</label>
+                        <name>Payment_method</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Voucher</label>
+                        <name>Voucher</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Address</label>
+                        <name>Address</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Contact Details</label>
+                        <name>Contact_Details</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Cooking instructions</label>
+                        <name>Cooking_instructions</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Delivery instructions</label>
+                        <name>Delivery_instructions</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Delivery time/date</label>
+                        <name>Delivery_time_date</name>
+                    </dataCategory>
+                    <label>Change order details</label>
+                    <name>Change_order_details</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Request: order will take longer than exp</label>
+                        <name>Request_order_will_take_longer_than_exp</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Request: preorder by mistake</label>
+                        <name>Request_preorder_by_mistake</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Request: voucher not applied</label>
+                        <name>Request_voucher_not_applied</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Request: order modification not possible</label>
+                        <name>Request_order_modification_not_possible</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Request: order is late, does not want to</label>
+                        <name>Request_order_is_late_does_not_want_to</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Request: changed mind</label>
+                        <name>Request_changed_mind</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Request: accidental order</label>
+                        <name>Request_accidental_order</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Request: duplicated order</label>
+                        <name>Request_duplicated_order</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Complaint: logistics cancellation</label>
+                        <name>Complaint_logistics_cancellation</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Complaint: vendor cancellation</label>
+                        <name>Complaint_vendor_cancellation</name>
+                    </dataCategory>
+                    <label>Cancellation</label>
+                    <name>Cancellation</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Other live order inquiry</label>
+                        <name>Other_live_order_inquiry_L3</name>
+                    </dataCategory>
+                    <label>Other live order inquiry</label>
+                    <name>Other_live_order_inquiry_L2</name>
+                </dataCategory>
+                <label>Live Order Process</label>
+                <name>Live_Order_Process</name>
+            </dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Missing item</label>
+                        <name>Missing_item</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Wrong item</label>
+                        <name>Wrong_item</name>
+                    </dataCategory>
+                    <label>Wrong / Missing item</label>
+                    <name>Wrong_Missing_item</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Wrong order</label>
+                        <name>Wrong_order</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Order never arrived</label>
+                        <name>Order_never_arrived</name>
+                    </dataCategory>
+                    <label>Wrong order / Never arrived</label>
+                    <name>Wrong_order_Never_arrived</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Spilled food</label>
+                        <name>Spilled_food</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Food quality</label>
+                        <name>Food_quality</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Cooking instructions were not followed</label>
+                        <name>Cooking_instructions_were_not_followed</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Food portion</label>
+                        <name>Food_portion</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Food temperature</label>
+                        <name>Food_temperature</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Food poisoning</label>
+                        <name>Food_poisoning</name>
+                    </dataCategory>
+                    <label>Food issue</label>
+                    <name>Food_issue</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Short delay</label>
+                        <name>Short_delay</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Moderate delay</label>
+                        <name>Moderate_delay</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Severe delay</label>
+                        <name>Severe_delay</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Extreme delay</label>
+                        <name>Extreme_delay</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Early delivery</label>
+                        <name>Early_delivery</name>
+                    </dataCategory>
+                    <label>Delivery time</label>
+                    <name>Delivery_time</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Inappropriate behaviour</label>
+                        <name>Inappropriate_behaviour</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Missing equipment/uniform</label>
+                        <name>Missing_equipment_uniform</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Order not delivered to doorstep</label>
+                        <name>Order_not_delivered_to_doorstep</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Money collection issue</label>
+                        <name>Money_collection_issue</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Delivery instructions not followed</label>
+                        <name>Delivery_instructions_not_followed</name>
+                    </dataCategory>
+                    <label>Rider issue</label>
+                    <name>Rider_issue</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Invoice missing</label>
+                        <name>Invoice_missing</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Incorrect invoice</label>
+                        <name>Incorrect_invoice</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Incorrect invoice details</label>
+                        <name>Incorrect_invoice_details</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Refund query</label>
+                        <name>Refund_query</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Refund request</label>
+                        <name>Refund_request</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Fraud</label>
+                        <name>Fraud</name>
+                    </dataCategory>
+                    <label>Payment &amp; Refunds</label>
+                    <name>Payment_Refunds</name>
+                </dataCategory>
+                <label>Post-Delivery</label>
+                <name>Post_Delivery</name>
+            </dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Website issue</label>
+                        <name>Website_issue</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>App issue</label>
+                        <name>App_issue</name>
+                    </dataCategory>
+                    <label>Technical issue</label>
+                    <name>Technical_issue</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Online payment issue</label>
+                        <name>Online_payment_issue</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Offline payment issue</label>
+                        <name>Offline_payment_issue</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Wallet issue</label>
+                        <name>Wallet_issue</name>
+                    </dataCategory>
+                    <label>Payment issue</label>
+                    <name>Payment_issue</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Voucher validity</label>
+                        <name>Voucher_validity</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Voucher conditions</label>
+                        <name>Voucher_conditions</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Voucher already used</label>
+                        <name>Voucher_already_used</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Not satisfied with value</label>
+                        <name>Not_satisfied_with_value</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Voucher request</label>
+                        <name>Voucher_request</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Voucher not received</label>
+                        <name>Voucher_not_received</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Other voucher inquiry</label>
+                        <name>Other_voucher_inquiry</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Cannot apply</label>
+                        <name>Cannot_apply</name>
+                    </dataCategory>
+                    <label>Voucher issue</label>
+                    <name>Voucher_issue</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Newsletter unsubscription</label>
+                        <name>Newsletter_unsubscription</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Data protection inquiry</label>
+                        <name>Data_protection_inquiry</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Change account details</label>
+                        <name>Change_account_details</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>SMS Verification issue</label>
+                        <name>SMS_Verification_issue</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Account deletion</label>
+                        <name>Account_deletion</name>
+                    </dataCategory>
+                    <label>Customer account</label>
+                    <name>Customer_account</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Information request</label>
+                        <name>Information_request_L2</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Follow up on existing case</label>
+                        <name>Follow_up_on_existing_case_L3C</name>
+                    </dataCategory>
+                    <label>Information request</label>
+                    <name>Information_request</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Positive</label>
+                        <name>Positive</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Negative</label>
+                        <name>Negative</name>
+                    </dataCategory>
+                    <label>Feedback</label>
+                    <name>Feedback</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Forward - Human Resources</label>
+                        <name>Forward_Human_Resources</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Forward - Marketing</label>
+                        <name>Forward_Marketing</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Forward - Sales</label>
+                        <name>Forward_Sales</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Forward - Customer Service</label>
+                        <name>Forward_Customer_Service</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Forward - Vendor Service</label>
+                        <name>Forward_Vendor_Service</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Forward - Finance</label>
+                        <name>Forward_Finance</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Spam / Irrelevant</label>
+                        <name>Spam_Irrelevant</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Automations - Backend TIcket</label>
+                        <name>Automations_Backend_TIcket</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Automations - Missed Contact</label>
+                        <name>Automations_Missed_Contact</name>
+                    </dataCategory>
+                    <label>Internal</label>
+                    <name>Internal</name>
+                </dataCategory>
+                <label>Across Journey</label>
+                <name>Across_Journey</name>
+            </dataCategory>
+            <label>Customer</label>
+            <name>Customer</name>
+        </dataCategory>
+        <dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Tablet lost or stolen</label>
+                        <name>Tablet_lost_or_stolen</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Tablet damaged</label>
+                        <name>Tablet_damaged</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Charger lost or damaged</label>
+                        <name>Charger_lost_or_damaged</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>SIM Card Connection issues</label>
+                        <name>SIM_Card_Connection_issues</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Hardware issues</label>
+                        <name>Hardware_issues</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Hardware chase up</label>
+                        <name>Hardware_chase_up</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Partner channel transmission device chan</label>
+                        <name>Partner_channel_transmission_device_chan</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Connection issues</label>
+                        <name>Connection_issues</name>
+                    </dataCategory>
+                    <label>Transmission Device</label>
+                    <name>Transmission_Device</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>App does not receive orders</label>
+                        <name>App_does_not_receive_orders</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>App shows blank screen</label>
+                        <name>App_shows_blank_screen</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Functionality question</label>
+                        <name>Functionality_question</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Transmission method change</label>
+                        <name>Transmission_method_change</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Other App issues</label>
+                        <name>Other_App_issues</name>
+                    </dataCategory>
+                    <label>Partner app</label>
+                    <name>Partner_app</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Printer stolen or lost</label>
+                        <name>Printer_stolen_or_lost</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Printer damaged</label>
+                        <name>Printer_damaged</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Not printing due to technical issue</label>
+                        <name>Not_printing_due_to_technical_issue</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Connection issues</label>
+                        <name>Connection_issues_L3</name>
+                    </dataCategory>
+                    <label>Printer</label>
+                    <name>Printer</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Unable to log in</label>
+                        <name>Unable_to_log_in</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Invoice missing on portal</label>
+                        <name>Invoice_missing_on_portal</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Functionality question</label>
+                        <name>Functionality_question_L3</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Technical problem</label>
+                        <name>Technical_problem</name>
+                    </dataCategory>
+                    <label>Partner Portal</label>
+                    <name>Partner_Portal</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Partner page is missing</label>
+                        <name>Partner_page_is_missing</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Information incorrect</label>
+                        <name>Information_incorrect</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Delivery area incorrect</label>
+                        <name>Delivery_area_incorrect</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Restaurant shown as closed</label>
+                        <name>Restaurant_shown_as_closed</name>
+                    </dataCategory>
+                    <label>Front end website</label>
+                    <name>Front_end_website</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Technical problem</label>
+                        <name>Technical_problem_L3</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Set-up or change</label>
+                        <name>Set_up_or_change</name>
+                    </dataCategory>
+                    <label>POS integration</label>
+                    <name>POS_integration</name>
+                </dataCategory>
+                <label>Technical Inquiry</label>
+                <name>Technical_Inquiry</name>
+            </dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Partner name change</label>
+                        <name>Partner_name_change</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Partner contact details change</label>
+                        <name>Partner_contact_details_change</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Partner bank account details change</label>
+                        <name>Partner_bank_account_details_change</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Partner details changes</label>
+                        <name>Partner_details_changes</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Address change</label>
+                        <name>Address_change</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Change of business registration</label>
+                        <name>Change_of_business_registration</name>
+                    </dataCategory>
+                    <label>Basic profile change</label>
+                    <name>Basic_profile_change</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Update operating hours</label>
+                        <name>Update_operating_hours</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Update schedule temporarily</label>
+                        <name>Update_schedule_temporarily</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Reactivate restaurant after temporary cl</label>
+                        <name>Reactivate_restaurant_after_temporary_cl</name>
+                    </dataCategory>
+                    <label>Scheduling</label>
+                    <name>Scheduling</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Changes in minimum order value</label>
+                        <name>Changes_in_minimum_order_value</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Delivery area change</label>
+                        <name>Delivery_area_change</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Changes in delivery fee</label>
+                        <name>Changes_in_delivery_fee</name>
+                    </dataCategory>
+                    <label>Delivery changes</label>
+                    <name>Delivery_changes</name>
+                </dataCategory>
+                <label>Partner data update</label>
+                <name>Partner_data_update</name>
+            </dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Description</label>
+                        <name>Description</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Layout change</label>
+                        <name>Layout_change</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Prices change</label>
+                        <name>Prices_change</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Remove or hide dish/menu category</label>
+                        <name>Remove_or_hide_dish_menu_category</name>
+                    </dataCategory>
+                    <label>Menu update - Minor</label>
+                    <name>Menu_update_Minor</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Full menu</label>
+                        <name>Full_menu</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Allergens Update</label>
+                        <name>Allergens_Update</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Update menu settings</label>
+                        <name>Update_menu_settings</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Add items/ toppings</label>
+                        <name>Add_items_toppings</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Add menu category</label>
+                        <name>Add_menu_category</name>
+                    </dataCategory>
+                    <label>Menu update - Major</label>
+                    <name>Menu_update_Major</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Change/upload product photo</label>
+                        <name>Change_upload_product_photo</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Change/upload listing image</label>
+                        <name>Change_upload_listing_image</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Change or upload logo</label>
+                        <name>Change_or_upload_logo</name>
+                    </dataCategory>
+                    <label>Imagery only update</label>
+                    <name>Imagery_only_update</name>
+                </dataCategory>
+                <label>Content update</label>
+                <name>Content_update</name>
+            </dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Order information missing</label>
+                        <name>Order_information_missing</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Redelivery required</label>
+                        <name>Redelivery_required</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Restaurant too busy</label>
+                        <name>Restaurant_too_busy</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Delivery staff too busy</label>
+                        <name>Delivery_staff_too_busy</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Customer outside of delivery area</label>
+                        <name>Customer_outside_of_delivery_area</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Order placed outside of opening hours</label>
+                        <name>Order_placed_outside_of_opening_hours</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Fake order</label>
+                        <name>Fake_order</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Duplicate order</label>
+                        <name>Duplicate_order</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Product unavailable</label>
+                        <name>Product_unavailable</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Customer did not pick up</label>
+                        <name>Customer_did_not_pick_up</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Customer left pick up due to delay</label>
+                        <name>Customer_left_pick_up_due_to_delay</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Voucher issue</label>
+                        <name>Voucher_issue_L3</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Modify item</label>
+                        <name>Modify_item</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Modify customer address</label>
+                        <name>Modify_customer_address</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Customer cancellation</label>
+                        <name>Customer_cancellation</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Customer information missing</label>
+                        <name>Customer_information_missing</name>
+                    </dataCategory>
+                    <label>Issue with order</label>
+                    <name>Issue_with_order</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Customer address problem</label>
+                        <name>Customer_address_problem</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Rider left without paying the order to t</label>
+                        <name>Rider_left_without_paying_the_order_to_t</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Rider left some items</label>
+                        <name>Rider_left_some_items</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Customer not at delivery address</label>
+                        <name>Customer_not_at_delivery_address</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Customer unreachable</label>
+                        <name>Customer_unreachable</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Delivery late</label>
+                        <name>Delivery_late</name>
+                    </dataCategory>
+                    <label>Delivery inquiries</label>
+                    <name>Delivery_inquiries</name>
+                </dataCategory>
+                <label>Live order inquiries by restaurant</label>
+                <name>Live_order_inquiries_by_restaurant</name>
+            </dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Invoice request by partner</label>
+                        <name>Invoice_request_by_partner</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Invoice calculation explanation request</label>
+                        <name>Invoice_calculation_explanation_request</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Dunning inquiry</label>
+                        <name>Dunning_inquiry</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Vendor dues to delivery hero</label>
+                        <name>Vendor_dues_to_delivery_hero</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Double cooking inquiry</label>
+                        <name>Double_cooking_inquiry</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Mistake in invoice</label>
+                        <name>Mistake_in_invoice</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>VAT inquiry</label>
+                        <name>VAT_inquiry</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Compensation</label>
+                        <name>Compensation</name>
+                    </dataCategory>
+                    <label>Invoice inquiries</label>
+                    <name>Invoice_inquiries</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Incorrect payment received by partner</label>
+                        <name>Incorrect_payment_received_by_partner</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Payment not received by partner</label>
+                        <name>Payment_not_received_by_partner</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Payment cycle inquiry</label>
+                        <name>Payment_cycle_inquiry</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Payment reconciliation</label>
+                        <name>Payment_reconciliation</name>
+                    </dataCategory>
+                    <label>Payment inquiries</label>
+                    <name>Payment_inquiries</name>
+                </dataCategory>
+                <label>Billing inquiries</label>
+                <name>Billing_inquiries</name>
+            </dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Onboarding status inquiries</label>
+                        <name>Onboarding_status_inquiries</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>New partner sign up request</label>
+                        <name>New_partner_sign_up_request</name>
+                    </dataCategory>
+                    <label>Onboarding and Sign up</label>
+                    <name>Onboarding_and_Sign_up</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Termination notice given by partner</label>
+                        <name>Termination_notice_given_by_partner</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Termination due to partner closure</label>
+                        <name>Termination_due_to_partner_closure</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Termination due to change of owner / bus</label>
+                        <name>Termination_due_to_change_of_owner_bus</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Termination by delivery hero</label>
+                        <name>Termination_by_delivery_hero</name>
+                    </dataCategory>
+                    <label>Termination</label>
+                    <name>Termination</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Renegotiation base fee</label>
+                        <name>Renegotiation_base_fee</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Renegotiation commission</label>
+                        <name>Renegotiation_commission</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>General renegotiation</label>
+                        <name>General_renegotiation</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>General terms inquiry</label>
+                        <name>General_terms_inquiry</name>
+                    </dataCategory>
+                    <label>Terms</label>
+                    <name>Terms</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Account management feedback on existing</label>
+                        <name>Account_management_feedback_on_existing</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Account management meeting request</label>
+                        <name>Account_management_meeting_request</name>
+                    </dataCategory>
+                    <label>Account management</label>
+                    <name>Account_management</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Premium listing interest</label>
+                        <name>Premium_listing_interest</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Premium listing performance issue</label>
+                        <name>Premium_listing_performance_issue</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Meal photography interest</label>
+                        <name>Meal_photography_interest</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Special campaign participation interest</label>
+                        <name>Special_campaign_participation_interest</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Termination of premium listing</label>
+                        <name>Termination_of_premium_listing</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Interest in a deal</label>
+                        <name>Interest_in_a_deal</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Termination of a deal</label>
+                        <name>Termination_of_a_deal</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Branded material request</label>
+                        <name>Branded_material_request</name>
+                    </dataCategory>
+                    <label>Premium features &amp; Promotional deals</label>
+                    <name>Premium_features_Promotional_deals</name>
+                </dataCategory>
+                <label>Contract and Sales inquiries</label>
+                <name>Contract_and_Sales_inquiries</name>
+            </dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Rider related</label>
+                        <name>Rider_related</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Process related</label>
+                        <name>Process_related</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>System related</label>
+                        <name>System_related</name>
+                    </dataCategory>
+                    <label>Positive partner feedback</label>
+                    <name>Positive_partner_feedback</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Rider related</label>
+                        <name>Rider_related_L3</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Process related</label>
+                        <name>Process_related_L3</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>System related</label>
+                        <name>System_related_L3</name>
+                    </dataCategory>
+                    <label>Negative partner feedback</label>
+                    <name>Negative_partner_feedback</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Request to comment on customer evaluatio</label>
+                        <name>Request_to_comment_on_customer_evaluatio</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>Partner requested to remove customer eva</label>
+                        <name>Partner_requested_to_remove_customer_eva</name>
+                    </dataCategory>
+                    <dataCategory>
+                        <label>General inquiries related to customer ev</label>
+                        <name>General_inquiries_related_to_customer_ev</name>
+                    </dataCategory>
+                    <label>Customer reviews for partners</label>
+                    <name>Customer_reviews_for_partners</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Spam / Irrelevant</label>
+                        <name>Spam_Irrelevant_b</name>
+                    </dataCategory>
+                    <label>Spam/Irrelevant</label>
+                    <name>Spam_Irrelevant_a</name>
+                </dataCategory>
+                <label>Partner Feedback</label>
+                <name>Partner_Feedback</name>
+            </dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Paper Bag Request</label>
+                        <name>Paper_Bag_Request_L3</name>
+                    </dataCategory>
+                    <label>Paper Bag Request</label>
+                    <name>Paper_Bag_Request</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Paper Roll Request</label>
+                        <name>Paper_Roll_Request_L3</name>
+                    </dataCategory>
+                    <label>Paper Roll Request</label>
+                    <name>Paper_Roll_Request</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Paper Bag &amp; Paper Roll Request</label>
+                        <name>Paper_Bag_Paper_Roll_Request_L3</name>
+                    </dataCategory>
+                    <label>Paper Bag &amp; Paper Roll Request</label>
+                    <name>Paper_Bag_Paper_Roll_Request</name>
+                </dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Door Sticker Request</label>
+                        <name>Door_Sticker_Request_L3</name>
+                    </dataCategory>
+                    <label>Door Sticker Request</label>
+                    <name>Door_Sticker_Request</name>
+                </dataCategory>
+                <label>Restaurant Supply</label>
+                <name>Restaurant_Supply</name>
+            </dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <dataCategory>
+                        <label>Follow up on existing case</label>
+                        <name>Follow_up_on_existing_case_L3</name>
+                    </dataCategory>
+                    <label>Follow up on existing case</label>
+                    <name>Follow_up_on_existing_case_L2</name>
+                </dataCategory>
+                <label>Follow up on existing case</label>
+                <name>Follow_up_on_existing_case</name>
+            </dataCategory>
+            <label>Partner</label>
+            <name>Partner</name>
+        </dataCategory>
+        <label>All</label>
+        <name>All</name>
+    </dataCategory>
+    <label>Case Reasons</label>
+    <objectUsage>
+        <object>KnowledgeArticleVersion</object>
+    </objectUsage>
+</DataCategoryGroup>

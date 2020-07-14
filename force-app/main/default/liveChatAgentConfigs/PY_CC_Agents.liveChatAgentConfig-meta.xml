@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LiveChatAgentConfig xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <profiles>
+            <profile>PY Customer Care</profile>
+            <profile>PY Customer Care Management</profile>
+        </profiles>
+    </assignments>
+    <autoGreeting>¡Hola {!LiveAgent_VisitorName}! Gracias por comunicarte.
+Soy {!User_FirstName} y ya estoy gestionando tu consulta.</autoGreeting>
+    <criticalWaitTime>30</criticalWaitTime>
+    <enableAgentFileTransfer>false</enableAgentFileTransfer>
+    <enableAgentSneakPeek>true</enableAgentSneakPeek>
+    <enableAssistanceFlag>false</enableAssistanceFlag>
+    <enableAutoAwayOnDecline>false</enableAutoAwayOnDecline>
+    <enableAutoAwayOnPushTimeout>false</enableAutoAwayOnPushTimeout>
+    <enableChatConferencing>false</enableChatConferencing>
+    <enableChatMonitoring>true</enableChatMonitoring>
+    <enableChatTransferToAgent>false</enableChatTransferToAgent>
+    <enableChatTransferToButton>true</enableChatTransferToButton>
+    <enableChatTransferToSkill>false</enableChatTransferToSkill>
+    <enableLogoutSound>true</enableLogoutSound>
+    <enableNotifications>true</enableNotifications>
+    <enableRequestSound>true</enableRequestSound>
+    <enableSneakPeek>true</enableSneakPeek>
+    <enableVisitorBlocking>false</enableVisitorBlocking>
+    <enableWhisperMessage>true</enableWhisperMessage>
+    <label>PY CC Agents</label>
+    <supervisorDefaultAgentStatusFilter>Online</supervisorDefaultAgentStatusFilter>
+    <supervisorDefaultSkillFilter>PY_Skills</supervisorDefaultSkillFilter>
+    <supervisorSkills>
+        <skill>PY_Skills</skill>
+    </supervisorSkills>
+    <transferableButtons>
+        <button>CS_SPA_PedidosYa_Customer_Chat</button>
+        <button>CS_SPA_PedidosYa_Online_Payment</button>
+        <button>Chat_Button_for_PY_Escalation</button>
+    </transferableButtons>
+</LiveChatAgentConfig>

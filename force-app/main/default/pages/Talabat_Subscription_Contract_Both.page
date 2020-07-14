@@ -1,0 +1,5 @@
+<apex:page Controller="ctrDH_AU_QuoteVFTemplate" showheader="false" sidebar="false" standardStylesheets="false">
+    <c:TalabatQuote acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!isNewBusiness}"/>
+    <c:Talabat_UpgradeUpsell_Quote acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!AND(NOT(isNewBusiness), NOT(isCpcQuote))}"/>
+    <c:TalabatCPCQuote acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!AND(NOT(isNewBusiness), isCpcQuote)}"/>
+</apex:page>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>We use this email to notify a new restaurant that it`s online</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>DH AU Restaurant Online Notification</name>
+    <style>none</style>
+    <subject>Your Restaurant is now online with Delivery Hero</subject>
+    <textOnly>Dear Restaurant Owner,
+
+We are pleased to let you know that {!Account.Name} is now online on www.deliveryhero.com.au. This means that from now new customers can order from your restaurant online and Delivery Hero will start sending you orders.
+
+Please make the following checks to confirm the accuracy of the content for your restaurant:
+
+Check the opening hours and your menu on {!Account.FrontEnd_URL__c} carefully to make sure all your dishes are listed and have the correct prices.
+The opening hours on {!Account.00N20000002kwz8} should match the times you actually do delivery, that is the time you take your FIRST order for delivery until the time you take your LAST order for delivery.
+
+If you have any change requests, please contact us on 1300 46 4376 or send an email to restaurant@deliveryhero.com.au .
+
+Kind regards,
+The Delivery Hero Team
+
+
+{!User.Company}
+{!User.Street}
+{!User.City} {!User.PostalCode}
+contact@deliveryhero.com.au
+www.deliveryhero.com.au
+ABN: 26 152 250 274</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

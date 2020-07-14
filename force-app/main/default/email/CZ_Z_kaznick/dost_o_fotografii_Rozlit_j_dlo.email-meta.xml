@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Žádost o fotografii - Rozlité jídlo</name>
+    <style>none</style>
+    <textOnly>Dobrý den,
+
+
+děkuji vám za upozornění.
+
+
+Velice mě mrzí, že s Vaší objednávkou nastaly takové potíže a dorazila rozlitá. Restaurace by měla určitě dbát na 100% stav objednávek, které zasílají svým zákazníkům.
+
+
+Rozhodně nám pomůže v řešení s restaurací, když nám zašlete fotografie ohledně tohoto pochybení. A na základě fotografií Vám budeme moci vymyslet vhodnou kompenzaci.
+
+
+Předem děkuji za spolupráci v řešení tohoto problém a doufám, že v budoucnu již vše proběhne v naprostém pořádku.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

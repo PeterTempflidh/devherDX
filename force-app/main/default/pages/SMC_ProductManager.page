@@ -1,0 +1,529 @@
+<apex:page controller="CtrProductManager" showHeader="false" sidebar="false" standardStylesheets="false">
+<script>
+  
+    function showProductPopup(){
+        j$('#customPopupProduct').modal('show');
+    }
+    
+    function hideProductPopup(){
+        j$('#customPopupProduct').modal('hide');
+    }
+
+    function refreshProduchGroupDropdown(){
+        var countryDropdown = j$('[id$=countryDropdown]');
+        var companyDropdown = j$('[id$=companyDropdown]');
+        
+        if(countryDropdown.val() !== 'null' && companyDropdown.val() !== 'null'){
+            initiateProductAdd();
+            discountMandatory();
+        }
+    }
+   
+   
+
+          function discountMandatory() {
+            if(j$("[id$=addOn]").prop("checked")) {
+                // minimum required
+                j$("[id$=softDiscount]").parent("td").append('<span class="requiredRed" id="discountReq"/>');
+                if(j$("[id$=softDiscount]").val()==null || j$("[id$=softDiscount]").val()=='')
+                        j$("[id$=softDiscount]").val(0.0);
+            } else {
+                // minimum not required
+                 j$("#discountReq:visible").remove();
+            }
+
+          }
+    
+    function disableAddCharge(){
+       var chk=document.getElementById('j_id0:j_id104:j_id105:myFormProduct:addProductBlock:j_id153:chkBox');
+       if(chk.checked){
+           var addChargeChk=document.getElementById('j_id0:j_id104:j_id105:myFormProduct:addProductBlock:j_id153:addCharge');
+           if(!addChargeChk.checked){
+               addChargeChk.checked=true;
+           }
+           document.getElementById('j_id0:j_id104:j_id105:myFormProduct:addProductBlock:j_id153:addCharge').disabled= true;
+       }
+       else
+           document.getElementById('j_id0:j_id104:j_id105:myFormProduct:addProductBlock:j_id153:addCharge').disabled= false;
+    }
+
+    function toogleProductGroupAndInstallmentFields(recurringCharges){
+        var productType = j$('.productType').val();
+        var toggleType = false;
+
+        if(recurringCharges.length != 0){
+            var charges = recurringCharges.split(',');
+
+            for(var key in charges){
+                if(productType == charges[key]){
+                    toggleType = true;
+                } 
+            }
+        }
+
+        if(toggleType){
+            j$('.fieldToHide').hide();
+        } else{
+            j$('.fieldToHide').show();
+        }
+    }
+    
+    function enableSESetupFeeBranding(){
+    
+        var prodtype ='Setup Fee';
+        if(j$('.productType').val()==prodtype){
+            var labelCountry='';
+            
+            var selectedcountry=document.getElementById('j_id0:j_id104:j_id105:myFormProduct:addProductBlock:j_id153:countryDropdown');
+            if(selectedcountry!=null)
+                labelCountry=selectedcountry.options[selectedcountry.selectedIndex].innerHTML;
+             else
+                 labelCountry="{!defaultCountry}";
+            if(labelCountry== 'Sweden' ){
+               
+                var branding=document.getElementById('j_id0:j_id104:j_id105:myFormProduct:addProductBlock:j_id153:Branding');
+                branding.checked=true;
+               
+             }   
+        }
+    
+    }
+
+    function replacementSelected(){
+        var obj = document.getElementById("j_id0:j_id104:j_id105:myFormProduct:addProductBlock:j_id153:replacement");
+        console.log(obj.checked);
+        if(obj.checked){
+           document.getElementById('j_id0:j_id104:j_id105:myFormProduct:addProductBlock:j_id153:chkBox').checked= false;
+           document.getElementById('j_id0:j_id104:j_id105:myFormProduct:addProductBlock:j_id153:addOn').checked= false;
+            document.getElementById('j_id0:j_id104:j_id105:myFormProduct:addProductBlock:j_id153:Branding').checked= false;
+           document.getElementById('j_id0:j_id104:j_id105:myFormProduct:addProductBlock:j_id153:chkBox').disabled= true;
+           document.getElementById('j_id0:j_id104:j_id105:myFormProduct:addProductBlock:j_id153:addOn').disabled= true;
+           document.getElementById('j_id0:j_id104:j_id105:myFormProduct:addProductBlock:j_id153:Branding').disabled= true;
+
+        }else{
+            document.getElementById('j_id0:j_id104:j_id105:myFormProduct:addProductBlock:j_id153:chkBox').disabled= false;
+            document.getElementById('j_id0:j_id104:j_id105:myFormProduct:addProductBlock:j_id153:addOn').disabled= false;
+            document.getElementById('j_id0:j_id104:j_id105:myFormProduct:addProductBlock:j_id153:Branding').disabled= false;
+        }
+    }
+    
+</script>
+<apex:form id="myFormProduct">
+<apex:pageMessages id="productMessages"/>
+<br style="clear:both;" />  
+<apex:actionFunction name="initiateProductAdd" action="{!initiateProductAdd}" status="LoadingSpinner" reRender="myFormProduct" oncomplete="rerenderDataTable('products');" /> 
+<apex:actionStatus onstart="startSplash();" onStop="endSplash();" id="productStatus"/>
+
+<table width="100%" border="0" cellspacing="6" cellpadding="6" style="margin-top:20px !important;">
+<tr>
+    <td>
+        <span class="s1icon s1icon-c-buildingblock s1icon-sm pageIconPosition" style="margin-top:-70px !important;"></span>
+        <span class="pageIconPositionLabel" style="margin-top:-65px !important;">{!$Label.Overview_Products}</span>
+    </td>
+    <td>
+        <span class="s1icon s1icon-c-buildingblock s1icon-sm pageIconPosition" style="margin-top:-70px !important;"></span>
+        <span class="pageIconPositionLabel" style="margin-top:-65px !important;">{!$Label.Product_Management}</span>
+    </td>
+</tr>
+<tr>
+    <td></td>
+    <td>
+        <!-- info -->
+        <div class="info" style="float:right; margin-top:-25px;">
+            <div class="tool-tip bottom" style="top:160px; width: 270px;height: 160px; margin-right:40px">
+            <apex:outputText value="{!$Label.Your_Product_Management_Information}" escape="false" />
+            </div>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td style="padding-right:10px" valign="top"> 
+        <apex:pageBlock mode="maindetail" id="ProductOverview" tabStyle="Sales_Management__tab">
+
+            <apex:pageBlock >
+            <table id="products" class="displayDataTable display" >
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>{!$Label.Is_Active}</th>
+                        <th>{!$Label.Name}</th>
+                        <th>{!$Label.List_Price}</th>
+                        <th>{!$ObjectType.List_Product_Price__c.fields.Product_Type__c.Label}</th>
+                        <th>{!$Label.SMC_Discount_Soft_Limit}</th>
+                        <th>{!$Label.Product_Group}</th>
+                        <th>{!$Label.Installments}</th>
+                        <th>{!$Label.SMC_Country}</th>
+                        <th>{!$Label.SMC_Last_Modified_By}</th>
+                        <th>{!$Label.SMC_Last_Modified_Date}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <apex:repeat value="{!listProducts}" var="product">
+                        <tr>
+                            <td>
+                                <apex:commandButton action="{!chooseProductToDelete}" Styleclass="btn1 btn-warning1 s1utility-close" id="commandlinkDelete" value="" title="{!IF(product.Is_Active__c, $Label.SMC_Product_Delete_Not_Possible, $Label.Delete)}"  rerender="deleteProductPopup" oncomplete="showProductPopup(); rerenderDataTable('products');" status="LoadingSpinner" disabled="{!IF(product.Is_Active__c, 'true', 'false')}" >
+                                    <apex:param name="productId" assignTo="{!productId}" value="{!product.Id}" />
+                                </apex:commandButton>
+                            </td>
+                            <td data-sort="{!product.Is_Active__c}">
+                                <span class="Active{!product.Is_Active__c} s1utility"></span>
+                            </td>
+                            <td>
+                                <apex:commandLink id="theCommandLink" value="" title="{!$Label.Edit}" action="{!editItem}" rerender="addProductBlock"  oncomplete="scrollToTop(); rerenderDataTable('products'); toogleProductGroupAndInstallmentFields('{!recurringChargesAllowed}');discountMandatory();" status="LoadingSpinner" >
+                                <apex:outputText value="{!product.Product_Name__c}"/>
+                                <apex:param name="productId" assignTo="{!productId}" value="{!product.Id}" />
+                                </apex:commandLink>
+                            </td>
+                            <td>{!product.List_Price__c}</td>
+                            <td>{!product.Product_Type__c}</td>
+                            <td>{!product.Unapproved_Discount_Limit__c}</td>
+                            <td>{!product.Id_List_Product_Group__r.Name}</td>
+                            <td>{!product.Installments__c}</td>
+                            <td>{!product.Id_Country__r.name}</td>
+                            <td>{!product.LastModifiedBy.Name}</td>
+                            <td>
+                                <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                                    <apex:param value="{!product.LastModifiedDate}" /> 
+                                </apex:outputText>
+                            </td>
+                        </tr>
+                    </apex:repeat>
+                </tbody>
+            </table>
+            <!--
+            <apex:dataTable value="{!listProducts}" var="product" id="theTable" rowClasses="odd,even" columnClasses="s11Column" styleClass="tableClass">
+            <apex:column style="width:30px;">
+                <apex:commandButton action="{!chooseProductToDelete}" Styleclass="btn1 btn-warning1 s1utility-close" id="commandlinkDelete" value="" title="{!IF(product.Is_Active__c, $Label.SMC_Product_Delete_Not_Possible, $Label.Delete)}"  rerender="deleteProductPopup" oncomplete="showProductPopup();" status="LoadingSpinner" disabled="{!IF(product.Is_Active__c, 'true', 'false')}" immediate="true">
+                    <apex:param name="productId" assignTo="{!productId}" value="{!product.Id}" />
+                </apex:commandButton>
+            </apex:column>
+            <apex:column style="width:50px; text-align:center; padding-left:10px;">
+                <apex:facet name="header">{!$Label.Is_Active}</apex:facet>
+                <apex:outputText styleClass="Active{!product.Is_Active__c} s1utility "/>
+            </apex:column>
+            <apex:column >
+            <apex:facet name="header">{!$Label.Name}</apex:facet>
+                <apex:actionRegion >
+                    <apex:commandLink id="theCommandLink" value="" title="{!$Label.Edit}" action="{!editItem}" rerender="addProductBlock"  oncomplete="scrollToTop();" status="LoadingSpinner" immediate="true">
+                    <apex:outputText value="{!product.Product_Name__c}"/>
+                    <apex:param name="productId" assignTo="{!productId}" value="{!product.Id}" />
+                    </apex:commandLink>
+                </apex:actionRegion>
+            </apex:column>
+            <apex:column style="width:80px; text-align:right;">
+                <apex:facet name="header">{!$Label.List_Price}</apex:facet>
+                <apex:outputText value="{!product.List_Price__c}"/>
+            </apex:column>
+            <apex:column style="width:80px; text-align:right;">
+                <apex:facet name="header">{!$ObjectType.List_Product_Price__c.fields.Product_Type__c.Label}</apex:facet>
+                <apex:outputText value="{!product.Product_Type__c}"/>
+            </apex:column>
+            <apex:column style="width:80px; text-align:right;">
+                <apex:facet name="header">{!$Label.SMC_Discount_Soft_Limit}</apex:facet>
+                <apex:outputText value="{!product.Unapproved_Discount_Limit__c}"/>
+            </apex:column>
+            <apex:column style="width:200px;">
+                <apex:facet name="header">{!$Label.Product_Group}</apex:facet>
+                <apex:outputText value="{!product.Id_List_Product_Group__r.Name}"/>
+            </apex:column>
+            <apex:column style="width:80px; text-align:right; padding-right:10px;">
+                <apex:facet name="header">{!$Label.Installments}</apex:facet>
+                <apex:outputText value="{!product.Installments__c}"/>
+            </apex:column>
+            <apex:column headerValue="{!$Label.SMC_Last_Modified_By}">
+                <apex:outputField value="{!product.LastModifiedBy.Name}" />
+            </apex:column>
+            <apex:column headerValue="{!$Label.SMC_Last_Modified_Date}">
+                <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                    <apex:param value="{!product.LastModifiedDate}" /> 
+                </apex:outputText>
+            </apex:column>
+            </apex:dataTable>-->
+            </apex:pageBlock>  
+        </apex:pageBlock>
+    </td>
+    <td width="30%" valign="top">
+        <apex:pageBlock mode="maindetail" id="addProductBlock" tabStyle="Sales_Management__tab">
+
+            <apex:pageBlock >
+            <table width="100%">
+                <tr>
+                    <td></td>
+                    <td align="right">
+                    <apex:commandButton value="New" action="{!cancel}" Styleclass="btnFloatLeft3New" 
+                    oncomplete="scrollToTop(); rerenderDataTable('products');" reRender="myFormProduct" status="LoadingSpinner" />
+                    </td>
+                </tr>
+                </table>
+                <table width="100%" style="margin-top:20px; " Class="tableStandard ">
+                <tr style="padding-top:10px;">
+                <td style="width: 200px; text-align:left"><b>{!$Label.Product_Name}</b></td>
+                    <td>
+                        <apex:outputPanel >
+                        <apex:inputField html-placeholder="{!$Label.Your_new_product_name}" Style="width:205px;" value="{!myNewProduct.Product_Name__c}" />
+                        <span class="requiredRed"></span>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+                <tr>
+                <td style="width: 200px; text-align:left"><b>{!$Label.Displayed_Product_Name}</b></td>
+                    <td>
+                        <apex:outputPanel >
+                        <apex:inputField html-placeholder="{!$Label.Your_new_displayed_product_name}" Style="width:205px;" value="{!myNewProduct.Displayed_Name__c}" />
+                        <span class="requiredRed"></span>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>{!$Label.Country}</b></td>
+                    <td>
+                    <apex:outputPanel rendered="{!showCountryDropdown}">
+                    <!-- <apex:outputPanel> -->
+                        <span class="btnFloatLeft custom-dropdown custom-dropdown--red custom-dropdown--disabled">
+                            <apex:selectList style="width:205px;" value="{!selectedCountry}" size="1" Styleclass="custom-dropdown__select custom-dropdown__select--red"  multiselect="false" id="countryDropdown" onchange="refreshProduchGroupDropdown();">
+                                <apex:selectOptions value="{!countries}"/>
+                            </apex:selectList>
+                        </span>
+                        <span class="requiredRed"></span>
+                    </apex:outputPanel>
+                    <apex:outputPanel styleClass="hideDropdown" rendered="{!hideCountryDropdown}">
+                        <apex:outputText value="{!defaultCountry}" />
+                    </apex:outputPanel>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>{!$Label.Company}</b></td>
+                    <td>
+                    <apex:outputPanel rendered="{!showCompanyDropdown}">
+                        <span class="btnFloatLeft custom-dropdown custom-dropdown--red custom-dropdown--disabled">
+                            <apex:selectList style="width:205px;" value="{!selectedCompany}" size="1" Styleclass="custom-dropdown__select custom-dropdown__select--red" multiselect="false" id="companyDropdown" onchange="refreshProduchGroupDropdown();">
+                            <apex:selectOptions value="{!companies}"/>
+                            </apex:selectList>
+                        </span>
+                        <span class="requiredRed"></span>
+                    </apex:outputPanel>
+                    <apex:outputPanel styleClass="hideDropdown" rendered="{!hideCompanyDropdown}">
+                        <apex:outputText value="{!defaultCompany}" />
+                    </apex:outputPanel>
+                    </td>
+                </tr>
+                <tr> 
+                <td><b>{!$Label.Default_Quantity}</b></td>   
+                    <td>
+                        <apex:outputPanel >
+                        <apex:inputField Style="width:205px;text-align:right" value="{!myNewProduct.Default_Quantity__c}" />
+                        <span class="requiredRed"></span>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+                <tr> 
+                <td><b>{!$Label.List_Price}</b></td> 
+                    <td>
+                        <apex:outputPanel >
+                        <apex:inputField Style="width:205px; text-align:right" value="{!myNewProduct.List_Price__c}" />
+                        <span class="requiredRed"></span>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+                <!-- <tr> 
+                <td><b>{!$Label.Maximum_Discount}</b></td> 
+                    <td>
+                        <apex:outputPanel >
+                        <apex:inputField Style="width:205px; text-align:right" value="{!myNewProduct.Maximum_Discount__c}" />
+                        
+                    <!--    </apex:outputPanel>
+                    </td>
+                </tr> 
+                <tr> 
+                <td><b>{!$ObjectType.List_Product_Price__c.fields.Discount__c.Label}</b></td> 
+                    <td>
+                        <apex:outputPanel >
+                        <apex:inputField Style="width:205px; text-align:right" value="{!myNewProduct.Discount__c}" />
+                        
+                        </apex:outputPanel>
+                    </td>
+                </tr> -->
+                <tr> 
+                <td><b>{!$Label.SMC_Discount_Soft_Limit}</b></td> 
+                    <td>
+                        <apex:outputPanel >
+                        <apex:inputField Style="width:205px; text-align:right" value="{!myNewProduct.Unapproved_Discount_Limit__c}" />
+                        <!--<span class="requiredRed"></span>-->
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+
+                <tr style="display:{!IF(enableReplaceSlider, 'table-row', 'none')};"> 
+                    <td><b><apex:outputPanel rendered="{!enableReplaceSlider}" >  {!$ObjectType.List_Product_Price__c.fields.Requires_Replacement__c.Label}</apex:outputPanel>  </b></td> 
+                    <td>
+                    <apex:outputPanel rendered="{!enableReplaceSlider}">     
+                            <label class="switch">
+                              <apex:inputCheckbox styleClass="switch-input" id="replacement" value="{!myNewProduct.Requires_Replacement__c}"  onchange="replacementSelected();" disabled="{!disableReplacement}" style="width: 19px;"/>
+                              <span class="switch-label" data-on="{!$Label.Requires_Asset_YES}" data-off="{!$Label.Requires_Asset_NO}" ></span>
+                              <span class="switch-handle" ></span>
+                            </label>
+                    </apex:outputPanel>
+                    </td>
+                </tr>
+                
+                 <tr style="display:{!IF(enableAddChargeSlider, 'table-row', 'none')};"> 
+                    <td><b><apex:outputPanel rendered="{!enableAddChargeSlider}">  {!$ObjectType.List_Product_Price__c.fields.Requires_Additional_Charge__c.Label}</apex:outputPanel>  </b></td> 
+                    <td>
+                    <apex:outputPanel rendered="{!enableAddChargeSlider}" >     
+                            <label class="switch">
+                              <apex:inputCheckbox styleClass="switch-input" id="addCharge" value="{!myNewProduct.Requires_Additional_Charge__c}" style="width: 19px;"/>
+                              <span class="switch-label" data-on="{!$Label.Requires_Asset_YES}" data-off="{!$Label.Requires_Asset_NO}"></span>
+                              <span class="switch-handle"></span>
+                            </label>
+                    </apex:outputPanel>
+                    </td>
+                </tr>
+                
+                <tr style="display:{!IF(enableAssetSlider, 'table-row', 'none')};" > 
+                    <td><b><apex:outputPanel rendered="{!enableAssetSlider}"> {!$ObjectType.List_Product_Price__c.fields.Requires_Asset__c.Label}</apex:outputPanel></b></td> 
+                    <td>
+                    <apex:outputPanel rendered="{!enableAssetSlider}">     
+                            <label class="switch">
+                              <apex:inputCheckbox styleClass="switch-input" id="chkBox" value="{!myNewProduct.Requires_Asset__c}" onchange="disableAddCharge();" disabled="{!disableForReplacement}" style="width: 19px;"/>
+                              <span class="switch-label" data-on="{!$Label.Requires_Asset_YES}" data-off="{!$Label.Requires_Asset_NO}"></span>
+                              <span class="switch-handle"></span>
+                            </label>
+                    </apex:outputPanel>
+                    </td>
+                </tr>
+                
+                <tr style="display:{!IF(enableApprovalSlider, 'table-row', 'none')};"> 
+                    <td><b><apex:outputPanel rendered="{!enableApprovalSlider}" >{!$ObjectType.List_Product_Price__c.fields.Requires_Add_On__c.Label}</apex:outputPanel></b></td> 
+                    <td>
+                    <apex:outputPanel rendered="{!enableApprovalSlider}">  
+                            <label class="switch">
+                              <apex:inputCheckbox styleClass="switch-input" id="addOn" value="{!myNewProduct.Requires_Add_On__c}" onchange="discountMandatory();"  style="width: 19px;"/>
+                              <span class="switch-label" data-on="{!$Label.Requires_Asset_YES}" data-off="{!$Label.Requires_Asset_NO}"></span>
+                              <span class="switch-handle"></span>
+                            </label>
+                    </apex:outputPanel>
+                    </td>
+                </tr>
+
+                <tr style="display:{!IF(enableBrandSlider, 'table-row', 'none')};"> 
+                    <td><b><apex:outputPanel rendered="{!enableBrandSlider}">{!$ObjectType.List_Product_Price__c.fields.Requires_Branding__c.Label}</apex:outputPanel></b></td> 
+                    <td>
+                    <apex:outputPanel rendered="{!enableBrandSlider}">   
+                            <label class="switch">
+                              <apex:inputCheckbox styleClass="switch-input" value="{!myNewProduct.Requires_Branding__c}" id="Branding" disabled="{!disableForReplacement}" style="width: 19px;"/>
+                              <span class="switch-label" data-on="{!$Label.Requires_Asset_YES}" data-off="{!$Label.Requires_Asset_NO}"></span>
+                              <span class="switch-handle"></span>
+                            </label>
+                    </apex:outputPanel>
+                    </td>
+                </tr>
+
+                <tr style="display:{!IF(enableBrandSlider, 'table-row', 'none')};"> <!--SSC-2501-->
+                    <td><b><apex:outputPanel>{!$ObjectType.List_Product_Price__c.fields.Requires_Esignature__c.Label}</apex:outputPanel></b></td>
+                    <td>
+                        <apex:outputPanel>
+                            <div class="requiredInput">
+                                <div class="requiredBlock"></div>
+                                <apex:inputField id="requiresDsDropdown" Styleclass="custom-dropdown__select custom-dropdown__select--red" Style="width:205px;" value="{!myNewProduct.Requires_Esignature__c}"/>
+                            </div>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+
+                 <tr class="fieldToHide">
+                     <td><b>{!$ObjectType.List_Product_Price__c.fields.SKU__c.label}</b></td>
+                        <td>
+                            <apex:outputPanel >
+                                <apex:inputField Style="width:205px; text-align:right" value="{!myNewProduct.SKU__c}" />
+                            </apex:outputPanel>
+                        </td>
+                    </tr>
+                <tr class="fieldToHide"> 
+                <td><b>{!$Label.Product_Group}</b></td> 
+                    <td>
+                        <span class="custom-dropdown custom-dropdown--red custom-dropdown--disabled">
+                        <apex:selectList Style="width:204px;" Styleclass="custom-dropdown__select custom-dropdown__select--red" required="true"  label="{!$Label.Product_Group}" value="{!selectedProductGroup}" multiselect="false" size="1">
+                            <apex:selectOptions value="{!listProductGroupSelection}" />
+                        </apex:selectList>
+                        <span class="requiredRed"></span>
+                        </span>
+                    </td>
+                </tr>
+                 <tr> 
+                    <td><b><apex:outputPanel rendered="{!showProductType}">{!$ObjectType.List_Product_Price__c.fields.Product_Type__c.Label}</apex:outputPanel></b></td>
+                    <td>
+                        <apex:outputPanel rendered="{!showProductType}">
+                            <div class="requiredInput">
+                                <div class="requiredBlock"></div>
+                                <apex:inputField id="serviceTypeDropdown" Styleclass="custom-dropdown__select custom-dropdown__select--red productType" Style="width:205px;" value="{!myNewProduct.Product_Type__c}" onchange="toogleProductGroupAndInstallmentFields('{!recurringChargesAllowed}')"/>
+                            </div>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+                <tr class="fieldToHide"> 
+                <td><b>{!$Label.Installments}</b></td> 
+                    <td>
+                        <apex:outputPanel >
+                            <apex:inputField Style="width:205px;text-align:right"  value="{!myNewProduct.Installments__c}" />
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+                <tr> 
+                <td><b>{!$Label.Is_Active}</b></td> 
+                    <td>
+                        <apex:outputPanel >     
+                            <label class="switch">
+                              <apex:inputCheckbox styleClass="switch-input" value="{!myNewProduct.Is_Active__c}" />
+                              <span class="switch-label" data-on="{!$Label.On}" data-off="{!$Label.Off}"></span>
+                              <span class="switch-handle"></span>
+                            </label>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+                </table>
+                <br />
+                <br />
+                <table width="100%">
+                <tr>
+                    <td>
+                    </td>
+                    <td align="right">
+                    <apex:commandButton value="{!$Label.save}" Styleclass="btnFloatLeft2" action="{!addProduct}" reRender="myFormProduct" status="LoadingSpinner" oncomplete="scrollToTop(); rerenderDataTable('products');" /> &nbsp; &nbsp; 
+                    <apex:commandButton value="{!$Label.Cancel}" action="{!cancel}" Styleclass="btnFloatLeft3" oncomplete="scrollToTop(); rerenderDataTable('products');" reRender="myFormProduct" status="LoadingSpinner"  /></td>
+                </tr>
+                </table>
+            </apex:pageBlock>
+        </apex:pageBlock>
+    </td>
+</tr>
+</table>
+<!--
+###############################
+spinner / popup
+###############################
+-->
+<!--<c:Spinner message="{!$Label.Please_Wait}" />-->
+<apex:outputPanel id="deleteProductPopup">
+<div class="modal fade" id="customPopupProduct" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+     <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <span class="s1icon s1icon-s-question-feed s1icon-sm "></span>
+            <span class="pageIconPositionLabelpopup">{!$Label.SMC_Product_Deleting}</span>
+            <h2><apex:outputText value="{!$Label.SMC_Product_Deleting} : {!myNewProduct.Product_Name__c}" /></h2>
+            <apex:outputText value="Are you sure you want to delete:  <b>{!myNewProduct.Product_Name__c}</b> ?" escape="false"/>
+            <table width="100%" style="margin-top:50px;">
+                <tr>
+                <td><apex:commandButton html-data-dismiss="modal" Styleclass="btnFloatLeft2"  value="Cancel" onclick="return false;" /></td>
+                <td align="right"><apex:commandButton value="Delete" action="{!deleteItem}" Styleclass="btnFloatLeft3" status="LoadingSpinner" rerender="ProductOverview, productMessages" oncomplete="hideProductPopup(); scrollToTop(); rerenderDataTable('products');" />
+                </td>
+                </tr>
+            </table>
+        </div>
+      </div>
+    </div>
+</div>
+</apex:outputPanel>
+</apex:form>
+</apex:page>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>FI Quote - New Business 1</name>
+    <style>none</style>
+    <subject>Palvelusopimus / Service Agreement - Delivery Hero Finland Oy</subject>
+    <textOnly>Dear [Full Name],
+
+Kiitos kiinnostuksestanne palveluamme kohtaan ja tervetuloa foodoraan!
+
+Tässä liitteenä vahvistus sovitusta yhteistyösopimuksesta.
+
+Mitä tapahtuu seuraavaksi?
+
+1. Ravintolanne luodaan järjestelmäämme.
+2. Vastaanotatte foodora.fi- aloituspaketin.
+3. Soitamme teille perehdytyspuhelun, jonka jälkeen avaamme kauppanne verkkokaupan ja voitte alkaa vastaanottamaan tilauksia!
+
+Odotamme yhteistyötä kanssanne!
+
+Dear [Full Name],
+
+Thank you for speaking with me today and welcome to foodora!
+
+Attached to this email you will find confirmation of the agreed Service Package.
+
+What happens next?
+
+1. Your restaurant will be created to our system.
+2. You will receive your foodora starting package.
+3. After you have received the onboarding call your store will be taken online and we’ll start sending you orders!
+
+We look forward to work with you!
+
+Ystävällisin terveisin / Kind regards,
+[Opportunity Owner First Name] [Opportunity Owner Last Name]
+
+Delivery Hero Finland Oy
+Pasilankatu 10, 00240 Helsinki
+Phone: 02 9300 0472
+Website: foodora.fi</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

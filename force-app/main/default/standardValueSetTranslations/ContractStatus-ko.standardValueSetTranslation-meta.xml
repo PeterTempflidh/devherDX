@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Activated</masterLabel>
+        <translation>계약중</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Draft</masterLabel>
+        <translation><!-- Draft --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Expired</masterLabel>
+        <translation><!-- Expired --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>In Approval Process</masterLabel>
+        <translation><!-- In Approval Process --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Terminated</masterLabel>
+        <translation>계약해지</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

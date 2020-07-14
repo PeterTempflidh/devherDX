@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Tariff --></value>
+    </caseValues>
+    <layouts>
+        <layout>Tarif Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Tarif Name --></nameFieldLabel>
+    <recordTypes>
+        <label><!-- AT Tarif --></label>
+        <name>AT_Tarif</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- CD Tarif --></label>
+        <name>CD_Tarif</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DE Tarif --></label>
+        <name>DE_Tarif</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DE Tariff --></label>
+        <name>DE_Tariff</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DH AU Tarif --></label>
+        <name>DH_AU_Tarif</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FI Tarif --></label>
+        <name>FI_Tarif</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FP Tarif --></label>
+        <name>FP_Tarif</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- HU Tarif --></label>
+        <name>HU_Tarif</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Record type for Pedidos Ya and in future to be global for all countries --></description>
+        <label><!-- PY Tarif --></label>
+        <name>PY_Tarif</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SE Tarif --></label>
+        <name>SE_Tarif</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Talabat Tarif --></label>
+        <name>Talabat_Tarif</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- UK Tarif --></label>
+        <name>UK_Tarif</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Yogiyo Tarif --></label>
+        <name>Yogiyo_Tarif</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Tarif name required --></errorMessage>
+        <name>Name_Required</name>
+    </validationRules>
+</CustomObjectTranslation>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Platform Performance --></value>
+    </caseValues>
+    <fieldSets>
+        <label>이벤트 버스</label>
+        <name>EventBus</name>
+    </fieldSets>
+    <layouts>
+        <layout>Platform Performance Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- JustOn Connector --></label>
+            <section>JustOn Connector</section>
+        </sections>
+        <sections>
+            <label><!-- Restaurant Quality --></label>
+            <section>Restaurant Quality</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Platform Performance Name --></nameFieldLabel>
+    <validationRules>
+        <errorMessage><!-- You can not edit manually platforms for Lieferheld and Pizza.de --></errorMessage>
+        <name>DE_User_cannot_create_plat_lh_or_pde</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Publish_Event_Bus --></label>
+        <name>Publish_Event_Bus</name>
+    </webLinks>
+</CustomObjectTranslation>

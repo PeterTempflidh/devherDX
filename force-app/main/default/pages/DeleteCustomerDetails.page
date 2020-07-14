@@ -1,0 +1,141 @@
+<apex:page controller="ClsDeleteCustomerDetails" showHeader="false" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false"
+           docType="html-5.0">
+    <html xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:v-once="http://vue/fake"
+          xmlns:v-html="http://vue/fake"
+          xmlns:v-bind="http://vue/fake"
+          xmlns:v-if="http://vue/fake"
+          xmlns:v-on="http://vue/fake"
+          xmlns:v-model="http://vue/fake"
+          xmlns:v-cloak="http://vue/fake">
+          
+        <head>
+            <apex:slds />
+        </head>
+        
+        <body>
+            <div id="app" class="slds-scope">
+                <div class="slds-panel" >    
+                    <div class="slds-notify slds-notify_alert slds-theme_alert-texture" role="alert"
+                        v-bind:class="{ 'slds-theme_error': result.isError, 'slds-theme_success': !result.isError }" 
+                        v-if = "result.message != ''">
+                      <span class="slds-assistive-text">{{this.result.type}}</span>
+                      <h2>{{ result.message }}</h2>
+                    </div>                       
+                     <div class="slds-panel__section slds-border_bottom">
+                         <div class="slds-form slds-form_compound">
+                            <h2 class="slds-truncate slds-text-heading_small" title="Delete Customer Details">Delete Customer Details</h2>
+                            <div class="slds-form-element">
+                              <label class="slds-form-element__label" for="textarea-id-01">Enter Emails</label>
+                              <div class="slds-form-element__control">
+                                <textarea id="textarea-id-01" class="slds-textarea" 
+                                        v-model="emails" placeholder="Enter comma seperated emails"></textarea>
+                              </div>
+                            </div>
+                         </div> 
+                         <div class = "slds-align_absolute-center">
+                            <button class="slds-button slds-button_brand" v-on:click = "deleteCustomerDetails"
+                                    v-bind:disabled = "result.isFuture" >Delete</button>
+                         </div>
+                     </div>
+                 </div>
+                 
+                <spinner v-bind:open="loaderState.state.isLoading"></spinner>
+                <error-handler
+                        v-bind:message="errorState.state.message"
+                        v-bind:type="errorState.state.type"
+                        v-bind:timeout="errorState.state.timeout"
+                        v-bind:callback="errorState.state.callback"
+                        v-on:closed="errorState.clearErrorMsg()">
+                </error-handler>
+            </div>
+        </body> 
+        
+        <script src="/support/console/35.0/integration.js"></script>
+        <apex:includeScript value="{!$Resource.Vue}"/> 
+        <c:VueCommonComponents />
+        
+        <script>
+            function initVue() {
+            var app = new Vue({
+                el: "#app",
+                data: function() {
+                    return {
+                        result: {},
+                        emails: '',
+                        loaderState: loaderSharedState,
+                        errorState: errorHandlerSharedState,
+                    }
+                },
+                created: function() {
+                    console.log("Vue creation called");
+                    this.result.isError = false;
+                    this.result.message = '';
+                },
+                methods: {
+                    deleteCustomerDetails: function(){
+                        var self = this;
+                        this.loaderState.startLoadingSpinner();
+                        this.errorState.clearErrorMsg();
+                        Visualforce.remoting.Manager.invokeAction(
+                            '{!$RemoteAction.ClsDeleteCustomerDetails.deleteData}',
+                            this.emails,
+                            function(result, event) {
+                                self.loaderState.stopLoadingSpinner();
+                                
+                                if (!event.status) {
+                                    console.log("Error: " + event.message);
+                                }
+                                 
+                                console.log("Result " + result);
+                                self.result = result;
+                            }, {
+                                escape: false,
+                            }
+                        ); 
+                    }
+                }
+            });
+        }
+        
+        var loaderSharedState = {
+            state: {
+                isLoading: 0
+            },
+            startLoadingSpinner: function() {
+                this.state.isLoading++;
+            },
+            stopLoadingSpinner: function() {
+                if (this.state.isLoading > 0) {
+                    this.state.isLoading--;
+                }
+            }
+        };
+
+        var errorHandlerSharedState = {
+            state: {
+                message: "",
+                type: "",
+                timeout: undefined,
+                callback: undefined
+            },
+            setErrorMsg: function(err) {
+                this.state.message = err.msg;
+                this.state.type = err.type;
+                this.state.timeout = err.timeout;
+                this.state.callback = err.callback;
+            },
+            clearErrorMsg: function() {
+                this.state.message = "";
+                this.state.type = "";
+                this.state.timeout = undefined;
+                this.state.callback = undefined;
+            }
+        };
+        window.addEventListener("load", function() {
+            initVue();
+        });
+        </script>
+    </html>
+</apex:page>

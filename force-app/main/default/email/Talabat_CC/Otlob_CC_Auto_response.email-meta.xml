@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>Talabat_Letterhead</letterhead>
+    <name>Otlob CC Auto response</name>
+    <style>freeForm</style>
+    <subject>Otlob Support: We’ve received your request #{!Case.CaseNumber}</subject>
+    <textOnly>أهلًا،
+
+شكراً لتواصلك معنا!
+
+يقوم الآن فريق الدعم بمراجعة طلبك #{!Case.CaseNumber} وسنتواصل معك قريباً. طلبك يهمنا ولن يطول انتظارك! يمكنك توقع رد منا خلال 24 ساعة.
+
+كما بإمكانك أن تجد الجواب للكثير من الأسئلة العامة عبر صفحة الأسئلة المتكررة من خلال موقعنا https://www.otlob.com.
+
+شكراً،
+
+فريق دعم أطلب
+
+Hi,
+
+Thanks for getting in touch!
+
+Our support team is reviewing your message number #{!Case.CaseNumber} and will contact you soon. Your request is important to us, so we won’t keep you waiting for long! You can expect a reply from one of our experts within 24 hours.
+
+For general questions, please visit our FAQs https://www.otlob.com page.
+
+Thank you,
+
+Otlob Support Team
+
+
+Signature Space
+
+{!Case.Thread_Id}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

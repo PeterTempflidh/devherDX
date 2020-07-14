@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Quote_Approval_Notification</fullName>
+        <description>Quote Approval Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Salesforce_Templates/GLOBAL_Quote_Approval</template>
+    </alerts>
+    <alerts>
+        <fullName>Quote_Rejection_Notification</fullName>
+        <description>Quote Rejection Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Salesforce_Templates/GLOBAL_Quote_Rejection</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Approved_status</fullName>
+        <field>Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Approved status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Pending_Approval</fullName>
+        <field>Status__c</field>
+        <literalValue>Approval pending</literalValue>
+        <name>Pending Approval</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Quote_Approved_Discount</fullName>
+        <description>Set Quote status to approved when manager approves discount</description>
+        <field>Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Quote Approved Discount</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Quote_Recalled_Discount</fullName>
+        <description>Quote Recalled Discount</description>
+        <field>Status__c</field>
+        <literalValue>Draft</literalValue>
+        <name>Quote Recalled Discount</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Quote_Rejected_Discount</fullName>
+        <description>Change quote status to rejected</description>
+        <field>Status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>Quote Rejected Discount</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Quote_Submitted_Discount</fullName>
+        <description>Quote Submitted Discount</description>
+        <field>Status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>Quote Submitted Discount</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Rejected_Status</fullName>
+        <field>Status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>Rejected Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Uncheck_Automatic_Quote_Generation</fullName>
+        <field>Automate_quote_generation__c</field>
+        <literalValue>0</literalValue>
+        <name>Uncheck Automatic Quote Generation</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_to_Approval_Pending</fullName>
+        <field>Status__c</field>
+        <literalValue>Approval pending</literalValue>
+        <name>Update to Approval Pending</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <outboundMessages>
+        <fullName>Invoke_Nintex</fullName>
+        <apiVersion>47.0</apiVersion>
+        <endpointUrl>https://apps.drawloop.com/package/111</endpointUrl>
+        <fields>Drawloop_Next_Text__c</fields>
+        <fields>Id</fields>
+        <includeSessionId>true</includeSessionId>
+        <integrationUser>phoenix.service.account@deliveryhero.com</integrationUser>
+        <name>Invoke Nintex</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+    <rules>
+        <fullName>Approval Status Update Approved</fullName>
+        <actions>
+            <name>Quote_Approved_Discount</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity_Quote__c.Items_Approval_Progress__c</field>
+            <operation>equals</operation>
+            <value>100</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity_Quote__c.Items_Rejected__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity_Quote__c.Status__c</field>
+            <operation>notEqual</operation>
+            <value>Accepted,Signed,Sent,Viewed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity_Quote__c.Status__c</field>
+            <operation>notEqual</operation>
+            <value>Declined</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Approval Status Update Pending</fullName>
+        <actions>
+            <name>Update_to_Approval_Pending</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
+        <criteriaItems>
+            <field>Opportunity_Quote__c.Items_Rejected__c</field>
+            <operation>lessThan</operation>
+            <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity_Quote__c.Items_Count__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity_Quote__c.Status__c</field>
+            <operation>notEqual</operation>
+            <value>Accepted,Signed,Sent,Viewed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity_Quote__c.Status__c</field>
+            <operation>notEqual</operation>
+            <value>Rejected</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity_Quote__c.Status__c</field>
+            <operation>notEqual</operation>
+            <value>Declined</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Approval Status Update Rejected</fullName>
+        <actions>
+            <name>Quote_Rejected_Discount</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity_Quote__c.Items_Rejected__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Invoke Nintex</fullName>
+        <actions>
+            <name>Invoke_Nintex</name>
+            <type>OutboundMessage</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity_Quote__c.Automate_quote_generation__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Uncheck Automatic Quote Generation</fullName>
+        <actions>
+            <name>Uncheck_Automatic_Quote_Generation</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity_Quote__c.Automate_quote_generation__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

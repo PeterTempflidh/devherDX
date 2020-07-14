@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Wichtig: Bitte vorher überprüfen ob die E-Mail-Adresse bei 9cookies korrekt ist und aktiviert wurde!</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DE_Delivery_Hero_Germany</letterhead>
+    <name>Restaurantportal - Passwort zurücksetzen / Zugangsdaten</name>
+    <style>freeForm</style>
+    <subject>Ihre Anfrage zur Anmeldung im Restaurantportal</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

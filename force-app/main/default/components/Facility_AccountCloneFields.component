@@ -1,0 +1,57 @@
+<!--
+ - Created by keerthan.tantry on 06/03/2020.
+ -  Account clone component for Facility_Account record type.
+    Display a list of fields that users are allowed to enter when cloning an
+    account.
+ -->
+
+<apex:component id="Facility_AccountCloneFields">
+    <apex:attribute name="clone" type="Account" required="true" description="Account to clone"/>
+    <apex:attribute name="mode" type="String" required="true"
+                    description="Account clone mode, based on this value some account fields could be displayed or not"/>
+
+    <!-- main grid -->
+    <div class="slds-form-element__group">
+
+        <fieldset class="slds-form--compound">
+            <legend class="slds-form-element__label slds-text-title--caps">Information</legend>
+            <div class="slds-form-element__group slds-p-around--small">
+
+                <div class="slds-form-element__row">
+                    <!-- name -->
+                    <div class="slds-form-element slds-size--1-of-2">
+                        <label class="slds-form-element__label" for="{!$Component.input01}">
+                            <abbr class="slds-required" title="required">*</abbr>
+                            {!$ObjectType.Account.fields.name.label}
+                        </label>
+                        <apex:inputField id="input01" styleClass="slds-input" value="{!clone.Name}"/>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="slds-form-element__group slds-p-around--small">
+
+                <div class="slds-form-element__row">
+                    <!-- name -->
+                    <div class="slds-form-element slds-size--1-of-2">
+                        <label class="slds-form-element__label" for="{!$Component.input02}">
+                            <abbr class="slds-required" title="required">*</abbr>
+                            {!$ObjectType.Account.fields.type.label}
+                        </label>
+                        <apex:outputField id="input02" styleClass="slds-input" value="{!clone.type}"/>
+                    </div>
+
+                </div>
+            </div>
+
+        </fieldset>
+
+        <script type="text/javascript">
+                        if (typeof adjustMultiselectPicklist === "function") adjustMultiselectPicklist();
+
+        </script>
+
+    </div>
+
+</apex:component>

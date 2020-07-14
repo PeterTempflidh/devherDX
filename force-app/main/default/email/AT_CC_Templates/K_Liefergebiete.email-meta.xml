@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Warum kann ich nicht bei XY bestellen?</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>AT_Letterhead</letterhead>
+    <name>(K) Liefergebiete</name>
+    <style>freeForm</style>
+    <subject>{!If(OR(ISPICKVAL(Case.Origin,&apos;Email&apos;), ISPICKVAL(Case.Origin,&apos;Web&apos;)),&apos;Re: &apos;+Case.Subject,&apos;Deine Anfrage bei Mjam&apos;)}</subject>
+    <textOnly>Liebe/r mjam Kunde/in,
+
+wenn diese E-Mail nicht korrekt dargestellt wird, versuche es bitte mit einem anderen E-Mail Programm.
+
+Beste Grüße
+
+mjam Kundenservice</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

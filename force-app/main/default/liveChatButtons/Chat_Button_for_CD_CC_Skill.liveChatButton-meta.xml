@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LiveChatButton xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <autoGreeting>Hola, Mi nombre es {!User_FirstName}. En qué puedo ayudarle?</autoGreeting>
+    <customAgentName>Domicilios Atencion al Cliente</customAgentName>
+    <deployments/>
+    <enableQueue>true</enableQueue>
+    <isActive>true</isActive>
+    <label>[OUTDATED] Chat Button for CD CC Skill</label>
+    <offlineImage>Chat_Offline_Image</offlineImage>
+    <onlineImage>Chat_Online_Image</onlineImage>
+    <optionsCustomRoutingIsEnabled>false</optionsCustomRoutingIsEnabled>
+    <optionsHasChasitorIdleTimeout>false</optionsHasChasitorIdleTimeout>
+    <optionsHasInviteAfterAccept>false</optionsHasInviteAfterAccept>
+    <optionsHasInviteAfterReject>false</optionsHasInviteAfterReject>
+    <optionsHasRerouteDeclinedRequest>false</optionsHasRerouteDeclinedRequest>
+    <optionsIsAutoAccept>true</optionsIsAutoAccept>
+    <optionsIsInviteAutoRemove>false</optionsIsInviteAutoRemove>
+    <overallQueueLength>5000</overallQueueLength>
+    <routingType xsi:nil="true"/>
+    <site>Live_Agent</site>
+    <type>Standard</type>
+    <windowLanguage>es</windowLanguage>
+</LiveChatButton>

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>DE_Lead_Notification_on_Creation_to_Sales_Operations</fullName>
+        <ccEmails>de_salesoperations@deliveryhero.com</ccEmails>
+        <description>DE - Lead Notification on Creation to Sales Operations</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>Salesforce_Templates/UK_Lead_Creation_Notification</template>
+    </alerts>
+    <alerts>
+        <fullName>UK_Notification_when_lead_is_created</fullName>
+        <ccEmails>sales_operations@hungryhouse.com</ccEmails>
+        <description>UK Notification when lead is created</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>Salesforce_Templates/UK_Lead_Creation_Notification</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Contacted_Date</fullName>
+        <description>02140011</description>
+        <field>Contacted_Date__c</field>
+        <formula>NOW()</formula>
+        <name>Contacted Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>GLOBAL_Lead_set_Grade_to_AAA</fullName>
+        <description>SP-613 - Set Lead Vendor Grade to &quot;AAA&quot;</description>
+        <field>Vendor_Grade__c</field>
+        <literalValue>AAA</literalValue>
+        <name>GLOBAL - Lead - set Grade to AAA</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>HU_Update_Area</fullName>
+        <field>Area__c</field>
+        <formula>IF (LOWER(City) = &apos;budapest&apos;,
+    MID(PostalCode,2,2),
+    &apos;&apos;
+)</formula>
+        <name>HU Update Area</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ME_set_Lead_Owner_Aziz</fullName>
+        <field>OwnerId</field>
+        <lookupValue>mmatute@talabat.com</lookupValue>
+        <lookupValueType>User</lookupValueType>
+        <name>ME - set Lead Owner Aziz</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ME_set_Lead_Owner_Bilel</fullName>
+        <field>OwnerId</field>
+        <lookupValue>bcherif@talabat.com</lookupValue>
+        <lookupValueType>User</lookupValueType>
+        <name>ME - set Lead Owner Bilel</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ME_set_Lead_Owner_Hassan</fullName>
+        <field>OwnerId</field>
+        <lookupValue>myildirim@talabat.com</lookupValue>
+        <lookupValueType>User</lookupValueType>
+        <name>ME - set Lead Owner Hassan</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ME_set_Lead_Owner_Issa</fullName>
+        <field>OwnerId</field>
+        <lookupValue>bcherif@talabat.com</lookupValue>
+        <lookupValueType>User</lookupValueType>
+        <name>ME - set Lead Owner Issa</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TLB_Assign_qualified_lead_SA</fullName>
+        <field>OwnerId</field>
+        <lookupValue>khaliloglu@talabat.com</lookupValue>
+        <lookupValueType>User</lookupValueType>
+        <name>TLB - Assign qualified lead SA</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Talabat_Assign_lead_to_research_team</fullName>
+        <field>OwnerId</field>
+        <lookupValue>Talabat_Lead_Research_Team</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Talabat - Assign lead to research team</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UK_Owner_to_UK_Research_team</fullName>
+        <field>OwnerId</field>
+        <lookupValue>UK_Research_Team</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>UK Owner to UK Research team</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UK_Restaurant_Name_update_to_company</fullName>
+        <field>Restaurant_Name__c</field>
+        <formula>Company</formula>
+        <name>UK - Restaurant Name update to company</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Inbound_Date</fullName>
+        <field>Inbound_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>Update Inbound Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>DE - Lead Notification to Sales Ops</fullName>
+        <actions>
+            <name>DE_Lead_Notification_on_Creation_to_Sales_Operations</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Lead.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>DE Lead</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Lead.LeadSource</field>
+            <operation>equals</operation>
+            <value>Own Research</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Lead.CreatedById</field>
+            <operation>notEqual</operation>
+            <value>Ken-Arne Jaitner,Julita Buszta,Maik Pietschmann,Lisa Hildebrandt,Steven Knak,Alexander Hartmann,Bernd Hood,Sindy Stech,Bianka Pluntke,Paula Thiele,Joanna Boss</value>
+        </criteriaItems>
+        <description>SP-1839 - Notify Sales Operations every time a lead is created from any source except import and not by the sales operations team.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>GLOBAL - Stamp date status changed to %22Contacted%22</fullName>
+        <actions>
+            <name>Contacted_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>02140011</description>
+        <formula>ISCHANGED(Status)
+&amp;&amp;
+text(Status)=&quot;Contacted&quot;</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>HU Area Update</fullName>
+        <actions>
+            <name>HU_Update_Area</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>SP-3766 Take 2 digits from Postal Code for Hungary Lead</description>
+        <formula>AND(RecordType.DeveloperName=&quot;HU_Lead&quot;,     OR(ISNEW(),         ISCHANGED(PostalCode),         ISCHANGED(City)     ) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Talabat Lead Assignment</fullName>
+        <actions>
+            <name>Talabat_Assign_lead_to_research_team</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Lead.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>talabat lead</value>
+        </criteriaItems>
+        <description>Assigned to research team</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>UK - Restaurant Name populated by Company Name</fullName>
+        <actions>
+            <name>UK_Restaurant_Name_update_to_company</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Lead.Restaurant_Name__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Lead.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>uk lead</value>
+        </criteriaItems>
+        <description>In UK most of the times the company name and restaurant name are the same and so sales agents should be filling only one field and the other will populate the info from the first one</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>UK Lead Assignment and notification on Creation</fullName>
+        <actions>
+            <name>UK_Notification_when_lead_is_created</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>UK_Owner_to_UK_Research_team</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Lead.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>uk lead</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Lead.LeadSource</field>
+            <operation>notEqual</operation>
+            <value>Competitor</value>
+        </criteriaItems>
+        <description>Assigned to research team</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Inbound Date</fullName>
+        <actions>
+            <name>Update_Inbound_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Lead.LeadSource</field>
+            <operation>equals</operation>
+            <value>Inbound</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

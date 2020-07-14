@@ -1,0 +1,6 @@
+<design:component label="Take Ownership">
+    <sfdc:objects>
+        <sfdc:object>Case</sfdc:object>
+    </sfdc:objects>
+    <design:attribute name="buttonLabel" label="Button label" description="Take Ownership" />
+</design:component>

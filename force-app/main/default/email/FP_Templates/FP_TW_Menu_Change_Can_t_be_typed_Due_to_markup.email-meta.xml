@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Menu can’t be typed (due to markup)</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP TW Menu Change - Can’t be typed - Due to markup</name>
+    <style>freeForm</style>
+    <subject>菜單價格調漲確認</subject>
+    <textOnly>親愛的foodpanda夥伴，
+
+
+我們注意到您提供的菜單價格與店內用餐價格不符，請您協助再次確認金額是否正確，並請提供新的價格檔案，以利我們立即著手更新。
+
+如有任何疑問請透過電子郵件：partner@foodpanda.tw 或撥打專線+886 80 114 7243  分機108~113與我們聯繫。
+
+
+祝您有個美好的一天！
+
+foodpanda團隊
+
+(# {!Case.CaseNumber})</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

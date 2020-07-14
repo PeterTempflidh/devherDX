@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Your menu change has been completed 你的餐牌更新完畢！</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP HK Menu Change - Menu change is live</name>
+    <style>freeForm</style>
+    <subject>Your menu change has been completed 你的餐牌更新完畢！</subject>
+    <textOnly>親愛的合作餐廳，
+
+
+我們的團隊已將你的餐牌上傳至網站。請按以下連結預覽餐牌，如有任何疑問或意見，請盡快通知我們︰{!Case.Menu_URL__c}
+
+
+如你需要更改餐牌，請以電郵形式聯絡我們，並將請求以以下方式列出︰
+
+食品名稱 - 更改動作 - 資料
+
+例︰墨西哥雞翼 - 更改名稱 - 火辣雞翼
+
+
+如有疑問，致電 +852 5819 8997，我們樂意為你解答任何問題。
+
+
+謝謝，
+
+你的 foodpanda 合作餐廳服務小組
+
+
+Dear Partner,
+
+
+
+Your menu (# {!Case.CaseNumber}) has been completed by our content team and is now online. To have a look at it, please find the
+
+preview link of your menu here and let us know your feedback:
+
+{!Case.Menu_URL__c}
+
+If amendments are needed, please send us an email and write the requested changes in the following format:
+
+
+ITEM NAME - ACTION - INFORMATION
+
+Example: Mexican Wings - Change name - Fiery Wings
+
+
+Any questions? Feel free to contact us via phone under +852 5819 8997.
+
+
+
+We are happy to help you!
+
+
+See you soon,
+
+Your foodpanda Partner Care Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

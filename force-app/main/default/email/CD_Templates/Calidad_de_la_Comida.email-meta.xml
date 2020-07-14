@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Clickdelivery</letterhead>
+    <name>Calidad de la Comida</name>
+    <style>formalLetter</style>
+    <subject>Calidad de la Comida</subject>
+    <textOnly>Usuario no contesta para validar.
+
+Hola (Nombre del usuario), queremos cambiar tu experiencia y queremos contarte que nos comunicamos con el restaurante donde la persona encargada ya está al tanto de lo sucedido, ellos estarán tomando las medidas necesarias para que esto no se vuelva a presentar  y brindarte un mejor servicio en una próxima ocasión. Te queremos confirmar que (Solución del caso problema con calidad de la comida) Gracias por elegirnos,  cualquier nueva inquietud o consulta que nos desees hacer estaremos muy atentos
+
+Usuario confirma
+
+Hola (Nombre del usuario), queremos que nos brindes una oportunidad de una experiencia grandiosa. Nos comunicamos con el establecimiento y nos indican que (Solución de calidad de la comida)
+Nuestros domi héroes están 24/7 para colaborarte con todo lo que necesites.Movemos el mundo por ti</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

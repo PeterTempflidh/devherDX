@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Bank details updated in rogan</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>UK_Letterhead</letterhead>
+    <name>CC - Bank Details Updated</name>
+    <style>freeForm</style>
+    <subject>Bank details updated successfully</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

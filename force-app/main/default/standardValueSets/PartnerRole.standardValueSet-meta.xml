@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>true</sorted>
+    <standardValue>
+        <fullName>Big Franchiser / HQ</fullName>
+        <default>false</default>
+        <label>Big Franchiser / HQ</label>
+        <reverseRole>Franchise</reverseRole>
+    </standardValue>
+    <standardValue>
+        <fullName>Competitor</fullName>
+        <default>false</default>
+        <label>Competitor</label>
+        <reverseRole>Competitor</reverseRole>
+    </standardValue>
+    <standardValue>
+        <fullName>Distributor</fullName>
+        <default>false</default>
+        <label>Distributor</label>
+        <reverseRole>Vendor</reverseRole>
+    </standardValue>
+    <standardValue>
+        <fullName>Linked Account</fullName>
+        <default>false</default>
+        <label>Linked Account</label>
+        <reverseRole>Linked Account</reverseRole>
+    </standardValue>
+    <standardValue>
+        <fullName>New Legal Entity</fullName>
+        <default>false</default>
+        <label>New Legal Entity</label>
+        <reverseRole>Former Legal Entity</reverseRole>
+    </standardValue>
+    <standardValue>
+        <fullName>New Owner</fullName>
+        <default>false</default>
+        <label>New Owner</label>
+        <reverseRole>Former Owner</reverseRole>
+    </standardValue>
+    <standardValue>
+        <fullName>Parent Account</fullName>
+        <default>false</default>
+        <label>Parent Account</label>
+        <reverseRole>Child Account</reverseRole>
+    </standardValue>
+    <standardValue>
+        <fullName>Referrer</fullName>
+        <default>false</default>
+        <label>Referrer</label>
+        <reverseRole>Referee</reverseRole>
+    </standardValue>
+    <standardValue>
+        <fullName>Shared Location</fullName>
+        <default>false</default>
+        <label>Shared Location</label>
+        <reverseRole>Shared Location</reverseRole>
+    </standardValue>
+</StandardValueSet>

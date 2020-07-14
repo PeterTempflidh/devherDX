@@ -1,0 +1,399 @@
+<apex:component controller="CtrCreateQuote" access="global" >
+    <apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+    <apex:attribute name="oppQ" type="String" description="Placeholder" assignTo="{!oppQId}"/>
+
+
+    <!-- this is for accounts that support new address model -->
+    <apex:outputPanel layout="none" rendered="{!AND(accountWrapper.hasNewAddressModel)}">
+
+        <div id="AT_Main_Quote"></div>
+        <div id="AT_MQ_Wrapper">
+            <div id="AT_MQ_Page1">
+                <div> <img src="{!URLFOR($Resource.ATResources, 'ATResource/mjamat.png')}" style="height:100px"/></div>
+                <br/>
+
+
+                <div class="clear"/>
+                <br />
+
+                <br />
+                <div class="clear" />
+                <h3 class="futuraBold">Vertragsunterlagen &amp; ein Willkommensgruß von Mjam</h3>
+                <p>
+                    Liebe(r) <span id="salutation">{!accountWrapper.ownerSalutation}</span> {!accountWrapper.ownerLastname},
+                </p>
+                <br/>
+                <p class="justify" style="line-height: 15px;">
+                    als neues Mitglied im Mjam Restaurantnetzwerk wollen wir Sie mit einem Mjam Willkommenspaket begrüßen.
+                    Bevor die Zusammenarbeit mit uns richtig durchstarten kann, gehen Sie bitte folgende Anlagen durch und
+                    senden diese im Anschluss an uns zurück:  </p>
+                <ol class="justify">
+                    <li class="justify"><b>Restaurantvertrag</b>   </li>
+                </ol>
+
+                <p class="justify" style="line-height: 15px;">Bitte füllen Sie ihn vollständig aus und senden Sie uns den firmenmäßig
+                    gestempelten und unterzeichneten Restaurantvertrag zurück. Unsere AGB finden Sie unter https://www.mjam.net/vertragsbedingungen/</p>
+                <br/>
+                <p class="justify" style="line-height: 15px;">Wir schicken Ihnen die Zugangsdaten zu Ihrem Partnerbereich an die angegebene E-Mail-Adresse. Sollten sich Ihre Stammdaten einmal ändern, teilen Sie uns das schnellstmöglich mit, damit wir Ihre Interessen immer bestmöglich wahren können! </p>
+                <pclass="justify" style="line-height: 15px;">Verwenden Sie dazu das beigelegte Kuvert - das Porto übernehmen wir.</p>
+
+
+                <br/>
+                <p class="justify" style="line-height: 15px;">
+                    Außerdem finden Sie anbei:
+                </p>
+                <ul class="justify">
+                    <li class="justify">Willkommensbroschüre mit allen wichtigen Infos über Mjam</li>
+                    <li class="justify">Informationsposter für Ihre Mitarbeiter</li>
+                    <li class="justify">Fensteraufkleber</li>
+                    <li class="justify">Türschild mit Saugnapf</li>
+                    <li class="justify">Zwei kleine Sticker</li>
+                    <li class="justify">Zwei Kugelschreiber</li>
+                    <li class="justify">Zwei Flaschenöffner</li>
+                </ul>
+                <p style="line-height: 15px;">
+                    Wir freuen uns sehr, wenn Sie diese Artikel in Ihrem Restaurant gut sichtbar anbringen. So ist für Passanten sofort ersichtlich, dass Ihr Restaurant auch Online-Bestellungen entgegennimmt.
+                </p>
+                <br/>
+                <p  class="justify" style="line-height: 15px;">
+                    Ihre Meinung und Zufriedenheit ist dem gesamten Mjam Team ein wichtiges Anliegen. Wir legen viel Wert darauf, den Service für Sie als Restaurantpartner stetig zu verbessern. Helfen Sie deshalb mit und teilen Sie Ihre Anregungen und Kritik mit dem Mjam Team.
+                </p>
+                <br/>
+                <p class="justify" style="line-height: 15px;">
+                    Auch bei Fragen stehen Ihnen unsere Mitarbeiter natürlich gerne zur Verfügung. Für Ihre Anliegen können Sie unseren Kundenservice von Montag bis Sonntag zwischen 10:00 und 23:00 Uhr unter der E-Mail-Adresse partner@mjam.net oder unter der kostenlosen Hotline 0800 100 335 erreichen.
+                </p>
+                <br/>
+                <p class="justify" style="line-height: 15px;">
+                    Das Mjam Team freut sich auf die kommende Zusammenarbeit mit Ihnen!
+                </p>
+                <br />
+                <p style="line-height: 15px;">
+                    Herzliche Grüße, <br />
+                    Ihr Mjam Team
+                </p>
+                <br /><br /><br/><br/>
+
+
+                <div style="bottom:0;">
+                    <p style="text-align: center;font-size:7pt;line-height:10pt;">Stand&nbsp; <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                            <apex:param value="{!TODAY()}" />
+                        </apex:outputText></p>
+                    <p style="text-align: center;font-size:7pt;line-height:15px;">
+                        <apex:outputText value="{!accountwrapper.mjamMainQuoteAddress}" escape="false" />
+                    </p>
+                </div>
+            </div>
+            <pre />
+
+            <div class="futuraBold">
+                <div style="float:left;display:inline-block;">
+                    <h1 class="futuraBold" style="color:#a6a6a6">Restaurantvertrag</h1>
+
+                    <h2 style="color:#AECB54;text-decoration: underline">ANGABEN GESCHÄFTSHERR</h2>
+                </div>
+                <div style="float:right;display:inline-block;">
+                    <img src="{!URLFOR($Resource.ATResources, 'ATResource/mjamat.png')}" style="height:100px"/>
+
+                </div>
+                <div class="clear"/>
+                <br/>
+                <table id="AT_MQ_Geschaftsherr" width="100%" border-style="none">
+                    <tr>
+                        <td valign="top">
+                            <b style="font-family:FuturaBold;font-size: 10pt" class="padL">Firma:&nbsp;</b>
+                            <span id="backendId" class="padL">{!accountWrapper.legalName}</span><br/><br/>
+                        </td>
+                        <td valign="top">
+                            <span ><apex:outputText value="{0,date,dd'.'MM'.'yyyy}" styleclass="padL" id="ownerBirthday" >
+                                    <b style="font-family:FuturaBold;font-size: 10pt" class="padL">Geburtsdatum:&nbsp;</b>
+                                    <span ><apex:param value="{!accountWrapper.ownerBirthdate}"  /></span>
+                                </apex:outputText></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top">
+                            <b style="font-family:FuturaBold;font-size: 10pt" class="padL">Vorname:&nbsp;</b>
+                            <span id="ownerFirstName" class="padL">{!accountWrapper.ownerFirstname}</span><br />
+                            <span class="font5 padL">(des Firmeninhabers/pers. haftendenGesellschafters/Geschäftsführers/Prokurist)</span><br/><br/>
+                        </td>
+                        <td valign="top">
+                            <b style="font-family:FuturaBold;font-size: 10pt" class="padL">Nachname:&nbsp;</b>
+                            <span id="ownerLastName" class="padL">{!accountWrapper.ownerLastname}</span><br />
+                            <span class="font5 padL">(des Firmeninhabers/pers. haftendenGesellschafters/Geschäftsführers/Prokurist)</span><br/><br/>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td valign="top" >
+                            <b style="font-family:FuturaBold;font-size: 10pt" class="padL">UID-Nummer:&nbsp;</b>
+                            <span  id="taxNumber" class="padL">{!accountWrapper.taxNumber}</span><br /><br/>
+                        </td>
+
+
+                        <td valign="top" >
+                            <b class="padL" style="font-family:FuturaBold;font-size: 10pt">E-Mail:&nbsp;</b>
+                            <span id="ownerEmail" class="padL">{!accountWrapper.ownerEmail}</span><br /><br/>
+                        </td>
+                    </tr>
+
+                    <tr>
+
+                        <td valign="top" colspan="2">
+                            <b style="font-family:FuturaBold;font-size: 10pt" class="padL">Kontoinhaber:&nbsp;</b>
+                            <span id="bankAccountOwner" class="padL">{!accountWrapper.bankAccountOwner}</span><br/><br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top" >
+                            <b style="font-family:FuturaBold;font-size: 10pt" class="padL">BIC:&nbsp;</b>
+                            <span id="bankSortCode" class="padL">{!accountWrapper.bankSortCode}</span><br/><br/>
+                        </td>
+                        <td valign="top" >
+                            <b style="font-family:FuturaBold;font-size: 10pt" class="padL">IBAN:&nbsp;</b>
+                            <span id="bankAccountNumber" class="padL">{!accountWrapper.bankAccountNumber}</span><br/><br/>
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <h2 style="color:#AECB54;text-decoration: underline">ANGABEN RESTAURANTDATEN</h2>
+                <table id="AT_MQ_Restaurantdaten" width="100%" border-style="none" style="font-size:10pt">
+                    <tr>
+                        <td valign="top" style="font-size:10pt">
+                            <b style="font-family:FuturaBold" class="padL">Restaurantname:&nbsp;</b>
+                            <span id="restaurantName" class="padL">{!accountWrapper.companyName}</span><br /><br />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td valign="top" style="font-size:10pt">
+                            <b style="font-family:FuturaBold" class="padL">Restaurantadresse:&nbsp;</b>
+                            <span class="padL">{!accountWrapper.restaurantAddress}  </span><br /><br/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td valign="top" style="font-size:10pt">
+                            <b style="font-family:FuturaBold" class="padL">Telefonnummer:&nbsp;</b>
+                            <span id="restaurantPhone" class="padL">{!accountWrapper.restaurantPhoneNumber}</span><br /><br/>
+                        </td>
+
+                    </tr>
+                </table>
+                <h2 style="color:#AECB54;text-decoration: underline">KONDITIONEN UND HANDELSVERTRETERPROVISION</h2>
+                <apex:outputPanel rendered="{!comissionsExist}" style="font-size:10pt">
+                    <p style="font-size:10pt">Einrichtungskosten und Gebühren</p><br/>
+                    <table id="AT_MQ_Tarrif" width="100%" style="border-color:#AAD14A;border-style:solid;font-size:10pt">
+                        <tr >
+                            <th class="width15" style="border-color:#AECB54;font-size:10pt">Tarif</th>
+                            <th class="width15" style="border-color:#AECB54;font-size:10pt">Provision</th>
+                            <th style="border-color:#AECB54">Startdatum</th>
+                            <th class="width15" style="border-color:#AECB54;font-size:10pt">Enddatum</th>
+                        </tr>
+                        <apex:repeat value="{!listCommisionItems}" var="item">
+                            <tr style="border-color:#AECB54">
+                                <td style="border-color:#AECB54">
+                                    <span style="font-size:10pt">{!item.Id_List_Service_Price__r.Displayed_Name__c}</span>
+                                </td>
+                                <td style="border-color:#AECB54">
+                                    <span style="font-size:10pt">{!item.Commission_In_Percentage__c}</span>
+                                </td>
+                                <td style="border-color:#AECB54;font-size:10pt">
+                                    <span >
+                                        <apex:outputText value="{0,date,dd'.'MM'.'yyyy}" style="font-size:10pt">
+                                            <apex:param value="{!item.Start_Date__c}" />
+                                        </apex:outputText>
+                                    </span>
+                                </td>
+                                <td style="border-color:#AECB54">
+                                    <span>
+                                        <apex:outputText value="{0,date,dd'.'MM'.'yyyy}" style="font-size:10pt">
+                                            <apex:param value="{!item.End_Date__c}" />
+                                        </apex:outputText>
+                                    </span>
+                                </td>
+                            </tr>
+                        </apex:repeat>
+                    </table>
+                </apex:outputPanel>
+                <br/>
+                <apex:outputPanel rendered="{!additionalCostsExist == true}" style="font-size:10pt">
+                    <p style="font-size:10pt">Übermittlungsmethode</p><br/>
+                    <table id="AT_MQ_Tarrif" width="100%" style="border-color:#AAD14A;border-style:solid;font-size:10pt">
+                        <tr>
+                            <th class="width15" style="border-color:#AECB54">Produkt</th>
+                            <th class="width15" style="border-color:#AECB54">Listenpreis</th>
+                            <th style="border-color:#AECB54">Rate</th>
+                            <th class="width15" style="border-color:#AECB54">Vereinbartes Entgelt</th>
+                        </tr>
+                        <apex:repeat value="{!listLineItems}" var="item">
+                            <tr>
+                                <td style="border-color:#AECB54">
+                                    <span style="font-size:10pt">{!item.Id_List_Product_Price__r.Displayed_Name__c}</span>
+                                </td>
+                                <td style="border-color:#AECB54">
+                                    <span style="font-size:10pt">€ {!item.Listed_Price__c}</span>
+                                </td>
+                                <td style="border-color:#AECB54">
+                                    <span style="font-size:10pt">{!item.Installments__c}</span>
+                                </td>
+                                <td style="border-color:#AECB54">
+                                    <span style="font-size:10pt">€ {!item.Total_Amount__c}</span>
+                                </td>
+                            </tr>
+                        </apex:repeat>
+                    </table>
+                    <br/>
+                    <div id="gesamtpreis">
+                        <span class="flright" style="font-size:10pt"><b>Gesamtpreis: </b>
+                        <apex:outputText value="{0, number, ###,###,###,##0.00}" style="font-size:10pt">
+                            <apex:param value="{!lineItemsTotalAmount}"/>
+                        </apex:outputText> €</span>
+                    </div>
+                </apex:outputPanel>
+                <br /><br /><br/>
+                <table  cellspacing="0" style="font-size: 9pt">
+                    <tr width="100%" >
+                        <td>Durch das Unterzeichnen dieses Vertrages bestätigt der Geschäftsherr die Vertragsbedingungen gelesen
+                            zu haben und Mjam wird für den Geschäftsherrn als Handelsvertreter tätig. Es gilt die jeweils aktuelle
+                            Version der Vertragsbedingungen, zu finden unter: https://www.mjam.net/vertragsbedingungen/. Der Geschäftsherr
+                            verpflichtet sich zur Verschwiegenheit bezüglich aller vertraglichen Vereinbarungen, Konditionen und sonstiger
+                            im Zusammenhang mit dieser Partnerschaft bekannt gewordenen und bekannt werdenden Informationen. </td>
+                    </tr>
+                    <tr>
+                        <td>Mjam behält sich für die an den Geschäftsherrn gelieferten Produkte bis zur vollständigen Kaufpreiszahlung das Eigentum vor.
+                        </td>
+                    </tr>
+
+                </table>
+                <br /><br /><br /><br /><br/><br/>
+                <div style="width:100%" id="AT_MQ_Wrapper">
+                    <div style="width:48%;display:inline-block">
+                        <hr style="border-top: dotted 1px;" />
+                        <p class="AT_MQ_FooterMid" />
+                        <p class="AT_MQ_FooterMid8">Ort, Datum, Unterschrift<br/> und Name des Vertretungsberechtigten in Druckbuchstaben</p>
+
+                    </div>
+
+                    <div style="width:50%;display:inline-block;text-align:right;vertical-align:top;padding-left:10px" >
+                        <hr style="border-top: dotted 1px;" />
+                        <p class="AT_MQ_FooterMid8">Ort, Datum, Unterschrift Mjam GmbH</p>
+                    </div>
+                </div>
+
+                <br />
+            </div>
+            <br/><br/>
+            <div style="width:100%;bottom:0" >
+               <p style="text-align: center;font-size:7pt">Stand&nbsp; <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                    <apex:param value="{!TODAY()}" />
+                </apex:outputText></p>
+                <p style="text-align: center;font-size:7pt">
+                     <apex:outputText value="{!accountwrapper.mjamMainQuoteAddress}" escape="false" />
+                </p>
+            </div>
+        </div>
+        <pre />
+
+        <div class="futuraBold">
+            <div style="float:left;display:inline-block;">
+                <h1 class="futuraBold" style="color:#a6a6a6">Restaurantvertrag</h1>
+
+                <h2 style="color:#AAD14A;text-decoration: underline">IHR LIEFERGEBIET</h2>
+            </div>
+            <div style="float:right;display:inline-block;">
+                <img src="{!URLFOR($Resource.ATResources, 'ATResource/mjamat.png')}" style="height:100px"/>
+            </div>
+            <div class="clear"/>
+            <table  width="100%" style="border:none;font-size:10pt;line-height:25pt;"  >
+                <tr >
+                    <th style="border-style:none solid solid none;border-width:1px;line-height:20pt;text-align:center" width="50%">PLZ</th>
+                    <th style="border-style:none none solid none;border-width:1px;text-align:center"  width="50%">Mindestbestellwert</th>
+                </tr>
+                <tr>
+                    <td style="border-style:none solid solid none;border-width:1px;line-height:20pt;">&nbsp;</td>
+                    <td style="border-style:none none solid none;border-width:1px;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style="border-style:none solid solid none;border-width:1px;">&nbsp;</td>
+                    <td style="border-style:none none solid none;border-width:1px;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style="border-style:none solid solid none;border-width:1px;">&nbsp;</td>
+                    <td style="border-style:none none solid none;border-width:1px;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style="border-style:none solid solid none;border-width:1px;">&nbsp;</td>
+                    <td style="border-style:none none solid none;border-width:1px;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style="border-style:none solid solid none;border-width:1px;">&nbsp;</td>
+                    <td style="border-style:none none solid none;border-width:1px;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style="border-style:none solid solid none;border-width:1px;">&nbsp;</td>
+                    <td style="border-style:none none solid none;border-width:1px;">&nbsp;</td>
+                </tr>
+
+
+            </table>
+            <br/><br/>
+
+            <h2 style="color:#AAD14A;text-decoration: underline">IHRE GESCHÄFTSZEITEN</h2>
+            <table width="100%" style="font-size:10pt;line-height:25pt">
+                <tr>
+                    <td >Wochentage:</td>
+                    <td style="border-bottom:1px solid" width="80%"></td>
+
+                </tr>
+
+                <tr>
+                    <td >Samstag:</td>
+                    <td style="border-bottom:1px solid" width="80%"></td>
+
+                </tr>
+                <tr>
+                    <td >Sonntag:</td>
+                    <td style="border-bottom:1px solid" width="80%"></td>
+
+                </tr>
+                <tr>
+                    <td >Feiertage:</td>
+                    <td style="border-bottom:1px solid" width="80%"></td>
+
+                </tr>
+            </table>
+            <br/><br/>
+
+            <h2 style="color:#AAD14A;text-decoration: underline">CHECKLISTE UNTERLAGEN</h2>
+            <table style="border-color:#AAD14A;border-style:solid;width:100%;font-size:10pt ">
+                <tr width="100%"><td>&nbsp;</td></tr>
+                <tr width="100%"><td><img src="/img/checkbox_unchecked.gif"/> Gültige Ausweiskopie (geschwärzt)</td></tr>
+                <tr width="100%"><td><img src="/img/checkbox_unchecked.gif"/> Nachweis über die Bankverbindung </td></tr>
+                <tr width="100%"><td><img src="/img/checkbox_unchecked.gif"/> Gewerbescheinkopie und Firmenbuchauszug (falls erforderlich)</td></tr>
+                <tr width="100%"><td><img src="/img/checkbox_unchecked.gif"/> Speisekarte mit Allergenen und Zusatzstoffen</td></tr>
+                <tr width="100%"><td><img src="/img/checkbox_unchecked.gif"/> Logo</td></tr>
+                <tr width="100%"><td>&nbsp;</td></tr>
+            </table>
+
+            <div style="height:75pt" />
+            <div style="width:100%;bottom:0" >
+                <p style="text-align: center;font-size:7pt;line-height:1pt">Stand&nbsp; <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                        <apex:param value="{!TODAY()}" />
+                    </apex:outputText></p>
+                <p style="text-align: center;font-size:7pt;line-height:1pt">
+                     <apex:outputText value="{!accountwrapper.mjamMainQuoteAddress}" escape="false" />
+                </p>
+            </div>
+        </div>
+
+
+
+
+
+
+    </apex:outputPanel>
+
+
+
+</apex:component>

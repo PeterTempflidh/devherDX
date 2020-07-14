@@ -1,0 +1,193 @@
+<apex:page controller="CtrStockItemManager" showHeader="false" sidebar="false" standardStylesheets="false">
+
+		<apex:form id="theForm" styleClass="theForm">
+			<apex:pageBlock title="Add Terminal to inventory" mode="maindetail ">
+				<span class="s1icon s1icon-c-chalkboard s1icon-sm pageIconPosition"></span>
+				<apex:pageMessages />
+			
+
+				<apex:pageBlockSection title="General Information">
+					<table>
+						<tr>
+							<td class="pageBlockSectionTitle">General Information Subtitle</td>
+						</tr>
+					</table>
+				</apex:pageBlockSection>
+	<div class="pageBlockSection">
+
+<apex:pageBlockSection >
+	<apex:outputPanel >
+		<table border="0" width="100%">
+			<tr>
+				<td valign="top" width="330px">
+					<span class="btnFloatLeft custom-dropdown custom-dropdown--red custom-dropdown--disabled">
+					<apex:selectList style="width:286px;" value="{!assetSelected}" size="1" Styleclass="custom-dropdown__select custom-dropdown__select--red">
+					<apex:selectOptions value="{!listAssetSelection}"/>
+					</apex:selectList>
+					</span>
+				</td>
+				<td valign="top"><apex:inputField Style="width:120px; text-align:right" value="{!generalStockItem.Production_Date__c}" /></td>
+				<td valign="top"><apex:inputField Style="width:120px; text-align:right" value="{!generalStockItem.Date_Ordered__c}" /></td>
+				<td valign="top"><apex:inputField Style="width:120px; text-align:right" value="{!generalStockItem.Date_Arrived__c}" /></td>
+				<td valign="top">
+					<span class="btnFloatLeft custom-dropdown custom-dropdown--red custom-dropdown--disabled">
+					<apex:inputField Styleclass="custom-dropdown__select custom-dropdown__select--red" value="{!generalStockItem.Simcard_Provider__c}" />
+					</span>
+				</td>
+			</tr>
+		</table>
+	</apex:outputPanel>
+	<!-- cut -->
+<br /><br />
+<!-- cut -->  
+
+</apex:pageBlockSection>
+<input type="button"  value="Save" class="btn btn-primary" onclick="save()" />
+
+</div>
+
+
+</apex:pageBlock>
+					<apex:outputLabel value="Add Terminal by scanning the serial number" />
+					<div id="collection">  
+						<input id="ipd" type="text" class="input" />
+					 </div>
+
+					<table id="myTable" width="100%" class="tableStandard">
+						<thead class="rich-table-thead">
+							<tr>
+								<th>Terminal Type</th>
+								<th>Production Date</th>
+								<th>Order Date</th>
+								<th>Arrival Date</th>
+								<th>Type</th>
+								<th>Simcard Provider</th>
+								<th>Simcard Number</th>
+							</tr>
+						</thead>
+						<tbody id="tablebody" />
+					</table>
+
+					 <script>
+			j$ = jQuery.noConflict();
+			var counter = 0;
+			j$( document ).ready(function() {
+				j$(".input").keypress(function(event){
+						 
+					if (event.keyCode == 13) {
+						var valueX = j$(this).val();
+						j$(this).val('');
+						var detecedString = valueX.substring(0, 1);
+						if(detecedString == 'S'){
+							valueX = 'Serial No. :' + valueX;
+						}			 
+									 var detecedString = valueX.substring(0, 2);
+									 if(detecedString == '1P'){
+										  valueX = 'Part No. :' + valueX;
+									 }
+
+									 if(valueX.length == 15){
+										  valueX = 'IMEI/MEID : ' + valueX;
+									 }
+									 
+									 if(valueX.length == 12){
+										  valueX = 'UPC : ' + valueX;
+									 }
+									//get date arrivel  
+									var arrivalDate = document.getElementById("j_id0:j_id27:j_id28:theForm:j_id30:j_id58:j_id64");
+									//get production Date
+									var productionDate = document.getElementById("j_id0:j_id27:j_id28:theForm:j_id30:j_id58:j_id62");
+									// get order date   j_id0:j_id27:j_id28:theForm:j_id30:j_id58:j_id64
+									var orderDate = document.getElementById("j_id0:j_id27:j_id28:theForm:j_id30:j_id58:j_id63");
+									//selection j_id0:j_id27:j_id28:theForm:j_id30:j_id58:j_id61
+									var asset = document.getElementById("j_id0:j_id27:j_id28:theForm:j_id30:j_id58:sl");
+
+									//selection j_id0:j_id27:j_id28:theForm:j_id30:j_id58:j_id61
+									var simcardProvider = document.getElementById("j_id0:j_id27:j_id28:theForm:j_id30:j_id58:j_id65");
+
+
+									var table = document.getElementById("myTable");
+									var row = table.insertRow(1);
+									var cell1 = row.insertCell(0);
+									var cell2 = row.insertCell(1);
+									var cell3 = row.insertCell(2);
+									var cell4 = row.insertCell(3);
+									var cell5 = row.insertCell(4);
+									var cell6 = row.insertCell(5);
+									var cell7 = row.insertCell(6);
+
+									cell1.innerHTML = asset.options[asset.selectedIndex].text;
+									cell2.innerHTML = productionDate.value;
+									cell3.innerHTML = orderDate.value;
+									cell4.innerHTML = arrivalDate.value;
+									cell5.innerHTML = valueX;
+
+									cell6.innerHTML = simcardProvider.value;
+									
+									var inputText =  document.createElement("input");
+									inputText.className = 'newTextHeight';
+									inputText.type = "text";
+									inputText.id = 'input' +counter;
+									cell7.appendChild(inputText);
+								}
+						counter++;
+					});
+				});
+
+				function save(){
+					var jsonMessage = "[";
+					var mytable = document.getElementById("myTable");
+					for (var i = 1, row; row = mytable.rows[i]; i++) {
+					   //iterate through rows
+					   //rows would be accessed using the "row" variable assigned in the for loop
+						//console.log(row);
+						if(i > 1 && i != mytable.rows.length){
+							jsonMessage += ","
+						}
+						jsonMessage += "{"
+						
+
+						for (var j = 0, col; col = row.cells[j]; j++) {
+							if(j == 0){
+								console.log(col.innerHTML);
+								jsonMessage += '\"terminalType\":\"' + col.innerHTML + '\",';	
+							}else if (j == 1){
+								console.log(col.innerHTML);
+								jsonMessage += '\"productionDate\":\"' + col.innerHTML + '\",';	
+							}else if (j == 2){
+								console.log(col.innerHTML);
+								jsonMessage += '\"orderDate\":\"' + col.innerHTML + '\",';	
+							}else if (j == 3){
+								console.log(col.innerHTML);
+								jsonMessage += '\"arrivalDate\":\"' + col.innerHTML + '\",';	
+							}else if (j == 4){
+								console.log(col.innerHTML);
+								jsonMessage += '\"valueX\":\"' + col.innerHTML + '\",';	
+							}else if (j == 5){
+								console.log(col.innerHTML);
+								jsonMessage += '\"simcardProvider\":\"' + col.innerHTML + '\",';	
+							}else if (j == 6){
+								var elem = col.childNodes[0];
+								console.log(elem.value);
+								jsonMessage += '\"type\":\"' + elem.value + '\"'; // delete ','' sign
+							}
+						}
+						jsonMessage += "}"
+					}
+
+					jsonMessage = jsonMessage.slice(0, -1);
+					jsonMessage += "}]";
+
+					console.log(jsonMessage);
+
+	        			Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.CtrStockItemManager.save}', jsonMessage,    saveResult);
+
+	        			function saveResult(result, event) { 
+	        				alert(result);
+	        			}
+			}
+		  </script>
+
+		</apex:form>
+
+</apex:page>

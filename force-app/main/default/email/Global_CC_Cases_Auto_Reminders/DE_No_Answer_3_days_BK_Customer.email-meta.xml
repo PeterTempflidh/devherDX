@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DE_Burger_King</letterhead>
+    <name>DE - No Answer 3 days - BK Customer</name>
+    <style>freeForm</style>
+    <subject>Ihre Anfrage bei Burger King</subject>
+    <textOnly>Sehr geehrter Kunde,
+
+gern möchten wir Ihr Anliegen schnellstmöglich lösen. Vor drei Tagen haben wir Ihnen eine E-Mail gesendet, mit der Bitte um weitere Informationen.
+
+Hat sich Ihr Anliegen vielleicht sogar schon geklärt? Falls nicht, geben Sie uns einfach eine kurze Rückmeldung.
+
+Wir wünschen Ihnen noch einen guten Tag!</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

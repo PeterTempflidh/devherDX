@@ -1,0 +1,553 @@
+<apex:page controller="CtrserviceManager"  showHeader="false" sidebar="false" standardStylesheets="false">
+    <style type="text/css">
+        table.tableClass th{ text-align: right;}
+        .hide-text {
+            text-indent: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            height: 1px; 
+            width : 1px;
+            display:block;
+            font-size: 1px;
+        }
+
+    </style>
+<apex:form id="myFormServiceManager">
+<apex:actionFunction name="rerenderSection" reRender="addServiceBlock" immediate="true"/>
+
+<apex:actionFunction name="toggleServiceTypeDisplay" action="{!toggleComponents}" reRender="addServiceBlock, serviceMessage" status="LoadingSpinner"/>
+<apex:actionFunction name="toggleRequiresApprovalFlag" action="{!toggleRequiredApprovalFlag}" reRender="addServiceBlock, serviceMessage" status="LoadingSpinner" oncomplete="checkIfMinimumCommissionRequired()"/>
+<apex:actionFunction name="saveAf" action="{!addService}"  oncomplete="scrollToTop(); rerenderDataTable('services');" reRender="myFormServiceManager" status="LoadingSpinner" />
+
+<apex:pageMessages id="serviceMessage" />
+<br style="clear:both;" /> 
+<script>
+    function showServicePopup(){
+        j$('#customPopupService').modal('show');
+    }
+
+    function hideServicePopup(){
+        j$('#customPopupService').modal('hide');
+    }
+</script>
+
+<table width="100%" border="0" cellspacing="6" cellpadding="6">
+<apex:inputHidden value="{!showParentLookup}" id="showParentLookup"/>
+<tr>
+    <td>
+        <span class="s1icon s1icon-c-14 s1icon-sm pageIconPosition" style="margin-top:-70px !important;" ></span>
+        <span class="pageIconPositionLabel" style="margin-top:-65px !important;">{!$Label.Overview_Services}</span>
+    </td>
+    <td>
+       <span class="s1icon s1icon-c-14 s1icon-sm pageIconPosition" style="margin-top:-70px !important;" ></span>
+        <span class="pageIconPositionLabel" style="margin-top:-65px !important;">{!$Label.Service_Management}</span>
+    </td>
+</tr>
+<tr>
+    <td></td>
+    <td>
+        <!-- info -->
+        <div class="info" style="float:right; margin-top:-25px;">
+            <div class="tool-tip bottom" style="top:160px; width: 270px;height: 160px; margin-right:40px">
+                <apex:outputText value="{!$Label.Your_Service_Management_Information}" escape="false" />
+            </div>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td style="padding-right:10px" valign="top"> 
+        <apex:pageBlock id="serviceOverview">
+
+            <table id="services" class="displayDataTable display">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>{!$Label.Is_Active}</th>
+                    <th>{!$Label.SMC_Service_Name}</th>
+                    <th>{!$Label.Service_Type}</th>
+                    <th>{!$Label.Commission_in_percentage}</th>
+                    <!--<th style="display:{!if(showCommissionPerOrder,'block','none')}">{!$Label.Commission_per_Order}</th>-->
+                    <th>{!$Label.Commission_per_Order}</th>
+                    <!-- <th>{!$Label.Default_Commission_In_Percentage}</th> -->
+                    <th>{!$Label.SMC_Country}</th>
+                    <th>{!$Label.SMC_Last_Modified_By}</th>
+                    <th>{!$Label.SMC_Last_Modified_Date}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <apex:repeat value="{!listServices}" var="service">
+                    <tr>
+                        <td>
+                            <apex:commandButton action="{!chooseServiceToDelete}" Styleclass="btn1 btn-warning1 s1utility-close" id="commandlinkDelete" value="" title="{!IF(service.Is_Active__c, $Label.SMC_Service_Delete_Not_Possible, $Label.Delete)}"  rerender="deleteServicePopup" oncomplete="showServicePopup();" status="LoadingSpinner" disabled="{!IF(service.Is_Active__c, 'true', 'false')}" immediate="true">
+                                <apex:param name="serviceId" assignTo="{!serviceId}" value="{!service.Id}" />
+                            </apex:commandButton>
+                        </td>
+                        <td data-sort="{!service.Is_Active__c}">
+                            <span class="Active{!service.Is_Active__c} s1utility "></span>
+                        </td>
+                        <td>
+                            <apex:commandLink id="theCommandLink" title="{!$Label.Edit}"  value="" action="{!editItem}"
+                                          reRender="myFormServiceManager"
+                                          oncomplete="scrollToTop();  rerenderDataTable('services'); renderBasedOnSection();"
+                                          status="LoadingSpinner">
+                                <apex:param name="serviceId" assignTo="{!serviceId}" value="{!service.Id}" />
+                                <apex:outputText value="{!service.Name}"/>
+                            </apex:commandLink>
+                        </td>
+                        <td>{!service.Service_Type__c}</td>
+                        <td>{!service.Commission_In_Percentage__c}</td>
+                        <!--<td style="display:{!if(showCommissionPerOrder,'block','none')}">{!service.Commission_Per_Order__c}</td>-->
+                        <td>{!service.Commission_Per_Order__c}</td>
+                        <!-- <td>{!service.Default_Commission_In_Percentage__c}</td> -->
+                        <td>{!service.Id_Country__r.name}</td>
+                        <td>{!service.LastModifiedBy.Name}</td>
+                        <td>
+                            <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                                <apex:param value="{!service.LastModifiedDate}" /> 
+                            </apex:outputText>
+                        </td>
+                    </tr>
+                </apex:repeat>
+            </tbody>
+        </table>
+
+            <!-- <apex:dataTable value="{!listServices}" var="service" id="theTable" rowClasses="odd,even" styleClass="tableClass">
+                <apex:column style="width:30px;">
+                    <apex:actionRegion >
+                        <apex:commandButton action="{!chooseServiceToDelete}" Styleclass="btn1 btn-warning1 s1utility-close" id="commandlinkDelete" value="" title="{!IF(service.Is_Active__c, $Label.SMC_Service_Delete_Not_Possible, $Label.Delete)}"  rerender="deleteServicePopup" oncomplete="showServicePopup();" status="LoadingSpinner" disabled="{!IF(service.Is_Active__c, 'true', 'false')}" immediate="true">
+                            <apex:param name="serviceId" assignTo="{!serviceId}" value="{!service.Id}" />
+                        </apex:commandButton>
+                    </apex:actionRegion>
+                </apex:column> 
+                <apex:column style="width:50px; text-align:center; padding-left:10px;">
+                    <apex:facet name="header">{!$Label.Is_Active}</apex:facet>
+                    <apex:outputText styleClass="Active{!service.Is_Active__c} s1utility"/>
+                </apex:column>
+
+                <apex:column style="width:50px; text-align:center; padding-left:10px;">
+                    <apex:facet name="header">{!$Label.Service_Type}</apex:facet>
+                    <apex:outputField value="{!service.Service_Type__c}" />
+                </apex:column>
+
+                <apex:column style="text-align:left;width:250px;"  headerValue="{!$ObjectType.List_Service_Price__c.fields.Name.label}">
+                    <apex:actionRegion >
+                        <apex:commandLink id="theCommandLink" title="{!$Label.Edit}"  value="" action="{!editItem}" reRender="myFormServiceManager" oncomplete="scrollToTop();drawTypeSection('{!myService.Type__c}');"  status="LoadingSpinner" immediate="true">
+                                <apex:param name="serviceId" assignTo="{!serviceId}" value="{!service.Id}" />
+                            <apex:outputText value="{!service.Name}"/>
+                        </apex:commandLink>
+                    </apex:actionRegion>
+                </apex:column>
+                <apex:column style="width:200px;text-align:right">
+                    <apex:facet name="header">{!$Label.Commission_in_percentage}</apex:facet>
+                    <apex:outputText value="{!service.Commission_In_Percentage__c}"/>
+                </apex:column>
+                <apex:column style="width:200px;text-align:right">
+                    <apex:facet name="header" >{!$Label.Default_Commission_In_Percentage}</apex:facet>
+                    <apex:outputText value="{!service.Default_Commission_In_Percentage__c}"/>
+                </apex:column>
+                <apex:column headerValue="{!$Label.SMC_Last_Modified_By}">
+                <apex:outputField value="{!service.LastModifiedBy.Name}" />
+                </apex:column>
+                <apex:column headerValue="{!$Label.SMC_Last_Modified_Date}">
+                    <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                        <apex:param value="{!service.LastModifiedDate}" /> 
+                    </apex:outputText>
+                </apex:column>
+            </apex:dataTable> -->
+        </apex:pageBlock>
+    </td>
+    <td width="30%" valign="top">
+    <apex:pageBlock mode="maindetail " id="addServiceBlock">
+
+                <table width="100%">
+                <tr>
+                    <td></td>
+                    <td align="right"><apex:commandButton value="New" action="{!cancel}" Styleclass="btnFloatLeft3New" oncomplete="scrollToTop(); rerenderDataTable('services');" reRender="myFormServiceManager" status="LoadingSpinner" /></td>
+                </tr>
+                </table>
+        <table width="100%" style="margin-top:20px; " Class="tableStandard ">
+        <tr style="padding-top:10px;">
+            <td style="width: 200px; text-align:left"><b>{!$Label.Services} {!$Label.Name}</b></td>
+            <td><apex:inputField html-placeholder="{!$Label.Your_new_service_Name}" Style="width:205px;" value="{!myService.Name}" /><span class="requiredRed" ></span></td>
+        </tr>
+        <tr style="padding-top:10px;">
+            <td style="width: 200px; text-align:left"><b>{!$Label.Service_Displayed_Name}</b></td>
+            <td><apex:inputField html-placeholder="{!$Label.Your_new_serivce_Displayed_name}" Style="width:205px;" value="{!myService.Displayed_Name__c}" /><span class="requiredRed" ></span></td>
+        </tr>
+        <!-- <tr>
+            <td><b>{!$Label.Country}</b></td>
+            <td>
+            <apex:outputPanel >
+            <apex:inputField style="width:205px;" value="{!myService.Id_Country__c}" html-placeholder="{!$Label.Country}" /> <span class="requiredRed"></span>
+            </apex:outputPanel>
+            </td>
+        </tr>
+        <tr>
+        <td><b>{!$Label.Company}</b></td>
+            <td>
+                <apex:outputPanel >
+                    <apex:inputField style="width:205px;" value="{!myService.Company__c}"  html-placeholder="{!$Label.Company}" />
+                </apex:outputPanel>
+            </td>
+        </tr> -->
+
+        <tr>
+            <td><b>{!$Label.Country}</b></td>
+            <td>
+            <apex:outputPanel rendered="{!showCountryDropdown}">
+            <!-- <apex:outputPanel> -->
+                <span class="btnFloatLeft custom-dropdown custom-dropdown--red custom-dropdown--disabled">
+                    <apex:selectList id="selectListCountry" style="width:205px;" value="{!selectedCountry}" size="1" Styleclass="custom-dropdown__select custom-dropdown__select--red"  multiselect="false">
+                        <apex:selectOptions value="{!countries}"/>
+                    </apex:selectList>
+                </span>
+                <span class="requiredRed"></span>
+            </apex:outputPanel>
+            <apex:outputPanel styleClass="hideDropdown" rendered="{!hideCountryDropdown}">
+                <apex:outputText id="defaultCountry" value="{!defaultCountry}" />
+            </apex:outputPanel>
+            </td>
+        </tr>
+        <tr>
+            <td><b>{!$Label.Company}</b></td>
+            <td>
+            <apex:outputPanel rendered="{!showCompanyDropdown}">
+            <!-- <apex:outputPanel> -->
+                <span class="btnFloatLeft custom-dropdown custom-dropdown--red custom-dropdown--disabled">
+                    <apex:selectList style="width:205px;" value="{!selectedCompany}" size="1" Styleclass="custom-dropdown__select custom-dropdown__select--red" onchange="toggleServiceTypeDisplay();">
+                    <apex:selectOptions value="{!companies}"/>
+                    </apex:selectList>
+                </span>
+                <span class="requiredRed"></span>
+            </apex:outputPanel>
+            <apex:outputPanel styleClass="hideDropdown" rendered="{!hideCompanyDropdown}">
+                <apex:outputText value="{!defaultCompany}" />
+            </apex:outputPanel>
+            </td>
+        </tr>
+        
+        <tr>
+            <td><b>{!$Label.Is_Active}</b></td>
+            <td>
+            <apex:outputPanel >
+            <label class="switch">
+            <apex:inputCheckbox styleClass="switch-input" value="{!myService.Is_Active__c}" />
+            <span class="switch-label" data-on="{!$Label.On}" data-off="{!$Label.Off}"></span>
+            <span class="switch-handle"></span>
+            </label>
+            </apex:outputPanel>
+            </td>
+        </tr>
+        
+        <tr>
+            <td><b><apex:outputPanel rendered="{!showServiceType}">{!$Label.Service_Type}</apex:outputPanel></b></td>
+            <!-- <td><apex:outputPanel rendered="{!showServiceType}"><apex:inputField id="serviceTypeDropdown" Styleclass="custom-dropdown__select custom-dropdown__select--red" Style="width:205px;" value="{!myService.Service_Type__c}" /></apex:outputPanel></td> -->
+            <td>
+                <apex:outputPanel rendered="{!showServiceType}">
+                    <apex:outputPanel rendered="{!NOT(readOnlyCommissionType)}">
+                        <div class="requiredInput">
+                            <div class="requiredBlock"></div>
+                            <apex:inputField id="serviceTypeDropdown" Styleclass="custom-dropdown__select custom-dropdown__select--red" Style="width:205px;" value="{!myService.Service_Type__c}" onchange="setCommissionType(this);toggleRequiresApprovalFlag();" />
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!AND(readOnlyCommissionType)}" >
+                        <apex:outputField id="ServiceTypeReadOnly" value="{!myService.Service_Type__c}" />
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </td>
+        </tr>
+        <tr >
+            <td><b><span style="display:{!if(showCommissionPerOrder,'block','none')}">Type</span></b></td>   
+            <td style="display:{!if(showCommissionPerOrder,'block','none')}">
+            <apex:outputPanel rendered="{!NOT(readOnlyCommissionType)}">
+            <span class="custom-dropdown custom-dropdown--red custom-dropdown--disabled">
+                <apex:inputField id="commTypeDropdown" Styleclass="custom-dropdown__select custom-dropdown__select--red" Style="width:205px;" value="{!myService.Commission_Type__c}" onchange="showCommissionOrder(this.value);toggleRequiresApprovalFlag();"  required="true"/>
+                
+            </span>
+            <!-- <label class="switch">
+            <apex:inputCheckbox styleClass="switch-input" id="checkIsCommPerOrder" value="{!myService.Is_Commission_per_order__c}" onclick="showCommissionOrder(this);"/>
+            <span class="switch-label" id="checkIsCommPerOrderSpan" data-on="{!$Label.On}" data-off="{!$Label.Off}" ></span>
+            <span class="switch-handle" ></span>
+            </label>-->
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!AND(readOnlyCommissionType)}">
+            <apex:outputField id="commTypeReadOnly" value="{!myService.Commission_Type__c}" />
+            </apex:outputPanel>
+            </td>
+        </tr>
+        <!-- <tr id="parentIdRow">
+            <td><b>{!$Label.Parent_service}</b></td>
+            <td><apex:inputField id="serviceParentId" Style="width:205px;" value="{!myService.ParentId__c}" /><span class="requiredRed" ></span></td>
+        </tr> -->
+        <tr id="commissionperOrderFieldTd" style="display:{!if(showCommissionPerOrder,'block','none')}">
+            <td style="width: 200px; text-align:left"><b>{!$Label.Commission_per_Order} </b></td>
+            <td><apex:inputField id="commissionperOrderField" Style="width:205px;" value="{!myService.Commission_Per_Order__c}" /></td>
+
+        </tr>
+        <tr id="commissionInPercentFieldTd">
+            <td style="width: 200px; text-align:left"><b>{!$Label.Commission_in_percentage}</b></td>
+            <td><apex:inputField id="commissionInPercentField" Style="width:205px;" value="{!myService.Commission_In_Percentage__c}" /></td>
+
+        </tr>
+        <tr>
+            <td><b><apex:outputPanel >{!$Label.Requires_Approval}</apex:outputPanel></b></td>   
+            <td>
+            <apex:outputPanel >
+            <label class="switch">
+            <apex:inputCheckbox id="requireApprovalFlag" styleClass="switch-input" value="{!myService.Requires_Approval__c}" onchange="checkIfMinimumCommissionRequired()" />
+            <span class="switch-label" data-on="{!$Label.On}" data-off="{!$Label.Off}"></span>
+            <span class="switch-handle"></span>
+            </label>
+            </apex:outputPanel>
+            </td>
+        </tr>
+            <tr>
+                <td><b>{!$Label.Requires_Esignature}</b></td>
+                <td>
+                    <apex:outputPanel>
+                        <span class="btnFloatLeft custom-dropdown custom-dropdown--red custom-dropdown--disabled">
+                            <apex:inputField id="requiresDsDropdown" Styleclass="custom-dropdown__select custom-dropdown__select--red" Style="width:205px;" value="{!myService.Requires_Esignature__c}"/>
+                            <span class="requiredRed" ></span>
+                        </span>
+                    </apex:outputPanel>
+                </td>
+            </tr>
+        
+        <!-- minimum and maximum per percentage  -->
+        <tr id="commissionInPercentMaxFieldTd">
+            <td style="text-align:left"><b>{!$Label.Max_Commision_in_percentage}</b></td>
+            <td><apex:inputField Style="width:205px;" value="{!myService.Maximum_Commission_In_Percentage__c}" /></td>
+        </tr>
+        <tr id="commissionInPercentMinFieldTd">
+            <td style="text-align:left"><b>{!$Label.Min_Commision_in_percentage}</b></td>
+            <td><apex:inputField Style="width:205px;" value="{!myService.Minimum_Commission_in_Percentage__c}" /></td>
+        </tr>
+
+        <!-- minimum and maximum per order  -->
+        <tr id="commissionPerOrderMaxFieldTd">
+            <td style="text-align:left"><b>{!$Label.Max_Commision_per_order}</b></td>
+            <td><apex:inputField Style="width:205px;" value="{!myService.Maximum_Commission_Per_Order__c}" /></td>
+        </tr>
+        <tr id="commissionPerOrderMinFieldTd">
+            <td style="text-align:left"><b>{!$Label.Min_Commision_Per_Order}</b></td>
+            <td><apex:inputField Style="width:205px;" value="{!myService.Minimum_Commission_Per_Order__c}" /></td>
+        </tr>
+        <tr>
+            <td><b><apex:outputPanel >{!$Label.Scaled}</apex:outputPanel></b></td>
+            <td>
+                <apex:outputPanel >
+                    <label class="switch">
+                        <apex:inputCheckbox id="scaledCheckbox" styleClass="switch-input" value="{!myService.Scaled__c}"
+                                            onchange="toggleBasedOnSection()"/>
+                        <span class="switch-label" data-on="{!$Label.On}" data-off="{!$Label.Off}"></span>
+                        <span class="switch-handle"></span>
+                    </label>
+                </apex:outputPanel>
+            </td>
+        </tr>
+        <tr id="basedOnFieldSection">
+            <td style="width: 200px; text-align:left"><b>{!$Label.Based_on}</b></td>
+            <td width="0px" colspan="2">
+                <apex:outputPanel >
+                    <span class="btnFloatLeft custom-dropdown custom-dropdown--red custom-dropdown--disabled">
+                        <apex:inputField Style="width:205px;" id="basedOnFieldId"
+                                     Styleclass="custom-dropdown__select custom-dropdown__select--red"
+                                     value="{!myService.Based_On__c}" />
+                    <span class="requiredRed"></span>
+                    </span>
+                </apex:outputPanel>
+            </td>
+        </tr>
+
+
+
+
+       <!--  <tr style="padding-top:30px;">
+        <td style="width: 200px;"><b>{!$Label.Recurring_Fee}</b></td>
+            <td><b>{!$ObjectType.List_Service_Price__c.fields.Recurring_Fee__c.label}</b></td>
+            <td><apex:inputField Style="width:205px;" value="{!myService.Recurring_Fee__c}" /></td>
+        </tr>
+         -->
+        </table>
+        <table width="100%" style="margin-top:50px;">
+        <tr>
+            <td></td>
+            <td align="right">
+            <!--apex:commandButton value="{!$Label.save}" Styleclass="btnFloatLeft2" action="{!addService}"  oncomplete="scrollToTop(); rerenderDataTable('services');" reRender="myFormServiceManager" status="LoadingSpinner" onclick="validate(event)"/--> &nbsp; &nbsp; 
+            <input type="button" class="btnFloatLeft2" onclick="validateAndSubmit()" value="{!$Label.save}" />
+            <apex:commandButton value="{!$Label.Cancel}" action="{!cancel}" Styleclass="btnFloatLeft3" oncomplete="scrollToTop(); rerenderDataTable('services');" reRender="myFormServiceManager" status="LoadingSpinner"/></td>
+        </tr>
+        </table>
+
+        <script>
+          function setCommissionType(selectList) {
+
+              var commTypes = j$("[id$=commTypeDropdown]");
+              if (selectList.value == 'Fixed Amount') {
+                  commTypes.val('Per Order');
+                  showCommissionOrder('Per Order');
+              }
+          }
+
+          function showCommissionOrder(selectedValue) {
+              var serviceType = j$("[id$=serviceTypeDropdown]");
+
+              if (selectedValue == 'Per Order') {
+                  j$("#commissionperOrderFieldTd").css("display", "");
+                  j$("[id$=commissionperOrderField]").css("display", "inline-block");
+                  j$("#commissionInPercentFieldTd").css("display", "none");
+                  j$("[id$=commissionInPercentField]").css("display", "none");
+                  j$("#commissionInPercentMaxFieldTd").css("display", "none");
+                  j$("#commissionInPercentMinFieldTd").css("display", "none");
+
+                  j$("#commissionPerOrderMaxFieldTd").css("display", "");
+                  j$("#commissionPerOrderMinFieldTd").css("display", "");
+
+                 
+
+              } else if (selectedValue == 'Percentage') {
+                  j$("#commissionperOrderFieldTd").css("display", "none");
+                  j$("[id$=commissionperOrderField]").css("display", "none");
+                  j$("#commissionInPercentFieldTd").css("display", "");
+                  j$("[id$=commissionInPercentField]").css("display", "inline-block");
+                  j$("#commissionInPercentMaxFieldTd").css("display", "");
+                  j$("#commissionInPercentMinFieldTd").css("display", "");
+                  j$("#commissionPerOrderMaxFieldTd").css("display", "none");
+                  j$("#commissionPerOrderMinFieldTd").css("display", "none");
+                  if (serviceType[0] != null && serviceType[0].value == 'Fixed Amount') {
+                      serviceType[0].value = '';
+                  }
+                  //j$("[id$=commissionperOrderField]").val('');
+              }
+          }
+
+          function isMinimumRequired() {
+            return j$("[id$=requireApprovalFlag]").prop("checked");
+          }
+
+          function checkIfMinimumCommissionRequired() {
+            if (isMinimumRequired()) {
+                // minimum required
+                j$("[id$=MinFieldTd] input:visible").parent("td").append('<span class="requiredRed"/>');
+            } else {
+                // minimum not required
+                j$("[id$=MinFieldTd] .requiredRed:visible").remove();
+            }
+
+          }
+
+          function validateAndSubmit(evt) {
+                if (isMinimumRequired() && !j$("[id$=MinFieldTd] input:visible").val()) {
+                    alert("Review errors"); // todo change with label
+                } else {
+                    saveAf();
+                }
+          }
+
+          function toggleBasedOnSection(){
+              if(j$('[id$=scaledCheckbox]').is(':checked')){
+                    j$( "#basedOnFieldSection" ).css("display","");
+              }else{
+                    j$( "#basedOnFieldSection" ).css("display","none");
+              }
+          }
+
+          function renderBasedOnSection(){
+              if({!myservice.Scaled__c} == true){
+                  j$( "#basedOnFieldSection" ).css("display","");
+              }else{
+                  j$( "#basedOnFieldSection" ).css("display","none");
+              }
+          }
+          j$(document).ready(function() {
+              console.log('document ready in commissions');
+              j$( "#basedOnFieldSection" ).css("display","none");
+              var commTypes = j$("[id$=commTypeDropdown]");
+              var commTypeReadOnly = j$("[id$=commTypeReadOnly]");
+              if (commTypes[0] != null) {
+                  console.log('commTypes: ' + commTypes[0].value);
+                  showCommissionOrder(commTypes[0].value);
+              }
+              if (commTypeReadOnly[0] != null) {
+                  console.log('commTypeReadOnly: ' + commTypeReadOnly[0].innerHTML);
+                  showCommissionOrder(commTypeReadOnly[0].innerHTML);
+              }
+
+              j$("[id$=serviceTypeDropdown] option[selected=selected]").prop("selected", true);
+
+              checkIfMinimumCommissionRequired();
+
+          });
+</script>
+
+    </apex:pageBlock>
+</td>
+</tr>
+</table>
+<!--<c:Spinner /> -->
+<!--
+###############################
+spinner / popup
+###############################
+-->
+<!-- <c:Spinner message="{!$Label.Please_Wait}" /> -->
+<apex:outputPanel id="deleteServicePopup">
+<div class="modal fade" id="customPopupService" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+     <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <span class="s1icon s1icon-s-question-feed s1icon-sm "></span>
+            <span class="pageIconPositionLabelpopup">{!$Label.SMC_Service_Deleting}</span>
+            
+            <h2><apex:outputText value="{!$Label.SMC_Service_Deleting} : {!myService.Name}" /></h2>
+             <apex:outputText value="Are you sure you want to delete:  <b>{!myService.Name}</b> ?" escape="false"/>
+
+            <table width="100%" style="margin-top:50px;">
+                <tr>
+                <td><apex:commandButton html-data-dismiss="modal" Styleclass="btnFloatLeft2"  value="Cancel" onclick="return false;" /></td>
+                <td align="right"><apex:commandButton value="Delete" action="{!deleteItem}" Styleclass="btnFloatLeft3" status="LoadingSpinner" rerender="addServiceBlock,serviceOverview, serviceMessage" oncomplete="hideServicePopup(); scrollToTop(); rerenderDataTable('services');" immediate="true"/>
+                </td>
+                </tr>
+            </table>
+        </div>
+           
+      </div>
+    </div>
+</div>
+</apex:outputPanel>
+</apex:form>
+
+<script>
+    function drawTypeSection(x){
+        console.log('Parameter x is : '+x);
+        //function receives either object (when picklist is changed)
+        //or string (when edit button is clicked)
+        //therefore the following if statement
+        var y;
+        if(typeof x == 'object'){
+            y = x[x.selectedIndex].value;
+        }else{
+            y = x;
+        }
+        
+        if(y == ''){
+            document.getElementById("recurrance").className = "recurringFee";
+            document.getElementById("commission").className = "commisionFee";
+        }
+
+        if(y == 'Recurring Fee'){
+            console.log('fee css');
+            document.getElementById("recurrance").className = "recurringFeeX";
+            document.getElementById("commission").className = "commisionFee";
+        }
+        
+        if(y == 'Commission'){
+            console.log('commission css');
+            document.getElementById("recurrance").className = "recurringFee";
+            document.getElementById("commission").className = "commisionFeeX";
+        }
+
+    }
+</script>  
+</apex:page>

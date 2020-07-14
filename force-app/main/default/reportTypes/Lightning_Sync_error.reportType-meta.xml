@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <baseObject>S2XAdminError</baseObject>
+    <category>admin</category>
+    <deployed>false</deployed>
+    <description>To discover what’s causing sync to fail and for which users.</description>
+    <label>Lightning Sync error</label>
+    <sections>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Name</field>
+            <table>S2XAdminError</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CreatedDate</field>
+            <table>S2XAdminError</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>ErrorType</field>
+            <table>S2XAdminError</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Description</field>
+            <table>S2XAdminError</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Details</field>
+            <table>S2XAdminError</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>User</field>
+            <table>S2XAdminError</table>
+        </columns>
+        <masterLabel>LightningSyncError</masterLabel>
+    </sections>
+</ReportType>

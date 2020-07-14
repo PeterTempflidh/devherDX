@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY - PQP Más de 1 contacto - General</name>
+    <style>freeForm</style>
+    <subject>Gracias por Contactarnos - # {!Case.CaseNumber}</subject>
+    <textOnly>Estimado XXX,
+
+En esta oportunidad nos comunicamos para dejarte un breve resumen de nuestra (segunda, tercera, cuarta) llamada del día XXX, donde hablamos sobre el rendimiento de tu local XXX.
+
+Evolución positiva: Hemos notado que hubo una mejora en cuanto a tu desempeño, en comparación con los indicadores del contacto anterior. Agradecemos el esfuerzo que has hecho y continuaremos el seguimiento y apoyo para que podamos ofrecer el mejor servicio a nuestros usuarios. 
+
+Recuerde que haremos un seguimiento en los próximos días en caso de que los objetivos no hayan sido alcanzados. 
+
+Evolución negativa (2da llamada): Hemos notado que no hubo una mejora en cuanto a tu desempeño, en comparación con los indicadores del contacto anterior. La tasa de (colocar KPI) actual es de XX%, es importante que trabajemos en la misma para evitar el cierre indefinido del perfil en la plataforma.
+
+Recuerde que haremos un seguimiento en los próximos días en caso de que los objetivos no hayan sido alcanzados. 
+
+Evolución negativa (3ra llamada): Hemos notado que no hubo una mejora en cuanto a tu desempeño, en comparación con los indicadores de los contactos anteriores. La tasa de (colocar KPI) actual es de XX% por lo que tu perfil quedará cerrado indefinidamente en la plataforma. 
+
+AGREGAR RESUMEN DE LLAMADA:
+Motivos conversados/Problema detectado/Solución acordada.
+
+Adjunto folleto con las vías de contacto y manual de uso del Partner Portal.
+
+Quedo a las órdenes. 
+Saludos,</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

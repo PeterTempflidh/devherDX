@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>SE Restaurant Online SurveyGizmo</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>SE_RestaurantOnline_SurveyGizmo</name>
+    <style>none</style>
+    <subject>Var du nöjd?</subject>
+    <textOnly>onlinepizza.se
+
+Vad tycker do om oss?
+
+Vad tycker du om oss?
+
+Hej
+
+Tack för att du valt OnlinePizza.se som partner. Vi vi vill gärna veta vad du tycker om oss för att kunna förbättra vårt samarbete med dig.
+
+Från en skala på 0 till 10, hur sannolikt är det att du skulle rekommendera någon att samarbeta med OnlinePizza.se? Klicka på en siffra nedan.
+
+Osannolikt        Väldigt troligt
+
+Tack för din feedback!
+OnlinePizza.se
+
+Ladda ner appen
+
+
+Copyright 2014 Online Pizza Norden AB All rights reserved
+Kungsholmstorg 5, 112 21 Stockholm
+kontak@onlinepizza.se</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>This email will be sent out for Auto response rule emails</description>
+    <encodingKey>ks_c_5601-1987</encodingKey>
+    <letterhead>Yogiyo_Letterhead</letterhead>
+    <name>Yogiyo - Auto Response Email</name>
+    <style>freeForm</style>
+    <subject>Yogiyo - Auto Response Email</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

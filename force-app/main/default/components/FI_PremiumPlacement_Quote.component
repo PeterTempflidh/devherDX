@@ -1,0 +1,267 @@
+<apex:component controller="CtrCreateQuote" access="global">
+    <apex:attribute name="oppQ" type="String" description="Placeholder" assignTo="{!oppQId}"/>
+    <apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+    <head>
+	    <style type="text/css">
+		    /* A4 size */
+		    
+		    @page {
+		    	size: A4;
+			}
+	
+			@media print {
+				.pageBreak {
+		    		page-break-after: always;
+		    	}
+			}
+		</style>
+	</head>
+    
+            <div id="FI_QUOTE" style="width:700px; margin: auto;page-break-after:always;">
+                <div style="display:inline-block; width:50%;vertical-align: top;margin-left:5%;">
+                    <img src="{!URLFOR($Resource.FI_PizzaOnline_logo)}" style="width: 90%;" />
+                </div>
+                <div id="RestDesc" style="display:inline-block; width:44%;vertical-align: top; float:right;" >
+                    <table style="float:right;">
+                    	<tr>
+                    		<td style="padding:0px;text-align:right"><Strong>Delivery Hero Finland Oy</Strong></td>
+                    	</tr>
+                    	<tr>
+                    		<td style="padding:0px;text-align:right;">Pasilankatu 10, 00240 Helsinki</td>
+                    	</tr>
+                    	<tr>
+                    		<td style="padding:0px;text-align:right">Phone: 02 9300 0470</td>
+                    	</tr>
+                    	<tr>
+                    		<td style="padding:0px;text-align:right">Email: ravintolat@pizza-online.fi</td>
+                    	</tr>
+                    	<tr>
+                    		<td style="padding:0px;text-align:right">1936684-6</td>
+                    	</tr>
+                    </table>
+                </div>
+                
+                <div id="CQtitle" style="width:700px;margin: auto;margin-top:40px !important;text-align:center;font-size: 14pt">
+                    <strong>Palvelusopimus </strong><span style="font-size:12pt">(Service Agreement)</span>
+                </div><br/>
+                <div style="margin: auto;text-align:right;float:right;">
+                    <table style="float:right;">
+                    	<tr>
+                    		<td style="padding:0px;text-align:right">{!opportunity.owner.name}</td>
+                    	</tr>
+                    	<tr>
+                    		<td style="padding:0px;text-align:right">
+                    			<apex:outputText value="{0,date,dd'/'MM'/'yyyy}">
+								    <apex:param value="{!opportunity.closeDate}" /> 
+								</apex:outputText>
+                    		</td>
+                    	</tr>
+                    </table>
+                </div>
+                <br />
+                
+                <h4 style="text-align:left"><Strong>Ravintola-kumppanitiedot </Strong><span style="font-size:10pt">(Restaurant Partner Information)</span></h4>
+                <!-- RESTAURANT DESCRIPTION SECTION -->
+                <table border="1" style="width: 100%;border-collapse: collapse;">
+                	<tr>
+                		<td>
+                			Yrityksen virallinen nimi
+							<span style="font-size:8pt">(Official Business Name)</span>
+                		</td>
+                		<td>
+                			{!accountWrapper.companyName}
+                		</td>
+                	</tr>
+                	<tr>
+                		<td>
+                			Ravintolan nimi <span style="font-size:8pt">(Restaurant Name)</span>
+                		</td>
+                		<td>
+                			{!accountWrapper.RestaurantName}
+                		</td>
+                	</tr>
+                	<tr>
+                		<td>
+                			Puhelinnumero <span style="font-size:8pt">(ravintolan)(Restaurant Phone No.)</span>
+                		</td>
+                		<td>
+                			{!accountWrapper.ownerPhone}
+                		</td>
+                	</tr>
+                	<tr>
+                		<td>
+                			Ravintolan osoite
+							<span style="font-size:8pt">(Restaurant Address)</span>
+                		</td>
+                		<td>
+                			{!accountWrapper.restaurantAddress}
+                		</td>
+                	</tr>
+                	<tr>
+                		<td>
+                			Omistajan täydellinen nimi <span style="font-size:8pt">(Owner Full Name)</span>
+                		</td>
+                		<td>
+                			{!accountWrapper.ownerSalutation} {!accountWrapper.ownerName}
+                		</td>
+                	</tr>
+                	<tr>
+                		<td>
+                			Matkapuhelinnumero <span style="font-size:8pt">(yrityksen vastuuhenkilön) (Mobile Number)</span>
+                		</td>
+                		<td>
+                			{!accountWrapper.ownerMobilePhone}
+                		</td>
+                	</tr>
+                </table>
+                
+                <h4 style="text-align:left"><Strong>Lisäpalvelut </Strong><span style="font-size:10pt">(Service Package)</span> </h4>
+                <!--  PRODUCT SECTION -->
+                <apex:outputPanel rendered="{!listLineItems.size > 0}" >
+	                <table border="1" style="width: 100%;border-collapse: collapse;">
+	                	<tr>
+	                		<th>
+	                			Palvelu ja tuote
+								<span style="font-size:8pt">(Service and Product)</span>
+	                		</th>
+	                		<th style="text-align:center">
+	                			Hinta 
+								<span style="font-size:8pt">(Price)</span>	
+	                		</th>
+	                		<th style="text-align:center">
+	                			Aloituspäivä
+								<span style="font-size:8pt">(Start Date)</span>
+	                		</th>
+	                		<th style="text-align:center">
+	                			Lopetuspäivä 
+								<span style="font-size:8pt">(End Date)</span>
+	                			
+	                		</th>
+	                	</tr>
+	               		<apex:repeat value="{!listLineItems}" var="lineItem">
+	               			<tr>
+		               			<td>
+		                			{!lineItem.Id_List_Product_Price__r.Displayed_Name__c}
+		                		</td>
+		                		<td style="text-align:center">
+		                			{!lineItem.Total_Amount__c}
+		                		</td>
+		                		<td style="text-align:center">
+		                			<apex:outputText value="{0,date,dd'/'MM'/'yyyy}">
+									    <apex:param value="{!lineItem.Start_Date__c}" /> 
+									</apex:outputText>
+		                		</td>
+		                		<td style="text-align:center">
+		                			<apex:outputText value="{0,date,dd'/'MM'/'yyyy}">
+									    <apex:param value="{!lineItem.End_Date__c}" /> 
+									</apex:outputText>
+		                		</td>
+	                		</tr>
+	               		</apex:repeat>
+	                </table><br/>
+                </apex:outputPanel>
+                
+                <!--  ADD ON SECTION -->
+                <apex:outputPanel rendered = "{!listAddOnItems.size > 0}" >
+	                <table border="1" style="width: 100%;border-collapse: collapse;">
+	                	<tr>
+	                		<th>
+	                			Bonus
+								<span style="font-size:8pt">(Add-On)</span>
+	                		</th>
+	                		<th style="text-align:center">
+								Yksityiskohdat
+								<span style="font-size:8pt">(Details)</span>		
+	                		</th>
+	                		<th style="text-align:center">
+	                			Aloituspäivä
+								<span style="font-size:8pt">(Start Date)</span>
+	                		</th>
+	                		<th style="text-align:center">
+	                			Lopetuspäivä 
+								<span style="font-size:8pt">(End Date)</span>
+	                			
+	                		</th>
+	                	</tr>
+	                	<apex:repeat value="{!listAddOnItems}" var="lineItem" >
+		                	<tr>
+		                		<td>
+		                			{!lineItem.Name}
+		                		</td>
+		                		<td style="text-align:center">
+		                			{!lineItem.Contract_Addition__c}
+		                		</td>
+		                		<td style="text-align:center">
+		                			<apex:outputText value="{0,date,dd'/'MM'/'yyyy}">
+									    <apex:param value="{!lineItem.Start_Date__c}" /> 
+									</apex:outputText>
+		                		</td>
+		                		<td style="text-align:center">
+		                			<apex:outputText value="{0,date,dd'/'MM'/'yyyy}">
+									    <apex:param value="{!lineItem.End_Date__c}" /> 
+									</apex:outputText>
+		                		</td>
+		                	</tr>
+	                	</apex:repeat> 
+	                </table><br/> 
+                </apex:outputPanel> 
+            </div>
+            <div id="FI_QUOTE">
+            	<!-- TERMS AND CONDITIONS FOR PP -->
+            	<p style="text-align:left;font-size:12pt">Seuraavat palveluehdot koskevat varattuja premium-palveluja: <br/>
+                	<span style="font-size:10pt">(The following Terms &amp; Conditions apply if Premium Placement Service is booked:)</span>
+                </p>
+                <p style="text-align:left">
+                	<b>Palveluehdot<br/>
+					<i>Service agreement</i><br/></b>
+				</p>
+				<p style="text-align:left">
+					Ravintolan tulee peruuttaa toistaiseksi voimassaoleva Premium-palvelun kestotilaus seitsemän (7) 
+					vuorokautta ennen uuden jakson alkamista. Kestotilaus loppuu kun kuluva laskutusjakso on päättynyt ja 
+					laskutusjaksoa ei voi keskeyttää ennen kuin seuraava laskutusjakso on alkanut. Premium-palvelun 
+					kestotilauksen lopettaminen edellyttää yhteydenottoa Delivery Hero Finland Oy:n asiakaspalveluun
+					<br/>
+					<i>The restaurant needs to make any cancellations to the premium placement at least seven (7) days before the 
+					start of the new period. The auto-renewal will stop when the current billing cycle is finished and the
+					billing cycle can’t be interrupted before the next billing cycle has started. Delivery Hero Finland Oy’s 
+					customer service must be contacted in order to cancel the auto-renewed premium placement.</i>
+				</p>
+				<p style="text-align:left">
+					Delivery Hero Finland Oy voi keskeyttää toistaiseksi voimassaolevan Premium-palvelun kestotilauksen 
+					ilmoittamalla siitä ravintolalle viimeistään kahta viikkoa (2 vko.) ennen kuin seuraava laskutusjakso on 
+					alkanut. Delivery Hero Finland Oy:n on myös ilmoitettava ravintolalle viimeistään kahta viikkoa (2 vko.) 
+					ennen kuin seuraava laskutusjakso on alkanut, jos toistaiseksi voimassaolevan Premium-palvelun 
+					kestotilauksen hinnoitteluun on tulossa muutos seuraavassa laskutusjaksossa.
+					<br/>
+					<i>Delivery Hero Finland Oy may cancel the auto-renewed premium placement by informing the restaurant at 
+					least two (2) weeks before the next billing cycle has started. Delivery Hero Finland Oy also has to 
+					notify the restaurant at least two (2) weeks before the next billing cycle has started if the there is 
+					any price changes to the auto-renewed premium placement in the upcoming billing cycle.</i>
+				</p>
+				<p style="text-align:left">
+					Delivery Hero Finland Oy voi tarpeen vaatiessa tehdä muutoksia Premium-palvelun hinnoitteluun 
+					kuukausittain ja kaikista hinnanmuutoksista tiedotetaan ravintolaa joko tekstiviestillä tai puhelimitse. 
+					Ravintolaa tiedotetaan tekstiviestillä, jos määräaikaisen Premium-palveluun hinnoitteluun tulee muutos ja 
+					puhelimitse jos Premium-palvelun kestotilaukseen on tulossa muutos seuraavassa laskutusjaksossa.
+					<br/>
+					<i>Delivery Hero Finland Oy may, if needed, monthly change the pricing of the premium placement and all 
+					changes in pricing has to be informed to the restaurant by phone or SMS. The restaurant will be notified 
+					by SMS if the price of the time-limited premium placement will change and by phone if the price of the 
+					auto-renewed premium placement will change in the upcoming billing cycle.</i>
+				</p>
+				<p style="text-align:left">
+					Kestotilauksissa voimassa oleva Premium-palvelu uusitaan automaattisesti edellisen jakson päätyttyä 
+					samaan hintaan.
+					<br/>
+					<i>The auto-renewed premium placement will be renewed automatically at the end of the current billing cycle 
+					at the same price.</i>
+				</p>
+				<p style="text-align:left">
+					Tilaus on sitova. Tilattuja Premium-palveluita ei hyvitetä. Premium-palvelu veloitetaan automaattisesti 
+					tilityksissänne. Tilaamalla palvelun hyväksyt nämä ehdot.
+					<br/>
+					<i>The order is binding. Ordered premium placements will not be refunded. The premium placement will be 
+					automatically deducted from your invoices. By ordering the premium placement you approve these conditions.</i>
+                </p>
+            </div>
+</apex:component>

@@ -1,0 +1,1173 @@
+<apex:page standardController="Opportunity_Quote__c" showHeader="true" sidebar="true" extensions="CtrQuoteScreen"  action="{!generateTemplateName}">
+    <apex:pageBlock rendered="{!isNintexQuote}">
+        <apex:includeScript value="/support/console/47.0/integration.js"/>
+        <apex:includeLightning />
+        <apex:includeScript value="/lightning/lightning.out.js"/>
+        <div id="LightningComponentid" />
+        <script>
+
+            var oppQuoteId = "{!$CurrentPage.parameters.Id}"
+            $Lightning.use("c:QuoteScreen_App", function() {
+                $Lightning.createComponent("c:pdfViewer",
+                                           {
+                                                "recordId"	: oppQuoteId,
+                                                "uiTheme" : "{!$User.UIThemeDisplayed}"
+                                           },
+                                           "LightningComponentid",
+                                           function(cmp) {
+
+                                           });
+            });
+ 	    </script>
+    </apex:pageBlock>
+    <apex:pageBlock rendered="{!NOT(isNintexQuote)}">
+        <apex:includeScript value="/xdomain/xdomain.js"/>
+        <apex:includeScript value="/soap/ajax/40.0/connection.js"/>
+        <apex:includeScript value="/soap/ajax/40.0/apex.js"/>
+        <apex:includeScript value="/support/console/30.0/integration.js"/>
+        <apex:includeScript value="/resource/jq211"/>
+        <apex:includeScript value="/resource/bootbox/bootstrap.min.js"/>
+        <apex:includeScript value="/resource/bootbox/bootbox.min.js"/>
+        <apex:includeScript value="/resource/bootbox/utilityFunctions.js"/>
+        <link rel='stylesheet' type='text/css' href='/resource/bootbox/bootstrapV1.css' />
+
+        <script src="{!URLFOR($Resource.DHHConsoleToolkit, 'js/ConsoleToolkit.js')}" type="text/javascript"></script>
+
+        <style>
+        .errorWrapper {
+            text-align: left !important;
+        }
+
+        #carLeaseTable, #details,#optional, #details td,#details th, #carLeaseTable td,#optional td,#optional th {
+            border: 1px solid black !important;
+            border-collapse: collapse;
+        }
+        .TalabatQuote{
+            font-size:110%;
+        }
+
+        .DHAUBorderLeft{
+            border-left:1px solid black;border-top:1px solid black;
+        }
+
+        .DHAUBorderRight{
+            border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;
+         }
+
+        .DHAUBorderBottomLeft{
+            border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;
+        }
+
+        .DHAUBorderBottomRight{
+            border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;border-bottom:1px solid black;
+        }
+        .DHAUInvoicingBorder{
+            border-left:1px solid #c00000;border-bottom:1px solid #c00000;border-right:1px solid #c00000;
+        }
+
+        .DHAUInvoicingBorderCentre{
+            border-bottom:1px solid #c00000;
+        }
+
+        .top{
+            border-color: #c00000; border-style: solid ;border-width: 1px 1px 0px 0px;
+        }
+
+        .bottom{
+            border-color: #c00000;border-style: solid ;border-width: 1px 1px 1px 0px;
+        }
+       /* #SEQuoteBorder{
+            border:2px solid black;
+        }*/
+
+        #CQTable, #CQTable td, #CQTable th {
+            border: 1px solid black;border-collapse: collapse;
+        }
+
+        #CQTable span {
+            padding-left: 2px;
+        }
+
+        .SEPizzaFormular{
+            border-collapse:collapse;border:2px solid #CF222A;
+        }
+
+        #CQnoborderLeft {
+            border-left : 0px !important;
+        }
+
+        #CQnoborderRight {
+            border-right: 0px !important;
+        }
+
+        #CQheader {
+            font-weight: bold;
+        }
+
+        #SEPremiumReTable, #SEPremiumReTable td, #SEPremiumReTable th {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        #CQTable span {
+            padding-left: 2px;
+        }
+
+        #PPheader {
+            color:white;font-size:15pt;padding:5px;width:100%;background-image:url('{!URLFOR($Resource.SE_Quote_PP_red)}');display:inline-block;
+        }
+
+        .clearboth { clear: both; }
+
+             @media print { pre { page-break-before: always;}}
+            @font-face { font-family: FuturaLight; src: url('{!URLFOR($Resource.ATResources, 'ATResource/Futura-Light.ttf')}'); }
+            @font-face { font-family: FuturaBold; src: url('{!URLFOR($Resource.ATResources, 'ATResource/Futura-Bold.ttf')}'); }
+            /*body { background-image: url('{!URLFOR($Resource.ATResources, 'ATResource/background.png')}');}*/
+
+            b.bank { font-family: FuturaBold;font-size: 10px !important;margin-top: 10px !important; }
+            .bankTd { width: 40% !important;padding-top: 10px !important; }
+            span.bank { font-size: 7pt !important;font-size: 8px !important; }
+            #AT_MQ_Wrapper { font-family:Futura; font-size:8pt;}
+            #AT_MQ_Wrapper p { margin:0;font-stretch: extra-condensed !important;}
+            #AT_MQ_Wrapper p.AT_MQ_Title {margin:8px !important;font-family: FuturaBold;text-align: center;font-weight:bold;}
+            #AT_MQ_Wrapper table { border-collapse: collapse; border-spacing: 0; margin-bottom:0; }
+            #AT_MQ_Wrapper table td { padding: 0px;}
+            #AT_MQ_Page1 {font-size:11pt;font-family:FuturaLight;}
+            #AT_MQ_Page1 p {line-height:30px;}
+            .AT_MQ_Page1LeftDiv { display:inline-block;float:left;width:50%;}
+            .AT_MQ_Page1RightDiv { display:inline-block;float:right; }
+            .AT_MQ_Page1RightDiv2 { display:inline-block;float:right; }
+            #AT_MQ_TopTables td { padding:10px !important; }
+            #AT_MQ_TopTables { border:2px solid; background-image: url('{!URLFOR($Resource.ATResources, 'ATResource/table_background.jpg')}'); }
+            #AT_MQ_TopTables tr { border:1px solid; }
+            #AT_MQ_NoRightBorder {  border-right:0px !important; width:30%;}
+            #AT_MQ_NoLeftBorder { border-left: 0px !important; }
+            #AT_MQ_Geschaftsherr { border:2px solid; background-image: url('{!URLFOR($Resource.ATResources, 'ATResource/table_background.jpg')}'); }
+            #AT_MQ_Geschaftsherr td:nth-child(1) { border:1px solid; width:40%;padding-top:0px !important; padding-bottom:0px !important }
+                    #AT_MQ_Geschaftsherr td.kundTd { border:1px solid; padding:10px; width:40%;padding-top:0px !important; padding-bottom:0px !important;width: 40% !important;padding-top: 10px !important }
+                     #AT_MQ_Geschaftsherr td.bankTd { border:1px solid; padding:10px; width:40%;padding-top:0px !important; padding-bottom:0px !important;width: 40% !important;padding-top: 6px !important }
+            #AT_MQ_Geschaftsherr td:nth-child(2) { border:1px solid; padding-top:0px !important; padding-bottom:0px !important }
+            #AT_MQ_Geschaftsherr td span.kund { font-size: 7pt !important; }
+            #AT_MQ_Geschaftsherr tr th { border:1px solid; }
+
+            #AT_MQ_Geschaftsherr span { font-size: 10pt !important; }
+
+
+            #AT_MQ_Restaurantdaten td:nth-child(1) { border:1px solid; width:40%;padding-top:0px !important; padding-bottom:0px !important }
+            #AT_MQ_Restaurantdaten td:nth-child(2) { border:1px solid; padding-top:0px !important; padding-bottom:0px !important }
+             #AT_MQ_Restaurantdaten_Title {     font-family: FuturaBold;border-radius: 15px;padding-top: 12px;width: 180px;padding-left: 16px;background-image: url(/resource/1455703515000/ATResources/ATResource/rest_background.png);background-repeat: no-repeat;height: 38px;margin: 0; font-size: 13px; margin-bottom:0;}
+            #AT_MQ_Restaurantdaten_Title2 {     font-family: FuturaBold;border-radius: 15px;padding-top: 12px;width: 160px;padding-left: 16px;background-image: url(/resource/1455703515000/ATResources/ATResource/gesch_background.png);background-repeat: no-repeat;height: 38px;margin: 0; font-size: 13px;}
+            #AT_MQ_Restaurantdaten { border:2px solid; background-image: url('{!URLFOR($Resource.ATResources, 'ATResource/table_background.jpg')}'); margin-bottom:0; }
+            #AT_MQ_Restaurantdaten td:nth-child(1) { border:1px solid; width:50%;padding-top:0px !important; padding-bottom:0px !important }
+            #AT_MQ_Restaurantdaten td:nth-child(2) { border:1px solid; padding-top:0px !important; padding-bottom:0px !important }
+            #AT_MQ_Restaurantdaten tr th { border:1px solid; }
+
+
+            #AT_MQ_Tarrif { border:1px solid;  }
+            #AT_MQ_Tarrif td { border:1px solid; padding:10px; height:22px !important; text-align: center;}
+            #AT_MQ_Tarrif tr th { border:1px solid;text-align:center; }
+            #AT_MQ_Tarrif tr th.width15 { width:25%;}
+            #AT_MQ_Tarrif span { display:block;  }
+            #AT_MQ_StammText { font-family:FuturaLight;line-height:11px }
+            #AT_MQ_StammText td:nth-child(1) { width: 20px; vertical-align: text-top; }
+
+            #AT_MQ_StammTextTitle { font-weight:bold;font-size:9pt;font-family:FuturaBold }
+            hr.AT_MQ_FooterMid { border-top: dotted 1px;margin:0 auto; width: 380px; }
+            p.AT_MQ_FooterMid6 { text-align:center;font-family:FuturaLight;font-size:6pt; }
+            p.AT_MQ_FooterMid8 { text-align:center;font-family:FuturaLight;font-size:8pt; }
+            .clear { clear:both; }
+            .bold { font-weight:bold; }
+            .futuraBold { font-family: FuturaBold; }
+            #AT_MQ_Geschaftsherr tr td span.font5 {font-size: 5pt !important;}
+            .padL { padding-left:10px !important; }
+            #AT_MQ_Geschaftsherr b.padL { padding-left:10px !important; }
+            #AT_MQ_Geschaftsherr span.padL { padding-left:10px !important; }
+            #AT_MQ_Restaurantdaten b.padL { padding-left:10px !important; }
+            #AT_MQ_Restaurantdaten span.padL { padding-left:10px !important; }
+            .color { color: #AECB54}
+            #gesamtpreis {display: inline-block;float: right;width: 89%;padding-right: 10.5%;}
+            .flright {float:right;}
+            #mjamtop { margin:0 auto; width: 280px; }
+            .justify { text-align:justify; }
+            .indent { margin-left: 35px; }
+
+            #atTable tr td { font-family: serif !important; }
+
+            #FI_QUOTE table tr td {font-family: Dialog; font-size:10pt;padding:3px;}
+            #FI_QUOTE table tr th {font-family: Dialog; font-size:10pt;padding:3px;}
+            #FI_QUOTE h2,h4 {font-family: Dialog;}
+            #FI_QUOTE div p,p {font-family: Dialog;font-size:10pt}
+            #FI_QUOTE div {font-family: Dialog;}
+
+        </style>
+        <apex:form id="theForm">
+            <apex:pageMessages escape="false"/>
+            <apex:sectionHeader id="sectionHeader" title="Quote" subtitle="{!theQuote.Name}"/>
+            <apex:pageBlock title="Quote Detail" mode="mainDetail" id="pblkDetail">
+
+                <apex:pageBlockButtons location="both">
+                    <apex:commandButton id="editBtn" action="{!switchToEditMode}" value="{!$Label.Edit_Btn_Quote_Screen}" rendered="{!showEditButton}"/>
+
+                    <apex:outputPanel rendered="{!showAcceptQuote}">
+                        <input type="button" class="btn" value="{!$Label.Accept_on_behalf_Btn_Quote_Screen}" onclick="acceptQuote(this);" id="javascriptbtn1"/>
+                    </apex:outputPanel>
+
+                    <apex:outputPanel rendered="{!showApprovalButtons}">
+                        <input type="button" class="btn" value="Approve" onclick="approveQuote(this);" id="javascriptbtn4"/>
+                        <input type="button" class="btn" value="Reject" onclick="rejectQuote(this);" id="javascriptbtn5"/>
+                    </apex:outputPanel>
+
+                    <apex:outputPanel rendered="{!showCreatePDF}">
+                        <input type="button" class="btn" value="{!$Label.Create_PDF_Btn_Quote_Screen}" onclick="createPDF(this);" id="javascriptbtn2"/>
+                    </apex:outputPanel>
+
+                    <apex:outputPanel rendered="{!showSendEmail}">
+                        <input type="button" class="btn" value="{!$Label.Send_Email_Btn_Quote_Screen}" onclick="sendEmail(this);" id="javascriptbtn3"/>
+                    </apex:outputPanel>
+
+                    <apex:outputPanel rendered="{!showRefresh}">
+                        <input type="button" class="btn" value="Refresh" onclick="refreshQuote(this);" id="javascriptbtn4"/>
+                    </apex:outputPanel>
+
+                    <apex:commandButton id="saveBtn" action="{!saveDetails}" style="display:none" value="Save" />
+                    <apex:commandButton id="cancelBtn" action="{!switchToViewMode}" style="display:none" value="Cancel"/>
+
+                    <apex:outputPanel rendered="{!If(readOnly,'false','true')}" >
+                        <apex:commandButton id="saveBtnRender" action="{!saveDetails}" rendered="{!editMode}" value="Save" />
+                        <apex:commandButton id="cancelBtnRender" action="{!switchToViewMode}" rendered="{!editMode}" value="Cancel"/>
+                    </apex:outputPanel>
+                </apex:pageBlockButtons>
+
+                <!--       <apex:pageBlockSection >
+                           <apex:repeat value="{!fields_Quote}" var="f">
+                               <apex:inputField value="{!theQuote[f.fieldPath]}" rendered="{!if(f.fieldPath='Description__c',false,editMode)}"/>
+                               <apex:outputField value="{!theQuote[f.fieldPath]}" rendered="{!if(f.fieldPath='Description__c',false,viewMode)}">
+                                   <apex:inlineEditSupport showOnEdit="saveBtn,cancelBtn" hideOnEdit="editBtn" event="ondblclick" resetFunction="resetInlineEdit" rendered="{!If(readOnly && f.fieldPath!='Approver_Action_Comments__c' ,'false','true')}"/>
+                               </apex:outputField>
+                           </apex:repeat>
+                       </apex:pageBlockSection>
+                 -->
+                <div class="sfdc_richtext"  style="margin:0 auto;width:90%">
+                    <div>Description: </div>
+                    <apex:include pageName="{!templateName}"  rendered="{!AND(viewMode, NOT(displayQuoteInIframe))}"  />
+                    <apex:iframe src="/apex/{!templateName}?id={!Opportunity_Quote__c.Id}" scrolling="true" rendered="{!AND(viewMode, displayQuoteInIframe)}" />
+                </div>
+            </apex:pageBlock>
+
+
+
+        </apex:form>
+
+        <!--
+        <c:CustomQuoteHistory subject="{!theQuote.Id}"/>
+        -->
+        <script>
+        j$ = jQuery.noConflict();
+
+        function setTabTitle() {
+            //Set the current tab's title
+            sforce.console.setTabTitle('{!theQuote.Name}');
+        }
+
+        var pageLoad = window.onload;
+        window.onload = function() {
+            if (pageLoad) {
+                pageLoad();
+            }
+            setTabTitle();
+        }
+
+        function setFocusOnLoad() {}
+        var primaryTabId;
+        var subTabId;
+
+        function testGetFocusedPrimaryTabId() {
+            sforce.console.getEnclosingPrimaryTabId(showTabId);
+        }
+
+        var showTabId = function showTabId(result) {
+            console.log('result: ' + result.id);
+            primaryTabId = result.id;
+            sforce.console.refreshPrimaryTabById(primaryTabId, true, sforce.console.getEnclosingTabId(closeSubtab));
+        };
+        var closeSubtab = function closeSubtab(result) {
+            subTabId = result.id;
+            console.log('subtab: ' + subTabId);
+            sforce.console.openSubtab(primaryTabId, '/{!Opportunity_Quote__c.id}', true, '{!theQuote.Name}', subTabId);
+            console.log('subtab2: ' + subTabId);
+        };
+
+        function reloadParent() {
+            console.log('hello1');
+
+            if (sforce.console.isInConsole()) {
+                console.log('hello');
+                testGetFocusedPrimaryTabId();
+            } else {
+                window.parent.location.href = "/{!Opportunity_Quote__c.id}";
+            }
+            return true;
+        }
+
+        var inConsole = false;
+        var inApp1 = false;
+        if (sforce.console.isInConsole()) {
+            inConsole = true
+        } else if ((typeof sforce != 'undefined') && sforce && (!!sforce.one)) {
+            inApp1 = true;
+            // this button should not be hidden, reported in SP-3827
+            // I'm going to leave the line above to avoid indtroducing new bug
+            //j$('#javascriptbtn2').css('display', 'none');
+        }
+        sforce.connection.sessionId = "{!$Api.Session_ID}";
+        var quoteID = "{!Opportunity_Quote__c.Id}";
+        var quoteStatus = "{!Opportunity_Quote__c.Status__c}";
+
+
+        function acceptQuote(obj) {
+            console.log('document ready');
+            debugger;
+            construct(obj, "{!$Label.Quote_Accepting}");
+        var oppQuote = sforce.connection.query("SELECT status__c, RecordType.DeveloperName, Id_Account__c FROM Opportunity_Quote__c WHERE Id = '{!Opportunity_Quote__c.Id}'");
+            if (oppQuote.records.Status__c == 'Expired') {
+                bootbox.alert('Expired Quote.', function() {
+                    postAction();
+                    reloadParent();
+                }).find('.modal-content').addClass("error");
+
+                console.log('document finish');
+            } else if (quoteStatus == 'Accepted') {
+                bootbox.alert('{!$Label.Quote_Accepted_Already}', function() {
+                    postAction();
+                }).find('.modal-content').addClass("info");
+
+                console.log('document finish');
+            } else {
+            if (allowAcceptQuote() && validateAccount(oppQuote)) {
+                    var callback = {
+                        onSuccess: function(resultData) {
+                            var result = '' + resultData;
+                            if (result.indexOf(':') > 0) {
+                                bootbox.alert(result, function() {
+                                    postAction();
+                                    //refreshParent();
+                                }).find('.modal-content').addClass("error");
+                            } else {
+                                bootbox.alert(result, function() {
+                                    //refreshParent();
+                                    if (inConsole) {
+                                        reloadParent();
+                                    } else if (inApp1) {
+                                        sforce.one.navigateToSObject('{!Opportunity_Quote__c.Id_Opportunity__c}');
+                                    }
+                                }).find('.modal-content').addClass("success");
+                            }
+                        },
+                        onFailure: function(error) {
+                            console.log('error: ' + error);
+                            bootbox.alert(error, function() {
+                                //refreshParent();
+                                postAction();
+                            }).find('.modal-content').addClass("error");
+                        }
+                    };
+
+                    sforce.apex.execute("ClsRemoteController", "acceptQuote", {
+                        quoteId: quoteID
+                    }, callback);
+                }
+            }
+        }
+
+        function allowAcceptQuote() {
+            if ('{!allowAcceptQuote}' != null && '{!allowAcceptQuote}' != "0") {
+
+                var oppQuoteRecords = sforce.connection.query("SELECT Id_opportunity__r.StageName, Status__c, Id_opportunity__r.Probability, Id_Account__r.Key_VIP_Account__c FROM Opportunity_Quote__c WHERE Id = '{!Opportunity_Quote__c.Id}' OR (Status__c = 'Accepted' AND Id_opportunity__c = '{!Opportunity_Quote__c.Id_Opportunity__c}')");
+                var acceptedQuotes = oppQuoteRecords.size > 1 ? oppQuoteRecords.records.filter(quote => quote.Status__c == 'Approved') : [];
+                if(acceptedQuotes.length > 0) {
+                     bootbox.alert('Another quote has already been accepted for this opportunity.', function() {
+                        postAction();
+                    }).find('.modal-content').addClass("info");
+                    return false;
+                }
+                var oppQuoteRecord = oppQuoteRecords.size < 2  ? oppQuoteRecords.records
+                                                               : oppQuoteRecords.records.find( quote => quote.Id == '{!Opportunity_Quote__c.Id}' );
+                if('{!allowVIPAcceptQuote}' == "true" && oppQuoteRecords.records.Id_Account__r.Key_VIP_Account__c == "true"){
+                    return true;
+                }
+
+                if (oppQuoteRecord.Id_Opportunity__r.Probability <= '{!allowAcceptQuote}') {
+                    bootbox.alert('Accept on behalf of the costumer is not possible if you have not send quote via email', function() {
+                        postAction();
+                    }).find('.modal-content').addClass("info");
+                    return false;
+                }
+                return true;
+            }
+            return true;
+        }
+
+    function validateAccount(oppQuote){
+        var errorMessage = "";
+        if(oppQuote.records.RecordType.DeveloperName == 'SE_Opportunity_Quote'){
+            var account = sforce.connection.query("SELECT Vertical__c, Vertical_Segment__c, Category__c FROM Account WHERE Id = '{!Opportunity_Quote__c.Id_Account__c}'");
+
+            if(!account.records.Vertical__c){
+                errorMessage += "<li>Account.{!$ObjectType.Account.fields.Vertical__c.label}</li>";
+            }
+
+            if(!account.records.Vertical_Segment__c){
+                errorMessage += "<li>Account.{!$ObjectType.Account.fields.Vertical_Segment__c.label}</li>";
+            }
+
+            if(!account.records.Category__c){
+                errorMessage += "<li>Account.{!$ObjectType.Account.fields.Category__c.label}</li>";
+            }
+
+            if(errorMessage){
+                bootbox.alert('<div class="errorWrapper"> Required fields missing: ' + errorMessage + '</div>', function() {
+                    postAction();
+                }).find('.modal-content').addClass("error"); 
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+        function approveQuote(obj) {
+            construct(obj, "{!$Label.Quote_Approving}");
+            /*if(quoteStatus=='Accepted'){
+                bootbox.alert('{!$Label.Quote_Accepted_Already}',function(){
+                  postAction();
+                }).find('.modal-content').addClass( "info" );
+
+                console.log('document finish');
+            }else{*/
+            var callback = {
+                onSuccess: function(resultData) {
+                    var result = '' + resultData;
+                    if (result.indexOf(':') > 0) {
+                        bootbox.alert(result, function() {
+                            postAction();
+                            //refreshParent();
+                        }).find('.modal-content').addClass("error");
+                    } else {
+                        bootbox.alert(result, function() {
+                            //refreshParent();
+                            reloadParent();
+                        }).find('.modal-content').addClass("success");
+                    }
+                },
+                onFailure: function(error) {
+                    console.log('error: ' + error);
+                    bootbox.alert(error, function() {
+                        //refreshParent();
+                        postAction();
+                    }).find('.modal-content').addClass("error");
+                }
+            };
+
+            sforce.apex.execute("ClsRemoteController", "approveQuote", {
+                quoteId: quoteID
+            }, callback);
+            //}
+        }
+
+        function rejectQuote(obj) {
+            construct(obj, "{!$Label.Quote_Rejecting}");
+            /*if(quoteStatus=='Accepted'){
+                bootbox.alert('{!$Label.Quote_Accepted_Already}',function(){
+                  postAction();
+                }).find('.modal-content').addClass( "info" );
+
+                console.log('document finish');
+            }else{*/
+            var callback = {
+                onSuccess: function(resultData) {
+                    var result = '' + resultData;
+                    if (result.indexOf(':') > 0) {
+                        bootbox.alert(result, function() {
+                            postAction();
+                            //refreshParent();
+                        }).find('.modal-content').addClass("error");
+                    } else {
+                        bootbox.alert(result, function() {
+                            //refreshParent();
+                            reloadParent();
+                        }).find('.modal-content').addClass("success");
+                    }
+                },
+                onFailure: function(error) {
+                    console.log('error: ' + error);
+                    bootbox.alert(error, function() {
+                        //refreshParent();
+                        postAction();
+                    }).find('.modal-content').addClass("error");
+                }
+            };
+
+            sforce.apex.execute("ClsRemoteController", "rejectQuote", {
+                quoteId: quoteID
+            }, callback);
+            //}
+        }
+
+        function createPDF(obj) {
+
+            var DHH = new DHHConsoleToolkit();
+
+            if (quoteValidation()) {
+                var url = "";
+
+                if (quoteStatus != 'Approved' && quoteStatus != 'Accepted') {
+
+                    bootbox.alert('{!$Label.Quote_PDF_Error_Status_Not_Approved}', function() {
+                    }).find('.modal-content').addClass("error");
+
+                } else {
+
+                    switch("{!Opportunity_Quote__c.RecordType.DeveloperName}") {
+                        case "DE_Opportunity_Quote":
+                            //DHH.openSubTabInCurrentTab("/apex/DE_QuoteVFTemplate?id={!Opportunity_Quote__c.Id}&pdf=1","");
+                            url = "/apex/DE_QuoteVFTemplate?id={!Opportunity_Quote__c.Id}&pdf=1";
+                            break;
+                        default:
+                            url = '/apex/RenderQuoteAsPDF?id=' + quoteID;
+                            break;
+                    }
+                }
+
+                if (inConsole) {
+                   // navigateToUrl(url);
+                   DHH.openSubTabInCurrentTab(url,"");
+                } else if (inApp1) {
+                    sforce.one.navigateToURL(url);
+                } else {
+                    navigateToUrl(url);
+                }
+            }
+        }
+
+        function sendEmail(obj) {
+
+            var DHH = new DHHConsoleToolkit();
+
+            if (quoteValidation()) {
+                var oppQuote = sforce.connection.query("SELECT Id_opportunity__c,recordtype.Developername,Id_opportunity__r.Business_Type__c FROM Opportunity_Quote__c WHERE Id = '{!Opportunity_Quote__c.Id}'");
+
+                console.log(oppQuote);
+                //construct(obj, '{!$Label.Quote_Email_Send_Email}');
+                if (quoteStatus != 'Approved' && quoteStatus != 'Accepted') {
+                    bootbox.alert('{!$Label.Quote_Email_Error_Status_Not_Approved}', function() {
+                        //postAction();
+                    }).find('.modal-content').addClass("error");
+                } else if (oppQuote.records.Id_Opportunity__r.Business_Type__c == null && oppQuote.records.RecordType.DeveloperName == 'CD_Opportunity_Quote') {
+                    bootbox.alert('{!$Label.Quote_Opp_BType}', function() {
+                        //postAction();
+                    }).find('.modal-content').addClass("error");
+
+
+                } else {
+                    if (inConsole) {
+                       DHH.openSubTabInCurrentTab('/apex/SendQuote?id=' + quoteID,"");
+                    } else if (inApp1) {
+                        sforce.one.navigateToURL('/apex/SendQuote?id=' + quoteID);
+                    } else {
+                        navigateToUrl('/apex/SendQuote?id=' + quoteID);
+                    }
+                }
+                //postAction();
+            }
+        }
+
+        function refreshQuote(obj) {
+            construct(this, "{!$Label.Quote_Refreshing_Quote}");
+            var callback = {
+                onSuccess: function(resultData) {
+                    if (resultData) {
+                        console.log('@@@@ onSuccess : ' + resultData);
+                        bootbox.alert("{!$Label.Quote_Successfully_Refreshed}", function() {
+                            //refreshParent();
+                            reloadParent();
+                        }).find('.modal-content').addClass("success");
+                    } else {
+                        bootbox.alert(result, function() {
+                            //refreshParent();
+                            postAction();
+                        }).find('.modal-content').addClass("error");
+                    }
+                },
+                onFailure: function(error) {
+                    console.log('@@@@ onFailure : ' + error);
+                    bootbox.alert(error, function() {
+                        //refreshParent();
+                        postAction();
+                    }).find('.modal-content').addClass("error");
+                }
+            };
+
+            sforce.apex.execute("ClsRefreshQuote", "refreshQuote", {
+                quoteId: "{!Opportunity_Quote__c.Id}"
+            }, callback);
+
+        }
+
+        function quoteValidation() {
+            var errorMessage = "";
+            var errorMessageAccount = "";
+            var errorMessageOwner = "";
+            var errorMessageManager = "";
+            var errorMessageMissingContacts = "";
+            var errorMessageAddress = "";
+
+            if ({!checkForRequiredFields}) {
+
+                var oppQuote = sforce.connection.query("SELECT RecordType.DeveloperName, CreatedDate, Id_Account__c FROM Opportunity_Quote__c WHERE Id = '{!Opportunity_Quote__c.Id}'");
+
+                switch (oppQuote.records.RecordType.DeveloperName) {
+
+                    case "AT_Opportunity_Quote":
+                        var mainQuote = j$("#AT_Main_Quote").length;
+                        if (mainQuote == 1) {
+
+                            var newAddressModelReleaseDate = new Date("{!$Label.GPA_Address_Model_Activation_Date}");
+                            var quoteCreatedDate = new Date(oppQuote.records.CreatedDate);
+                            var hasNewAddressModel = (quoteCreatedDate >= newAddressModelReleaseDate);
+
+                            // only for new address model
+                            var hasBillingAddress = false;
+                            var hasRestaurantAddress = false;
+
+                            if (hasNewAddressModel) {
+                                var addresses = sforce.connection.query("SELECT Type__c FROM AddressDetail__c WHERE Account__c = '{!Opportunity_Quote__c.Id_Account__c}'");
+
+                                if (addresses.size == 0) {
+                                    addresses = [];
+                                } else if (addresses.size == 1) {
+                                    addresses = [addresses.records];
+                                } else if (addresses.size > 1) {
+                                    addresses = addresses.records;
+                                }
+
+                                for (var i = 0; i < addresses.length; i++) {
+                                    var addr = addresses[i];
+
+                                    if (/billing/i.test(addr.Type__c)) {
+                                        hasBillingAddress = true;
+                                    }
+
+                                    if (/restaurant/i.test(addr.Type__c)) {
+                                        hasRestaurantAddress = true;
+                                    }
+                                }
+                            }
+
+                            var companyId = j$("#companyId").text();
+                            var bankAccountOwner = j$("#bankAccountOwner").text();
+                            var bankAccountNumber = j$("#bankAccountNumber").text();
+                            var bankSortCode = j$("#bankSortCode").text();
+                            var restaurantName = j$("#restaurantName").text();
+                            var taxNumber = j$("#taxNumber").text();
+
+                            var restaurantPhone = j$("#restaurantPhone").text();
+                            var addressStreet = j$("#addressStreet").text();
+                            var addressPostal = j$("#addressPostal").text();
+                            var addressCity = j$("#addressCity").text();
+
+                            var ownerLastName = j$("#ownerLastName").text();
+                            var ownerFirstName = j$("#ownerFirstName").text();
+                            var ownerSalutation = j$("#salutation").text();
+                            var ownerMailStreet = j$("#ownerMailStreet").text();
+                            var ownerMailingCity = j$("#ownerMailingCity").text();
+                            var ownerMailingPostalCode = j$("#ownerMailingPostalCode").text();
+                            var ownerEmail = j$("#ownerEmail").text();
+                            var ownerBirthday = j$('[id$="ownerBirthday"]').text();
+
+
+
+                            if (!bankAccountOwner) errorMessageAccount += "<li>Bank Account Owner</li>";
+                            if (!bankAccountNumber) errorMessageAccount += "<li>Bank Account Number</li>";
+                            if (!bankSortCode) errorMessageAccount += "<li>Bank Sort Code</li>";
+                            if (!restaurantName) errorMessageAccount += "<li>Restaurant Name</li>";
+                            if(!taxNumber) errorMessageAccount +="<li>Tax Number</li>";
+
+                            if (!restaurantPhone) errorMessageAccount += "<li>Phone</li>";
+
+                            if (hasNewAddressModel) {
+                                if (!hasBillingAddress) errorMessageAddress += "<li>{!$Label.AddressDetail_BillingAddressMissing}</li>";
+                                if (!hasRestaurantAddress) errorMessageAddress += "<li>{!$Label.AddressDetail_RestaurantAddressMissing}</li>";
+                            }
+
+                            // this is the old validation for legacy quote. we need to move this logic into the backend
+                            if (!hasNewAddressModel) {
+                                if (!addressStreet) errorMessageAccount += "<li>Billing Street</li>";
+                                if (!addressPostal) errorMessageAccount += "<li>Billing Postal Code</li>";
+                                if (!addressCity) errorMessageAccount += "<li>Billing City</li>";
+                            }
+
+                            if (!ownerLastName) {
+                                errorMessageMissingContacts += "Missing Owner for the given Account!";
+                            } else {
+                                if (!ownerFirstName) errorMessageOwner += "<li>First Name</li>";
+                                if (!ownerSalutation) errorMessageOwner += "<li>Salutation</li>";
+                                if (!ownerEmail) errorMessageOwner += "<li>Email</li>";
+                                if(!ownerBirthday) errorMessageOwner += "<li>Birthday</li>";
+
+
+                                // this is the validation for legacy quote. We need to move this logic to the backend
+                                if (!hasNewAddressModel) {
+                                    if (!ownerMailStreet) errorMessageOwner += "<li>Mailing Street</li>";
+                                    if (!ownerMailingCity) errorMessageOwner += "<li>Mailing City</li>";
+                                    if (!ownerMailingPostalCode) errorMessageOwner += "<li>Mailing Postal Code </li>";
+                                }
+                            }
+
+                        }
+                        break;
+
+                    case "HU_Opportunity_Quote":
+                         // checks account fields
+                        var accountOwnerAddress = sforce.connection.query("SELECT Name,Payment_Method__c,Vertical__c,Delivery_Service__c,Account_Email__c ,Invoice_Frequency__c,Tax_Number__c, Legal_Name__c,Bank_Account_Owner__c,Bank_Account_Number__c,Bank_Name__c, Phone,(SELECT FormattedAddress__c, LatLng__Latitude__s, LatLng__Longitude__s  FROM AddressDetails__r WHERE Type__c INCLUDES ('Restaurant Address')), (SELECT Email,Salutation,LastName,MobilePhone,FirstName,Translated_Name__c,Phone FROM Contacts WHERE Contact_Role__c = 'Owner'),(select contactid, Contact.Email, Contact.LastName,Contact.Salutation,Contact.MobilePhone,Contact.FirstName,Contact.Translated_Name__c, Contact.Phone from AccountContactRelations where isactive = true and contact.contact_role__c='Owner' order by createddate desc Limit 1) FROM Account WHERE Id = '{!Opportunity_Quote__c.Id_Account__c}'");
+                        if (!accountOwnerAddress.records.Contacts && !accountOwnerAddress.records.AccountContactRelations) {
+                            // owner missing
+                            errorMessageOwner = "<li>Restaurant owner is missing!</li>";
+                        } else {
+                            // checks for required field on owner
+                            if(accountOwnerAddress.records.Contacts){
+                                var contact = accountOwnerAddress.records.Contacts.records;
+
+                                if (!contact.Email) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.Email.label}</li>";
+                                }
+
+                                if (!contact.LastName) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.LastName.label}</li>";
+                                }
+
+                                if (!contact.MobilePhone) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.MobilePhone.label}</li>";
+                                }
+
+                                if (!contact.Phone) {
+                                    errorMessageOwner += "<li>Phone</li>";
+                                }
+
+                                if (!contact.FirstName) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.FirstName.label}</li>";
+                                }
+                            }else{
+                                var con = accountOwnerAddress.records.AccountContactRelations.records;
+
+                                if (!con.Contact.Email ) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.Email.label}</li>";
+                                }
+
+                                if (!con.Contact.LastName) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.LastName.label}</li>";
+                                }
+
+                                if (!con.Contact.MobilePhone) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.MobilePhone.label}</li>";
+                                }
+
+                                if (!con.Contact.Phone) {
+                                    errorMessageOwner += "<li>Phone</li>";
+                                }
+
+                                if (!con.Contact.FirstName) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.FirstName.label}</li>";
+                                }
+                            }
+                        }
+
+                        if (!accountOwnerAddress.records.AddressDetails__r) {
+                            // address missing
+                            errorMessageAddress = "<li>{!$Label.AddressDetail_RestaurantAddressMissing}</li>";
+                        } else {
+                            // checks formatted address not empty
+                            var address = accountOwnerAddress.records.AddressDetails__r.records;
+
+                            if (!address.FormattedAddress__c) {
+                                errorMessageAddress = "<li>{!$Label.AddressDetail_RestaurantAddressMissing}</li>";
+                            }
+
+                            if(!address.LatLng__Longitude__s || !address.LatLng__Latitude__s){
+                                errorMessageAddress += "<li>{!$Label.AddressDetail_RestaurantCoordinatesMissing}</li>";
+                            }
+                        }
+
+                        // checks for account fields
+                        if (!accountOwnerAddress.records.Name) {
+                            errorMessageAccount += "<li>{!$ObjectType.Account.fields.Name.Label}</li>";
+                        }
+
+                        if (!accountOwnerAddress.records.Legal_Name__c) {
+                            errorMessageAccount += "<li>{!$ObjectType.Account.fields.Legal_Name__c.Label}</li>";
+                        }
+
+                        if (!accountOwnerAddress.records.Vertical__c) {
+                            errorMessageAccount += "<li>{!$ObjectType.Account.fields.Vertical__c.Label}</li>";
+                        }
+
+                        if (!accountOwnerAddress.records.Delivery_Service__c) {
+                            errorMessageAccount += "<li>{!$ObjectType.Account.fields.Delivery_Service__c.Label}</li>";
+                        }
+
+                        if (!accountOwnerAddress.records.Tax_Number__c) {
+                            errorMessageAccount += "<li>{!$ObjectType.Account.fields.Tax_Number__c.Label}</li>";
+                        }
+
+                        if (!accountOwnerAddress.records.Phone) {
+                            errorMessageAccount += "<li>{!$ObjectType.Account.fields.Phone.Label}</li>";
+                        }
+
+                        if (!accountOwnerAddress.records.Account_Email__c ) {
+                            errorMessageAccount += "<li>{!$ObjectType.Account.fields.Account_Email__c.Label}</li>";
+                        }
+
+                        if (!accountOwnerAddress.records.Bank_Account_Number__c) {
+                            errorMessageAccount += "<li>{!$ObjectType.Account.fields.Bank_Account_Number__c.Label}</li>";
+                        }
+
+                        if (!accountOwnerAddress.records.Invoice_Frequency__c) {
+                            errorMessageAccount += "<li>{!$ObjectType.Account.fields.Invoice_Frequency__c.Label}</li>";
+                        }
+
+                        if (!accountOwnerAddress.records.Payment_Method__c) {
+                            errorMessageAccount += "<li>{!$ObjectType.Account.fields.Payment_Method__c.Label}</li>";
+                        }
+
+                        break;
+
+                    case "FI_Opportunity_Quote":
+                         // checks account fields
+                        var accountOwnerAddress = sforce.connection.query("SELECT Name,Cuisine__c,Delivery_Service__c,Company_Number__c, Restaurant_Name__c, Phone,(SELECT FormattedAddress__c FROM AddressDetails__r WHERE Type__c INCLUDES ('Restaurant Address')), (SELECT Email,Salutation,LastName,MobilePhone FROM Contacts WHERE Contact_Role__c = 'Owner'),(select contactid, Contact.Email, Contact.LastName,Contact.Salutation,Contact.MobilePhone from AccountContactRelations where isactive = true and contact.contact_role__c='Owner' order by createddate desc Limit 1) FROM Account WHERE Id = '{!Opportunity_Quote__c.Id_Account__c}'");
+                        if (!accountOwnerAddress.records.Contacts && !accountOwnerAddress.records.AccountContactRelations) {
+                            // owner missing
+                            errorMessageOwner = "<li>Restaurant owner is missing!</li>";
+                        } else {
+                            // checks for required field on owner
+                            if(accountOwnerAddress.records.Contacts){
+                                var contact = accountOwnerAddress.records.Contacts.records;
+
+                                if (!contact.Email) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.Email.label}</li>";
+                                }
+
+                                if (!contact.Salutation) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.Salutation.label}</li>";
+                                }
+
+                                if (!contact.LastName) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.LastName.label}</li>";
+                                }
+
+                                if (!contact.MobilePhone) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.MobilePhone.label}</li>";
+                                }
+                            }else{
+                                var con = accountOwnerAddress.records.AccountContactRelations.records;
+
+                                if (!con.Contact.Email ) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.Email.label}</li>";
+                                }
+
+                                if (!con.Contact.Salutation) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.Salutation.label}</li>";
+                                }
+
+                                if (!con.Contact.LastName) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.LastName.label}</li>";
+                                }
+
+                                if (!con.Contact.MobilePhone) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.MobilePhone.label}</li>";
+                                }
+                            }
+                        }
+
+                        if (!accountOwnerAddress.records.AddressDetails__r) {
+                            // address missing
+                            errorMessageAddress = "<li>{!$Label.AddressDetail_RestaurantAddressMissing}</li>";
+                        } else {
+                            // checks formatted address not empty
+                            var address = accountOwnerAddress.records.AddressDetails__r.records;
+
+                            if (!address.FormattedAddress__c) {
+                                errorMessageAddress = "<li>{!$Label.AddressDetail_RestaurantAddressMissing}</li>";
+                            }
+                        }
+
+                        // checks for account fields
+                        if (!accountOwnerAddress.records.Name) {
+                            errorMessageAccount += "<li>{!$ObjectType.Account.fields.Name.Label}</li>";
+                        }
+
+                        if (!accountOwnerAddress.records.Restaurant_Name__c) {
+                            errorMessageAccount += "<li>{!$ObjectType.Account.fields.Restaurant_Name__c.Label}</li>";
+                        }
+
+                        if (!accountOwnerAddress.records.Phone) {
+                            errorMessageAccount += "<li>{!$ObjectType.Account.fields.Phone.Label}</li>";
+                        }
+
+                        if (!accountOwnerAddress.records.Company_Number__c) {
+                            errorMessageAccount += "<li>{!$ObjectType.Account.fields.Company_Number__c.Label}</li>";
+                        }
+
+                        if (!accountOwnerAddress.records.Cuisine__c) {
+                            errorMessageAccount += "<li>{!$ObjectType.Account.fields.Cuisine__c.Label}</li>";
+                        }
+
+                        if (!accountOwnerAddress.records.Delivery_Service__c || accountOwnerAddress.records.Delivery_Service__c == 'Unknown') {
+                            errorMessageAccount += "<li>{!$ObjectType.Account.fields.Delivery_Service__c.Label}</li>";
+                        }
+                        break;
+                   case "Talabat_Opportunity_Quote":
+                         // checks account fields
+                         //SSC-3418 - Added Industry in the query
+                        var accountOwnerAddress = sforce.connection.query("SELECT Name,Cuisine__c,IBAN__c,Tax_Number__c, Delivery_Service__c, Legal_Name__c,Bank_Account_Owner__c,Bank_Account_Number__c,Bank_Name__c,Swift_Code_BIC__c, Phone,Industry,(SELECT FormattedAddress__c, LatLng__Latitude__s, LatLng__Longitude__s  FROM AddressDetails__r WHERE Type__c INCLUDES ('Restaurant Address')), (SELECT Email,Salutation,LastName,MobilePhone,FirstName,Translated_Name__c,Phone FROM Contacts WHERE Contact_Role__c = 'Owner'),(select contactid, Contact.Email, Contact.LastName,Contact.Salutation,Contact.MobilePhone,Contact.FirstName,Contact.Translated_Name__c, Contact.Phone from AccountContactRelations where isactive = true and contact.contact_role__c='Owner' order by createddate desc Limit 1) FROM Account WHERE Id = '{!Opportunity_Quote__c.Id_Account__c}'");
+                        if (!accountOwnerAddress.records.Contacts && !accountOwnerAddress.records.AccountContactRelations) {
+                            // owner missing
+                            errorMessageOwner = "<li>Restaurant owner is missing!</li>";
+                        } else {
+                            // checks for required field on owner
+                            if(accountOwnerAddress.records.Contacts){
+                                var contact = accountOwnerAddress.records.Contacts.records;
+
+                                if (!contact.Email) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.Email.label}</li>";
+                                }
+
+                                if (!contact.Salutation) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.Salutation.label}</li>";
+                                }
+
+                                if (!contact.LastName) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.LastName.label}</li>";
+                                }
+
+                                if (!contact.MobilePhone) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.MobilePhone.label}</li>";
+                                }
+
+                                if (!contact.Phone) {
+                                    errorMessageOwner += "<li>Phone</li>";
+                                }
+
+                                if (!contact.Translated_Name__c) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.Translated_Name__c.label}</li>";
+                                }
+
+                                if (!contact.FirstName) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.FirstName.label}</li>";
+                                }
+                            }else{
+                                var con = accountOwnerAddress.records.AccountContactRelations.records;
+
+                                if (!con.Contact.Email ) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.Email.label}</li>";
+                                }
+
+                                if (!con.Contact.Salutation) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.Salutation.label}</li>";
+                                }
+
+                                if (!con.Contact.LastName) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.LastName.label}</li>";
+                                }
+
+                                if (!con.Contact.MobilePhone) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.MobilePhone.label}</li>";
+                                }
+
+                                if (!con.Contact.Phone) {
+                                    errorMessageOwner += "<li>Phone</li>";
+                                }
+
+                                if (!con.Contact.Translated_Name__c) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.Translated_Name__c.label}</li>";
+                                }
+
+                                if (!con.Contact.FirstName) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.FirstName.label}</li>";
+                                }
+                            }
+                        }
+
+                        if (!accountOwnerAddress.records.AddressDetails__r) {
+                            // address missing
+                            errorMessageAddress = "<li>{!$Label.AddressDetail_RestaurantAddressMissing}</li>";
+                        } else {
+                            // checks formatted address not empty
+                            var address = accountOwnerAddress.records.AddressDetails__r.records;
+
+                            if (!address.FormattedAddress__c) {
+                                errorMessageAddress = "<li>{!$Label.AddressDetail_RestaurantAddressMissing}</li>";
+                            }
+
+                            if(!address.LatLng__Longitude__s || !address.LatLng__Latitude__s){
+                                errorMessageAddress += "<li>{!$Label.AddressDetail_RestaurantCoordinatesMissing}</li>";
+                            }
+                        }
+
+                        // checks for account fields
+                        if (!accountOwnerAddress.records.Name) {
+                            errorMessageAccount += "<li>{!$ObjectType.Account.fields.Name.Label}</li>";
+                        }
+
+                        if (!accountOwnerAddress.records.Legal_Name__c) {
+                            errorMessageAccount += "<li>{!$ObjectType.Account.fields.Legal_Name__c.Label}</li>";
+                        }
+
+                        <!-- SSC:3418 Defect Fix: Starts Here-->
+                        if (accountOwnerAddress.records.Industry=='{!$Label.ACCOUNT_INDUSTRY_RESTAURANT}' && !accountOwnerAddress.records.Cuisine__c) {
+                            errorMessageAccount += "<li>{!$ObjectType.Account.fields.Cuisine__c.Label}</li>";
+                        }
+                        <!-- SSC:3418 Defect Fix: Ends Here-->
+
+                        if (!accountOwnerAddress.records.Phone) {
+                            errorMessageAccount += "<li>{!$ObjectType.Account.fields.Phone.Label}</li>";
+                        }
+
+                        if (!accountOwnerAddress.records.Delivery_Service__c) {
+                            errorMessageAccount += "<li>{!$ObjectType.Account.fields.Delivery_Service__c.Label}</li>";
+                        }
+
+                        break;
+                   case "PY_Opportunity_Quote":
+                         // checks account fields
+                        var accountOwnerAddress = sforce.connection.query("SELECT Name,IBAN__c,Tax_Number__c, Legal_Name__c,Vertical__c,Bank_Account_Owner__c,Bank_Account_Number__c,Bank_Name__c,Swift_Code_BIC__c, Phone,(SELECT FormattedAddress__c, LatLng__Latitude__s, LatLng__Longitude__s,LatLng__c  FROM AddressDetails__r WHERE Type__c INCLUDES ('Restaurant Address')), (SELECT Email,Salutation,LastName,MobilePhone,FirstName,Phone FROM Contacts WHERE Contact_Role__c = 'Owner'),(select contactid, Contact.Email, Contact.LastName,Contact.Salutation,Contact.MobilePhone,Contact.FirstName, Contact.Phone from AccountContactRelations where isactive = true and contact.contact_role__c='Owner' order by createddate desc Limit 1) FROM Account WHERE Id = '{!Opportunity_Quote__c.Id_Account__c}'");
+                        if (!accountOwnerAddress.records.Contacts && !accountOwnerAddress.records.AccountContactRelations) {
+                            // owner missing
+                            errorMessageOwner = "<li>Restaurant owner is missing!</li>";
+                        } else {
+                            // checks for required field on owner
+                            if(accountOwnerAddress.records.Contacts){
+                                var contact = accountOwnerAddress.records.Contacts.records;
+
+                                if (!contact.Email) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.Email.label}</li>";
+                                }
+
+                                if (!contact.LastName) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.LastName.label}</li>";
+                                }
+
+                                if (!contact.MobilePhone) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.MobilePhone.label}</li>";
+                                }
+
+                                if (!contact.Phone) {
+                                    errorMessageOwner += "<li>Phone</li>";
+                                }
+
+                                if (!contact.FirstName) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.FirstName.label}</li>";
+                                }
+                                 if (!contact.Salutation) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.Salutation.label}</li>";
+                                }
+
+                            }else{
+                                var con = accountOwnerAddress.records.AccountContactRelations.records;
+
+                                if (!con.Contact.Email ) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.Email.label}</li>";
+                                }
+
+                                if (!con.Contact.LastName) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.LastName.label}</li>";
+                                }
+
+                                if (!con.Contact.MobilePhone) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.MobilePhone.label}</li>";
+                                }
+
+                                if (!con.Contact.Phone) {
+                                    errorMessageOwner += "<li>Phone</li>";
+                                }
+
+                                if (!con.Contact.FirstName) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.FirstName.label}</li>";
+                                }
+
+                                if (!con.Contact.Salutation) {
+                                    errorMessageOwner += "<li>{!$ObjectType.Contact.fields.Salutation.label}</li>";
+                                }
+                            }
+                        }
+
+                        if (!accountOwnerAddress.records.AddressDetails__r) {
+                            // address missing
+                            errorMessageAddress = "<li>{!$Label.AddressDetail_RestaurantAddressMissing}</li>";
+                        } else {
+                            // checks formatted address not empty
+                            var address = accountOwnerAddress.records.AddressDetails__r.records;
+
+                            if (!address.FormattedAddress__c) {
+                                errorMessageAddress = "<li>{!$Label.AddressDetail_RestaurantAddressMissing}</li>";
+                            }
+                            if(!address.LatLng__c){
+                                errorMessageAddress += "<li>{!$Label.AddressDetail_RestaurantCoordinatesMissing}</li>";
+                            }
+                        }
+
+                        // checks for account fields
+                        if (!accountOwnerAddress.records.Name) {
+                            errorMessageAccount += "<li>{!$ObjectType.Account.fields.Name.Label}</li>";
+                        }
+
+                        if (!accountOwnerAddress.records.Legal_Name__c) {
+                            errorMessageAccount += "<li>{!$ObjectType.Account.fields.Legal_Name__c.Label}</li>";
+                        }
+
+                        if (!accountOwnerAddress.records.Phone) {
+                            errorMessageAccount += "<li>{!$ObjectType.Account.fields.Phone.Label}</li>";
+                        }
+
+                        if (!accountOwnerAddress.records.Tax_Number__c) {
+                            errorMessageAccount += "<li>{!$ObjectType.Account.fields.Tax_Number__c.Label}</li>";
+                        }
+
+                        if (!accountOwnerAddress.records.Vertical__c) {
+                            errorMessageAccount += "<li>{!$ObjectType.Account.fields.Vertical__c.Label}</li>";
+                        }
+
+
+                        break;
+                }
+
+                if (errorMessageAccount) {
+                    errorMessage += "Missing required fields on Account:<br/><ul>" + errorMessageAccount + "</ul><br/>";
+                }
+
+                if (errorMessageOwner) {
+                    errorMessage += "Missing required fields for Owner:<br/><ul>" + errorMessageOwner + "</ul><br/>";
+                }
+
+                if (errorMessageAddress) {
+                    errorMessage += "Addresses:<br/><ul>" + errorMessageAddress + "</ul><br/>";
+                }
+
+                if (errorMessageMissingContacts) {
+                    errorMessage += errorMessageMissingContacts;
+                }
+            }
+
+            if (errorMessage) {
+                bootbox.alert('<div class="errorWrapper">' + errorMessage + '</div>', function() {}).find('.modal-content').addClass("error");
+                return false;
+            } else {
+                return true;
+            }
+
+        }
+
+        j$(document).ready(function() {
+            j$("[id=UK_MenuPrinting]").hide();
+        });
+    </script>
+</apex:pageBlock>
+</apex:page>

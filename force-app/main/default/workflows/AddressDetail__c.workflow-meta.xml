@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>UpdateAddressLastModified</fullName>
+        <description>Connector: The workflow rule is needed for the connector. It copies the last modified date in a custom field. It is a workaround as only the custom field can be indexed, the standard last modified field cannot be indexed.</description>
+        <field>ON_LastModified__c</field>
+        <formula>NOW()</formula>
+        <name>UpdateAddressLastModified</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>JustOn - Address Set Last Modified</fullName>
+        <actions>
+            <name>UpdateAddressLastModified</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Writes the last modified date in a separate custom field. This is necessary for the upserted job as the normal last modified field cannot be indexed and this custom field can now be indexed.</description>
+        <formula>True</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

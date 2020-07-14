@@ -1,0 +1,9 @@
+<apex:page sidebar="false" showHeader="false" >
+ <img src="{!URLFOR($Resource.Yogiyo_Quote_1)}" style="width:90%; display: inline-block; height:95%;margin-left:5%"/>
+ <br/><br/><br/><br/>
+ <img src="{!URLFOR($Resource.Yogiyo_Quote_2)}"  style="width:90%;display: block; height:93%;margin-left:5%"/>
+  <br/><br/>
+ <img src="{!URLFOR($Resource.Yogiyo_Quote_3)}"  style="width:90%;display: block; height:93%;margin-left:5%"/>
+  <br/><br/>
+ <img src="{!URLFOR($Resource.Yogiyo_Quote_4)}"  style="width:90%;display: block; height:93%;margin-left:5%"/>
+</apex:page>

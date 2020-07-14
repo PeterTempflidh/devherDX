@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>American Express</fullName>
+        <default>false</default>
+        <label>American Express</label>
+    </customValue>
+    <customValue>
+        <fullName>BigPass</fullName>
+        <default>false</default>
+        <label>BigPass</label>
+    </customValue>
+    <customValue>
+        <fullName>Cash</fullName>
+        <default>false</default>
+        <label>Cash</label>
+    </customValue>
+    <customValue>
+        <fullName>Cheque</fullName>
+        <default>false</default>
+        <label>Cheque</label>
+    </customValue>
+    <customValue>
+        <fullName>Diners Club</fullName>
+        <default>false</default>
+        <label>Diners Club</label>
+    </customValue>
+    <customValue>
+        <fullName>Hipercard</fullName>
+        <default>false</default>
+        <label>Hipercard</label>
+    </customValue>
+    <customValue>
+        <fullName>Maestro</fullName>
+        <default>false</default>
+        <label>Maestro</label>
+    </customValue>
+    <customValue>
+        <fullName>Mastercard</fullName>
+        <default>false</default>
+        <label>Mastercard</label>
+    </customValue>
+    <customValue>
+        <fullName>Mobile Credit Card Reader</fullName>
+        <default>false</default>
+        <label>Mobile Credit Card Reader</label>
+    </customValue>
+    <customValue>
+        <fullName>Online Payment</fullName>
+        <default>false</default>
+        <label>Online Payment</label>
+    </customValue>
+    <customValue>
+        <fullName>OP - Bank transfer</fullName>
+        <default>false</default>
+        <label>OP - Bank transfer</label>
+    </customValue>
+    <customValue>
+        <fullName>OP - Mobile Electronic Cash Card Reader</fullName>
+        <default>false</default>
+        <label>OP - Mobile Electronic Cash Card Reader</label>
+    </customValue>
+    <customValue>
+        <fullName>OP - Mobile Payment</fullName>
+        <default>false</default>
+        <label>OP - Mobile Payment</label>
+    </customValue>
+    <customValue>
+        <fullName>Smart VR</fullName>
+        <default>false</default>
+        <label>Smart VR</label>
+    </customValue>
+    <customValue>
+        <fullName>Sodexo</fullName>
+        <default>false</default>
+        <label>Sodexo</label>
+    </customValue>
+    <customValue>
+        <fullName>Visa</fullName>
+        <default>false</default>
+        <label>Visa</label>
+    </customValue>
+    <customValue>
+        <fullName>Visa Electron</fullName>
+        <default>false</default>
+        <label>Visa Electron</label>
+    </customValue>
+    <customValue>
+        <fullName>VR</fullName>
+        <default>false</default>
+        <label>VR</label>
+    </customValue>
+    <customValue>
+        <fullName>K-NET</fullName>
+        <default>false</default>
+        <label>K-NET</label>
+    </customValue>
+    <customValue>
+        <fullName>Credit Card on Delivery</fullName>
+        <default>false</default>
+        <label>Credit Card on Delivery</label>
+    </customValue>
+    <customValue>
+        <fullName>Credit Card</fullName>
+        <default>false</default>
+        <label>Credit Card</label>
+    </customValue>
+    <customValue>
+        <fullName>Mobile Electronic Cash Card Reader</fullName>
+        <default>false</default>
+        <label>Mobile Electronic Cash Card Reader</label>
+    </customValue>
+    <customValue>
+        <fullName>Valeven</fullName>
+        <default>false</default>
+        <label>Valeven</label>
+    </customValue>
+    <customValue>
+        <fullName>Canasta Pass</fullName>
+        <default>false</default>
+        <label>Canasta Pass</label>
+    </customValue>
+    <customValue>
+        <fullName>Ticket Restaurant</fullName>
+        <default>false</default>
+        <label>Ticket Restaurant</label>
+    </customValue>
+    <customValue>
+        <fullName>Cabal</fullName>
+        <default>false</default>
+        <label>Cabal</label>
+    </customValue>
+    <customValue>
+        <fullName>Red Compra</fullName>
+        <default>false</default>
+        <label>Red Compra</label>
+    </customValue>
+    <customValue>
+        <fullName>Tarjeta Clave</fullName>
+        <default>false</default>
+        <label>Tarjeta Clave</label>
+    </customValue>
+    <customValue>
+        <fullName>Tarjeta Naranja</fullName>
+        <default>false</default>
+        <label>Tarjeta Naranja</label>
+    </customValue>
+    <customValue>
+        <fullName>OCA</fullName>
+        <default>false</default>
+        <label>OCA</label>
+    </customValue>
+    <customValue>
+        <fullName>Bank Card (1 click payment is)</fullName>
+        <default>false</default>
+        <label>Bank Card (1 click payment is)</label>
+    </customValue>
+    <customValue>
+        <fullName>Bank Card</fullName>
+        <default>false</default>
+        <label>Bank Card</label>
+    </customValue>
+    <customValue>
+        <fullName>OTP SZÉP Card</fullName>
+        <default>false</default>
+        <label>OTP SZÉP Card</label>
+    </customValue>
+    <customValue>
+        <fullName>MKB SZÉP Card</fullName>
+        <default>false</default>
+        <label>MKB SZÉP Card</label>
+    </customValue>
+    <customValue>
+        <fullName>KH SZÉP Card</fullName>
+        <default>false</default>
+        <label>KH SZÉP Card</label>
+    </customValue>
+    <customValue>
+        <fullName>Erzsébet Card Meal Pocket</fullName>
+        <default>false</default>
+        <label>Erzsébet Card Meal Pocket</label>
+    </customValue>
+    <customValue>
+        <fullName>Erzsébet Card Gift Pocket</fullName>
+        <default>false</default>
+        <label>Erzsébet Card Gift Pocket</label>
+    </customValue>
+    <customValue>
+        <fullName>Erzsébet Voucher</fullName>
+        <default>false</default>
+        <label>Erzsébet Voucher</label>
+    </customValue>
+    <customValue>
+        <fullName>Meal Vouchers</fullName>
+        <default>false</default>
+        <label>Meal Vouchers</label>
+    </customValue>
+    <customValue>
+        <fullName>Credit Card,Cash</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Credit Card,Cash</label>
+    </customValue>
+    <customValue>
+        <fullName>Cestatickets</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Cestatickets</label>
+    </customValue>
+    <customValue>
+        <fullName>Cielo</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Cielo</label>
+    </customValue>
+    <customValue>
+        <fullName>Contando</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Contando</label>
+    </customValue>
+    <customValue>
+        <fullName>Efectivo</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Efectivo</label>
+    </customValue>
+    <customValue>
+        <fullName>Mobile Electronic Cash Card Reade</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Mobile Electronic Cash Card Reade</label>
+    </customValue>
+    <customValue>
+        <fullName>Redcompra</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Redcompra</label>
+    </customValue>
+    <customValue>
+        <fullName>Rede Shop</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Rede Shop</label>
+    </customValue>
+    <customValue>
+        <fullName>Tarjeta</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Tarjeta</label>
+    </customValue>
+    <customValue>
+        <fullName>Tarjeta de credito</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Tarjeta de credito</label>
+    </customValue>
+    <customValue>
+        <fullName>Tarjeta de debito</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Tarjeta de debito</label>
+    </customValue>
+    <customValue>
+        <fullName>Ticket Alimentacion</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Ticket Alimentacion</label>
+    </customValue>
+    <customValue>
+        <fullName>Matercard</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Matercard</label>
+    </customValue>
+    <customValue>
+        <fullName>Diners_Club</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Diners_Club</label>
+    </customValue>
+    <customValue>
+        <fullName>Debit Card</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Debit Card</label>
+    </customValue>
+    <customValue>
+        <fullName>OP-MobilePayment</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>OP-MobilePayment</label>
+    </customValue>
+    <customValue>
+        <fullName>OP-MobileElectronicCashCardReader</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>OP-MobileElectronicCashCardReader</label>
+    </customValue>
+    <customValue>
+        <fullName>OP-Banktransfer</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>OP-Banktransfer</label>
+    </customValue>
+    <customValue>
+        <fullName>MobileCreditCardReader</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>MobileCreditCardReader</label>
+    </customValue>
+    <customValue>
+        <fullName>Transferencia electrónica</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Transferencia electrónica</label>
+    </customValue>
+    <customValue>
+        <fullName>Visa Vale</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Visa Vale</label>
+    </customValue>
+    <customValue>
+        <fullName>creditcard, online</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>creditcard, online</label>
+    </customValue>
+    <masterLabel>Payment Method</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

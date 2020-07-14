@@ -1,0 +1,6 @@
+<apex:page controller="ctrDH_AU_QuoteVFTemplate" showheader="false" sidebar="false" standardStylesheets="false">
+<c:SE_Quote_v2 acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}"/>
+<c:SE_PizzaFormular_v2 acct="{!theOppQ.Id_Account__c}" />
+
+
+</apex:page>

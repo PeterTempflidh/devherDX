@@ -1,0 +1,55 @@
+<apex:component controller="CtrCreateQuote" access="global">
+<apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+
+<table width="100%" cellspacing="0" cellpadding="0" class="Details">
+    <tr>
+      <td width="20%" valign="top" rowspan="2" class="toptitle" style="padding: 4px;background-color:#c00000; color:#fff;padding:5px;border:0px !important;vertical-align:top;">Restaurant:</td>
+      <td idth="40%" valign="top" rowspan="2" class="top" style="padding: 4px;border-color: #c00000; border-style: solid ;border-width: 1px 1px 0px 0px;">&nbsp;{!accountWrapper.restaurantName}<br />{!accountWrapper.restaurantAddress}</td>
+      <td width="20%" valign="top" class="toptitle" style="padding: 4px;background-color:#c00000; color:#fff;padding:5px;border:0px !important;vertical-align:top;">Created Date:</td>
+      <td width="20%" valign="top" class="top" style="padding: 4px;border-color: #c00000; border-style: solid ;border-width: 1px 1px 0px 0px;">&nbsp;
+        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+        <apex:param value="{!TODAY()}" /> 
+    </apex:outputText>
+    </td>
+    </tr>
+    <tr>
+      <td valign="top" class="toptitle" style="padding: 4px;background-color:#c00000; color:#fff;padding:5px;border:0px !important;vertical-align:top;">Prepared By:</td>
+      <td valign="top" class="top" style="padding: 4px;border-color: #c00000; border-style: solid ;border-width: 1px 1px 0px 0px;">&nbsp;{!$User.FirstName} {!$User.LastName}</td>
+    </tr>
+    <tr>
+      <td class="toptitle" style="padding: 4px;background-color:#c00000; color:#fff;padding:5px;border:0px !important;vertical-align:top;">Owner/Director:</td>
+      <td class="top" style="padding: 4px;border-color: #c00000; border-style: solid ;border-width: 1px 1px 0px 0px;">&nbsp;{!accountWrapper.ownerName} </td>
+      <td class="toptitle" style="padding: 4px;background-color:#c00000; color:#fff;padding:5px;border:0px !important;vertical-align:top;">E-mail:</td>
+      <td class="top" style="padding: 4px;border-color: #c00000; border-style: solid ;border-width: 1px 1px 0px 0px;">&nbsp;{!$User.Email}</td>
+    </tr>
+    <tr>
+      <td class="toptitle" style="padding: 4px;background-color:#c00000; color:#fff;padding:5px;border:0px !important;vertical-align:top;">Landline:</td>
+      <td class="top" style="padding: 4px;border-color: #c00000; border-style: solid ;border-width: 1px 1px 0px 0px;">&nbsp;{!accountWrapper.restaurantPhoneNumber}</td>
+      <td class="toptitle" style="padding: 4px;background-color:#c00000; color:#fff;padding:5px;border:0px !important;vertical-align:top;">Phone:</td>
+      <td class="top" style="padding: 4px;border-color: #c00000; border-style: solid ;border-width: 1px 1px 0px 0px;">&nbsp;{!$User.MobilePhone}</td>
+    </tr>
+    <tr>
+      <td class="toptitle" style="padding: 4px;background-color:#c00000; color:#fff;padding:5px;border:0px !important;vertical-align:top;">Mobile:</td>
+      <td class="top" style="padding: 4px;border-color: #c00000; border-style: solid ;border-width: 1px 1px 0px 0px;">&nbsp;{!accountWrapper.ownerMobilePhone}</td>
+      <td class="toptitle" style="padding: 4px;background-color:#c00000; color:#fff;padding:5px;border:0px !important;vertical-align:top;">Fax:</td>
+      <td class="top" style="padding: 4px;border-color: #c00000; border-style: solid ;border-width: 1px 1px 0px 0px;">&nbsp;{!$User.Fax}</td>
+    </tr>
+<!-- bank -->
+    <tr>
+      <td class="toptitle" style="padding: 4px;background-color:#c00000; color:#fff;padding:5px;border:0px !important;vertical-align:top;">Bank Account Owner:</td>
+      <td class="top" style="padding: 4px;border-color: #c00000; border-style: solid ;border-width: 1px 1px 0px 0px;">&nbsp;{!accountWrapper.bankAccountOwner}</td>
+      <td colspan="2" class="top" style="padding: 4px;border-color: #c00000; border-style: solid ;border-width: 1px 1px 0px 0px;">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="toptitle" style="padding: 4px;background-color:#c00000; color:#fff;padding:5px;border:0px !important;vertical-align:top;">Bank Sort Code:</td>
+      <td class="top" style="padding: 4px;border-color: #c00000; border-style: solid ;border-width: 1px 1px 0px 0px;">&nbsp;{!accountWrapper.bankSortCode}</td>
+      <td colspan="2" class="top" style="padding: 4px;border-color: #c00000; border-style: solid ;border-width: 1px 1px 0px 0px;">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="toptitle" style="padding: 4px;background-color:#c00000; color:#fff;padding:5px;border:0px !important;vertical-align:top;">Bank Account Number:</td>
+      <td class="bottom" style="border-color: #c00000;border-style: solid ;border-width: 1px 1px 1px 0px;">&nbsp;{!accountWrapper.bankAccountNumber}</td>
+
+      <td colspan="2" class="bottom">&nbsp;</td>
+    </tr>
+    </table>
+</apex:component>

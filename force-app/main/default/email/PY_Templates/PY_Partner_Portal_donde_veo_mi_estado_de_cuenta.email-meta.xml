@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY Partner Portal donde veo mi estado de cuenta</name>
+    <style>freeForm</style>
+    <subject>Gracias por Contactarnos - # {!Case.CaseNumber}</subject>
+    <textOnly>Estimado XXXNombreXXX, 
+
+ 
+
+Nos contactamos en respuesta a tu consulta sobre cómo ver tu estado de cuenta en Partner Portal, para encontrarlo te diriges a la sección ‘Finanzas’ del menú de la izquierda, allí podrás ver toda la información correspondiente a los últimos 6 meses, en esta sección también podrás encontrar especificaciones sobre tu contrato en la pestaña ‘Mi Contrato’ y solicitar cambias si así lo deseas. 
+
+ 
+
+Adicionalmente te hemos adjuntado el manual de la herramienta para futuras consultas. 
+
+ 
+
+Quedamos a las órdenes, 
+
+Saludos 
+
+ 
+
+(NOMBRE DEL AGENTE) - Claims Operator 
+PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

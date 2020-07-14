@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY - Uso del Cupon</name>
+    <style>freeForm</style>
+    <subject>Uso del Cupón</subject>
+    <textOnly>Estimada XXX, es un gusto saludarte.
+
+Estimado XXX, es un gusto saludarte.
+
+ 
+
+Te contactamos en respuesta a tu consulta sobre el uso del cupón.
+
+ 
+
+Podemos ver que el cupón se encuentra efectivamente cargado en tu cuenta. Para verificar esto, puedes ingresar en Menú &gt; Mis cupones. En caso de que no lo visualices desde la aplicación, puedes probar ingresando desde la web. De igual modo, te informamos que el código del cupón es XXXX.
+
+ 
+
+Para poder utilizarlo tienes que chequear antes que el restaurante acepta cupones, existe un filtro llamado &quot;cupón&quot; que te ayudará. Luego tienes que hacer el pedido como lo haces normalmente, una vez que eliges tu comida y vas a la sección de método de pago, justo debajo aparece la opción de agregarlo. Seleccione &quot;finalizar pedido&quot; y una vez que esté finalizado, verás reflejado el descuento del cupón automáticamente.
+
+ 
+
+En caso de presentar algún inconveniente con estas indicaciones, puedes responder este email, y de ser posible, enviar una captura de pantalla adjunta, tanto sobre lo que visualizas en tus cupones como en la parte de seleccionarlo al finalizar el pedido.
+
+ 
+
+Esperamos haber sido de ayuda y quedamos a tu disposición.
+
+ 
+
+Saludos,                   
+
+(Propietario del Caso)
+
+Atención al Cliente PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

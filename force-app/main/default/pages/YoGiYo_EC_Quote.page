@@ -1,0 +1,91 @@
+<apex:page standardStylesheets="false" sidebar="false" showHeader="false" controller="CtrYoGiYo_EC_Quote">
+
+    <html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+            <meta property="og:description" content="Welcome to YoGiHo" />
+        </head>
+
+        <body class="bodyPage" style="color: #000000; font-family: Arial, Helvetica, sans-serif; font-size: 12px; background: #f1f1f1; margin: 0px;" bgcolor="#f1f1f1">
+            <div style="mso-hide:all;display:none;font-size:1px;color:transparent;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;"></div>
+
+            <!-- page content starts -->
+
+            <table border="0" cellspacing="0" cellpadding="0" align="center" class="generalContent" style="width:600px;min-width:600px;background-color:#f1f1f1; padding:10px;" bgcolor="#f1f1f1">
+                <tr>
+
+                    <td class="header" bgcolor="#f1f1f1" style="position: relative; height: 70px; padding:0px;">
+
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="width:100%;">
+
+                            <!-- header -->
+                            <tr>
+                                <td class="header" bgcolor="#f1f1f1" style="position: relative; height: 70px; padding:0px;">
+                                    <img id="headerImg" src="{!headerImgUrl}" width="100%" />   
+                                </td>
+                            </tr>
+
+                            <!-- email body text  -->
+                            <tr>
+                                <td class="boxPrincipal">
+
+                                    <div id="newSignup" class="boxPrincipalText" style="line-height:2em; width:100%; width:600px;min-width:600px;background:rgba(255, 255, 255, .65); height:auto; margin:0 auto; padding:25px;box-sizing:border-box; display:block; overflow:hidden;">
+
+                                        <p>
+                                            요기요 가맹점 사장님께 <br/>
+                                            안녕하세요. 요기요입니다. <br/>
+                                            요기요와 정식 가맹을 맺어주신 사장님께 진심으로 감사드립니다.<br/>
+                                            요기요 가맹점 이용약관을 첨부하여 보내드립니다. 첨부된 약관에 대한 궁금한 사항은 요기요 고객센터(02-3447-3612)로 문의해주세요.<br/>
+                                            2012년 6월 서비스를 시작한 요기요는 배고픈 고객과 음식점 사장님을 이어주는 플랫폼으로서 고객에게는 맛있는 즐거움,사장님에게는 성장의 기회를 제공하고자 노력하고 있습니다. 현재 전국민 중 약 95%가 요기요 브랜드를 인지하고 있으며, 스마트폰 이용자 3명 중 1명은 요기요를 사용하고 전국 17만 사장님들은 요기요를 통해 가게를 키워나가고 계십니다.<br/>
+                                            요기요가 제공하는 다양한 서비스들은 요기요 사장님 사이트 <a href="https://owner.yogiyo.co.kr/owner">(https://owner.yogiyo.co.kr/owner)</a> 가입 후, 이용하실 수 있습니다. 사장님 사이트에 꼭 가입하시고 이벤트와 혜택도 놓치지 말고 확인해보세요.<br/>
+                                            요기요는 사장님의 성장파트너로서, 성실하게 사업하는 음식점들의 성장을 돕는 신뢰할 수 있는 파트너가 되겠습니다.<br/>
+                                            가맹을 다시 한번 감사드리며, 더 큰 성장을 경험하시도록 최선을 다하는 요기요가 되겠습니다.<br/>
+                                        </p>
+
+                                        <ul>
+                                            <li>
+                                                본 메일은 발신전용 메일로 회신을 통한 문의는 처리되지 않습니다.
+                                            </li>
+                                            
+                                            <li>
+                                                본 메일은 요기요에서 이메일 마케팅 수신 여부와 관계없이, 요기요 서비스를 이용하시는 운영상 공지 목적으로 발송되는 메일입니다.
+                                            </li>
+                                            
+                                            <li>
+                                                문의사항이나 기타 이용 안내는 요기요 고객센터 (02-3447-3612)로 문의 부탁드립니다.
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </td>
+                </tr>
+
+                <tr>
+
+                    <td class="header" bgcolor="#f1f1f1" style="position: relative; height: 70px; padding:0px;">
+
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="width:100%;">
+                            <!--Footer-->
+                            <tr>
+                                <td class="header" bgcolor="#f1f1f1" style="position: relative; height: 70px; padding:0px;">
+                                    <img id="footerImg" src="{!footerImgUrl}" width="100%" />   
+                                </td>
+                            </tr>
+
+                        </table>
+                    </td>
+
+                </tr>
+            </table>
+        </body>
+    </html>
+
+</apex:page>

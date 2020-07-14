@@ -1,0 +1,677 @@
+<apex:page standardController="Lead" extensions="CtrOrderConfirmationPDF" showHeader="false" sidebar="false" standardStylesheets="false" applyHtmlTag="false"  docType="html-5.0" renderAs="pdf">
+   <apex:stylesheet value="{!URLFOR($Resource.slds, 'assets/styles/salesforce-lightning-design-system-vf.css')}" /> 
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <body>
+    <div id="comissions" class="slds">
+        <div class="slds-page-header" role="banner">
+            <div class="slds-media">
+                <div class="slds-media__figure">
+                    <img src="{!URLFOR($Resource.hungryhouse)}" style="width:64px;float:right;"/>
+                </div>
+                <div class="slds-media__body">
+                  <p class="slds-page-header__title slds-truncate slds-align-middle" title="Rohde Corp - 80,000 Widgets">Partnership Agreement</p>
+                  <p class="slds-text-body--small slds-page-header__info"><font color="red">Hungryhouse Ltd</font> 78 York Street, London W1H 1DP hungryhouse.co.uk 0800 612 33 33</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <table border="0">
+                <tr>
+                    <td width="50%">  
+                        <div class="slds-form-element slds-m-horizontal--x-small">
+                        <label class="slds-form-element__label" for="restName" style="padding-left:8px;">Salutation: {!leadData.Salutation}</label>
+                        <span style="height:1px;display:inline-block;border-bottom: 1px solid #d8dde6;width:80%;float:right"></span>
+                      </div>
+                    </td>
+                    <td>
+                        <div class="slds-form-element slds-m-horizontal--x-small ">
+                            <label class="slds-form-element__label" for="name" style="padding-left:35px;">Name: {!leadData.Name}</label>
+                            <div style="height:1px;display:inline-block;border-bottom: 1px solid #d8dde6;width:78%;float:right"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%">  
+                        <div class="slds-form-element slds-m-horizontal--x-small">
+                        <label class="slds-form-element__label" for="restName">Rest. Name: {!leadData.Restaurant_Name__c}</label>
+                        <span style="height:1px;display:inline-block;border-bottom: 1px solid #d8dde6;width:80%;float:right"></span>
+                      </div>
+                    </td>
+                    <td>
+                        <div class="slds-form-element slds-m-horizontal--x-small">
+                            <label class="slds-form-element__label" for="name" style="padding-left:33px;">Phone: {!leadData.Phone}</label>
+                            <div style="height:1px;display:inline-block;border-bottom: 1px solid #d8dde6;width:78%;float:right"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>  
+                        <div class="slds-form-element slds-m-horizontal--x-small">
+                        <label class="slds-form-element__label" for="street" style="padding-left:20px">Address: {!leadData.Street}</label>
+                        <span style="height:1px;display:inline-block;border-bottom: 1px solid #d8dde6;width:80%;float:right"></span>
+                          </div>
+                     </td>
+                    <td>
+                        <div class="slds-form-element slds-m-horizontal--x-small">
+                            <label class="slds-form-element__label" for="phone" style="padding-left:32px;">Mobile: {!leadData.MobilePhone}</label>
+                            <span style="height:1px;display:inline-block;border-bottom: 1px solid #d8dde6;width:78%;float:right"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>  
+                        <div class="slds-form-element slds-m-horizontal--x-small">
+                        <label class="slds-form-element__label" for="postalCode" style="padding-left:70px;">{!leadData.PostalCode}</label>
+                        <span style="height:1px;display:inline-block;border-bottom: 1px solid #d8dde6;width:80%;float:right"></span>
+                      </div>
+                     </td>
+                    <td>
+                        <div class="slds-form-element slds-m-horizontal--x-small">
+                            <label class="slds-form-element__label" for="mobile" >Other Phone: {!leadData.Other_Phone__c}</label>
+                            <div style="height:1px;display:inline-block;border-bottom: 1px solid #d8dde6;width:78%;float:right"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>  
+                        <div class="slds-form-element slds-m-horizontal--x-small">
+                        <label class="slds-form-element__label" for="city" style="padding-left:70px;">{!leadData.City}</label>
+                        <div style="height:1px;display:inline-block;border-bottom: 1px solid #d8dde6;width:80%;float:right"></div>
+                      </div>
+                     </td>
+                    <td>
+                        <div class="slds-form-element slds-m-horizontal--x-small">
+                            <label class="slds-form-element__label" for="email" style="padding-left:38px;">Email: {!leadData.Email}</label>
+                            <div style="height:1px;display:inline-block;border-bottom: 1px solid #d8dde6;width:78%;float:right"></div>
+                        </div>
+                    </td>
+                </tr>
+ 
+                <tr>
+                    <td>  
+                        <div class="slds-form-element slds-m-horizontal--x-small">
+                        <label class="slds-form-element__label" for="date" style="padding-left:39px;">Date: <apex:outputText value="{0,date,dd'/'MM'/'yyyy}">
+                            <apex:param value="{!TODAY()}" /> 
+                        </apex:outputText></label>
+                        <div style="height:1px;display:inline-block;border-bottom: 1px solid #d8dde6;width:80%;float:right"></div>
+                      </div>
+                     </td>
+                    <td>
+                        <div class="slds-form-element slds-m-horizontal--x-small">
+                            <label class="slds-form-element__label" for="preparedBy" style="padding-left:5px;">Prepared by: {!leadData.Owner.Name}</label>
+                            <div style="height:1px;display:inline-block;border-bottom: 1px solid #d8dde6;width:78%;float:right"></div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class="slds-text-body--small slds-m-horizontal--x-small slds-m-top--small">
+                Dear Restaurant Partner,
+            </div>
+            <div class="slds-text-body--small slds-m-around--x-small">
+                This is to confirm the registration of your restaurant on our online ordering platform www.hungryhouse.co.uk
+            </div>
+            <div class="slds-text-body--small slds-m-around--x-small">
+                As per our conversation, we will set up your account with the following conditions:
+            </div>
+            <table class="slds-table slds-table--bordered" style="max-width:400px">
+                <tbody>
+                  <tr class="slds-hint-parent">
+                    <td class="slds-truncate slds-text-body--small" data-label="commissionLabel" style="border-bottom: 1px solid #d8dde6;">Commission per submitted order*</td>
+                    <td class="slds-truncate slds-text-body--small" data-label="commissionValue" style="border-bottom: 1px solid #d8dde6;">{!leadData.Commission__c}</td>
+                    <td class="slds-truncate slds-text-body--small" data-label="commissionPercentage" style="border-bottom: 1px solid #d8dde6;" >%</td>
+                  </tr>
+                  <tr class="slds-hint-parent">
+                    <td class="slds-truncate slds-text-body--small" data-label="monthlyAdmLabel" style="border-bottom: 1px solid #d8dde6;">Monthly administration fee**</td>
+                    <td class="slds-truncate slds-text-body--small" data-label="monthlyAdmValue" style="border-bottom: 1px solid #d8dde6;">14.95</td>
+                    <td class="slds-truncate slds-text-body--small" data-label="monthlyAdmCurrency" style="border-bottom: 1px solid #d8dde6;">GBP</td>
+                  </tr>
+                </tbody>
+            </table>
+            <div class="slds-text-body--small slds-m-around--x-small">
+                *+VAT (20%) based on gross order value
+            </div>
+            <div class="slds-text-body--small slds-m-around--x-small">
+                **Monthly fee is payable once a minimum of 20 orders has been reached within the current month
+            </div>
+            <table class="slds-table slds-table--bordered" style="max-width:400px">
+                <tbody>
+                  <tr class="slds-hint-parent">
+                    <td class="slds-truncate slds-text-body--small" data-label="commissionLabel" ></td>
+                    <td class="slds-truncate slds-text-body--small" data-label="commissionValue">Total Price</td>
+                    <td class="slds-truncate slds-text-body--small" data-label="commissionPercentage">Installments</td>
+                  </tr>
+                  <tr class="slds-hint-parent">
+                    <td class="slds-truncate slds-text-body--small" data-label="monthlyAdmLabel" style="border-bottom: 1px solid #d8dde6;">Setup Fee +VAT(20%)</td>
+                    <td class="slds-truncate slds-text-body--small" data-label="commissionValue" style="border-bottom: 1px solid #d8dde6;">{!leadData.Setup_Fee__c}</td>
+                    <td class="slds-truncate slds-text-body--small" data-label="commissionValue" style="border-bottom: 1px solid #d8dde6;">{!leadData.Installments__c}</td>
+                  </tr>
+                </tbody>
+            </table>
+            <div class="slds-text-body--regular slds-m-around--x-small">
+                Relay method chosen:
+            </div>
+            <div class="slds-text-body--small slds-m-around--x-small">
+                The Manufacturers warranty will apply for all components of the TabLink
+            </div>
+            <fieldset class="slds-form-element slds-m-around--x-small slds-form-element is-required" required="true">
+                
+                 <table width="300">
+                    <tr>
+                        <td style="width: 100px;">             
+                            <label class="slds-radio" for="tgtablink">
+                                <input type="radio" name="options" id="tgtablink" />
+                                <span class="slds-radio--faux" style="{!if(leadWrapper.tgtablink == "true", "background-color: #1589ee !important", "")}"></span>
+                                <span class="slds-text-body--small">3G Tablink</span>
+                            </label>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td style="width: 100px;">
+                           
+                                  <label class="slds-radio" for="wifitablink">
+                                    <input type="radio" name="options" id="wifitablink" />
+                                    <span class="slds-radio--faux" style="{!if(leadWrapper.wifitablink == "true", "background-color: #1589ee !important", "")}"></span>
+                                    <span class="slds-text-body--small">WIFI Tablink</span>
+                                </label>
+                        </td>
+                        
+                    </tr>
+                
+                    </table>
+                <div >
+                <div class="slds-text-heading--x-small slds-m-around--x-small" id="rewardStamp">
+                     <label class="slds-checkbox">
+                        <input type="checkbox" name="options" id="rewardStamps" />
+                        <span class="slds-checkbox--faux" style="{!if(leadWrapper.rewardStamps == "true", "background-color: #1589ee !important", "")}"></span>
+                        <span class="slds-text-body--small">Reward Stamps</span>
+                      </label>
+                </div>
+                <fieldset id="regionalTariffAppend" class="slds-form-element is-required" required="true">
+                    <div class="slds-form-element__control slds-m-left--x-small">
+                        <label class="slds-radio" for="tasteTest">
+                            <input type="radio" name="regionalTariff" id="tasteTest"   />
+                            <span class="slds-radio--faux" style="{!if(leadWrapper.tasteTest == "true", "background-color: #1589ee !important", "")}" ></span>
+                            <span class="slds-text-body--small">Taste Test</span>
+                        </label>
+                        <label class="slds-radio" for="splOffer">
+                            <input type="radio" name="regionalTariff" id="splOffer"  onclick="splOfferSelect()" />
+                            <span class="slds-radio--faux" style="{!if(leadWrapper.splOffer == "true", "background-color: #1589ee !important", "")}"></span>
+                            <span class="slds-text-body--small">Exclusive Special Offer</span>
+                        </label>
+                        <!--<div class="slds-text-heading--x-small slds-m-around--x-small" id="splOfferText" style="display:none">-->
+                          
+                       <!-- </div>-->
+                       
+                    </div>
+                </fieldset>
+                 <div class="slds-form-element slds-size--1-of-1">
+                            <div class="slds-form-element "   id="commissionAppendRT"  style="display:{!if(leadWrapper.splOffer == "true",'block','none')}"  >
+                                <label class="slds-form-element__label" for="commissionRT" style="padding-left:32px;">{!leadWrapper.commissionRT}</label>
+                            <span style="height:1px;display:inline-block;border-bottom: 1px solid #d8dde6;width:78%;float:right"></span>
+                            </div>
+                             </div>
+            </div>
+
+            </fieldset>
+            <div class="slds-text-body--regular slds-m-around--x-small">
+                Branding option
+            </div>
+            <div class="slds-form-element slds-m-around--x-small slds-text-body--small">
+                <div class="slds-form-element__control">
+                  <label class="slds-checkbox">
+                    <input type="checkbox" name="options" id="bladeSign" checked=""/>
+                    <span class="slds-checkbox--faux" style="{!if(leadWrapper.bladeSign == "true", "background-color: #1589ee !important", "")}"></span>
+                    <span class="slds-text-body--small">Blade Sign</span>
+                  </label>
+                </div>
+            </div>
+            <div id="bladeSignText" style="{!if(leadWrapper.bladeSign == "true", "display: block", "display: none")}">
+                <div class="slds-text-body--small slds-m-around--x-small">
+                    I {!leadData.name} agree to the installation of a hungryhouse restaurant blade sign for promotional purposes. The blade sign and installation of the blade sign are free of charge subject to the following conditions:
+                </div>
+                <ul class="slds-list--dotted">
+                    <li class="slds-text-body--small slds-m-left--x-small">The hungryhouse blade sign will be fitted by an employee or service provider to hungryhouse.com Ltd</li>
+                    <li class="slds-text-body--small slds-m-left--x-small">The hungryhouse blade sign will be fitted at a height not lower than 6 feet and 5 inches</li>
+                    <li class="slds-text-body--small slds-m-left--x-small">The hungryhouse blade sign will be fitted either inside or outside of normal business hours</li>
+                    <li class="slds-text-body--small slds-m-left--x-small">The hungryhouse blade sign will remain in place for not less than 2 years beginning from the date of installation</li>
+                    <li class="slds-text-body--small slds-m-left--x-small">If the hungryhouse blade sign is removed or sufficiently damaged as to require removal, the restaurant owner will be liable for a charge of  100 pounds plus VAT</li>
+                    <li class="slds-text-body--small slds-m-left--x-small">Any damage will be reported to the relevant City Development Manager without unreasonable delay</li>
+                    <li class="slds-text-body--small slds-m-left--x-small">hungryhouse.com Ltd retain permanent ownership of the restaurant blade sign</li>
+                    <li class="slds-text-body--small slds-m-left--x-small">hungryhouse will arrange any blade sign to be fitted under the assumption that you, the restaurant owner, has permission from any landlord, council or regulatory body.</li>
+                </ul>
+            </div>
+            <div id="regionalTariffTC" >
+                <div class="slds-text-heading--x-small slds-m-around--x-small">
+                    Regional Tariff Terms and Conditions
+                </div>
+                <ul class="slds-list--dotted">
+                    <li class="slds-text-body--small slds-m-around--x-small">Restaurant must have a blade sign installed by hungryhouse on shop front.</li>
+                    <li class="slds-text-body--small slds-m-around--x-small">Restaurant must be on Livelink or Tablink ordering system</li>
+                    <li class="slds-text-body--small slds-m-around--x-small">Restaurant must have at least one visible window sticker on display shop front</li>
+                    <li class="slds-text-body--small slds-m-around--x-small">Restaurant must provide an exclusive offer(e.g. taste test or menu deal)</li>
+                   <!-- <li class="slds-text-body--small slds-m-around--x-small">Restaurant must be signed up to the Reward Stamps loyalty scheme</li>-->
+                    <li class="slds-text-body--small slds-m-around--x-small">hungryhouse has the right to increase the commission to the premium tariff of 14% with immeddiate effect if restaurant fails to comply with above conditions.</li>
+                </ul>
+                <div class="slds-text-body--small slds-m-around--x-small">
+                    As long as these terms and conditions are met,this offer is valid for a minimum of two years.
+                </div>
+            </div>
+            <div class="slds-text-body--regular slds-m-around--x-small">
+                The services that come with the above agreement can be found below
+            </div>
+            <span class="slds-icon_container">
+              <svg aria-hidden="true" class="slds-icon slds-icon-text-default slds-icon--x-small slds-m-left--xx-large">
+                <use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"></use>
+              </svg>
+              <span class="slds-text-body--small">No minimum contract period</span>
+            </span><br/>
+            <span class="slds-icon_container">
+              <svg aria-hidden="true" class="slds-icon slds-icon-text-default slds-icon--x-small slds-m-left--xx-large">
+                <use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"></use>
+              </svg>
+              <span class="slds-text-body--small">Your own website including online ordering</span>
+            </span><br/>
+            <span class="slds-icon_container">
+              <svg aria-hidden="true" class="slds-icon slds-icon-text-default slds-icon--x-small slds-m-left--xx-large">
+                <use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"></use>
+              </svg>
+              <span class="slds-text-body--small">Free menu changes</span>
+            </span><br/>
+            <span class="slds-icon_container">
+              <svg aria-hidden="true" class="slds-icon slds-icon-text-default slds-icon--x-small slds-m-left--xx-large">
+                <use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"></use>
+              </svg>
+              <span class="slds-text-body--small">Free restaurant hotline 24h at 0800 612 3333</span>
+            </span><br/>
+            <span class="slds-icon_container">
+              <svg aria-hidden="true" class="slds-icon slds-icon-text-default slds-icon--x-small slds-m-left--xx-large">
+                <use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"></use>
+              </svg>
+              <span class="slds-text-body--small">Online payment option for your customers</span>
+            </span><br/>
+            <span class="slds-icon_container">
+              <svg aria-hidden="true" class="slds-icon slds-icon-text-default slds-icon--x-small slds-m-left--xx-large">
+                <use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"></use>
+              </svg>
+              <span class="slds-text-body--small">Fraud Insurance</span>
+            </span>
+            <br /><br /><br /><br />
+            <div class="slds-grid slds-wrap slds-grid--pull-padded">
+                <div class="slds-col--padded"  style="width: 48%; float:left;">
+                    <table class="slds-table slds-table--bordered">
+                        <tbody>
+                          <tr class="slds-hint-parent">
+                            <td class="slds-truncate slds-text-body--small" style="background-color: #ffb75d !important; width:70%" data-label="minOrderValForDelivery">Minimum order value for delivery</td>
+                            <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue" >     
+                                <div style="width:80px;overflow: hidden;text-overflow: ellipsis;">{!leadWrapper.minOrderDelivery}</div>
+                            </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                    <table class="slds-table slds-table--bordered" width="300">
+                        <tbody>
+                          <tr class="slds-hint-parent">
+                            <td class="slds-truncate slds-text-body--small" style="background-color: #ffb75d !important; width:70%" data-label="minOrderValForDelivery">Minimum order value for FREE delivery</td>
+                            <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue" >     
+                                  <div style="width:80px;overflow: hidden;text-overflow: ellipsis;">{!leadWrapper.minOrderFreeDelivery} </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                   <!-- <table class="slds-table slds-table--bordered">
+                        <tbody>
+                          <tr class="slds-hint-parent">
+                            <td class="slds-truncate slds-text-body--small" style="background-color: #ffb75d !important; width:70%" data-label="minOrderValForDelivery">Delivery charge</td>
+                            <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue" >     
+                                    <div style="width:80px;overflow: hidden;text-overflow: ellipsis;">{!leadWrapper.deliveryCharge}</div>
+                            </td>
+                          </tr>
+                        </tbody>
+                    </table>-->
+                    <table class="slds-table slds-table--bordered">
+                        <tbody>
+                          <tr class="slds-hint-parent">
+                            <td class="slds-truncate slds-text-body--small" style="background-color: #ffb75d !important; width:70%" data-label="minOrderValForDelivery">Cuisine type 1 / 2</td>
+                            <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue" >     
+                              <div style="width:200px;overflow: hidden;text-overflow: ellipsis;">{!leadData.Cuisine__c}</div>
+                            </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                     <table class="slds-table slds-table--bordered">
+                        <tbody>
+                          <tr class="slds-hint-parent">
+                            <td class="slds-truncate slds-text-body--small" style="background-color: #ffb75d !important; width:40%" data-label="minOrderValForDelivery">Cuisine Notes</td>
+                            <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue" >     
+                              <div style="width:200px;overflow: hidden;text-overflow: ellipsis;">{!leadWrapper.cuisineNote}</div>
+                            </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                    <table class="slds-table slds-table--bordered">
+                        <tbody>
+                            <tr class="slds-hint-parent">
+                                <td class="slds-truncate slds-text-body--small" style="background-color: #ffb75d !important;" colspan="3">Postcode delivery areas</td>
+                                <td class="slds-truncate slds-text-body--small" style="background-color: #ffb75d !important;">Postcode delivery fee</td>
+                            </tr>
+                            <tr class="slds-hint-parent">
+                                <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1" style="width:50px;overflow: hidden;text-overflow: ellipsis;">
+                                        &nbsp;{!leadWrapper.zip1}
+                                    </div>
+                                </td>
+                                <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1" style="width:50px;overflow: hidden;text-overflow: ellipsis;">
+                                        &nbsp;{!leadWrapper.zip2}
+                                    </div>
+                                </td>
+                                <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1" style="width:50px;overflow: hidden;text-overflow: ellipsis;">
+                                       &nbsp;{!leadWrapper.zip3}
+                                    </div>
+                                </td>
+                                <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1" style="width:90px;overflow: hidden;text-overflow: ellipsis;">
+                                       &nbsp;{!leadWrapper.zipFee1}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="slds-hint-parent">
+                                <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1" style="width:50px;overflow: hidden;text-overflow: ellipsis;">
+                                       &nbsp;{!leadWrapper.zip4}
+                                    </div>
+                                </td>
+                                <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1" style="width:50px;overflow: hidden;text-overflow: ellipsis;">
+                                        &nbsp;{!leadWrapper.zip5}
+                                    </div>
+                                </td>
+                                <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1" style="width:50px;overflow: hidden;text-overflow: ellipsis;">
+                                       &nbsp;{!leadWrapper.zip6}
+                                    </div>
+                                </td>
+                                <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1" style="width:90px;overflow: hidden;text-overflow: ellipsis;">
+                                     &nbsp;{!leadWrapper.zipFee2}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="slds-hint-parent">
+                                <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1" style="width:50px;overflow: hidden;text-overflow: ellipsis;">
+                                      &nbsp;{!leadWrapper.zip7}
+                                    </div>
+                                </td>
+                                <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1" style="width:50px;overflow: hidden;text-overflow: ellipsis;">
+                                      &nbsp;{!leadWrapper.zip8}
+                                    </div>
+                                </td>
+                                <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1" style="width:50px;overflow: hidden;text-overflow: ellipsis;">
+                                     &nbsp;{!leadWrapper.zip9}
+                                    </div>
+                                </td>
+                                <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1" style="width:90px;overflow: hidden;text-overflow: ellipsis;">
+                                   &nbsp;{!leadWrapper.zipFee3}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="slds-hint-parent">
+                                <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1" style="width:50px;overflow: hidden;text-overflow: ellipsis;">
+                                     &nbsp;{!leadWrapper.zip10}
+                                    </div>
+                                </td>
+                                <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1" style="width:50px;overflow: hidden;text-overflow: ellipsis;">
+                                  &nbsp;{!leadWrapper.zip11}
+                                    </div>
+                                </td>
+                                <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1" style="width:50px;overflow: hidden;text-overflow: ellipsis;">
+                                    &nbsp;{!leadWrapper.zip12}
+                                    </div>
+                                </td>
+                                <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1" style="width:90px;overflow: hidden;text-overflow: ellipsis;">
+                                     &nbsp;{!leadWrapper.zipFee4}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="slds-hint-parent">
+                                <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1" style="width:50px;overflow: hidden;text-overflow: ellipsis;">
+                                    &nbsp;{!leadWrapper.zip13}
+                                    </div>
+                                </td>
+                                <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1" style="width:50px;overflow: hidden;text-overflow: ellipsis;">
+                                    &nbsp;{!leadWrapper.zip14}
+                                    </div>
+                                </td>
+                                <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1" style="width:50px;overflow: hidden;text-overflow: ellipsis;">
+                                   &nbsp;{!leadWrapper.zip15}
+                                    </div>
+                                </td>
+                                <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1" style="width:90px;overflow: hidden;text-overflow: ellipsis;">
+                                 &nbsp;{!leadWrapper.zipFee5}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="slds-hint-parent">
+                                <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1" style="width:50px;overflow: hidden;text-overflow: ellipsis;">
+                                     &nbsp;{!leadWrapper.zip16}
+                                    </div>
+                                </td>
+                                <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1" style="width:50px;overflow: hidden;text-overflow: ellipsis;">
+                                  &nbsp;{!leadWrapper.zip17}
+                                    </div>
+                                </td>
+                                <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1" style="width:50px;overflow: hidden;text-overflow: ellipsis;">
+                                &nbsp;{!leadWrapper.zip18}
+                                    </div>
+                                </td>
+                                <td class="slds-truncate slds-text-body--small" data-label="minOrderValForDeliveryValue">     
+                                    <div class="slds-form-element slds-size--1-of-1" style="width:90px;overflow: hidden;text-overflow: ellipsis;">
+                                   &nbsp;{!leadWrapper.zipFee6}
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="slds-col--padded"  style="width: 45%; float:right;">
+                    <table class="slds-table slds-table--bordered" >
+                        <tbody>
+                          <tr class="slds-hint-parent">
+                            <th class="slds-truncate slds-text-body--small" style="background-color: #ffb75d !important;" data-label="commissionLabel">DAY</th>
+                            <th class="slds-truncate slds-text-body--small" style="background-color: #ffb75d !important;" data-label="commissionLabel">Delivery time starts</th>
+                            <th class="slds-truncate slds-text-body--small" style="background-color: #ffb75d !important;" data-label="commissionPercentage">Delivery time ends</th>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <td class="slds-truncate slds-text-body--small" style="background-color:#ffd49d !important" data-label="monthlyAdmLabel">Friday</td>
+                                <td class="slds-truncate slds-text-body--small" data-label="commissionValue">     
+                                <div class="slds-form-element slds-size--1-of-1" style="width:100px;overflow: hidden;text-overflow: ellipsis;">
+                                    {!leadWrapper.fridayStarts}
+                                </div>
+                            </td>
+                            <td class="slds-truncate slds-text-body--small" data-label="commissionValue">
+                                <div class="slds-form-element slds-size--1-of-1" style="width:100px;overflow: hidden;text-overflow: ellipsis;">
+                                  {!leadWrapper.fridayEnds}
+                                </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <td class="slds-truncate slds-text-body--small" style="background-color:#ffb75d !important" data-label="monthlyAdmLabel">Saturday</td>
+                                <td class="slds-truncate slds-text-body--small" data-label="commissionValue">     
+                                <div class="slds-form-element slds-size--1-of-1" style="width:100px;overflow: hidden;text-overflow: ellipsis;">
+                                    {!leadWrapper.saturdayStarts}
+                                </div>
+                            </td>
+                            <td class="slds-truncate slds-text-body--small" data-label="commissionValue">
+                                <div class="slds-form-element slds-size--1-of-1" style="width:100px;overflow: hidden;text-overflow: ellipsis;">
+                                   {!leadWrapper.saturdayEnds}
+                                </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <td class="slds-truncate slds-text-body--small" style="background-color:#ffd49d !important" data-label="monthlyAdmLabel">Sunday</td>
+                                <td class="slds-truncate slds-text-body--small" data-label="commissionValue">     
+                                <div class="slds-form-element slds-size--1-of-1" style="width:100px;overflow: hidden;text-overflow: ellipsis;">
+                                  {!leadWrapper.sundayStarts}
+                                </div>
+                            </td>
+                            <td class="slds-truncate slds-text-body--small" data-label="commissionValue">
+                                <div class="slds-form-element slds-size--1-of-1" style="width:100px;overflow: hidden;text-overflow: ellipsis;">
+                                {!leadWrapper.sundayEnds}
+                                </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <td class="slds-truncate slds-text-body--small" style="background-color:#ffb75d !important" data-label="monthlyAdmLabel">Monday</td>
+                                <td class="slds-truncate slds-text-body--small" data-label="commissionValue">     
+                                <div class="slds-form-element slds-size--1-of-1" style="width:100px;overflow: hidden;text-overflow: ellipsis;">
+                                 {!leadWrapper.mondayStarts}
+                                </div>
+                            </td>
+                            <td class="slds-truncate slds-text-body--small" data-label="commissionValue">
+                                <div class="slds-form-element slds-size--1-of-1" style="width:100px;overflow: hidden;text-overflow: ellipsis;">
+                                   {!leadWrapper.mondayEnds}
+                                </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent"> 
+                            <td class="slds-truncate slds-text-body--small" style="background-color:#ffd49d !important" data-label="monthlyAdmLabel">Tuesday</td>
+                                <td class="slds-truncate slds-text-body--small" data-label="commissionValue">     
+                                <div class="slds-form-element slds-size--1-of-1" style="width:100px;overflow: hidden;text-overflow: ellipsis;">
+                                 {!leadWrapper.tuesdayStarts}
+                                </div>
+                            </td>
+                            <td class="slds-truncate slds-text-body--small" data-label="commissionValue">
+                                <div class="slds-form-element slds-size--1-of-1" style="width:100px;overflow: hidden;text-overflow: ellipsis;">
+                                 {!leadWrapper.tuesdayEnds}
+                                </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <td class="slds-truncate slds-text-body--small" style="background-color:#ffb75d !important" data-label="monthlyAdmLabel">Wednesday</td>
+                                <td class="slds-truncate slds-text-body--small" data-label="commissionValue">     
+                                <div class="slds-form-element slds-size--1-of-1" style="width:100px;overflow: hidden;text-overflow: ellipsis;">
+                                     {!leadWrapper.wednesdayStarts}
+                                </div>
+                            </td>
+                            <td class="slds-truncate slds-text-body--small" data-label="commissionValue">
+                                <div class="slds-form-element slds-size--1-of-1" style="width:100px;overflow: hidden;text-overflow: ellipsis;">
+                                   {!leadWrapper.wednesdayEnds}
+                                </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <td class="slds-truncate slds-text-body--small" style="background-color:#ffd49d !important" data-label="monthlyAdmLabel">Thursday</td>
+                                <td class="slds-truncate slds-text-body--small" data-label="commissionValue">     
+                                <div class="slds-form-element slds-size--1-of-1" style="width:100px;overflow: hidden;text-overflow: ellipsis;">
+                                    {!leadWrapper.thursdayStarts}
+                                </div>
+                            </td>
+                            <td class="slds-truncate slds-text-body--small" data-label="commissionValue">
+                                <div class="slds-form-element slds-size--1-of-1" style="width:100px;overflow: hidden;text-overflow: ellipsis;">
+                                    {!leadWrapper.thursdayEnds}
+                                </div>
+                            </td>
+                          </tr>
+                          <tr class="slds-hint-parent">
+                            <td class="slds-truncate slds-text-body--small" style="background-color:#ffb75d !important" data-label="monthlyAdmLabel">Bank Holidays</td>
+                                <td class="slds-truncate slds-text-body--small" data-label="commissionValue">     
+                                <div class="slds-form-element slds-size--1-of-1" style="width:100px;overflow: hidden;text-overflow: ellipsis;">
+                                   {!leadWrapper.bankholidaysStarts}
+                                </div>
+                            </td>
+                            <td class="slds-truncate slds-text-body--small" data-label="commissionValue">
+                                <div class="slds-form-element slds-size--1-of-1" style="width:100px;overflow: hidden;text-overflow: ellipsis;">
+                                     {!leadWrapper.bankholidaysEnds}
+                                </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                    </table>    
+                </div>
+            </div>
+            <div style="clear:both;"></div>
+            <div class="slds-text-body--regular slds-m-around--x-small">
+                Best time to contact:
+            </div>
+            <div class="slds-form-element slds-m-horizontal--x-small slds-m-top--small">
+                {!leadData.Best_Time_To_Contact__c}
+            </div>
+            <div class="slds-text-body--regular slds-m-around--x-small">
+                Other restaurant on hungryhouse:
+            </div>
+            <fieldset class="slds-form-element is-required">
+                <div class="slds-form-element__control">
+                <table style="max-width:500px;">
+                    <tr>
+                        <td style="width: 100px;">
+                            <label class="slds-radio slds-m-left--x-small" for="yes">
+                                <input type="radio" name="options" id="yes" />
+                                <span class="slds-radio--faux" style="{!if(leadWrapper.yes == "true", "background-color: #1589ee !important", "")}"></span>
+                                <span class="slds-text-body--small">Yes:</span>
+                            </label>
+                        </td>
+                        <td class="slds-truncate" data-label="commissionValue"  >
+                            <div class="slds-form-element slds-size--1-of-1">
+                                
+                                 <span class="slds-text-body--small">{!leadWrapper.otherRestName}</span>
+                            </div>
+                        </td>
+                        <td class="slds-truncate" data-label="commissionValue" style="max-width:80px">
+                            <div class="slds-form-element slds-size--1-of-1">
+                                 <span class="slds-text-body--small">{!leadWrapper.otherRestZip}</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="slds-radio slds-m-left--x-small" for="no">
+                                <input type="radio" name="options" id="no" />
+                                <span class="slds-radio--faux" style="{!if(leadWrapper.no == "true", "background-color: #1589ee !important", "")}"></span>
+                                <span class="slds-text-body--small">No</span>
+                            </label>
+                        </td>
+                    </tr>
+                </table>
+                 </div>
+            </fieldset>
+            <div class="slds-form-element slds-m-around--x-small slds-text-body--small">
+                <div class="slds-form-element__control">
+                  <label class="slds-checkbox">
+                    <input type="checkbox" name="options" id="termsConditions" checked="true"/>
+                    <span class="slds-checkbox--faux" style="background-color: #1589ee !important;"></span>
+                    <span class="slds-text-body--small">I hereby accept the product described above and agree to hungryhouse.com ltd’s terms and conditions</span>
+                  </label>
+                </div>
+            </div>
+            <div class="slds-form-element slds-m-around--x-small">
+                <div class="slds-form-element__control">
+                  <label class="slds-checkbox">
+                    <input type="checkbox" name="options" id="advertMaterial"  />
+                    <span class="slds-checkbox--faux" style="background-color: #1589ee !important;"></span>
+                    <span class="slds-text-body--small">I consent to receive advertising material about hungryhouse’s offers from hungryhouse.com ltd including by telephone</span>
+                  </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+    </html>
+</apex:page>

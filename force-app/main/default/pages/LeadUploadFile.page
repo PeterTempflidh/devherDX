@@ -1,0 +1,15 @@
+<apex:page standardController="Lead" showHeader="false" sidebar="true" >
+<apex:pageBlock >
+<apex:pageBlockSection >
+<apex:outputField value="{!Lead.Menu_Typing_Menu_Link__c}"  />
+<a href="javascript:void(0)" onclick="return popup('http://85.214.66.75/MenuProcessing/?kim={!Lead.id}');" class="btn" >Upload</a>
+</apex:pageBlockSection>
+</apex:pageBlock>
+<script type="text/javascript">
+function popup (url) {
+ uploadfile = window.open(url, "UploadFile", "width=400,height=100,resizable=no");
+ uploadfile.focus();
+ return false;
+}
+</script>
+</apex:page>

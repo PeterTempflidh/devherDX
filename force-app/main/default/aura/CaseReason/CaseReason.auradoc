@@ -1,0 +1,8 @@
+<aura:documentation>
+	<aura:description>
+		This component allowes users to set case type and reasons. 
+		It contains a <code>c:SearchBox</code> component and it cannot work without it<br/>
+		<code>c:SearchBox</code> component is a search textbox which seearches through Case Reason Level 3 options and enables a user to select a Case Reason Level 3 directly and populates level 2 and level 1.
+		List of possible reasons is filtered by selected case type.
+	</aura:description>
+</aura:documentation>

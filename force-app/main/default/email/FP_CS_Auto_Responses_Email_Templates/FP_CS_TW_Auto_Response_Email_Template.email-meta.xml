@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>FP CS TW Auto Reponses SP-4973</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP CS TW Auto Response Email Template</name>
+    <style>freeForm</style>
+    <subject>謝謝-您的請求{!Case.CaseNumber}已收到！</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>INFORMACIÓN SELLOS</name>
+    <style>freeForm</style>
+    <subject>INFORMACIÓN SELLOS</subject>
+    <textOnly>Estimada {!Case.Customer_Name__c}, es un gusto saludarte.
+
+Estimado {!Case.Customer_Name__c}, es un gusto saludarte.
+
+
+En esta oportunidad nos comunicamos en respuesta a su consulta sobre nuestro programa &quot;Mis Sellos&quot;.
+
+
+Para visualizar todos los locales adheridos al programa le recomendamos que utilice el filtro &quot;Sellos&quot;, con el primer pedido realizado a cualquiera de estos locales se genera una cuponera junto a su primer sello.
+
+
+Cada pedido confirmado sumará a la cuponera un sello, llegando a la suma de nueve sellos en un mismo restaurante y una misma sucursal será completada esta, la que le permitirá acceder al décimo pedido bonificado.
+
+
+El valor del pedido bonificado se calcula por un promedio de los nueve anteriores, cada cuponera tiene una validez de ciento ochenta (180) días para su uso que comienza desde la fecha de creación.
+
+
+Por mayor información puede ingresar a:
+
+https://www.pedidosya.com.uy/about/terminos-condiciones en la sección &quot;Programa Mis sellos&quot;.
+
+
+Quedamos a las órdenes ante cualquier consulta.
+
+
+
+
+Saludos,
+
+{!Case.OwnerFullName}
+
+Atención al Cliente - PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

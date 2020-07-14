@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>DH_AU_Letterhead</letterhead>
+    <name>DH AU Header and Signature</name>
+    <style>freeForm</style>
+    <subject>Delivery Hero</subject>
+    <textOnly>Kind regards,
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+Fax: {!User.Fax}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

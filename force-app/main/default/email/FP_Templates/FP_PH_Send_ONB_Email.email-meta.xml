@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>FP-PH onboarding email for Menu review</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP PH Send ONB Email</name>
+    <style>freeForm</style>
+    <subject>{!Case.Account} - Get Activated on foodpanda  Now!</subject>
+    <textOnly>Dear Partner,
+
+
+Welcome to foodpanda! We are excited to have you on board with us!
+
+Your menu has now been completed by our content team.
+
+You can view your menu via your Restaurant Portal account here. Your Restaurant Portal login credentials are provided in a separate email titled &quot;Welcome to Restaurant Portal&quot; that has already been sent to you.
+
+If you did not receive an earlier email titled &apos;Welcome to Restaurant Portal&apos;, please fill out this form.
+Click on General Inquiry &gt; Restaurant Portal Access &gt; First Time Application to get a Restaurant Portal account.
+
+Please click on this link to be on-boarded on foodpanda! https://FoodpandaSG.formstack.com/forms/welcomemenudh_ph?OID={!Case.OpportunityId__c}&amp;OStg=&amp;OName=&amp;OWID=&amp;Cdate=
+
+Sincerely,
+
+Your foodpanda Partner Care Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Erklärung Unterschied ETA und angegeben Lieferzeit durch das Restaurant</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DE_Pizza_de</letterhead>
+    <name>Sonstiges - Unterschied ETA und bestätigte Lieferzeit</name>
+    <style>freeForm</style>
+    <subject>Dein Feedback zur erwarteten Lieferzeit</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

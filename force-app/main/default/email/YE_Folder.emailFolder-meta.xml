@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>YE Folder</name>
+    <publicFolderAccess>ReadOnly</publicFolderAccess>
+    <sharedTo>
+        <roleAndSubordinates>YE_Customer_Service_Agent</roleAndSubordinates>
+        <roleAndSubordinates>YE_Customer_Service_Management</roleAndSubordinates>
+        <roleAndSubordinates>YE_Management</roleAndSubordinates>
+    </sharedTo>
+</EmailFolder>

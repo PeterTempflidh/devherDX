@@ -1,0 +1,196 @@
+<apex:component controller="CtrCreateQuote" access="global" >
+   <apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+   <apex:attribute name="oppQ" type="String" description="Placeholder" assignTo="{!oppQId}"/>
+   <div style="display:none"> "{!accountWrapper}{!commissionFee}{!listLineItems}"</div>
+   <table id="SEQuoteBorder" width="100%" cellspacing="0" cellpadding="0"  style="font-family: serif;padding: 4px;font-size: 13px; " >
+   <div style="width:100%"> <img src="{!$Resource.SE_Quote_Banner}" style="width:100%"/></div>
+     <tr>
+         <td colspan="2">
+            <h1 >Partneravtal – Deliveryhero.se/OnlinePizza.se</h1>
+         </td>
+      </tr>
+      <tr>
+         <td colspan="2">
+            <b>Restaurangnamn :</b> <b style="text-decoration: underline;">{!accountWrapper.restaurantName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+         </td>
+      </tr>
+      
+      <tr >
+         <td>
+            <h3>Startavgift platta med app + skrivare</h3>
+         </td>
+         <td align="right">{!if(registrationProduct=null,'0',registrationProduct.Listed_Price__c)} kr</td>
+      </tr>
+      <tr>
+          <td>
+         <h3>Dessutom ingår: </h3>
+         </td>
+      </tr>
+      <tr>
+         <td>Första inmatning av meny samt behandling/uppladdning av logotyp</td>
+         <td align="right">0 kr</td>
+      </tr>
+      <tr>
+         <td>Startpaket</td>
+         <td align="right">0 kr</td>
+      </tr>
+      <tr>
+         <td>Egen adress till menyn t.ex. www.pizzeria-vesuvio.se</td>
+         <td align="right">0 kr</td>
+      </tr>
+     <!-- <tr >
+         <td>Rabatt</td>
+         <td align="right"><div style="display:{!if(registrationProduct=null,'none','inline')}">{!if(registrationProduct.Discount__c=null,'0',registrationProduct.Discount__c)} kr</div>
+            <div style="display:{!if(registrationProduct=null,'inline','none')}">0 kr</div></td>
+      </tr>-->
+      <!--<tr style="font-weight:bold">
+         <td></td>
+         <td align="right">
+            Totalt 
+            <div style="display:{!if(registrationProduct=null,'none','inline')}">{!registrationProduct.Total_Amount__c}</div>
+            <div style="display:{!if(registrationProduct=null,'inline','none')}">0
+            </div>
+            kr
+         </td>
+      </tr>-->
+      <tr>
+  <td colspan="2"><hr/></td>
+</tr>
+
+      <tr>
+         <td>
+            <h3>Prislista, 2017-03-23 (exklusive moms)</h3>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            Fasta avgifter
+         </td>
+         <td align="right">0 kr</td>
+      </tr>
+     <apex:repeat value="{!listCommisionItems}" var="item">
+         <tr >
+            <td >
+               <span style="inline">{!item.Id_List_Service_Price__r.Displayed_Name__c}</span>
+            </td>
+            <td align="right" >
+               <span style="inline">{!item.Commission_In_Percentage__c} %</span>
+            </td>
+         </tr>
+      </apex:repeat>
+      <tr>
+         <td>
+            Kortavgift
+         </td>
+         <td align="right">0 kr</td>
+      </tr>
+      <tr>
+         <td>
+            Lån av utrustning
+         </td>
+         <td align="right">0 kr</td>
+      </tr>
+      <tr>
+         <td>
+            Uppdatering av meny (gratis första månaden)
+         </td>
+         <td align="right">0 kr</td>
+      </tr>
+      <tr>
+         <td>
+            Telefon- och e-postsupport
+         </td>
+         <td align="right">0 kr</td>
+      </tr>
+      <tr>
+         <td>
+            Menyer och övrigt marknadsföringsmaterial
+         </td>
+         <td align="right">Se separat prislista</td>
+      </tr>
+      <tr><td><br/></td></tr>
+      <tr>
+         <td colspan="2">
+            <b>
+               Vårt företagsnamn: 
+               <div style="text-decoration: underline;display:inline">Delivery Hero Sweden AB</div>&nbsp;&nbsp;&nbsp;&nbsp;
+               Vårt organisationsnummer:
+               <div style="text-decoration: underline;display:inline"> 556755-1527 </div> <br/>             
+               Restaurangens organisationsnummer: 
+               <div style="text-decoration: underline;display:inline">{!accountWrapper.companyId}</div>              
+               <br/><br/>Har restaurangen trådlöst internet: JA <img src="/img/checkbox_unchecked.gif"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     NEJ <img src="/img/checkbox_unchecked.gif"/><br/>
+               Restaurangen innehar F-skattsedel: JA <img src="/img/checkbox_unchecked.gif"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     NEJ <img src="/img/checkbox_unchecked.gif"/><br/>
+               <br/>Adress: 
+               <div style="text-decoration: underline;display:inline">{!accountWrapper.addressStreet}</div>
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Telefonnummer:
+               <div style="text-decoration: underline;display:inline">{!accountWrapper.restaurantPhoneNumber}</div><br/>
+               Postnummer och ort: 
+               <div style="text-decoration: underline;display:inline">{!accountWrapper.addressPostal} {!accountWrapper.addressCity}</div>
+               <br/>
+               Kontaktperson:
+               <div style="text-decoration: underline;display:inline">{!if(accountWrapper.owner2Name=null,accountWrapper.ownerName,accountWrapper.owner2Name)}</div>
+               <br/>
+               Kontaktpersonens tel:
+               <div style="text-decoration: underline;display:inline">{!if(accountWrapper.owner2Name=null,accountWrapper.ownerPhone,accountWrapper.owner2Phone)}</div>
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Epost:
+               <div style="text-decoration: underline;display:inline">{!if(accountWrapper.owner2Name=null,accountWrapper.ownerEmail,accountWrapper.owner2Email)}</div>
+               <br/><br/>
+               Bank:
+               <div style="text-decoration: underline;display:inline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+               <br/><br/>
+               Bankkonto<img src="/img/checkbox_unchecked.gif"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Clearingnummer :
+               <div style="text-decoration: underline;display:inline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kontonnummer:
+               <div style="text-decoration: underline;display:inline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+               <br/>
+               PlusGiro<img src="/img/checkbox_unchecked.gif"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BankGiro<img src="/img/checkbox_unchecked.gif"/> 
+               <div style="text-decoration: underline;display:inline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+               <br/>
+            </b>
+         </td>
+      </tr>
+      <tr><td><br/></td></tr>
+      <tr>
+         <td colspan="2">
+           <b> Härmed intygas att ovanstående uppgifter är korrekta, fullständiga samt att nedanstående <br/>
+            undertecknare är behörig firmatecknare för ovanstående företag. <span style="color:red">Vänd sida för villkor!</span> </b>
+         </td>
+      </tr>
+      <tr><td><br/></td></tr>
+      <tr>
+         <td>
+            Datum:
+            <div style="text-decoration: underline;display:inline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+         </td>
+      </tr>
+      <tr><td><br/><br/></td></tr>
+      <tr>
+         <td width="450px">
+            <div style="text-decoration: overline;display:inline">Underskrift Delivery Hero Sweden AB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+         </td>
+         <td align="right">
+            <div style="text-decoration: overline;display:inline">Underskrift restaurang&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+         </td>
+      </tr>
+      <tr><td><br/><br/></td></tr>
+      <tr>
+         <td width="450px">
+            <div style="text-decoration: overline;display:inline">Namnförtydligande Delivery Hero Sweden AB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+         </td>
+         <td align="right">
+            <div style="text-decoration: overline;display:inline">Namnförtydligande restaurang&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+         </td>
+      </tr>
+      <tr><td><br/></td></tr>
+      <tr>
+         <td></td>
+         <td align="right">Vänd sida!</td>
+      </tr>
+      <!--<tr><td colspan="2"><img style="align:center;width: 100%;" src="{!URLFOR($Resource.SEOnlinepizzaFooterLogo)}" /></td></tr>-->
+   </table>
+   
+   <!--<img style="align:center;width: 100%;" src="{!URLFOR($Resource.SEOnlinepizzaFooterLogo)}" />-->
+   <img style="align:center;width:96%" src="{!URLFOR($Resource.SE_TC_v2)}" />
+   <!--<img style="align:center;width: 100%;" src="{!URLFOR($Resource.SEOnlinepizzaFooterLogo)}" />-->
+   
+</apex:component>

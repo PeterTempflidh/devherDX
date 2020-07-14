@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>SSC-1992</description>
+    <label>Salesforce Product and Operations</label>
+    <permissionSets>Account_Clone</permissionSets>
+    <permissionSets>Clone_Account</permissionSets>
+    <permissionSets>Create_Run_Report</permissionSets>
+    <permissionSets>Export_Reports</permissionSets>
+    <permissionSets>Loop__DDP_User_All</permissionSets>
+    <permissionSets>Salesforce_Product_and_Operations</permissionSets>
+    <permissionSets>Transfer_Record</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>

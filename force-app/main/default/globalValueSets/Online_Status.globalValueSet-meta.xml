@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Online</fullName>
+        <default>false</default>
+        <label>Online</label>
+    </customValue>
+    <customValue>
+        <fullName>Offline</fullName>
+        <default>false</default>
+        <label>Offline</label>
+    </customValue>
+    <customValue>
+        <fullName>On Holiday</fullName>
+        <default>false</default>
+        <label>On Holiday</label>
+    </customValue>
+    <customValue>
+        <fullName>In Acquisition</fullName>
+        <default>false</default>
+        <label>In Acquisition</label>
+    </customValue>
+    <customValue>
+        <fullName>Quality Check</fullName>
+        <default>false</default>
+        <label>Quality Check</label>
+    </customValue>
+    <customValue>
+        <fullName>MP - Initiated</fullName>
+        <default>false</default>
+        <label>MP - Initiated</label>
+    </customValue>
+    <customValue>
+        <fullName>MP - Final Check</fullName>
+        <default>false</default>
+        <label>MP - Final Check</label>
+    </customValue>
+    <customValue>
+        <fullName>MP - Changes Requested</fullName>
+        <default>false</default>
+        <label>MP - Changes Requested</label>
+    </customValue>
+    <customValue>
+        <fullName>MP - Approval Pending</fullName>
+        <default>false</default>
+        <label>MP - Approval Pending</label>
+    </customValue>
+    <customValue>
+        <fullName>MP - Take Online</fullName>
+        <default>false</default>
+        <label>MP - Take Online</label>
+    </customValue>
+    <customValue>
+        <fullName>MP - Backend ID Creation</fullName>
+        <default>false</default>
+        <label>MP - Backend ID Creation</label>
+    </customValue>
+    <customValue>
+        <fullName>MP - Menu Typing</fullName>
+        <default>false</default>
+        <label>MP - Menu Typing</label>
+    </customValue>
+    <customValue>
+        <fullName>MP - Delivery Area</fullName>
+        <default>false</default>
+        <label>MP - Delivery Area</label>
+    </customValue>
+    <customValue>
+        <fullName>Temporary Offline</fullName>
+        <default>false</default>
+        <label>Temporary Offline</label>
+    </customValue>
+    <customValue>
+        <fullName>Onboarding</fullName>
+        <default>false</default>
+        <label>Onboarding</label>
+    </customValue>
+    <customValue>
+        <fullName>Take Online</fullName>
+        <default>false</default>
+        <label>Take Online</label>
+    </customValue>
+    <customValue>
+        <fullName>0</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>0</label>
+    </customValue>
+    <customValue>
+        <fullName>true</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>true</label>
+    </customValue>
+    <customValue>
+        <fullName>false</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>false</label>
+    </customValue>
+    <customValue>
+        <fullName>Offline - current day</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Offline - current day</label>
+    </customValue>
+    <masterLabel>Online Status</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>您提供的餐點照片不符合圖片規範</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP TW Menu Change - DLP can’t be edited</name>
+    <style>freeForm</style>
+    <subject>您提供的餐點照片不符合圖片規範</subject>
+    <textOnly>親愛的foodpanda夥伴，
+
+
+
+很抱歉，由於您目前提供的餐點照片不符合我們的圖片規範，因此我們將無法協助您上傳。
+
+請確認餐點照片符合下列規範：
+
+
+
+90度俯視圖或0度平視圖
+
+餐點需廣角置中
+
+請勿提供去背、壓文字、浮水印或有人手、身體等照片
+
+最小尺寸 - 4000x2925(1MB以上)
+
+
+詳細規範請參考此文件:https://docs.google.com/presentation/d/1ZfxT2K3LNxhsKKg98ANdqpgA18uBpQwvK5Nway--nDc/edit#slide=id.g2a717cd843_0_38
+
+
+
+請留意，若無完整餐點資訊，我們將無法協助於平台上更新。
+
+如有任何疑問請透過店家服務部電子郵件：partner@foodpanda.tw。
+
+
+
+祝您有個美好的一天！
+
+foodpanda團隊
+
+(# {!Case.CaseNumber})</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

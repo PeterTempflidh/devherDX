@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>你的餐單改變包括了價格上升 Your menu change contains Price MarkUp</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP MM Menu Change - Can’t be typed - Due to markup</name>
+    <style>freeForm</style>
+    <subject>你的餐單改變包括了價格上升 Your menu change contains Price MarkUp</subject>
+    <textOnly>親愛的合作餐廳：
+
+
+你最近要求更改你的網上餐單，而我們發現該餐單之價格跟餐廳堂食價有所出入，所以煩請再次查看網上餐單，將最新價格傳送給我們，好讓我們作出更改。
+
+
+有其他疑問？請電郵至 partner@foodpanda.hk 或致電 +852 5819 8997。我們樂意解答。
+
+謝謝，
+
+你的 foodpanda 合作餐廳服務小組
+
+
+Dear Restaurant Partner,
+
+
+You have recently requested a menu update for your online menu.
+
+We have noticed however that the prices in the menu you sent us do not match the dine-in prices of your menu.
+
+We would like to kindly request you that check again the online menu and send us the updated prices so that we can proceed with the changes you have requested.
+
+
+Any questions? Feel free to contact us per E-Mail* partner@foodpanda.hk *or via phone under  +852 5819 8997.
+
+
+We are happy to help you!
+
+
+See you soon,
+
+Your foodpanda Partner Care Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

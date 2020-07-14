@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Clickdelivery</letterhead>
+    <name>Producto Faltante</name>
+    <style>formalLetter</style>
+    <subject>Producto Faltante</subject>
+    <textOnly>Usuario no contesta 
+
+Hola (Nombre del usuario), queremos hablar contigo pero no ha sido posible encontrarte en el número que nos brindas (1234567890). Nos gustaría saber en qué momento nos podemos contactar contigo o si tienes otro número de contacto para poder ayudarte con tu solicitud de producto faltante .  Que tengas buen día, gracias por preferirnos.  
+
+Usuario confirma 
+
+Hola (Nombre del usuario), nos alegra escucharte y te queremos confirmar que (solución brindada de producto faltante ). Cualquier inquietud no dudes en contactarnos, movemos el mundo por ti .  
+
+
+Respuesta inmediata.
+
+Hola (Nombre del usuario), te ofrecemos disculpas por esta experiencia, te confirmamos que realizamos la gestión de tu solicitud y el restaurante ( solución brindada de producto faltante). Nuestros dom ihéroes están 24/7 para colaborarte con todo lo que necesites.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

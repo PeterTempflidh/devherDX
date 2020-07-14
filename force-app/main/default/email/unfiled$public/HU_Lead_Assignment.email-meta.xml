@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>HU_Letterhead</letterhead>
+    <name>HU Lead Assignment</name>
+    <style>freeForm</style>
+    <subject>Új lead let létrehozva</subject>
+    <textOnly>Helló,
+
+Új lead {!Lead.GRID__c} lett létrehozva manuálisan, kérlek segíts a lead értékelésében. Amenyiben a lead megfelelő, kérlek, küld vissza annak a kollégádnak, aki a lead-et létrehozta.
+
+{!Lead.Link}
+
+Köszönjük!</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

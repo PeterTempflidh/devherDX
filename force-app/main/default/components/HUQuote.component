@@ -1,0 +1,475 @@
+<apex:component controller="CtrCreateQuote" access="global">
+    <apex:attribute name="oppQ" type="String" description="Placeholder" assignTo="{!oppQId}"/>
+    <apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+
+    <html>
+    <head>
+        <style type="text/css">
+                /* A4 size */
+
+                @page {
+                    size: A4;
+                }
+
+                @media print {
+                    .pageBreak {
+                        page-break-after: always;
+                    }
+                }
+
+                div.footer {
+                    display: block;
+                    padding: 5px;
+                    position: running(footer);
+                }
+
+                .tableFormat {
+                    border: 1px solid black;
+                }
+
+                .tableFormat tr{
+                    border: 1px solid black;
+                }
+
+                .tableFormat td{
+                    border: 1px solid black;
+                }
+
+            </style>
+    </head>
+    <body style="font-family: Arial Unicode MS;font-size: 11px;">
+    <div id="HU_QUOTEHEADER" style="width:700px;">
+        <div style="width:50%;float:left;">
+            <img src="{!URLFOR($Resource.Netpincer_Logo2)}" style="width: 50%;" />
+            <div>
+                <b>{!$Label.HU_QuoteHeader1}</b>
+            </div>
+            <apex:outputPanel id="outputPanelHeader" rendered="{!isLogisticsFee}">
+                <div>
+                    <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{!$Label.HU_QuoteHeader2}</b>
+                </div>
+            </apex:outputPanel>
+        </div>
+        <div id="RestDesc" style="width:50%;vertical-align: top; float:right;" >
+            <c:HULetterHead addressString="{!accountWrapper.letterheadAddress}"/>
+        </div>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <div style="display:block;text-align:right;width:100%">
+            <table style="width:100%">
+                <tr>
+                    <td style="padding:0px;text-align:right">{!opportunity.Owner.LastName} {!opportunity.Owner.FirstName}</td>
+                </tr>
+                <tr>
+                    <td style="padding:0px;text-align:right">
+                        <apex:outputText value="{0,date,yyyy'.'MM'.'dd}">
+                            <apex:param value="{!oppQuote.CreatedDate}" />
+                        </apex:outputText>
+                    </td>
+                </tr>
+                <apex:repeat value="{!accountwrapper.entityname}" var="addLine">
+                    <tr>
+                        <td style="padding:0px;text-align:right">
+                            {!addLine}
+                        </td>
+                    </tr>
+                </apex:repeat>
+            </table>
+        </div>
+        <br/>
+        <div style="width:100%">
+            <div style="text-align: justify;">
+                {!$Label.HU_Quote1}
+            </div>
+            <br/>
+            <!-- RESTAURANT DETAILS -->
+            <table class="tableFormat" border="1" style="width:100%;border-collapse: collapse;">
+                <tr>
+                    <td>
+                        {!$Label.HU_Quote_LegalName} {!accountWrapper.legalName}
+                    </td>
+                    <td>
+                        {!$Label.HU_Quote_CompanyName} {!accountWrapper.companyName}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {!$Label.HU_Quote_TaxNumber} {!accountWrapper.taxNumber}
+                    </td>
+                    <td>
+                        {!$Label.HU_Quote_PhoneNumber} {!accountWrapper.restaurantPhoneNumber}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {!$Label.HU_Quote_RestaurantAddress} {!accountWrapper.restaurantAddress}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {!$Label.HU_Quote_BillingAddress} {!accountWrapper.billingAddress}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {!$Label.HU_Quote_ShippingAddress} {!accountWrapper.shippingAddress}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {!$Label.HU_Quote_OwnerName} {!accountWrapper.ownerLastname} {!accountWrapper.ownerFirstname}
+                    </td>
+                    <td>
+                        {!$Label.HU_Quote_PhoneNumber} {!accountWrapper.ownerMobilePhone}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {!$Label.HU_Quote_OwnerEmail} {!accountWrapper.ownerEmail}
+                    </td>
+                    <td>
+                        {!$Label.HU_Quote_BanNumber} {!accountWrapper.bankAccountNumber}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {!$Label.HU_Quote_BillingName} {!accountWrapper.billingLastname} {!accountWrapper.billingFirstname}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {!$Label.HU_Quote_OwnerEmail} {!accountWrapper.billingContactEmail}
+                    </td>
+                    <td>
+                        {!$Label.HU_Quote_PhoneNumber} {!accountWrapper.billingMobilePhone}
+                    </td>
+                </tr>
+            </table>
+            <div style="text-align: justify;">
+                {!$Label.HU_Quote2}
+            </div>
+            <br/>
+
+            <!-- [show below if the product commission type is “commission fee”] Marketplace -->
+            <apex:outputPanel id="outputPanel1" rendered="{!isCommissionFee}">
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote3}
+                </div>
+                <br/>
+            </apex:outputPanel>
+
+            <!-- [show below if  the product commission type is “logistics fee”] Netpincer GO -->
+            <apex:outputPanel id="outputPanel2" rendered="{!isLogisticsFee}">
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote4}
+                </div>
+                <br/>
+            </apex:outputPanel>
+
+            <apex:outputPanel >
+                <div style="text-align: justify;">
+                    <b>{!$Label.HU_Quote_TC1}
+                    </b>
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_TC11}
+                </div>
+                <br/>
+
+                <table class="tableFormat" border="1" style="width: 100%;border-collapse: collapse;">
+                    <tr>
+                        <th>
+                            {!$Label.HU_Quote_DisplayedName}
+                        </th>
+                        <th style="text-align:center">
+                            {!$Label.HU_Quote_ComInPer}
+                        </th>
+                        <th style="text-align:center">
+                            {!$Label.HU_Quote_ComPerOrder}
+                        </th>
+                        <th style="text-align:center">
+                            {!$Label.HU_Quote_StartDate}
+                        </th>
+                        <th style="text-align:center">
+                            {!$Label.HU_Quote_EndDate}
+                        </th>
+                    </tr>
+                    <apex:repeat value="{!listCommisionItems}" var="lineItem1">
+                        <tr>
+                            <td>
+                                {!lineItem1.Id_List_Service_Price__r.Displayed_Name__c}
+                            </td>
+                            <td style="text-align:center">
+                                {!lineItem1.Commission_In_Percentage__c} %
+                            </td>
+                            <td style="text-align:center">
+                                {!lineItem1.Commission_Per_Order__c}
+                            </td>
+                            <td style="text-align:center">
+                                <apex:outputText value="{0,date,yyyy'.'MM'.'dd}">
+                                    <apex:param value="{!lineItem1.Start_Date__c}" />
+                                </apex:outputText>
+                            </td>
+                            <td style="text-align:center">
+                                <apex:outputText value="{0,date,yyyy'.'MM'.'dd}">
+                                    <apex:param value="{!lineItem1.End_Date__c}" />
+                                </apex:outputText>
+                            </td>
+                        </tr>
+                    </apex:repeat>
+                </table><br/>
+                <br/>
+            </apex:outputPanel>
+
+            <!--[show below if there is additional charges,asset added in the opp] !-->
+            <apex:outputPanel rendered="{!listLineItems.size > 0}" >
+                <table class="tableFormat" border="1" style="width: 100%;border-collapse: collapse;">
+                    <tr>
+
+                        <th style="text-align:center">
+                            {!$Label.HU_Quote_LineItemName}
+                        </th>
+                        <th style="text-align:center">
+                            {!$Label.HU_Quote_StartDate}
+                        </th>
+                        <th style="text-align:center">
+                            {!$Label.HU_Quote_EndDate}
+                        </th>
+                    </tr>
+                    <apex:repeat value="{!listLineItems}" var="lineItem2">
+                        <tr>
+                            <td>
+                                <apex:outputField value="{!lineItem2.Name}" ></apex:outputField>
+                            </td>
+                            <td style="text-align:center">
+                                <apex:outputText value="{0,date,yyyy'.'MM'.'dd}">
+                                    <apex:param value="{!lineItem2.Start_Date__c}" />
+                                </apex:outputText>
+                            </td>
+                            <td style="text-align:center">
+                                <apex:outputText value="{0,date,yyyy'.'MM'.'dd}">
+                                    <apex:param value="{!lineItem2.End_Date__c}" />
+                                </apex:outputText>
+                            </td>
+                        </tr>
+                    </apex:repeat>
+                </table><br/>
+                <br/>
+            </apex:outputPanel>
+
+            <!--[show below if there is add-on added in the opp] !-->
+            <apex:outputPanel rendered="{!listAddOnItems.size > 0}" >
+                <table class="tableFormat" border="1" style="width: 100%;border-collapse: collapse;">
+                    <tr>
+                        <th>
+                            {!$Label.HU_Quote_AddOnName}
+                        </th>
+                        <th style="text-align:center">
+                            {!$Label.HU_Quote_ContractAddition}
+                        </th>
+                        <th style="text-align:center">
+                            {!$Label.HU_Quote_Specification}
+                        </th>
+                        <th style="text-align:center">
+                            {!$Label.HU_Quote_StartDate}
+                        </th>
+                        <th style="text-align:center">
+                            {!$Label.HU_Quote_EndDate}
+
+                        </th>
+                    </tr>
+                    <apex:repeat value="{!listAddOnItems}" var="lineItem3" >
+                        <tr>
+                            <td>
+                                {!lineItem3.Name}
+                            </td>
+                            <td style="text-align:left">
+                                <apex:outputField value="{!lineItem3.Contract_Addition__c}" ></apex:outputField>
+                            </td>
+                            <td style="text-align:center">
+                                {!lineItem3.Specifications__c}
+                            </td>
+                            <td style="text-align:center">
+                                <apex:outputText value="{0,date,yyyy'.'MM'.'dd}">
+                                    <apex:param value="{!lineItem3.Start_Date__c}" />
+                                </apex:outputText>
+                            </td>
+                            <td style="text-align:center">
+                                <apex:outputText value="{0,date,yyyy'.'MM'.'dd}">
+                                    <apex:param value="{!lineItem3.End_Date__c}" />
+                                </apex:outputText>
+                            </td>
+                        </tr>
+                    </apex:repeat>
+                </table>
+                <br/>
+            </apex:outputPanel>
+
+            <!-- TERMS AND CONDITIONS -->
+            <!--[show below if the product commission type is “commission fee”] Marketplace !-->
+            <apex:outputPanel id="outputPanel5" rendered="{!isCommissionFee}">
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_CF_TC12}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_CF_TC13}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_CF_TC14}
+                </div>
+                <div style="text-align: justify;">
+                    <b>{!$Label.HU_Quote_CF_TC2}</b>
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_CF_TF21}
+                </div>
+                <div style="text-align: justify;">
+                    <b>{!$Label.HU_Quote_CF_TC3}</b>
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_CF_TC31}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_CF_TC32}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_CF_TC33}
+                </div>
+                <div style="text-align: justify;">
+                    <b>{!$Label.HU_Quote_CF_TC4}</b>
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_CF_TC41}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_CF_TC42}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_CF_TC43}
+                </div>
+                <div style="text-align: justify;">
+                    <b>{!$Label.HU_Quote_CF_TC5}</b>
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_CF_TC51}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_CF_TC52}
+                </div>
+                <div style="text-align: justify;">
+                    <b>{!$Label.HU_Quote_CF_TC6}</b>
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_CF_TC61}
+                </div>
+                <div style="text-align: justify;">
+                    <br/>{!$Label.HU_Quote_CF_TCX}
+                </div><br/>
+            </apex:outputPanel>
+
+            <!--[show below if  the product commission type is “logistics fee”] Netpincer GO !-->
+            <apex:outputPanel id="outputPanel6" rendered="{!isLogisticsFee}">
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_LF_TC12}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_LF_TC13}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_LF_TC14}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_LF_TC15}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_LF_TC16}
+                </div>
+                <div style="text-align: justify;">
+                    <b>{!$Label.HU_Quote_LF_TC2}</b>
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_LF_TC21}
+                </div>
+                <div style="text-align: justify;">
+                    <b>{!$Label.HU_Quote_LF_TC3}</b>
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_LF_TC31}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_LF_TC32}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_LF_TC33}
+                </div>
+                <div style="text-align: justify;">
+                    <b>{!$Label.HU_Quote_LF_TC4}</b>
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_LF_TC41}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_LF_TC42}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_LF_TC43}
+                </div>
+                <div style="text-align: justify;">
+                    <b>{!$Label.HU_Quote_LF_TC5}</b>
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_LF_TC51}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_LF_TC52}
+                </div>
+                <div style="text-align: justify;">
+                    <b>{!$Label.HU_Quote_LF_TC6}</b>
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_Quote_LF_TC61}
+                </div>
+                <div style="text-align: justify;">
+                    <br/>{!$Label.HU_Quote_LF_TCX}
+                </div><br/>
+            </apex:outputPanel>
+
+            <table style="page-break-inside:avoid; width: 90%;">
+                <tr>
+                    <th style="text-align:left; width: 100%;">
+                        {!$Label.HU_Quote_Signature1}<br/><br/>
+                    </th>
+                </tr>
+                <tr  style="text-align:center;">
+                    <td>
+                        <br/>____________________________________________
+                    </td>
+                    <td>
+                        <br/>____________________________________________
+                    </td>
+                </tr>
+                <tr  style="text-align:center;">
+                    <td>
+                        <b>{!$Label.HU_Quote_Signature2}</b>
+                    </td>
+                    <td>
+                        {!accountWrapper.legalName}
+                    </td>
+                </tr>
+                <tr  style="text-align:center;">
+                    <td>
+                        {!$Label.HU_Quote_Signature3}
+                    </td>
+                    <td>
+                        {!$Label.HU_Quote_Signature4}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div>{!$Label.HU_Quote_Version}</div>
+    </div>
+    </body>
+    </html>
+</apex:component>

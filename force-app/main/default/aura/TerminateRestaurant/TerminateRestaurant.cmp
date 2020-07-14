@@ -1,0 +1,51 @@
+<aura:component access="global" implements="force:lightningQuickAction,force:hasRecordId,force:hasSObjectName,flexipage:availableForRecordHome"
+                controller="AccountControllerLightning">
+
+    <ltng:require styles="{!$Resource.SLDS274 + '/assets/styles/lightning-design-system-ltng.css'}"/>
+
+    <aura:attribute name="ModalBoxCmp" type="boolean" default="false"/>
+    <aura:attribute name="modalTitle" type="String" default="Modal Title"/>
+    <aura:attribute name="buttonText" type="String" default="Button text"/>
+    <aura:attribute name="userMessage" type="String" default=""/>
+    <aura:attribute name="showFooter" type="boolean" default="true"/>
+    <aura:attribute name="showNewPage" type="boolean" default="true"/>
+
+    <lightning:workspaceAPI aura:id="workspace" />
+   
+    <lightning:button class="slds-button slds-button_text-destructive widebutton"
+                      label="{!v.buttonText}"
+                      onclick="{!c.OpenChildComponent}"/>
+
+    <aura:handler name="caseReasonSaved" event="c:compEvent" action="{!c.closeDlPopup}"/>
+    <aura:handler name="caseReasonCanceled" event="c:compEvent" action="{!c.closeDlPopup}"/>
+
+    <!--<aura:set attribute="else">-->
+    <aura:if isTrue="{!v.ModalBoxCmp}">
+
+        <div class="demo-only" style="height: 640px;">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse CrossBtn" title="Close" onclick="{!c.closeDlPopup}">
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{!v.modalTitle}</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    {!$Label.c.Terminate_Restaurant_Confirmation_Message}
+                    <br/><br/>
+                    <span style="color:red">{!v.userMessage}</span>
+                </div>
+                <footer class="slds-modal__footer">
+                    <aura:if isTrue="{!v.showFooter}">
+                        <button class="slds-button slds-button_neutral" onclick="{!c.closeDlPopup}">Cancel</button>
+                        <button class="slds-button slds-button_brand" onclick="{!c.terminateRestaurantJs}">Yes</button>
+                    </aura:if>
+                </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </aura:if>
+        
+</aura:component>

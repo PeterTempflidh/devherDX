@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>FI Restaurant Online SurveyGizmo</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>FI_RestaurantOnline_SurveyGizmo</name>
+    <style>none</style>
+    <subject>Olitko tyytyväinen?</subject>
+    <textOnly>PIZZA ONLINE.FI
+
+Olitko tyytyväinen?
+
+Paina tästä avataksesi sähköposti selaimessa
+
+Olitko tyytyväinen?
+
+Hei
+
+Kiitos, että työskentelet Pizza-online.fi:n kanssa. Arvokas palautteesi auttaa meitä parantamaan yhteistyötä kanssanne.
+
+Asteikolla 0-10, kuinka todennäköisesti suosittelisit yhteistyötä Pizza-online.fi:n kanssa? Klikkaa numeroa alla.
+
+Epätodennäköisesti        Erittäin todennäköisesti
+
+Kiitos palautteestasi!
+Pizza-online.fi:n tiimi
+
+Tämä viesti on lähetetty sinulle osana SLM Finland Oy:n asiakassuhdeviestintää
+
+SLM Finland Oy: Pasilankatu 10, 00240 Helsinki, Suomi - Finland
+Palvelunumeromme: +358-2-9300 0471, Sähköpostilla: ravintolat@pizza-online.fi
+Y-tunnus: 1936684-6</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

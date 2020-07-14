@@ -1,0 +1,13 @@
+Dear {!Opportunity.OwnerFullName}
+
+The {!Case.Type} case for the following deal has been Closed. Please look into the case comments and perform the necessary action.
+
+Case Number: {!Case.CaseNumber}
+-----------------------------------------------------------
+Account Name:{!Account.Name}
+-----------------------------------------------------------
+Closed Reason: {!Case.Closed_Reason__c}
+
+
+Thanks
+Finance Team

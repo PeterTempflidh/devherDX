@@ -1,0 +1,21 @@
+<aura:component >
+    <aura:attribute name="recordError" type="String"/>
+    <aura:attribute name="theme" type="String" default="slds-theme--error"/>
+    
+    <div class="test-id__section slds-is-open full forcePageBlockSection forcePageBlockSectionView slds-theme_default slds-card">
+        <section role="dialog" >
+            <div class="{!'slds-notify slds-notify--alert ' + v.theme + ' slds-theme--alert-texture slds-text-heading_medium'}" role="alert">
+                
+                <button class="slds-button slds-notify__close slds-button--icon-inverse" title="Close" onclick="{!c.hideError}">
+                    <lightning:icon iconName="action:close" size="xx-small" alternativeText="Close" />
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                
+                <span class="slds-assistive-text">Error</span>
+                <h2>
+                    <b>{!v.recordError}</b>
+                </h2>
+            </div>
+        </section>
+    </div>
+</aura:component>

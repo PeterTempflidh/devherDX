@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY Mas de 1 Contacto Own Delivery Contactado PQP</name>
+    <style>freeForm</style>
+    <subject>Mas de 1 contacto - Own Delivery (logísticos) - Contactado - Fail Rate</subject>
+    <textOnly>Estimado XXX,
+
+En esta oportunidad nos comunicamos para dejarte un breve resumen de nuestra (segunda, tercera, cuarta) llamada del día XXX, donde hablamos sobre el rendimiento de tu local XXX. Hemos notado que (hubo/no hubo) una mejora en cuanto a la cantidad de pedidos rechazados, en comparación con los indicadores del contacto anterior. 
+
+Es relevante tener en cuenta que con cada rechazo estamos perjudicando la experiencia de nuestros usuarios, aquellos que eligen pedir a tu local por PedidosYa.  Luego de recibir un rechazo, la mayoría de los usuarios optan por cambiar de local para su próximo pedido.
+
+AGREGAR RESUMEN DE LLAMADA:
+Motivos conversados/Problema detectado/Solución acordada.
+
+Adjunto folleto con las vías de contacto y manual de uso del Partner Portal. Es de suma importancia seguir las buenas prácticas para mantener la satisfacción de los clientes. Recuerde que haremos un seguimiento en los próximos días en caso de que los objetivos no hayan sido alcanzados. 
+
+Quedo a las órdenes. 
+
+Saludos,
+Nombre + inicial
+Partner Quality Advisor
+PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

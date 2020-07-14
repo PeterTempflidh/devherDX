@@ -1,0 +1,117 @@
+<!--
+	Renders the attachments list related to given record and provides
+	utility methods to upload new attachment or delete old ones
+-->
+<apex:component controller="CtrLDSAttachmentsRelatedList" allowDML="true">
+	
+	<apex:attribute name="recordId" type="String" required="true" description="Parent record for the attachments" assignTo="{!parentId}" />
+
+	<!-- OPTIONAL ATTRIBUTES -->
+
+
+	<apex:form id="attachmentForms">
+
+		<apex:actionFunction name="uploadAf" action="{!uploadAttachment}" />
+
+		<div class="slds" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+			<!-- attachments related list -->
+			<article class="slds-card slds-box">
+				<div class="slds-card__header slds-grid">
+					<header class="slds-media slds-media--center slds-has-flexi-truncate">
+						<div class="slds-media__figure">
+							<svg aria-hidden="true" class="slds-icon slds-icon--small">
+								<use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/doctype-sprite/svg/symbols.svg#attachment')}"></use>
+							</svg>
+						</div>
+						<div class="slds-media__body slds-truncate">
+							<h2>
+								<a href="javascript:void(0);" class="slds-text-link--reset" style="cursor: default">
+									<span class="slds-text-heading--small">Attachments</span>
+								</a>
+							</h2>
+						</div>
+					</header>
+					<div class="slds-no-flex">
+						<div class="slds-form-element">
+							<div class="slds-form-element__control">
+								<div class="slds-file-selector slds-file-selector--files">
+									<apex:inputFile contentType="{!newAttachment.ContentType}" 
+									fileName="{!newAttachment.Name}" 
+									fileSize="{!newAttachment.BodyLength}" 
+									value="{!newAttachment.Body}" 
+									styleClass="slds-file-selector__input slds-assistive-text" 
+									onchange="uploadAf()"
+									id="ldsFileUploadInput01"/>
+									<label class="slds-file-selector__body" for="{!$Component.ldsFileUploadInput01}">
+										<span class="slds-file-selector__button slds-button slds-button--neutral" style="cursor: pointer;">
+											<svg aria-hidden="true" class="slds-button__icon slds-button__icon--left">
+												<use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/utility-sprite/svg/symbols.svg#upload')}"></use>
+											</svg>Upload Files</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="slds-card__body slds-scrollable--x">
+					<table class="slds-table slds-table--bordered slds-no-row-hover slds-table--cell-buffer">
+						<thead>
+							<tr class="slds-text-title--caps">
+								<th scope="col">
+									<div class="slds-truncate" title="Action">Action</div>
+								</th>
+								<th scope="col">
+									<div class="slds-truncate" title="{!$ObjectType.Attachment.fields.Name.Label}">
+										{!$ObjectType.Attachment.fields.Name.Label}
+									</div>
+								</th>
+								<th scope="col">
+									<div class="slds-truncate" title="{!$ObjectType.Attachment.fields.ContentType.Label}">
+										{!$ObjectType.Attachment.fields.ContentType.Label}
+									</div>
+								</th>
+								<th scope="col">
+									<div class="slds-truncate" title="{!$ObjectType.Attachment.fields.LastModifiedById.Label}">
+										{!$ObjectType.Attachment.fields.LastModifiedById.Label}
+									</div>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<apex:repeat var="att" value="{!attachments}">
+								<tr class="slds-hint-parent">
+									<th scope="row">
+										<div class="slds-truncate">
+											<a href="{!URLFOR($Action.Attachment.Download, att.id)}" target="_blank">Download</a>
+											&nbsp; | &nbsp;
+											<apex:commandLink action="{!deleteAttachment}" value="Delete">
+												<apex:param id="first" name="first" assignTo="{!toDelete}" value="{!att.id}" />
+											</apex:commandLink>
+										</div>
+									</th>
+									<td>
+										<div class="slds-truncate" title="{!att.Name}">
+											{!att.name}
+										</div>
+									</td>
+									<td>
+										<div class="slds-truncate" title="{!att.ContentType}">
+											{!att.ContentType}
+										</div>
+									</td>
+									<td>
+										<div class="slds-truncate" title="{!att.LastModifiedBy.Name}">
+											{!att.LastModifiedBy.Name}
+										</div>
+									</td>
+								</tr>
+							</apex:repeat>
+						</tbody>
+					</table>
+				</div>
+			</article>
+		</div>
+
+	</apex:form>
+
+</apex:component>

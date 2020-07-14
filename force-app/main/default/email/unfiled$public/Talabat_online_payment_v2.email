@@ -1,0 +1,7 @@
+<messaging:emailTemplate subject="Subscription Contract"  recipientType="Contact" relatedToType="Opportunity" >
+<messaging:htmlEmailBody >
+<c:TalabatQuoteOnlinePayment acct="{!relatedTo.AccountId}" opp="{!relatedTo.Id}" />
+</messaging:htmlEmailBody>
+<messaging:attachment renderAs="PDF" filename="Online Payment.pdf">       
+</messaging:attachment>
+</messaging:emailTemplate>

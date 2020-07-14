@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>DE - CC - Burger King Customer</name>
+    <publicFolderAccess>ReadOnly</publicFolderAccess>
+    <sharedTo>
+        <group>Global_International_Team</group>
+        <role>DE_Customer_Care</role>
+        <role>DE_Customer_Care_Management</role>
+        <role>DE_Editorial</role>
+        <role>DE_Logistics</role>
+        <role>DE_Restaurant_Operations</role>
+    </sharedTo>
+</EmailFolder>

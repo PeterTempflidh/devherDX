@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Send_approved_email</fullName>
+        <description>Send approved email</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Quote_Line_Item_Approved</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_line_item_request_email</fullName>
+        <description>Send approve request email to assigned approver</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Approver2__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Approver3__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Approver4__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Approver__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Quote_Line_Item_Approval_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_rejected_email</fullName>
+        <description>Send rejected email</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Quote_Line_Item_Rejected</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Set_Status</fullName>
+        <field>Status__c</field>
+        <literalValue>Submitted For Approval</literalValue>
+        <name>Set Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Status_Approved</fullName>
+        <field>Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Set Status Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Status_Recalled</fullName>
+        <field>Status__c</field>
+        <literalValue>Recalled</literalValue>
+        <name>Set Status Recalled</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Status_Rejected</fullName>
+        <field>Status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>Set Status Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+</Workflow>

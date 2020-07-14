@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Clickdelivery</letterhead>
+    <name>Desconocimiento</name>
+    <style>formalLetter</style>
+    <subject>Desconocimiento</subject>
+    <textOnly>Gracias por comunicarse con Domicilios.com. Hemos recibido su solicitud y le informamos que para este tipo de requerimientos debe proceder a realizar su reclamación con el banco emisor de su tarjeta de crédito y reportar el desconocimiento de estas transacciones. En el vínculo ubicado en la parte inferior de este correo encontrará indicaciones que podrá seguir como recomendaciones que aplican para esta solicitud y la podrán orientar en el proceso a realizar. Si desea bloquear  el uso de su tarjeta de crédito puede proceder a borrarla desde la aplicación o si no la ha tenido registrada con Domicilios.com debe informarlo a su entidad bancaria.
+
+Le reiteramos nuestras disculpas ante esta situación y le recordamos que estaremos muy atentos para colaborar con las autoridades competentes para solucionar de la mejor forma este requerimiento y ayudar en lo que sea necesario de acuerdo a los protocolos legales.
+
+http://www.asobancaria.com/sabermassermas/que-hacer-cuando-le-clonan-su-tarjeta/
+
+Quedamos atentos a cualquier inquietud o comentario</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

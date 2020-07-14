@@ -1,0 +1,40 @@
+.THIS .good{
+    background-color:forestgreen !important;
+    color: white;
+    cursor:not-allowed;
+}
+.THIS .ok{
+    background-color:orange !important;
+    color: white;
+    cursor:not-allowed;
+}
+.THIS .bad{
+    background-color:darkred !important;
+    color: white;
+    cursor:not-allowed;
+}
+.THIS .setBorder{
+    border-radius: 1rem;
+    transform: scale(0.8);
+}
+.THIS .selected{
+    background-color:royalblue !important;
+    color:white;
+    cursor:not-allowed;
+}
+.THIS .iconCls{
+    float: right;
+}
+
+.THIS .red svg{
+    fill:red;
+}
+.THIS .yellow svg{
+    fill:orange;
+}
+.THIS .green svg{
+    fill:forestgreen;
+}
+.THIS .setWidth{
+    white-space: normal;
+}

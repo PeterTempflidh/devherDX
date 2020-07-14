@@ -1,0 +1,513 @@
+<apex:page showHeader="false" standardStylesheets="true" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" standardcontroller="Lead" extensions="CtrLeadConversion,FacilityUtilityController">
+
+    <html>
+    <head>
+        <title>Lead Convert</title>
+        <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.slds231, 'assets/styles/salesforce-lightning-design-system-vf.css')}"/>
+        <style type="text/css">
+        /* prevents multiselect element to change their width */
+        .slds-custom-multiselect {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .fixedHeader {
+            width: 100%;
+            top: 0px;
+            position: fixed;
+            z-index: 9999999;
+        }
+
+        .contactsTable {
+            min-width: 768px;
+        }
+    </style>
+
+        <script src="/support/console/42.0/integration.js" type="text/javascript"></script>
+        <script src="{!URLFOR($Resource.DHHConsoleToolkit, 'js/ConsoleToolkit.js')}" type="text/javascript"></script>
+        <script src="{!URLFOR($Resource.Vue)}"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?client=gme-deliveryheroholding&channel=salesforcephoenix&libraries=places"></script>
+        <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
+    </head>
+
+    <body
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:v-once="http://vue/fake"
+        xmlns:v-html="http://vue/fake"
+        xmlns:v-bind="http://vue/fake"
+        xmlns:v-if="http://vue/fake"
+        xmlns:v-on="http://vue/fake"
+        xmlns:v-model="http://vue/fake">
+
+    <apex:form id="myForm">
+
+        <apex:actionStatus id="loading" onstart="vueSpinnerHandler.toggle()" onstop="vueSpinnerHandler.toggle()" />
+
+        <apex:actionFunction name="convertAf" action="{!convertLead}" status="loading" reRender="msgs, scriptPanel" oncomplete="afterConvert();" />
+
+        <apex:actionFunction name="cancelAf" action="{!cancel}" status="loading" />
+
+        <!-- if owner is a user  -->
+        <apex:outputPanel layout="inline" rendered="{!AND(Lead.Owner.Type = 'User', NOT(showOnlyErrorMessage))}">
+
+            <div class="slds">
+
+                <!-- page header & action buttons -->
+                <div id="headerContainer" class="fixedHeader">
+                    <div class="slds-page-header slds-box slds-box-small" role="banner">
+                        <div class="slds-grid">
+
+                            <!-- page header -->
+                            <div class="slds-col slds-has-flexi-truncate">
+                                <div class="slds-media slds-no-space slds-grow">
+                                    <div class="slds-media__figure">
+                                        <div class="slds-icon_container slds-icon-standard-lead">
+                                            <svg aria-hidden="true" class="slds-icon">
+                                                <use xlink:href="{!URLFOR($resource.slds, '/assets/icons/standard-sprite/svg/symbols.svg#lead')}"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <p class="slds-text-title--caps slds-line-height--reset">{!Lead.RecordType.Name}</p>
+                                        <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="{!Lead.Name}">
+                                            {!Lead.Name}
+                                        </h1>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- action buttons -->
+                            <div class="slds-col slds-no-flex slds-grid slds-align-top">
+
+                                <!-- button panel  -->
+                                <div styleClass="slds-button-group" html-role="group">
+                                    <!-- CD specific buttons  -->
+                                    <button type="button" class="slds-button slds-button--brand" onclick="convertButtonOnClick()">{!$Label.Convert}</button>
+                                    <button type="button" class="slds-button slds-button--destructive" onclick="cancelButtonOnClick()">{!$Label.Cancel}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- main grid  -->
+                <div id="mainGrid" class="slds-grid slds-box slds-wrap slds-theme--shade slds-hide">
+
+                    <!-- lead information, account information and contact information  -->
+                    <apex:outputPanel id="fieldsWrapper" layout="block" styleClass="slds-col slds-size--1-of-1">
+                        <!-- talabat fields  -->
+                        <c:Talabat_LeadConvertFields lead="{!leadTobeConverted}" account="{!tempAccount}" rendered="{!leadToConvert.RecordType.DeveloperName = 'Talabat_Lead'}" wrpForFacility="{!wrpForFacilityValidation}"/>
+
+                        <!-- austria fields -->
+                        <c:AT_LeadConvertFields lead="{!leadTobeConverted}" account="{!tempAccount}" rendered="{!leadToConvert.RecordType.DeveloperName = 'AT_Lead'}"/>
+
+                        <!-- germany fields -->
+                        <c:DE_LeadConvertFields lead="{!leadTobeConverted}" account="{!tempAccount}" rendered="{!leadToConvert.RecordType.DeveloperName = 'DE_Lead'}"/>
+
+                        <!-- Korea fields -->
+                        <c:KR_LeadConvertFields lead="{!leadTobeConverted}" account="{!tempAccount}" rendered="{!leadToConvert.RecordType.DeveloperName = 'Yogiyo_Lead'}"/>
+
+                        <!-- Pedidos YA fields -->
+                        <c:PY_LeadConvertFields lead="{!leadTobeConverted}" account="{!tempAccount}" rendered="{!leadToConvert.RecordType.DeveloperName = 'PY_Lead'}" wrpForFacility="{!wrpForFacilityValidation}"/>
+
+                        <!-- sweden fields -->
+                        <c:SE_LeadConvertFields lead="{!leadTobeConverted}" account="{!tempAccount}" rendered="{!leadToConvert.RecordType.DeveloperName = 'SE_Lead'}"/>
+
+                        <!-- finland fields -->
+                        <c:FI_LeadConvertFields lead="{!leadTobeConverted}" account="{!tempAccount}" rendered="{!leadToConvert.RecordType.DeveloperName = 'FI_Lead'}"/>
+
+                        <!-- Foodpanda/APAC fields -->
+                        <c:FP_LeadConvertFields lead="{!leadTobeConverted}" account="{!tempAccount}" rendered="{!leadToConvert.RecordType.DeveloperName = 'FP_Lead'}"/>
+
+			<!-- Hungary fields -->
+                        <c:HU_LeadConvertFields lead="{!leadTobeConverted}" account="{!tempAccount}" rendered="{!leadToConvert.RecordType.DeveloperName = 'HU_Lead'}"/>
+
+			<!-- Czech fields -->
+                        <c:CZ_LeadConvertFields lead="{!leadTobeConverted}" account="{!tempAccount}" rendered="{!leadToConvert.RecordType.DeveloperName = 'CZ_Lead'}"/>
+
+                    </apex:outputPanel>
+
+                    <!-- additional contacts section -->
+                    <div class="slds-col slds-size--1-of-1 slds-scrollable--x">
+                        <div class="slds-form-element__group">
+
+                            <apex:actionRegion >
+
+                                <apex:actionFunction name="addAdditionalContactAf" action="{!addNewContact}" rerender="additionalContacts" />
+
+                                <apex:actionFunction name="removeAdditionalContactAf" action="{!removeContactFromList}" rerender="additionalContacts">
+                                    <apex:param name="contactToRemove" value="" assignTo="{!contactToRemove}" />
+                                </apex:actionFunction>
+
+                                <fieldset class="slds-form--compound">
+                                    <legend class="slds-form-element__label slds-text-title--caps">{!$Label.LC_Additional_Contacts}</legend>
+                                    <div class="slds-p-around--small">
+                                        <div class="slds-grid slds-wrap slds-box">
+
+                                            <!-- add contact button -->
+                                            <div class="slds-col slds-size--1-of-1 slds-align-top slds-m-bottom--small">
+                                                <div class="slds-button-group">
+                                                    <button type="button" class="slds-button slds-button--neutral" onclick="addAdditionalContactAf()">
+                                                        <svg class="slds-button__icon slds-button__icon--left" aria-hidden="true">
+                                                            <use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/utility-sprite/svg/symbols.svg#add')}"></use>
+                                                        </svg>
+                                                        {!$ObjectType.Contact.Label}
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <!-- table container  -->
+                                            <apex:outputPanel id="additionalContacts" layout="block" styleClass="slds-col slds-size--1-of-1">
+
+                                                <!-- table  -->
+                                                <apex:dataTable value="{!mapNewContactMap}" var="newContact" styleClass="slds-table slds-table--bordered slds-table--cell-buffer contactsTable">
+
+                                                    <apex:column headerValue="">
+                                                        <button type="button" class="slds-button slds-button--neutral" style="color: red" onclick="removeAdditionalContactAf('{!mapNewContactMap[newContact].tempKey}');">
+                                                            &#10060;
+                                                        </button>
+                                                    </apex:column>
+
+                                                    <apex:column headerValue="{!$ObjectType.Lead.fields.Salutation.Label}">
+                                                        <apex:inputText value="{!mapNewContactMap[newContact].salutation}" styleClass="slds-input"/>
+                                                    </apex:column>
+
+                                                    <apex:column headerValue="{!$ObjectType.Lead.fields.FirstName.Label}">
+                                                        <apex:inputText value="{!mapNewContactMap[newContact].FirstName}" styleClass="slds-input"/>
+                                                    </apex:column>
+
+                                                    <apex:column headerValue="{!$ObjectType.Lead.fields.LastName.Label}">
+                                                        <apex:inputText value="{!mapNewContactMap[newContact].LastName}" styleClass="slds-input"/>
+                                                    </apex:column>
+
+                                                    <apex:column headerValue="{!$ObjectType.Lead.fields.MobilePhone.Label}">
+                                                        <apex:inputText value="{!mapNewContactMap[newContact].Mobile}" styleClass="slds-input"/>
+                                                    </apex:column>
+
+                                                    <apex:column headerValue="{!$ObjectType.Lead.fields.Email.Label}">
+                                                        <apex:inputText value="{!mapNewContactMap[newContact].Email}" styleClass="slds-input"/>
+                                                    </apex:column>
+
+                                                    <apex:column headerValue="{!$ObjectType.Contact.fields.Contact_Role__c.Label}">
+                                                        <apex:selectList value="{!mapNewContactMap[newContact].contactRole}" styleClass="slds-select" multiselect="false" size="1">
+                                                            <apex:selectOptions value="{!contactRoleOptions}"/>
+                                                        </apex:selectList>
+                                                    </apex:column>
+                                                </apex:dataTable>
+
+                                            </apex:outputPanel>
+
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                            </apex:actionRegion>
+                        </div>
+                    </div>
+
+                    <!-- opportunity name and flag  -->
+                    <div class="slds-col slds-size--1-of-1">
+                        <legend class="slds-form-element__label slds-text-title--caps">{!$Label.LC_Opportunity}</legend>
+                        <div class="slds-p-around--small">
+                            <div class="slds-form--inline slds-box ">
+
+                                <!-- opportunity flag  -->
+                                <div class="slds-form-element">
+                                    <label class="slds-checkbox--toggle slds-grid">
+                                        <span class="slds-form-element__label slds-m-bottom--none">{!IF(leadToConvert.RecordType.DeveloperName == 'HU_Lead',$Label.Lead_Conversion_No_Opportunity_HU,$Label.Lead_Conversion_No_Opportunity)}</span>
+                                        <apex:inputCheckbox id="oppFlag" value="{!newOpportunityMustBeNotCreated}" onchange="oppFlagOnChange(this)" />
+                                        <span id="toggle-desc" class="slds-checkbox--faux_container" aria-live="assertive">
+                                            <span class="slds-checkbox--faux"></span>
+                                            <span class="slds-checkbox--on"></span>
+                                            <span class="slds-checkbox--off"></span>
+                                        </span>
+                                    </label>
+                                </div>
+
+                                <!-- opportunity name -->
+                                <div class="slds-form-element slds-p-left--small">
+                                    <label class="slds-form-element__label" for="{!$Component.oppname}">{!$Label.Lead_Conversion_Opportunity_Name}</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputText id="oppname" styleClass="slds-input" value="{!opportunityName}" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </apex:outputPanel>
+
+        <!-- in case of errors -->
+
+        <apex:pageBlock rendered="{!AND(Lead.Owner.Type != 'User', NOT(showOnlyErrorMessage))}">
+            <br />
+            <br />
+
+            <apex:outputPanel layout="block" style="text-align: center;" rendered="{!leadToConvert.RecordType.DeveloperName != 'HU_Lead'}">
+                <apex:outputText value="{!$Label.Lead_Conversion_Change_Lead_Owner_To_User}" />
+                <apex:outputLink id="leadLink" onclick="redirectToLeadPage();" style="float: right;">{!$Label.Lead_Conversion_Back_To_Lead}</apex:outputLink>
+            </apex:outputPanel>
+
+            <!-- HU IMPLEMENTATION: PETER KALINA: Visible back button for HU Lead Record Type !-->
+            <apex:outputPanel layout="block" style="text-align: center;" rendered="{!leadToConvert.RecordType.DeveloperName = 'HU_Lead'}">
+                <apex:outputText value="{!$Label.Lead_Conversion_Change_Lead_Owner_To_User}" />
+                <apex:outputLink id="closeSubTabId" onclick="redirectToLead();" style="float: right;">{!$Label.Lead_Conversion_Back_To_Lead}</apex:outputLink>
+            </apex:outputPanel>
+        </apex:pageBlock>
+
+        <apex:pageBlock rendered="{!showOnlyErrorMessage}">
+            <apex:outputPanel layout="block" style="text-align: center;">
+                <apex:outputText value="{!$Label.dh_VendorCategorisationMandtoryMessage}" />
+                <apex:outputLink id="leadLink" onclick="redirectToLeadPage();" style="float: right;">{!$Label.Lead_Conversion_Back_To_Lead}</apex:outputLink>
+            </apex:outputPanel>
+        </apex:pageBlock>
+
+
+  </apex:form>
+
+
+    <script type="text/javascript">
+        function adjustLookupFields() {
+            var selectItem = false;
+
+            Array.prototype.slice.call(
+                document.querySelectorAll(".lookupContainer select")
+            ).map(function(select) {
+                select.className += " slds-select slds-size--1-of-5";
+                select.style["margin-right"] = "5px";
+                selectItem = true;
+            });
+
+            Array.prototype.slice.call(
+                document.querySelectorAll(".lookupContainer input[type=text]")
+            ).map(function(select) {
+                if (selectItem) {
+                    select.className += " slds-input slds-size--3-of-5";
+                } else {
+                    select.className += " slds-input slds-size--4-of-5";
+                }
+                select.style["margin-right"] = "5px";
+            });
+        }
+
+        function adjustMultiselectPicklist() {
+            Array.prototype.slice.call(
+                document.querySelectorAll(".multiselectContainer tbody tr:nth-child(2) td")
+            ).map(function (elem) {
+                elem.className += /multiselectpicklistcell/i.test(elem.className) ? " slds-size--2-of-12" : " slds-size--5-of-12";
+            });
+
+            Array.prototype.slice.call(
+                document.querySelectorAll(".multiselectContainer tbody select")
+            ).map(function (elem) {
+                elem.className += " slds-select slds-custom-multiselect";
+                elem.style["overflow-y"] = "auto";
+                elem.size = "4";
+            });
+
+            Array.prototype.slice.call(
+                document.querySelectorAll(".multiselectContainer tbody img")
+            ).map(function (elem) {
+                elem.style["margin-left"] = "33.3%";
+                elem.style["margin-right"] = "50px";
+                elem.style.height = "20px";
+            });
+        }
+
+        function tryToSetTabTitle(title) {
+            if (sforce.console.isInConsole()) {
+                sforce.console.setTabTitle(title);
+            }
+        }
+
+        function cancelButtonOnClick() {
+            tryToSetTabTitle("{!Lead.FirstName} {!Lead.LastName}");
+            cancelAf();
+        }
+
+        function convertButtonOnClick () {
+            // checks if any component defines the componentBeforeConvert function
+            if (typeof componentBeforeConvert === "function") {
+				var errorMessageForOtherRegions = 'Please review errors in the form';
+                // call componentBeforeConvert
+                if (!componentBeforeConvert()) {
+                    // Errors!
+                    if (vueModalPageMessagesHandler) {
+                        vueModalPageMessagesHandler.type = "Error";
+                        // SSC - 2796 check if Error message exist from PY Region Component for facility
+                        vueModalPageMessagesHandler.message = typeof branchKitchenvalidationResult !== 'undefined' ? branchKitchenvalidationResult : errorMessageForOtherRegions;
+                    } else {
+                        alert(errorMessageForOtherRegions);
+                    }
+
+                    return; // prevent clone to happen
+                }
+            }
+
+            //SSC-1880 Start
+            // check any before convert function needs to validate the Address types and its related fields
+            if("{!Lead.RecordType.DeveloperName}" === "Talabat_Lead"){
+                if (typeof beforeConvertToValidateAddressTypes === "function") {
+                    if (beforeConvertToValidateAddressTypes() !=  'Success') {
+                        if (vueModalPageMessagesHandler) {
+                            vueModalPageMessagesHandler.type = "Error";
+                            vueModalPageMessagesHandler.message = beforeConvertToValidateAddressTypes();
+                        } else {
+                            alert("Please review errors in the form");
+                        }
+
+                        return; // prevent clone to happen
+                    }
+                }
+            }
+            //SSC-1880 ends here
+
+            convertAf();
+        }
+
+        function setOpportunityFlag(val) {
+            var oppFlag = document.querySelector("[id$=oppFlag]");
+            oppFlag.setAttribute("checked", val);
+            oppFlag.value = val;
+            oppFlagOnChange(oppFlag)
+        }
+
+        function oppFlagOnChange(elem) {
+            var oppName = document.querySelector("[id$=oppname]");
+            if("{!Lead.RecordType.DeveloperName}" == 'HU_Lead'){
+                if (elem.checked) {
+                    oppName.removeAttribute("disabled");
+                } else {
+                    oppName.setAttribute("disabled", true);
+                    oppName.value = "";
+                }
+            }
+            else{
+                if (elem.checked) {
+                    oppName.setAttribute("disabled", true);
+                    oppName.value = "";
+                } else {
+                    oppName.removeAttribute("disabled");
+                }
+            }
+        }
+
+        var DHH = new DHHConsoleToolkit();
+
+        window.addEventListener("load", function() {
+            adjustLookupFields();
+            adjustMultiselectPicklist();
+            var mainGrid = document.getElementById("mainGrid");
+            mainGrid.className = mainGrid.className.replace("slds-hide", "");
+
+            if (typeof convertComponentOnLoad === "function") convertComponentOnLoad();
+
+            tryToSetTabTitle("{!leadTobeConverted.FirstName} {!leadTobeConverted.LastName}");
+
+            if ("{!Lead.RecordType.DeveloperName}" === "CD_Lead" || "{!Lead.RecordType.DeveloperName}" == "HU_Lead") {
+                setOpportunityFlag(true);
+            }
+
+            // fix the height of the main grid
+            var header = document.getElementById("headerContainer");
+            var mainGrid =  document.getElementById("mainGrid");
+            var top = header.offsetHeight || header.clientHeight;
+            if (top) {
+                mainGrid.style["margin-top"] = top + "px";
+            }
+
+        });
+    </script>
+
+    <apex:outputPanel id="scriptPanel">
+        <script type="text/javascript">
+            function afterConvert() {
+                var accountId = "{!convertedAccountId}";
+
+                if (!accountId) {
+                    console.log("account id null");
+                    return;
+                }
+
+                // everything is fine, checks if any component defines the
+                // componentAfterConvert function
+
+                // componentAFterConvert function receive the account id and a
+                // callback function
+
+                if (typeof componentAfterConvert === "function") {
+                    componentAfterConvert(accountId, function() {
+                        redirectToAccount(accountId);
+                    });
+                } else {
+                    redirectToAccount(accountId);
+                }
+
+                // closes lead conversion page once lead is converted
+                if(sforce.console.isInConsole()){
+                    sforce.console.getEnclosingTabId(function(result) {
+                        sforce.console.closeTab(result.Id);
+                    });
+                }
+            }
+
+            function redirectToAccount(accountId) {
+                if (sforce.console.isInConsole()) {
+                    DHH.openPrimaryTab("/" + accountId, "");
+                    // close current lead tab since it doesn't exist anymore
+                    sforce.console.getEnclosingPrimaryTabId(function(res) {
+                        sforce.console.closeTab(res.id);
+                    });
+                } else if (sforce.one) {
+                    sforce.one.navigateToSObject(accountId);
+                } else {
+                    window.location.href = "/" + accountId;
+                }
+            }
+
+            function redirectToLeadPage() {
+                var leadId = "{!Lead.Id}";
+                if (sforce.console.isInConsole()) {
+                    if('{!$User.UIThemeDisplayed}' == 'Theme4d' || '{!$User.UIThemeDisplayed}' == 'Theme4u'){
+                    sforce.console.getEnclosingTabId(function(res) {
+                        sforce.console.closeTab(res.id);
+                    });
+                    }else{
+                        sforce.console.getEnclosingPrimaryTabId(function(res) {
+                        sforce.console.openPrimaryTab(res.id,"/" + leadId, true);
+                        });
+                    }
+                } else if (sforce.one) {
+                    sforce.one.navigateToSObject(leadId);
+                } else {
+                    window.location.href = "/" + leadId;
+                }
+            }
+
+	    //HU IMPLEMENTATION: PETER KALINA: Visible back button for HU Lead Record Type
+            //First find the ID of the current tab to close it
+            function redirectToLead() {
+                sforce.console.getEnclosingTabId(closeSubtab);
+            }
+            //Now that we have the tab ID, we can close it
+            var closeSubtab = function closeSubtab(result) {
+                var tabId = result.id; sforce.console.closeTab(tabId);
+            };
+        </script>
+    </apex:outputPanel>
+
+    <!-- rerender any page messages as a modal dialog -->
+    <c:VueHandlePageMessagesAsModal id="msgs" />
+
+    <!-- lightening spinner -->
+    <c:VueSpinner />
+
+    </body>
+    </html>
+
+</apex:page>

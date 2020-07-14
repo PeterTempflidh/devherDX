@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>47.0</apiVersion>
+    <description>Base Custom Path</description>
+    <isExposed>true</isExposed>
+    <masterLabel>Base Custom Path</masterLabel>
+    <targets>
+        <target>lightning__AppPage</target>
+        <target>lightning__RecordPage</target>
+        <target>lightning__HomePage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property name="sObjectName" type="String" label="SObject Name" placeholder="ie. Account" description="This is the name of the SObject from which we will generate the path" required="true"/>
+            <property name="pickListFieldName" type="String" label="Field that contains the path values" placeholder="ie. StageName" description="This is the field of type picklist that contains the values that the path will have" required="true"/>
+            <property name="recordFieldsToQuery" type="String" label="Fields to query" placeholder="ie. Account.Name" description="In this field please place all the necessary fields to query for the execution of the rules with the object name and a dot as prefix" required="false"/>
+            <property name="extraConfigurations" type="String" label="Advanced Configurations" placeholder="ie. { 'rules': [ { 'if':'Country__c=Hong Kong:String', 'then':'showonly:Open,Closed Won,Closed Lost' } ] }" description="Here the user can put all the advance configuration values (ie. Excluding values, etc)" required="false"/>
+            <property name="hasStatusCompleteButton" type="Boolean" label="Enable the 'Mark status as Complete' button" description="This checkbox enable the button so the user can change the stage as needed" default="false" required="false"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

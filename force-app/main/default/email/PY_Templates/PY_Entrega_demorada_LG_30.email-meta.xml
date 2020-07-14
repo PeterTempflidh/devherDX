@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY - Entrega demorada LG 30</name>
+    <style>freeForm</style>
+    <subject>Entrega demorada LG 30</subject>
+    <textOnly>Estimada XXX, es un gusto saludarte.
+Estimado XXX, es un gusto saludarte.
+
+En esta oportunidad nos contactamos para informarte que tu pedido a XXX va a ser entregado a las XXXX aproximadamente. Intentamos comunicarnos telefónicamente contigo al número registrado pero no logramos encontrarte.
+
+Te pedimos disculpas por las molestias ocasionadas y quedamos a las órdenes por cualquier consulta.
+
+Saludos,
+Nombre + Inicial apellido
+Atención al Cliente - PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

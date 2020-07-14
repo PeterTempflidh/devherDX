@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>我們需要更多資料方可成功更新餐單 We need more information to proceed with your menu update</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP LA Menu Change - Can’t be typed - Due to error</name>
+    <style>freeForm</style>
+    <subject>我們需要更多資料方可成功更新餐單 We need more information to proceed with your menu update</subject>
+    <textOnly>親愛的合作餐廳：
+
+
+感謝你最近電郵給我們，告知我們有關餐單的改變。很遺憾，因為以下原因，我們未能進行更新︰
+
+1. 你未有附上餐牌
+
+或
+
+2. 圖片不清晰 (圖片矇糊等)
+
+
+該圖片必須清楚展示餐單，或是一張完整 PDF 檔案。
+
+
+假若你餐廳有不同分店，請清楚列明需要更新餐單的分店。
+
+
+請你再次傳送你的餐牌檔案，以方便我們盡快更新。當我們收到符合規格的檔案後，我們將盡快處理有關申請。
+
+
+有其他疑問？請電郵至 partner@foodpanda.hk 或致電 +852 5819 8997。
+
+
+謝謝，
+
+你的 foodpanda 合作餐廳服務小組
+
+
+Dear Restaurant Partner,
+
+
+Thank you for your recent email regarding the update to your menu, we are currently unable to process the menu for one of the reasons outlined below:
+
+
+1. There was no copy of the menu attached to the request.
+
+2. The quality of the image is too low (blurry, flash, sections not readable)
+
+
+The menu image sent needs to be a clear photo or PDF of your menu.
+
+
+In case your restaurant has various locations listed on our platform, please specify which one(s) require changes.
+
+
+Please submit again your menu update request so we can proceed. Once we have received this again in one of the required formats, we will happily complete this request for you.
+
+
+Any questions? Feel free to contact us per E-Mail* partner@foodpanda.hk *or via phone under +852 5819 8997.
+
+
+Best regards,
+
+Your foodpanda team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

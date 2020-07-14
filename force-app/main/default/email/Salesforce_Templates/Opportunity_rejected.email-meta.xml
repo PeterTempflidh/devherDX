@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>02284200</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Opportunity rejected</name>
+    <style>none</style>
+    <subject>We need your help with {!Account.Restaurant_Name__c} + {!AddressDetail__c.AdministrativeAreaCode__c}{!Account.BillingPostalCode}</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,5 @@
+<apex:page controller="ctrDH_AU_QuoteVFTemplate" showheader="false" sidebar="false" standardStylesheets="false">
+    <c:UK_Quote acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!ukQuote}" />
+    <c:UK_Quote_PP acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!premiumPlacement}"/>
+    <c:UK_Quote_MenuPrinting acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!menuPrinting}"/>
+</apex:page>

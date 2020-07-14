@@ -1,0 +1,117 @@
+<messaging:emailTemplate subject="Quote"  recipientType="Contact" relatedToType="Opportunity" >
+<messaging:htmlEmailBody >
+<html>
+
+<body>
+<div style="width:100%;height:250px;clear:bothe;">
+    <div style="width: 300px;position:absolute; left:20px; top:30px;"><img src="{!URLFOR($Resource.Yogiyo_Logo)}" /></div>
+    <span style="Text-decoration: none;color:rgb(131,130,138); margin: 0px; padding:0px; display:block;width: 300px;font-size: 8pt; position:absolute;top:130px">요기요(Yogiyo), RGP Korea Ltd.</span>
+    
+    <div style="color:rgb(131,130,138); text-align: left;font-size: 8pt; border-left: 1px solid rgb(131,130,138);padding: 3px 2px 3px 12px;width:230px; position:absolute; right:10px; top:10px;">
+    <b>요기요(Yogiyo Yogiyo), RGP Korea Ltd.</b><br/> 
+    5F Unipham Tower, 719-33<br/>
+    Yeoksam-dong, Gangnam-Gu<br/> 
+    135-920 Seoul<br/>
+    Republic of Korea<br/>    
+    </div>
+</div>
+<div style="font-size: 8pt;">
+<table>
+<tr>
+<td>
+        
+Hi {!recipient.name},
+<br/>
+Please find the quote below:<br/>
+
+<br/>
+<hr />
+          
+        </td>
+        </tr>       
+             
+        <tr>
+        <td>
+        <table>
+        <tr class="headerRow">
+            <th style="text-align: right;" width="200px">{!$ObjectType.Opportunity_Product_Item__c.fields.Ad_Sales_Type__c.Label}</th>
+            <th style="text-align: right;" width="200px">{!$ObjectType.Opportunity_Product_Item__c.fields.Category__c.label}</th>
+            <th style="text-align: right;" width="200px">{!$ObjectType.Opportunity_Product_Item__c.fields.District__c.label}</th>
+            <th style="text-align: right;" width="200px">{!$ObjectType.List_Product_Price__c.fields.List_Price__c.Label}</th>
+            <th style="text-align: right;" width="200px">{!$ObjectType.Opportunity_Product_Item__c.fields.Start_Date__c.label}</th>
+            <th style="text-align: right;" width="200px">{!$ObjectType.Opportunity_Product_Item__c.fields.End_Date__c.label}</th>
+            <th style="text-align: right;" width="200px">{!$ObjectType.Opportunity_Product_Item__c.fields.Total_Amount__c.label}</th>
+        </tr>       
+        <apex:repeat value="{!relatedTo.Opportunity_Product_Items__r}" var="record">
+        <tr>
+        <td style="text-align: right;">
+        <apex:outputField value="{!record.Ad_Sales_Type__c}" />
+        </td>
+        <td style="text-align: right;">
+        <apex:outputField value="{!record.Category__c}" />
+        </td>
+        <td style="text-align: right;">
+        <apex:outputField value="{!record.District__c}" />
+        </td>
+        <td style="text-align: right;">
+        <apex:outputField value="{!record.Listed_Price__c}" />
+        </td>
+        <td style="text-align: right;">
+        <apex:outputField value="{!record.Start_Date__c}" />
+        </td>
+        <td style="text-align: right;">
+        <apex:outputField value="{!record.End_Date__c}" />
+        </td>
+        <td style="text-align: right;">
+        <apex:outputField value="{!record.Total_Amount__c}" />
+        </td>   
+        </tr>
+        </apex:repeat>
+        <tr>
+        <td colspan="5">
+        </td>       
+        <td style="text-align: right;">
+        <b>{!$ObjectType.Opportunity.fields.Subtotal__c.label}</b>
+        </td>
+        <td style="text-align: right;">
+        <apex:outputField value="{!relatedTo.Subtotal__c}" />
+        </td>
+        </tr>
+        <tr>
+        <td colspan="5">
+        </td>
+        <td style="text-align: right;">
+        <b> {!$ObjectType.Opportunity.fields.VAT__c.label}</b>
+        </td>
+        <td style="text-align: right;">
+        <apex:outputField value="{!relatedTo.VAT__c}" />
+        </td>
+        </tr>
+        <tr>
+        <td colspan="5">
+        </td>
+        <td style="text-align: right;">
+        <b>{!$Label.OppTotalInclusiveVat}</b>
+        </td>
+        <td style="text-align: right;">
+        <apex:outputField value="{!relatedTo.Total__c}" />
+        </td>
+        </tr>
+        </table>
+   
+        </td>
+        </tr>       
+        <tr>
+        <td>        
+        </td>
+        </tr>
+        </table>
+  </div>    
+<br/>
+
+</body>
+</html>
+</messaging:htmlEmailBody>
+<messaging:attachment renderAs="PDF" filename="quote.pdf">       
+</messaging:attachment>
+</messaging:emailTemplate>

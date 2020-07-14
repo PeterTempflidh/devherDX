@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Clickdelivery</letterhead>
+    <name>Eliminación de Cuenta Usuario</name>
+    <style>formalLetter</style>
+    <subject>Eliminación de Cuenta Usuario</subject>
+    <textOnly>Inicio de proceso de perfil
+
+Hola (Nombre del usuario), te queremos informar  que tu perfil de usuario a nombre de (Nombre del usuario y dirección e-mail con el que está registrado) será eliminado en un plazo máximo de 10 días hábiles. Nos estaremos contactando contigo para informarte la baja definitiva. Cualquier inquietud no dudes en contactarnos.
+
+Confirmación
+
+Hola (Nombre del usuario), te queremos informar que la eliminación de tu perfil a nombre de (Nombre del usuario y dirección e-mail con el que está registrado) en nuestras bases de datos se ha generado con éxito</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

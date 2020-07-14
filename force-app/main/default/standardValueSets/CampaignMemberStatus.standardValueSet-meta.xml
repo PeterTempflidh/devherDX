@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>true</sorted>
+    <standardValue>
+        <fullName>Approached</fullName>
+        <default>false</default>
+        <label>Approached</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Attended</fullName>
+        <default>false</default>
+        <label>Attended</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Completed not successfully</fullName>
+        <default>false</default>
+        <label>Completed not successfully</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Completed Successfully</fullName>
+        <default>false</default>
+        <label>Completed Successfully</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Contract signed</fullName>
+        <default>false</default>
+        <label>Contract signed</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Declined</fullName>
+        <default>false</default>
+        <label>Declined</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Done</fullName>
+        <default>false</default>
+        <label>Done</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Final Check</fullName>
+        <default>false</default>
+        <label>Final Check</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Geantwortet</fullName>
+        <default>false</default>
+        <label>Geantwortet</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Gesendet</fullName>
+        <default>false</default>
+        <label>Gesendet</label>
+    </standardValue>
+    <standardValue>
+        <fullName>In Progress</fullName>
+        <default>false</default>
+        <label>In Progress</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Invited</fullName>
+        <default>false</default>
+        <label>Invited</label>
+    </standardValue>
+    <standardValue>
+        <fullName>No Show</fullName>
+        <default>false</default>
+        <label>No Show</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Not Applicable</fullName>
+        <default>false</default>
+        <label>Not Applicable</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Pending</fullName>
+        <default>false</default>
+        <label>Pending</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Registered</fullName>
+        <default>false</default>
+        <label>Registered</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Responded</fullName>
+        <default>false</default>
+        <label>Responded</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Sent</fullName>
+        <default>false</default>
+        <label>Sent</label>
+    </standardValue>
+    <standardValue>
+        <fullName>To be approached</fullName>
+        <default>false</default>
+        <label>To be approached</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Waiting for the reply</fullName>
+        <default>false</default>
+        <label>Waiting for the reply</label>
+    </standardValue>
+</StandardValueSet>

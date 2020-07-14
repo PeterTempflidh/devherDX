@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY - PS: Producto faltante se envía</name>
+    <style>freeForm</style>
+    <subject>Gracias por Contactarnos - # {!Case.CaseNumber}</subject>
+    <textOnly>Estimado xxx Nombre xxx, es un gusto saludarte.
+
+Nos comunicamos debido al faltante en tu pedido a XXX, te pedimos disculpas por las molestias de no haber recibido el pedido tal y como lo ordenaste.
+
+El xxx Producto xxxx será preparado nuevamente y lo recibirás en aproximadamente XXmin,
+
+Quedamos a las órdenes ante cualquier consulta, 
+
+Saludos, 
+Nombre + Inicial del apellido - Claims Operator 
+PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

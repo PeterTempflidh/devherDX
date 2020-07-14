@@ -1,0 +1,221 @@
+<!-- Common Vue.js components to be used inside pages -->
+<apex:component layout="none">
+	<script type="text/javascript">
+
+		Vue.component("multiselect-checkbox-group", {
+		   props: ["options", "label", "name"],
+		   methods: {
+		      toggleOption: function (opt) {
+		        	opt.checked = !!(!opt.checked);
+		        	this.$nextTick(function() {
+		        	    this.$emit("selected", opt);
+                    });
+				}
+     		},
+     	   	template: `
+     			<fieldset class="slds-form-element">
+				  <legend class="slds-form-element__legend slds-form-element__label">{{ label }}</legend>
+				  <div class="slds-form-element__control">
+					<div class="slds-checkbox_button-group">
+					  <span v-for="(option, index) in options" :key="option.value" class="slds-button slds-checkbox_button" @click="toggleOption(option)">
+						<input :id="name.concat(index)" :name="name.concat(index)" :value="option.value" type="checkbox" :checked="!!option.checked" />
+						<label class="slds-checkbox_button__label" for="name.concat(index)">
+						  <span class="slds-checkbox_faux">{{ option.label }}</span>
+						</label>
+					  </span>
+					</div>
+				  </div>
+				</fieldset>`
+  		});
+
+		/**
+		 * Display a spinner on the page
+		 * @type {Array}
+		 */
+		Vue.component("spinner", {
+			props: ["open"],
+			template: `<div class="slds-spinner_container" v-bind:class="[ open ? 'slds-show' : 'slds-hide' ]">
+							<div class="slds-spinner--brand slds-spinner slds-spinner--large" role="status">
+								<span class="slds-assistive-text">Loading</span>
+								<div class="slds-spinner__dot-a"></div>
+								<div class="slds-spinner__dot-b"></div>
+							</div>
+						</div>`
+		});
+
+		/**
+		 * Displays an error popup 
+		 */
+		Vue.component("error-handler", {
+		    props: ["message", "type", "timeout", "callback"],
+		    data: function() {
+		    	return {
+		    		open: !!this.message
+		    	};
+		    },
+		    computed: {
+		        isInfo: function() {
+		            return !this.type;
+		        },
+		        isSuccess: function() {
+		            return /success/i.test(this.type);
+		        },
+		        isWarning: function() {
+		            return /warning/i.test(this.type);
+		        },
+		        isError: function() {
+		            return /error/i.test(this.type);
+		        }
+		    },
+		    methods: {
+		        close: function() {
+		        	this.message = '';
+		            this.open = false;
+		            if (typeof this.callback === "function") {
+		            	this.$nextTick(this.callback);
+		            }
+		            this.$emit("closed");
+		        }
+		    },
+		    watch: {
+		        message: function(val) {
+		            this.open = !!val;
+		        },
+		        timeout: function() {
+		        	var self = this;
+		        	setTimeout(function() {
+		        		self.close();
+		        	}, this.timeout);
+		        }
+		    },
+		    template: `<div>
+						    <div 
+						    	role="alertdialog" 
+						    	tabindex="-1" 
+						    	aria-labelledby="prompt-heading-id" 
+						    	aria-describedby="prompt-message-wrapper" 
+						    	class="slds-modal slds-modal--prompt" 
+						    	v-bind:class="{'slds-fade-in-open': open}">
+						        
+						        <div class="slds-modal__container">
+						            <div 
+						            	class="slds-modal__header slds-theme--alert-texture" 
+						            	v-bind:class="{'slds-theme--info': isInfo, 'slds-theme--success': isSuccess, 'slds-theme--warning': isWarning, 'slds-theme--error': isError}">
+						                
+						                <button type="button" class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" v-on:click="close">
+						                    <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
+						                        <use xlink:href="{!URLFOR($Resource.slds231, '/assets/icons/utility-sprite/svg/symbols.svg#close')}"></use>
+						                    </svg>
+						                    <span class="slds-assistive-text">Close</span>
+						                </button>
+						                <h2 class="slds-text-heading--medium" id="prompt-heading-id">{{type}}</h2>
+						            </div>
+						            <div class="slds-modal__content slds-p-around--medium">
+						                <div>
+						                    <p style="white-space: pre-line;">{{message}}</p>
+						                </div>
+						            </div>
+						            <div class="slds-modal__footer slds-theme--default">
+						                <button type="button" class="slds-button slds-button--neutral" v-on:click="close">Ok</button>
+						            </div>
+						        </div>
+						    </div>
+						    <div class="slds-backdrop" v-bind:class="{'slds-backdrop--open': open}"></div>
+					</div>`
+		});
+
+		/**
+		 * Displays an Message confirmation popup
+		 */
+		Vue.component("message-handler", {
+		    props: ["message", "type", "timeout", "callback"],
+		    data: function() {
+		    	return {
+		    		open: !!this.message
+		    	};
+		    },
+		    computed: {
+		        isInfo: function() {
+		            return !this.type;
+		        },
+		        isSuccess: function() {
+		            return /success/i.test(this.type);
+		        },
+		        isWarning: function() {
+		            return /warning/i.test(this.type);
+		        },
+		        isError: function() {
+		            return /error/i.test(this.type);
+		        }
+		    },
+		    methods: {
+		        close: function() {
+		        	this.message = '';
+		            this.open = false;
+		            this.$emit("closed");
+		        },
+		        cancel: function() {
+		            this.$emit("cancel");
+                    this.close();
+		        },
+		        confirm: function() {
+		            this.$emit("confirm");
+		            if (typeof this.callback === "function") {
+		            	this.$nextTick(this.callback);
+		            }
+                    this.close();
+		        }
+		    },
+		    watch: {
+		        message: function(val) {
+		            this.open = !!val;
+		        },
+		        timeout: function() {
+		        	var self = this;
+		        	setTimeout(function() {
+		        		self.close();
+		        	}, this.timeout);
+		        }
+		    },
+		    template: `<div>
+						    <div
+						    	role="alertdialog"
+						    	tabindex="-1"
+						    	aria-labelledby="prompt-heading-id"
+						    	aria-describedby="prompt-message-wrapper"
+						    	class="slds-modal slds-modal--prompt"
+						    	v-bind:class="{'slds-fade-in-open': open}">
+
+						        <div class="slds-modal__container">
+						            <div
+						            	class="slds-modal__header slds-theme--alert-texture"
+						            	v-bind:class="{'slds-theme--info': isInfo, 'slds-theme--success': isSuccess, 'slds-theme--warning': isWarning, 'slds-theme--error': isError}">
+
+						                <button type="button" class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" v-on:click="close">
+						                    <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
+						                        <use xlink:href="{!URLFOR($Resource.slds231, '/assets/icons/utility-sprite/svg/symbols.svg#close')}"></use>
+						                    </svg>
+						                    <span class="slds-assistive-text">Close</span>
+						                </button>
+
+						                <h2 class="slds-text-heading--medium" id="prompt-heading-id">{{type}}</h2>
+						            </div>
+						            <div class="slds-modal__content slds-p-around--medium">
+						                <div>
+						                    <p>{{message}}</p>
+						                </div>
+						            </div>
+						            <div class="slds-modal__footer slds-theme--default">
+
+						                <button type="button" class="slds-button slds-button--neutral" v-on:click="confirm">Confirm</button>
+
+						                <button type="button" class="slds-button slds-button--neutral" v-on:click="close">Cancel</button>
+						            </div>
+						        </div>
+						    </div>
+						    <div class="slds-backdrop" v-bind:class="{'slds-backdrop--open': open}"></div>
+					</div>`
+		});
+
+	</script>
+</apex:component>

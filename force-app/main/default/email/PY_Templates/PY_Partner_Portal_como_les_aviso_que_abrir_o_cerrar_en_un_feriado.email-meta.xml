@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY - Partner Portal como les aviso que abriré o cerraré en un feriado</name>
+    <style>freeForm</style>
+    <subject>Gracias por Contactarnos - # {!Case.CaseNumber}</subject>
+    <textOnly>Estimado XXXNombreXXX, 
+
+ 
+
+Nos contactamos en respuesta a tu consulta sobre cómo avisarnos si abres o no en un feriado en el Partner Portal, te comentamos que en el menú de la izquierda encontrarás la sección ‘Horarios’ en la parte de abajo encontrarás una sección llamada ‘Feriados’ y allí te aparecen las próximas fechas a considerar. 
+
+ 
+
+Debajo de cada fecha te aparecerá la opción de un switch en el que puedes indicarnos si abrirás o no, si está verde nos indicas que recibes pedidos y si está en rojo nos indicas que no recibirás pedidos. 
+
+ 
+
+Adicionalmente te hemos adjuntado el manual de la herramienta para futuras consultas. 
+
+ 
+
+Quedamos a las órdenes, 
+
+Saludos 
+
+ 
+
+(NOMBRE DEL AGENTE) - Claims Operator 
+PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

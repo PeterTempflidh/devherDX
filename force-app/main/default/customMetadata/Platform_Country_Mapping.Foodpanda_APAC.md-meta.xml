@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Foodpanda-APAC</label>
+    <protected>false</protected>
+    <values>
+        <field>Countries__c</field>
+        <value xsi:type="xsd:string">Malaysia,Singapore,Hong Kong,Taiwan,Thailand,Philippines,Pakistan,Bangladesh,Cambodia,Laos,Myanmar</value>
+    </values>
+    <values>
+        <field>Platform__c</field>
+        <value xsi:type="xsd:string">Foodpanda</value>
+    </values>
+    <values>
+        <field>Profiles_to_skip_validation__c</field>
+        <value xsi:type="xsd:string">System Administrator, Global Salesforce Team</value>
+    </values>
+    <values>
+        <field>Region__c</field>
+        <value xsi:type="xsd:string">APAC</value>
+    </values>
+    <values>
+        <field>User_Role_Prefix__c</field>
+        <value xsi:type="xsd:string">FP_,Global_Admin,Global_Management</value>
+    </values>
+</CustomMetadata>

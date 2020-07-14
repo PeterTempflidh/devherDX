@@ -1,0 +1,14 @@
+Dear {!Opportunity.OwnerFullName}
+
+The {!Case.Type} case for the following deal has been rejected. Please look into the case comments and perform the necessary action.
+
+Case Number: {!Case.CaseNumber}
+-----------------------------------------------------------
+Opportunity Name: {!Opportunity.Name}
+-----------------------------------------------------------
+Name of Restaurant: {!Account.Restaurant_Name__c}
+City & Country: {!Account.BillingCity}, {!Account.BillingCountry}
+
+
+Thanks
+Menu Team

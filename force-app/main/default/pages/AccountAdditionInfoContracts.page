@@ -1,0 +1,111 @@
+<apex:page showHeader="false" sidebar="false" standardController="Account" extensions="CtrAccountAdditionalInfoContracts" standardStylesheets="false" docType="html-5.0">
+	<apex:form id="myContracts">
+		<c:SF1_CSS_bootstrap />
+		<apex:includeScript value="{!URLFOR($Resource.jq211)}"/>
+
+		<head>
+			<style>
+				 body,html{font-size: 12px !important; background: #fff;margin: 0px;padding: 0px;}
+
+
+			body, html, .bPageBlock,.apexp .bPageBlock.apexDefaultPageBlock .pbBody,
+			*{margin: 0px; padding: 0px;}
+			.aParent div {
+				float: left;
+				clear: none; 
+			}
+			.accountTab .secondaryPalette, .individualPalette .accountBlock .secondaryPalette {border: 0px; background: transparent;}
+			.bPageBlock{background: transparent !important;
+			}
+			.cc {
+				width: 100px;
+				height: 50px;
+				background:	yellow;
+			}
+			.cb {
+				width: 100px;
+				height: 50px;
+				background:	green;
+			}
+			.progress, .progress-bar{color: black; line-height: 27px; font-size: 12px; font-weight: bold;}
+			
+			.progress {
+				border-radius: 10px;
+				border: 0px;
+				background: none;
+				-webkit-box-shadow: none;
+				box-shadow: none;
+				padding: 0px;
+				margin: 5px; 
+				background: url({!URLFOR($Resource.progressBarBackground)});  
+			
+			}
+			.progress-bar-danger,
+			.progress-bar-warning{
+				background-color: #ee0122;
+				opacity: 0.6;
+				border-left:1px solid #7ba224;
+				color: #fff !important;
+			}
+			.progress-bar-not {
+				background-color: #e0e0e0;
+				opacity: 0.6;
+				border-left:1px solid #c6c6c6;
+			}
+			.progress-bar-check {
+				background-color: #8ab529;
+				opacity: 0.8;
+				border-left:1px solid #7ba224;
+				color: #fff !important;
+			}
+			.progress-bar-inprogress {
+				background-color: #8ab529;
+				opacity: 0.6;
+				border-left:1px solid #7ba224;
+				color: #fff !important;
+			}
+			.pbHeader .pbTitle h2{display: block; padding-left:30px;width: 180px;font-size: 16px;margin-top: 5px;margin-bottom: 0px;}
+		</style>
+			<script>
+				
+			</script>
+		</head>
+	<body style="background: transparent !important;">
+	<apex:pageBlock title="Overview Contracts" mode="maindetail ">
+	<span class="s1icon s1icon-s-contract  s1icon-xs" style="margin-top: -29px;"></span>
+	<apex:dataTable value="{!mapContracts}" var="c" id="theTable" rowClasses="odd,even" columnClasses="s11Column" styleClass="tableClass">
+		
+		<apex:column style="width:30px;">
+			<apex:commandLink id="theCommandLink" Styleclass="btn1 btn-info" value="" title="Cancel Contract">
+				<span class="s1utility s1utility-close"></span>
+				<apex:param name="contractId" assignTo="{!contractId}" value="{!mapContracts[c].Id}" />
+			</apex:commandLink>
+		</apex:column>
+
+
+		<apex:column style="width:50px; text-align:center; padding-left:10px;">
+			<apex:facet name="header">Name</apex:facet>
+			<apex:outputText value="{!mapContracts[c].Name__c}"/>
+		</apex:column>
+
+		<apex:column style="width:50px; text-align:center; padding-left:10px;">
+			<apex:facet name="header">Commission</apex:facet>
+			<apex:outputText value="{!mapContracts[c].Commission__c}"/>
+		</apex:column>
+
+		<apex:column style="width:100px; text-align:center; padding-left:10px;">
+			<apex:facet name="header">Start Date</apex:facet>
+			<apex:outputText value="{!mapContracts[c].StartDate}"/>
+		</apex:column>
+
+		<apex:column style="width:50px; text-align:center; padding-left:10px;">
+			<apex:facet name="header">End Date</apex:facet>
+			<apex:outputText value="{!mapContracts[c].End_Date__c}"/>
+		</apex:column>
+
+	</apex:dataTable>
+			
+			</apex:pageBlock>	
+		</body>
+	</apex:form>	
+</apex:page>

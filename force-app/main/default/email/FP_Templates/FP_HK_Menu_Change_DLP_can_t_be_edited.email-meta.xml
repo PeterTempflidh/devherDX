@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>你因應更改餐牌而上傳的圖片未符合準則 The pictures you have submitted with your Menu Change request are not compliant with the Pictures Guidelines</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP HK Menu Change - DLP can’t be edited</name>
+    <style>freeForm</style>
+    <subject>你因應更改餐牌而上傳的圖片未符合準則 The pictures you have submitted with your Menu Change request are not compliant with the Pictures Guidelines</subject>
+    <textOnly>親愛的合作餐廳：
+
+你最近要求上傳新的食物相到網上餐單，很遺憾，因為圖片未有符合準備，我們尚不能替你進行更改。 請確保你的圖片符合以下要求︰  ● 90 度俯視圖或 0 度平視圖 ● 餐點需廣角置中 ● 請勿提供去背、壓文字、浮水印或相片展露人手或任何身體部份 ● 最小尺寸 - 4000x2925 (1MB以上)
+
+希望你留意餐點相片若不符以上要求，我們將不能上傳至網站。
+有其他疑問？請電郵至 partner@foodpanda.hk 或致電 +852 5819 8997。我們樂意解答。
+謝謝，
+你的 foodpanda 合作餐廳服務小組   Dear Restaurant Partner, You have recently requested Dish Pictures to be displayed with your menu. Unfortunately, we could not upload them because they are not compliant with our guidelines. Please ensure that the pictures you want to use are compliant with the following Picture Guidelines: ● Take food Pictures either in a top view angle (90°) or flat view angle (0°) ● Dish has to be centered in the middle ● No side product that is not delivered / No disturbing background, the dish is focus ● Image size: Min 4000px : 2925px Please note that without having the dish information completed, we won’t be able to put any new items online. Any questions? Feel free to contact us per e-mail at partner@foodpanda.hk or via phone under +852 5819 8997. We are happy to help you! See you soon, Your foodpanda Partner Care Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

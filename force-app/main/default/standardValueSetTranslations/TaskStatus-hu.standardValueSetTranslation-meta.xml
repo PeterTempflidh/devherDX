@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Cancelled</masterLabel>
+        <translation>Megszakítva</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Completed</masterLabel>
+        <translation>Lezárva</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>In Progress</masterLabel>
+        <translation>Folyamatban</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Not Started</masterLabel>
+        <translation>Nem kezdődött el</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Postponed</masterLabel>
+        <translation><!-- Postponed --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Waiting for Other person</masterLabel>
+        <translation><!-- Waiting for Other person --></translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

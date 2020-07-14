@@ -1,0 +1,385 @@
+<apex:component id="VueChainOpportunityComponents" layout="none" controller="ChainOpportunityController">
+	<script>
+		var inputElementsSharedState = {
+            state: {
+                elements: [] 
+            },
+            addElement: function(el) {  
+                this.state.elements.push(el);
+            },
+            removeElement: function(el) { 
+                var idx = this.state.elements.indexOf(el); 
+                if (idx > -1) {
+                    this.state.elements.splice(idx, 1);
+                }
+            }
+        };
+
+        var loaderSharedState = {
+            state: {
+                isLoading: 0
+            },
+            startLoadingSpinner: function() {
+                this.state.isLoading++;
+            },
+            stopLoadingSpinner: function() {
+                if (this.state.isLoading > 0) {
+                    this.state.isLoading--;
+                }
+            }
+        };
+
+        var errorHandlerSharedState = {
+            state: {
+                message: "",
+                type: "",
+                timeout: undefined,
+                callback: undefined
+            },
+            setErrorMsg: function(err) {
+                this.state.message = err.msg;
+                this.state.type = err.type;
+                this.state.timeout = err.timeout;
+                this.state.callback = err.callback;
+            },
+            clearErrorMsg: function() {
+                this.state.message = "";
+                this.state.type = "";
+                this.state.timeout = undefined;
+                this.state.callback = undefined;
+            }
+        };
+
+        var inputMixin = {
+            data: function() {
+                return {
+                    isFilled: false,
+                    isInError: false,
+                    inputElementsState: inputElementsSharedState
+                };
+            },
+            created: function() {
+                this.inputElementsState.addElement(this);
+            },
+            destroyed: function() {
+                this.inputElementsState.removeElement(this);
+            }
+        };
+
+        // INPUT SELECT COMPONENT START
+        Vue.component("input-select", {
+            mixins: [inputMixin],
+            props: ["options", "name", "label", "disabled", "selectedvalue", "showlabel"],
+            created: function() {
+                this.setSelectedOption();
+            },
+            data: function() {
+                return {
+                    selected: undefined
+                }
+            },
+            methods: {
+                onSelect: function() {
+                    this.$emit("selected", this.selected);
+                },
+                setSelectedOption: function() {
+                    if(this.selectedvalue != undefined){
+                        this.selected = this.selectedvalue;
+                    }else {
+                        this.selected = this.options.reduce(function(acc, option) {
+                                            if (option.selected) {
+                                                acc = option.value;
+                                            }
+                                            return acc;
+                                        }, undefined);
+                    }
+
+                }
+            },
+            watch: {
+                options: function() {
+                    /* This is  because when user change an entity's type only
+                    options are updated */
+                    this.setSelectedOption();
+                },
+                selected: function() {
+                    this.isFilled = !!this.selected;
+                },
+                selectedvalue: function(){
+                    this.selected = this.selectedvalue;
+                }
+            },
+            template: `<div class="slds-form-element" v-bind:class="{'slds-has-error': isInError}">
+                            <label class="slds-form-element__label" v-bind:for="name" v-if="showlabel == 'true'">
+                                <abbr class="slds-required" title="required">*</abbr>
+                                {{label}}
+                            </label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <select
+                                        v-bind:name="name"
+                                        v-bind:id="name"
+                                        v-bind:disabled="!!disabled"
+                                        v-on:change="onSelect"
+                                        v-model="selected"
+                                        class="slds-select">
+                                        <option value=""> --- None --- </option>
+                                        <option v-for="opt in options" v-bind:value="opt.value">
+                                            {{opt.label}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>`
+        });
+        // INPUT SELECT COMPONENT END
+		
+		
+		//****************************************** MESSAGE SECTION START**************************************
+		Vue.component("message-section", {
+			props:["message","iserror"],
+			created: function(){
+				console.log("Error " +this.iserror);
+			},
+			template:`<div class="slds-notify_container">
+					  <div class="slds-notify slds-notify--alert slds-theme--alert-texture" 
+					  		v-bind:class = "{'slds-theme--error':iserror}" role="alert">
+					    <button class="slds-button slds-notify__close slds-button--icon-inverse" title="Close">
+					      <svg aria-hidden="true" class="slds-button__icon">
+					        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+					      </svg>
+					      <span class="slds-assistive-text">Close</span>
+					    </button>
+					    <span class="slds-assistive-text">Error</span>
+					    <h2>{{message}}</h2>
+					  </div>
+					</div>`
+		});
+		//****************************************** MESSAGE SECTION END **************************************
+		
+		//******************************************* HEADER SECTION COMPONENT START*************************************
+		Vue.component("header-section", {
+            template: `<div class="slds-page-header">
+  						<div class="slds-grid">
+						    <div class="slds-col slds-has-flexi-truncate">
+						      <p class="slds-text-title_caps slds-line-height_reset">
+							  	Pick the branches you want to apply deal to
+							  </p>
+						    </div>
+						  </div>
+						</div>`
+        });
+		//******************************************* HEADER SECTION COMPONENT END*************************************
+		
+		//******************************************* ACCOUNT TABLE SECTION COMPONENT START ***************************
+		Vue.component("account-table", {
+            props:["accounts"],
+            data: function(){
+            	return{
+            		selectAll:false,
+            	}
+            },
+            watch: {
+            	selectAll: function(){
+            		console.log("Select All " + this.selectAll);
+            	}
+            },
+            methods: {
+            	checkselectAll: function(){
+            		isAllNotSelected = true;
+            		isAllSelected	 = true;
+            		for(i=0;i<this.accounts.length;i++){
+            			if(this.accounts[i].isSelected){
+            				isAllNotSelected = false;
+            				break;
+            			}
+            		}
+            		if(isAllNotSelected)
+            			this.selectAll = false;
+            	}
+            },
+            template: `<div class="slds-scrollable">
+            			<table class="slds-table slds-table_bordered slds-table_cell-buffer">
+						  <thead>
+						    <tr class="slds-text-title_caps">
+						      <th scope="col">
+						        <div class="slds-form-element">
+								  <div class="slds-form-element__control">
+								    <span class="slds-checkbox">
+								      <input type="checkbox" name="options" v-model="selectAll" id = "checkbox-header">
+								      <label class="slds-checkbox__label" for="checkbox-header">
+								        <span class="slds-checkbox_faux"></span>
+								        <span class="slds-form-element__label"></span>
+								      </label>
+								    </span>
+								  </div>
+								</div>
+						      </th>
+						      <th scope="col">
+						        <div class="slds-truncate" title="Name">{!$ObjectType.Account.fields.Name.Label}</div>
+						      </th>
+						      <th scope="col">
+						        <div class="slds-truncate" title="Restaurant Name">{!$ObjectType.Account.fields.Restaurant_Name__c.Label}</div>
+						      </th>
+						      <th scope="col">
+						        <div class="slds-truncate" title="Account Type">{!$ObjectType.Account.fields.Type.Label}</div>
+						      </th>
+						      <th scope="col">
+						        <div class="slds-truncate" title="GRID">{!$ObjectType.Account.fields.GRID__c.Label}</div>
+						      </th>
+						      <th scope="col">
+						        <div class="slds-truncate" title="GRID">{!$ObjectType.Account.fields.ParentId.Label}</div>
+						      </th>
+						      <th scope="col">
+						        <div class="slds-truncate" title="Account Status">{!$ObjectType.Account.fields.Account_Status__c.Label}</div>
+						      </th>
+						      <th scope="col">
+						        <div class="slds-truncate" title="Formatted Address">{!$ObjectType.Account.fields.Formatted_Restaurant_Address__c.Label}</div>
+						      </th>
+						      <th scope="col">
+						        <div class="slds-truncate" title="Deal Already Applied">{!$Label.Deal_Applied}</div>
+						      </th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						  	<account-table-lineitem v-for = "(account,index) in accounts"
+						  		v-bind:account="account"
+						  		v-bind:selectAll = "selectAll"
+						  		v-bind:index = "index" 
+						  		v-on:checkselectAll = "checkselectAll"/>
+						  </tbody>
+						</table>
+					   </div>` 
+        });
+        //******************************************* ACCOUNT TABLE SECTION COMPONENT END ***************************
+        
+        //****************************************** ACCOUNT TABLE LINE ITEM COMPONENT START *************************
+        Vue.component("account-table-lineitem", {
+        	props:["account","selectAll","index"],
+        	watch: {
+        		selectAll: function(){
+        			if(this.account.dealAlreadyApplied){
+        				this.account.isSelected = true;
+        			}else{
+        				this.account.isSelected = this.selectAll;
+        			}     			 
+        		}
+        	},
+        	methods: {
+        		checkSelectAll: function(){
+        			console.log("checking");
+        			this.$emit("checkselectAll");
+        		},
+        		openAccountTab: function(value){
+        			if (sforce.console.isInConsole()) {
+                          sforce.console.openPrimaryTab(null,'/'+value,true);
+                     }else if((typeof sforce != 'undefined') && sforce && (!!sforce.one)){
+                         sforce.one.navigateToSObject(value);
+                     }else if(!sforce.one){
+						window.open("/"+value,'_blank');
+                     }
+        			
+        		}
+        	},
+        	template: `<tr>
+        				  <th scope="col">
+					        <div class="slds-form-element">
+							  <div class="slds-form-element__control">
+							    <span class="slds-checkbox">
+							      <input type="checkbox" name="options" v-model="account.isSelected" 
+							      		v-bind:id = "'checkbox'+index"
+							      		v-on:change = "checkSelectAll"
+							      		v-bind:disabled = "account.dealAlreadyApplied" >
+							      <label class="slds-checkbox__label" v-bind:for="'checkbox'+index">
+							        <span class="slds-checkbox_faux"></span>
+							        <span class="slds-form-element__label"></span>
+							      </label>
+							    </span>
+							  </div>
+							</div
+					      </th>
+        				  <th scope="row" data-label="Name">
+					        <div class="slds-truncate" title="Link to Account">
+					        	<a v-on:click="openAccountTab(account.Id)">{{account.Name}}</a>
+					        </div>
+					      </th>
+					      <th scope="row" data-label="Restaurant Name">
+					        <div class="slds-truncate" title="Link to Account">
+					        	<a v-on:click="openAccountTab(account.Id)">{{account.RestaurantName}}</a>
+					        </div>
+					      </th>
+					      <td data-label="Account Type">
+					        <div class="slds-truncate" title="Account Type">{{account.Type}}</div>
+					      </td>
+					      <td data-label="GRID">
+					        <div class="slds-truncate" title="GRID">{{account.GRID}}</div>
+					      </td>
+					      <td data-label="Parent Account">
+					        <div class="slds-truncate" title="Link to Account">
+					        	<a v-on:click="openAccountTab(account.ParentId)">{{account.ParentName}}</a>
+					        </div>
+					      </td>
+					      <td data-label="Account Status">
+					        <div class="slds-truncate" title="Account Status">{{account.AccountStatus}}</div>
+					      </td>
+					      <td data-label="Formatted Restaurant Address">
+					        <div class="slds-truncate" title="20%">{{account.FormattedAddress}}</div>
+					      </td>
+						  <td data-label="Deal Already Applied">
+					        <div class="slds-truncate" title="20%" v-if="account.dealAlreadyApplied">
+					        	<svg class="slds-button__icon" aria-hidden="true">
+	                                <use xmlns:xlink="http://www.w3.org/1999/xlink"
+	                                     xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}" />
+	                            </svg>
+					        </div>
+					      </td>
+					    </tr>`
+        });
+        //****************************************** ACCOUNT TABLE LINE ITEM COMPONENT END *************************
+        
+        //******************************************* BUTTON SECTION START*********************************************
+        Vue.component("button-section", {
+            props:["disabled"],
+            methods: {
+               applyDeal: function(){
+               	   console.log('Applying Deals');
+                   this.$emit("applydeal");
+               },
+               closeWindow: function(){
+               		if(sforce.console.isInConsole()){
+               			sforce.console.getFocusedSubtabId(this.closeSubTab);
+               		}else{
+               			window.close();
+               		}
+               },
+               closeSubTab: function(result){
+               		sforce.console.closeTab(result.id);
+               }
+            },
+            template: `<div class="slds-panel" >
+                            <div class="slds-panel__section slds-border_bottom">
+                                <div class="slds-form slds-form_stacked">
+                                    <div class="slds-align_absolute-center slds-p-horizontal_small slds-size_1-of-1">
+                                        <button class="slds-button slds-button_brand" v-on:click="applyDeal"
+                                        		v-bind:disabled="disabled">
+                                            <span>
+                                            <svg class="slds-button__icon_stateful slds-button__icon_left" aria-hidden="true">
+                                              <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                    xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#save')}" />
+                                            </svg>{!$Label.Apply_Deal}</span>
+                                        </button>
+                                        <button class="slds-button slds-button_brand" v-on:click="closeWindow">
+                                            <span>
+                                            <svg class="slds-button__icon_stateful slds-button__icon_left" aria-hidden="true">
+                                              <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                    xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#close')}" />
+                                            </svg>{!$Label.Close_Window}</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`
+        });
+        //******************************************* BUTTON SECTION END*********************************************
+	</script>
+</apex:component>

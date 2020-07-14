@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Letterhead xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <backgroundColor>#ffffff</backgroundColor>
+    <bodyColor>#FFFFFF</bodyColor>
+    <bottomLine>
+        <color>#ffffff</color>
+        <height>0</height>
+    </bottomLine>
+    <footer>
+        <backgroundColor>#FFFFFF</backgroundColor>
+        <height>50</height>
+        <horizontalAlignment>Left</horizontalAlignment>
+        <logo>DH_AU_Shared_Documents/DH_AU_Updated_Footer_15_5_2015.png</logo>
+        <verticalAlignment>Top</verticalAlignment>
+    </footer>
+    <header>
+        <backgroundColor>#FFFFFF</backgroundColor>
+        <height>50</height>
+        <horizontalAlignment>Right</horizontalAlignment>
+        <logo>DH_AU_Shared_Documents/DH_AU_Logo_Header.png</logo>
+        <verticalAlignment>Middle</verticalAlignment>
+    </header>
+    <middleLine>
+        <color>#d7242b</color>
+        <height>5</height>
+    </middleLine>
+    <name>DH AU Letterhead</name>
+    <topLine>
+        <color>#d7242b</color>
+        <height>5</height>
+    </topLine>
+</Letterhead>

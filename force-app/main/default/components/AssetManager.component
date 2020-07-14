@@ -1,0 +1,39 @@
+<apex:component controller="CtrAssetManager" allowDML="true">
+	<head>
+	</head>
+	<apex:form id="myForm">
+		<apex:pageBlock title="Asset Management" mode="maindetail ">
+			<apex:pageMessages />
+			<apex:pageBlockSection title="Asset Data">
+				<apex:inputField value="{!myAsset.Name}" />
+				<apex:inputField value="{!myAsset.Is_Active__c}" />
+				<!--<apex:inputField value="{!myAsset.Id_Country__c}" />-->
+				<apex:commandButton value="Save" action="{!save}" reRender="myForm"/>
+			</apex:pageBlockSection>
+			<apex:pageBlockSection title="Overview">
+				<apex:dataTable value="{!mapExistingAssets}" var="asset" id="theAssetTable" rowClasses="odd,even" styleClass="tableClass">
+
+					<apex:column >
+						<apex:commandLink id="commandlinkEditAsset" value="Edit" action="{!editAsset}" rerender="myForm" immediate="true">
+							<apex:param name="AssetId" assignTo="{!selectedAssetToEdit}" value="{!mapExistingAssets[asset].Id}" />
+		        		</apex:commandLink>
+	    			</apex:column>
+	    			<apex:column >
+	       				<apex:facet name="header">Name</apex:facet>
+						<apex:outputText value="{!mapExistingAssets[asset].Name}"/>
+					</apex:column>
+					<!--<apex:column >
+	       				<apex:facet name="header">Country</apex:facet>
+						<apex:outputText value="{!mapExistingAssets[asset].Id_Country__c}"/>
+					</apex:column>-->
+					<apex:column >
+	       				<apex:facet name="header">Is Active</apex:facet>
+						<apex:outputText value="{!mapExistingAssets[asset].Is_Active__c}"/>
+					</apex:column>
+
+
+				</apex:dataTable>
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+	</apex:form>
+</apex:component>

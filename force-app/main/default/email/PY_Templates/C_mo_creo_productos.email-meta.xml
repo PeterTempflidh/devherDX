@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>Cómo creo productos</name>
+    <style>freeForm</style>
+    <subject>Cómo creo productos</subject>
+    <textOnly>Estimado {!Case.Customer_Name__c} Nombre {!Case.Customer_Name__c},
+
+
+Hemos recibido tu consulta sobre cómo agregar productos en tu perfil de Partner Portal, te comentamos que para lograrlo te diriges al menú de la izquierda en la sección Productos &gt; Secciones de tu listado y le das click a &quot;Crear producto&quot;, luego rellenas los datos que te aparecen en la pantalla.
+
+
+Si lo que necesitas es eliminar productos, en la misma sección, das click sobre el producto que deseas eliminar y confirmas la acción.
+
+
+Para crear una opción de un producto, en la sección Productos &gt; Secciones de tu listado, presionas en el producto que deseas agregar y das click en la sección &quot;Crear opción&quot;, luego rellenas los datos que requiere el sistema para poder cargar las opciones deseadas.
+
+
+Quedamos a las órdenes,
+
+Saludos
+
+
+{!Case.OwnerFullName} - Claims Operator
+
+PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

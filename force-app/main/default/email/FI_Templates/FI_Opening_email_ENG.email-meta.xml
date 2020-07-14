@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FI_Letterhead</letterhead>
+    <name>FI Opening email ENG</name>
+    <style>freeForm</style>
+    <subject>Your restaurant is now created - foodora.fi</subject>
+    <textOnly>Dear restaurateur,
+
+
+We have now created your restaurant to our system and next we will send you the foodora onboarding package.
+
+
+From the link below you can check your restaurant menu:
+
+
+https://www.foodora.fi/restaurant/
+
+
+Please note, that the restaurant is not yet visible to customers and is accessible only through this link.
+
+
+If there is information incorrect, please send us the correct information in this form:
+
+NAME OF THE PRODUCT - ACTION - CORRECTED INFO
+
+For example: Mexican Wings - Change name - Fiery Wings
+
+
+To improve the customer experience for your restaurant, we recommend you to fill out the allergen information to our portal so they are easy accessible to your customers.
+
+
+Below you will find a link to the allergen portal and your credentials:
+
+
+https://fi.foodprint.restaurant-partners.com/
+
+
+Username:
+
+Password: foodora2020
+
+
+Here are the instructions for filling out the information:
+
+
+Choose all points that describes the dish from the dropdown menu. You can pick multiple options. If there’s nothing that fully describes the dish, choose the closest option or N/A.
+
+You only have to fill the allergens and additives
+
+Be extra careful when filling out the allergens!
+
+Remember to click SAVE from the top right button of each product!
+
+
+
+
+Once all the allergens are filled out and the percentage bar is 100%, click ‘PUBLISH’ from the top right corner of the page so the information will be shown to customers.
+
+
+We will contact you about opening your restaurant to customers after we have sent the onboarding package, but if you have any questions please don’t hesitate to contact us by answering to this email or call our Customer Care. We are happy to help!
+
+
+Talk to you soon!
+
+
+
+
+Best regards,
+
+{!Case.OwnerFirstName}
+
+foodora.fi Customer Care
+
+
+
+Delivery Hero Finland Oy / foodora.fi
+
+Pasilankatu 10, 00240 Helsinki
+
+
+Phone number: 02 9300 0472 (pvm)
+
+E-mail: partner@foodora.fi
+
+www.foodora.fi</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

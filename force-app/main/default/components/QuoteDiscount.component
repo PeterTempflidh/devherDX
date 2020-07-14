@@ -1,0 +1,14 @@
+<apex:component controller="CtrQuoteDiscount" access="global">
+<apex:attribute name="relatedToId" assignTo="{!targetObjectId}" type="String" description="Id of the record to be approved"/>
+<apex:attribute name="quote" assignTo="{!quoteName}" type="String" description="the name of the quote"/>
+<apex:attribute name="acct" assignTo="{!accountName}" type="String" description="the name of the account"/>
+<apex:attribute name="opp" assignTo="{!opportunityName}" type="String" description="the name of the opportunity"/>
+
+<apex:outputText value="{!$Label.Quote_Approval_Dear} {!salutation}" /><br /><br />
+<apex:outputText value="{!$User.FirstName} {!$User.LastName} {!$Label.Quote_Approval_Request_For}: {!quoteName} " /> <br /><br />
+<apex:outputText value="{!$Label.Quote_Approval_Related_Account}: {!accountName}" /><br /><br />
+<apex:outputText value="{!$Label.Quote_Approval_Related_Opportunity}: {!opportunityName}" /><br /><br />
+<apex:outputText value="{!$Label.Quote_Approval_Link}: " /><apex:outputLink value="{!discountUrl}">Approve / Reject</apex:outputLink> <br /><br />
+<apex:outputText value="{!$Label.Quote_Approval_Thank_You}," /><br />
+<apex:outputText value="{!$Label.Quote_Approval_Salesforce}"/><br />
+</apex:component>

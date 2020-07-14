@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="de-DE" xml:lang="de-DE" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+
+</style>
+</head>
+<body>
+
+<div align="left">
+  <table border="0" cellpadding="4" width="700">
+    
+<tr>
+ <td>
+<img alt="lieferheld_logo_temp" src="https://c.eu0.content.force.com/servlet/servlet.ImageServer?id=01520000001NNH9&oid=00D20000000CSSJ&lastMod=1313919359000" align="right" />
+<br> <br> <br>
+<hr color="ff3300" width="100%" size="5" align="left|center|right"></hr>
+ </td>
+</tr>
+
+<tr>
+ <td align="left">
+<br>
+ <font face="Arial" size="3">
+<p>
+Dear Restaurant Owner,<br/ >
+
+<p>We are pleased to let you know that {!Account.Name} is now online on www.deliveryhero.com.au. This means that from now new customers can order from your restaurant online and Delivery Hero will start sending you orders. </p>
+
+<p>Please make the following checks to confirm the accuracy of the content for your restaurant:</p>
+<ol>
+<li>Check the opening hours and your menu on {!Account.FrontEnd_URL__c} carefully to make sure all your dishes are listed and have the correct prices.</li>
+
+<li>The opening hours on {!Account.00N20000002kwz8} should match the times you actually do delivery, that is the time you take your FIRST order for delivery until the time you take your LAST order for delivery.</li>
+</ol>
+
+<p>If you have any change requests, please contact us on 1300 46 4376 or send an email to restaurant@deliveryhero.com.au .
+<br><br>
+Kind regards,
+<br>
+The Delivery Hero Team
+<br>
+<br>
+
+<hr color="ff3300" width="100%" size="5" align="left|center|right"></hr>
+</td>
+</tr>
+</table>
+
+<table border="0" cellspacing="20" cellpadding="0" width="700">
+<tr>
+ <td style="text-align: left" valign="top"><font face="Arial" size="2"> <b>{!User.Company}</b><br>
+{!User.Street}<br>
+{!User.City} {!User.PostalCode}<br>
+contact@deliveryhero.com.au<br>
+www.deliveryhero.com.au</font></td>
+
+<td style="text-align: left" valign="top"><font face="Arial" size="2"><br>ABN: 26 152 250 274</font></td>
+</tr></table>
+</div>
+</body>
+<html>

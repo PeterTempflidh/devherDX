@@ -1,0 +1,2407 @@
+<apex:page standardController="Case" extensions="CtrDEChatbot">
+    <apex:includeScript value="/support/console/39.0/integration.js"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <!--<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>-->
+    <script src="//www.jsviews.com/download/jsrender.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-101288112-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+    <script type="text/javascript">
+
+        var crmApiConfig = {
+            'baseUrl': "https://ym2cyyyat7.execute-api.eu-central-1.amazonaws.com/prod",
+            'accessToken':  '{!crmApiToken}'
+        };
+
+        var apiAiApiConfig = {
+            'baseUrl': "https://api.api.ai/v1",
+            'accessToken':  '{!apiAiApiToken}'
+        };
+
+        var ninecookiesApiConfig = {
+            'baseUrl': "https://oe6lxa32le.execute-api.eu-west-1.amazonaws.com",
+            'accessToken':  '{!ninecookiesApiToken}'
+        };
+
+        var sfConfig = {
+            'pdeButtons': [
+                '57320000000TPBk'/*old*/,
+                '5731r000000L1PI'/*live-customer*/,
+                '5737E0000004DWy'/*stagezero-customer*/,
+                '5731r000000L1PN'/*live-restaurant*/,
+                '5737E0000004DXX'/*stagezero-restaurant*/,
+            ],
+            'lhButtons': [
+                '573200000008OVg'/*old*/,
+                '5731r000000L1PD'/*live-customer*/,
+                '5737E0000004DWt'/*stagezero-customer*/,
+                '5731r000000L1PN'/*live-restaurant*/,
+                '5737E0000004DXS'/*stagezero-restaurant*/,
+            ]
+        };
+
+        /**
+         * TEXTS
+         * Single strings, combined into messages
+         */
+        var texts = {};
+        //hello
+        texts.thanks_for_the_message = 'Danke für deine Nachricht %USER_NAME%. ';
+        texts.hello = 'Hallo %USER_NAME%. ';
+        // sorry
+        texts.sorry_for_the_situation= 'Das ist natürlich nicht in unserem Sinne und wir möchten uns für diese Situation bei dir entschuldigen. '
+        texts.sorry_you_are_waiting_please_be_patient= 'Es tut mir leid, dass du noch warten musst. Ich würde dich gerne um ein wenig Geduld bitten. ';
+        texts.sorry_you_are_waiting= 'Es tut mir leid, dass du noch warten musst. ';
+        texts.this_lateness_is_annoying = 'Das ist sehr ärgerlich, dass sich deine Bestellung derart verspätet. ';
+        // the situation is ...
+        texts.order_was_accepted_at = 'Ich habe eben nachgeschaut, Deine Bestellung mit der Bestellnummer %ORDER_NUMBER% wurde vom Lieferdienst "%RESTAURANT_NAME%" um %ORDER_CONFIRMED_AT% akzeptiert. ';
+        texts.order_was_promissed_until_with_address = 'Der Lieferdienst hat angegeben, dass sie deine Bestellung bis %ORDER_PROMISSED_UNTIL% nach %CUSTOMER_ADDRESS% liefern. '
+        texts.sorry_the_order_is_late = 'Wir bedauern sehr, dass sich deine Bestellung verspätet. '
+        //the problem is
+
+        texts.general_lateness_excuse = 'Unsere Lieferdienste sind von verschiedene Faktoren abhängig, wie Bestellaufkommen, Wetter und Verkehr. '
+        texts.order_should_have_been_delivered_with_address = 'Ich sehe hier, dass deine Bestellung schon nach %CUSTOMER_ADDRESS% geliefert werden sollte. ';
+        texts.order_should_have_been_delivered_with_minutes_and_address = 'Ich sehe hier, dass deine Bestellung schon vor %ORDER_MINUTES_SINCE_PLACED% Minuten nach %CUSTOMER_ADDRESS% geliefert werden sollte. ';
+        texts.order_should_have_been_delivered_20min_ago_with_address =  'Ich sehe hier, dass deine Bestellung schon vor mehr als 20min nach %CUSTOMER_ADDRESS% geliefert werden sollte. '
+        texts.order_should_have_been_delivered_30min_ago_with_address =  'Ich sehe hier, dass deine Bestellung schon vor mehr als 30min nach %CUSTOMER_ADDRESS% geliefert werden sollte. '
+        //how to go on.
+        texts.please_be_patient_with_order = 'Ich würde dich um noch ein paar Minuten Geduld bitten, bis dein Essen geliefert wird. '
+        texts.here_is_restaurant_phone_if_you_want_to_call =  'Falls du den Lieferdienst schon kontaktieren möchtest, die Telefonnummer lautet %RESTAURANT_PHONE%. '
+        texts.otherwise_we_could_call= 'Ansonsten kann ich den Lieferdienst für dich kontaktieren. '
+        texts.we_would_call_unless_customer_wants =  'Ich rufe gerne den Lieferdienst für dich an und erkundige mich, was da los war. '
+        texts.we_will_call_for_you =   'Ich rufe sofort den Lieferdienst für dich an und erkundige mich, was da los war. '
+        texts.we_will_call_with_rest_name ='Ich werde mich mit %RESTAURANT_NAME% in Verbindung setzen und mich nach deiner Bestellung erkundigen. '
+        texts.here_is_phone_if_prefer_to_call = 'Falls du den Lieferdienst lieber selber kontaktieren möchtest, die Telefonnummer lautet %RESTAURANT_PHONE%. '
+        texts.what_would_you_prefer = 'Was ist dir lieber? '
+        texts.we_will_ask_if_cancel_possible = 'In Ordnung. Ich werde mich kurz mit dem Restaurant in Verbindung setzen und nachfragen, ob eine Stornierung möglich ist. Ich melde mich in 2 Minuten bei Dir im Chat zurück'
+        texts.cancel_is_not_possible_15_min_after_order_was_placed = 'Gerne würde ich Deine Bestellung bei uns im System stornieren. Jedoch ist diese bereits länger als 15 Minuten her und daher ist eine Stornierung leider nicht mehr möglich.'
+        //offer
+        texts.we_will_send_you_a_voucher = 'Ich sende dir auch gleich danach per Mail einen Gutschein zu, als Entschuldigung für die Unannehmlichkeit. '
+        //salut
+        texts.ask_for_more_questions = 'Hast du noch weitere Fragen? '
+
+        /**
+         * MESSAGES
+         *
+         */
+        var msgs = {}
+        msgs.stillOnTimePleaseWaitWithoutPromissed = texts.thanks_for_the_message +
+                texts.order_was_accepted_at +
+                texts.please_be_patient_with_order +
+                texts.ask_for_more_questions;
+        msgs.stillOnTimePleaseWaitWithPromissed = texts.thanks_for_the_message +
+                texts.order_was_accepted_at +
+                texts.order_was_promissed_until_with_address +
+                texts.please_be_patient_with_order +
+                texts.ask_for_more_questions;
+
+        msgs.littleLateHereIsTheNumber= texts.thanks_for_the_message+
+                texts.order_was_accepted_at +
+                texts.order_should_have_been_delivered_with_address +
+                texts.sorry_you_are_waiting_please_be_patient +
+                texts.here_is_restaurant_phone_if_you_want_to_call
+
+        msgs.mediumLateWeCouldCallIfCustomerDoesntWant =  texts.thanks_for_the_message +
+                texts.order_was_accepted_at +
+                texts.order_should_have_been_delivered_with_minutes_and_address +
+                texts.sorry_you_are_waiting_please_be_patient +
+                texts.here_is_restaurant_phone_if_you_want_to_call +
+                texts.otherwise_we_could_call;
+
+        msgs.tooLateWeWouldCallUnlessCustomerWants = texts.thanks_for_the_message  +
+                texts.order_was_accepted_at +
+                texts.order_should_have_been_delivered_20min_ago_with_address +
+                texts.sorry_you_are_waiting +
+                texts.we_would_call_unless_customer_wants +
+                texts.here_is_phone_if_prefer_to_call+
+                texts.what_would_you_prefer;
+
+        msgs.veryLateWeWillCallHereIsAVoucher = texts.thanks_for_the_message  +
+                texts.order_was_accepted_at +
+                texts.sorry_you_are_waiting +
+                texts.we_will_call_for_you +
+                texts.we_will_send_you_a_voucher;
+
+        msgs.veryLateWeWillCallHereIsAVoucher2 = texts.hello +
+                texts.this_lateness_is_annoying +
+                texts.sorry_for_the_situation +
+                texts.we_will_call_with_rest_name +
+                texts.we_will_send_you_a_voucher;
+
+        msgs.veryLateWeWillCallHereIsAVoucherWithPromissed = texts.hello +
+                texts.this_lateness_is_annoying +
+                texts.order_was_accepted_at +
+                texts.order_should_have_been_delivered_30min_ago_with_address +
+                texts.sorry_you_are_waiting +
+                texts.we_will_call_for_you +
+                texts.we_will_send_you_a_voucher;
+
+        msgs.notSureIfLateWeWillCheck = texts.hello +
+                texts.sorry_the_order_is_late +
+                texts.general_lateness_excuse +
+                texts.we_would_call_unless_customer_wants +
+                texts.here_is_phone_if_prefer_to_call+
+                texts.what_would_you_prefer;
+
+        msgs.weWillAskIfCancelPossible = texts.we_will_ask_if_cancel_possible;
+        msgs.cancelIsNotPossible15MinAfterOrderWasPlaced = texts.cancel_is_not_possible_15_min_after_order_was_placed;
+        /**
+         * Configure what to do on  some indends
+         */
+        var reasonSettings = {
+            'voucher.doesntwork': {
+                'name':'Beschwerde: Gutschein funktioniert nicht!',
+                'description':'Ein Kunde beschwert sich &uuml;ber einen Gutschein der nicht funktioniert',
+                'good_examples':'&quot;Der code geht nicht&quot; &quot;Ich wollte den Code eben einl&ouml;sen doch dies ging nicht&quot;,&quot;Leider kommt bei der Bestellung der Gutschein sei abgelaufen.&quot;,&quot;Wenn ich den code eingebe zeigt es mir aber keinen Rabatt an&quot;',
+                'bad_examples':'&quot;Mir wurde ein Gutschein auf die App gesendet doch jetzt ist er nicht da&quot; (app.voucher.notavaiable),&quot;Der code geht nicht mehr, bitte gebt mir einen neuen&quot; (voucher.request)',
+                'threshold_green': 81,
+                'threshold_orange': 64,
+                'logo': 'glyphicon-qrcode',
+                'autoreply': false
+            },
+            'order.late_complain': {
+                'name':'Beschwerde: Lieferung ist zu sp&auml;t',
+                'description':'Ein Kunde beschwert sich &uuml;ber eine versp&auml;tete Lieferung',
+                'good_examples':'&quot;Ich habe beim RestaurantX bestellt und die 60 Minuten sind bereits um, aber ich habe noch keine Ware.&quot;,&quot;Des Weiteren kam die Lieferung um 10 Minuten sp&auml;ter wie angek&uuml;ndigt&quot;, &quot;Die Bestellung ist immer noch nicht bei uns angekommen.&quot;',
+                'bad_examples':'&quot;Das Essen kam zu sp&auml;t und jetzt ist es kalt!&quot; (item.complain_cold),&quot;Das Essen kam 15 min zu sp&auml;t, bekomme ich einen Gutschein als Entsch&auml;digung?&quot; (voucher.request)',
+                'threshold_green': 87,
+                'threshold_orange': 69,
+                'logo': 'glyphicon-time',
+                'autoreply': false,
+                'onDetection': onLateComplain
+            },
+            'order.query_general_status': {
+                'name':'Anfrage: Bestellstatus',
+                'description':'Ein Kunde fragt nach dem Zustand seiner Bestellung.',
+                'good_examples':'&quot;Ich habe keine Bestellbest&auml;tigung erhalten!&quot;,&quot;Ist die Bestellung durch gegangen?&quot;,&quot;Was ist mit meiner Bestellung los?&quot;,&quot;Wo bleibt meine Bestellung?&quot;',
+                'bad_examples':'&quot;Was ist mit meiner Bestellung los, ich warte schon seit 60 Minuten!&quot; (order.late_complain),&quot;Was ist mit der BEstellung los, das Restaurant weiss von nichts!&quot; (order.not.transmitted)',
+                'threshold_green': 70,
+                'threshold_orange': 56,
+                'logo': 'glyphicon-search',
+                'autoreply': false,
+                'onDetection': onGeneralStatusQuery
+            },
+            'order.not.transmitted': {
+                'name':'Beschwerde: Bestellung nicht &uuml;bermittelt',
+                'description':'Ein Kunde beschwert sich dar&uuml;ber, dass seine Bestellung nicht an das Restaurant weiter geleitet wurde.',
+                'good_examples':'&quot;Meine Bestellung ist fehlgeschlagen&quot;, Meine Bestellung ist noch nicht beim Lieferdienst angekommen. &quot;,&quot;Ich habe bei der pizzaria angerufen und die sagen es ist leider keine bestellung eingangen.&quot;,&quot;meine bestellung wird seit 10min an den lieferdienst &uuml;bermittelt, scheint aber nich anzukommen&quot;',
+                'bad_examples':'&quot;Meine Bestellung ist fehlgeschlagen, jetzt will ich mein Geld zur&uuml;ck&quot; (refund.request),&quot;Die &uuml;berweisung per Sofort&uuml;berweisung is fehlgeschlagen&quot;',
+                'threshold_green': 79,
+                'threshold_orange': 64,
+                'logo': 'glyphicon-flash',
+                'autoreply': false
+            },
+            'refund.request': {
+                'name':'Anfrage: R&uuml;ckerstattung',
+                'description':'Eine Kunde fordert eine R&uuml;ckerstattung',
+                'good_examples':'&quot;K&ouml;nnt ihr mir das Geld zur&uuml;ck erstatten?&quot;,&quot;Wie bekomme ich mein Geld zur&uuml;ck?&quot;,&quot;Bitte zur&uuml;ck &uuml;berweisen&quot;',
+                'bad_examples':'&quot;Wo bleibt meine R&uuml;ckerstattung?&quot; (refund.status_request)',
+                'threshold_green': 79,
+                'threshold_orange': 60,
+                'logo': 'glyphicon-euro',
+                'autoreply': false
+            },
+            'order.request_cancel': {
+                'name':'Anfrage: Bestellung stornieren',
+                'description':'Ein Kunde bitte um die Stornierung einer Bestellung',
+                'good_examples':'&quot;Stornieren bitte&quot;',
+                'bad_examples':'&quot;Wenn das noch lange dauert k&ouml;nnt ihr stornieren!&quot;',
+                'threshold_green': 97,
+                'threshold_orange': 75,
+                'logo': 'glyphicon-trash',
+                'autoreply': false,
+                'onDetection': onRequestCancel
+            },
+            'order.not_delivered': {
+                'name':'Beschwerde: Bestellung wurde nicht geliefert',
+                'description':'Ein Kunde beschwert sich dar&uuml;ber, dass eine Bestellung nicht geliefert wurde',
+                'good_examples':'&quot;ich habe gestern bei ihnen bestellt und keine Ware erhalten&quot;,&quot;Essen ist nicht/nie angekommen&quot;,&quot;geld wurde abgebucht, keine Lieferung&quot;',
+                'bad_examples':'&quot;Es wurde nicht geliefert, ich will mein Geld zur&uuml;ck&quot; (refund.request),&quot;Ich glaube es wird nicht geliefert, ich warte schon 60 min&quot; (order.late_complain)',
+                'threshold_green': 66,
+                'threshold_orange': 56,
+                'logo': 'glyphicon-ban-circle',
+                'autoreply': false
+            },
+            'item.missing': {
+                'name':'Beschwerde: Unvollst&auml;ndige Lieferung',
+                'description':'Ein Kunde beschwert sich &uuml;ber fehlende Gerichte',
+                'good_examples':'&quot;Hamburger hat gefehlt&quot;, &quot; ich habe gestern etwas bestellt und zu wenig essen erhalten&quot;,&quot;Was kann ich machen wenn nicht alles gekommen ist?&quot;',
+                'bad_examples':'&quot;Hamburger hat gefehlt, ich will das Geld zur&uuml;ck&quot; (refund.request)',
+                'threshold_green': 69,
+                'threshold_orange': 58,
+                'logo': 'glyphicon-remove-circle',
+                'autoreply': false
+            },
+            'order.dontring': {
+                'name':'Hinweis: Fahrer soll nicht klingeln',
+                'description':'Ein Kunde m&ouml;chte, das dem Faher mitgeteilt wird es solle nicht an der T&uuml;r klingeln.',
+                'good_examples':'&quot;Bitte nicht klingeln&quot;',
+                'bad_examples':'',
+                'threshold_green': 67,
+                'threshold_orange': 56,
+                'logo': 'glyphicon-list',
+                'autoreply': false
+            },
+        };
+
+        // member variables
+        var thisChatKey = null;
+        var thisChatLog = null;
+
+        var thisChatDetails = [];
+        var thisChatDowantOrderDetails = null;
+        var thisChat9cookiesOrderDetails = null;
+        var thisChat9cookiesTracking = null;
+        var thisChatBiCustomerDetails = null;
+        var thisEnclosingPrimaryTabId=null;
+        var waitingOnReplyTo=null;
+        var thisBrand = null;
+        var gaCustomFields = {};
+
+        var thisChatWelcomeSent=false;
+
+
+        // LIVE AGENT
+
+        /**
+         * Hook up to 'chat started' event, required for reloading ongoing chat.
+         */
+        sforce.console.chat.onChatStarted( function (result) {
+            //onChatStarted is only triggered on reload
+            console.log('Reload detected')
+            // Don't send welcome message.
+            // Unfortunately, this is recieved only in the currently active tab FOR EACH OTHER TAB,
+            // while the other chat-tabs dont receive this event.
+            // To prevent the other chats from sending welcome message again, they read the chat history
+            thisChatWelcomeSent = true;
+
+            // if the current chat is  not yet initialiazed (failed on pageload), try to
+            // note: For some reason, getDetailsByPrimaryTabId fails in setupCurrentTabChat when l doesnt work. but when this event is fired, it works.
+            if(null == thisChatKey) { // pure defensiveness. usually null == thisChatKey b/c thisChatKey is set in setup.
+                console.log('Reload -> retry setupCurrentTabChat')
+                setupCurrentTabChat(refocusOtherChats);
+            }
+        });
+
+        /**
+         * This will cycle through all other primary tabs and focus them to wake up each chatbot.
+         */
+        function refocusOtherChats(){
+
+            sforce.console.getPrimaryTabIds(function(result){
+
+                result.ids.forEach(function(element) {
+                    if (element != thisEnclosingPrimaryTabId) { // if not self
+                        sforce.console.focusPrimaryTabById(element, function (result) {
+                            if (result.success != true) {
+                                console.error('refocusOtherChats: Failed to wake up other chat,  '+element+' did not focus', result);
+                            }
+                        });
+                    }
+                })
+
+            });
+        }
+
+        function getChatLogSuccess(result) {
+
+            if (result.success == true) {
+                thisChatLog = result.messages;
+                thisChatWelcomeSent = thisChatWelcomeSent || thisChatLog.filter(function (el) {return el.type=="Agent"}).length > 1; // accept one message, isAutoGreeting doesnt work on reload.
+
+                sendWelcomeOnce();
+
+            } else {
+                console.error('Getting the chat log was not successful');
+            }
+        };
+
+        // API.AI
+
+        /**
+         * Sends message to api-ai and calls onResult with result data.
+         */
+        function getMessageIntend(message, onResult)
+        {
+            $.ajax({
+                type: "POST",
+                url: apiAiApiConfig.baseUrl+ "/query?v=20150910",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                headers: {
+                    "Authorization": "Bearer " + apiAiApiConfig.accessToken
+                },
+                data: JSON.stringify({ query: message, lang: "de", sessionId: thisChatKey }),
+                success : function(result)
+                {
+                    console.log('ajax call to api.ai returned successful',result);
+                    ga('send', 'event', 'MessageProcessed', 'Success' , htmlEntities(result.result.metadata.intentName), 0, gaCustomFields);
+                    onResult(result);
+                },
+                error : function(jqXHR, textStatus, errorThrown) {
+                    console.error('Error in api.ai request. ', textStatus, errorThrown);
+                    ga('send', 'event',  'MessageProcessed', 'ApiAiError', htmlEntities(textStatus), 0, gaCustomFields);
+                }
+            });
+
+        }
+
+
+        /**
+         * All the logic that happens when we managed to identify the intend behind a user-message.
+         */
+        function onIntendDetected(result) {
+
+            waitingOnReplyTo = null;// set if an intent with a suggested reply was received.
+            // abort if no result
+            if (!result.result.metadata.intentName || result.result.metadata.intentName == 'Default Fallback Intent') {
+                console.log('ignoring undeteced input');
+                return;
+            }
+            var intentName = result.result.metadata.intentName;
+
+            // track IntendDetected
+            ga('send', 'event', 'IntendDetected', htmlEntities(intentName), htmlEntities(anon_emails(result.result.resolvedQuery)), Math.round(result.result.score * 100), gaCustomFields);
+
+            // guard conditions
+            // abort if smalltalk without suggested response
+            if (/^smalltalk/.test(intentName)) {
+                console.log('ignoring smalltalk ');
+                ga('send', 'event', 'IntendSmalltalkIgnored', htmlEntities(result.result.metadata.intentName), '', Math.round(result.result.score * 100), gaCustomFields);
+
+                return;
+
+            }
+
+            // get global settings
+            var showOrange =$('#show_orange').is(":checked");
+            var showRed = $('#show_red').is(":checked");
+
+            var intendSettings = {
+                'tHigh': 80,
+                'tMedium': 30,
+                'iLogo': 'glyphicon-picture',
+                'iDescr': '',
+                'iGoodEx': 'no examples',
+                'iBadEx': 'no examples',
+                'iName': intentName,
+                'oName': intentName,
+                'iAutoreply': false,
+                'onDetection': null
+            };
+
+            if(reasonSettings.hasOwnProperty(intentName)) {
+                intendSettings = Object.assign(intendSettings, reasonSettings[intentName]);
+            }
+
+
+            var isOrangeOrBetter = result.result.score*100 > intendSettings.tMedium;
+            var isGreen = result.result.score*100 > intendSettings.tHigh;
+            var anonQuery = anon_emails(result.result.resolvedQuery);
+            var escapedQuery = htmlEntities(anonQuery);
+            var roundedScoreAsPercentage = Math.round(result.result.score * 100);
+
+            // track special events: track how late an order was
+            var howLate = null;
+            if (thisChatDowantOrderDetails != null &&  thisChatDowantOrderDetails.arrival_time && isOrangeOrBetter) {
+
+                var promissedTime = new Date(Date.parse(thisChatDowantOrderDetails.arrival_time));
+                howLate = Math.round((promissedTime - Date.now())/60000);
+                ga('send', 'event', 'HowLate', htmlEntities(result.result.metadata.intentName), thisChatDowantOrderDetails.transmission_method, howLate, gaCustomFields);
+                if (isGreen) {
+                    ga('send', 'event', 'HowLateOnlyAboveCustom92', htmlEntities(result.result.metadata.intentName), thisChatDowantOrderDetails.transmission_method, howLate, gaCustomFields);
+                }
+            }
+
+            // track special events: track how long since order was placed
+            var submittedTime = new Date(Date.parse(thisChatDowantOrderDetails.submitted_at));
+            var diffSinceSubmitted = Math.round((submittedTime - Date.now())/60000);
+            if (isOrangeOrBetter) {// on  green detection score
+                // For ANY event:
+                ga('send', 'event', 'HowLongSinceOrderWasPlaced', htmlEntities(result.result.metadata.intentName), thisChatDowantOrderDetails.transmission_method, diffSinceSubmitted, gaCustomFields);
+                if (isGreen) {
+                    ga('send', 'event', 'HowLongSinceOrderWasPlacedOnlyAboveCustom92', htmlEntities(result.result.metadata.intentName), thisChatDowantOrderDetails.transmission_method, diffSinceSubmitted, gaCustomFields);
+                }
+
+                // 'order.request_cancel
+                if ('order.request_cancel' == intentName) {
+                    ga('send', 'event', 'CancelRequestDetails', 'HowLongSinceOrderWasPlaced', isGreen ? 'green' : 'orange', diffSinceSubmitted, gaCustomFields);
+                    ga('send', 'event', 'CancelRequestDetails', 'Restaurant', htmlEntities(thisChatDowantOrderDetails.restaurant.name + '('+thisChatDowantOrderDetails.restaurant.id+')') , roundedScoreAsPercentage, gaCustomFields);
+
+                    if (howLate != null) {
+                        ga('send', 'event', 'CancelRequestDetails', 'HowLate', isGreen ? 'green' : 'orange', howLate, gaCustomFields);
+                    }
+                    if (null != thisChat9cookiesOrderDetails && thisChat9cookiesOrderDetails.status) {
+                        ga('send', 'event', 'CancelRequestDetails', 'OrderStatus', thisChat9cookiesOrderDetails.status, roundedScoreAsPercentage, gaCustomFields);
+                    }
+                    if (null != thisChat9cookiesTracking && thisChat9cookiesTracking.tracking_state) {
+                        ga('send', 'event', 'CancelRequestDetails', 'TrackingStatus', thisChat9cookiesTracking.tracking_state, roundedScoreAsPercentage, gaCustomFields);
+                    }
+                }
+            }
+
+
+            var data= {
+                'usertext': htmlEntities(result.result.resolvedQuery),
+                'msg_time': (new Date()).toLocaleString('de-DE'),
+                'result_id':result.id,//result.id
+                'result_score':roundedScoreAsPercentage,//scoreFormatted
+                'rowclass':'',
+                'sColor':'',
+                'iName': intendSettings.iName,
+                'oName': intendSettings.oName,
+                'btn_mark_as_bad_classes': 'hidden',
+                'btn_mark_as_missed_classes': '',
+                'iDescr': intendSettings.iDescr,
+                'iGoodEx': intendSettings.iGoodEx,
+                'iBadEx': intendSettings.iBadEx,
+                'suggestion_panel_classes':'hidden',// hidden if no suggestions
+                'suggestion_text':''
+
+
+            };
+
+            var resultShown = true;
+            if (isGreen) { // on 'green' detection score
+
+                ga('send', 'event', 'IntendAboveCustom92Detected', htmlEntities(result.result.metadata.intentName), escapedQuery, roundedScoreAsPercentage, gaCustomFields);
+
+                data.sColor = 'label-success ';
+                data.rowclass = 'green_score';
+                data.btn_mark_as_missed_classes= 'hidden';
+                data.btn_mark_as_bad_classes='';
+
+            } else if (isOrangeOrBetter) {// on 'orange' detection score
+                ga('send', 'event', 'IntendAboveCustom68Detected', htmlEntities(result.result.metadata.intentName), escapedQuery, roundedScoreAsPercentage, gaCustomFields);
+
+                data.sColor = 'label-warning';
+                data.rowclass = 'semitransparent orange_score';
+                if (!showOrange) {
+                    data.rowclass += " hidden";
+                    resultShown = false;
+                }
+
+            } else { // on 'red' detection score
+
+                ga('send', 'event', 'IntendBelowCustom68Detected', htmlEntities(result.result.metadata.intentName), escapedQuery, roundedScoreAsPercentage, gaCustomFields);
+
+                data.sColor = 'label-danger';
+                data.rowclass = ' almosttransparent red_score';
+                if (!showRed) {
+                    data.rowclass += ' hidden';
+                    resultShown = false;
+                }
+
+            }
+
+            var suggestedReply = null;
+            var suggestedType = null;
+            // intend-spefic handler may return a suggested reply
+            if (intendSettings.onDetection) {
+                let intendOut = intendSettings.onDetection();
+                if (intendOut != null) {
+                    suggestedReply = intendOut.response_text;
+                    suggestedType = intendOut.response_type;
+                };
+            }
+            // if no intend-spefic handler or no result from handler, try if there is a static suggested reply coming from api.ai
+            if (null==suggestedReply && result.result.fulfillment.speech) {
+                suggestedReply = result.result.fulfillment.speech;
+                suggestedType = 'static'
+            }
+
+
+            if (suggestedReply) {
+
+
+                if (intendSettings.iAutoreply && isGreen) { // Auto reply!
+                    //suggestion += '<p><i>automatically replied </i></p>'
+                    sforce.console.chat.sendMessage(thisChatKey, suggestedReply, function(){console.log("sent to  to chat");});
+                    ga('send', 'event', 'IntentSuggestionAutoReplied', intendSettings.oName, suggestedReply, roundedScoreAsPercentage, gaCustomFields);
+                } else {
+                    if (resultShown) {
+                        ga('send', 'event', 'IntentSuggestionShown', htmlEntities(result.result.metadata.intentName), suggestedType, roundedScoreAsPercentage, gaCustomFields);
+                        waitingOnReplyTo = result.result;
+                    }
+
+                    data.suggestion_panel_classes = '';
+                    data.suggestion_text = htmlEntities(suggestedReply);
+                    data.suggestion_type = suggestedType;
+
+
+                }
+            }
+            var tmpl = $.templates("#myTmpl"); // Get compiled template
+            var msg = tmpl.render(data);      // Render template using data - as HTML string
+            apiLog(msg);
+        }
+
+        /**
+         * Get details about he current chat, render ui and hook-up to onNewMessage and onAgentSend.
+         *
+         * Calls callback when setup finished.
+         */
+        function setupCurrentTabChat(callback) {
+
+            if(null != thisChatKey) {
+                console.log('Abort chat setup early, seems like already initalized for getEnclosingPrimaryTabId='+getEnclosingPrimaryTabId+', thisChatKey='+thisChatKey);
+                return;
+            }
+
+            sforce.console.getEnclosingPrimaryTabId(function(result) {
+
+                if (result.success != true) {
+                    console.error('chat setup: failed .',result);
+                    $('#orderinfo_details').hide();
+                    $('#bidata').hide();
+                    return;
+                }
+
+                thisEnclosingPrimaryTabId = result.id;
+
+                if(null != thisChatKey) {
+                    console.log('Abort chat setup on getEnclosingPrimaryTabId, seems like already initalized for thisChatKey '+thisChatKey);
+                    return;
+                }
+
+                sforce.console.chat.getDetailsByPrimaryTabId(result.id, function(dResult) {
+
+                    if(null != thisChatKey) {
+                        console.log('Abort chat setup on getDetailsByPrimaryTabId result, seems like already initalized for thisChatKey '+thisChatKey);
+                        return;
+                    }
+                    if (dResult.success != true) {
+                        console.log('Abort chat setup, getDetailsByPrimaryTabId failed (most likely due to reload) for thisEnclosingPrimaryTabId '+thisEnclosingPrimaryTabId);
+                        $('#orderinfo_details').hide();
+                        $('#bidata').hide();
+                        return;
+                    }
+
+                    console.info('Chat setup completed for thisChatKey '+dResult.details.chatKey, dResult.details);
+                    thisChatKey = dResult.details.chatKey;
+                    thisChatDetails = dResult.details;
+
+                    updateDetails();
+
+                    ga('send', 'event', 'ChatStarted', thisChatKey, thisBrand, 1, gaCustomFields);
+
+                    sforce.console.chat.getChatLog(thisChatKey, getChatLogSuccess);
+
+                    sendWelcomeOnce();
+
+                    sforce.console.chat.onNewMessage(thisChatKey, function (nResult) {
+
+                        if("Chasitor" == nResult.type){
+
+                            getMessageIntend(nResult.content, onIntendDetected);
+                        }
+
+                    });
+
+                    sforce.console.chat.onAgentSend(thisChatKey, function (nResult) {
+                        var theMessage = nResult.content;
+                        sforce.console.chat.sendMessage(thisChatKey, theMessage);
+                        trackManuallyReplied(theMessage);
+                    });
+
+                    if (typeof(callback) == "function")
+                        callback();
+
+                });
+
+            });
+        }
+        /**
+         * Updates the ui with data from thisChatDetails, and triggers getting data from external api's & update iframes.
+         *
+         * Also sets gaCustomFields.dimension1
+         *
+         */
+        function updateDetails() {
+
+            $("#details_user_ip").text(thisChatDetails.ipAddress);
+
+           if (sfConfig.pdeButtons.indexOf(thisChatDetails.liveChatButtonId) >= 0) {
+               $("#details_brand").html('DE_Pizza.de');
+               thisBrand = 'DE_Pizza.de';
+           } else if (sfConfig.lhButtons.indexOf(thisChatDetails.liveChatButtonId) >= 0) {
+               $("#details_brand").html('DE_Lieferheld.de');
+               thisBrand = 'DE_Lieferheld.de';
+           } else {
+               $("#details_brand").html('unbekannt');
+               thisBrand = thisChatDetails.liveChatButtonId;
+           }
+            gaCustomFields.dimension4 = thisBrand;
+            gaCustomFields.dimension2 = thisChatKey;
+
+            $('#this-chat-key').html(thisChatKey);
+            var ordernum = null;
+            var email = null;
+
+            var pList = '';
+            for (var i = 0; i <thisChatDetails.customDetails.length; i++) {
+
+
+                var value = htmlEntities(thisChatDetails.customDetails[i].value);
+                if (!value.trim()) {
+                    continue;
+                }
+                switch (thisChatDetails.customDetails[i].label){
+                    case 'OrderNumber':
+                    case 'Order Number':
+                        var id = thisChatDetails.customDetails[i].value.replace(/[^0-9]+/g, '');
+
+                        if (/^\d+$/.test(id)) {
+                            ordernum = id;
+                        }
+                        $("#details_ordernumber").html(value );
+                        $("#details_ordernumber_searchbutton").removeClass('hidden');
+                        break;
+                    case 'UserEmail':
+                    case 'E-Mail':
+                    case 'EmailDetail':// sent by LH&PDE web
+                        $("#details_email").html(value);
+                        $("#details_email_searchbutton").removeClass('hidden');
+                        break;
+                    case 'Vorname und Nachname'://only sent by iOs PDE
+                    case 'UserName':
+                        $("#details_username").html(value);
+                        break;
+                    default:
+
+
+                }
+                if (thisChatDetails.customDetails[i].value.length > 0) {
+                    if (pList!='') {
+                        pList += ', ';
+                    }
+                    pList += '<strong>'+thisChatDetails.customDetails[i].label+'</strong>:&quot;<i>'+value+'</i>&quot;';
+
+                }
+            }
+
+
+
+            if (null!=ordernum && ordernum.trim()!='') {
+                $('#orderid-search').val(ordernum);
+                updateActionAndPdfByOrderId();
+                gaCustomFields.dimension1 = ordernum.toString();
+
+            } else if(null != email) { // if no ordernum,ber give but an email, search in iframe by email and leave others empty
+                $('#orderid-search').val(email);
+                updateActionAndPdfByOrderId();
+
+            } else {
+                $('#orderinfo_details').hide();
+                $('#bidata').hide();
+            }
+
+            //$('#this-chat-details-list').html('<ul>'+pList+'</ul>');
+            $('#this-chat-details-list').html(pList);
+
+
+        }
+
+        /**
+         * Loads order-data from nine-cookies+dowant api's and updates iframe-srcs according to the orderid in the search bar
+         */
+        function updateActionAndPdfByOrderId() {
+
+
+            let id = $('#orderid-search').val().replace(/ /g,'');
+
+            var pdfUrl;
+            if (!this.isPdeChat()) { // lh order
+                pdfUrl='https://admin.lieferheld.de/backend/order/order_'+id+'.pdf';
+
+            } else {
+                pdfUrl='https://admin.pizza.de/backend/order/order_'+id+'.pdf';
+            }
+
+            //update
+            if (/^\d+$/.test(id)) {
+                $('#orderPDFLink').attr('href', pdfUrl);
+                getNineCookiesData(id, onNineCookiesOrderStatusResult);
+                getNineCookiesTracking(id, onNineCookiesTrackingResult);
+                getDowantData(id, onDowantResult);
+            } else {// no order-id given
+                id ='';
+                thisChat9cookiesOrderDetails = null;
+                thisChat9cookiesTracking = null;
+                thisChatDowantOrderDetails = null;
+                $('#orderinfo_details').hide();
+                $('#bidata').hide();
+
+            }
+
+
+            updateVoucherFormLink(id, '', '');
+        }
+
+        function addMinutes(date, minutes) {
+            return new Date(date.getTime() + minutes*60000);
+        }
+        // INTEND- SPECIFIC handlers
+
+        function getMsg(msg_id) {
+            if (!msgs.hasOwnProperty(msg_id)) {
+                console.error('msg_id not found in msgs',msg_id, msgs);
+            }
+            return {'response_text': msgs[msg_id], 'response_type':msg_id};
+        }
+
+        function onLateComplain() {
+            if (thisChatDowantOrderDetails) {
+
+                var restaurantName = thisChatDowantOrderDetails.restaurant.name;
+                var restaurantPhone = '';
+                thisChatDowantOrderDetails.restaurant.phones.forEach(function(element) {
+                    if (element.is_phone) {
+                        restaurantPhone = element.number;
+                    } else if (element.is_sms && restaurantPhone=='') {
+                        restaurantPhone = element.number;
+                    }
+                });
+
+
+                var userName = $('#details_username').html();
+                let content = null;
+
+                var status='ACCEPTED';
+                if (thisChat9cookiesOrderDetails) {
+                    status = thisChat9cookiesOrderDetails.status
+                }
+
+
+                switch (status) {
+                    case 'ACCEPTED':
+
+                        var acceptTime = new Date(Date.parse( thisChatDowantOrderDetails.confirmed_at));
+                        var acceptTimeFormatted = acceptTime.toLocaleTimeString('de-DE');
+                        // estimate as submittted+30min if no 9c present
+                        var customerAddressFormatted = thisChatDowantOrderDetails.customer.address.address + " ," +
+                                thisChatDowantOrderDetails.customer.address.zipcode + " " +
+                                thisChatDowantOrderDetails.customer.address.city;
+                        var promissedTime = addMinutes(new Date(Date.parse(thisChatDowantOrderDetails.arrival_time)), 30);
+
+                        var promissedTimeFormatted = promissedTime.toLocaleTimeString('de-DE');
+                        var diff = Math.round((promissedTime - Date.now())/60000);
+
+                        var replacements = {
+                            '%USER_NAME%': userName,
+                            '%ORDER_NUMBER%': thisChatDowantOrderDetails.order_number,
+                            '%RESTAURANT_NAME%': restaurantName,
+                            '%RESTAURANT_PHONE%': restaurantPhone,
+                            '%ORDER_CONFIRMED_AT%': acceptTimeFormatted,
+                            '%CUSTOMER_ADDRESS%': customerAddressFormatted,
+                            '%ORDER_PROMISSED_UNTIL%': promissedTimeFormatted,
+                            '%ORDER_MINUTES_SINCE_PLACED%': -diff
+                        };
+
+                        var retMsg = null;
+                        if (thisChat9cookiesOrderDetails) {
+
+                            if (diff > 0) { // order still on time
+                                retMsg = getMsg('stillOnTimePleaseWaitWithPromissed');
+                            } else if (diff > -10) {// 0 - 10min late accurate late (not just estimated)
+                                retMsg = getMsg('littleLateHereIsTheNumber');
+                            } else if (diff > -20 ) {// 10 - 20min accurate late (not just estimated)
+                                retMsg = getMsg('mediumLateWeCouldCallIfCustomerDoesntWant');
+                            } else if (diff > -30 ) {// 20 - 30min accurate late (not just estimated)
+                                retMsg = getMsg('tooLateWeWouldCallUnlessCustomerWants');
+                            } else {
+                                retMsg = getMsg('veryLateWeWillCallHereIsAVoucherWithPromissed');
+                            }
+                        } else { // no ninecookies, so we estamita promised time as ordertime+30min. diff is just an estaimate
+
+                            if (diff > 0) {
+                                retMsg = getMsg('stillOnTimePleaseWaitWithoutPromissed');
+                            } else if (diff > -120) {
+                                retMsg = getMsg('notSureIfLateWeWillCheck');
+                            } else {
+                                retMsg = getMsg('veryLateWeWillCallHereIsAVoucher2');
+                            }
+                        }
+
+                        if (retMsg) {
+                            retMsg.response_text = retMsg.response_text.replace(/%\w+%/g, function(all) {
+                                return replacements[all] || all;
+                            });
+
+                            return retMsg;
+                        }
+
+                        content = '';
+                        break;
+                    case 'REJECTED':
+                        content = 'order was rejected';
+                        break;
+                    case 'SENT':
+                    case 'NOT_FOUND':
+                    case 'MISSED':
+                    case 'CANCELLED':
+                    default:
+                        content = 'order is in state '+ thisChat9cookiesOrderDetails.status;
+                        break;
+                }
+
+            }
+
+            return null
+        }
+        function onGeneralStatusQuery() {
+            if (thisChat9cookiesOrderDetails && thisChatDowantOrderDetails) {
+
+                var restaurantName = thisChatDowantOrderDetails.restaurant.name;
+                var restaurantPhone = '';
+                thisChatDowantOrderDetails.restaurant.phones.forEach(function(element) {
+                    if (element.is_phone) {
+                        restaurantPhone = element.number;
+                    } else if (element.is_sms && restaurantPhone=='') {
+                        restaurantPhone = element.number;
+                    }
+                });
+                var userName = $('#details_username').html();
+                let content = null;
+                switch (thisChat9cookiesOrderDetails.status) {
+                    case 'ACCEPTED':
+
+                        var promissedTime = new Date(Date.parse(thisChat9cookiesOrderDetails.timestamp))
+                        var promissedTimeFormatted = promissedTime.toLocaleTimeString('de-DE');
+                        var acceptTime = new Date(Date.parse( thisChatDowantOrderDetails.confirmed_at));
+                        var acceptTimeFormatted = new Date(Date.parse( thisChatDowantOrderDetails.confirmed_at)).toLocaleTimeString('de-DE');
+                        var customerAddressFormatted = thisChatDowantOrderDetails.customer.address.address + " ," +
+                                thisChatDowantOrderDetails.customer.address.zipcode + " " +
+                                thisChatDowantOrderDetails.customer.address.city;
+
+                        var diff = Math.round((promissedTime - Date.now())/60000);
+                        var replacements = {
+                            '%USER_NAME%': userName,
+                            '%ORDER_NUMBER%': thisChatDowantOrderDetails.order_number,
+                            '%RESTAURANT_NAME%': restaurantName,
+                            '%RESTAURANT_PHONE%': restaurantPhone,
+                            '%ORDER_CONFIRMED_AT%': acceptTimeFormatted,
+                            '%CUSTOMER_ADDRESS%': customerAddressFormatted,
+                            '%ORDER_PROMISSED_UNTIL%': promissedTimeFormatted,
+                            '%ORDER_MINUTES_SINCE_PLACED%': -diff
+                        };
+
+
+                        retMsg = null;
+                        if (diff > 0) { // order still on time
+                            retMsg = getMsg('stillOnTimePleaseWaitWithPromissed');
+                        } else if (diff > -10) {// 0 - 10min late
+                            retMsg =  getMsg('littleLateHereIsTheNumber');
+                        } else if (diff > -20) {// 10 - 20min late
+                            retMsg =  getMsg('mediumLateWeCouldCallIfCustomerDoesntWant');
+                        } else if (diff > -30) {// 20 - 30min late
+                            retMsg =  getMsg('tooLateWeWouldCallUnlessCustomerWants');
+                        } else {// more than 30 min late
+                            retMsg =  getMsg('veryLateWeWillCallHereIsAVoucher');
+                        }
+                        if (retMsg) {
+                            retMsg.response_text = retMsg.response_text.replace(/%\w+%/g, function(all) {
+                                return replacements[all] || all;
+                            });
+
+                            return retMsg;
+                        }
+
+                        content = '';
+                        break;
+                    case 'REJECTED':
+
+                        content = 'order was rejected';
+                        break;
+                    case 'SENT':
+                    case 'NOT_FOUND':
+                    case 'MISSED':
+                    case 'CANCELLED':
+                    default:
+                        content = 'order is in state '+ thisChat9cookiesOrderDetails.status;
+                        break;
+                }
+
+            }
+
+            var dw = (thisChatDowantOrderDetails=== null) ? 'yes' : 'no';
+
+            return null;
+
+        }
+
+
+        function onRequestCancel() {
+            // track special events: track how long since order was placed
+            var submittedTime = new Date(Date.parse(thisChatDowantOrderDetails.submitted_at));
+            var diffSinceSubmitted = Math.round((submittedTime - Date.now())/60000);
+
+            if (diffSinceSubmitted >=-15) { // order still on time
+                return getMsg('weWillAskIfCancelPossible');
+
+            }
+            if (diffSinceSubmitted < -15) {// 0 - 10min late
+                return getMsg('cancelIsNotPossible15MinAfterOrderWasPlaced');
+            }
+        }
+
+
+        // DOWANT
+
+        function getCrmApiGet(uri, successHandler) {
+
+
+            $.ajax({
+                type: "GET",
+                url: crmApiConfig.baseUrl + uri,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                headers: {
+                    "x-api-key": crmApiConfig.accessToken
+                },
+                crossDomain: true,
+                success : function(result)
+                {
+                    console.log('Got data from crm api at "'+uri+'"', result);
+                    successHandler(result);
+                },
+                error : function(jqXHR, textStatus, errorThrown) {
+                    console.error('error accessing crm api at "'+uri+'"', textStatus, errorThrown);
+
+                }
+            });
+        }
+
+        function getDowantData(id, onResult) {
+
+            getCrmApiGet("/getOrders?orderid="+id, onResult);
+        }
+
+        function onDowantResult(data) {
+            dwDataObject = JSON.parse(data);
+            if (!dwDataObject.results[0]) {
+                console.log('Order not found at Dowant', data);
+
+                gaCustomFields.dimension3 = '';
+                gaCustomFields.dimension5 = '';
+                gaCustomFields.dimension6 = '';
+                $('#orderinfo_details').hide();
+                $('#bidata').hide();
+                return;
+            }
+            thisChatDowantOrderDetails = dwDataObject.results[0];
+
+            sendWelcomeOnce();
+
+            // get additional bi data
+            getBiData(thisChatDowantOrderDetails.customer.id, isPdeChat() ? 'pde' : 'lh', function (biResult) {
+
+                if (biResult.errors) {
+                    $('#bidata-container-inner').html('');
+                    $('#bidata').hide();
+                    return;
+                }
+
+                thisChatBiCustomerDetails = biResult.data;
+                // render bi data
+                $('#bidata-container-inner').html('<pre>'+JSON.stringify(thisChatBiCustomerDetails, null, 2)+'</pre>');
+                $('#bi_returningProbability').html(Math.round(thisChatBiCustomerDetails.segment.returningProbability*100) );
+                $('#bi_frequency').html(getFrequencyTranslated(thisChatBiCustomerDetails.segment.frequency));
+                $('#bi_frequency').attr('title', getFrequencyExplained(thisChatBiCustomerDetails.segment.frequency));
+
+                $('#bi_numOrders').html(thisChatBiCustomerDetails.history.lastSixMonths.numOrders);
+                $('#bi_numDiscountedOrders').html(thisChatBiCustomerDetails.history.lastSixMonths.numOrdersWithDiscount);
+
+                $('#bi_monetary').html(getMonetaryTranslated(thisChatBiCustomerDetails.segment.monetary));
+                $('#bi_monetary').attr('title', getMonetaryExplained(thisChatBiCustomerDetails.segment.monetary));
+
+                $('#bi_discount').html(getDiscountTranslated(thisChatBiCustomerDetails.segment.discount));
+                $('#bi_discount').attr('title', getDiscountExplained(thisChatBiCustomerDetails.segment.discount));
+
+                $('#bi_last_order_voucher_use').html(getLastOrderVoucherExplained(thisChatBiCustomerDetails.history.allTime.lastOrder));
+
+                $('#bidata').show();
+
+                getOtherAccountsExplained(thisChatBiCustomerDetails.otherBackendCustomers || [], thisChatBiCustomerDetails.platform.code);
+            });
+
+
+            dwData = thisChatDowantOrderDetails;
+            //tracking
+            gaCustomFields.dimension3 = dwData.restaurant.id.toString();
+            gaCustomFields.dimension5 = dwData.transmission_method;
+            gaCustomFields.dimension6 = dwData.payment_method;
+            ga('send', 'event', 'BackendDataFound', dwData.order_status, dwData.order_number ? dwData.order_number : '?',1, gaCustomFields);
+            //render
+            $('#orderinfo_details').show();
+            var acceptTime = new Date(Date.parse( dwData.confirmed_at));
+            var submittedTime = new Date(Date.parse( dwData.submitted_at));
+            var promissedTime = new Date(Date.parse( dwData.arrival_time));
+            var dispatchedTime = getDispatchTime(dwData.status_history);
+            var diffSinceSubmitted = Math.round((submittedTime - Date.now())/60000);
+
+            $('#dw_confirmed_at').html(acceptTime.toLocaleString('de-DE'));
+            $('#dw_submitted_at').html(submittedTime.toLocaleString('de-DE'));
+            if (dispatchedTime != null) {
+                $('#dw_dispatched_at').html(dispatchedTime.toLocaleString('de-DE'));
+            } else {
+                $('#dw_dispatched_at').html('?');
+                console.log('dispatchedTime', dispatchedTime);
+            }
+
+            if (promissedTime) {
+                var diffSincePromissedInSec = Math.round((promissedTime - Date.now())/1000);
+                console.log('pronissed time:',promissedTime,'diffSincePromissed:', diffSincePromissedInSec);
+                $('#dw_promised_deliverytime').html(promissedTime.toLocaleString('de-DE') + '<br />' + formattedTimeDiff(diffSincePromissedInSec));
+            }
+
+            if (diffSinceSubmitted > -60*24*7) {
+                $('#dw_submitted_at_warning').addClass('hidden');
+            } else {
+                $('#dw_submitted_at_warning').removeClass('hidden');
+            }
+
+            if (dwData.status_history.length == 0) {
+                $('#dw_status_history_holder').addClass('hidden');
+            } else {
+                $('#dw_status_history_holder').removeClass('hidden');
+                $('#dw_status_history').html(getStatusHistoryExplained(dwData.status_history));
+                $('#dw_status_history_size').html(dwData.status_history.length);
+
+            }
+
+
+            $('#dw_transmission_method').html(dwData.transmission_method);
+            $('#dw_order_id').html(dwData.order_id);
+            $('#dw_order_number').html(dwData.order_number);
+            $('#dw_order_status').html(dwData.order_status);
+
+            $('#dw_payment_method').html(dwData.payment_method);
+            $('#dw_final_amount').html(dwData.final_amount);
+
+
+
+            $('#dw_customer_id').html(dwData.customer.id);
+            $('#dw_customer_is_new_user').html(dwData.customer.is_new_user);
+            $('#dw_customer_fullname').html(dwData.customer.full_name);
+            $('#dw_customer_email').html(dwData.customer.email + '<br /><span class="action" title="Weitere Bestellungen die mit dieser E-Mail getätigt wurden suchen" onclick="searchOrdersByMail(\''+dwData.customer.email+'\');">Weitere Bestellungen suchen</span>');
+            $('#dw_customer_address').html(dwData.customer.address.address);
+            $('#dw_customer_city').html(dwData.customer.address.city);
+            $('#dw_customer_zipcode').html(dwData.customer.address.zipcode);
+
+
+            $('#dw_restaurant_name').html(dwData.restaurant.name);
+            $('#dw_restaurant_id').html(dwData.restaurant.id);
+
+            $('#dw_restaurant_address').html(dwData.restaurant.address);
+            dwData.restaurant.phones.forEach(function(element) {
+                let sel = ""
+                if (element.is_phone) {
+                    sel = "#dw_restaurant_phone"
+                } else if (element.is_fax) {
+                    sel = "#dw_restaurant_fax"
+                } else if (element.is_sms) {
+                    sel = "#dw_restaurant_sms"
+                }
+                $(sel).val(element.number)
+            });
+        }
+
+        function getFrequencyExplained(freq) {
+            switch (freq) {
+                case 'A': return 'In top 25% by ordering frequency';
+                case 'B': return 'In 50% to 75% bracket by ordering frequency';
+                case 'C': return 'In 25% to 50% bracket by ordering frequency';
+                case 'D': return 'in bottom 25% by ordering frequency';
+                case 'F': return 'zombie customer (only ordered once)';
+                case 'N': return 'new customer, acquired in the last 28 days';
+                case 'M': return 'recent customer, acquired in the last 56 days';
+                default: return '';
+            }
+        }
+
+        function getFrequencyTranslated(freq) {
+            switch (freq) {
+                case 'A': return 'Kategory &quot;A&quot;';
+                case 'B': return 'Kategory &quot;B&quot;';
+                case 'C': return 'Kategory &quot;C&quot;';
+                case 'D': return 'Kategory &quot;D&quot;';
+                case 'F': return 'Nur eine Bestellung';
+                case 'N': return 'Neuer Kunde aus letzten 28 Tagen';
+                case 'M': return 'Neuer Kunde aus letzten 56 Tagen';
+                default: return freq;
+            }
+        }
+        function getMonetaryExplained(monetary) {
+            switch (monetary) {
+                case 'H': return 'HIGH if this customers orders are in the top 25th percentile of order basket sizes';
+                case 'M': return 'MEDIUM: orders are between 25% and 75% of order basket sizes';
+                case 'L': return 'LOW if they re in the bottom 25th percentile';
+                default: return '';
+            }
+        }
+        function getMonetaryTranslated(monetary) {
+            switch (monetary) {
+                case 'H': return 'HIGH';
+                case 'M': return 'MEDIUM';
+                case 'L': return 'LOW';
+                default: return monetary;
+            }
+        }
+        function getDiscountExplained(discount) {
+            switch (discount) {
+                case 'H': return 'H (for HIGH) if the value of vouchers he used is > 10% of the basket value in the last 6 months';
+                case 'M': return 'M (for MEDIUM) if the value of vouchers he used is <= 10% of the basket value in the last 6 months.';
+                case 'N': return 'N (for NO or NEVER) if the user did not benefit from vouchers in the last 6 months';
+                default: return '';
+            }
+        }
+        function getDiscountTranslated(discount) {
+            switch (discount) {
+                case 'H': return 'HIGH';
+                case 'M': return 'MEDIUM';
+                case 'N': return 'NEVER';
+                default: return '';
+            }
+        }
+
+        function getLastOrderVoucherExplained(lastOrder) {
+            if (! ('date' in lastOrder &&  'voucher' in  lastOrder)) {
+                return '';
+            }
+            return 'Letzte Bestellung am '+ lastOrder.date+ ' war <strong>'+(lastOrder.voucher ? 'mit': 'ohne')+'</strong></strong> Gutschein';
+
+        }
+
+        function getDispatchTime(status_history) {
+
+            var updateMessage  = status_history.find(function (el) {return el.status=="DISPATCHED"});
+            if (undefined == updateMessage) {
+                console.log('not found in status_history :', status_history);
+                return null;
+            }
+            var timeParsed = Date.parse(updateMessage.timestamp);
+
+            if (isNaN(timeParsed)) {
+                return null;
+            }
+
+            return new Date(timeParsed);
+        }
+
+        function getOtherAccountsExplained(otherAccounts, brandIdentfier) {
+            var customer_ids = []
+
+            otherAccounts.forEach(function(element) {
+                if (brandIdentfier != element.platformId){
+                    return;
+                }
+                customer_ids.push(element.customerId);
+
+            });
+
+            getOtherAccountsDetails(customer_ids, isPdeChat()?'pde':'lh', function (result){
+                var dwCustomerList = JSON.parse(result);
+
+                emails = [];
+                dwCustomerList.results.forEach(function(el) {
+                    if (thisChatDowantOrderDetails.customer.email != el.email && -1 == emails.indexOf(el.email)) {
+                        emails.push(el.email)
+                    }
+                });
+
+                if (emails.length > 3) {
+                    $('#bi_other_accounts_list_toggle').removeClass('hidden');
+                    $('#bi_other_accounts_list').addClass("hidden");
+                } else {
+                    $('#bi_other_accounts_list_toggle').addClass('hidden');
+                    $('#bi_other_accounts_list').removeClass("hidden");
+                }
+
+                $('#bi_other_accounts_list').html('<ul id="bi_other_accounts_list_holder"></ul>');
+                emails.forEach(function(el) {
+                    $('#bi_other_accounts_list_holder').append('<li>'+el+'<br /><span class="action" title="Weitere Bestellungen die mit dieser E-Mail getätigt wurden suchen" onclick="searchOrdersByMail(\''+el+'\');">Bestellungen suchen</span></li>');
+                });
+
+                $('#bi_other_accounts').html(dwCustomerList.results.length);
+
+
+            });
+
+        }
+
+        function getOtherAccountsDetails(customer_ids, brand, callback) {
+            if (customer_ids.length < 1) {
+                $('#bi_other_accounts_list').addClass("hidden");
+                $('#bi_other_accounts_list_toggle').addClass('hidden');
+                $('#bi_other_accounts').html('0');
+
+                console.log("customer_ids is empty:", customer_ids);
+                return;
+            }
+
+            console.log("Requesting details about customer_ids is :", customer_ids);
+            getCrmApiGet("/"+brand+"/customers/?customer_ids=" + customer_ids.join(',') , function(result) {
+
+                if (result.errors) {
+                    console.error('Error while fecthing details about other accoutns', result.errors);
+                    return;
+                }
+                callback(result)
+
+            });
+        }
+
+
+        /*
+        *
+        * Normal cases
+        *
+        * BOX-
+        * 91709082069136  - history =[ACCEPTED] but status= SENT
+        *
+        * FAX-
+        * 91709281144935,  - history =[] but status= SENT
+        *
+        * EMAIL-
+        * 91709181404419, ...  - history =[] but status= SENT
+        *
+        * POS:
+        * 91709071495832 - history =[DISPATCHED, ACCEPTED] but status)= SENT
+        * 91709011295517 - history =[ACCEPTED] status= SENT
+        * */
+
+        function getStatusHistoryExplained(status_history) {
+            var items = [];
+            var out = '<ul style="padding-left: 0px;" >';
+
+            var acceptTime = new Date(Date.parse( dwData.confirmed_at));
+            var submittedTime = new Date(Date.parse( dwData.submitted_at));
+
+            status_history.forEach(function(el){
+
+                var timeParsed = Date.parse(el.timestamp);
+                var timeAsLocal = '';
+                if (!isNaN(timeParsed)) {
+                    timeAsLocal = (new Date(timeParsed)).toLocaleString('de-DE');
+                }
+
+                switch (el.status) {
+                    case 'SENT':
+                        out += '<li title="SENT – delivery was successfully sent to the restaurant app">' +
+                                'SENT (zum Restaurant übermittelt)' +
+                                '</li>';
+                        break;
+                    case 'ACCEPTED':
+                        out += '<li title="ACCEPTED – restaurant accepted the delivery, timestamp is the promised delivery time">' +
+                                acceptTime.toLocaleString('de-DE') + ' - ACCEPTED, geplante Lieferzeit: '+timeAsLocal+
+                                '</li>';
+                        break;
+                    case 'REJECTED':
+                        out += '<li title="REJECTED – restaurant rejected the delivery">' +
+                                'REJECTED (vom Restaurant abgelehnt)' +
+                                '</li>';
+                        break;
+                    case 'MISSED':
+                        out += '<li title="MISSED – delivery is expired and has not reached/has not been seen by the device">' +
+                                'MISSED (nicht ans Restaurant übermittelt)' +
+                                '</li>';
+                        break;
+                    case 'EXPIRED':
+                        out += '<li title="EXPIRED – delivery is expired and has been seen by the device, but not accepted in time by the restaurant">' +
+                                'EXPIRED (vom Restaurant nicht bestätigt)' +
+                                '</li>';
+                        break;
+                    case 'CANCELLED':
+                        out += '<li title="CANCELLED – restaurant has cancelled the order">' +
+                                'CANCELLED (vom Restaurant storniert)' +
+                                '</li>';
+                        break;
+                    case 'DISPATCHED':
+                        out += '<li title="DISPATCHED – the delivery was dispatched to a driver, timestamp is the dispatched time">'+timeAsLocal+' - DISPATCHED</li>';
+                        break;
+                    case 'EN_ROUTE':
+                        out += '<li title="EN_ROUTE – driver entered a geofence area of 500m close to the drop off location">EN_ROUTE (&lt;500m Nähe zum Ziel)</li>';
+                        break;
+                    case 'DELIVERED':
+                        out += '<li title="DELIVERED – the delivery was delivered to the customer, timestamp is the delivered time">DELIVERED um '+timeAsLocal+'</li>';
+                        break;
+
+                    default:
+                        out += '<li>'+el.status+'</li>';
+                        break;
+                }
+
+            });
+            out += '</ul>';
+            return out;
+        }
+
+        function getPDECouponDetails(code, onResult) {
+            getCrmApiGet("/pde/coupons/" + encodeURIComponent(code.replace(/\W+/g, " ")) + "/", onResult);
+        }
+
+        function getLHCouponDetails(code, onResult) {
+            getCrmApiGet("/lh/coupons/" + encodeURIComponent(code.replace(/\W+/g, " ")) + "/", onResult);
+        }
+
+        // NINE COOKIES
+
+        function getNineCookiesData(id, onResult) {
+
+            $.ajax({
+                type: "GET",
+                url: ninecookiesApiConfig.baseUrl + "/v1/delivery/"+id+"/status",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                headers: {
+                    "x-api-key": ninecookiesApiConfig.accessToken,
+                },
+                crossDomain: true,
+                success : function(result)
+                {
+                    console.log('Got 9 cookies status:', result);
+                    onResult(result);
+                },
+                error : function(jqXHR, textStatus, errorThrown) {
+                    console.error('on 9cookies error:', textStatus, errorThrown);
+                    //apiLog('<div class="apiai-result" >Error gettinmg nine-cookies data</div>');
+
+                }
+            });
+
+
+        }
+
+        function onNineCookiesNotFound() {
+            $('#9c_promised_deliverytime').html('?');
+            $('#9c_tracking').html('kein tracking');
+
+
+        }
+        function formattedTimeDiff(diff) {
+            aDiff = Math.abs(diff);
+
+            var hourInSec = 60 * 60;
+            var dayInSec = hourInSec * 24;
+
+            var daysDiff = 0;
+            var hourDiff = 0;
+            var minDiff = 0;
+            var secDiff = 0;
+
+            if (aDiff > dayInSec) {
+                daysDiff = Math.floor(aDiff / dayInSec);
+                aDiff = aDiff % dayInSec;
+            }
+
+            if (aDiff > hourInSec) {
+                hourDiff = Math.floor(aDiff / hourInSec);
+                aDiff = aDiff % hourInSec;
+            }
+
+            if (aDiff > 60) {
+                minDiff = Math.floor(aDiff / 60);
+                secDiff = aDiff % 60;
+            }
+
+            var prefix = diff > 0 ? 'In:' : 'Vor:'
+
+            daySuffix = '';
+            if (daysDiff != 0) {
+                daySuffix = daysDiff + ' Tagen, '
+            }
+            var formattedTimeDiff = prefix + ' ' + daySuffix + hourDiff + ' Stunden, ' + ' ' + minDiff + ' Minuten';
+            return formattedTimeDiff;
+        }
+        function onNineCookiesOrderStatusResult(data) {
+
+            if (!('status' in data) || data.status =="NOT_FOUND") {
+                console.warn('ninecookie not found ',data);
+                onNineCookiesNotFound();
+                return;
+            }
+
+            ga('send', 'event', 'NineCookiesDataFound', data.status, data.order_id ? data.order_id : '?',1, gaCustomFields);
+            thisChat9cookiesOrderDetails = data;
+            sendWelcomeOnce();
+
+            // Create a new JavaScript Date object based on the timestamp
+            // multiplied by 1000 so that the argument is in milliseconds, not seconds.
+            var formattedTime = '';
+            var diff = 0;
+            if ('timestamp' in data && data.timestamp) {
+                var dt = new Date(Date.parse(data.timestamp));
+                formattedTime =  '<strong>'+dt.toLocaleString('de-DE')+'</strong>';
+
+                diff = Math.round((dt.getTime() - Date.now())/1000);
+                if (diff != 0) {
+                    formattedTime += '<br />' + formattedTimeDiff(diff);
+                }
+            }
+
+            let content = '';
+            switch (data.status) {
+                case 'NOT_FOUND':
+                    content = '';
+                    break;
+                case 'SENT':
+                    content = '<p>delivery was <strong>successfully sent to the restaurant</strong>.</p>';
+                    break;
+                case 'ACCEPTED':
+                    content = '<p>restaurant <strong>accepted</strong> the delivery. <br /> promised delivery time: <b>'+formattedTime+'</b></p>';
+                    break;
+                case 'REJECTED':
+                    content = '<p>restaurant <strong>rejected</strong> the delivery.</p>';
+                    break;
+                case 'MISSED':
+                    content = '<p>delivery is expired and <strong>has not reached the device</strong>.</p>';
+                    break;
+                case 'CANCELLED':
+                    content = '<p>delivery is expired and has been seen by the device, but <strong>not accepted in time</strong> by the restaurant</p>';
+                    break;
+                default:
+                    content = '<p>unknown state <i>'+data.status+'</i>. <br /> time: <b>'+formattedTime+'</b></p>';
+                    break;
+            }
+
+
+            if (content != '') {
+                $('#9c_promised_deliverytime').html(formattedTime);
+
+                $('#ninecookies-container').html('<span class="h3">9Cookies data for order '+data.order_id+'</span>'+content);
+            }
+        }
+
+        function getNineCookiesTracking(id, onResult) {
+
+            $.ajax({
+                type: "GET",
+                url: ninecookiesApiConfig.baseUrl + "/v1/delivery/"+id+"/tracking",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                headers: {
+                    "x-api-key": ninecookiesApiConfig.accessToken,
+                },
+                crossDomain: true,
+                success : function(result)
+                {
+                    console.log('Got 9 cookies tracking data:', result);
+                    onResult(result);
+                },
+                error : function(jqXHR, textStatus, errorThrown) {
+                    console.error('on 9cookies tracking error:', textStatus, errorThrown);
+                    //apiLog('<div class="apiai-result" >Error gettinmg nine-cookies data</div>');
+
+                }
+            });
+
+
+        }
+
+        function onNineCookiesTrackingResult(data) {
+
+            if (!('tracking_state' in data) || ('state' in data && data.state=="NOT_FOUND")  ) {
+                console.info('No ninecookie tra', data);
+                onNineCookiesNotFound();
+                return;
+            }
+
+            thisChat9cookiesTracking = data;
+
+            sendWelcomeOnce();
+
+            let link ='';
+            if ('tracking_id' in data && data.tracking_id) {
+                let url ='https://trackorder.co/' + data.tracking_id;
+                link = '<br /><a href="'+url+'" target="_blank">Tracking-Link</a>';
+            }
+
+            let trackNotUpdatedLink = "'<br /><span class=\"glyphicon glyphicon-remove btn_mark_as_wrongstate small-action\" title=\"Markieren als &quot;Status nicht korrekt aktualisiert&quot;\" id=\"trackNotUpdatedTrackingStatus\" onclick=\"trackNotUpdatedTrackingStatus(thisChatDowantOrderDetails.restaurant, '"+data.tracking_state+"', 'trackNotUpdatedTrackingStatus'); \">" +
+                    "Markieren als &quot;Status falsch&quot;" +
+                    "</span>";
+
+
+            let content = '';
+            switch (data.tracking_state) {
+                case 'FAILURE':
+                    content = '<p><strong><i>FAILURE</i></strong>: Nicht an Restaurant übermittelt.'+link+'</p>';
+                    break;
+                case 'REQUESTING_DRIVER':
+                    content = '<p><strong title="next: TRANSMITTING">REQUESTING_DRIVER</strong>: Wird grad Logistik übermittelt.'+trackNotUpdatedLink+link+'</p>';
+                    break;
+                case 'TRANSMITTING':
+                    content = '<p><strong title="next: TRANSMITTED">TRANSMITTING</strong>: Warte auf Antwort von Restaurant.'+trackNotUpdatedLink+link+'</p>';
+                    break;
+                case 'TRANSMITTED':
+                    content = '<p><strong title="next: PREPARING">TRANSMITTED</strong>: Wurde an Restaurant übermittelt.'+trackNotUpdatedLink+link+'</p>';
+                    break;
+                case 'PREPARING':
+                    content = '<p><strong title="next: DELIVERING">PREPARING</strong>: Essen wird zubereitet.'+trackNotUpdatedLink+link+'</p>';
+                    break;
+                case 'DELIVERING':
+                    content = '<p><strong title="next: DELIVERED">DELIVERING</strong>: Wird ausgeliefert.'+trackNotUpdatedLink+link+'</p>';
+                    break;
+                case 'DELIVERED':
+                    content = '<p><strong title="next: CLOSED">DELIVERED</strong>: Wurde ausgeliefert.'+trackNotUpdatedLink+link+'</p>';
+                    break;
+                case 'CLOSED':
+                    content = '<p><strong>CLOSED</strong>:  Abgeschlossen.'+trackNotUpdatedLink+'</p>';
+                    break;
+                default:
+                    content = '<p>State <strong><i>'+data.tracking_state+'</i></strong>. '+link+' </p>';
+                    break;
+            }
+
+            if (content != '') {
+                $('#9c_tracking').html(content);
+            }
+        }
+
+
+        // PUBLIC aPI
+
+        /**
+         * Get voucher details for give voucher code and render results into resultEl.
+         *
+         * @param code
+         * @param resultEl
+         */
+        function updateVoucherDetails(code, resultEl){
+
+            // NINE COOKIES
+
+            if (!code.trim()) {
+                return;
+            }
+
+            resultEl.html('');
+
+            getPDECouponDetails(code, function(result) {
+                if (result.errors) {
+                    ga('send', 'event', 'VoucherTest', 'PDE', code, 0, gaCustomFields);
+
+
+                    resultEl.append('Gutschein &quot;<i>'+ code+'</i>&quot; bei <strong>PIZZA.DE</strong>: NICHT GEFUNDEN');
+                    return;
+                }
+                ga('send', 'event', 'VoucherTest', 'PDE', code, 1, gaCustomFields);
+
+                let couponInfo ='Code &quot;<i>'+ code+'</i>&quot; bei <strong>PIZZA.DE</strong>: <span  class="small-action" onclick="$(\'#pde_coupon_info\').toggle();">anzeigen/ausblenden</span><br/>' +
+                        '<span id="pde_coupon_info"  style="display:'+(isPdeChat() ? 'inline' : 'none')+'" >'+ createCouponSummary(result, thisChatDowantOrderDetails)+'</span>';
+                resultEl.append(couponInfo + '<br/>');
+
+            });
+            getLHCouponDetails(code, function(result) {
+                if (result.errors) {
+                    ga('send', 'event', 'VoucherTest', 'LH', code, 0, gaCustomFields);
+
+                    resultEl.append('Gutschein &quot;<i>'+ code+'</i>&quot; bei <strong>LIEFERHELD</strong>: NICHT GEFUNDEN');
+                    return;
+                }
+                ga('send', 'event', 'VoucherTest', 'LH', code, 1, gaCustomFields);
+
+                let couponInfo ='Code &quot;<i>'+ code+'</i>&quot; bei <strong>LIEFERHELD</strong>:' +
+                        ' <span  class="small-action" onclick="$(\'#lh_coupon_info\').toggle();">anzeigen/ausblenden</span>' +
+                        '<br />' +
+                        '<span id="lh_coupon_info" style="display:'+(isPdeChat() ? 'none' : 'inline')+'" >'+ createCouponSummary(result, thisChatDowantOrderDetails);+'</span>'
+                resultEl.append(couponInfo + '<br/>');
+
+            });
+
+        }
+
+        function findVoucherDetails(){
+            updateVoucherDetails($('#vouchertool_code').val(), $('#vouchertool_result'));
+            $('#vouchertool_result').show();
+            $('#vouchertool_resulttoggle').show()
+        }
+
+
+
+
+        function getPDECouponDetails(code, onResult) {
+
+            getCrmApiGet("/pde/coupons/" + encodeURIComponent(code.replace(/\W+/g, " ")) + "/", onResult);
+
+
+        }
+
+        function getLHCouponDetails(code, onResult) {
+            getCrmApiGet("/lh/coupons/" + encodeURIComponent(code.replace(/\W+/g, " ")) + "/", onResult);
+        }
+
+        function isBlacklistedValidityMessage(msg) {
+            return (-1 != ['coupon for registered users only'].indexOf(msg));
+        }
+
+        function createCouponSummary(couponDetails, cOrderDetails) {
+
+            let desc = '';
+
+            if(couponDetails.general.amount && couponDetails.general.amount>0) {
+                desc = '<li><strong>Wert</strong>: '+couponDetails.general.amount+'&euro; </li>';
+            }
+
+            if(couponDetails.general.campaign_type == "feature" && couponDetails.general.feature_specs) {
+
+                couponDetails.general.feature_specs.forEach(function(element) {
+                    switch (element.identifier) {
+                        case 'subsidise_delivery_fee':
+                            desc += '<li><strong>Liefergebühren: </strong>:';
+                            if (element.discount.amount == 100) {
+                                desc += 'Kostenlose Lieferung'
+                            } else {
+                                desc += element.discount.amount + "% Rabatt auf Liefergebühr ";
+                            }
+                            desc += '</li>';
+                            break;
+                        default:
+                            desc += '<li><strong>Andere Effekt: </strong>: '+element.identifier+' (check source) </li>';
+                    }
+
+                });
+
+            }
+            if (couponDetails.general.start_time  || couponDetails.general.expire_time) {
+                var start_time = new Date(Date.parse(couponDetails.general.start_time));
+                var expire_time = new Date(Date.parse(couponDetails.general.expire_time));
+
+
+                desc += '<li><strong>Gültig zwischen:</strong>: ';
+                desc += start_time.toLocaleString('de-DE') + ' - ' + expire_time.toLocaleString('de-DE');
+
+                if (cOrderDetails) {
+
+                    let error = '';
+                    var submitted_at = new Date(Date.parse(cOrderDetails.submitted_at));
+                    if ( couponDetails.general.start_time ) {
+                        var start_time = new Date(Date.parse(couponDetails.general.start_time));
+                        if (start_time > submitted_at) {
+                            error += '<br/><span><i class="fa fa-exclamation-triangle label-danger" aria-hidden="true">!</i>Bestelldatum zu früh: '+submitted_at.toLocaleString('de-DE')+'</span>';
+
+                        }
+                    }
+                    if ( couponDetails.general.expire_time ) {
+                        var expire_time = new Date(Date.parse(couponDetails.general.expire_time));
+                        if (expire_time < submitted_at) {
+                            error += '<br/><span><i class="fa fa-exclamation-triangle label-danger" aria-hidden="true">!</i>Bestelldatum zu spät: '+submitted_at.toLocaleString('de-DE')+'</span>';
+
+                        }
+                    }
+
+                    if (error) {
+                        desc += error;
+                    }
+
+
+                }
+                desc += '</li>';
+            }
+
+            if (couponDetails.general.apps_only) {
+                desc += '<li><strong>Nur auf der App benutzbar!</strong> </li>';
+            } else {
+                desc += '<li>Auf App  und Browser benutzbar</strong> </li>';
+            }
+
+            if (couponDetails.general.campaign_only_once) {
+                desc += '<li>Nicht Mehrfach benutzbar</li>';
+            } else {
+                desc += '<li><strong>Mehrfach</strong> benutzbar</li>';
+            }
+            if (couponDetails.general.min_order_value && !isNaN(parseFloat(couponDetails.general.min_order_value))) {
+                var error = '';
+                if (cOrderDetails) {
+                    if (parseFloat(couponDetails.general.min_order_value)>parseFloat(cOrderDetails.final_amount)) {
+                        error = ' <br/><span><i class="fa fa-exclamation-triangle label-danger" aria-hidden="true">!</i>Gesamtbetrag der Bestellung nur '+cOrderDetails.final_amount+'</span>';
+                    }
+                }
+
+                desc += '<li><strong title="Ohne Liefergeb&uuml;hren, vorverpackte Produkte z&auml;hlen nicht">Mindestbestellwert</strong>:&euro;'+couponDetails.general.min_order_value+error+'</li>';
+            } else {
+                desc += '<li>Kein Mindestbestellwert</li>';
+            }
+
+            if (couponDetails.general.first_time_user) {
+                desc += '<li><strong>Nur für Neukunden</strong> benutzbar</li>';
+            } else {
+                desc += '<li>Für jeden (Keine Beschränkung auf Neukunden)</li>';
+            }
+
+            if (!couponDetails.validity && !isBlacklistedValidityMessage(couponDetails.validity_message)) {
+                desc += '<li><span title="Als Gast mit leerem Warenkorb">Fehlermeldung: <strong>"'+couponDetails.validity_message+'"</strong></span></li>';
+            }
+
+            //desc += '<strong></strong>: ';
+            return '<ul>'+desc+'</ul><span class="small-action" onclick="$(\'.more_coupon_details\').toggle();">Quelltext anzeigen</span><pre class="more_coupon_details" style="display: none">'+JSON.stringify(couponDetails, null, 2)+'</pre>'
+        }
+
+
+        // Voucher-creation
+        function getVoucherFormUrl(agentEmail, orderNumber, customerEmail, voucherValue, caseId, reason, comment) {
+            var linkTpl = "https://docs.google.com/forms/d/e/1FAIpQLSfT9uizuotMrDs2rmAE3HsaGbmME-c0p8g9t5hYNzT9NgOiXw/viewform?usp=pp_url&entry.870331350=__agentEmail__&entry.1218406143=__orderNumber__&entry.888217453=__caseId__&entry.1238822612=__customerEmail__&entry.1547441108=__voucherValue__&entry.1696476260=__reason__&entry.342565987=__comment__"
+
+            //console.log(agentEmail, orderNumber, customerEmail, voucherValue, caseId, reason, comment);
+            var reasonOptions = '<option value="Bestellung nicht übermittelt">Bestellung nicht übermittelt</option> <option value="Falsches Essen geliefert" selected="">Falsches Essen geliefert</option> <option value="Gutschein hat nicht funktioniert">Gutschein hat nicht funktioniert</option> <option value="Lieferzeit zu lang">Lieferzeit zu lang</option> <option value="Neukundenbestellung fehlgeschlagen">Neukundenbestellung fehlgeschlagen</option> <option value="Qualität des Essens">Qualität des Essens</option> <option value="Storno durch Restaurant">Storno durch Restaurant</option> <option value="Teil der Bestellung fehlt">Teil der Bestellung fehlt</option> <option value="Bestellung nicht geliefert">Bestellung nicht geliefert</option>';
+            return linkTpl.replace(/__customerEmail__/g, customerEmail).replace(/__agentEmail__/g, agentEmail).replace(/__orderNumber__/g, orderNumber).replace(/__voucherValue__/g, voucherValue).replace(/__caseId__/g, caseId).replace(/__reason__/g, reason).replace(/__comment__/g, comment);
+
+        }
+
+        function updateVoucherFormLink(orderNumber, voucherValue, reason) {
+            var agentEmail = "{!$User.Email}";
+            var caseId ="{!Case.id}";
+            var customerEmail = $("#details_email").html();
+            var comment = "";
+
+            var url = getVoucherFormUrl(agentEmail, orderNumber, customerEmail, voucherValue, caseId, reason, comment);
+            $('#voucher_link').attr('href', url);
+        }
+
+
+        // BI
+
+        function getBiData(customerid, brand, onResult) {
+
+            var brandpath =  (brand == 'pde') ? 'pde' : 'lh';
+            getCrmApiGet("/"+brandpath+"/bicustomer-v2/" + encodeURIComponent(customerid) + "/", onResult);
+        }
+
+
+
+        /// TRACKING
+
+        function markAsBadDetection(intentName, resolvedQuery, score, element_id) {
+            ga('send', 'event', 'BadIntendMarked', htmlEntities(intentName), htmlEntities(anon_emails(resolvedQuery)), Math.round(score * 100), gaCustomFields);
+
+            $('#'+element_id+' .detection-result-intend-name').wrap("<del>");
+            $('#'+element_id+' .detection-result-intend-code').wrap("<del>");
+            $('#'+element_id+' .detection-result-feedback-marksasbad').fadeOut("slow");
+
+            waitingOnReplyTo = null;
+
+        }
+
+        function markAsMissedDetection(intentName, resolvedQuery, score, element_id) {
+            ga('send', 'event', 'MissedIntendMarked', htmlEntities(intentName), htmlEntities(anon_emails(resolvedQuery)), Math.round(score * 100), gaCustomFields);
+
+            $('#'+element_id+' .detection-result-intend-name').wrap("<u>");
+            $('#'+element_id+' .detection-result-intend-code').wrap("<u>");
+            $('#'+element_id+' .detection-result-feedback-marksasmissed').fadeOut("slow");
+
+            waitingOnReplyTo = null;
+
+        }
+
+        function trackNotUpdatedTrackingStatus(restaurant, currentStatus, element_id) {
+            ga('send', 'event', 'NineCookiesTrackingStatusNotUpdated', htmlEntities(restaurant.name + ' ('+restaurant.id + ')'), htmlEntities(currentStatus), 1, gaCustomFields);
+            $('#'+element_id).fadeOut("slow");
+            waitingOnReplyTo = null;
+
+        }
+
+        function trackIntentSuggestionDirectReplied(oName, iSuggestedReplyTextType, iScore) {
+            if (waitingOnReplyTo != null) {
+                ga('send', 'event', 'IntentSuggestionDirectReplied', oName, iSuggestedReplyTextType, iScore, gaCustomFields);
+
+                waitingOnReplyTo = null;
+            } else {
+                ga('send', 'event', 'IntentSuggestionSentLater', oName, iSuggestedReplyTextType, iScore, gaCustomFields);
+            }
+
+        }
+
+        function trackManuallyReplied(manuallyRepliedText) {
+            if (waitingOnReplyTo != null) {
+                ga('send', 'event', 'IntentSuggestionIgnored', waitingOnReplyTo.metadata.intentName, '', waitingOnReplyTo.score, gaCustomFields);
+
+                waitingOnReplyTo = null;
+            }
+            let ordernum = 'none';
+            if (thisChatDowantOrderDetails) {
+                ordernum= thisChatDowantOrderDetails.order_number;
+            }
+            ga('send', 'event', 'ManualMessageSent', ordernum, '', 0, gaCustomFields);
+        }
+
+        function trackSearch() {
+            var searchtype = 'non-numeric';
+            if (/^\d+$/.test($('#orderid-search').val().replace(/ /g,''))) {
+                searchtype = 'numeric';
+            }
+            ga('send', 'event', 'BackendSearch', searchtype,'', 1, gaCustomFields);
+
+        }
+        // helpers
+
+        function apiLog(message) {
+            d = $('#apiai-log')
+            //d.html('<p>'+message+'</p>'+ d.html())
+            //d.append('<p>'+message+'</p>');
+            //d.scrollTop(d.prop("scrollHeight"));
+
+            d.prepend('<p>'+message+'</p>');
+        }
+
+        function htmlEntities(str) {
+            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&quot;');
+        }
+
+
+        function onChangeThreshold(d) {
+
+            var val = parseInt(d.val());
+            if (isNaN(val)) {
+                val=100;
+            }
+            d.val(Math.max(0, Math.min(val, 100)));
+
+        }
+
+
+        function applySettings() {
+
+            for (var key in reasonSettings) {
+                if (reasonSettings.hasOwnProperty(key)) {
+                    var escKey = key.replace(/\./g, '\\.');
+                    var gt = $('#'+escKey+'\\.threshold_green');
+                    onChangeThreshold(gt);
+                    reasonSettings[key]['autoreply']= $('#'+escKey+'\\.autoreply').is(":checked");
+                    if (reasonSettings[key]['threshold_green'] != parseInt(gt.val())) {
+                        reasonSettings[key]['threshold_green'] = parseInt(gt.val());
+                        console.warn('Chabnging threshold for '+key+': '+reasonSettings[key]['threshold_green'] );
+                    }
+                }
+            }
+        }
+
+        function anon_emails(mail) {
+            var emailAddressRegex = new RegExp('(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))', 'g');
+            return mail.replace(emailAddressRegex, '');
+
+        }
+
+        function isPdeChat() {
+            return thisBrand == 'DE_Pizza.de'
+        }
+
+        function isChatOrderProblem() {
+            return thisChatDetails != null && thisChatDetails.customDetails.find (function (el) {return el.label=="Problem" && el.value=="Bestellung"}) !== undefined;
+        }
+
+        function sendWelcomeOnce() {
+
+            if (thisChatWelcomeSent) {
+                console.log('sendWelcomeOnce: already sent for chat '+thisChatKey)
+                return;
+            }
+
+            if (!thisChatDetails || !thisChatDowantOrderDetails ||  !thisChatLog) {
+                console.log('sendWelcomeOnce: data not ready');
+                return;
+            }
+
+            thisChatWelcomeSent = true;
+
+            var diffSinceDispatched = 0;
+
+
+            var problem = thisChatDetails.customDetails.find (function (el) {return el.label=="Problem"}) ? thisChatDetails.customDetails.find (function (el) {return el.label=="Problem"}).value : 'unknown_problem'
+            var dispatched_at = getDispatchTime(thisChatDowantOrderDetails.status_history);
+            if (null != dispatched_at) {
+                diffSinceDispatched = Math.round((dispatched_at - Date.now())/60000);
+            }
+
+            if (isChatOrderProblem() && null != dispatched_at) {
+                var restaurant = thisChatDowantOrderDetails.restaurant.name || 'dem  Restaurant'
+                ga('send', 'event', 'PossibleAutoWelcome', 'OrderProblemAfterDispatched' , htmlEntities(restaurant), diffSinceDispatched, gaCustomFields);
+            }
+
+            var promissedTime = new Date(Date.parse(thisChatDowantOrderDetails.arrival_time));
+            var diff = 0;
+            if (promissedTime) {
+                diff = Math.round((promissedTime - Date.now())/60000);
+            }
+            var diff = Math.round((promissedTime - Date.now())/60000);
+
+            ga('send', 'event', 'ProblemAndDispatchStatusOnChatStart', problem ,null != dispatched_at ? 'dispatched' : 'not-dispatched', diff, gaCustomFields);
+
+            console.log('sendWelcomeOnce: Marked as sent for chat '+thisChatKey)
+
+
+        }
+
+        function searchOrdersByMail(email) {
+            $('#orderid-search').val(email);$('#searchbutton')[0].click();
+        }
+
+        // voucher test
+
+
+        $(function() {
+
+            sforce.console.setTabTitle('Chatbot');
+
+            console.log('Start setup chat on page loaded')
+            setupCurrentTabChat();
+
+            // build setting panel
+            var tpl = '<li>' +
+                    '<h4><label><input type="checkbox" id="__name__.autoreply"/> __name__: auto-reply enabled</label></h4><br />' +
+                    '<label><input type="text" id="__name__.threshold_green"/> score to auto-reply</label><br />' +
+                    '</li>';
+            var list = $('#intent-setting-list');
+            for (var key in reasonSettings) {
+                if (reasonSettings.hasOwnProperty(key)) {
+                    var escKey = key.replace(/\./g, '\\.');
+                    var item= tpl.replace(/__name__/g, key);
+                    list.append(item);
+                    $('#'+escKey+'\\.threshold_green').val(reasonSettings[key].threshold_green);
+                    $('#'+escKey+'\\.autoreply').prop('checked', reasonSettings[key].autoreply ? 'checked' : false);
+                }
+            }
+
+
+
+            $('#vouchertool_code').on("keyup", function(e) {
+                if (e.keyCode == 13) {
+                    findVoucherDetails();
+                }
+            });
+
+            $('#vouchertool_submit').on("click", function(e) {
+                findVoucherDetails();
+            });
+
+        });
+    </script>
+<style>
+
+    body {
+        font-size: 12px;
+    }
+
+    button.btn {
+        font-size: 12px;
+        padding: 6px 12px;
+        text-transform: uppercase;
+
+        border-collapse: separate;
+        box-sizing: border-box;
+        color: rgb(254, 254, 254);
+        background: #FBAA29;
+        cursor: pointer;
+        display: inline;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 12px;
+        font-stretch: normal;
+        font-style: italic;
+        font-variant-caps: normal;
+        font-variant-ligatures: normal;
+        font-variant-numeric: normal;
+        font-weight: bold;
+        height: auto;
+        letter-spacing: normal;
+        line-height: 20px;
+        text-align: center;
+        text-indent: 0px;
+        text-rendering: auto;
+        text-shadow: none;
+        text-size-adjust: 100%;
+
+        user-select: none;
+        white-space: nowrap;
+        width: auto;
+        word-spacing: 0px;
+        writing-mode: horizontal-tb;
+        -webkit-tap-highlight-color: rgba(0, 0, 0);
+    }
+    .h3 {
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
+
+    ul {
+        padding-left: 10px;
+    }
+
+    hr {
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
+
+    blockquote {
+        margin: 0 0 2px;
+        padding: 1px 2px;
+    }
+
+
+
+    .panel-body {
+        padding: 5px;
+    }
+
+    .glyphicon {
+        margin-left: 4px;
+        margin-right: 2px;
+    }
+
+    .semitransparent {
+        opacity: 0.7;
+    }
+
+    .almosttransparent {
+        opacity: 0.5;
+    }
+
+    th {
+        padding-bottom: 7px;
+        padding-top: 10px;
+        text-decoration-line: underline;
+        font-weight: normal;
+    }
+    td.attribute_label {
+        text-align: right;
+        vertical-align: text-top;
+        padding-right: 10px;
+    }
+
+    span.action {
+
+        text-transform: uppercase;
+        font-weight: bold;
+        padding-left: 10px;
+        padding-right: 20px;
+        color: #FBAA29;
+        cursor: pointer;
+    }
+
+    span.small-action {
+
+        padding-left: 10px;
+        padding-right: 20px;
+        color: #FBAA29;
+        cursor: pointer;
+    }
+
+
+
+</style>
+
+
+
+    <p>&nbsp;</p>
+    <span id="this-chat-key" class="label label-default" style="display: none">Not initialized</span>
+
+
+    <div class="container" style="width:100%; height:100%; min-heigth:1000px">
+        <div class="col-sm-6" style="">
+            <div id="header">
+                <h3>Chat mit &quot;<span id="details_username"><i>unbekannt</i></span>&quot; (<span id="details_user_ip">-</span>) auf &quot;<span id="details_brand">unbekannt</span>&quot; </h3>
+            </div>
+            <div id="controlpanel" style="display: none">
+                <span class="h2">Bot Control </span>
+                <br />
+                <ul id="intent-setting-list" />
+                <button onclick="applySettings()">Apply</button>
+            </div>
+
+            <div id="orderinfo" class="row">
+                <div id="orderinfo_details" class="col-sm-6">
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th>Lieferzeit</th>
+                        </tr>
+                        <tr>
+                            <td class="attribute_label">Bestellstatus:</td>
+                            <td class="attribute_value">
+                                <strong><span id="dw_order_status" >?</span></strong> (via <span id="dw_transmission_method" >?</span>)
+                            </td>
+                        </tr>
+                        <tr id="dw_status_history_holder">
+                            <td class="attribute_label">Status-updates:</td>
+                            <td class="attribute_value"><span  class="small-action" onclick="$('#dw_status_history').toggle();"><span id="dw_status_history_size"></span> anzeigen/ausblenden</span>
+                                <span id="dw_status_history" style="display: none" >?</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="attribute_label">aufgegeben:</td>
+                            <td class="attribute_value">
+                                <strong><span id="dw_submitted_at">?</span></strong>
+                                <div id="dw_submitted_at_warning" class="alert alert-danger"><span class="hidden glyphicon glyphicon-time"></span>&gt; 1 Woche alt</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="attribute_label">best&auml;tigt:</td>
+                            <td class="attribute_value">
+                                <strong><span id="dw_confirmed_at">?</span></strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="attribute_label" title="Fahrer zugewiesen">Dispatched:</td>
+                            <td class="attribute_value"><strong><span id="dw_dispatched_at" >?</span></strong></td>
+                        </tr>
+                        <tr>
+                            <td class="attribute_label" title="Versprochene Lieferzeit">ETA:</td>
+                            <td class="attribute_value"><span id="dw_promised_deliverytime" >?</span></td>
+                        </tr>
+                        <tr class="hidden">
+                            <td class="attribute_label" title="Versprochene Lieferzeit">ETA:</td>
+                            <td class="attribute_value"><span id="9c_promised_deliverytime" >?</span></td>
+                        </tr>
+                        <tr>
+                            <td class="attribute_label">Tracking:</td>
+                            <td class="attribute_value"><span id="9c_tracking" >?</span></td>
+                        </tr>
+                        <tr>
+                            <td class="attribute_label">Bezahlung:</td>
+                            <td class="attribute_value"> <strong><span id="dw_final_amount">?</span>&euro;</strong> <strong><span id="dw_payment_method">?</span></strong></td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th>Restaurant (<span id="dw_restaurant_id">?</span>)</th>
+                        </tr>
+                        <tr>
+                            <td class="attribute_label">Kontakt:</td>
+                            <td class="attribute_value"><strong><span id="dw_restaurant_name">?</span></strong></td>
+                        </tr>
+                        <tr>
+                            <td class="attribute_label"></td>
+                            <td class="attribute_value"><strong><span id="dw_restaurant_address">?</span></strong></td>
+                        </tr>
+                        <tr>
+                            <td class="attribute_label"></td>
+                            <td class="attribute_value"><strong><input type="text" id="dw_restaurant_phone" onClick="this.select();" style="border-width: 0px;"  placeholder="unbekannt"></input> </strong> <span class="small">(telefon)</span></td>
+                        </tr>
+                        <tr>
+                            <td class="attribute_label"></td>
+                            <td class="attribute_value"><strong><input type="text" id="dw_restaurant_sms" onClick="this.select();" style="border-width: 0px;" placeholder="unbekannt"></input></strong> <span class="small">(mobile)</span></td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th>Kunde (<span id="dw_customer_id">?</span>)</th>
+                        </tr>
+                        <tr>
+                            <td class="attribute_label">Name:</td>
+                            <td class="attribute_value"><strong><span id="dw_customer_fullname">?</span></strong></td>
+                        </tr>
+                        <tr>
+                            <td class="attribute_label">Adresse:</td>
+                            <td class="attribute_value">
+                                <strong>
+                                    <span id="dw_customer_address">?</span>,<br />
+                                    <span id="dw_customer_zipcode">?</span>
+                                    <span id="dw_customer_city">?</span>
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="attribute_label">E-Mail bei Bestellung:</td>
+                            <td class="attribute_value"><strong><span id="dw_customer_email">?</span></strong></td>
+                        </tr>
+
+
+                    </table>
+                </div>
+                <div id="orderinfo_voucher" class="col-sm-6">
+                    <div id="bidata">
+                        <table>
+                            <tr>
+                                <th></th>
+                                <th>Kundenanalyse (letzte 6 Monate)</th>
+                            </tr>
+                            <tr>
+                                <td class="attribute_label">Rückkehrwahrscheinl.:</td>
+                                <td class="attribute_value"><strong><span id="bi_returningProbability" >?</span>%</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="attribute_label"><span title="An indicator of how frequently this customer orders compared to other customers on the same platform.">Kaufh&auml;ufigkeit</span>:</td>
+                                <td class="attribute_value"><strong><span id="bi_frequency" >?</span></strong> (<strong><span id="bi_numOrders">?</span></strong> in 6 Monaten, <span id="bi_numDiscountedOrders">?</span> mit Gutschein)</td>
+                            </tr>
+                            <tr>
+                                <td class="attribute_label"><span  title="An indicator of how large this customer's basket size will be.">Durchschn. Bestellwert</span>:</td>
+                                <td class="attribute_value"><strong><span id="bi_monetary">?</span></strong></td>
+                            </tr>
+                            <tr>
+                                <td class="attribute_label"><span title="An indicator of how often this customer users vouchers/discounts">Gutscheinnutzung</span>:</td>
+                                <td class="attribute_value"><strong><span id="bi_discount">?</span></strong></td>
+                            </tr>
+                            <tr>
+                                <td class="attribute_label"></td>
+                                <td class="attribute_value"> <span id="bi_last_order_voucher_use" >?</span></td>
+                            </tr>
+                            <tr>
+                                <td class="attribute_label" title="Jeder Kauf als Gast erzeugt einen neuen Account, auch wenn der Kunde sich nicht registiert oder die gleiche E-Mail wie zuvor verwendet.">Anzahl Accounts*:</td>
+                                <td class="attribute_value"> <span id="bi_other_accounts" ></span></td>
+                            </tr>
+                            <tr>
+                                <td  colspan="2" title="Um alle Bestellungen eines Kunden zu sehen muss für jede E-Mail einzeln nach Bestellungen gesucht werden.">
+                                    <u>Weitere E-Mails:</u>
+                                    <span id="bi_other_accounts_list_toggle" class="small-action" onclick="$('#bi_other_accounts_list').toggleClass('hidden');">anzeigen/ausblenden</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"> <span id="bi_other_accounts_list" ></span></td>
+                            </tr>
+
+                        </table>
+                        <br/>
+                        <hr/>
+                    </div>
+                    <div id="vouchertool">
+                        <span style="padding-bottom: 7px; padding-top: 10px; text-decoration-line: underline; font-weight: normal;">Voucher/Coupon test</span>
+
+                        <div class="input-group">
+                            <input id="vouchertool_code"  type="text" class="form-control" placeholder="coupon" />
+                            <span class="input-group-btn">
+                                <button id="vouchertool_submit" class="btn btn-default" type="submit" onclick="">
+                                    <i class="fa fa-search">Coupon testen</i>
+                                </button>
+                            </span>
+                        </div>
+
+                        <br/>
+                        <!--
+                        <span id="vouchertool_resulttoggle"   style="text-decoration: underline;display:none" onclick=" $('#vouchertool_result').toggle();" >
+                            Testergebnisse anzeigen/verstecken
+                        </span>
+                        -->
+
+                        <div id="vouchertool_result"></div>
+                    </div>
+                    <div id="voucherform">
+                        <a
+                                id="voucher_link"
+                                href="https://docs.google.com/forms/d/e/1FAIpQLSfT9uizuotMrDs2rmAE3HsaGbmME-c0p8g9t5hYNzT9NgOiXw/viewform"
+                                target="_blank"
+                                onclick="ga('send', {hitType: 'event', eventCategory: 'voucherFormOpened',eventAction: 'click', eventLabel: '', eventValue: 1});">
+                            <span class="action">Coupon erzeugen</span>
+                        </a>
+                    </div>
+                    <div>
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true" onclick="$('#controlpanel').toggle()" title="More Settings"></span>
+                        <label><input type="checkbox" id="show_red" onclick="$('.red_score').toggleClass('hidden');"/> Show red </label>
+                        <label><input type="checkbox" id="show_orange" checked="checked"  onclick="$('.orange_score').toggleClass('hidden');"/> Show orange</label>
+                    </div>
+                </div>
+
+
+            </div>
+            <div id="apiai-log" style="overflow:scroll; height:400px; padding-top: 20px">
+
+
+            </div>
+
+
+        </div>
+
+    <span class="col-sm-6" style="height:100%">
+        <div id="prechat">
+            <h3>Angaben im Prechat - Formular:</h3>
+            <table>
+                <tr>
+                    <td class="attribute_label">E-Mail:</td>
+                    <td class="attribute_value"> <span id="details_email" >?</span></td>
+                    <td class="attribute_action"> <span id="details_email_searchbutton" class="hidden action" onclick="searchOrdersByMail($('#details_email').html());">Bestellungen mit dieser E-Mail suchen</span></td>
+                </tr>
+
+                <tr>
+                    <td class="attribute_label">Bestellnummer:</td>
+                    <td class="attribute_value"> <span id="details_ordernumber" >?</span></td>
+                    <td class="attribute_action"><span id="details_ordernumber_searchbutton" class="hidden action" onclick="$('#orderid-search').val($('#details_ordernumber').html().replace(/[^0-9]+/g, ''));$('#searchbutton')[0].click();">Diese Bestellung suchen</span></td>
+                </tr>
+
+                <tr>
+                    <td class="attribute_label">Pre-chat Formular:</td>
+                    <td class="attribute_value" colspan="2" id="this-chat-details-list">?</td>
+                </tr>
+            </table>
+
+        </div>
+
+        <div id="searchbar">
+     <!--       <form id="orderdetails-form" action="" method="POST" target="orderdetails-iframe">
+
+                <div class="input-group">
+                    <input id="orderid-search" name="search"  type="text" class="form-control" placeholder="Bestellnummer, E-Mail, Name, Restaurant, ..." />
+                      <span class="input-group-btn">
+                        <button id="searchbutton" class="btn btn-default" type="submit"  onclick="updateActionAndPdfByOrderId();trackSearch();">
+                            <i class="fa fa-search">Suchen</i>
+                        </button>
+                      </span>
+                </div>
+                <input type="hidden" name="page" value="1" />
+            </form>
+
+
+
+        <iframe id="orderdetails-iframe" name="orderdetails-iframe" style="width:100%; height:200px; resize: vertical;"></iframe>
+        <iframe id="orderpdf-iframe" name="orderpdf-iframe" style="width: 100%; height:800px"></iframe>-->
+            <a href="#" id="orderPDFLink" target ='_blank'>Open PDF</a>
+          <input id="orderid-search" name="search"  type="text" class="form-control" placeholder="Bestellnummer, E-Mail, Name, Restaurant, ..." style="display: none" />
+        </div>
+    </span>
+    </div>
+
+    <script id="myTmpl" type="text/x-jsrender">
+            <p class="log-row {{:rowclass}}" id={{:result_id}}>
+                <span class="detection-result-headline">
+                    <span class="detection-result-score label {{:sColor}}">{{:result_score}}%</span>
+                    <strong><span class="detection-result-intend-name">{{:iName}}</span></strong>
+                    <span class="detection-result-intend-code">{{:oName}}</span>
+                    <span class="detection-result-feedback-marksasbad {{:btn_mark_as_bad_classes}}">
+                        <span class="glyphicon glyphicon-remove btn_mark_as_bad" aria-hidden="true"
+                              title="Markieren als &quot;Falsch erkannt&quot;..
+                              {{:iDescr}}
+                              Korrekt: {{:iGoodEx}}
+                              Inkorrekt: {{:iBadEx}}"
+                              onclick="markAsBadDetection('{{:oName}}', '{{:usertext}}', '{{:result_score}}', '{{:result_id}}');">
+                            Falsch erkannt
+                            </span>
+                    </span>
+                    <span class="detection-result-feedback-marksasmissed {{:btn_mark_as_missed_classes}}">
+                        <span class="glyphicon glyphicon-ok btn_mark_as_missed" aria-hidden="true"
+                              title="Markieren als &quot;Korrekt erkannt, aber nicht genug score &quot..
+                              {{:iDescr}}
+                              Korrekt: {{:iGoodEx}}
+                              Inkorrekt: {{:iBadEx}}"
+                              onclick="markAsMissedDetection('{{:oName}}', '{{:usertext}}', '{{:result_score}}', '{{:result_id}}');">
+                            Richtig erkannt
+                            </span>
+                    </span>
+                </span>
+                <br />
+
+                <span class="detection-result-quot">
+                    Nachricht vom <span class="detection-result-quot-time">{{:msg_time}}</span>:
+                    &quot;<span class="detection-result-quot-text" style="font-style: italic">{{:usertext}}</span>&quot;
+                </span>
+
+                <div class="detection-result-suggestion panel panel-default {{:rowclass}} {{:suggestion_panel_classes}}">
+                    <div class="panel-body">
+                        <blockquote class="detection-result-suggestion-text">{{:suggestion_text}}</blockquote>
+                        <span  class="action pull-right detection-result-suggestion-modifybutton" type="submit"  onclick="ga('send', {hitType: 'event', eventCategory: 'IntentSuggestionLoadedToModify',eventAction: '{{:oName}}', eventLabel: '{{:suggestion_type}}', eventValue: {{:result_score}}});sforce.console.chat.setAgentInput(thisChatKey, '{{:suggestion_text}}', function(){});">
+                            Satz bearbeiten
+                        </span >
+                        <span class="action pull-right detection-result-suggestion-replybutton" type="submit"  onclick="trackIntentSuggestionDirectReplied('{{:oName}}', '{{:suggestion_type}}', '{{:result_score}}');sforce.console.chat.sendMessage(thisChatKey, '{{:suggestion_text}}', function(){});">
+                            Direkt abschicken
+                        </span >
+
+                    </div>
+                </div>
+            </p>
+            </script>
+</apex:page>

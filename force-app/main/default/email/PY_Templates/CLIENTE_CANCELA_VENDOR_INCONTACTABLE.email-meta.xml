@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>CLIENTE CANCELA VENDOR INCONTACTABLE</name>
+    <style>freeForm</style>
+    <subject>CLIENTE CANCELA VENDOR INCONTACTABLE</subject>
+    <textOnly>Estimados,
+
+
+En esta oportunidad nos estamos contactando con el local {!Case.Account} para hacerle saber que el pedido N° {!Case.Order_Number__c} ha quedado cancelado a solicitud del cliente, debido a que {!Case.Case_Reason__c}.
+
+
+Hemos tratado de comunicarnos al teléfono {!Case.Restaurant_Phone_Number__c} sin lograr contacto.Este número se encuentra en su perfil, por lo que le agradeceríamos si pudiera confirmarlo. En caso de que sea incorrecto favor enviar el número correspondiente a soporte@pedidosya.com y lo actualizaremos a la brevedad
+
+
+Quedamos a las órdenes ante cualquier consulta.
+
+
+
+Saludos Cordiales
+
+{!Case.OwnerFullName}
+
+Atención al Cliente - PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>Asset Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <webLinks>
+        <label>대량 수정</label>
+        <name>Mass_Edit</name>
+    </webLinks>
+    <webLinks>
+        <label>대량 업데이트</label>
+        <name>Mass_Update</name>
+    </webLinks>
+</CustomObjectTranslation>

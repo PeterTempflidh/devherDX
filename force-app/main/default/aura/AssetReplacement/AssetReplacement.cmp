@@ -1,0 +1,145 @@
+<aura:component implements="force:lightningQuickActionWithoutHeader,force:hasRecordId,force:hasSObjectName" 
+                controller="ReplacementLightningController">
+    
+    <lightning:notificationsLibrary aura:id="notificationsLibrary"/>
+    <lightning:workspaceAPI aura:id="workspace"/>
+    <aura:attribute name="done" type="Boolean"/>
+    <aura:attribute name="started" type="Boolean"/>
+    <aura:attribute name="record" type="Object"/>
+    <aura:attribute name="vendor" type="Account"/>
+    <aura:attribute name="oldAsset" type="Asset__c"/>
+    <aura:attribute name="newAsset" type="Asset__c"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    
+    <div class="modal-header slds-modal__header slds-size_1-of-1">
+        <h4 class="{!v.done ? 'slds-hide' : 'title slds-text-heading--medium'}">Initiate Asset Replacement Process</h4>
+        <h4 class="{!v.done ? 'title slds-text-heading--medium' : 'slds-hide'}">Replacement Process Initiated</h4>
+    </div>
+    
+    <aura:html tag="style">
+        .cuf-content {
+            padding: 0 0rem !important;
+        }
+        .slds-p-around--medium {
+            padding: 0rem !important;
+        }       
+        .slds-modal__content{
+            overflow-y:hidden !important;
+            height:unset !important;
+            max-height:unset !important;
+        }
+    </aura:html>
+        
+    <!-- MODAL BODY / INPUT FORM -->    
+    <div class="slds-modal__content slds-p-around--x-small slds-align_absolute-center slds-size_1-of-1 slds-is-relative" aura:id="modalbody" id="modalbody">
+        
+        <div class="slds-grid slds-grid_vertical">
+            
+            <div onclick="{!c.openAccount}">
+                <lightning:tile label="{!v.vendor.Name}">
+                    <aura:set attribute="media">
+                        <lightning:icon iconName="utility:company"/>
+                    </aura:set>
+                    <dl class="slds-dl_horizontal">
+                        <dt class="slds-dl_horizontal__label">
+                            <p class="slds-truncate" title="Account name">{!$Label.c.Name}:</p>
+                        </dt>
+                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                            <p class="slds-truncate" title="Account name">{!v.vendor.Name}</p>
+                        </dd>
+                        <dt class="slds-dl_horizontal__label">
+                            <p class="slds-truncate" title="Account email">{!$Label.c.Email}:</p>
+                        </dt>
+                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                            <p class="slds-truncate" title="{!v.vendor.Email}">{!v.vendor.Email}</p>
+                        </dd>
+                        <dt class="slds-dl_horizontal__label">
+                            <p class="slds-truncate" title="Account email">{!$Label.c.Status}:</p>
+                        </dt>
+                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                            <p class="slds-truncate" title="{!v.vendor.Email}">{!v.vendor.Status}</p>
+                        </dd>
+                    </dl>
+                </lightning:tile>
+            </div>
+            <div class="{!v.done ? '' : 'slds-hide'}">
+                <H2 class="info-title">{!$Label.c.OLD_ASSET}</H2>
+            </div>
+            
+            <div onclick="{!c.openOldAsset}">
+                <lightning:tile label="{!v.oldAsset.Name}">
+                    <aura:set attribute="media">
+                        <lightning:icon iconName="utility:tablet_portrait"/>
+                    </aura:set>
+                    <dl class="slds-dl_horizontal">
+                        <dt class="slds-dl_horizontal__label">
+                            <p class="slds-truncate" title="Name">{!$Label.c.Name}:</p>
+                        </dt>
+                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                            <p class="slds-truncate" title="Salesforce">{!v.oldAsset.Name}</p>
+                        </dd>
+                        <dt class="slds-dl_horizontal__label">
+                            <p class="slds-truncate" title="Asset status">{!$Label.c.Status}:</p>
+                        </dt>
+                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                            <p class="slds-truncate" title="Asset status">{!v.oldAsset.Status}</p>
+                        </dd>
+                    </dl>
+                </lightning:tile>
+            </div>
+            
+            <div class="{!v.done ? 'slds-hide': ''}">
+                <div class="slds-col">
+                    <H2 class="info-title">{!$Label.c.IMPORTANT_INFORMATION}</H2>
+                    {!$Label.c.Replacement_info_header}
+                    <ul class="slds-list--dotted">
+                        <li>{!$Label.c.Replacement_info_item_1}</li>
+                        <li>{!$Label.c.Replacement_info_item_2}</li>
+                    </ul>
+                    {!$Label.c.Replacement_info_footer}
+                </div>
+            </div>
+            
+            <div class="{!v.done ? '' : 'slds-hide'}">
+                <H2 class="info-title">{!$Label.c.NEW_ASSET}</H2>
+                <div onclick="{!c.openNewAsset}">
+                    <lightning:tile label="{!v.newAsset.Name}">
+                        <aura:set attribute="media">
+                            <lightning:icon iconName="utility:tablet_portrait"/>
+                        </aura:set>
+                        <dl class="slds-dl_horizontal">
+                            <dt class="slds-dl_horizontal__label">
+                                <p class="slds-truncate" title="Name">{!$Label.c.Name}:</p>
+                            </dt>
+                            <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                                <p class="slds-truncate" title="Salesforce">{!v.newAsset.Name}</p>
+                            </dd>
+                            <dt class="slds-dl_horizontal__label">
+                                <p class="slds-truncate" title="Asset status">{!$Label.c.Status}:</p>
+                            </dt>
+                            <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                                <p class="slds-truncate" title="Asset status">{!v.newAsset.Status}</p>
+                            </dd>
+                        </dl>
+                    </lightning:tile>
+                </div>
+            </div>
+        </div>
+    </div>   <!-- End of Modal Content -->  
+    
+    <!-- MODAL FOOTER -->
+    <div class="modal-footer slds-modal__footer slds-size_1-of-1">
+        <div class="forceChangeRecordTypeFooter">
+            <lightning:button label="Close" onclick="{!c.closeJs}" disabled="{!v.started}" class="{!v.done ? '' : 'slds-hide'}"></lightning:button>
+            <lightning:button label="Cancel" onclick="{!c.closeJs}" disabled="{!v.started}" class="{!v.done ? 'slds-hide' : ''}"></lightning:button>
+            <lightning:button label="Initiate Replacement Process" disabled="{!v.started}" variant="brand" onclick="{!c.startReplacementJs}" class="{!v.done ? 'slds-hide' : ''}"></lightning:button>            
+        </div>
+    </div>
+    
+    <aura:if isTrue="{!v.started}">
+        <div class="exampleHolder">
+            <lightning:spinner alternativeText="Loading" size="large" />
+        </div>
+    </aura:if>
+    
+</aura:component>

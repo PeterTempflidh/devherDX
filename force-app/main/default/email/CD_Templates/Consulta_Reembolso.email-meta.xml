@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Clickdelivery</letterhead>
+    <name>Consulta Reembolso</name>
+    <style>formalLetter</style>
+    <subject>Consulta Reembolso</subject>
+    <textOnly>Se escala caso:
+
+TC
+Hola (Nombre del usuario), te queremos confirmar que la devolución se realizó a tu TC y se verá reflejada en máximo 5 días hábiles. de no ser así por favor contacta a tu banco. Quedamos atentos a cualquier nueva inquietud. Nuestros domihéroes están 24/7 para colaborarte con todo lo que necesites.Movemos el mundo por ti.
+
+TD
+Hola (Nombre del usuario), te queremos confirmar que la devolución se realizó a tu TD y se verá reflejada en máximo 10 días hábiles. de no ser así por favor contacta a tu banco.Nuestros domihéroes están 24/7 para colaborarte con todo lo que necesites.Movemos el mundo por ti.
+
+Voucher
+Hola (Nombre del usuario), te queremos confirmar que la devolución de tu dinero  se realizará en vouchers en máximo 48hrs. Recuerda que los puedes encontrar cargados en la App o Web en la opción “mis cupones”. Nuestros domi héroes están 24/7 para colaborarte con todo lo que necesites.Movemos el mundo por ti</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

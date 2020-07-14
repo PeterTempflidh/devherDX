@@ -1,0 +1,129 @@
+<aura:component implements="force:lightningQuickAction,force:hasRecordId,force:hasSObjectName,flexipage:availableForAllPageTypes"
+                controller="CaseControllerLightning">
+
+    <ltng:require styles="{!$Resource.SLDS274 + '/assets/styles/lightning-design-system-ltng.css'}"/>
+    <lightning:notificationsLibrary aura:id="notificationsLibrary"/>
+
+    <aura:method access="public" name="saveToServer" action="{!c.handleSaveRecord}" description="Saves data to server" />
+    <aura:registerEvent name="refreshKnowledge" type="c:compRefreshEvent"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+
+    <aura:attribute name="btnDisabled" type="Boolean" default="false"/>
+    <aura:attribute name="toggleSpinner" type="boolean" default="false"/> 
+    <aura:attribute name="level3options" type="List"/> 
+    <aura:attribute name="alloptions" type="List"/> 
+    <aura:attribute name="selectedCombo" type="String"/> 
+
+    <aura:attribute name="level1Filtered" type="List"/>
+    <aura:attribute name="level2Filtered" type="List"/>
+    <aura:attribute name="level3Filtered" type="List"/>
+    <aura:attribute name="types" type="List"/>
+    <aura:attribute name="selectedLevel1" type="String"/>
+    <aura:attribute name="selectedLevel2" type="String"/>
+    <aura:attribute name="selectedLevel3" type="String"/>
+    <aura:attribute name="selectedType" type="String"/>
+    <aura:attribute name="ColorTheme" type="String"/>    
+    <aura:attribute name="formDisabled" type="Boolean" default="true" />
+    <aura:attribute name="lookupFieldName" type="String" default="" />
+    <aura:attribute name="record" type="Object" />
+    <aura:attribute name="simpleRecord" type="Object" />
+    <aura:attribute name="allPicklistValues" type="Object" />
+    <aura:attribute name="CaseId" type="Id"/>
+    <aura:attribute name="isSaving" type="boolean" default="false"/>
+	
+	<!--SCC-189-->
+	<aura:handler name="CaseReasonFormEventonSearch" event="c:compEvent" action="{!c.enableFormOnSearch}" />    
+    <aura:attribute name="showFooter" type="boolean" default="false"/>
+	<aura:attribute name="isFieldDisabled" type="Boolean" default="true"/>
+    <aura:attribute name="spinner" type="boolean" default="false"/>
+	<aura:method name="reinit" action="{!c.onInit}"  description="to reset picklist to original state" />
+	<aura:registerEvent name="CaseReasonRefreshEvent" type="c:CaseReasonRefreshEvent"/>
+    <aura:handler event="c:CaseReasonRefreshEvent" action="{!c.handleCompRefreshEvent}"/>
+
+    <force:recordData aura:id="caseRecordEditor"
+        layoutType="FULL"
+        recordId="{!v.recordId}"
+        targetRecord="{!v.record}"
+        targetFields ="{!v.simpleRecord}"
+		recordUpdated="{!c.recordUpdated}"
+        mode="EDIT" />
+
+   <div>
+    <lightning:layout class="layoutMargin" >
+        <aura:if isTrue="{!v.spinner}">
+            <div class="slds-align--absolute-center">
+                <lightning:spinner aura:id="spinner" variant="brand" size="medium"/>
+            </div>                            
+        </aura:if>
+       
+        <lightning:layoutItem size="3" padding="around-small" class="editButton"> 
+            <lightning:select disabled="{!v.formDisabled}"  
+                aura:id="selectedType" value="{!v.simpleRecord.Type}" 
+                onchange="{!c.caseTypeChanged}">
+                <aura:iteration items="{!v.types}" var="option">
+                    <option text="{!option.label}" value="{!option.value}" selected="{!option.selected}"/>
+                </aura:iteration>
+            </lightning:select>
+        </lightning:layoutItem>
+	
+        <aura:if isTrue="{!and(v.simpleRecord.Type!=null, v.simpleRecord.Type!='')}">   
+            <lightning:layoutItem  size="8" padding="around-small" class="editButton">
+                <div class="slds-p-top_medium">
+                <c:SearchBox disabled="{!and(v.formDisabled,isSearchDisabled)}" allSearchOptions="{!v.level3options}" caseReasonSelected="{!c.setCaseReason}" 
+                aura:id="searchBox" type="{!v.simpleRecord.Type}"/>
+                </div>
+            </lightning:layoutItem>
+
+            <lightning:layoutItem  size="1"  class="editButton">                      
+                <div class="slds-p-top_medium">
+                    <lightning:buttonIcon onclick="{! c.enableform }" iconName="utility:edit"  variant="border-filled"
+                    size="large" alternativeText="Edit Form" title="Edit" />
+                </div>
+            </lightning:layoutItem>	
+        </aura:if>
+    </lightning:layout>
+
+    <aura:if isTrue="{!and(v.simpleRecord.Type!=null, v.simpleRecord.Type!='')}">
+	<lightning:layout>
+		<lightning:layoutItem size="6" padding="around-small" class="fieldMargin">
+			<lightning:select disabled="{!or(v.isFieldDisabled,v.formDisabled)}" aura:id="Select1" 
+				value="{!v.simpleRecord.Case_Reason_Level_1__c}" onchange="{!c.selectedLevel1Changed}">
+				<aura:iteration items="{!v.level1Filtered}" var="option">
+					<option text="{!option.label}" value="{!option.value}" selected="{!option.selected}"/>
+				</aura:iteration>
+			</lightning:select>
+		</lightning:layoutItem>
+		
+		<lightning:layoutItem size="6" padding="around-small" class="fieldMargin"> 
+			<lightning:select disabled="{!or(v.isFieldDisabled,v.formDisabled)}" aura:id="Select2" 
+			value="{!v.simpleRecord.Case_Reason_Level_2__c}" onchange="{!c.selectedLevel2Changed}">
+				<aura:iteration items="{!v.level2Filtered}" var="option">
+					<option text="{!option.label}" value="{!option.value}" selected="{!option.selected}"/>
+				</aura:iteration>
+			</lightning:select>
+		</lightning:layoutItem>
+    </lightning:layout>  
+    <lightning:layout>
+	    <lightning:layoutItem size="12" padding="around-small" class="fieldMargin"> 
+			<lightning:select disabled="{!or(v.isFieldDisabled,v.formDisabled)}" aura:id="Select3" 
+			value="{!v.simpleRecord.Case_Reason_Level_3__c}">
+				<aura:iteration items="{!v.level3Filtered}" var="option">
+					<option text="{!option.label}" value="{!option.value}" selected="{!option.selected}"/>
+				</aura:iteration>
+			</lightning:select>
+		</lightning:layoutItem>
+	</lightning:layout>
+    </aura:if>
+    <footer>
+        <div class="slds-align_absolute-center">
+            <aura:if isTrue="{!and(v.showFooter,not(v.isFieldDisabled))}">
+                <button disabled="{!v.isSaving}" aura:id="save" class="slds-button slds-button_brand" 
+                onclick="{!c.handleSaveRecord}">Save</button>
+                <button disabled="{!v.isSaving}" aura:id="cancel" class="slds-button slds-button_neutral" 
+                onclick="{!c.disbaleFormOnCancel}">Cancel</button>                            
+            </aura:if>
+        </div>
+    </footer>
+	</div>
+</aura:component>

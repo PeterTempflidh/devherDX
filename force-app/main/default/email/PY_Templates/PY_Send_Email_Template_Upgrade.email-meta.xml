@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>PY Send Email Template - Upgrade</name>
+    <style>none</style>
+    <subject>Modificación de acuerdo</subject>
+    <textOnly>Hola [Account Name]:
+
+¿Cómo están?
+
+En adjunto encontrarán una adenda por la que se modifica el contrato vigente según lo conversado. ¿Están de acuerdo?
+
+Si tienen dudas o necesitan alguna aclaración, comuníquense con nosotros. 🙂
+
+¡Seguimos en contacto!
+
+Saludos,
+[Opportunity Owner First Name] [Opportunity Owner Last Name]
+[Opportunity URL]</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

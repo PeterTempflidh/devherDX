@@ -1,0 +1,241 @@
+<apex:component controller="CtrCreateQuote" access="global">
+<apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+<apex:attribute name="oppQ" type="String" description="Placeholder" assignTo="{!oppQId}"/>
+<table width="100%">
+    <tr>
+        <td class="headelements" ><div style="width: 200px;"><img src="{!URLFOR($Resource.Yogiyo_Logo)}" /></div></td>
+        <td class="headelements" style="font-weight: bold; font-size: 17px;">요기요 서비스 등록 신청서</td>
+        <td class="headelements">
+            <div><span style="width: 10px;">담당자</span> : {!opportunity.Owner.firstname} {!opportunity.Owner.lastname}</div>
+            <div><span style="width: 10px;">연락처</span> : {!opportunity.owner.phone}</div>
+        </td>
+    </tr>
+</table>
+<br />
+
+<span style="font-weight: bold; font-size: 10px;">서비스 및 계약 기간</span>
+<hr />
+<div style="width:900px;">
+    &nbsp;&nbsp;① '요기요' 배달음식점 DB에 무료 등록 (등록비 없음)<br />
+    &nbsp;&nbsp;② 온라인 홍보 (마케팅) 무료 지원 - 네이버, 다음 등 주요 포털 키워드 마케팅 ('역삼동 만리성 배달' 등)<br />
+    &nbsp;&nbsp;③ 의무 계약 기간 (최소 계약 기간) 없음 - 약정 없음<br />
+</div>
+<br />
+
+<span style="font-weight: bold; font-size: 10px;">서비스 이용 수수료</span>
+<hr />
+<div>
+    &nbsp;&nbsp;주문 건당 수수료 (부가세 별도) : {!commissionFee} %
+</div>
+<br />
+
+<span style="font-weight: bold; font-size: 10px;">정산 주기 및 정산 시점</span>
+<hr />
+<div>
+    &nbsp;&nbsp;① 고객이 '요기요'를 통해 선결제한 주문에 대한 매출 <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-  정산 주기  ('요기요'가 음식점에 실비*1 및 서비스 이용 수수료 제외한 매출액 입금*2) :  격주 <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-  정산 시점  (마지막 결제일로부터 영업일 기준5일 지연 정산*3*4) :  격주 <br /><br />
+
+    &nbsp;&nbsp;② 배달음식점이 음식 배달 시 고객으로부터 직접 수령한 매출 <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 정산 주기 ( 음식점이 '요기요'에 서비스 이용 수수료 입금 *4) : 격주<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 정산 시점 ( 청구서 수령일로부터 영업일 기준 5 일 이내 ) : 격주 (청구서 격주 발송)<br /><br />
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*1. 온라인 결제 및 기타 실비 : 고객이 "요기요"를 통해 선결제한 주문가의 3.6%(부가세별도) <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*2. 실비 및 서비스 이용 수수료 제외한 매출액 입금 시, 배달음식점 매출 (②) 을 통해 발생한 실비 및 서비스 이용 수수료 잔액이 존재할 경우<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;해당 실비 및 서비스 이용 수수료도 매출액 (①) 에서 차감하여 지급<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*3. 매월1일~15 일 매출은 16일로부터, 매월 16일~말일 매출은 익월 1일로부터 5영업일이 되는 날에 정산<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*4. 신용카드 정기과금 또는 CMS 출금이체 선택 시, 결제예정일 또는 출금예정일(매월 15일, 말일) 로부터 10일이 경과하기까지 <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;신용한도 부족 또는 잔고 부족 등으로 결제 또는 출금이 불가능할 경우 , 발생한 실비 및 서비스 이용 수수료의 정산이 완료될 때까지 서비스 일시 중단<br />
+</div>
+<br />
+
+<span style="font-weight: bold; font-size: 10px;">업소 상세 정보</span>
+<hr />
+<div>
+
+<table style="width: 100%;" cellpadding="2">
+  <tr>
+    <td style="width: 20%; background-color: #e5e5e5;">① 상호</td>
+    <td style="width: 30%; background-color: #e5e5e5;">{!accountWrapper.companyName}</td>
+    <td style="width: 20%; background-color: #e5e5e5;">② 사업자 등록번호</td>
+    <td style="width: 30%; background-color: #e5e5e5;">{!accountWrapper.companyId}</td>
+  </tr>
+  <tr>
+    <td style="width: 20%; ">③ 성명</td>
+    <td colspan="3">{!accountWrapper.ownerName}</td>
+  </tr>
+ <tr>
+    <td style="width: 20%; background-color: #e5e5e5;">④ 업소 전화번호</td>
+    <td style="width: 30%; background-color: #e5e5e5;">{!accountWrapper.ownerPhone}</td>
+    <td style="width: 20%; background-color: #e5e5e5;">⑤ 사업자 휴대전화</td>
+    <td style="width: 30%; background-color: #e5e5e5;">{!accountWrapper.ownerMobilePhone}</td>
+  </tr>
+ <tr>
+    <td style="width: 20%;">⑥ 업소 소재지 (주소)</td>
+    <td colspan="3">{!accountWrapper.restaurantAddress}</td>
+  </tr>
+<tr>
+    <td style="width: 20%; background-color: #e5e5e5;">⑦ E-Mail</td>
+    <td colspan="3" style="background-color: #e5e5e5;">{!accountWrapper.ownerEmail}</td>
+  </tr>
+</table>
+
+<!-- <table width="100%" cellpadding="2">
+    <tr>
+        <td width="25%" style="background-color: #e5e5e5;">① 사업자명 / 회사명</td>
+        <td colspan="4" style="background-color: #e5e5e5;">{!accountWrapper.ownerName} / {!accountWrapper.companyName}</td>
+    </tr>
+    <tr>
+        <td>② 사업자 등록번호</td>
+        <td>{!accountWrapper.companyId} </td>
+        <td>③ 업소명 (상호)</td>
+        <td colspan="3">{!accountWrapper.restaurantName}</td>
+    </tr>
+    <tr background-color="red">
+        <td style="background-color: #e5e5e5;">④ 업소 전화번호</td>
+        <td style="background-color: #e5e5e5;">{!accountWrapper.restaurantPhoneNumber}</td>
+        <td style="background-color: #e5e5e5;">⑤ 사업자 휴대전화</td>
+        <td style="background-color: #e5e5e5;" colspan="3">{!accountWrapper.ownerMobilePhone}</td>
+    </tr>
+    <tr>
+        <td>⑥ 업소 소재지 (주소)</td>
+        <td colspan="5">{!accountWrapper.restaurantAddress}</td>
+    </tr>
+    <tr>
+        <td style="background-color: #e5e5e5;">⑦ 홈페이지</td>
+        <td style="background-color: #e5e5e5;" colspan="5">{!accountWrapper.restaurantWebsite}</td>
+    </tr>
+    <tr>
+        <td>⑧ E-Mail</td>
+        <td>{!accountWrapper.restaurantEmail}</td>
+        <td> ⑩ 결제 가능 수단 및 최소 배달 가능</td>
+        <td colspan="2" valign="top">
+        <apex:image value="{!IF(accountWrapper.paymentMethodCash, URLFOR($Resource.Phoenix, '/images/checkbox_checked.gif'), URLFOR($Resource.Phoenix, '/images/checkbox_unchecked.gif'))}" /> 현금 &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;   
+        <apex:image value="{!IF(accountWrapper.paymentMethodCreditCard, URLFOR($Resource.Phoenix, '/images/checkbox_checked.gif'), URLFOR($Resource.Phoenix, '/images/checkbox_unchecked.gif'))}" /> 카드 
+
+        </td>
+    </tr>
+    <tr>
+        <td style="background-color: #e5e5e5;">⑨ 휴무 (정기, 공휴일 등)</td>
+        <td style="background-color: #e5e5e5;">{!accountWrapper.restaurantClosingSchedule}</td>
+        <td style="background-color: #e5e5e5;">{!accountWrapper.minimumOrderValue}</td>
+        <td style="background-color: #e5e5e5;" colspan="2">원 (\)</td>
+    </tr>
+    <tr>
+        <td>⑪ 배달 가능 시간</td>
+        <td>배달료</td>
+        <td colspan="2">{!accountWrapper.deliveryFee}</td>
+        <td>원 (\)</td>
+    </tr>
+    <tr>
+        <td style="background-color: #e5e5e5;" colspan="5">평일:( {!accountWrapper.availableDeliveryTimeWeekdayOpen} ) AM/PM ~ ( {!accountWrapper.availableDeliveryTimeWeekdayClose} ) AM/PM</td>
+    </tr>
+    <tr>
+        <td colspan="5">주말:( {!accountWrapper.availableDeliveryTimeWeekendOpen} ) AM/PM ~ ( {!accountWrapper.availableDeliveryTimeWeekendClose} ) AM/PM</td>
+    </tr>
+    <tr>
+        <td colspan="5">사용 가능한 배달 시간 코멘트:  {!accountWrapper.availableDeliveryTimeComment} </td>
+    </tr>
+    <tr>
+        <td style="background-color: #e5e5e5;">⑫ 배달 가능 지역</td>
+        <td style="background-color: #e5e5e5;" colspan="3">{!accountWrapper.availableDeliveryArea}</td>
+        <td style="background-color: #e5e5e5;">( 시.군.구 / 동 )  <b /> ex. 강남구 / 역삼1동, 역삼2동</td>
+    </tr>
+</table> -->
+</div>
+<br />
+
+<span style="font-weight: bold; font-size: 10px;">환급 계좌 정보</span>
+<hr />
+<div>
+
+    <table style="width: 100%;" cellpadding="2">
+      <tr>
+        <td style="width: 20%;" rowspan="2">환급 계좌 정보</td>
+        <td style="width: 15%; background-color: #e5e5e5;">예금주:</td>
+        <td style="width: 25%; background-color: #e5e5e5;">{!accountWrapper.refundAccountOwner}</td>
+        <td style="width: 15%; background-color: #e5e5e5;">계좌번호:</td>
+        <td style="width: 25%; background-color: #e5e5e5;">{!accountWrapper.refundAccountNumber}</td>
+      </tr>
+      <tr>
+        <td>은행:</td>
+        <td style="width: 25%;">{!accountWrapper.refundBankName}</td>
+      </tr>
+    </table>
+
+</div>
+<br />
+
+<span style="font-weight: bold; font-size: 10px;">결제 방식 (택 1)</span>
+<hr />
+<div>
+
+    <table style="width: 100%;" cellpadding="2">
+      <tr>
+        <td style="width: 20%; background-color: #e5e5e5;">신용카드 정기과금</td>
+        <td style="width: 15%; background-color: #e5e5e5;">유효기간:</td>
+        <td style="width: 25%; background-color: #e5e5e5;">{!accountWrapper.creditCardValidityPeriod}</td>
+        <td style="width: 15%; background-color: #e5e5e5;">카드번호:</td>
+        <td style="width: 25%; background-color: #e5e5e5;">{!accountWrapper.creditCardNumber}</td>
+      </tr>
+      <tr>
+        <td style="width: 20%;" rowspan="2">CMS 출금이체 (자동이체)</td>
+        <td style="width: 15%;">예금주:</td>
+        <td style="width: 25%;">{!accountWrapper.collectionAccountOwner}</td>
+        <td style="width: 15%;">예금주 생년월일:</td>
+        <td style="width: 25%;">{!accountWrapper.collectionAccountBirthDate}</td>
+      </tr>
+      <tr>
+        <td style="width: 15%; background-color: #e5e5e5;">은행:</td>
+        <td style="width: 25%; background-color: #e5e5e5;">{!accountWrapper.collectionBankName}</td>
+        <td style="width: 15%; background-color: #e5e5e5;">계좌번호:</td>
+        <td style="width: 25%; background-color: #e5e5e5;">{!accountWrapper.collectionAccountNumber}</td>
+      </tr>
+    </table>
+
+</div>
+<br />
+
+<!-- <span style="font-weight: bold; font-size: 10px;">업소 상세 정보</span>
+<hr />
+<div>
+<table width="100%" cellpadding="2" border="0">
+    <tr>
+        <td style="background-color: #e5e5e5;" ><apex:image value="{!URLFOR($Resource.Phoenix, '/images/checkbox_unchecked.gif')}"/> 신용카드 정기과금:</td>
+        <td style="background-color: #e5e5e5;" colspan="2" >유효기간:</td>
+        <td style="background-color: #e5e5e5;" colspan="2">카드번호:</td>
+    </tr>
+    <tr>
+        <td rowspan="2" width="150px" ><apex:image value="{!URLFOR($Resource.Phoenix, '/images/checkbox_unchecked.gif')}"/> CMS 출금이체 (자동이체)</td>
+        <td colspan="2">예금주:</td>
+        <td >예금주 생년월일:</td>
+    </tr>
+    <tr>
+        <td style="background-color: #e5e5e5;" colspan="2">은행:</td>
+        <td style="background-color: #e5e5e5;" colspan="2">계좌번호:</td>
+    </tr>
+</table>
+</div>
+<br /> -->
+
+
+<hr style="border :none;border-top: 1px solid #e5e5e5;background-color:#FFFFFF;" />
+<br />
+
+(사업자명: {!accountWrapper.restaurantName}) 은(는) 알지피코리아의 '요기요 주문 단말기 대여' 내용 및 이용약관을 충분히 숙지하였으며  CMS 출금이체 약관 및 신용카드 이용 특별약관 및 금융거래정보의 제공 동의서에 따라 위와 같이 '요기요' 서비스를 신청합니다.<br />
+
+<table width="100%">
+    <tr>
+        <td width="50%">
+            <div style="font-size:9px !important;padding-top:10px;width:400px;">
+             <img src="{!URLFOR($Resource.krFooterSiegel)}" style="width:20px; position:absolute;margin-left:80px;margin-top:-5px;" />
+                RGP Korea Ltd. <br />
+                대표이사: 나제원 / 사업자등록번호: 211-88-68802 / Tel. 02-3447-3612 / Fax. 02-3447-4423 <br />
+                서울특별시 강남구 역삼동 719-33 유니팜타워 5,6,7층 / 통신판매업신고: 제 2011-서울강남-03322호<br />
+                http://www.yogiyo.co.kr  
+            </div>
+        </td>
+        <td style="text-align:right">{!YEAR(TODAY())}   년  {!MONTH(TODAY())} 월 {!DAY(TODAY())} 일<br /><br />사업자 대표 <apex:outputPanel layout="inline" style="width:100px; display:inline-block">{!accountWrapper.ownerName}</apex:outputPanel> (인)</td>
+    </tr>
+</table>
+</apex:component>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>CZQuoteProduct</name>
+    <style>none</style>
+    <subject>Dáme jídlo - Smlouva o zprostředkování objednávek</subject>
+    <textOnly>Kedves {OpportunityOwnerContactFirstName},
+
+Köszönöm a mai megbeszélést és üdvözöllek a Netpincérnél. A levél mellékleteként megtalálod a a végleges szolgáltatási szerződést.
+
+A következő lépések:
+- Menü felvitele a weboldalunkra
+- Szükséges eszközök átadás
+- A fentiek elkészülte után egy egy rövid bemutatót tartunk az eszközök használatáról.
+- Az éttermedet élesítjük és megérkeznek hozzád az első rendelések
+
+A mihamarabbi közös munka reményében,
+{OpportunityOwnerName2}
+
+Delivery Hero Hungary Kft.
+Székhely: 1093 Budapest, Czuczor u. 2. I. emelet
+Postázási cím: 1243 Budapest, Pf. 655
+Telefonszám: +36 1 / 3174170
+E-mail: info@netpincer.hu
+Website: www.netpincer.hu</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

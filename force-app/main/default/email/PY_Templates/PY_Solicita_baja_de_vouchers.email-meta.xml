@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY - Solicita baja de vouchers</name>
+    <style>freeForm</style>
+    <subject>Gracias por Contactarnos - # {!Case.CaseNumber}</subject>
+    <textOnly>Estimado(a) XXNombreXX, 
+ 
+Nos contactamos en respuesta a tu solicitud de dar de baja los vouchers de tu perfil en PedidosYa. 
+
+Te comentamos que los mismos fueron desactivados y a partir de este momento no recibirás más pedidos con esta característica. No te preocupes por el pago de los cupones de los pedidos anteriores que pudiste haber recibido ya que su valor es cortesía total de PedidosYa, y se pagan todos los viernes. 
+
+Aprovechamos para comentarte que tenemos esta función disponible buscando mejorar el ranking de nuestros locales y mayor visibilidad dentro de la plataforma, ya que cuando tienes esta función activa puedes formar parte de algunas campañas de Marketing y pertenecer a un filtro exclusivo de la plataforma llamado “Cupón”, lo que te traerá mayor visibilidad dentro de la plataforma y, por ende, más atracción de clientes.
+
+Si deseas activarlo nuevamente, puedes comunicarte con nosotros y realizaremos la gestión. 
+
+Quedamos a las órdenes, 
+
+Saludos, 
+Nombre + Inicial del apellido - Claims Operator 
+PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

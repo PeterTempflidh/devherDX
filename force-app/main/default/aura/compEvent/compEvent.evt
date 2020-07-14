@@ -1,0 +1,6 @@
+<!--c:compEvent-->
+<aura:event type="COMPONENT" description="Component message event">
+    <!-- Add aura:attribute tags to define event shape.
+         One sample attribute here. -->
+    <aura:attribute name="message" type="String"/>
+</aura:event>

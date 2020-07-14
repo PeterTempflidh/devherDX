@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <assignments>
+        <name>Close_Fail</name>
+        <label>Close Fail</label>
+        <locationX>1253</locationX>
+        <locationY>424</locationY>
+        <assignmentItems>
+            <assignToReference>vCase.Status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Closed</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vCase.Closed_Reason__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Take Online is not possible</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Select_Root_Cause_qc</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_blank_root_cause</name>
+        <label>Set blank root cause</label>
+        <locationX>719</locationX>
+        <locationY>505</locationY>
+        <assignmentItems>
+            <assignToReference>vCase.Root_Cause__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Other</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Case</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Case_Status_Success</name>
+        <label>Close Success</label>
+        <locationX>919</locationX>
+        <locationY>424</locationY>
+        <assignmentItems>
+            <assignToReference>vCase.Status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Closed</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vCase.Closed_Reason__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Successful</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Case</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Status</name>
+        <label>Set Status</label>
+        <locationX>535</locationX>
+        <locationY>458</locationY>
+        <assignmentItems>
+            <assignToReference>vCase.Status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Closed</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>vCase.Closed_Reason__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Closed_Reason_qc</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Closed_Reason_Check</targetReference>
+        </connector>
+    </assignments>
+    <choices>
+        <name>Not_Successful_choice</name>
+        <choiceText>Not Successful</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Not Successful</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Successful_choice</name>
+        <choiceText>Successful</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Successful</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Take_Online_is_not_possible_Choice</name>
+        <choiceText>Take Online is not possible</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Take Online is not possible</stringValue>
+        </value>
+    </choices>
+    <decisions>
+        <name>Check_Case_Status</name>
+        <label>Check Case Status</label>
+        <locationX>169</locationX>
+        <locationY>466</locationY>
+        <defaultConnector>
+            <targetReference>All_Done</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Not_Closed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>vCase.Status</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Menu_Processing</targetReference>
+            </connector>
+            <label>Not Closed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Ownership</name>
+        <label>Check Ownership</label>
+        <locationX>167</locationX>
+        <locationY>208</locationY>
+        <defaultConnector>
+            <targetReference>Take_ownership_first</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_Owner</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>vCase.OwnerId</leftValueReference>
+                <operator>StartsWith</operator>
+                <rightValue>
+                    <elementReference>CurrentUserId</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Check_Case_Status</targetReference>
+            </connector>
+            <label>Is Owner</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Closed_Reason</name>
+        <label>Closed Reason</label>
+        <locationX>909</locationX>
+        <locationY>200</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Closed_Success</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>vCase.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Successful</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Case_Status_Success</targetReference>
+            </connector>
+            <label>Closed Success</label>
+        </rules>
+        <rules>
+            <name>Closed_Fail</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>vCase.Status</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Successful</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Close_Fail</targetReference>
+            </connector>
+            <label>Closed Fail</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Closed_Reason_Check</name>
+        <label>Closed Reason Check</label>
+        <locationX>537</locationX>
+        <locationY>822</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Successful</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>vCase.Closed_Reason__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Successful</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>vCase.Type</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Online Payment</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_blank_root_cause</targetReference>
+            </connector>
+            <label>Successful</label>
+        </rules>
+        <rules>
+            <name>Not_Successful</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>vCase.Closed_Reason__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Not Successful</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>vCase.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Online Payment</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Select_Root_Cause_qc</targetReference>
+            </connector>
+            <label>Not Successful</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Menu_Processing</name>
+        <label>Menu Processing</label>
+        <locationX>526</locationX>
+        <locationY>52</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>For_Menu_Processing</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>vCase.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Menu Processing</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>vCase.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Menu Change</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>vCase.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Menu Typing</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Close_a_Case</targetReference>
+            </connector>
+            <label>For Menu Processing</label>
+        </rules>
+        <rules>
+            <name>For_Quality_Check</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>vCase.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Quality Check</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Close_a_Quality_Check_case</targetReference>
+            </connector>
+            <label>For Quality Check</label>
+        </rules>
+        <rules>
+            <name>Photo_Listing</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>vCase.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Photo Listing</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Close_a_Quality_Check_case</targetReference>
+            </connector>
+            <label>Photo Listing</label>
+        </rules>
+        <rules>
+            <name>Onboarding</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>vCase.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Onboarding</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Close_a_Quality_Check_case</targetReference>
+            </connector>
+            <label>Onboarding</label>
+        </rules>
+        <rules>
+            <name>AT_Internal_Cases</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>vCase.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>CC Task</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>vCase.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Finance</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>vCase.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Online Payment</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>vCase.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Owner/Legal Form Change</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>vCase.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Retention</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>vCase.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Sales Task</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Close_a_Quality_Check_case</targetReference>
+            </connector>
+            <label>AT Internal Cases</label>
+        </rules>
+    </decisions>
+    <description>Case is marked as complete or closed depending on Type and Status</description>
+    <dynamicChoiceSets>
+        <name>RootCause</name>
+        <dataType>Multipicklist</dataType>
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
+        <picklistField>Root_Cause__c</picklistField>
+        <picklistObject>Case</picklistObject>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <name>vClosedStatus</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
+        <picklistField>Closed_Reason__c</picklistField>
+        <picklistObject>Case</picklistObject>
+    </dynamicChoiceSets>
+    <formulas>
+        <name>CurrentUserId</name>
+        <dataType>String</dataType>
+        <expression>{!$User.Id}</expression>
+    </formulas>
+    <interviewLabel>Mark Complete {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Mark Complete</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>Get_Case_Data</name>
+        <label>Get Case Data</label>
+        <locationX>177</locationX>
+        <locationY>50</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_Ownership</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>vCaseId</elementReference>
+            </value>
+        </filters>
+        <object>Case</object>
+        <outputReference>vCase</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Type</queriedFields>
+        <queriedFields>RecordTypeId</queriedFields>
+        <queriedFields>Status</queriedFields>
+        <queriedFields>Closed_Reason__c</queriedFields>
+        <queriedFields>Root_Cause__c</queriedFields>
+        <queriedFields>OwnerId</queriedFields>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Case</name>
+        <label>Update Case Success</label>
+        <locationX>918</locationX>
+        <locationY>617</locationY>
+        <connector>
+            <targetReference>All_Done</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Error_message_screen</targetReference>
+        </faultConnector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>vCaseId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Closed_Reason__c</field>
+            <value>
+                <elementReference>vCase.Closed_Reason__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Root_Cause__c</field>
+            <value>
+                <elementReference>Root_Cause_qc</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <elementReference>vCase.Status</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Case</object>
+    </recordUpdates>
+    <screens>
+        <name>All_Done</name>
+        <label>Case is closed</label>
+        <locationX>175</locationX>
+        <locationY>625</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Success_info</name>
+            <fieldText>Status: {!vCase.Status}
+Closed Reason: {!vCase.Closed_Reason__c}
+Root Cause: {!vCase.Root_Cause__c}</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Close_a_Case</name>
+        <label>Close a Menu Processing case</label>
+        <locationX>919</locationX>
+        <locationY>52</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Closed_Reason</targetReference>
+        </connector>
+        <fields>
+            <name>Closed_Status</name>
+            <choiceReferences>Take_Online_is_not_possible_Choice</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Closed Reason</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Close_a_Quality_Check_case</name>
+        <label>Close a case</label>
+        <locationX>535</locationX>
+        <locationY>313</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Set_Status</targetReference>
+        </connector>
+        <fields>
+            <name>Closed_Reason_qc</name>
+            <choiceReferences>Successful_choice</choiceReferences>
+            <choiceReferences>Not_Successful_choice</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Closed Reason</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Error_message_screen</name>
+        <label>Error message</label>
+        <locationX>1119</locationX>
+        <locationY>510</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>error_message_details</name>
+            <fieldText>There was an error in the flow
+{!$Flow.FaultMessage}</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Select_Root_Cause_qc</name>
+        <label>Select Root Cause</label>
+        <locationX>1253</locationX>
+        <locationY>816</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Update_Case</targetReference>
+        </connector>
+        <fields>
+            <name>Root_Cause_qc</name>
+            <choiceReferences>RootCause</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Root Cause</fieldText>
+            <fieldType>MultiSelectPicklist</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Take_ownership_first</name>
+        <label>Take ownership first</label>
+        <locationX>53</locationX>
+        <locationY>361</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>ownership_message</name>
+            <fieldText>In order to close a case, first take ownership
+Case OwnerId:
+{!vCase.OwnerId}
+Current UserId: 
+{!CurrentUserId}
+Type: {!vCase.Type}</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <startElementReference>Get_Case_Data</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>vCase</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Case</objectType>
+    </variables>
+    <variables>
+        <name>vCaseId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>vRootCause</name>
+        <dataType>Picklist</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

@@ -1,0 +1,354 @@
+<apex:page standardController="Account" extensions="CtrCreateMenuPrinting" showHeader="false" sidebar="false" standardStylesheets="false"  applyHtmlTag="false" docType="html-5.0">
+
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">    
+
+   <head>
+      <title>Menu Printing</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <apex:stylesheet value="{!URLFOR($Resource.slds, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+      <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.2.43/jquery.form-validator.min.js"></script>
+      <script type='text/javascript' src='/canvas/sdk/js/29.0/publisher.js'></script>
+        <script>     
+
+         j$ = jQuery.noConflict();
+           
+         Sfdc.canvas.publisher.subscribe({name: "publisher.showPanel",
+            onData:function(e) {
+               Sfdc.canvas.publisher.publish({name:"publisher.setValidForSubmit", payload:"true"});
+         }});
+         Sfdc.canvas.publisher.subscribe({ name: "publisher.post",
+              onData: function(e) {
+                  save();
+                  Sfdc.canvas.publisher.publish({ name: "publisher.close",
+                      payload:{ refresh:"true" }});
+          }}); 
+
+         j$(document).ready(function() { 
+          j$( "#listPrice" ).keyup(function() {
+                var listPrice = j$("#listPrice").val();
+                  j$("#totalAmount").val(listPrice);
+           });
+            // Populate Product Name dropdown list in Additional Charges & Assets table
+               Visualforce.remoting.Manager.invokeAction(
+                   '{!$RemoteAction.CtrCreateMenuPrinting.getMenuPrintingProducts}',
+                   '{!account.record_country__c}',
+                   function(result, event) {
+                       if (event.status) {
+                           var options = j$('#productName');
+                           var i = 0;
+                           j$.each(result, function(key, value) {
+                               options.append('<option value="'+key+'">'+value+'</option>');
+                               i++;
+                           });
+                       } 
+                       else if (event.type === 'exception') {
+                           document.getElementById("responseErrors").innerHTML =
+                               event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                       } else {
+                           document.getElementById("responseErrors").innerHTML = event.message;
+                       }
+                   },
+                   {escape: true}
+               );
+            // }
+
+            // 
+               Visualforce.remoting.Manager.invokeAction(
+                   '{!$RemoteAction.CtrCreateMenuPrinting.getSizes}',
+                   function(result, event) {
+                       if (event.status) {
+                           var options = j$('#size');
+                           var i = 0;
+                           j$.each(result, function(key, value) {
+                               options.append('<option value="'+key+'">'+value+'</option>');
+                               i++;
+                           });
+                       } 
+                       else if (event.type === 'exception') {
+                           document.getElementById("responseErrors").innerHTML =
+                               event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                       } else {
+                           document.getElementById("responseErrors").innerHTML = event.message;
+                       }
+                   },
+                   {escape: true}
+               );
+            // }
+
+            // 
+               Visualforce.remoting.Manager.invokeAction(
+                   '{!$RemoteAction.CtrCreateMenuPrinting.getWeights}',
+                   function(result, event) {
+                       if (event.status) {
+                           var options = j$('#weight');
+                           var i = 0;
+                           j$.each(result, function(key, value) {
+                               options.append('<option value="'+key+'">'+value+'</option>');
+                               i++;
+                           });
+                       } 
+                       else if (event.type === 'exception') {
+                           document.getElementById("responseErrors").innerHTML =
+                               event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                       } else {
+                           document.getElementById("responseErrors").innerHTML = event.message;
+                       }
+                   },
+                   {escape: true}
+               );
+            // }
+
+            // 
+               Visualforce.remoting.Manager.invokeAction(
+                   '{!$RemoteAction.CtrCreateMenuPrinting.getNumberOfCopies}',
+                   function(result, event) {
+                       if (event.status) {
+                           var options = j$('#numberOfCopies');
+                           var i = 0;
+                           j$.each(result, function(key, value) {
+                               options.append('<option value="'+key+'">'+value+'</option>');
+                               i++;
+                           });
+                       } 
+                       else if (event.type === 'exception') {
+                           document.getElementById("responseErrors").innerHTML =
+                               event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                       } else {
+                           document.getElementById("responseErrors").innerHTML = event.message;
+                       }
+                   },
+                   {escape: true}
+               );
+            // }
+
+            // 
+               Visualforce.remoting.Manager.invokeAction(
+                   '{!$RemoteAction.CtrCreateMenuPrinting.getDepositMethods}',
+                   function(result, event) {
+                       if (event.status) {
+                           var options = j$('#depositMethod');
+                           var i = 0;
+                           j$.each(result, function(key, value) {
+                               options.append('<option value="'+key+'">'+value+'</option>');
+                               i++;
+                           });
+                       } 
+                       else if (event.type === 'exception') {
+                           document.getElementById("responseErrors").innerHTML =
+                               event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                       } else {
+                           document.getElementById("responseErrors").innerHTML = event.message;
+                       }
+                   },
+                   {escape: true}
+               );
+            // }
+
+            
+         });
+
+         function addAdditionalChargeAndAsset(e) {
+              var tr = j$('#products');
+              var productName = j$("#productName option:selected").text();
+              var productPriceID = j$("#productName option:selected").val();
+              if (productPriceID == " ")
+                  productName = " ";
+              
+              
+              var size = j$("#size option:selected").val();
+              var weight = j$("#weight option:selected").val();
+              var numberOfCopies = j$("#numberOfCopies option:selected").val();
+              var listPrice = j$("#listPrice").val();
+              var depositMethod = j$("#depositMethod option:selected").val();
+              var deposit = j$("#deposit").val();
+              var designNote = j$("#designNote").val();
+              var totalAmount = j$("#totalAmount").val();
+              var validationArray = {"productName": productName, "size": size, "weight": weight, "numberOfCopies": numberOfCopies, "listPrice": listPrice, "depositMethod": depositMethod};
+              var validate = validateAdditionalChargeAndAsset(validationArray);
+              //var validate = true;
+              if(validate) {
+                  tr.append('<tr id="productsNew"><td>' + productName +  '</td>' +
+                                        '<td>' + size + '</td>' +
+                                        '<td>' + weight + '</td>' +
+                                        '<td>' + numberOfCopies + '</td>' +
+                                        '<td>' + listPrice + '</td>' +
+                                        '<td>' + depositMethod + '</td>' +
+                                        '<td>' + deposit + '</td>' +
+                                        '<td style="max-width : 30px; white-space : nowrap; overflow : hidden;  text-overflow: ellipsis;">' + designNote + '</td>' +
+                                        '<td>' + totalAmount + '</td>' +
+                                        '<td style="display:none">'+productPriceID+'</td>'+
+
+                                        '<td>' +
+                                          '<a class="slds-button slds-button--neutral slds-not-selected" onclick="removeAdditionalChargeAndAsset(this)" >'+
+                                              '<span class="slds-text-not-selected">'+
+                                                  '<svg aria-hidden="true" class="slds-button__icon--stateful slds-button__icon">'+
+                                                      '<use xlink:href="{!URLFOR($Resource.slds, 'assets/icons/utility-sprite/svg/symbols.svg#dash')}"></use>'+
+                                                  '</svg></span>' +
+                                          '</a>' +
+                                      '</td>'+
+                                      '</tr>'
+
+                                  );
+                    }
+                }
+
+                function removeAdditionalChargeAndAsset(e) {
+                    e.parentElement.parentElement.remove();
+                    // Remove from list in backend
+                }
+
+               function validateAdditionalChargeAndAsset(validationArray) {
+                  var valid = true;
+                  for (var key in validationArray) {
+                     console.log("key: " + key + " value: " + validationArray[key]);
+                     if(key == "listPrice") {
+                        console.log("listPrice");
+                        if(!validationArray[key]) {
+                           console.log("listPrice2");
+                           j$("#" + key + "TD").attr('class', 'slds-form-element slds-size--1-of-3 slds-has-error');
+                           valid = false;
+                        } else {
+                           j$("#" + key + "TD").removeAttr('class', 'slds-has-error');
+                           j$("#" + key + "TD").attr('class', 'slds-form-element slds-size--1-of-3');
+                        }
+                     } else {
+                        if(validationArray[key] == " ") {
+                           j$("#" + key + "TD").attr('class', 'slds-form-element slds-size--1-of-3 slds-has-error');
+                           valid = false;
+                        } else {
+                           j$("#" + key + "TD").removeAttr('class', 'slds-has-error');
+                           j$("#" + key + "TD").attr('class', 'slds-form-element slds-size--1-of-3');
+                        }
+                     }
+                  }
+                  return valid;
+              }
+
+              function save() {
+                  var prodRow;
+                  var prod=[];
+                  var table1 = document.getElementById('productsTable2');
+                  for (var r = 1, n = table1.rows.length; r < n; r++) {
+                  prodRow ='';
+                  for (var c = 0, m = table1.rows[r].cells.length; c < m-1; c++) {
+                      var inp= table1.rows[r].cells[c].innerHTML;
+                      if(inp.search('input')!=-1){
+                          //alert(table1.rows[r].cells[c].childNodes[0].value);
+                          prodRow+=table1.rows[r].cells[c].childNodes[0].value+';';
+                      }
+                      else
+                          prodRow+=table1.rows[r].cells[c].innerHTML+';';
+                      }
+                      //prodRow+=lpp[table1.rows[r].cells[0].innerHTML];
+                      prod.push(prodRow);
+                      console.log(prodRow);
+                  }
+                   j$("#spinnerDiv").css("display", "block");
+                    Visualforce.remoting.Manager.invokeAction(
+                   '{!$RemoteAction.CtrCreateMenuPrinting.saveMenuPrinting}',
+                   prod, '{!account.record_country__c}', '{!account.Id}',
+                   function(result, event) {
+                       if (event.status) {
+                        //console.log(result);
+                         Visualforce.remoting.Manager.invokeAction(
+                         '{!$RemoteAction.CtrCreateMenuPrinting.setTotalAmountForOppQuoteLineItems}',
+                         prod, result,
+                         function(result, event) {
+                               if (event.status) {
+                                //console.log(result);
+                                j$("#spinnerDiv").css("display", "none");
+                                  sforce.one.navigateToURL('/' + result);
+
+                               } 
+                               else if (event.type === 'exception') {
+                                  j$("#spinnerDiv").css("display", "none");
+                                   document.getElementById("responseErrors").innerHTML =
+                                       event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                               } else {
+                                  j$("#spinnerDiv").css("display", "none");
+                                   document.getElementById("responseErrors").innerHTML = event.message;
+                               }
+                           },
+                           {escape: true}
+                       );
+                                 // sforce.one.navigateToURL('/' + result);
+
+                       } 
+                       else if (event.type === 'exception') {
+                          j$("#spinnerDiv").css("display", "none");
+                           document.getElementById("responseErrors").innerHTML =
+                               event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                       } else {
+                          j$("#spinnerDiv").css("display", "none");
+                           document.getElementById("responseErrors").innerHTML = event.message;
+                       }
+                   },
+                   {escape: true}
+               );
+
+
+                                    
+                        
+              }
+      </script>
+                  <style>
+                .spinnerImage {
+                     margin-left: 36px;
+                     margin-top: 19px;
+                     height: 30px;
+                     width: 30px;
+                     float: left;
+                     background: #fff url(/img/support/servicedesk/loading.gif) center center no-repeat;
+                }
+                .spinnerDescription { 
+                     margin-top: 11px;
+                     display: block;
+                     color: black;
+
+                }
+                .spinnerContainer {
+                          opacity: 1;
+                     filter: alpha(opacity=100); /* IE's opacity*/
+                     background-color: #fff;
+                     border: 1px solid black;
+                     font-size: 1.2em;
+                     color: #27282e;
+                     font-weight: bold;
+                     line-height: 50px;
+                     height: 70px;
+                     position: relative;
+                     top: 45%;
+                     border-radius: 5px;
+                     margin: auto;
+                     display: block;
+                     width: 200px;
+                     white-space: nowrap;
+                }
+                .spinnerDiv {
+
+                     background-color: lightgrey;
+                     border-radius: 5px 5px 5px 5px;
+                     opacity: .75;
+                     filter: alpha(opacity=75); /* IE's opacity*/
+                     text-align: center;
+                     width: 100%;
+                     height: 100%;
+                     position: fixed;
+                     z-index: 99999999999999999999999999;
+                     top: 0;
+                     left: 0;
+                }    
+
+                </style>
+   </head>    
+ <div id="responseErrors" style="color:red;"></div>
+     <div id="spinnerDiv" class="spinnerDiv" style="display:none" >
+        <span id="spinnerContainer" class="spinnerContainer">
+            <div class="spinnerImage" title="Loading..." />
+            <span class="spinnerDescription">Please Wait</span>
+        </span>
+    </div>
+  <c:MenuPrinting />
+</html>
+</apex:page>

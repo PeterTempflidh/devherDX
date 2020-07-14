@@ -1,0 +1,30 @@
+<apex:page standardController="Case">
+	<apex:includeScript value="/support/console/39.0/integration.js"/>
+    
+    <script type="text/javascript">
+        function getPrimaryTabId() {
+            //find the ID of the current primary tab to close it
+            sforce.console.getEnclosingPrimaryTabId(openSubTab);
+        }
+        
+        var openSubTab = function openSubTab(result) {
+            orderNumber = "{!Case.Order_Number__c}";
+            country     = "{!Case.country__c}";
+            platform	= "{!Case.Platform__c}";
+            platform	= platform.split(";");
+            platform	= platform[0];
+            console.log("Platform " + platform);
+            if(orderNumber && orderNumber != 0 && platform){
+                sforce.console.openSubtab(result.id, "/apex/GlobalChatBot?ordernumber="+orderNumber+"&platform="+platform+"&country="+country,
+                							false, "Order Details", null);
+            }else{
+                console.log("It doesn't has an order numner !");
+            }
+            
+        };
+        
+        window.addEventListener("load", function() {
+		      window.setTimeout(getPrimaryTabId, 3000);
+        });
+    </script>
+</apex:page>

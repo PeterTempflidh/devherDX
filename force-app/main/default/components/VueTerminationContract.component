@@ -1,0 +1,1579 @@
+<!--
+ - Created by w.novoa on 13.02.2018.
+ -->
+
+<apex:component id="VueTerminationContract" layout="none"  controller="CtrTerminationRestaurantVue">
+    <script>
+
+    	/* ***** MIXINS AND SHARED STATES *****  */
+
+		var loaderSharedState = {
+			state: {
+				isLoading: 0
+			},
+			startLoadingSpinner: function() {
+				this.state.isLoading++;
+			},
+			stopLoadingSpinner: function() {
+				if (this.state.isLoading > 0) {
+					this.state.isLoading--;
+				}
+			}
+		};
+
+		var errorHandlerSharedState = {
+			state: {
+				message: "",
+				type: "",
+				timeout: undefined,
+				callback: undefined
+			},
+			setErrorMsg: function(err) {
+				this.state.message = err.msg;
+				this.state.type = err.type;
+				this.state.timeout = err.timeout;
+				this.state.callback = err.callback;
+			},
+			clearErrorMsg: function() {
+				this.state.message = "";
+				this.state.type = "";
+				this.state.timeout = undefined;
+				this.state.callback = undefined;
+			}
+		};
+
+		var messageHandlerSharedState = {
+			state: {
+				message: "",
+				type: "",
+				timeout: undefined,
+				callback: undefined
+			},
+			setMsg: function(value) {
+			    console.log(value);
+				console.log(this.state.message);
+				this.state.message = value.msg;
+				this.state.type = value.type;
+				this.state.timeout = value.timeout;
+				this.state.callback = value.callback;
+			},
+			clearMsg: function() {
+				this.state.message = "";
+				this.state.type = "";
+				this.state.timeout = undefined;
+				this.state.callback = undefined;
+			}
+		};
+
+		var inputElementsSharedState = {
+			state: {
+				elements: []
+			},
+			addElement: function(el) {
+				this.state.elements.push(el);
+			},
+			removeElement: function(el) {
+				var idx = this.state.elements.indexOf(el);
+				if (idx > -1) {
+					this.state.elements.splice(idx, 1);
+				}
+			}
+		};
+
+
+
+		/* ********* UTILITY COMPONENTS ********* */
+
+		var inputMixin = {
+			data: function() {
+				return {
+					isFilled: false,
+					isInError: false,
+					inputElementsState: inputElementsSharedState
+				};
+			},
+			created: function() {
+				this.inputElementsState.addElement(this);
+			},
+			destroyed: function() {
+				this.inputElementsState.removeElement(this);
+			}
+		};
+
+		Vue.component("input-text", {
+			mixins: [inputMixin],
+			props: ["name", "label", "maxlength", "value"],
+			created: function() {
+				this.text = this.value || "";
+			},
+			data: function() {
+				return {
+					text: ""
+				};
+			},
+			methods: {
+				onBlur: function() {
+					this.$emit("filled", this.text);
+				}
+			},
+			watch: {
+				value: function() {
+					this.text = this.value || "";
+				},
+				text: function() {
+					this.isFilled = !!this.text;
+				}
+			},
+			template: `<div class="slds-form-element" v-bind:class="{'slds-has-error': isInError}">
+							<label class="slds-form-element__label" v-bind:for="name">
+								<abbr class="slds-required" title="required">*</abbr>
+								{{ label }}
+							</label>
+							<div class="slds-form-element__control">
+								<textarea
+									class="slds-textarea"
+									v-bind:id="name"
+									v-bind:placeholder="label.concat('...')"
+									v-bind:maxlength="maxlength"
+									v-model="text"
+									v-on:blur="onBlur">
+								</textarea>
+							</div>
+						</div>`
+		});
+
+		 Vue.component("input-select", {
+            mixins: [inputMixin],
+            props: ["options", "name", "label", "disabled", "selectedvalue", "showlabel"],
+            created: function() {
+                this.setSelectedOption();
+            },
+            data: function() {
+                return {
+                    selected: undefined,
+                }
+            },
+            methods: {
+                onSelect: function() {
+                    this.$emit("selected", this.selected);
+                },
+                setSelectedOption: function() {
+                    if(this.selectedvalue != undefined){
+                        this.selected = this.selectedvalue;
+                    }else {
+                        this.selected = this.options.reduce(function(acc, option) {
+                                            if (option.selected) {
+                                                acc = option.value;
+                                            }
+                                            return acc;
+                                        }, undefined);
+                    }
+
+                }
+            },
+            watch: {
+                options: function() {
+                    /* This is  because when user change an entity's type only
+                    options are updated */
+                    this.setSelectedOption();
+                },
+                selected: function() {
+                    this.isFilled = !!this.selected;
+                },
+                selectedvalue: function(){
+                    this.selected = this.selectedvalue;
+                }
+            },
+            template: `<div class="slds-form-element" v-bind:class="{'slds-has-error': isInError}">
+                            <div class="slds-form-element__control">
+
+                                <label class="slds-form-element__label" v-bind:for="name" v-if="showlabel == 'true'">
+                                    {{label}}
+                                </label>
+                                <div class="slds-select_container">
+                                    <select
+                                        v-bind:name="name"
+                                        v-bind:id="name"
+                                        v-bind:disabled="!!disabled"
+                                        v-on:change="onSelect"
+                                        v-model="selected"
+                                        class="slds-select">
+                                        <option value=""> --- None --- </option>
+                                        <option v-for="opt in options" v-bind:value="opt.value">
+                                            {{opt.label}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>`
+        });
+
+
+		 Vue.component("input-checkbox", {
+            mixins: [inputMixin],
+            props: [ "checkvalue"],
+            created: function() {
+            },
+            data: function() {
+                return {
+                    selected: undefined,
+                    checked: false,
+
+                }
+            },
+            methods: {
+                onSelect: function() {
+                    this.$emit("selected", this.selected);
+                },
+            },
+            watch: {
+                checked: function() {
+                    this.$emit("checked", this.checked);
+                },
+                checkvalue: function(){
+                    this.checked = this.checkvalue;
+                }
+            },
+            template: `<label class="slds-checkbox">
+                          <input type="checkbox" id="checkbox" v-model="checked">
+                          <span class="slds-checkbox--faux"></span>
+                          <span class="slds-assistive-text">Select All</span>
+                        </label>`
+        });
+
+
+		 Vue.component("input-date", {
+			mixins: [inputMixin],
+            props: [  "initialvalue","name","label", "showlabel","selecteddate"],
+            data: function() {
+                return {
+                     inputdate: undefined,
+                }
+            },
+            created: function(){
+                if(this.initialvalue){
+                    this.inputdate = this.initialvalue;
+                }
+                /**Commented the below 3 lines to remove the default date(today) from General Termination Date
+                *else{
+                *    this.inputdate = moment().format('DD-MM-YYYY');
+                *}
+                */
+
+            },
+            methods: {
+                openDatepicker: function() {
+                    var self = this;
+                    if(this.inputdate){
+	                    vueBus.$emit("bus-open-datepicker",moment(this.inputdate,'DD-MM-YYYY').format() , function(val) {
+	                        self.inputdate = val;
+	                    });
+                    }else{
+                    	vueBus.$emit("bus-open-datepicker",this.inputdate , function(val) {
+	                        self.inputdate = val;
+	                    });
+                    }
+                },
+            },
+            watch: {
+                inputdate: function() {
+                    this.$emit("selected", this.inputdate);
+                },
+                selecteddate: function() {
+                     this.inputdate = this.selecteddate;
+                },
+
+            },
+            template: `<div class="slds-form-element" v-bind:class="{'slds-has-error': isInError}"  >
+                            <label class="slds-form-element__label" v-bind:for="name" v-if="showlabel == 'true'">
+                                {{label}}
+                            </label>
+                            <div class="slds-truncate"  >
+                              <div class="slds-form-element__control">
+                                    <input type="text" readonly @focus="openDatepicker" v-model="inputdate" class="slds-input">
+                              </div>
+                            </div>
+                        </div>`
+        });
+
+        // TIERS COMPONENT
+        Vue.component("tiers-section", {
+            props: ["tiers","basedon","commissiontype","commission","iso"],
+            data: function(){
+                return {
+                    emptyTier: new Object(),
+                    addFactor : 1,
+                    decimalPlaces: 0,
+                    lastTier: false
+                }
+            },
+            template: `<div class="slds-p-horizontal_small slds-size_1-of-1 slds-scrollable--x slds-p-around--small">
+                        <table class="slds-table slds-table_cell-buffer">
+                            <thead>
+                                <tr class="slds-text-title_caps">
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="Min">Min</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="Max">Max</div>
+                                    </th>
+                                    <th scope="col" >
+                                        <div class="slds-truncate" title="Commission in %">Commission in %</div>
+                                    </th>
+                                    <th scope="col" >
+                                        <div class="slds-truncate" title="Commission in %">Commission Per Order</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tier-lineitem showadd = "false"
+                                    v-for = "(tier,index) in tiers"
+                                    v-bind:tier = "tier"
+                                    :key="tier.id">
+                                </tier-lineitem>
+                            </tbody>
+                        </table>
+                    </div>`
+        });
+        // TIERS COMPONENT END
+
+//********************************************* TIERS LINE ITEM COMPONENT START ***************************************************************
+        Vue.component("tier-lineitem", {
+            props: ["tier","addfactor","commissiontype","commission","decimalplaces","iso"],
+            methods: {
+
+            },
+            template: `<tr>
+
+                          <td data-label="Min">
+                            <div class="slds-truncate">
+                                <div class="slds-truncate">
+                                    <div class="slds-form-element">
+                                      <div class="slds-form-element__control">
+                                            {{this.tier.Min__c}}
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                          </td>
+                          <td data-label="Max">
+                            <div class="slds-truncate">
+                                <div class="slds-form-element">
+                                  <div class="slds-form-element__control">
+                                    {{this.tier.Max__c}}
+                                  </div>
+                                </div>
+                            </div>
+                          </td>
+                          <td data-label="Commission in percent" >
+                            <div class="slds-truncate">
+                                <div class="slds-form-element">
+                                  <div class="slds-form-element__control">
+                                    {{this.tier.Commission_in_percentage__c}}
+                                  </div>
+                                </div>
+                            </div>
+                          </td>
+                          <td data-label="Commission Per Order" >
+                            <div class="slds-truncate">
+                                <div class="slds-form-element">
+                                  <div class="slds-form-element__control">
+                                    {{this.tier.Commission_per_order__c}}
+                                  </div>
+                                </div>
+                            </div>
+                          </td>
+
+                        </tr>`
+        });
+        // TIERS LINE ITEM COMPONENT END
+
+       //branding start
+
+        Vue.component("branding-lineitem", {
+            props: ["wpbranding","terminationreasonoptions", "terminatereasonselected",  "terminatedateselected", "checkedstatus"],
+            data: function(){
+                return{
+                    terminationreason : this.wpbranding.branding.Termination_Reason__c,
+                    terminationdate :   undefined,
+                    branding : this.wpbranding.branding,
+                }
+            },
+            created: function(){
+                this.terminationdate = this.wpbranding.branding.End_date__c == null ? undefined : moment(this.wpbranding.branding.End_date__c).format('DD-MM-YYYY');
+
+            },
+            methods: {
+		    	onTerminateReasonSelected: function(value) {
+		    		this.terminationreason = value;
+                    this.wpbranding.branding.Termination_Reason__c = this.terminationreason;
+		    	},
+		    	oncheked: function(value) {
+		    		this.wpbranding.isSelected = value;
+                    this.$emit("checked", value);
+
+		    	},
+		    	onTerminateDateSelected: function(value) {
+		    		this.terminationdate = value;
+                    this.wpbranding.branding.End_date__c = moment.utc(this.terminationdate,'DD-MM-YYYY').valueOf();
+		    	},
+                onclickbranding: function(){
+                    opennewtab(this.branding.Id);
+                },
+                onclickoproduct: function(){
+                    opennewtab(this.branding.Product__c);
+                },
+                onclickoportunity: function(){
+                    opennewtab(this.branding.Opportunity__c);
+                },
+
+            },
+            watch: {
+				terminatereasonselected: function() {
+					this.terminationreason = this.terminatereasonselected;
+                    this.wpbranding.branding.Termination_Reason__c = this.terminationreason;
+				},
+				terminatedateselected: function() {
+					this.terminationdate = this.terminatedateselected;
+                    this.wpbranding.branding.End_date__c = moment.utc(this.terminationdate,'DD-MM-YYYY').valueOf();
+
+
+				},
+			},
+            template: `<tr>
+                          <th scope="row">
+                            <input-checkbox
+                                v-bind:checkvalue = "checkedstatus"
+                                v-on:checked="oncheked"
+                                 >
+                                </input-checkbox>
+                          </th>
+
+                          <td data-label="{!$ObjectType.Branding_Content__c.fields.Name.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Branding_Content__c.fields.Name.Label}"><a href="javascript:void(0);"  v-on:click="onclickbranding" >{{branding.Name}}</a> </div>
+                          </td>
+                          <td data-label="{!$ObjectType.Branding_Content__c.fields.Type__c.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Branding_Content__c.fields.Type__c.Label}">{{branding.Type__c}}</div>
+                          </td>
+                          <td data-label="{!$ObjectType.Branding_Content__c.fields.Product__c.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Branding_Content__c.fields.Product__c.Label}"v-if = "branding.Product__r"  >{{branding.Product__r.Name }}</div>
+                          </td>
+                          <td data-label="{!$ObjectType.Branding_Content__c.fields.Opportunity__c.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Branding_Content__c.fields.Opportunity__c.Label}" v-if = "branding.Opportunity__r"  >{{branding.Opportunity__r.Name}}</div>
+                          </td>
+                          <td data-label="{!$ObjectType.Branding_Content__c.fields.Status__c.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Branding_Content__c.fields.Status__c.Label}">{{branding.Status__c}}</div>
+                          </td>
+                          <td data-label="{!$ObjectType.Branding_Content__c.fields.End_Date__c.Label}">
+
+                           <div class="slds-truncate dateColumn" title="{!$ObjectType.Branding_Content__c.fields.End_Date__c.Label}">
+                                <input-date
+                                    label = "{!$ObjectType.Branding_Content__c.fields.End_Date__c.Label}"
+                                    showlabel = "false"
+                                    v-bind:selecteddate = "terminationdate"
+                                    v-on:selected="onTerminateDateSelected"
+                                    v-bind:initialvalue = "terminationdate"
+                                 >
+                                </input-date>
+
+                            </div>
+                          </td>
+                          <td data-label="{!$ObjectType.Branding_Content__c.fields.Termination_Reason__c.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Branding_Content__c.fields.Termination_Reason__c.Label}">
+                               <input-select
+                                    v-if="terminationreasonoptions"
+                                    v-bind:options="terminationreasonoptions"
+                                    v-on:selected="onTerminateReasonSelected"
+                                    v-bind:selectedvalue = "terminationreason"
+                                    showlabel = "false"
+                                    >
+                                </input-select>
+
+
+                            </div>
+                          </td>
+                        </tr>`
+        });
+        // branding LINE ITEM SELECTION END
+
+
+
+        Vue.component("branding-section", {
+            props: ["mpbranding","terminationreason","terminationdate","optionstbrandings"],
+            data: function(){
+                return {
+                    errorState: errorHandlerSharedState,
+                    loaderState: loaderSharedState,
+                    checkedAll : undefined
+
+                }
+            },
+            methods: {
+
+		    	onSelectAll: function(value) {
+		    	    this.checkedAll = value;
+                },
+                onchecked: function(value){
+                    this.$emit("checked", value);
+                },
+
+            },
+            template: `<div class="slds-panel" >
+                            <div class="slds-panel__section slds-border_bottom">
+                                <h2 class="slds-text-heading_medium" title="Branding">Branding</h2>
+                            </div>
+
+                                <div  class="slds-scrollable_x">
+                                   <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                                      <thead>
+                                        <tr class="slds-text-title_caps">
+                                          <th scope="col">
+                                            <input-checkbox
+                                                v-on:checked="onSelectAll"
+                                             >
+                                            </input-checkbox>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="Name">{!$Label.TP_Name}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="Product">{!$ObjectType.Branding_Content__c.fields.Type__c.Label}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="Total Amount">{!$ObjectType.Branding_Content__c.fields.Product__c.Label}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="Id_Opportunity">{!$ObjectType.Branding_Content__c.fields.Opportunity__c.Label}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="Status">{!$ObjectType.Branding_Content__c.fields.Status__c.Label}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="End_Date">{!$ObjectType.Branding_Content__c.fields.End_Date__c.Label}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="Termination_Reason__c">{!$ObjectType.Branding_Content__c.fields.Termination_Reason__c.Label}</div>
+                                          </th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <branding-lineitem  v-for="(branding, index) in mpbranding"
+                                                v-bind:wpbranding = "branding"
+                                                v-bind:terminationreasonoptions = "optionstbrandings"
+                                                v-bind:terminatereasonselected = "terminationreason"
+                                                v-bind:terminatedateselected = "terminationdate"
+                                                v-bind:checkedstatus = "checkedAll"
+                                                v-on:checked="onchecked"
+                                                :key="index">
+                                        </branding-lineitem>
+
+
+                                      </tbody>
+                                    </table>
+                                </div>
+
+                        </div>`
+        });
+
+
+
+       // branding end
+
+
+
+        // addons LINE ITEM Start
+        Vue.component("addon-lineitem", {
+            props: ["wpaddon","terminationreasonoptions", "terminatereasonselected",  "terminatedateselected", "checkedstatus"],
+            data: function(){
+                return{
+                    terminationreason : this.wpaddon.addon.Termination_Reason__c,
+                    strdate :  undefined,
+                    terminationdate : this.wpaddon.addon.End_Date__c == null ? undefined : moment(this.wpaddon.addon.End_Date__c).format('DD-MM-YYYY'),
+                    addon : this.wpaddon.addon,
+                }
+            },
+            created: function(){
+                this.strdate = moment(this.addon.Start_Date__c).format('DD-MM-YYYY');
+
+            },
+            methods: {
+		    	onTerminateReasonSelected: function(value) {
+		    		this.terminationreason = value;
+                    this.wpaddon.addon.Termination_Reason__c = this.terminationreason;
+		    	},
+		    	oncheked: function(value) {
+		    		this.wpaddon.isSelected = value;
+                    this.$emit("checked", value);
+
+		    	},
+		    	onTerminateDateSelected: function(value) {
+		    		this.terminationdate = value;
+                    this.wpaddon.addon.End_Date__c = moment.utc(this.terminationdate,'DD-MM-YYYY').valueOf();
+		    	},
+                onclickaddon: function(){
+                    opennewtab(this.addon.Id);
+                },
+                onclickoportunity: function(){
+                    opennewtab(this.addon.Opportunity__c);
+                },
+
+            },
+            watch: {
+				terminatereasonselected: function() {
+					this.terminationreason = this.terminatereasonselected;
+                    this.wpaddon.addon.Termination_Reason__c = this.terminationreason;
+				},
+				terminatedateselected: function() {
+					this.terminationdate = this.terminatedateselected;
+                    this.wpaddon.addon.End_Date__c = moment.utc(this.terminationdate,'DD-MM-YYYY').valueOf();
+					//this.wpcontrac.con.EndDate =
+
+				},
+			},
+            template: `<tr>
+                          <th scope="row">
+                            <input-checkbox
+                                v-bind:checkvalue = "checkedstatus"
+                                v-on:checked="oncheked"
+                                 >
+                                </input-checkbox>
+                          </th>
+
+                          <td  data-label="{!$ObjectType.Add_on_Service__c.fields.Name.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Add_on_Service__c.fields.Name.Label}"><a href="javascript:void(0);"   v-on:click="onclickaddon" >{{addon.Name}}</a></div>
+                          </td>
+                          <td data-label="{!$ObjectType.Add_on_Service__c.fields.Type__c.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Add_on_Service__c.fields.Type__c.Label}">{{addon.Type__c}}</div>
+                          </td>
+                          <td data-label="{!$ObjectType.Add_on_Service__c.fields.Id_List_Add_On__c.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Add_on_Service__c.fields.Id_List_Add_On__c.Label}"  v-if = "addon.Id_List_Add_On__r">{{addon.Id_List_Add_On__r.Name}}</div>
+                          </td>
+                          <td data-label="{!$ObjectType.Add_on_Service__c.fields.Opportunity__c.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Add_on_Service__c.fields.Opportunity__c.Label}"  v-if = "addon.Opportunity__r" >
+                                <a href="javascript:void(0);"   v-on:click="onclickoportunity" >{{addon.Opportunity__r.Name}}</a>
+                            </div>
+                          </td>
+                          <td data-label="{!$ObjectType.Add_on_Service__c.fields.Company__c.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Add_on_Service__c.fields.Company__c.Label}">{{addon.Company__c}}</div>
+                          </td>
+                          <td data-label="{!$ObjectType.Add_on_Service__c.fields.Status__c.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Add_on_Service__c.fields.Status__c.Label}">{{addon.Status__c}}</div>
+                          </td>
+                          <td data-label="{!$ObjectType.Add_on_Service__c.fields.Start_Date__c.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Add_on_Service__c.fields.Start_Date__c.Label}">{{this.strdate}}
+                            </div>
+                          </td>
+                          <td data-label="{!$ObjectType.Add_on_Service__c.fields.End_Date__c.Label}">
+                            <div class="slds-truncate dateColumn" title="{!$ObjectType.Add_on_Service__c.fields.End_Date__c.Label}" >
+                                <input-date
+                                    label = "{!$ObjectType.Add_on_Service__c.fields.End_Date__c.Label}"
+                                    showlabel = "false"
+                                    v-bind:selecteddate = "terminationdate"
+                                    v-on:selected="onTerminateDateSelected"
+                                    v-bind:initialvalue = "terminationdate"
+                                 >
+                                </input-date>
+                            </div>
+                          </td>
+                          <td data-label="{!$ObjectType.Add_on_Service__c.fields.Termination_Reason__c.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Add_on_Service__c.fields.Termination_Reason__c.Label}">
+                               <input-select
+                                    v-if="terminationreasonoptions"
+                                    v-bind:options="terminationreasonoptions"
+                                    v-on:selected="onTerminateReasonSelected"
+                                    v-bind:selectedvalue = "terminationreason"
+                                    showlabel = "false"
+                                    >
+                                </input-select>
+
+
+                            </div>
+                          </td>
+                        </tr>`
+        });
+        // Add ons LINE ITEM SELECTION END
+
+
+
+        Vue.component("addons-section", {
+            props: ["mpaddons","terminationreason","terminationdate","optionsaddons"],
+            data: function(){
+                return {
+                    errorState: errorHandlerSharedState,
+                    loaderState: loaderSharedState,
+                    checkedAll : undefined
+
+                }
+            },
+            created: function(){
+            },
+            methods: {
+
+		    	onSelectAll: function(value) {
+		    	    this.checkedAll = value;
+                },
+                onchecked: function(value){
+                    this.$emit("checked", value);
+                },
+
+            },
+            template: `<div class="slds-panel" >
+                            <div class="slds-panel__section slds-border_bottom">
+                                <h2 class="slds-text-heading_medium" title="Add-on Service">Add-on Service</h2>
+                            </div>
+                                <div  class="slds-scrollable_x">
+                                   <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                                      <thead>
+                                        <tr class="slds-text-title_caps">
+                                          <th scope="col">
+                                            <input-checkbox
+                                                v-on:checked="onSelectAll"
+                                             >
+                                            </input-checkbox>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="Name">{!$Label.TP_Name}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="Product">{!$ObjectType.Add_on_Service__c.fields.Type__c.Label}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="Total Amount">{!$ObjectType.Add_on_Service__c.fields.Id_List_Add_On__c.Label}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="Id_Opportunity">{!$ObjectType.Add_on_Service__c.fields.Opportunity__c.Label}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="Id_Asset">{!$ObjectType.Add_on_Service__c.fields.Company__c.Label}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="Status">{!$ObjectType.Add_on_Service__c.fields.Status__c.Label}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="StartDate">{!$ObjectType.Add_on_Service__c.fields.Start_Date__c.Label}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="End_Date">{!$ObjectType.Add_on_Service__c.fields.End_Date__c.Label}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="Termination_Reason__c">{!$ObjectType.Add_on_Service__c.fields.Termination_Reason__c.Label}</div>
+                                          </th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <addon-lineitem  v-for="(addon, index) in mpaddons"
+                                                v-bind:wpaddon = "addon"
+                                                v-bind:terminationreasonoptions = "optionsaddons"
+                                                v-bind:terminatereasonselected = "terminationreason"
+                                                v-bind:terminatedateselected = "terminationdate"
+                                                v-bind:checkedstatus = "checkedAll"
+                                                v-on:checked="onchecked"
+                                                :key="index">
+                                        </addon-lineitem>
+
+
+                                      </tbody>
+                                    </table>
+                                </div>
+
+                        </div>`
+        });
+
+
+        // FIN Addons Termination
+
+
+
+       // AddCharges Termination
+
+        // addcharges LINE ITEM Start
+        Vue.component("addcharge-lineitem", {
+            props: ["wpaddcharge","terminationreasonoptions", "terminatereasonselected",  "terminatedateselected", "checkedstatus", "premiumplacement"],
+            data: function(){
+                return{
+                    terminationreason : this.wpaddcharge.add.Termination_Reason__c,
+                    strdate :  undefined,
+                    terminationdate : this.wpaddcharge.add.Termination_Date__c == null ? undefined : moment(this.wpaddcharge.add.Termination_Date__c).format('DD-MM-YYYY'),
+                    addcharge : this.wpaddcharge.add,
+                    initialterminationdate :undefined
+                }
+            },
+            created: function(){
+
+                this.strdate = moment.tz(this.addcharge.Start_Date__c,"UTC").format('DD-MM-YYYY');
+                this.initialterminationdate = this.terminationdate;
+            },
+            methods: {
+		    	onTerminateReasonSelected: function(value) {
+		    		this.terminationreason = value;
+                    this.wpaddcharge.add.Termination_Reason__c = this.terminationreason;
+		    	},
+		    	oncheked: function(value) {
+		    		this.wpaddcharge.isSelected = value;
+                    this.$emit("checked", value);
+
+		    	},
+		    	onTerminateDateSelected: function(value) {
+
+				    if(this.premiumplacement === 'false' || this.initialterminationdate == null){
+		    		    this.terminationdate = value;
+                        this.wpaddcharge.add.Termination_Date__c =moment.utc(this.terminationdate,'DD-MM-YYYY').valueOf();
+		    	    }
+		    	},
+                onclickcharge: function(){
+                    opennewtab(this.addcharge.Id);
+                },
+                onclickproduct: function(){
+                    opennewtab(this.addcharge.Id_Opportunity__c);
+                },
+                onclickoportunity: function(){
+                    opennewtab(this.addcharge.Id_Opportunity__c);
+                },
+                onclickasset: function(){
+                    opennewtab(this.addcharge.Id_Asset__c);
+                },
+
+            },
+            watch: {
+				terminatereasonselected: function() {
+					this.terminationreason = this.terminatereasonselected;
+                    this.wpaddcharge.add.Termination_Reason__c = this.terminationreason;
+				},
+				terminatedateselected: function() {
+
+				    if(this.premiumplacement === 'false' || this.initialterminationdate == null){
+					    this.terminationdate = this.terminatedateselected;
+                        this.wpaddcharge.add.Termination_Date__c =moment.utc(this.terminationdate,'DD-MM-YYYY').valueOf();
+                   }
+				},
+				initialterminatedateselected: function() {
+
+				},
+			},
+            template: `<tr>
+                          <th scope="row">
+                            <input-checkbox
+                                v-bind:checkvalue = "checkedstatus"
+                                v-on:checked="oncheked"
+                                 >
+                                </input-checkbox>
+                          </th>
+
+                          <td data-label="{!$ObjectType.Additional_Charges__c.fields.Name.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Additional_Charges__c.fields.Name.Label}"><a href="javascript:void(0);"  v-on:click="onclickcharge" >{{addcharge.Name}}</a></div>
+                          </td>
+                          <td data-label="{!$ObjectType.Additional_Charges__c.fields.Product__c.Label}" v-if="premiumplacement=== 'false'">
+                            <div class="slds-truncate" title="{!$ObjectType.Additional_Charges__c.fields.Product__c.Label}">{{addcharge.Product__c}}</div>
+                          </td>
+                          <td data-label="{!$ObjectType.Additional_Charges__c.fields.Product__c.Label}" v-if="premiumplacement=== 'true'">
+                            <div class="slds-truncate" title="{!$ObjectType.Additional_Charges__c.fields.Product__c.Label}">{{addcharge.Product__c}}<div v-if="this.addcharge.Sub_Product_Name__c"><b>{{addcharge.Sub_Product_Name__c}}<b></div></div>
+                          </td>
+                          <td data-label="{!$ObjectType.Additional_Charges__c.fields.Booking_Api_Id__c.Label}" v-if="premiumplacement=== 'true'" >
+                            <div class="slds-truncate" title="{!$ObjectType.Additional_Charges__c.fields.Booking_Api_Id__c.Label}">{{addcharge.Booking_Api_Id__c}}</div>
+                          </td>
+                          <td data-label="{!$ObjectType.Additional_Charges__c.fields.Total_Amount__c.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Additional_Charges__c.fields.Total_Amount__c.Label}"><span v-if = "this.addcharge.Total_Amount__c" >{{addcharge.CurrencyIsoCode}}</span>  {{addcharge.Total_Amount__c}}</div>
+                          </td>
+                          <td data-label="{!$ObjectType.Additional_Charges__c.fields.City_ZipCode__c.Label}" v-if="premiumplacement=== 'true'" >
+                            <div class="slds-truncate" title="{!$ObjectType.Additional_Charges__c.fields.City_ZipCode__c.Label}">{{addcharge.City_ZipCode__c}}</div>
+                          </td>
+                          <td data-label="{!$ObjectType.Additional_Charges__c.fields.Position__c.Label}" v-if="premiumplacement=== 'true'" >
+                            <div class="slds-truncate" title="{!$ObjectType.Additional_Charges__c.fields.Position__c.Label}">{{addcharge.Position__c}}</div>
+                          </td>
+                          <td data-label="{!$ObjectType.Additional_Charges__c.fields.Id_Opportunity__c.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Additional_Charges__c.fields.Id_Opportunity__c.Label}" v-if = "addcharge.Id_Opportunity__r">
+                                    <a href="javascript:void(0);"  v-on:click="onclickoportunity" >{{addcharge.Id_Opportunity__r.Name}}
+                                    </a>
+                            </div>
+                          </td>
+                          <td data-label="{!$ObjectType.Additional_Charges__c.fields.Id_Asset__c.Label}" v-if="premiumplacement=== 'false'">
+                            <div class="slds-truncate" title="{!$ObjectType.Additional_Charges__c.fields.Id_Asset__c.Label}"  v-if = "addcharge.Id_Asset__r">
+                                <a href="javascript:void(0);"  v-on:click="onclickasset" > {{addcharge.Id_Asset__r.Name}}
+                                </a>
+                            </div>
+                          </td>
+                          <td data-label="{!$ObjectType.Additional_Charges__c.fields.Company__c.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Additional_Charges__c.fields.Company__c.Label}">{{addcharge.Company__c}}</div>
+                          </td>
+                          <td data-label="{!$ObjectType.Additional_Charges__c.fields.Status__c.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Additional_Charges__c.fields.Status__c.Label}">{{addcharge.Status__c}}</div>
+                          </td>
+                          <td data-label="{!$ObjectType.Additional_Charges__c.fields.Start_Date__c.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Additional_Charges__c.fields.Start_Date__c.Label}">{{this.strdate}}
+                            </div>
+                          </td>
+                          <td data-label="{!$ObjectType.Additional_Charges__c.fields.Termination_Date__c.Label}" v-if="premiumplacement=== 'true'" >
+                            <div class="slds-truncate" title="{!$ObjectType.Additional_Charges__c.fields.Termination_Date__c.Label}" v-if="initialterminationdate">{{this.terminationdate}}</div>
+                            <div class="slds-truncate dateColumn" title="{!$ObjectType.Additional_Charges__c.fields.Termination_Date__c.Label}" v-else>
+                                <input-date
+                                    label = "{!$ObjectType.Additional_Charges__c.fields.Termination_Date__c.Label}"
+                                    showlabel = "false"
+                                    v-bind:selecteddate = "terminationdate"
+                                    v-on:selected="onTerminateDateSelected"
+                                    v-bind:initialvalue = "terminationdate"
+                                 >
+                                </input-date>
+                            </div>
+                          </td>
+                          <td data-label="{!$ObjectType.Additional_Charges__c.fields.Termination_Date__c.Label}" v-else >
+                            <div class="slds-truncate dateColumn" title="{!$ObjectType.Additional_Charges__c.fields.Termination_Date__c.Label}">
+                                <input-date
+                                    label = "{!$ObjectType.Additional_Charges__c.fields.Termination_Date__c.Label}"
+                                    showlabel = "false"
+                                    v-bind:selecteddate = "terminationdate"
+                                    v-on:selected="onTerminateDateSelected"
+                                    v-bind:initialvalue = "terminationdate"
+                                 >
+                                </input-date>
+                            </div>
+                          </td>
+                          <td data-label="{!$ObjectType.Additional_Charges__c.fields.Termination_Reason__c.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Additional_Charges__c.fields.Termination_Reason__c.Label}">
+                               <input-select
+                                    v-if="terminationreasonoptions"
+                                    v-bind:options="terminationreasonoptions"
+                                    v-on:selected="onTerminateReasonSelected"
+                                    v-bind:selectedvalue = "terminationreason"
+                                    v-bind:premiumplacement = "premiumplacement"
+                                    showlabel = "false"
+                                    >
+                                </input-select>
+
+
+                            </div>
+                          </td>
+                        </tr>`
+        });
+        // Additional charges LINE ITEM SELECTION END
+
+
+
+        Vue.component("addCharges-section", {
+            props: ["mpaddcharges","terminationreason","terminationdate","premiumplacement","optionsaddcharges"],
+            data: function(){
+                return {
+                    errorState: errorHandlerSharedState,
+                    loaderState: loaderSharedState,
+                    checkedAll : undefined
+
+                }
+            },
+            methods: {
+
+		    	onSelectAll: function(value) {
+		    	    this.checkedAll = value;
+                },
+                onchecked: function(value){
+                    this.$emit("checked", value);
+                },
+
+            },
+            template: `<div class="slds-panel" >
+                            <div class="slds-panel__section slds-border_bottom">
+                                	<h2 class="slds-text-heading_medium" title="Additional Charges & Assets" v-if="premiumplacement=== 'false'">Additional Charges & Assets </h2>
+                                	<h2 class="slds-text-heading_medium" title="Premium Placement" v-else >Premium Placement</h2>
+                            </div>
+
+                                <div  class="slds-scrollable_x">
+                                   <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                                      <thead>
+                                        <tr class="slds-text-title_caps">
+                                          <th scope="row">
+                                            <input-checkbox
+                                                v-on:checked="onSelectAll"
+                                             >
+                                            </input-checkbox>
+                                          </th>
+                                          <td>
+                                            <div class="slds-truncate" title="Name">{!$Label.TP_Name}</div>
+                                          </td>
+                                          <th scope="col" >
+                                            <div class="slds-truncate" title="Product">{!$ObjectType.Additional_Charges__c.fields.Product__c.Label}</div>
+                                          </th>
+                                          <th scope="col"  v-if="premiumplacement=== 'true'">
+                                            <div class="slds-truncate" title="Product">{!$ObjectType.Additional_Charges__c.fields.Booking_Api_Id__c.Label}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="Total Amount">{!$ObjectType.Additional_Charges__c.fields.Total_Amount__c.Label}</div>
+                                          </th>
+                                          <th scope="col"  v-if="premiumplacement=== 'true'">
+                                            <div class="slds-truncate" title="Product">{!$ObjectType.Additional_Charges__c.fields.City_ZipCode__c.Label}</div>
+                                          </th>
+                                          <th scope="col"  v-if="premiumplacement=== 'true'">
+                                            <div class="slds-truncate" title="Product">{!$ObjectType.Additional_Charges__c.fields.Position__c.Label}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="Id_Opportunity">{!$ObjectType.Additional_Charges__c.fields.Id_Opportunity__c.Label}</div>
+                                          </th>
+                                          <th scope="col" v-if="premiumplacement=== 'false'">
+                                            <div class="slds-truncate" title="Id_Asset">{!$ObjectType.Additional_Charges__c.fields.Id_Asset__c.Label}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="Company">{!$ObjectType.Additional_Charges__c.fields.Company__c.Label}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="Status">{!$ObjectType.Additional_Charges__c.fields.Status__c.Label}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="StartDate">{!$ObjectType.Additional_Charges__c.fields.Start_Date__c.Label}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="End_Date">{!$ObjectType.Additional_Charges__c.fields.Termination_Date__c.Label}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="Termination_Reason__c">{!$ObjectType.Additional_Charges__c.fields.Termination_Reason__c.Label}</div>
+                                          </th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <addcharge-lineitem  v-for="(addcharges, index) in mpaddcharges"
+                                                v-bind:wpaddcharge = "addcharges"
+                                                v-bind:terminationreasonoptions = "optionsaddcharges"
+                                                v-bind:terminatereasonselected = "terminationreason"
+                                                v-bind:terminatedateselected = "terminationdate"
+                                                v-bind:checkedstatus = "checkedAll"
+                                                v-bind:premiumplacement = "premiumplacement"
+                                                v-on:checked="onchecked"
+                                                :key="index">
+                                        </addcharge-lineitem>
+
+
+                                      </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>`
+        });
+
+
+        // FIN AddCahrges Termination
+
+
+
+       // ContractTermination
+
+        // CONTRACT LINE ITEM Start
+        Vue.component("contrac-lineitem", {
+            props: ["wpcontrac","terminationreasonoptions", "terminatereasonselected",  "terminatedateselected", "checkedstatus"],
+            data: function(){
+                return{
+                    terminationreason : this.wpcontrac.con.Termination_Reason__c,
+                    strdate :  undefined,
+                    terminationdate : undefined,
+                    contrac : this.wpcontrac.con,
+                    openTierModal: false,
+                    modalId: 'modal',
+
+                }
+            },
+            created: function(){
+
+                this.strdate = moment.tz(this.contrac.StartDate,"UTC").format('DD-MM-YYYY');
+                this.terminationdate = this.wpcontrac.con.End_Date__c == null ? undefined : moment.tz(this.wpcontrac.con.End_Date__c,"UTC").format('DD-MM-YYYY');
+
+            },
+            methods: {
+		    	onTerminateReasonSelected: function(value) {
+		    		this.terminationreason = value;
+                    this.wpcontrac.con.Termination_Reason__c = this.terminationreason;
+		    	},
+		    	oncheked: function(value) {
+		    		this.wpcontrac.isSelected = value;
+                    this.$emit("checked", value);
+		    	},
+		    	onTerminateDateSelected: function(value) {
+		    		this.terminationdate = value;
+                    this.wpcontrac.con.End_Date__c = moment.utc(this.terminationdate,'DD-MM-YYYY').valueOf();
+		    	},
+                toggleModal: function(){
+                    this.openTierModal = !this.openTierModal;
+                },
+                onclickcontract: function(){
+                    opennewtab(this.contrac.Id);
+                },
+                onclickoportunity: function(){
+                    opennewtab(this.contrac.Id_Opportunity__c);
+                },
+
+
+            },
+            watch: {
+				terminatereasonselected: function() {
+					this.terminationreason = this.terminatereasonselected;
+                    this.wpcontrac.con.Termination_Reason__c = this.terminationreason;
+				},
+				terminatedateselected: function() {
+					this.terminationdate = this.terminatedateselected;
+                    this.wpcontrac.con.End_Date__c = moment.utc(this.terminationdate,'DD-MM-YYYY').valueOf();
+
+				},
+			},
+            template: `<tr>
+                          <th scope="row">
+                            <input-checkbox
+                                v-bind:checkvalue = "checkedstatus"
+                                v-on:checked="oncheked"
+                                 >
+                                </input-checkbox>
+                          </th>
+
+                          <td data-label="{!$ObjectType.Contract.fields.ContractNumber.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Contract.fields.ContractNumber.Label}"><a href="javascript:void(0);"  v-on:click="onclickcontract" >{{contrac.ContractNumber}}</a></div>
+                          </td>
+                          <td data-label="{!$ObjectType.Contract.fields.Name__c.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Contract.fields.Name__c.Label}">{{contrac.Name__c}}</div>
+                          </td>
+                          <td data-label="{!$ObjectType.Contract.fields.Commission__c.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Contract.fields.Commission__c.Label}">{{contrac.Commission__c}} <span v-if = "this.contrac.Commission__c" >%</span> </div>
+                          </td>
+                          <td data-label="{!$ObjectType.Contract.fields.Commission_Per_Order__c.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Contract.fields.Commission_Per_Order__c.Label}"> <span v-if = "this.contrac.Commission_Per_Order__c" >{{contrac.CurrencyIsoCode}}</span> {{contrac.Commission_Per_Order__c}}</div>
+                          </td>
+                          <td data-label="{!$ObjectType.Contract.fields.Id_Opportunity__C.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Contract.fields.Id_Opportunity__C.Label}" v-if = "contrac.Id_Opportunity__r" ><a href="javascript:void(0);"  v-on:click="onclickoportunity" >{{contrac.Id_Opportunity__r.Name}}</a></div>
+                          </td>
+                          <td data-label="{!$ObjectType.Contract.fields.Company__c.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Contract.fields.Company__c.Label}">{{contrac.Company__c}}</div>
+                          </td>
+                          <td data-label="{!$ObjectType.Contract.fields.Status.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Contract.fields.Status.Label}">{{contrac.Status}}</div>
+                          </td>
+                          <td data-label="{!$ObjectType.Contract.fields.StartDate.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Contract.fields.StartDate.Label}">{{this.strdate}}
+                            </div>
+                          </td>
+                          <td data-label="{!$ObjectType.Contract.fields.End_Date__c.Label}">
+                            <div class="slds-truncate dateColumn" title="{!$ObjectType.Contract.fields.End_Date__c.Label}"   >
+                                <input-date
+                                    label = "{!$ObjectType.Contract.fields.End_Date__c.Label}"
+                                    showlabel = "false"
+                                    v-bind:selecteddate = "terminationdate"
+                                    v-on:selected="onTerminateDateSelected"
+                                    v-bind:initialvalue = "terminationdate"
+                                 >
+                                </input-date>
+                            </div>
+                          </td>
+                          <td data-label="{!$ObjectType.Contract.fields.Termination_Reason__c.Label}">
+                            <div class="slds-truncate" title="{!$ObjectType.Contract.fields.Termination_Reason__c.Label}">
+                               <input-select
+                                     v-if="terminationreasonoptions"
+                                    v-bind:options="terminationreasonoptions"
+                                    v-on:selected="onTerminateReasonSelected"
+                                    v-bind:selectedvalue = "terminationreason"
+                                    showlabel = "false"
+                                    >
+                                </input-select>
+
+
+                            </div>
+
+                          </td>
+
+                          <td data-label="Tiers">
+                            <button class="slds-button slds-button_brand slds-button_small" title="Show Tiers"
+                                    v-if="this.wpcontrac.lsttier" v-on:click = "toggleModal"><span class="slds-badge"> {{ this.wpcontrac.lsttier.length }}</span>
+                            </button>
+
+
+                            <div aria-hidden="false" role="dialog" class="slds-modal slds-modal_large" v-bind:class="[openTierModal ? 'slds-fade-in-open' : 'slds-fade-in-close']" v-bind:id="modalId">
+                                <div class="slds-modal__container" style="width:80%;">
+                                    <div class="slds-modal__content">
+                                        <div class="slds-grid slds-wrap slds-grid--align-spread" >
+                                            <tiers-section v-bind:tiers = "wpcontrac.lsttier"
+                                           				v-if="openTierModal"
+                                           				/>
+                                        </div>
+                                    </div>
+                                    <div class="slds-modal__footer">
+                                        <div class="slds-button-group slds-float--right" role="group">
+                                            <input type="button" class="slds-button slds-button--neutral cancel" v-on:click="toggleModal" value="Close" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-modal-backdrop" v-bind:class="[openTierModal ? 'slds-modal-backdrop--open' : 'slds-modal-backdrop--close']"  ></div>
+
+                          </td>
+
+                        </tr>`
+        });
+        // CONTRACT LINE ITEM SELECTION END
+
+
+
+        Vue.component("contract-section", {
+            props: ["mpcontracts","terminationreason","terminationdate","currencyaccount","optionscontrats"],
+            data: function(){
+                return {
+                    errorState: errorHandlerSharedState,
+                    loaderState: loaderSharedState,
+                    checkedAll : undefined
+
+                }
+            },
+            methods: {
+
+		    	onSelectAll: function(value) {
+		    	    this.checkedAll = value;
+                },
+                onchecked: function(value){
+                    this.$emit("checked", value);
+                }
+
+            },
+            template: `<div class="slds-panel">
+                            <div class="slds-panel__section slds-border_bottom">
+                                	<h2 class="slds-text-heading_medium" title="Contracts">Contracts</h2>
+                            </div>
+                                <div  class="slds-scrollable_x">
+                                   <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                                      <thead>
+                                        <tr class="slds-text-title_caps">
+                                          <th scope="col">
+                                            <input-checkbox
+                                                v-on:checked="onSelectAll"
+                                             >
+                                            </input-checkbox>
+                                          </th>
+                                          <th>
+                                            <div class="slds-truncate" title="ContractNumber">{!$Label.TP_Number}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="Name">{!$ObjectType.Contract.fields.Name__c.Label}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="Commission">{!$Label.TP_Commision_Persentage}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="Commission_Per_Order">{!$Label.TP_Commision}{{this.currencyaccount}}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="Id_Opportunity">{!$ObjectType.Contract.fields.Id_Opportunity__C.Label}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="Company">{!$ObjectType.Contract.fields.Company__c.Label}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="Status">{!$ObjectType.Contract.fields.Status.Label}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="StartDate">{!$Label.TP_StartDate}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="End_Date">{!$ObjectType.Contract.fields.End_Date__c.Label}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="Termination_Reason__c">{!$ObjectType.Contract.fields.Termination_Reason__c.Label}</div>
+                                          </th>
+                                          <th scope="col">
+                                            <div class="slds-truncate" title="Termination_Reason__c">Tiers</div>
+                                          </th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <contrac-lineitem  v-for="(contrac, index) in mpcontracts"
+                                                v-bind:wpcontrac = "contrac"
+                                                v-bind:terminationreasonoptions = "optionscontrats"
+                                                v-bind:terminatereasonselected = "terminationreason"
+                                                v-bind:terminatedateselected = "terminationdate"
+                                                v-bind:checkedstatus = "checkedAll"
+                                                v-on:checked="onchecked"
+                                                :key="index">
+                                        </contrac-lineitem>
+
+
+                                      </tbody>
+                                    </table>
+                                </div>
+
+                        </div>`
+        });
+
+
+        // FIN ContractTermination
+
+        Vue.component("header-section", {
+            props: ["disableterminatebutton","optionscontrats"],
+            data: function(){
+                return {
+
+                    errorState: errorHandlerSharedState,
+                    msgState: messageHandlerSharedState,
+                    terminationreason : undefined,
+                    terminationdate : undefined,
+
+
+                }
+            },
+            methods: {
+		    	onTerminateReasonSelected: function(value) {
+		    		this.terminationreason = value;
+					this.$emit("general-reason", value);
+		    	},
+		    	onTerminateDateSelected: function(value) {
+		    		this.terminationdate = value;
+					this.$emit("termination-date", this.terminationdate);
+		    	},
+		    	onSave: function(value){
+					this.$emit("save-all", value);
+                },
+		    	onSaveAll: function(value){
+                    self = this;
+		    	    this.msgState.setMsg({
+		                        	msg: "{!$Label.Terminate_Restaurant_Confirmation_Message}",
+		                        	type: "warning",
+				                            callback: function() {
+				                                console.log('msg confirm');
+				                                self.$emit("save-all",value);
+				                                console.log('msg confirm 2');
+				                            }
+		                            });
+                }
+
+            },
+            template: `<div class="slds-panel" >
+                            <div class="slds-panel__section">
+                                <div class="slds-form slds-form_compound">
+                                	<h2 class="slds-text-heading--large" title="{!$Label.TP_Restaurant_Termination}">{!$Label.TP_Restaurant_Termination}</h2>
+                                    <div class="slds-grid slds-wrap" style="align-items: center;" >
+                                      <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-4 slds-medium-size_1-of-4 slds-small-size_1-of-1 slds-p-left_small slds-p-left_small">
+                                            <input-date
+                                                label = "{!$Label.TP_General_Termination_Date}"
+                                                showlabel = "true"
+                                                v-on:selected="onTerminateDateSelected"
+                                                >
+                                            </input-date>
+                                      </div>
+
+                                      <div v-if="optionscontrats" class="slds-col slds-size_1-of-1 slds-large-size_1-of-4 slds-medium-size_1-of-4 slds-small-size_1-of-1 slds-p-left_small slds-p-left_small" >
+                                            <input-select
+                                            label = "{!$Label.TP_General_Termination_Reason}"
+                                            showlabel = "true"
+                                            v-if="optionscontrats"
+                                            v-bind:options="optionscontrats"
+                                            v-on:selected="onTerminateReasonSelected"
+                                            >
+
+                                        </input-select>
+                                      </div>
+                                      <div class="slds-col slds-size_1-of-1 slds-large-size_2-of-4 slds-medium-size_2-of-4 slds-small-size_1-of-1 slds-p-left_small headerElement" >
+                                      <div class="slds-grid slds-wrap">
+                                          <div class="slds-p-left_small">
+                                                <div class="slds-form-element" >
+                                                    <label class="slds-form-element__label">
+                                                    </label>
+                                                    <div class="slds-truncate">
+                                                      <div class="slds-form-element__control">
+                                                            <button type="button" class="slds-button slds-button_brand" v-on:click="onSave('selected')" v-bind:disabled="disableterminatebutton" >{!$Label.TP_Terminated_selected}
+                                                            </button>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                          </div>
+                                          <div class="slds-p-left_small">
+                                                <div class="slds-form-element" >
+                                                    <label class="slds-form-element__label">
+                                                    </label>
+                                                    <div class="slds-truncate">
+                                                      <div class="slds-form-element__control">
+                                                            <button type="button" class="slds-button slds-button_destructive" v-on:click="onSaveAll('all')">{!$Label.TP_Terminated_all}
+                                                            </button>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                          </div>
+                                      </div>
+                                      </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>`
+        });
+
+
+         Vue.component("termination-section", {
+            props: ["mpcontracts","mpaddcharges","mpaddons","mpaddchargespp","mpbranding","recordtypeid","currencyaccount"],
+            data: function(){
+                return {
+                    errorState: errorHandlerSharedState,
+                    loaderState: loaderSharedState,
+                    terminationreason : undefined,
+                    terminationdate : undefined,
+                    disableterminatebutton : true,
+                    optionscontrats : [],
+                    optionsaddcharges : [],
+                    optionsaddons : [],
+                    optionstbrandings : [],
+
+                }
+            },
+            created: function(){
+
+                     var self = this;
+
+                    self.loaderState.startLoadingSpinner();
+                    Visualforce.remoting.Manager.invokeAction(
+                        '{!$RemoteAction.CtrTerminationRestaurantVue.getRecordTypesRelatedList}',
+                        self.recordtypeid,
+                        function(result, event) {
+                                self.loaderState.stopLoadingSpinner();
+                                console.log(result.Contract);
+
+                                    uiApi
+                                        .getSObject("Contract")
+                                        .getPicklistValuesPerRecordType("Termination_Reason__c", result.Contract, function(err, res) {
+                                            if (err) return;
+                                            self.optionscontrats = JSON.parse(res).values;
+                                        });
+                                    uiApi
+                                        .getSObject("Additional_Charges__c")
+                                        .getPicklistValuesPerRecordType("Termination_Reason__c", result.Additional_Charges__c, function(err, res) {
+                                            if (err) return;
+                                            self.optionsaddcharges = JSON.parse(res).values;
+                                        });
+                                    uiApi
+                                        .getSObject("Add_on_Service__c")
+                                        .getPicklistValuesPerRecordType("Termination_Reason__c", result.Add_on_Service__c, function(err, res) {
+                                            if (err) return;
+                                            self.optionsaddons = JSON.parse(res).values;
+                                        });
+                                    uiApi
+                                        .getSObject("Branding_Content__c")
+                                        .getPicklistValuesPerRecordType("Termination_Reason__c", result.Branding_Content__c, function(err, res) {
+                                            if (err) return;
+                                            self.optionstbrandings = JSON.parse(res).values;
+                                        });
+
+                        }, {
+
+                            escape: false
+                        }
+                    );
+
+
+            },
+            methods: {
+		    	onTerminateReason: function(value) {
+		    		this.terminationreason = value;
+		    	},
+		    	onTeminationDate: function(value) {
+		    		this.terminationdate = value;
+		    	},
+                onSave : function(value) {
+                    var self = this;
+
+                    self.loaderState.startLoadingSpinner();
+                    Visualforce.remoting.Manager.invokeAction(
+                        '{!$RemoteAction.CtrTerminationRestaurantVue.terminateContracts}',
+                        value,
+                        self.recordtypeid,
+                        self.mpcontracts,
+                        self.mpaddcharges,
+                        self.mpaddchargespp,
+                        self.mpbranding,
+                        self.mpaddons,
+                        function(result, event) {
+                                self.loaderState.stopLoadingSpinner();
+                                if(!result || result != 'Success' || result.toLowerCase().indexOf('success') == -1){
+                                    self.errorState.setErrorMsg({
+		                        	msg: result,
+		                        	type: "error"
+		                            });
+                                }
+                                if(result == 'Success' || result.toLowerCase().indexOf('success') != -1){
+                                    self.$emit("reloadlist", result);
+                                    self.errorState.setErrorMsg({
+                                        msg: result == 'Success' ? '{!$Label.Terminate_Restaurant_Success}' : result,
+                                        type: "Success"
+                                    });
+                                }
+
+                        }, {
+
+                            escape: false
+                        }
+                    );
+
+                },
+                oncheked : function (value){
+                    this.disableterminatebutton = false;
+                    console.log('header check');
+                }
+            },
+            template: `<div class="slds-panel">
+                            <div class="slds-panel__section slds-border_bottom"  >
+
+                                        <header-section
+                                                v-on:general-reason="onTerminateReason"
+                                                v-on:termination-date= "onTeminationDate"
+                                                v-on:save-all = "onSave"
+                                                v-bind:disableterminatebutton = "disableterminatebutton"
+                                                v-bind:optionscontrats = "optionscontrats"
+                                                >
+                                        </header-section>
+                                        <contract-section
+                                                    v-bind:mpcontracts="mpcontracts"
+                                                    v-bind:terminationdate = "terminationdate"
+                                                    v-bind:terminationreason = "terminationreason"
+                                                    v-bind:currencyaccount = "currencyaccount"
+                                                    v-if = "mpcontracts.length"
+                                                    v-on:checked = "oncheked"
+                                                    v-bind:optionscontrats = "optionscontrats"
+                                                    >
+                                        </contract-section>
+                                        <addCharges-section
+                                                    v-bind:mpaddcharges="mpaddcharges"
+                                                    v-bind:terminationdate = "terminationdate"
+                                                    v-bind:terminationreason = "terminationreason"
+                                                    premiumplacement = false
+                                                    v-on:checked = "oncheked"
+                                                    v-if = "mpaddcharges.length"
+                                                    v-bind:optionsaddcharges = "optionsaddcharges"
+                                                    >
+                                        </addCharges-section>
+
+                                        <addCharges-section
+                                                    v-bind:mpaddcharges="mpaddchargespp "
+                                                    v-bind:terminationdate = "terminationdate"
+                                                    v-bind:terminationreason = "terminationreason"
+                                                    premiumplacement = true
+                                                    v-on:checked = "oncheked"
+                                                    v-if = "mpaddchargespp.length"
+                                                    v-bind:optionsaddcharges = "optionsaddcharges"
+                                                    >
+                                        </addCharges-section>
+
+                                        <addons-section
+                                                    v-bind:mpaddons="mpaddons"
+                                                    v-bind:terminationdate = "terminationdate"
+                                                    v-bind:terminationreason = "terminationreason"
+                                                    v-on:checked = "oncheked"
+                                                    v-if = "mpaddons.length"
+                                                    v-bind:optionsaddons = "optionsaddons"
+                                                    >
+                                        </addons-section>
+
+
+                                        <branding-section
+                                                    v-bind:mpbranding="mpbranding"
+                                                    v-bind:terminationdate = "terminationdate"
+                                                    v-bind:terminationreason = "terminationreason"
+                                                    v-on:checked = "oncheked"
+                                                    v-if = "mpbranding.length"
+                                                    v-bind:optionstbrandings = "optionstbrandings"
+                                                    >
+                                        </branding-section>
+
+                            </div>
+                        </div>`
+        });
+        // TARIF SECTION COMPONENT END
+
+    </script>
+
+</apex:component>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>FI Welcome Email</name>
+    <style>none</style>
+    <subject>Welcome to Foodora!</subject>
+    <textOnly>Moi {!Contact.FirstName},
+
+Lämpimästi tervetuloa foodora perheeseen, olemme erittäin iloisia yhteistyöstämme! Tämä viesti sisältää tärkeää tietoa seuraavista vaiheista jotka johtavat siihen, että olette valmis vastaanottamaan tilauksia: 
+
+1.  Ruokalista
+Tiimimme aloittaa ravintolanne luomisesta järjestelmäämme. Kun ruokalista on valmis, saat meiltä sähköpostin sisältäen ruokalistasi esikatselulinkin. Varmistattehan, että ruokalistan sisältö sekä hinnat ovat oikein.
+
+2. Materiaali ja laitteet
+Lähetämme teille postitse laitteet tilausten vastaanottamista varten. Pakettiin sisältyy mm. tabletti, kuittitulostin ja tarroja. Saatte postilta paketin seurantatunnuksen tekstiviestillä tai sähköpostitse ja se saapuu noudettavaksi lähimpään postin pisteeseen kahden arkipäivän sisällä. Voitte seurata pakettia seurantatunnuksella osoitteessa posti.fi. 
+
+Huomioittehan, että paketti tulee noutaa postista 7 päivän sisällä, jonka jälkeen paketti palautuu lähettäjälle.
+
+3. Ravintolan aktivointi
+Olemme yhteydessä teihin ravintolanne avaamisesta kun laitteet ovat postitettu ja ravintolanne ruokalista on luotu. Aktivointipuhelu kestää noin 30 minuuttia ja sen aikana saat ohjeistuksen järjestelmämme käyttöön.
+Puhelun jälkeen olet valmis vastaanottamaan tilauksia ja aloittamaan yhteistyön!
+
+Jäikö kysyttävää? Voit olla meihin yhteydessä sähköpostilla osoitteeseen partner@foodora.fi tai puhelimitse numerosta 02-93000472.
+
+Kuullaan pian,
+foodora-tiimisi</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

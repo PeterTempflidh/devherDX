@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <processMetadataValues>
+            <name>ActionCallType</name>
+            <value>
+                <stringValue>flow</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>flowSelection</name>
+            <value>
+                <stringValue>Update Account Status &amp; Status Reason from Contract Status</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_1_A1</name>
+        <label>Update Account Status and Status reason from Contract</label>
+        <locationX>100</locationX>
+        <locationY>200</locationY>
+        <actionName>Update_Account_Status_Status_Reason_from_Contract_Status</actionName>
+        <actionType>flow</actionType>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>vaccountid</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>1.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>vaccountid</name>
+            <value>
+                <elementReference>myVariable_current.AccountId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>TerminationReason</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>1.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>TerminationReason</name>
+            <value>
+                <elementReference>myVariable_current.Termination_Reason__c</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision</name>
+        <label>myDecision</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_1</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_1_A1</targetReference>
+            </connector>
+            <label>Commission Terminated</label>
+        </rules>
+    </decisions>
+    <description>SP-2324 + CZ (SSC-1947) + SSC-3556</description>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>ISCHANGED([Contract].Status )
+&amp;&amp;
+([Contract].RecordType.DeveloperName = &quot;CZ_Contract&quot;
+||
+[Contract].RecordType.DeveloperName = &quot;HU_Contract&quot;
+|| 
+[Contract].RecordType.DeveloperName = &quot;FP_Contract&quot;
+|| 
+[Contract].RecordType.DeveloperName = &quot;AT_Contract&quot;
+|| 
+[Contract].RecordType.DeveloperName = &quot;FI_Contract&quot;
+|| 
+[Contract].RecordType.DeveloperName = &quot;SE_Contract&quot;
+|| 
+[Contract].RecordType.DeveloperName = &quot;PY_Contract&quot;
+|| 
+[Contract].RecordType.DeveloperName = &quot;Yogiyo_Contract&quot;
+|| 
+[Contract].RecordType.DeveloperName = &quot;Talabat_Contract&quot;)
+&amp;&amp;
+NOT($Permission.Exclude_from_Validation )
+
+</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_1</name>
+        <dataType>Boolean</dataType>
+        <expression>ISCHANGED({!myVariable_current.Status} )
+&amp;&amp;
+({!myVariable_current.RecordType.DeveloperName} = &quot;CZ_Contract&quot;
+||
+{!myVariable_current.RecordType.DeveloperName} = &quot;HU_Contract&quot;
+|| 
+{!myVariable_current.RecordType.DeveloperName} = &quot;FP_Contract&quot;
+|| 
+{!myVariable_current.RecordType.DeveloperName} = &quot;AT_Contract&quot;
+|| 
+{!myVariable_current.RecordType.DeveloperName} = &quot;FI_Contract&quot;
+|| 
+{!myVariable_current.RecordType.DeveloperName} = &quot;SE_Contract&quot;
+|| 
+{!myVariable_current.RecordType.DeveloperName} = &quot;PY_Contract&quot;
+|| 
+{!myVariable_current.RecordType.DeveloperName} = &quot;Yogiyo_Contract&quot;
+|| 
+{!myVariable_current.RecordType.DeveloperName} = &quot;Talabat_Contract&quot;)
+&amp;&amp;
+NOT({!$Permission.Exclude_from_Validation} )</expression>
+    </formulas>
+    <interviewLabel>Global_Account_Status_Commission_Status-10_InterviewLabel</interviewLabel>
+    <label>Global - Account Status = Commission Status</label>
+    <processMetadataValues>
+        <name>ObjectType</name>
+        <value>
+            <stringValue>Contract</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>ObjectVariable</name>
+        <value>
+            <elementReference>myVariable_current</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OldObjectVariable</name>
+        <value>
+            <elementReference>myVariable_old</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>TriggerType</name>
+        <value>
+            <stringValue>onAllChanges</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Workflow</processType>
+    <startElementReference>myDecision</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>myVariable_current</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Contract</objectType>
+    </variables>
+    <variables>
+        <name>myVariable_old</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contract</objectType>
+    </variables>
+</Flow>

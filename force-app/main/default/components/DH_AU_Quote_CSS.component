@@ -1,0 +1,81 @@
+<apex:component access="global">
+<style type="text/css">
+body         {
+       font-family: Arial, Helvetica, sans-serif;
+        font-size: 10pt;
+             }
+
+/*logo*/
+div.logo{
+            position:absolute; 
+            left:0px;
+            top:0px;
+            }
+            
+div.logo img{
+            width:120px;
+            }
+
+/*adress*/
+div.adress{
+            position:absolute; 
+            left:550px;
+            top:0px;
+            border-left:2px solid rgb(131,130,138);
+            color:rgb(131,130,138); 
+            text-align: left;
+            font-size: 7pt;
+            padding-left:10px;
+            }
+            
+div.adress b{
+            color:#c00000 !important;
+            }
+
+/*content*/
+div.content {
+            color:rgb(131,130,138); 
+            text-align: left;
+            
+            position:absolute;
+            top:150px;
+            width:100%; 
+            }
+            
+div.content table td.toptitle{
+            background-color:#c00000;
+            color:#fff;
+            padding:5px;
+            border:0px !important;
+            vertical-align:top;
+            }
+            
+div.content table.Details td{ 
+            padding: 4px;
+            }
+            
+div.content table.Details td.top{ 
+            border-color: #c00000;
+            border-style: solid ;
+            border-width: 1px 1px 0px 0px;
+            }
+div.content table.Details td.left{ 
+            border-color: #c00000;
+            border-style: solid ;
+            border-width: 0px 0px 0px 1px;
+            }
+div.content table.Details td.right{ 
+            border-color: #c00000;
+            border-style: solid ;
+            border-width: 0px 1px 1px 1px;
+            }
+div.content table.Details td.bottom{ 
+            border-color: #c00000;
+            border-style: solid ;
+            border-width: 1px 1px 1px 0px;
+            }
+
+div.content table.Agreement td{border-left:1px solid black;border-top:1px solid black;padding:5px;}
+div.content table.Agreement td:last-child{border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;padding:5px;}
+        </style>
+</apex:component>

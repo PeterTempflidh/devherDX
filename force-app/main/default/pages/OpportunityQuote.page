@@ -1,0 +1,57 @@
+<!--
+@author : Magesh Mani Yadav
+@reviewer : 
+@creation : 16.09.2014
+-->
+<apex:page id="thePage" sidebar="false" showHeader="false" showChat="false" controller="CtrOpportunityQuote">
+<apex:includeScript value="/soap/ajax/30.0/connection.js"/>
+<apex:includeScript value="/support/console/30.0/integration.js"/>
+<style type="text/css">
+    input.save {
+        background-color: #8ab529;
+        border: 1px solid #6c8049;
+        background-image: -ms-linear-gradient(top,#8AB529 0,#87AC31 100%);
+        background-image: -moz-linear-gradient(top,#8AB529 0,#87AC31 100%);
+        background-image: -webkit-linear-gradient(top,#8AB529 0,#87AC31 100%);
+        background-image: linear-gradient(top,#8AB529 0,#87AC31 100%);
+        color: #fff;
+        font-size: 15px !important;
+    }
+    
+    input.red {
+        color: #fff;
+        background-color: #c00;
+        border: 1px solid #6c8049;
+        background-image: -ms-linear-gradient(top,#c00 0,#990000 100%);
+        background-image: -moz-linear-gradient(top,#c00 0,#990000 100%);
+        background-image: -webkit-linear-gradient(top,#c00 0,#990000 100%);
+        background-image: linear-gradient(top,#c00 0,#990000 100%);
+        font-size: 15px !important;
+    }
+</style>
+    <!-- <link href="{!URLFOR($Resource.SF1_Bootstrap_test, '/plugins/jquery-ui/jquery-ui.min.css')}" rel="stylesheet" /> -->
+    <link href="{!URLFOR($Resource.Phoenix, '/css/jquery-ui.min.css')}" rel="stylesheet" />
+    <apex:includeScript value="{!URLFOR($Resource.jq211)}"/>
+    <apex:includescript value="{!URLFOR($Resource.ckEditor, 'ckeditor/ckeditor.js')}"/>
+    <apex:includescript value="{!URLFOR($Resource.TinyMc, 'tinymce/js/tinymce/tinymce.min.js')}"/>
+    <apex:form id="thisForm">
+    <apex:inputHidden value="{!opp.SubTotalRF__c}" />
+    <apex:inputHidden value="{!opp.VAT_fm__c}" />
+    <apex:inputHidden value="{!opp.Total_fm__c}" />
+    <apex:inputHidden value="{!opp.AccountID}" />
+    <apex:pageBlock id="PageBlock" html-style="width:800px; margin:0 auto;">
+    <apex:pageMessages id="errorMessages" />
+    <apex:inputTextarea id="sendEmail" value="{!theEmailTemplate.HtmlValue}"></apex:inputTextarea>
+            <script type="text/javascript">
+                tinymce.init({
+                menubar : false,
+                toolbar: false,
+                    selector: "#thePage\\:thisForm\\:PageBlock\\:sendEmail",
+                    statusbar : false,
+                    height : 670
+                 });
+                 
+            </script>   
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

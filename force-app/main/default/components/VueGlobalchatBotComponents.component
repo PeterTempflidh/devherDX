@@ -1,0 +1,1435 @@
+<apex:component id="VueGlobalChatBotComponents" layout="none" controller="CtrGlobalChatBot">
+	<script>
+		var inputElementsSharedState = {
+            state: {
+                elements: [] 
+            },
+            addElement: function(el) {  
+                this.state.elements.push(el);
+            },
+            removeElement: function(el) { 
+                var idx = this.state.elements.indexOf(el); 
+                if (idx > -1) {
+                    this.state.elements.splice(idx, 1);
+                }
+            }
+        };
+
+        var loaderSharedState = {
+            state: {
+                isLoading: 0 
+            },
+            startLoadingSpinner: function() {
+                this.state.isLoading++;
+            },
+            stopLoadingSpinner: function() {
+                if (this.state.isLoading > 0) {
+                    this.state.isLoading--;
+                }
+            }
+        };
+
+        var errorHandlerSharedState = {
+            state: {
+                message: "",
+                type: "",
+                timeout: undefined,
+                callback: undefined
+            },
+            setErrorMsg: function(err) {
+                this.state.message = err.msg;
+                this.state.type = err.type;
+                this.state.timeout = err.timeout;
+                this.state.callback = err.callback;
+            },
+            clearErrorMsg: function() {
+                this.state.message = "";
+                this.state.type = "";
+                this.state.timeout = undefined;
+                this.state.callback = undefined;
+            }
+        };
+
+        var inputMixin = {
+            data: function() {
+                return {
+                    isFilled: false,
+                    isInError: false,
+                    inputElementsState: inputElementsSharedState
+                };
+            },
+            created: function() {
+                this.inputElementsState.addElement(this);
+            },
+            destroyed: function() {
+                this.inputElementsState.removeElement(this);
+            }
+        };
+
+        // INPUT SELECT COMPONENT START
+        Vue.component("input-select", {
+            mixins: [inputMixin],
+            props: ["options", "name", "label", "disabled", "selectedvalue", "showlabel"],
+            created: function() {
+                this.setSelectedOption();
+            },
+            data: function() {
+                return {
+                    selected: undefined
+                }
+            },
+            methods: {
+                onSelect: function() {
+                    this.$emit("selected", this.selected);
+                },
+                setSelectedOption: function() {
+                    if(this.selectedvalue != undefined){
+                        this.selected = this.selectedvalue;
+                    }else {
+                        this.selected = this.options.reduce(function(acc, option) {
+                                            if (option.selected) {
+                                                acc = option.value;
+                                            }
+                                            return acc;
+                                        }, undefined);
+                    }
+
+                }
+            },
+            watch: {
+                options: function() {
+                    /* This is  because when user change an entity's type only
+                    options are updated */
+                    this.setSelectedOption();
+                },
+                selected: function() {
+                    this.isFilled = !!this.selected;
+                },
+                selectedvalue: function(){
+                    this.selected = this.selectedvalue;
+                }
+            },
+            template: `<div class="slds-form-element" v-bind:class="{'slds-has-error': isInError}">
+                            <label class="slds-form-element__label" v-bind:for="name" v-if="showlabel == 'true'">
+                                <abbr class="slds-required" title="required">*</abbr>
+                                {{label}}
+                            </label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <select
+                                        v-bind:name="name"
+                                        v-bind:id="name"
+                                        v-bind:disabled="!!disabled"
+                                        v-on:change="onSelect"
+                                        v-model="selected"
+                                        class="slds-select">
+                                        <option value=""> --- None --- </option>
+                                        <option v-for="opt in options" v-bind:value="opt.value">
+                                            {{opt.label}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>`
+        });
+        // INPUT SELECT COMPONENT END
+        
+        // *********************************** ORDER DETAIL COMPONENT START *************************************//
+        Vue.component("order-detail", {
+        	props:["orderid","platform","country"],
+        	data: function(){
+        		return{
+        			orderStatusAggregate: undefined,
+        			localOrderId: this.orderid,
+        			dataLoaded:false,
+        			displayOrderSummary:true,
+        			displayOrderStatusHistory:false,
+        			displayItems:true,
+        			displaySpinner:false,
+        			isError:false,
+        			errorMessage:'',
+        		}
+        	},
+        	created: function(){
+        		this.localOrderId = this.orderid;
+        		this.fetchOrderDetails();
+        	},
+        	watch:{
+        		orderid: function(){
+        			if(this.localOrderId != this.orderid)
+        				this.localOrderId = this.orderid;
+        		},
+        		localOrderId: function(){
+        			this.fetchOrderDetails();
+        		}
+        	},
+        	methods: {
+        		fetchOrderDetails: function(){
+        			this.dataLoaded 	= false;
+        			this.isError		= false;
+        			this.errorMessage	= '';
+        			if(!this.localOrderId || !this.platform){
+        				return;
+        			}
+        			this.displaySpinner = true;
+        			var self 			= this;
+        			console.log('Fetching order details');
+        			Visualforce.remoting.Manager.invokeAction(
+                        '{!$RemoteAction.CtrGlobalChatBot.fetchOrder}',
+                        this.localOrderId,this.platform,this.country,
+                        function(result, event) {
+                        	self.displaySpinner = false;
+                            // Checks event status
+                            if (!event.status) {
+                            	self.isError 		= true;
+                            	self.errorMessage	= event.message;
+                                console.error('Error is: ', event.message)
+                                return;
+                            }
+                            
+                            if(result.isError){
+                            	self.isError 		= true;
+                            	self.errorMessage	= result.errorMessage;
+                            	console.log('Error: ' + result.errorMessage);
+                            	return;
+                            }
+							
+                            self.orderStatusAggregate 	= JSON.parse(result.result).data;
+                            self.dataLoaded				= true;
+                            self.populateCustomerId(self.orderStatusAggregate.order.customer.customer_id);
+                            self.populateVendorId(self.orderStatusAggregate.order.vendor.id);
+                            self.populateCustomer(self.orderStatusAggregate.order.customer);
+                        }, {
+                            escape: false,
+                        }
+                    ); 
+        		},
+        		populateCustomerId: function(customerId){
+        			this.$emit("populatecustomerid",customerId);
+        		},
+        		populateVendorId: function(vendorId){
+        			this.$emit("populatevendorid",vendorId);
+        		},
+        		populateCustomer: function(customer){
+        			this.$emit("populatecustomer",customer);
+        		},
+        		toggleAccordion: function(section){
+        			if(section == 'displayOrderHistory'){
+        				this.displayOrderStatusHistory = !this.displayOrderStatusHistory;
+        			}else if(section == 'displayItems'){
+        				this.displayItems	= !this.displayItems
+        			}
+        		}
+        	},
+        	template:`<div class="slds-is-relative">
+        				<article class="slds-card">
+						  <div class="slds-card__header slds-grid">
+						    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+						      <div class="slds-media__figure">
+						        <span class="slds-icon_container slds-icon-standard-orders" title="Order Details">
+						          <svg class="slds-icon slds-icon_small" aria-hidden="true">
+						            <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#orders')}"></use>
+						          </svg>
+						          <span class="slds-assistive-text">{!$Label.Order_Details}</span>
+						        </span>
+						      </div>
+						      <div class="slds-media__body">
+						        <h2 class="slds-card__header-title">
+						          <a class="slds-card__header-link slds-truncate" title="Order Details">
+						            <span class="slds-text-heading_small">{!$Label.Order_Number}: {{localOrderId}}</span>
+						          </a>
+						        </h2>
+						      </div>
+						    </header>
+						  </div>
+						  <div class="slds-card__body slds-card__body_inner">
+						  	<div>
+						  		<error-message v-bind:message="errorMessage" v-if="isError"/>
+						  		<div class="slds-form-element">
+								  <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+								    <svg class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default" aria-hidden="true">
+								      <use xmlns:xlink="http://www.w3.org/1999/xlink" 
+								      	xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#search')}" />
+								    </svg>
+								    <input type="text" id="text-input-id-1" class="slds-input" 
+								    		placeholder="{!$Label.Search_by_Order_Number}" v-model = "localOrderId" />
+								  </div>
+								</div>
+								<div>
+						    		<order-summary v-bind:orderstatusaggregate = "orderStatusAggregate" v-if="dataLoaded"/>
+						    	</div>
+						    	<ul class="slds-accordion" v-if="dataLoaded">
+						    	  <li class="slds-accordion__list-item">
+								    <section class="slds-accordion__section" v-bind:class = "{'slds-is-open':displayItems}">
+								      <div class="slds-accordion__summary">
+								        <h3 class="slds-text-heading_small slds-accordion__summary-heading">
+								          <button aria-controls="accordion-details-03" v-bind:aria-expanded="displayItems" 
+								          		class="slds-button slds-button_reset slds-accordion__summary-action"
+								          		v-on:click="toggleAccordion('displayItems')">
+								            <svg class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+								              <use xmlns:xlink="http://www.w3.org/1999/xlink" 
+								              	xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#switch')}" />
+								            </svg>
+								            <span class="slds-truncate" title="Accordion summary">{!$Label.Items}</span>
+								          </button>
+								        </h3>
+								      </div>
+								      <div aria-hidden="false" class="slds-accordion__content" id="accordion-details-03">
+								      	 <items-table v-bind:items="orderStatusAggregate.order.order.items"/>
+								      	 <!--<items v-bind:items="orderStatusAggregate.order.order.items"/>-->
+								      </div>
+								    </section>
+								  </li> 
+								  <li class="slds-accordion__list-item">
+								    <section class="slds-accordion__section" v-bind:class = "{'slds-is-open':displayOrderStatusHistory}">
+								      <div class="slds-accordion__summary">
+								        <h3 class="slds-text-heading_small slds-accordion__summary-heading">
+								          <button aria-controls="accordion-details-02" v-bind:aria-expanded="displayOrderStatusHistory" 
+								          		class="slds-button slds-button_reset slds-accordion__summary-action"
+								          		v-on:click="toggleAccordion('displayOrderHistory')">
+								            <svg class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+								              <use xmlns:xlink="http://www.w3.org/1999/xlink" 
+								              	xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#switch')}" />
+								            </svg>
+								            <span class="slds-truncate" title="Accordion summary">{!$Label.Order_Status_History}</span>
+								          </button>
+								        </h3>
+								      </div>
+								      <div aria-hidden="false" class="slds-accordion__content" id="accordion-details-02">
+								      	<ul class="slds-timeline" v-if="dataLoaded">
+								      		<order-status-history v-for="(orderStatus,index) in orderStatusAggregate.order_statuses"
+								      			v-bind:orderstatus = "orderStatus"
+								      			v-if = "orderStatus.metadata.source != 'rps'"/>
+								      	</ul>
+								      </div>
+								    </section>
+								  </li> 
+								</ul>
+						    </div>
+						  </div>
+						</article> 
+						<spinner-local v-if="displaySpinner" />
+					</div>`
+        });
+        // *********************************** ORDER DETAIL COMPONENT END *************************************//
+        
+        //************************************* ORDER SUMMARY START************************************************//
+        Vue.component("order-summary", {
+        	props:["orderstatusaggregate"],
+        	data: function(){
+        		return{
+        			recentOrderStatus: '',
+        			recentOrderTimestamp: '',
+        			ETA:''
+        		}
+        	},
+        	created: function(){
+        		this.populateRecentOrderStatusAndTimestamp();
+        		this.popualteETA();
+        	},
+        	methods: {
+        		populateRecentOrderStatusAndTimestamp: function(){
+        			if(this.orderstatusaggregate.order_statuses && this.orderstatusaggregate.order_statuses.length > 0){
+        				size = this.orderstatusaggregate.order_statuses.length;
+        				this.recentOrderStatus 		= this.orderstatusaggregate.order_statuses[size-1].status;
+        				this.recentOrderTimestamp	= this.orderstatusaggregate.order_statuses[size-1].timestamp;
+        			}
+        		},
+        		popualteETA: function(){
+        			if(this.orderstatusaggregate.order_statuses){
+        				for(var i=0;i<this.orderstatusaggregate.order_statuses.length;i++){
+        					if(this.orderstatusaggregate.order_statuses[i].status == 'ACCEPTED'){
+        						this.ETA = new Date(this.orderstatusaggregate.order_statuses[i].accepted.estimated_delivery_time);
+        					}
+        				}
+        			}
+        		}
+        	},
+        	template:`<div v-if="orderstatusaggregate != undefined" class="slds-scrollable">						  	
+						<table class="slds-table slds-no-row-hover">
+						    <thead>
+						    <tr class="slds-text-title_caps">
+						    	<th scope="col" class="slds-size_1-of-4">
+						          <div class="slds-truncate slds-text-align_left" title="Order Amount:">{!$Label.Order_Amount}:</div>
+						      	</th>
+						      	<td scope="col" class="slds-size_1-of-4">
+						          <div class="slds-truncate slds-text-align_left">{{orderstatusaggregate.order.order.order_value}}</div>
+						      	</td>
+						      	<th scope="col" class="slds-size_1-of-4">
+						          <div class="slds-truncate slds-text-align_left" title="Order Status:">{!$Label.Order_Status}:</div>
+						      	</th>
+						      	<td scope="col" class="slds-size_1-of-4">
+						          <div class="slds-truncate slds-text-align_left">
+						          	<strong>{{recentOrderStatus}}</strong></div>
+						      	</td>
+						    </tr>
+						    <tr class="slds-text-title_caps">
+						    	<th scope="col" class="slds-size_1-of-4">
+						          <div class="slds-truncate" title="Coupon">{!$Label.Coupon}:</div>
+						      	</th>
+						      	<td scope="col" class="slds-size_1-of-4">
+						          <div class="slds-truncate slds-wrap">{{orderstatusaggregate.order.customer.payment.coupon}}</div>
+						      	</td>
+						      	<th scope="col" class="slds-size_1-of-4">
+						          <div class="slds-truncate" title="Discount">{!$Label.Discount}:</div>
+						      	</th>
+						      	<td scope="col" class="slds-size_1-of-4">
+						          <div class="slds-truncate slds-wrap">{{orderstatusaggregate.order.customer.payment.discount}}</div>
+						      	</td>
+						    </tr>
+						    <tr class="slds-text-title_caps">
+						    	<th scope="col" class="slds-size_1-of-4">
+						          <div class="slds-truncate" title="Customer Id:">{!$Label.Customer_Id}:</div>
+						      	</th>
+						      	<td scope="col" class="slds-size_1-of-4">
+						          <div class="slds-truncate">{{orderstatusaggregate.order.customer.customer_id}}</div>
+						      	</td>
+						      	<th scope="col" class="slds-size_1-of-4">
+						          <div class="slds-truncate" title="Vendor Id:">{!$Label.Vendor_Id}:</div>
+						      	</th>
+						      	<td scope="col" class="slds-size_1-of-4">
+						          <div class="slds-truncate">{{orderstatusaggregate.order.vendor.id}}</div>
+						      	</td>
+						    </tr>
+						    <tr class="slds-text-title_caps">
+						    	<th scope="col" class="slds-size_1-of-4">
+						          <div class="slds-truncate" title="ETA">{!$Label.ETA}:</div>
+						      	</th>
+						      	<td scope="col" class="slds-size_1-of-4">
+						          <div class="slds-truncate slds-wrap" v-if="ETA != ''">{{ETA.toLocaleDateString() + ' ' + ETA.toLocaleTimeString()}}</div>
+						      	</td>
+						      	<th scope="col" class="slds-size_1-of-4">
+						          <div class="slds-truncate" title="Vendor Id:">{!$Label.Vendor_Name}:</div>
+						      	</th>
+						      	<td scope="col" class="slds-size_1-of-4">
+						          <div class="slds-truncate">{{orderstatusaggregate.order.vendor.name}}</div>
+						      	</td>
+						    </tr>
+						    <tr class="slds-text-title_caps">
+						    	<th scope="col" class="slds-size_1-of-4">
+						          <div class="slds-truncate" title="Platform">{!$Label.Platform}:</div>
+						      	</th>
+						      	<td scope="col" class="slds-size_1-of-4">
+						          <div class="slds-truncate slds-wrap">{{orderstatusaggregate.order.brand_name}}</div>
+						      	</td>
+						      	<th scope="col" class="slds-size_1-of-4">
+						          <div class="slds-truncate" title="Payment Method">{!$Label.Payment_Method}:</div>
+						      	</th>
+						      	<td scope="col" class="slds-size_1-of-4">
+						          <div class="slds-truncate slds-wrap">{{orderstatusaggregate.order.customer.payment.payment_method}}</div>
+						      	</td>
+						    </tr>
+						    <tr class="slds-text-title_caps">
+						    	<th scope="col" class="slds-size_1-of-4">
+						          <div class="slds-truncate" title="Delivery Address">{!$Label.Delivery_Address}:</div>
+						      	</th>
+						      	<td scope="col" class="slds-size_3-of-4 slds-cell-wrap" colspan="3">
+						          <div class="slds-truncate slds-wrap">{{orderstatusaggregate.order.delivery.location.address_text}}</div>
+						      	</td>
+						    </tr>
+						    </thead>
+						</table>
+					  </div>`
+        });
+        //************************************* ORDER SUMMARY END************************************************//
+		
+		//************************************* ORDER STATUS HISTORY START*******************************************//
+		Vue.component("order-status-history", {
+			props:["orderstatus"],
+			data: function(){
+				return{
+					isOpen: false,
+					isNegative: false 
+				}
+			},
+			created: function(){
+				this.checkForNegativeStatus();
+			},
+			methods:{
+				toggleOpen: function(){
+					this.isOpen = !this.isOpen;
+				},
+				checkForNegativeStatus: function(){
+					if(this.orderstatus.status == 'FAILED' || this.orderstatus.status == 'REJECTED' ||
+						this.orderstatus.status == 'CANCELLED' || this.orderstatus.status == 'EXPIRED'){
+							this.isNegative = true;
+						}
+				},
+				getDateString: function(dateString){
+					var dt = new Date(dateString);
+					return dt.toLocaleDateString() +' ' +dt.toLocaleTimeString();
+				}
+			},
+			template:`<li>
+					    <div class="slds-timeline__item_expandable slds-timeline__item_task"
+					    		v-bind:class = "{'slds-is-open':isOpen}">
+					      <span class="slds-assistive-text">{!$Label.Status}</span>
+					      <div class="slds-media">
+					        <div class="slds-media__figure">
+					          <button class="slds-button slds-button_icon" aria-controls="task-item-expanded" 
+					          		v-bind:aria-expanded="isOpen" v-on:click="toggleOpen">
+					            <svg class="slds-button__icon slds-timeline__details-action-icon" aria-hidden="true">
+					              <use xmlns:xlink="http://www.w3.org/1999/xlink" 
+					              	xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#switch')}" />
+					            </svg>
+					            <span class="slds-assistive-text">{!$Label.Status}</span>
+					          </button>
+					          <div class="slds-icon_container slds-timeline__icon"
+					          		v-bind:class="{'slds-icon-standard-task':!isNegative,
+					          					   'slds-icon-standard-event':isNegative}">
+					            <svg class="slds-icon slds-icon_small" aria-hidden="true">
+					              <use xmlns:xlink="http://www.w3.org/1999/xlink" 
+					              	v-if="!isNegative"
+					              	xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#task2')}" />
+					              <use xmlns:xlink="http://www.w3.org/1999/xlink" 
+					              	v-if="isNegative"
+					              	xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/action-sprite/svg/symbols.svg#close')}" />
+					            </svg>
+					          </div>
+					        </div>
+					        <div class="slds-media__body">
+					          <div class="slds-grid slds-grid_align-spread slds-timeline__trigger">
+					            <div class="slds-grid slds-grid_vertical-align-center slds-truncate_container_75 slds-no-space">
+					              <h3 class="slds-truncate">
+					                  <strong>{{orderstatus.status}}</strong>
+					              </h3>
+					            </div>
+					            <div class="slds-timeline__actions slds-timeline__actions_inline">
+					              <p class="slds-timeline__date">{{getDateString(orderstatus.timestamp)}}</p>
+					            </div>
+					          </div>
+					          <article class="slds-box slds-timeline__item_details slds-theme_shade slds-m-top_x-small slds-m-horizontal_xx-small slds-p-around_medium"
+					            id="task-item-expanded" aria-hidden="false">
+					            <ul class="slds-list_horizontal slds-wrap" v-if="orderstatus.transmitted != null">
+					              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+					                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Type}</span>
+					                <span class="slds-text-body_medium slds-truncate" >
+					                	{{orderstatus.transmitted.type}}</span>
+					              </li>
+					            </ul>
+					            <ul class="slds-list_horizontal slds-wrap" v-if="orderstatus.accepted != null">
+					              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+					                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Estimated_Delivery_Time}</span>
+					                <span class="slds-text-body_medium slds-truncate" >
+					                	{{getDateString(orderstatus.accepted.estimated_delivery_time)}}</span>
+					              </li>
+					            </ul>
+					            <ul class="slds-list_horizontal slds-wrap" v-if="orderstatus.picked_up != null">
+					              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+					                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Timestamp}</span>
+					                <span class="slds-text-body_medium slds-truncate" >
+					                	{{getDateString(orderstatus.picked_up.timestamp)}}</span>
+					              </li>
+					            </ul>
+					            <ul class="slds-list_horizontal slds-wrap" v-if="orderstatus.delivered != null">
+					              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+					                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Timestamp}</span>
+					                <span class="slds-text-body_medium slds-truncate" >
+					                	{{getDateString(orderstatus.delivered.timestamp)}}</span>
+					              </li>
+					            </ul>
+					            <ul class="slds-list_horizontal slds-wrap" v-if="orderstatus.expired != null">
+					              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+					                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Reason}</span>
+					                <span class="slds-text-body_medium slds-truncate" >
+					                	{{orderstatus.expired.reason}}</span>
+					              </li>
+					            </ul>
+					            <ul class="slds-list_horizontal slds-wrap" v-if="orderstatus.cancelled != null">
+					              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+					                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Reason}</span>
+					                <span class="slds-text-body_medium slds-truncate" >
+					                	{{orderstatus.cancelled.reason}}</span>
+					              </li>
+					              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+					                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.comment}</span>
+					                <span class="slds-text-body_medium slds-truncate" >
+					                	{{orderstatus.cancelled.comment}}</span>
+					              </li>
+					            </ul>
+					            <ul class="slds-list_horizontal slds-wrap" v-if="orderstatus.rejected != null">
+					              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+					                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Reason}</span>
+					                <span class="slds-text-body_medium slds-truncate" >
+					                	{{orderstatus.rejected.reason}}</span>
+					              </li>
+					              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+					                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.comment}</span>
+					                <span class="slds-text-body_medium slds-truncate" >
+					                	{{orderstatus.rejected.comment}}</span>
+					              </li>
+					            </ul>
+					            <ul class="slds-list_horizontal slds-wrap" v-if="orderstatus.failed != null">
+					              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+					                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Global_Transmission_Method}</span>
+					                <span class="slds-text-body_medium slds-truncate" >
+					                	{{orderstatus.failed.global_transmission_method_id}}</span>
+					              </li>
+					              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+					                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Type}</span>
+					                <span class="slds-text-body_medium slds-truncate" >
+					                	{{orderstatus.failed.type}}</span>
+					              </li>
+					              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+					                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Reason}</span>
+					                <span class="slds-text-body_medium slds-truncate" >
+					                	{{orderstatus.failed.reason}}</span>
+					              </li>
+					              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+					                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.comment}</span>
+					                <span class="slds-text-body_medium slds-truncate" >
+					                	{{orderstatus.failed.comment}}</span>
+					              </li>
+					            </ul>
+					            <ul class="slds-list_horizontal slds-wrap" v-if="orderstatus.delayed != null">
+					              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+					                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Delay}</span>
+					                <span class="slds-text-body_medium slds-truncate" >
+					                	{{orderstatus.delayed.delay}}</span>
+					              </li>
+					              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+					                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Estimated_Time}</span>
+					                <span class="slds-text-body_medium slds-truncate" >
+					                	{{getDateString(orderstatus.delayed.estimated_time)}}</span>
+					              </li>
+					            </ul>
+					          </article>
+					        </div>
+					      </div>
+					    </div>
+					  </li>`
+		});
+		//************************************* ORDER STATUS HISTORY END*******************************************//
+		
+		//************************************* ORDER HISTORY START *****************************************//
+		Vue.component("order-history", {
+        	props:["customerid","platform","country"],
+        	data: function(){
+        		return{
+        			localCustomerId	: this.customerid,
+        			dataLoaded		: false,
+        			orderStatusAggregates: undefined,
+        			displaySpinner : false,
+        			isError: false,
+        			errorMessage:'',
+        		}
+        	},
+        	created: function(){
+        		this.fetchOrderHistory();
+        	},
+        	methods: {
+        		fetchOrderHistory: function(){
+        			this.dataLoaded 	= false;
+        			this.isError		= false,
+        			this.errorMessage	= '';
+        			if(!this.localCustomerId || !this.platform){
+        				return;
+        			}
+        			this.displaySpinner = true;
+        			var self 		= this;
+        			console.log('Fetching order history');
+        			Visualforce.remoting.Manager.invokeAction(
+                        '{!$RemoteAction.CtrGlobalChatBot.fetchOrderHistory}',
+                        this.localCustomerId,this.platform,this.country,
+                        function(result, event) {
+                        	self.displaySpinner = false;
+                        	
+                            // Checks event status
+                            if (!event.status) {
+                            	self.isError		= true;
+                            	self.errorMessage	= event.message;
+                                console.error('Error is: ', event.message)
+                                return;
+                            }
+                            
+                            if(result.isError){
+                            	self.isError		= true;
+                            	self.errorMessage	= result.errorMessage;
+                            	console.log('Error: ' + result.errorMessage);
+                            	return;
+                            }
+                            
+                            self.orderStatusAggregates 	= JSON.parse(result.result).data.order_status_aggregates;
+                            self.dataLoaded				= true;
+                            // if the customer id is changed in the component publish the customer id ad order id to the parent
+                            if(self.customerid != self.localCustomerId){
+                            	self.publishCustomerId(self.localCustomerId);
+                            	self.publishOrderId(self.orderStatusAggregates[0].order.order_id);
+                            }
+                        }, {
+                            escape: false
+                        }
+                    ); 
+        		},
+        		publishOrderId: function(value){
+        			this.$emit('updateorderid',value);
+        		},
+        		publishCustomerId: function(value){
+        			this.$emit('updatecustomerid',value);
+        		}
+        	},
+        	watch:{
+        		customerid: function(){
+        			if(this.localCustomerId != this.customerid)
+        				this.localCustomerId = this.customerid;
+        		},
+        		localCustomerId: function(){
+        			this.fetchOrderHistory();
+        		}
+        	},
+        	template:`<div class="slds-is-relative">
+        				<article class="slds-card">
+						  <div class="slds-card__header slds-grid">
+						    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+						      <div class="slds-media__figure">
+						        <span class="slds-icon_container slds-icon-standard-orders" title="Previous Orders">
+						          <svg class="slds-icon slds-icon_small" aria-hidden="true">
+						            <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#orders')}"></use>
+						          </svg>
+						          <span class="slds-assistive-text">{!$Label.Previous_Orders}</span>
+						        </span>
+						      </div>
+						      <div class="slds-media__body">
+						        <h2 class="slds-card__header-title">
+						          <a class="slds-card__header-link slds-truncate" title="Order Hisotry of the customer">
+						            <span class="slds-text-heading_small">{!$Label.Previous_Orders}</span>
+						          </a>
+						        </h2>
+						      </div>
+						    </header>
+						  </div>
+						  <div class="slds-card__body slds-card__body_inner">
+						  	<error-message v-bind:message="errorMessage" v-if="isError"/>
+						  	<!--<div>
+						  		<div class="slds-form-element">
+								  <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+								    <svg class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default" aria-hidden="true">
+								      <use xmlns:xlink="http://www.w3.org/1999/xlink" 
+								      	xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#search')}" />
+								    </svg>
+								    <input type="text" class="slds-input"  readonly = "true"
+								    		placeholder="Search by Customer Id" v-model = "localCustomerId" />
+								  </div>
+								</div>
+						    </div>-->
+						    <div v-if="dataLoaded" class="slds-scrollable">
+						    	<table class="slds-table slds-table_cell-buffer">
+								  <thead>
+								    <tr class="slds-text-title_caps">
+								      <th scope="col">
+								        <div class="slds-truncate" title="Order Id">{!$Label.order_Id}</div>
+								      </th>
+								      <th scope="col">
+								        <div class="slds-truncate" title="Order Status">{!$Label.order_Status}</div>
+								      </th>
+								      <th scope="col">
+								        <div class="slds-truncate" title="Order amount">{!$Label.Order_Amount}</div>
+								      </th>
+								      <th scope="col">
+								        <div class="slds-truncate" title="Restaurant Name">{!$Label.Restaurant_Name}</div>
+								      </th>
+								      <th scope="col">
+								        <div class="slds-truncate" title="Created Date">{!$Label.Created_Date}</div>
+								      </th>
+								    </tr>
+								  </thead>
+								  <tbody>
+								    <order-history-detail v-for="(orderStatusAggregate,index) in orderStatusAggregates" 
+										v-bind:orderstatusaggregate = "orderStatusAggregate"
+										v-bind:index = "index" 
+										v-on:publishorderid = "publishOrderId"/>
+								  </tbody>
+								</table>
+							</div>
+						  </div>
+						</article> 
+						<spinner-local v-if="displaySpinner" />
+					</div>`
+        });
+        //************************************* ORDER HISTORY END *****************************************//
+        
+        //************************************* ORDER HISTORY DETAIL START ********************************************//
+        Vue.component("order-history-detail", {
+        	props:["orderstatusaggregate","index"],
+        	data: function(){
+        		return{
+        			recentOrderStatus:'',
+        			isNegative: false
+        		}
+        	},
+        	created: function(){
+        		this.populateRecentOrderStatus()
+        	},
+        	methods:{
+        		populateRecentOrderStatus: function(){
+        			if(this.orderstatusaggregate.order_statuses && this.orderstatusaggregate.order_statuses.length > 0){
+        				size = this.orderstatusaggregate.order_statuses.length;
+        				this.recentOrderStatus 		= this.orderstatusaggregate.order_statuses[size-1].status;
+        			}
+        			
+        			if(this.recentOrderStatus && 
+        				(this.recentOrderStatus == 'FAILED' || this.recentOrderStatus == 'REJECTED' ||
+						this.recentOrderStatus == 'CANCELLED' || this.recentOrderStatus == 'EXPIRED')){
+							this.isNegative = true;
+					}
+        		},
+        		publishOrderId: function(){
+        			this.$emit('publishorderid',this.orderstatusaggregate.order.order_id);
+        		}
+        	},
+        	template:`<tr>
+				      <th scope="row" data-label="Order Id">
+				        <div class="slds-truncate" title="Order Id">
+				        	<a v-on:click= "publishOrderId">{{orderstatusaggregate.order.order_id}}</a>
+				        </div>
+				      </th>
+				      <td data-label="Order Amount">
+				        <div class="slds-truncate" v-bind:class="{'slds-theme--error':isNegative}" title="Status" >{{recentOrderStatus}}</div>
+				      </td>
+				      <td data-label="Order Amount">
+				        <div class="slds-truncate" title="Order Amount">{{orderstatusaggregate.order.order.order_value}}</div>
+				      </td>
+				      <td data-label="Restaurant Name">
+				        <div class="slds-truncate" title="Restaurant Name">{{orderstatusaggregate.order.vendor.name}}</div>
+				      </td>
+				      <td data-label="Created Date">
+				        <div class="slds-truncate" title="Created Date">
+				        	{{new Date(orderstatusaggregate.order.timestamp).toLocaleDateString() 
+				        		+ ' ' +new Date(orderstatusaggregate.order.timestamp).toLocaleTimeString()}}
+				        </div>
+				      </td>
+				    </tr>`
+        });
+        //************************************* ORDER HISTORY DETAIL END ********************************************//
+        
+        //************************************* ITEMS TABLE START ****************************************************//
+        Vue.component("items-table",{
+        	props:["items"],
+        	template:`<table aria-readonly="true" class="slds-table slds-table_bordered slds-table_edit 
+        								slds-table_fixed-layout slds-tree slds-table_tree" 
+        								role="treegrid">
+					  <thead>
+					    <tr class="slds-line-height_reset">
+					      <th aria-label="Item Name" aria-sort="none" class="slds-text-title_caps slds-has-button-menu slds-is-resizable slds-is-sortable" 
+					      		scope="col">
+					          <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+					            <span class="slds-truncate" title="Item Name">{!$Label.Item_Name}</span>
+					          </div>
+					      </th> 
+					      <th aria-label="Quantity" aria-sort="none" 
+					      	class="slds-text-title_caps slds-has-button-menu slds-is-resizable slds-is-sortable" scope="col">
+					          <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+					            <span class="slds-truncate" title="Quantity">{!$Label.Quantity}</span>
+					          </div>
+					      </th>
+					      <th aria-label="Unit Price" aria-sort="none" class="slds-text-title_caps slds-has-button-menu slds-is-resizable slds-is-sortable" scope="col">
+					          <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+					            <span class="slds-truncate" title="Unit Price">{!$Label.Unit_Price}</span>
+					          </div>
+					      </th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <items-table-body v-for="(item,index) in items"
+						    v-bind:item="item"
+						    v-bind:index="index"
+						    v-bind:setsize = "items.length"
+						    v-bind:hide="false"
+						   	treelevel="1" />
+					  </tbody>
+					</table>`
+        });
+        //************************************* ITEMS TABLE END ****************************************************//
+        
+        //************************************* ITEMS TABLE BODY START**********************************************//
+        Vue.component("items-table-body",{
+        	props:["item","index","treelevel","setsize","hide"],
+        	data: function(){
+        		return{
+        			nextTreeLevel: parseInt(this.treelevel)+1,
+        			isParent: false,
+        			expanded:true
+        		}
+        	},
+        	created: function(){
+        		if(this.item.options){
+        			this.isParent = true;
+        		}
+        	},
+        	watch: {
+        		hide: function(){
+        			if(this.hide)
+        				this.expanded = false;
+        		}
+        	},
+        	mounted: function() {
+                // Removing the span from the table
+                Array.prototype.slice.call(
+                    document.querySelectorAll("span.toRemove")
+                ).map(function(toRemove) {
+                    while (toRemove.hasChildNodes()) {
+                        toRemove.parentNode.appendChild(toRemove.firstChild);
+                    }
+                    toRemove.parentNode.removeChild(toRemove);
+                });
+                
+                console.log("mounted called ");
+            },
+            methods:{
+            	toggleExpansion: function(){
+            		this.expanded = !this.expanded;
+            	}
+            },
+        	template:`<span class="toRemove"> <!-- Introducing span just to one have root elemenet, this span is remove in mounted function -->
+        				<tr v-bind:aria-expanded="expanded" v-bind:aria-level="treelevel" v-bind:aria-posinset="index" 
+					    	v-bind:aria-setsize="setsize" class="slds-hint-parent" tabindex="0"
+					    	v-bind:class="{'slds-hide': hide}" >
+					      <th class="slds-tree__item" data-label="Item Name" scope="row">
+					        <button class="slds-button slds-button_icon slds-button_icon slds-button_icon-x-small 
+					        				slds-m-right_x-small"  tabindex="-1"
+					        				v-on:click="toggleExpansion"
+					        				v-if="isParent">
+					          <svg class="slds-button__icon slds-button__icon_small" aria-hidden="true">
+					            <use xmlns:xlink="http://www.w3.org/1999/xlink" 
+					            	xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#chevronright')}" />
+					          </svg>
+					          <span class="slds-assistive-text">{{item.name}}</span>
+					        </button>
+					        <span v-if="!isParent">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					        {{item.name}}
+					      </th>
+					      <td data-label="Quantity" role="gridcell" class ="slds-cell-buffer_left">
+					        <div class="slds-truncate" title="Quantity">{{item.quantity}}</div>
+					      </td>
+					      <td data-label="Unit Price" role="gridcell" class="slds-cell-buffer_left">
+					        <div class="slds-truncate" title="Unit Price">{{item.unit_price}}</div>
+					      </td>
+					    </tr>
+					    <items-table-body v-for="(childitem,childindex) in item.options" v-if="isParent"
+				    		v-bind:item="childitem" 
+				    		v-bind:index="childindex"
+				    		v-bind:treelevel = "nextTreeLevel"
+				    		v-bind:setsize = "item.options.length"
+				    		v-bind:hide = "!expanded"/>
+				    </span>`
+        });
+        //************************************* ITEMS TABLE BODY END**********************************************//
+        
+        //************************************* ITEM SECTION START **************************************************//
+        Vue.component("items",{
+        	props:["items"],
+        	created: function(){
+        		console.log('items ' + this.items.length);
+        	},
+        	template:`<div class="slds-tree_container" role="application">
+						  <ul class="slds-tree" role="tree" aria-labelledby="treeheading">
+						    	<item-details v-for="(item,index) in items"
+						    		v-bind:item="item" 
+						    		treelevel = "1"/>
+						  </ul>
+						</div>`
+        });
+        //************************************* ITEM SECTION END ****************************************************//
+        
+        //************************************* ITEM DETAILS START****************************************************//
+        Vue.component("item-details", {
+        	props:["item","treelevel"],
+        	data: function(){
+        		return{
+        			isParent:false,
+        			nextTreeLevel: parseInt(this.treelevel)+1,
+        			ariaExpanded: false,
+        		}
+        	},
+        	created:function(){
+        		if(this.item.options){
+        			this.isParent = true;
+        		}
+        	},
+        	methods:{
+        		toggleAria: function(){
+        			this.ariaExpanded = !this.ariaExpanded;
+        		}
+        	},
+        	template:`<li role="treeitem" v-bind:aria-level="treelevel" v-bind:aria-expanded="ariaExpanded" v-bind:aria-label="item.name">
+					     <div class="slds-tree__item">
+					        <button class="slds-button slds-button_icon slds-button_icon slds-m-right_x-small" 
+					        		aria-hidden="true" tabindex="-1" title="Expand Item"
+					        		v-on:click="toggleAria()">
+					          <svg class="slds-button__icon slds-button__icon_small" aria-hidden="true">
+					            <use xmlns:xlink="http://www.w3.org/1999/xlink" 
+					            	xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#chevronright')}" />
+					          </svg>
+					          <span class="slds-assistive-text">{!$Label.Expand_Item}</span>
+					        </button>
+					        <span class="slds-size_1-of-1">
+					          <span class="slds-tree__item-label slds-truncate" v-bind:title="item.name">{{item.name}}</span>
+					        </span>
+					     </div>
+						 <ul role="group">
+					        <li role="treeitem" v-bind:aria-level="nextTreeLevel">
+					          <div class="slds-tree__item">
+					            <button class="slds-button slds-button_icon slds-m-right_x-small slds-is-disabled" aria-hidden="true" tabindex="-1" title="Expand Tree Item">
+					              <svg class="slds-button__icon slds-button__icon_small" aria-hidden="true">
+					                <use xmlns:xlink="http://www.w3.org/1999/xlink" 
+					                	xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#chevronright')}" />
+					              </svg>
+					              <span class="slds-assistive-text">{!$Label.Expand_Item}</span>
+					            </button>
+					            <span class="slds-size_1-of-1">
+					              <span class="slds-tree__item-label slds-truncate" title="Tree Item">
+								      	<ul class="slds-list_horizontal slds-wrap">
+							              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small"
+							              		v-if="item.unit_price != undefined">
+							                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Unit_Price}</span>
+							                <span class="slds-text-body_medium slds-truncate" >
+							                	{{item.unit_price}}</span>
+							              </li>
+							              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small"
+							              		v-if="item.quantity != undefined">
+							                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Quantity}</span>
+							                <span class="slds-text-body_medium slds-truncate" >
+							                	{{item.quantity}}</span>
+							              </li>
+							            </ul>
+					              </span>
+					            </span>
+					          </div>
+					        </li>
+					        <item-details v-for="(item,index) in item.options"
+						    		v-bind:item="item" 
+						    		v-bind:treelevel = "nextTreeLevel"/> 
+						  </ul>
+						 </li>`
+        });
+        //************************************* ITEM DETAILS END****************************************************//
+        
+        //************************************* RESTAURANT DETAILS START *********************************************//
+        Vue.component("restaurant-details", {
+        	props:["vendorid","platform"],
+        	data: function(){
+        		return{
+        			account: undefined,
+        			dataLoaded:false,
+        			displaySpinner: false,
+        			isError:false,
+        			errorMessage:'',
+        		}
+        	},
+        	created: function(){
+        		this.fetchRestaurantDetails();
+        	},
+        	watch: {
+        		vendorid: function(){
+        			this.fetchRestaurantDetails();
+        		}
+        	},
+        	methods: {
+        		fetchRestaurantDetails: function(){
+        			this.dataLoaded = false;
+        			this.isError	= false;
+        			this.errorMessage = '';
+        			if(!this.vendorid || !this.platform){
+        				this.displaySpinner = false;
+        				return;
+        			}
+        			this.displaySpinner = true;
+        			var self 		= this;
+        			console.log('Fetching Restuarant details');
+        			Visualforce.remoting.Manager.invokeAction(
+                        '{!$RemoteAction.CtrGlobalChatBot.fetchRestaurantDetails}',
+                        this.vendorid,this.platform,
+                        function(result, event) {
+                        	self.displaySpinner = false;
+                        	
+                            // Checks event status
+                            if (!event.status) {
+                            	self.isError 		= true;
+                            	self.errorMessage 	= event.message; 
+                                console.error('Error is: ', event.message)    
+                                return;
+                            }
+                            
+                            if(result.isError){
+                            	self.isError 		= true;
+                            	self.errorMessage 	= result.errorMessage;
+                            	console.log('Error: ' + result.errorMessage);
+                            	return;
+                            }
+							
+                            self.account 	= result.account;
+                            self.dataLoaded	= true;
+                        }, {
+                            escape: false,
+                        }
+                    );
+        		},
+        		openAccount: function(){
+        			if (sforce.console.isInConsole()){
+        				sforce.console.openPrimaryTab(null, "/"+this.account.Id,true,this.account.Name,this.openAccountResult);
+	        		}else{
+	        			window.open("/"+this.account.Id,"_blank");
+	        		}
+        		},
+        		openAccountResult: function(result){
+        		   if (result.success != true) {
+        		        sforce.console.getPrimaryTabIds(this.fetchOpenedPrimaryTabs); 
+                    }
+        		},
+        		fetchOpenedPrimaryTabs: function(response){
+        		    var primaryTabIds = response.ids;
+                    for (let id of primaryTabIds) {
+                        var self= this;
+                        sforce.console.getPageInfo(id,function(response) {
+                            var myVar = JSON.parse(response.pageInfo);
+                            var objectId = myVar.objectId;
+                            if (self.account.Id.includes(objectId)) {
+                                console.log("Focusing tab");
+                                sforce.console.focusPrimaryTabById(id);
+                            }
+                        });
+                    }
+        		}
+        	},
+        	template:`<div class="slds-is-relative">
+        				<article class="slds-card">
+						  <div class="slds-card__header slds-grid">
+						    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+						      <div class="slds-media__figure">
+						        <span class="slds-icon_container slds-icon-standard-account" title="Restaurant Details">
+						          <svg class="slds-icon slds-icon_small" aria-hidden="true">
+						            <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#account')}"></use>
+						          </svg>
+						          <span class="slds-assistive-text">{!$Label.Restaurant_Details}</span>
+						        </span>
+						      </div>
+						      <div class="slds-media__body">
+						        <h2 class="slds-card__header-title">
+						          <a class="slds-card__header-link slds-truncate" title="Details of the Restaurant">
+						            <span class="slds-text-heading_small">{!$Label.Restaurant_Details}</span>
+						          </a>
+						        </h2>
+						      </div>
+						    </header>
+						  </div>
+						  <div class="slds-card__body slds-card__body_inner"> 
+						  	<div v-if="dataLoaded">		
+						  		<error-message v-bind:message="errorMessage" v-if="isError"/>
+						  		<div class="slds-box slds-theme_shade"> 
+							      	<ul class="slds-list_horizontal slds-wrap">
+						              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+						                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Restaurant_Name}</span>
+						                <span class="slds-text-body_medium slds-truncate" >
+						                	<a v-on:click="openAccount" target="_blank">{{account.Restaurant_Name__c}}</a></span>
+						              </li>
+						              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+						                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Restaurant_Id}</span>
+						                <span class="slds-text-body_medium slds-truncate" >
+						                	{{vendorid}}</span>
+						              </li>
+						              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+						                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Email}</span>
+						                <span class="slds-text-body_medium slds-truncate" >
+						                	{{account.Account_Email__c}}</span>
+						              </li>
+						              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+						                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Phone}</span> 
+						                <span class="slds-text-body_medium slds-truncate" >
+						                	{{account.Phone}}</span>
+						              </li>
+						            </ul>
+						        </div>				  	
+							  </div>
+						  </div>
+						</article> 						
+					  <spinner-local v-if="displaySpinner" />
+					</div>`,
+        });
+        //************************************* RESTAURANT DETAILS END *********************************************//
+        
+        //************************************* CUSTOMER DETAIL START ********************************************//
+        Vue.component("customer-details", {
+        	props:["customer"],
+        	template:`<div>
+        				<article class="slds-card">
+						  <div class="slds-card__header slds-grid">
+						    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+						      <div class="slds-media__figure">
+						        <span class="slds-icon_container slds-icon-standard-contact" title="Customer Details">
+						          <svg class="slds-icon slds-icon_small" aria-hidden="true">
+						            <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#contact')}"></use>
+						          </svg>
+						          <span class="slds-assistive-text">{!$Label.Customer_Details}</span>
+						        </span>
+						      </div>
+						      <div class="slds-media__body">
+						        <h2 class="slds-card__header-title">
+						          <a class="slds-card__header-link slds-truncate" title="Details of the Customer">
+						            <span class="slds-text-heading_small">{!$Label.Customer_Details}</span>
+						          </a>
+						        </h2>
+						      </div>
+						    </header>
+						  </div>
+						  <div class="slds-card__body slds-card__body_inner">
+						  	<div v-if="customer != null">		
+						  		<div class="slds-box slds-theme_shade">
+							      	<ul class="slds-list_horizontal slds-wrap">
+						              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+						                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Name}</span>
+						                <span class="slds-text-body_medium slds-truncate" >
+						                	{{customer.profile.name}}</span>
+						              </li>
+						              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+						                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Email}</span>
+						                <span class="slds-text-body_medium slds-truncate" >
+						                	{{customer.profile.email}}</span>
+						              </li>
+						              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+						                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Phone}</span>
+						                <span class="slds-text-body_medium slds-truncate" >
+						                	{{customer.profile.phone}}</span>
+						              </li>
+						            </ul>
+						        </div>				  	
+							  </div>
+						  </div>
+						</article> 	
+					</div>`,
+        });
+        //************************************* CUSTOMER DETAIL END ********************************************//
+        
+        //************************************* VOUCHER DETAILS START *****************************************//
+        Vue.component("voucher-details", {
+			props:["platform","orderid"],
+			data: function(){
+				return{
+					voucherId:'',
+					voucherData:'',
+					displaySpinner: false,
+					isErrorVoucher: false,
+					errorMessage: '',
+					voucherLink:'',
+					expanded:false,
+					orderNumber: this.orderid,
+					countryName:''
+				}
+			},
+			created: function(){
+			    this.orderNumber = this.orderid;
+			 	this.fetchVoucherDetails();
+   			},
+			watch:{
+			    orderid: function(){
+                    if(this.orderNumber!= this.orderid)
+                        this.orderNumber= this.orderid;
+                },
+				orderNumber: function(){
+					this.fetchVoucherDetails();
+				}
+			},
+			methods:{
+				fetchVoucherDetails: function(){
+					this.displaySpinner = true;
+					this.isErrorVoucher	= false;
+					this.errorMessage	= '';
+					var self 			= this;
+        			console.log('Fetching voucher details');
+        			Visualforce.remoting.Manager.invokeAction(
+                        '{!$RemoteAction.CtrGlobalChatBot.fetchVoucherDetails}',
+                        this.voucherId,this.platform,
+                        function(result, event) {
+                        	self.displaySpinner = false;
+                            // Checks event status
+                            if (!event.status) {
+                            	self.isErrorVoucher = true;
+                            	self.errorMessage	= event.message;
+                                console.error('Error is: ', event.message)
+                                return;
+                            }
+                            
+                            if(result.isErrorVoucher){
+                            	self.isErrorVoucher = true;
+                            	self.errorMessage	= result.errorMssage;
+                                console.log('Error: ' + result.errorMessage);
+                            	return;
+                            }
+
+							if(result.result){
+                            	self.voucherData = JSON.parse(result.result);
+							}
+                            self.voucherLink = result.voucherToolLink;
+                            self.countryName= result.voucherCountryName;
+                        }, {
+                            escape: false,
+                        }
+                    ); 
+                   
+				},
+				getDateString: function(dateString){
+					var dt = new Date(dateString);
+					return dt.toLocaleDateString() +' ' +dt.toLocaleTimeString();
+				},
+				toggleExpansion: function(){
+					this.expanded =  ! this.expanded;
+				},
+				openVoucherLink: function(){
+                    if (sforce.console.isInConsole()){
+                        sforce.console.getEnclosingPrimaryTabId(this.openSubTab);
+                    }else{
+                        window.open(this.voucherLink+this.orderNumber,"_blank");
+                    }
+                },
+                openSubTab: function(result) {
+                   sforce.console.openSubtab(result.id, this.voucherLink+this.orderNumber, true,'{!$Label.Voucher_Details}', null);
+                }
+			},
+        	template:`<div class="slds-is-relative" v-if="countryName">
+        				<article class="slds-card">
+						  <div class="slds-card__header slds-grid">
+						    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+						      <div class="slds-media__figure">
+						        <span class="slds-icon_container slds-icon-standard-product" title="Voucher Details">
+						          <svg class="slds-icon slds-icon_small" aria-hidden="true">
+						            <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#product')}"></use>
+						          </svg>
+						          <span class="slds-assistive-text">{!$Label.Voucher_Details}</span>
+						        </span>
+						      </div>
+						      <div class="slds-media__body">
+						        <h2 class="slds-card__header-title">
+						          <a class="slds-card__header-link slds-truncate" title="Details of the Voucher">
+						            <span class="slds-text-heading_small">{!$Label.Voucher_Details}</span>
+						          </a>
+						        </h2>
+						      </div>
+						    </header>
+						  </div>
+						  <div class="slds-card__body slds-card__body_inner">
+							  <div class="slds-box slds-theme_shade">
+									<ul class="slds-list_horizontal slds-wrap">
+										<li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+											<span class="slds-text-title slds-p-bottom_x-small">{!$Label.Link_to_Voucher_Tool} </span>
+											<span class="slds-text-body_medium slds-truncate" >
+											<a v-on:click="openVoucherLink" target="_blank">{!$Label.Voucher_Tool}</a></span>
+										</li>
+									</ul>
+							  </div>
+						  </div>
+						  <div class="slds-card__body slds-card__body_inner">
+					  		<div>
+					  			<error-message v-bind:message="errorMessage" v-if="isErrorVoucher"/>
+					  			<div class="slds-form-element">
+								  <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+								    <svg class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default" aria-hidden="true">
+								      <use xmlns:xlink="http://www.w3.org/1999/xlink" 
+								      	xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#search')}" />
+								    </svg>
+								    <input type="text" id="text-input-id-1" class="slds-input" 
+								    		placeholder="{!$Label.Search_for_vouchers}" v-model = "voucherId" />
+								  </div>
+							  </div>
+							</div>
+							<div v-if="voucherData">		
+						  		<div class="slds-box slds-theme_shade">
+						  			<ul class="slds-list_horizontal slds-wrap">
+						              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+						                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Value}</span>
+						                <span class="slds-text-body_medium slds-truncate" >
+						                	{{voucherData.general.amount}}</span>
+						              </li>
+						              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+						                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Valid_Upto}</span>
+						                <span class="slds-text-body_medium slds-truncate" >
+						                	{{getDateString(voucherData.general.expire_time)}}</span>
+						              </li>
+						              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+						                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Platform}</span>
+						                <span class="slds-text-body_medium slds-truncate" v-if="voucherData.general.apps_only">
+						                	App</span>
+						                <span class="slds-text-body_medium slds-truncate" v-if="!voucherData.general.apps_only">
+						                	App and Browser</span>
+						              </li>
+						              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+						                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Minimum_Order_Value}</span>
+						                <span class="slds-text-body_medium slds-truncate" >
+						                	{{voucherData.general.min_order_value}}</span>
+						              </li>
+						              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+						                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Reusable}</span>
+						                <span class="slds-text-body_medium slds-truncate" v-if="voucherData.general.campaign_only_once">
+						                	NO</span>
+						                <span class="slds-text-body_medium slds-truncate" v-if="!voucherData.general.campaign_only_once">
+						                	YES</span>
+						              </li>
+						              <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+						                <span class="slds-text-title slds-p-bottom_x-small">{!$Label.Valid_for}</span>
+						                <span class="slds-text-body_medium slds-truncate" v-if="voucherData.general.first_time_user">
+						                	New Customer</span>
+						                <span class="slds-text-body_medium slds-truncate" v-if="!voucherData.general.first_time_user">
+						                	Everyone</span>
+						              </li>
+						            </ul>
+						            <ul class="slds-accordion">
+									  <li class="slds-accordion__list-item">
+									    <section class="slds-accordion__section" v-bind:class = "{'slds-is-open':expanded}">
+									      <div class="slds-accordion__summary">
+									        <h3 class="slds-accordion__summary-heading">
+									          <button aria-controls="voucherdetails-01" v-bind:aria-expanded="expanded" 
+									          	class="slds-button slds-button_reset slds-accordion__summary-action"
+									          	v-on:click="toggleExpansion" >
+									            <svg class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+									              <use xmlns:xlink="http://www.w3.org/1999/xlink" 
+									              		xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#switch')}" />
+									            </svg>
+									            <span class="slds-truncate" title="Detailed Voucher Response:">{!$Label.Detailed_Voucher_Response}: </span>
+									          </button>
+									        </h3>
+									      </div>
+									      <div v-bind:aria-hidden="expanded" class="slds-accordion__content" id="voucherdetails-01">
+									      	<pre>{{JSON.stringify(voucherData, undefined, 2)}}</pre>
+									      </div>
+									    </section>
+									  </li>
+									 </ul>
+						  		</div>
+						  	</div>
+						  </div>
+						</article> 	
+						<spinner-local v-if="displaySpinner" />
+					</div>`,
+        });
+        //************************************* VOUCHER DETAILS END *****************************************//
+        
+        //************************************* LOCAL SPINNER START **********************************************//
+        Vue.component("spinner-local", {
+        	template:`<div class="demo-only demo--inverse" style="height: 6rem;">
+						  <div class="slds-spinner_container">
+						    <div role="status" class="slds-spinner slds-spinner_medium">
+						      <span class="slds-assistive-text">Loading</span>
+						      <div class="slds-spinner__dot-a"></div>
+						      <div class="slds-spinner__dot-b"></div>
+						    </div>
+						  </div>
+						</div>`
+        });
+		//************************************* LOCAL SPINNER START **********************************************//
+        
+        //************************************* ERROR MESSAGE COMPONENT START *******************************************//
+         Vue.component("error-message", {
+        	props:["message"],
+        	template:`<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
+						  <span class="slds-assistive-text">error</span>
+						  <span class="slds-icon_container slds-icon-utility-error slds-m-right_x-small" title="Description of icon when needed">
+						    <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+						      <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#error"></use>
+						    </svg>
+						  </span>
+						  <h2>{{message}}
+						  </h2>
+						</div>`
+		});
+     //************************************* ERROR MESSAGE COMPONENT END*******************************************// 
+        
+	</script>
+</apex:component>

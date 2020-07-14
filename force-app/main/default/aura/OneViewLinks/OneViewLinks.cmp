@@ -1,0 +1,31 @@
+<aura:component implements="force:lightningQuickAction,force:hasRecordId,force:hasSObjectName,flexipage:availableForAllPageTypes" access="global"
+                controller="CtrGlobalChatBot">
+    <aura:attribute name="orderNumber" type="String" />
+    <aura:attribute name="orderNumberURL" type="String" />
+    <aura:attribute name="customerId" type="String" />
+    <aura:attribute name="customerName" type="String" />
+    <aura:attribute name="customerIdURL" type="String" />
+	<!--SCC-259-->
+	<aura:attribute name="platformName" type="String" />
+	<aura:attribute name="PandoraPlatformNames" type="List" />
+    
+	<lightning:workspaceAPI aura:id="oneViewWorkspace" />
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+
+    <lightning:card title="">
+        <aura:set attribute="actions">
+            <lightning:button iconName="action:refresh" onclick="{!c.onInit}" class="setBorder"/>
+        </aura:set>
+        <table>
+            <tr>
+                <td style="width:40%;text-align:right">
+                    <lightning:button onclick="{!c.openOrderSubTab}" label="{!'Order Number: '+v.orderNumber}" variant="brand" disabled="{!or(v.orderNumber=='Not Found',empty(v.orderNumberURL))?true:false}"/>
+                </td>
+                <td style="width:10%"/>
+                <td style="width:40%">
+                    <lightning:button onclick="{!c.openCustomerSubTab}" label="{!v.customerName!='Not Found'?'Customer Name: '+v.customerName:v.customerId!='Not Found'?'Customer Id: '+v.customerId:'Customer Data: '+v.customerName}" variant="brand" disabled="{!v.customerId=='Not Found'?true:false}"/>
+                </td>
+            </tr>
+        </table>
+    </lightning:card>
+</aura:component>

@@ -1,0 +1,836 @@
+<apex:page standardStylesheets="false" showHeader="false" sidebar="false" controller="TwilioClientController" cache="false">
+<html>
+<head>
+  <title>Twilio Softphone</title>
+
+
+  <script type="text/javascript" src="https://static.twilio.com/libs/twiliojs/1.2/twilio.min.js"></script>
+  <!-- <script src="{!URLFOR($Resource.twilio,'twilio/twilio.min.js')}"></script> -->
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="/support/api/31.0/interaction.js"></script>
+  <script src="/support/console/31.0/integration.js"></script>
+  <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.softphonecss)}" />
+  <style type="text/css">
+      
+ .inputText {
+  border: solid 2px #1797C0;
+  border-radius: 6px 6px 0 0;
+  font-size: 16px;
+  width: 100%;
+  padding: 14px 5px;
+  display: block;
+  text-align: center;
+  margin: 0;
+  position: relative;
+  z-index: 100;
+  -webkit-transition: border-color 1s;
+  transition: border-color 1s;
+  vertical-align:middle;
+}
+
+textarea {
+  border: solid 2px #1797C0;
+  border-radius: 6px 6px 6px 6px;
+  font-size: 14px;
+  width: 100%;
+  padding: 14px 5px;
+  display: block;
+  text-align: left;
+  margin: 0;
+  position: relative;
+  z-index: 100;
+  -webkit-transition: border-color 1s;
+  transition: border-color 1s;
+}
+
+  label {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    padding-left: 21px;
+    margin-right: 15px;
+    font-size: 12px;
+    margin-bottom: 11px;
+}
+
+input[type=radio] {
+    display: none;
+}
+
+label:before {
+    border-radius: 5px;
+    content: "";
+    display: inline-block; 
+    width: 16px;
+    height: 16px; 
+    margin-right: 10px;
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    background-color: #1797C0;
+    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+}
+
+input[type=radio]:checked + label:before {
+    content: "\2022";
+    color: #f3f3f3;
+    font-size: 30px;
+    text-align: center;
+    line-height: 18px;
+}
+
+
+.error{
+
+    font-weight: bold;
+    font-size: small;
+    color: #c00;
+    text-align: center;
+}
+
+
+//tabbing
+.tabs-menu li {
+    
+    float: left;   
+    background-color: #ccc;
+    border-top: 1px solid #d4d4d1;
+    border-right: 1px solid #d4d4d1;
+    border-left: 1px solid #d4d4d1;
+    border-radius: 6px 6px 0 0;
+}
+
+.tabs-menu li.current {
+    position: relative;
+    background-color: #fff;
+    border-bottom: 1px solid #fff;
+    z-index: 5;
+}
+
+.tabs-menu li a {
+    padding: 10px;
+    color:black;
+    text-transform: uppercase;
+    text-decoration: none; 
+}
+
+.tabs-menu .current a {
+    color: #2e7da3;
+    background-color: #fff;
+    border-top:2px solid #1797C0;
+    border-left:2px solid #1797C0;
+    border-right:2px solid #1797C0;
+    border-radius: 6px 6px 0 0;
+}
+
+.tab {
+    border: 1px solid #d4d4d1;
+    background-color: #fff;
+    float: left;
+    margin-bottom: 20px;
+    width: auto;
+}
+
+.tab-content {
+    border:2px solid #1797C0;
+    
+    padding: 10px;
+    margin-top:8.2px;
+    display: none;
+}
+
+#opps {
+ display: block;   
+}
+
+.cancel {
+    color: #f5f5f5;
+    width: 45%;
+    font-size: 15px;
+    padding: 8px 0;
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+    margin: 0;
+    background-image: linear-gradient(bottom, #ff0606 20%, #ff8383 72%);
+    background-image: -o-linear-gradient(bottom, #ff0606 20%, #ff8383 72%);
+    background-image: -moz-linear-gradient(bottom, #ff0606 20%, #ff8383 72%);
+    background-image: -webkit-linear-gradient(bottom, #ff0606 20%, #ff8383 72%);
+    background-image: -ms-linear-gradient(bottom, #ff0606 20%, #ff8383 72%);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.2, #ff0606), color-stop(0.72, #ff8383));
+    border-radius: 6px 6px 6px 6px;
+    border: none;
+    margin: 0;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+  </style>
+  <script type="text/javascript">
+    // Page loaded
+    var IdParam = null;
+    
+$(function() {
+
+    // ** Application container ** //
+    window.SP = {}
+
+    // Global state
+    var whatIdValue = null;
+    var taskRecordtypeId = null;
+    var responseFromClick = null; 
+    SP.state = {};
+    SP.state.callNumber = null;
+    SP.state.calltype = "";
+    SP.currentCall = null;  //instance variable for tracking current connection
+    SP.callDurationSec = 0;
+    var callLogData = $('#callLogData');
+
+    SP.functions = {};
+
+    Twilio.Device.setup("{! token }",{debug: false});
+
+    // Hook up numpad to input field
+    $("div.number").bind('click',function(){
+      SP.functions.handleKeyEntry($(this).attr('Value'));  
+    });
+
+    SP.functions.handleKeyEntry = function (key) {  
+       if (SP.currentCall != null) {
+          console.log("sending DTMF" + key);
+          SP.currentCall.sendDigits(key);
+       } else {
+         $("#number-entry > input").val($("#number-entry > input").val()+key);
+       }
+
+    }
+
+    //called when agent is not on a call
+    SP.functions.setIdleState = function() {
+        $("#action-buttons > .call").show();
+        $("#action-buttons > .answer").hide();
+        $("#action-buttons > .mute").hide();
+        $("#action-buttons > .hangup").hide();
+        $("#CallLogPanel").hide();
+        $("#dialPad").show();
+        $('div.agent-status').hide();
+        $("#number-entry > input").val("");
+        $('input[name=call]:checked').removeAttr('checked');
+        $('input[name=oppsName]:checked').removeAttr('checked');
+        $('input[name=casesName]:checked').removeAttr('checked');
+        
+    }
+
+    SP.functions.setRingState = function () {
+        $("#action-buttons > .answer").show();
+        $("#action-buttons > .call").hide();
+        $("#action-buttons > .mute").hide();
+        $("#action-buttons > .hangup").hide();
+    }
+
+    SP.functions.setOnCallState = function() {
+
+        $("#action-buttons > .answer").hide();
+        $("#action-buttons > .call").hide();
+        $("#action-buttons > .mute").show();
+        $("#CallLogPanel").show();
+        //$("#dialPad").hide();
+
+        $("#action-buttons > .hangup").show();
+        $('div.agent-status').show();
+        //disable
+        sforce.interaction.cti.disableClickToDial();
+    }
+
+    SP.functions.setIdleState();
+
+    // Attach answer button to an incoming connection object
+    SP.functions.attachAnswerButton = function(conn) {
+      $("#action-buttons > button.answer").click(function() {
+        conn.accept();
+      }).removeClass('inactive').addClass("active");
+    }
+
+    SP.functions.detachAnswerButton = function() {
+      $("#action-buttons > button.answer").unbind().removeClass('active').addClass("inactive");
+    }
+
+    SP.functions.attachMuteButton = function(conn) {
+      $("#action-buttons > button.mute").click(function() {
+        conn.mute(true);
+        SP.functions.attachUnMute(conn);
+      }).removeClass('inactive').addClass("active").text("Mute");
+    }
+
+    SP.functions.attachUnMute = function(conn) {
+      $("#action-buttons > button.mute").click(function() {
+        conn.mute(false);
+        SP.functions.attachMuteButton(conn);
+      }).removeClass('inactive').addClass("active").text("UnMute");
+    }
+
+    SP.functions.detachMuteButton = function() {
+      $("#action-buttons > button.mute").unbind().removeClass('active').addClass("inactive");
+    }
+
+    SP.functions.updateAgentStatusText = function(statusCategory, statusText, inboundCall) {
+
+      if (statusCategory == "onCall") {
+          $("#agent-status-controls > button.ready").prop("disabled",true); 
+          $("#agent-status-controls > button.not-ready").prop("disabled",true); 
+          $("#agent-status").removeClass();
+          $("#agent-status").addClass("on-call");
+          $('#softphone').removeClass('incoming');
+      }
+
+      if (inboundCall ==  true) { 
+        //alert("call from " + statusText);
+        $('#softphone').addClass('incoming');
+        $("#number-entry > input").val(statusText);
+      }
+
+      //$("#agent-status > p").text(statusText);
+    }
+    var callbackme = function(response){
+    //alert(response.result);
+    console.log('at global call: '+response.result);
+   $('Div[name=csRad]').remove();
+    if(response.result){
+      var results = JSON.parse(response.result);
+
+      //console.log('at global call: '+results.);
+      if(results.taskTemplateId){
+        taskRecordtypeId = results.taskTemplateId;
+        console.log('taskRecordtypeId: '+taskRecordtypeId);
+      }
+      if(results.opps){
+        console.log('opps: '+results.opps[0].Name);
+        if($("#oppList").length==0){
+          var titleDiv = $('<br><div id="oppList">Link Opportunity<br><br></div>');
+          titleDiv.appendTo('#opps');
+        }
+        $('Div[name=oppRad]').remove();
+        $.each(results.opps, function(index,value){
+          var radiobbtn = $('<div name="oppRad"><input id="op'+index+'" type="radio" name="oppsName" value="'+value.Id+'" /><label for="op'+index+'"> '+value.Name+'</label></div>');
+          radiobbtn.appendTo('#oppList');
+        });
+
+      }
+      if(results.cases){
+        console.log('cases: '+results.cases[0].Name);
+        if($("#csList").length==0){
+          var titleDiv = $('<br><div id="csList">Link Case<br><br></div>');
+          titleDiv.appendTo('#cases');
+        }
+        $('Div[name=csRad]').remove();
+        $.each(results.cases, function(index,value){
+          var radiobbtn = $('<div name="csRad"><input id="cs'+index+'" type="radio" name="casesName" value="'+value.Id+'" /><label for="cs'+index+'"> '+value.Subject+'-'+value.CaseNumber+'</label></div>');
+          radiobbtn.appendTo('#csList');
+        });
+
+      }
+      
+      
+      
+      
+    }else{
+      $("#twilioError").html(response.error);
+      console.log("getRecordtype error = " + response.error);
+    }
+    
+    };
+    var showPageInfo = function(result){
+        //alert('page: '+result.pageInfo);
+        var pageDetails = jQuery.parseJSON(result.pageInfo);
+        whatIdValue = pageDetails.objectId;
+        console.log(pageDetails);
+        if(pageDetails.object=='Lead'){
+          hideOppCaseTabs();
+        }else{
+          showOppCaseTabs();
+        }
+        //console.log('result.pageInfo: '+);
+      sforce.interaction.runApex('ClsGlobalWebservice', 'getTaskRecordType', 'objId='+whatIdValue+'', callbackme);   
+
+    };
+
+   var showTabId = function showTabId(result) {
+            //Now that we have the primary tab ID, we can close it
+            var tabId = result.id;
+            sforce.console.getPageInfo(tabId , showPageInfo);
+        }; 
+
+    // Call button will make an outbound call (click to dial) to the number entered 
+    $("#action-buttons > button.call").click( function( ) {
+        responseFromClick = null;
+      if (sforce.console.isInConsole()) {
+            sforce.console.getFocusedPrimaryTabId(showTabId);     
+
+        } 
+        var phonenumberdata = $("#number-entry > input").val();
+        var cleanednumber = cleanFormatting(phonenumberdata);
+      params = {"PhoneNumber": cleanednumber, "CallerId": '448008085291'};
+
+      if(cleanednumber.length>1){
+        Twilio.Device.connect(params);
+      }
+    });
+    
+    // Hang up button will hang up any active calls
+    $("#action-buttons > button.hangup").click( function( ) {
+      Twilio.Device.disconnectAll();
+    });
+
+    // Wire the ready / not ready buttons up to the server-side status change functions
+    $("#agent-status-controls > button.ready").click( function( ) {
+      $("#agent-status-controls > button.ready").prop("disabled",true); 
+    });
+
+      $("#agent-status-controls > button.userinfo").click( function( ) {
+
+
+    });
+
+      $("#saveBtn").click( function( ) {
+        console.log("save");
+        console.log("SAVE: callDurationSec "+SP.callDurationSec);
+        if(validateSave()){
+          if(SP.state.callNumber!=null){
+            if(responseFromClick!=null){
+              saveLog(responseFromClick);
+              //enable
+              sforce.interaction.cti.enableClickToDial();
+            }else{
+              sforce.interaction.getPageInfo(saveLog);
+              //enable
+              sforce.interaction.cti.enableClickToDial();
+            }
+          }
+        }
+      });
+
+      $("#canBtn").click(function(){
+        console.log("Cancel");
+        if(SP.currentCall == null){
+          sforce.interaction.cti.enableClickToDial();
+            SP.functions.setIdleState();
+          }
+      });
+
+
+    function validateSave(){
+      if($('input[name=call]').is(':checked')==false){
+        $("#twilioError").html('Wrapup code is mandatory');
+        return false;
+      }
+      $("#twilioError").html('');
+      return true;
+    }  
+
+
+
+    // ** Twilio Client Stuff ** //
+    // first register outside of sfdc
+
+
+    // if ( window.self === window.top ) {  
+    //       console.log("Not in an iframe, assume we are using default client");
+    //   }else{
+    //     console.log("In an iframe, assume it is Salesforce");
+    //     sforce.interaction.isInConsole(SP.functions.getTwilioClientName);   
+    //   }
+    //this will only be called inside of salesforce
+    
+
+    
+
+    Twilio.Device.ready(function (device) {
+
+      sforce.interaction.cti.enableClickToDial();
+      sforce.interaction.cti.onClickToDial(startCall); 
+    });
+
+    Twilio.Device.offline(function (device) {
+      //make a new status call.. something like.. disconnected instead of notReady ?
+      sforce.interaction.cti.disableClickToDial(); 
+    });
+
+
+    /* Report any errors on the screen */
+    Twilio.Device.error(function (error) {
+        $("#twilioError").html(error.message);
+        console.log('ERROR: '+error.message);
+    });
+    /* Log a message when a call disconnects. */
+    Twilio.Device.disconnect(function (conn) {
+        console.log("disconnectiong...");
+        console.log(conn.parameters.CallSid);
+        getDuration(conn.parameters.CallSid);
+        SP.functions.detachAnswerButton();
+        SP.functions.detachMuteButton();
+        SP.currentCall = null;
+        $("#action-buttons > .mute").hide();
+        $("#action-buttons > .hangup").hide();
+        $("#dialPad").hide();
+    });
+
+    Twilio.Device.connect(function (conn) {
+      console.log('Connect method');
+      SP.state.callNumber = null;
+        IdParam = null;
+        $("#twilioError").html('');
+        callLogData.val('');
+        var  status = "";
+        var callNum = null;
+        if (conn.parameters.From) {
+          callNum = conn.parameters.From;
+          status = "Call From: " + callNum;
+          SP.calltype = "Inbound";
+        } else {
+            console.log(conn.message.PhoneNumber);
+            if(conn.message.PhoneNumber!=''){
+                SP.state.callNumber = '+'+conn.message.PhoneNumber; 
+            }
+          status = "Outbound call";
+          SP.calltype = "Outbound";
+
+        }
+        console.dir(conn);
+        SP.functions.setOnCallState();
+        SP.functions.detachAnswerButton();
+        SP.currentCall = conn;
+        SP.functions.attachMuteButton(conn);
+    });
+
+    
+
+    Twilio.Device.cancel(function(conn) {
+        console.log(conn.parameters.From); // who canceled the call
+        SP.functions.detachAnswerButton();
+        SP.functions.setIdleState();
+        $(".number").unbind();
+        SP.currentCall = null;
+    });
+
+
+
+
+
+    function cleanFormatting(number) { 
+            //changes a SFDC formatted US number, which would be 415-555-1212       
+            var cleaned1 =  number.replace(' ','').replace('-','').replace('(','').replace(')','').replace('+','');
+            var result = cleaned1;
+            if(cleaned1.startsWith('01')){
+                result = '49'+cleaned1.substring(1,cleaned1.length);
+            }
+            return result;
+        }
+
+    
+    function startCall(response) { 
+            //called onClick2dial
+            responseFromClick = response;
+            console.log('startCall '+response);
+            
+            //sforce.interaction.getPageInfo(getTaskRecordTypeId);
+            sforce.interaction.setVisible(true);  //pop up CTI console
+            var result = JSON.parse(response.result);  
+            var cleanednumber = cleanFormatting(result.number);
+            //alert("cleanednumber = " + cleanednumber);  
+            params = {"PhoneNumber": cleanednumber, "CallerId":'448008085291'};
+            Twilio.Device.connect(params);
+            getTaskRecordTypeId(response);
+            //
+            //showCallLog();
+
+    }
+
+    var getTaskRecordTypeId = function(response){
+        var result = JSON.parse(response.result);
+        console.log('click to call'+result.objectId);
+        whatIdValue = result.objectId;
+        if(result.object=='Lead'){
+          hideOppCaseTabs();
+        }else{
+          showOppCaseTabs();
+        }
+        sforce.interaction.runApex('ClsGlobalWebservice', 'getTaskRecordType', 'objId='+whatIdValue+'', callbackme);   
+
+    } 
+
+    var saveLogcallback = function (response) {
+        if (response.result) {
+        SP.callDurationSec = 0;
+          console.log("saveLog result =" + response.result);
+          if(IdParam == null){
+            IdParam = '&Id='+response.result; 
+          }
+
+          if(SP.currentCall == null){
+            SP.functions.setIdleState();
+          }
+        } else {
+          $("#twilioError").html(response.error);
+          console.log("saveLog error = " + response.error);
+        }
+    };
+
+    function Task(){
+      //this.Id=null;
+      this.Subject = 'Call';
+      this.Status='completed';
+      this.CallType = SP.calltype;
+      //this.Activitydate = null;
+      this.CallDurationInSeconds = null;
+      this.Description = null;
+      this.RecordTypeId= null;
+      this.Activity_Subject__c=null;
+      this.whoId = null;
+      this.whatId = null;
+    }
+
+    function saveLog(response) {
+            
+            console.log("saving log result, response:"+response.result);
+            if(taskRecordtypeId!=null && taskRecordtypeId.indexOf('Failed')>0){
+              $("#twilioError").html(taskRecordtypeId);
+              return;
+            }else if(taskRecordtypeId==null){
+              $("#twilioError").html('Task recordtype is not defined');
+              return;
+            }
+            var oppIdSelected = $('input[name=oppsName]:checked').val();
+            var csIdSelected = $('input[name=casesName]:checked').val();
+            var result = JSON.parse(response.result);
+            //sforce.interaction.runApex();
+            var timeStamp = new Date().toString();
+            timeStamp = timeStamp.substring(0, timeStamp.lastIndexOf(':') + 3);             
+            var currentDate = new Date();           
+            var currentDay = currentDate.getDate();
+            var currentMonth = currentDate.getMonth()+1;
+            var currentYear = currentDate.getFullYear();
+            var dueDate = currentYear + '-' + currentMonth + '-' + currentDay;
+            //var saveParams = 'Subject=' + SP.calltype +' Call '+SP.state.callNumber+' on ' + timeStamp;
+            /*var saveParams = 'Subject=Call';
+            saveParams += '&Status=completed';                  
+            saveParams += '&CallType=' + SP.calltype;  //should change this to reflect actual inbound or outbound
+            saveParams += '&Activitydate=' + dueDate;
+            console.log('callDurationSec: '+SP.callDurationSec);
+            saveParams +='&CallDurationInSeconds='+SP.callDurationSec;      
+            saveParams += '&Description=' + callLogData.val();
+            saveParams += '&RecordTypeId='+taskRecordtypeId;
+            saveParams += '&Activity_Subject__c='+$('input[name=call]:checked').val();
+            var objectidsubstr = result.objectId.substr(0,3);
+            // object id 00Q means a lead.. adding this to support logging on leads as well as contacts.
+            console.log('oppIdSelected: '+oppIdSelected);
+            if(objectidsubstr == '003' || objectidsubstr == '00Q') {
+                saveParams += '&whoId=' + result.objectId;
+                if(oppIdSelected!=null && oppIdSelected.length>14){
+                  saveParams += '&whatId=' + oppIdSelected;            
+                }else if(csIdSelected!=null && csIdSelected.length>14){
+                  saveParams += '&whatId=' + csIdSelected; 
+                }                      
+            } else {
+                if(oppIdSelected!=null && oppIdSelected.length>14){
+                  saveParams += '&whatId=' + oppIdSelected;            
+                }else if(csIdSelected!=null && csIdSelected.length>14){
+                  saveParams += '&whatId=' + csIdSelected; 
+                }  
+                else{
+                  saveParams += '&whatId=' + whatIdValue;            
+                }
+            }
+
+            if(IdParam!=null){
+              saveParams += IdParam;
+            }*/
+            var objectidsubstr = result.objectId.substr(0,3);
+
+            var t = new Task();
+            //t.Subject = 'Call';
+            //t.Status='completed';
+            //t.CallType = SP.calltype;
+            //t.Activitydate = dueDate;
+            t.CallDurationInSeconds = SP.callDurationSec;
+            t.Description = callLogData.val();
+            t.RecordTypeId=taskRecordtypeId;
+            t.Activity_Subject__c=$('input[name=call]:checked').val();
+            if(objectidsubstr == '003' || objectidsubstr == '00Q') {
+                t.whoId=result.objectId;
+                if(oppIdSelected!=null && oppIdSelected.length>14){
+                  t.whatId=oppIdSelected;            
+                }else if(csIdSelected!=null && csIdSelected.length>14){
+                  t.whatId=csIdSelected; 
+                }                      
+            } else {
+                if(oppIdSelected!=null && oppIdSelected.length>14){
+                  t.whatId=oppIdSelected;            
+                }else if(csIdSelected!=null && csIdSelected.length>14){
+                  t.whatId=csIdSelected; 
+                }  
+                else{
+                  t.whatId=whatIdValue;            
+                }
+            }
+
+            if(IdParam!=null){
+              t.Id=IdParam;
+            }
+            
+            console.log(t);
+            saveTask(t);
+            //sforce.interaction.saveLog('Task', saveParams, saveLogcallback);
+  }
+  
+  $(".tabs-menu a").click(function(event) {
+        event.preventDefault();
+        $(this).parent().addClass("current");
+        $(this).parent().siblings().removeClass("current");
+        var tab = $(this).attr("href");
+        $(".tab-content").not(tab).css("display", "none");
+        $(tab).fadeIn();
+        
+        $('input[name=oppsName]').removeAttr('checked');
+        $('input[name=casesName]').removeAttr('checked');
+    });
+});
+
+function hideOppCaseTabs(){
+  $("#tabs-container").css('display','none');
+}
+function showOppCaseTabs(){
+  $("#tabs-container").css('display','block');
+}
+
+function getDuration(callsid){
+Visualforce.remoting.Manager.invokeAction(
+    '{!$RemoteAction.TwilioClientController.getCallDuration}',callsid, 
+    function(result, event){
+        console.log('inside getDuration');
+        console.log('result: '+result);
+        if (event.status) {
+            if(result.indexOf('Error:')>=0){
+                $("#twilioError").html(result);
+            }else{
+                SP.callDurationSec = parseInt(result);
+                console.log('callDurationSec: '+SP.callDurationSec);
+                
+            }
+        } else if (event.type === 'exception') {
+            $("#twilioError").html(event.where);
+        } else {
+            $("#twilioError").html(event.message);
+        }
+    },{escape: false}
+);
+}
+
+function saveTask(taskObj){
+Visualforce.remoting.Manager.invokeAction(
+    '{!$RemoteAction.TwilioClientController.saveTask}',taskObj, 
+    function(result, event){
+        console.log('inside saveTask');
+        console.log('result: '+result);
+        if (event.status) {
+            if(result.indexOf('Error:')>=0){
+                $("#twilioError").html(result);
+            }else{
+                SP.callDurationSec = 0;
+                console.log("saveTask result =" + result);
+                if(IdParam == null){
+                  IdParam = result; 
+                }
+                if(SP.currentCall == null){
+                  SP.functions.setIdleState();
+                }
+            }
+        } else if (event.type === 'exception') {
+            $("#twilioError").html(event.where);
+        } else {
+            $("#twilioError").html(event.message);
+        }
+    },{escape: false}
+);
+}
+
+
+
+  </script>
+ <style type="text/css">
+
+
+ </style>
+
+</head>
+<body>
+  <div id="client_name" hidden="true"></div>
+  <div id="softphone" class="softphone">
+    <div class="error" id="twilioError"></div>
+    <div id="agent-status">
+      <p></p>
+    </div><!-- /agent-status -->
+
+    <div class="divider"></div>
+    <div id="dialPad">
+      <div id="number-entry">
+        <input id="nemberElem" placeholder="+495555555555" class="inputText"></input>
+      </div><!-- /number-entry" -->
+
+      <div id="dialer">
+        <div id="dialer-container">
+          <div class="numpad-container">
+            <div class="number" value="1">1</div><div class="number" value="2">2</div><div class="number" value="3">3</div><div class="number" value="4">4</div><div class="number" value="5">5</div><div class="number" value="6">6</div><div class="number" value="7">7</div><div class="number" value="8">8</div><div class="number" value="9">9</div><div class="number ast" value="*">&lowast;</div><div class="number" value="0">0</div><div class="number" value="#">#</div>
+          </div><!-- /numpad-container -->
+        </div><!-- /dialer-container -->
+      </div><!-- /dialer -->
+    </div>
+
+  <div id="action-button-container">
+    <div id="action-buttons">
+      <button class="call">Call</button>
+      <!-- <button class="answer">Answer</button> -->
+      <button class="hangup">Hangup</button>
+      <button class="mute">Mute</button>
+    </div><!-- /action-buttons -->
+  </div>
+    <div id="CallLogPanel">
+      <div id="call-notes"><br/><br/>
+          <textarea id="callLogData" rows="3" placeholder="Enter Call logs..." />
+      </div>
+        <br/>
+      <div>
+      Wrapup code<br/><br/>
+      <div class="radio">
+          <input id="r1" type="radio" name="call" value="Call - Decision maker reached"/>
+        <label for="r1"> Decision maker reached</label>
+          <input id="r2" type="radio" name="call" value="Call - Employee reached"/>
+        <label for="r2"> Employee reached</label>
+          <input id="r3" type="radio" name="call" value="Call - Nobody reached"/>
+        <label for="r3"> Nobody reached</label>
+      </div>
+      </div>
+      <br/>
+        <div id="tabs-container">
+        <ul class="tabs-menu">
+            <li class="current" style="display:inline"><a href="#opps">Opp</a></li>
+            <li style="display:inline"><a href="#cases">case</a></li>
+        
+        </ul>
+        <div id="opps" class="tab-content">
+        
+        </div>
+        <div id="cases" class="tab-content">
+        </div>
+      </div>
+      <br/>
+      <button id="saveBtn" class="save">Save</button>
+      <button id="canBtn" class="cancel">Cancel</button>
+    </div>
+  </div><!-- /softphone -->
+</body>
+</html>
+</apex:page>

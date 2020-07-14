@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Lead Notification for Leads created by Sales Agents</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>ME - Lead Notification (Lead Research)</name>
+    <style>none</style>
+    <subject>New Lead created</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

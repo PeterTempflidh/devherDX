@@ -1,0 +1,80 @@
+<aura:component controller="CtrGlobalChatBot" implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId" description="PreviousOrders">
+    <aura:handler event="c:OrderDetailsEvent" action="{!c.init}"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="orderNumber" type="String"/>
+    <aura:attribute name="platformName" type="String"/>
+    <aura:attribute name="country" type="String"/>
+    <aura:attribute name="dataPresent" type="Boolean"/>
+	<aura:attribute name="customerDetails" type="Object"/>
+    <lightning:workspaceAPI aura:id="prevOrdworkspace" />
+	<aura:attribute name="showSpinner" type="boolean" default="false"/>
+
+    <aura:if isTrue="{!v.dataPresent}">
+        <lightning:card iconName="standard:account">
+            <aura:set attribute="title">
+                <div style="font-weight:700">{!$Label.c.Previous_Orders}</div>
+            </aura:set>
+
+			<!--Loadin spinner is added for behavior where on click of Order Id, 
+	   while order loads user can click the same order again as raised in: SP-4511-->
+			<aura:if isTrue="{! v.showSpinner }">           
+           	    <lightning:spinner variant="brand" size="small"/>           
+              </aura:if>
+            <div style="max-height:350px;overflow-y: auto;overflow-x:hidden">
+                <table class="slds-table slds-no-row-hover slds-table_cell-buffer slds-table_bordered" style="overflow-wrap: break-word;max-height">
+                    <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col" class="slds-size_1-of-7">
+                            <div class="slds-truncate slds-text-align_left" title="Order Id">{!$Label.c.order_Id}</div>
+                        </th>
+                        <th scope="col" class="slds-size_1-of-7">
+                            <div class="slds-truncate slds-text-align_left" title="Order Status">{!$Label.c.Order_Status}</div>
+                        </th>
+                        <th scope="col" class="slds-size_1-of-7">
+                            <div class="slds-truncate slds-text-align_left" title="Order Amount">{!$Label.c.Order_Amount}</div>
+                        </th>
+                        <th scope="col" class="slds-size_2-of-7">
+                            <div class="slds-truncate slds-text-align_left" title="Restaurant Name">{!$Label.c.Restaurant_Name}</div>
+                        </th>
+                        <th scope="col" class="slds-size_2-of-7">
+                            <div class="slds-truncate slds-text-align_left" title="Created Date">{!$Label.c.Created_Date}</div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <aura:iteration items="{!v.data}" var="data">
+                        <tr>
+                            <td class="slds-cell-wrap">
+                                <span style="overflow-wrap: break-word;">
+                                    <a onclick="{!c.captureClick}">{!data.orderId}</a>
+                                </span>
+                            </td>
+                            <td class="slds-cell-wrap">
+                                <span style="{!data.isNegative?'color: red;font-weight: bolder;font-size: 15px;overflow-wrap: break-word;':'color: green;font-weight: bolder;font-size: 15px;overflow-wrap: break-word;'}">
+                                    {!data.status}
+                                </span>
+                            </td>
+                            <td class="slds-cell-wrap">
+                                <span style="overflow-wrap: break-word;">
+                                    {!data.amount}
+                                </span>
+                            </td>
+                            <td class="slds-cell-wrap">
+                                <span style="overflow-wrap: break-word;">
+                                    {!data.Restaurant_Name}
+                                </span>
+                            </td>
+                            <td class="slds-cell-wrap">
+                                <span style="overflow-wrap: break-word;">
+                                    {!data.createdDate}
+                                </span>
+                            </td>
+                        </tr>
+                    </aura:iteration>
+                    </tbody>
+                </table>
+            </div>
+        </lightning:card>
+    </aura:if>
+</aura:component>

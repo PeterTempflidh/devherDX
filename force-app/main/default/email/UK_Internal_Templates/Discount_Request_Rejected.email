@@ -1,0 +1,7 @@
+Hello {!Receiving_User.Name}, 
+
+your approval request case {!Case.Subject} for {!Case.Restaurant__c} has been rejected. 
+
+Link to the case: 
+
+https://emea.salesforce.com/{!Case.Id}

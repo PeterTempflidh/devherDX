@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>New</fullName>
+        <default>false</default>
+        <label>New</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>5</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Open</fullName>
+        <default>false</default>
+        <label>Open</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>10</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Contact Established</fullName>
+        <default>false</default>
+        <label>Contact Established</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>20</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Call - Reached</fullName>
+        <default>false</default>
+        <description>Remove this Stage after Korea is on the Global Process</description>
+        <label>Call - Reached</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>25</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Non Contracted</fullName>
+        <default>false</default>
+        <description>Remove this Stage after Korea is on the Global Process</description>
+        <label>Non Contracted</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>30</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Approval Pending</fullName>
+        <default>false</default>
+        <label>Approval Pending</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>40</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Quote Rejected</fullName>
+        <default>false</default>
+        <label>Quote Rejected</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>30</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Negotiating</fullName>
+        <default>false</default>
+        <description>Remove this Stage after all countries are using new Approval process (SP-2415)</description>
+        <label>Negotiating</label>
+        <closed>false</closed>
+        <forecastCategory>Omitted</forecastCategory>
+        <probability>20</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Quote Approved</fullName>
+        <default>false</default>
+        <label>Quote Approved</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>55</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Positive Feedback - HOS</fullName>
+        <default>false</default>
+        <description>Remove this Stage after all countries are using new Approval process (SP-2415)</description>
+        <label>Positive Feedback - HOS</label>
+        <closed>false</closed>
+        <forecastCategory>Omitted</forecastCategory>
+        <probability>55</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Please correct errors</fullName>
+        <default>false</default>
+        <description>Remove this Stage after Korea starts using &apos;Please Check&apos; as well</description>
+        <label>Please correct errors</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>90</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Please Check</fullName>
+        <default>false</default>
+        <label>Please Check</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>30</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Verbal Agreement</fullName>
+        <default>false</default>
+        <description>Customer agrees to move forward and gives commitment to returning the menu</description>
+        <label>Verbal Agreement</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>25</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Collecting Documents</fullName>
+        <default>false</default>
+        <label>Collecting Documents</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>50</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Documents Received</fullName>
+        <default>false</default>
+        <label>Documents Received</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>55</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Quote Sent</fullName>
+        <default>false</default>
+        <label>Quote Sent</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>60</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Feedback Received</fullName>
+        <default>false</default>
+        <label>Feedback Received</label>
+        <closed>false</closed>
+        <forecastCategory>BestCase</forecastCategory>
+        <probability>70</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Quality Check Request</fullName>
+        <default>false</default>
+        <label>Quality Check Request</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>80</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Editorial Queue</fullName>
+        <default>false</default>
+        <description>QA is complete
+ - Process Started for sending the box
+ - Case created for menu typing</description>
+        <label>Editorial Queue</label>
+        <closed>false</closed>
+        <forecastCategory>Forecast</forecastCategory>
+        <probability>85</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Promo and Logistics Queue</fullName>
+        <default>false</default>
+        <label>Promo and Logistics Queue</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>95</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Design Approval</fullName>
+        <default>false</default>
+        <label>Design Approval</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>90</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Onboarding</fullName>
+        <default>false</default>
+        <label>Onboarding</label>
+        <closed>false</closed>
+        <forecastCategory>Forecast</forecastCategory>
+        <probability>95</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Onboarding Failed</fullName>
+        <default>false</default>
+        <label>Onboarding Failed</label>
+        <closed>false</closed>
+        <forecastCategory>Omitted</forecastCategory>
+        <probability>30</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Closed Won</fullName>
+        <default>false</default>
+        <label>Closed Won</label>
+        <closed>true</closed>
+        <forecastCategory>Closed</forecastCategory>
+        <probability>100</probability>
+        <won>true</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Closed Lost</fullName>
+        <default>false</default>
+        <label>Closed Lost</label>
+        <closed>true</closed>
+        <forecastCategory>Omitted</forecastCategory>
+        <probability>0</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Terminal Returned</fullName>
+        <default>false</default>
+        <description>Remove this Stage after Korea is on the Global Process</description>
+        <label>Terminal Returned</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>0</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Replacement Charge</fullName>
+        <default>false</default>
+        <description>Remove this Stage once all countries are using new Asset Process</description>
+        <label>Replacement Charge</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>50</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Replacement Accepted</fullName>
+        <default>false</default>
+        <description>Remove this Stage once all countries are using new Asset Process</description>
+        <label>Replacement Accepted</label>
+        <closed>false</closed>
+        <forecastCategory>Forecast</forecastCategory>
+        <probability>70</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Delivery Pending</fullName>
+        <default>false</default>
+        <label>Delivery Pending</label>
+        <closed>false</closed>
+        <forecastCategory>Omitted</forecastCategory>
+        <probability>90</probability>
+        <won>false</won>
+    </standardValue>
+</StandardValueSet>

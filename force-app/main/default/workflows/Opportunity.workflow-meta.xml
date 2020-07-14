@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Send_notification_to_opportunity_owner_about_opp_rejected</fullName>
+        <description>Send notification to opportunity owner about opp rejected</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Salesforce_Templates/Opportunity_rejected</template>
+    </alerts>
+    <alerts>
+        <fullName>TLB_QC_MP_RejectNotification</fullName>
+        <description>TLB - QC/MP - RejectNotification</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>TLB_System_Templates/TLB_QC_MP_RejectNotification</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>ClosedDateUpdate</fullName>
+        <field>CloseDate</field>
+        <formula>TODAY()</formula>
+        <name>ClosedDateUpdate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>DE_Update_Close_Date_to_Closed_Won_Date</fullName>
+        <description>Sets the Close date to the date when the opportunity went to Closed Won</description>
+        <field>CloseDate</field>
+        <formula>Today()</formula>
+        <name>DE Update Close Date to Closed Won Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Opportunity_name_equals_business_type</fullName>
+        <field>Name</field>
+        <formula>TEXT( Business_Type__c )</formula>
+        <name>Opportunity name equals business type</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_New_Opportunity_Name</fullName>
+        <description>set name to Business Type + whatever they wrote in the name</description>
+        <field>Name</field>
+        <formula>IF(
+  LEFT(Name,LEN(TEXT(PRIORVALUE(Business_Type__c)))) = TEXT(PRIORVALUE(Business_Type__c)),
+  TEXT(Business_Type__c) &amp; &quot; &quot; &amp; RIGHT(Name,LEN(Name)-LEN(TEXT(PRIORVALUE(Business_Type__c)))),
+  TEXT(Business_Type__c) &amp; &quot; &quot; &amp; Name
+)</formula>
+        <name>Set New Opportunity Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TLB_UAE_Account_to_HSO</fullName>
+        <field>OwnerId</field>
+        <lookupValue>mmatute@talabat.com</lookupValue>
+        <lookupValueType>User</lookupValueType>
+        <name>TLB - UAE Account to HSO</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <targetObject>AccountId</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TLB_set_Close_Date</fullName>
+        <description>Sets the Close Date of the Opportunity to TODAY()</description>
+        <field>CloseDate</field>
+        <formula>TODAY()</formula>
+        <name>TLB - set Close Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TLB_set_Online_Status_Backend</fullName>
+        <description>Set the Online Status Backend to &quot;Online&quot;</description>
+        <field>Online_Status_Backend__c</field>
+        <literalValue>Online</literalValue>
+        <name>TLB - set Online Status Backend</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <targetObject>AccountId</targetObject>
+    </fieldUpdates>
+    <outboundMessages>
+        <fullName>qualtrics__Qualtrics_Example_Outbound_Message</fullName>
+        <apiVersion>34.0</apiVersion>
+        <description>An example of how to setup an outbound message. 
+The endpoint url is not valid and needs to be updated to a real out endpoint url.</description>
+        <endpointUrl>https://survey.qualtrics.com/WRQualtricsServer/sfApi.php?r=outboundMessage&amp;u=UR_123456789&amp;s=SV_123456789&amp;t=TR_123456789</endpointUrl>
+        <fields>Id</fields>
+        <includeSessionId>true</includeSessionId>
+        <integrationUser>elvira.k@deliveryhero.com</integrationUser>
+        <name>Qualtrics Example Outbound Message</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+    <rules>
+        <fullName>DE - Close date when Closed Won</fullName>
+        <actions>
+            <name>DE_Update_Close_Date_to_Closed_Won_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>DE Opportunity</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Closed Won</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.ProfileId</field>
+            <operation>notEqual</operation>
+            <value>System Administrator</value>
+        </criteriaItems>
+        <description>Sets the close date to the date when the opportunitty stage was changed to closed won</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>GLOBAL -  Set Opportunity Name</fullName>
+        <actions>
+            <name>Set_New_Opportunity_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Set the opportunity Name.
+If opp. business type is not null and is not a PP opp then name gets defaulted to business type + whatever they wrote there</description>
+        <formula>AND(   NOT(ISPICKVAL(StageName, &apos;Closed Won&apos;)), OR(     ISNEW(),     ISCHANGED(Business_Type__c),     ISCHANGED(Name)   ),   Name != &apos;Premium Placement&apos;,   NOT(ISPICKVAL(Business_Type__c, &apos;&apos;)),   LEFT(Name,LEN(TEXT(Business_Type__c))) != TEXT(Business_Type__c),$Profile.Name &lt;&gt; &quot;System Administrator&quot;, RecordType.DeveloperName  &lt;&gt; &apos;Yogiyo_Opportunity&apos; , ( Record_Country__c ) &lt;&gt; &apos;Korea&apos;)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Global -Notification when opportunity rejected</fullName>
+        <actions>
+            <name>Send_notification_to_opportunity_owner_about_opp_rejected</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Please Check,Onboarding Failed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.ProfileId</field>
+            <operation>notEqual</operation>
+            <value>System Administrator</value>
+        </criteriaItems>
+        <description>02284200</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>UK Opportunity Name equals Business Type</fullName>
+        <actions>
+            <name>Opportunity_name_equals_business_type</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.Business_Type__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>uk opportunity</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Name</field>
+            <operation>notEqual</operation>
+            <value>Premium Placement</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>qualtrics__Qualtrics Example Survey Rule</fullName>
+        <actions>
+            <name>qualtrics__Qualtrics_Example_Outbound_Message</name>
+            <type>OutboundMessage</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.IsClosed</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <description>An example of how to setup a rule to trigger a survey using an outbound message. 
+In this example when an opportunity is closed we want to email the opportunity and see how their interaction with the sales representative went.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

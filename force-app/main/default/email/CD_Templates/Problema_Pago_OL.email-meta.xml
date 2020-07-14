@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Clickdelivery</letterhead>
+    <name>Problema Pago OL</name>
+    <style>formalLetter</style>
+    <subject>Problema Pago OL</subject>
+    <textOnly>Hola (Nombre del usuario), para entender más tu caso quisiéramos que por favor nos enviaras un print (imágen) del error que te registra e informarnos al detalle que es lo que sucede para poder escalar con el área encargada. Quedamos muy pendientes de ti. Nuestros domi héroes están 24/7 para colaborarte con todo lo que necesites.Movemos el mundo por ti.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

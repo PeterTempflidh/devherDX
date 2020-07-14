@@ -1,0 +1,146 @@
+<aura:component
+        access="GLOBAL"
+        extensible="false"
+        implements="flexipage:availableForRecordHome,force:hasRecordId"
+        controller="pdfViewerCtrl"
+        extends="c:Base"
+        >
+    <aura:method name="refreshMethod" action="{!c.enableRefreshNeeded}"/>
+    <aura:handler event="lightning:tabClosed" action="{!c.onTabClosed }"/>
+    <aura:handler name="init" action="{!c.getAccessLevel}" value="{!this}" />
+
+    <aura:attribute
+            access="GLOBAL"
+            name="height"
+            type="Integer"
+            default = "750"
+    />
+
+    <aura:attribute
+            access="GLOBAL"
+            name="refreshDuration"
+            type="Integer"
+            default = "30"
+    />
+
+    <aura:attribute
+            access="GLOBAL"
+            name="pdfData"
+            type="String"
+            description="PDF data in base64 encoded format"
+    />
+    <aura:attribute
+            access="GLOBAL"
+            name="displayPdfViewer"
+            type="Boolean"
+            description="Display component on UI"
+            default="true"
+    />
+    <aura:attribute
+            access="GLOBAL"
+            name="refreshNeeded"
+            type="Boolean"
+            description="Display component on UI"
+            default="false"
+    />
+
+    <aura:attribute name="simpleRecord" type="Object" 
+                    description="A simplified view record object to be displayed"/>
+
+    <aura:attribute name="recordError" type="String"
+                    description="An error message bound to force:recordData"/>
+
+    <aura:attribute name="showSpinner" type="boolean" default="false"/>
+
+    <aura:attribute name="disableAccept" type="boolean" default="false"/>
+    <aura:attribute name="disableSendEmail" type="boolean" default="false"/>
+    <aura:attribute name="disableRegenerateQuote" type="boolean" default="false"/>
+    <aura:attribute name="hasEditAccess" type="boolean" default="false"/>
+    <aura:attribute name="hasReadAccess" type="boolean" default="false"/>
+    <aura:attribute name="theme" type="String" default="slds-theme--error"/>
+    <aura:attribute name = "alertMessage" type = "String" />
+    <aura:attribute name="uiTheme" type="String"/>
+    <aura:attribute name = "isInClassicConsole" type = "Boolean" />
+    <aura:attribute name = "doShowButtons" type = "Boolean" default = "true" />
+    <aura:attribute name = "isSendEmail" type = "Boolean" />
+    <aura:attribute name="sendEmailMsg" type="String" default="Send Email"/>
+    <aura:attribute name="disableDocuSign" type="boolean" default="false"/>
+
+    <aura:attribute name = "userId" type = "String" />
+    <aura:attribute name = "userSimpleRecord" type = "Object" />
+    <aura:attribute name = "userRecordError" type = "String" />
+
+    <aura:handler name="change" value="{!v.isSendEmail}" action="{!c.toggleEmailForm}"/>
+    <lightning:workspaceAPI aura:id="workspace" />
+
+    <aura:if isTrue="{!v.hasEditAccess}">
+        <force:recordData aura:id="recordHandler"
+                      recordId="{!v.recordId}"
+                      layoutType="FULL"
+                      fields="Id, Name, Status__c, Id_Opportunity__c, RecordTypeId, RecordType.DeveloperName, Id_Account__r.RecordType.Name, Id_Account__r.Delivery_Service__c, Id_Opportunity__r.RecordTypeId, Id_Opportunity__r.Probability, Id_Opportunity__r.Email_Path__c, Id_Account__r.Key_VIP_Account__c, Id_Opportunity__r.RecordType.DeveloperName, Id_Opportunity__r.Parent_Opportunity__c, Id_Account__r.Record_Country__c, Id_Opportunity__r.Business_Type__c, Id_Account__c, Id_Account__r.Vertical__c, Id_Account__r.RecordType.DeveloperName,Id_Opportunity__r.Source_System__c,Id_Opportunity__r.LeadSource"
+                      targetFields="{!v.simpleRecord}" 
+                      recordUpdated="{!c.loadpdf}"
+                      mode="EDIT"
+                      targetError="{!v.recordError}"/>
+                    
+    </aura:if>
+     <aura:if isTrue="{!v.hasReadAccess}">
+            <force:recordData aura:id="recordHandler"
+                      recordId="{!v.recordId}"
+                      layoutType="FULL"
+                      fields="Id, Name, Status__c, Id_Opportunity__c, RecordTypeId, RecordType.DeveloperName, Id_Account__r.RecordType.Name, Id_Account__r.Delivery_Service__c, Id_Opportunity__r.RecordTypeId, Id_Opportunity__r.Probability, Id_Opportunity__r.Email_Path__c, Id_Account__r.Key_VIP_Account__c, Id_Opportunity__r.RecordType.DeveloperName, Id_Opportunity__r.Parent_Opportunity__c, Id_Account__r.Record_Country__c, Id_Opportunity__r.Business_Type__c, Id_Account__c, Id_Account__r.Vertical__c, Id_Account__r.RecordType.DeveloperName,Id_Opportunity__r.Source_System__c,Id_Opportunity__r.LeadSource"
+                      targetFields="{!v.simpleRecord}" 
+                      recordUpdated="{!c.displayPdf}"
+                      mode="VIEW"
+                      targetError="{!v.recordError}"/>
+    </aura:if>
+    <aura:if isTrue="{!v.userId}">
+        <force:recordData aura:id="userRecordHandler"
+                          recordId="{!v.userId}"
+                          layoutType="FULL"
+                          fields="Id, Name, ProfileId, Profile.Name"
+                          targetFields="{!v.userSimpleRecord}"
+                          mode="VIEW"
+                          targetError="{!v.userRecordError}"/>
+    </aura:if>
+    
+    <div class="slds-card ">
+        <aura:if isTrue="{!not(empty(v.alertMessage))}">
+            <c:displayError recordError="{!v.alertMessage}" theme="{!v.theme}" />
+        </aura:if>
+        <aura:if isTrue="{!v.showSpinner}">
+            <div class="slde-align absolute-center">
+                <lightning:spinner variant="brand" size="small"/>
+            </div>
+        </aura:if>
+
+        <aura:if isTrue = "{!v.doShowButtons}">
+            <div  class="slds-m-around--small slds-align--absolute-center">
+                <lightning:button label="Accept on behalf of customer" title="Accept on behalf of customer" onclick="{!c.accept }" disabled="{!v.disableAccept}"/>
+                <lightning:button label="Regenerate Quote" title="Generate Quote again" onclick="{!c.regenerateQuote }" disabled="{!v.disableRegenerateQuote}"/>
+                <aura:if isTrue = "{!v.isInClassicConsole}">
+                    <lightning:button label="Send Email" title="{!v.sendEmailMsg}" onclick="{!c.sendEmailClassic }" disabled="{!v.disableSendEmail}"/>
+                    <aura:set attribute = "else">
+                        <c:UniversalSendEmailButton parent="{!this }" recordId="{!v.recordId}" displayButton="{!v.disableSendEmail}" buttonTitle="{!v.sendEmailMsg}" />
+                    </aura:set>
+                </aura:if>
+                <c:DocuSign_SendEmail_Button parent="{!this }" recordId="{!v.recordId}" disableButton="{!v.disableDocuSign}" theme="{!v.theme}" recordError="{!v.recordError}"/>
+                <lightning:buttonIcon iconName="utility:refresh" title="Refresh" onclick="{!c.refresh }"/>
+            </div>
+        </aura:if>
+        <aura:if isTrue="{!not(empty(v.recordError))}">
+            <c:displayError recordError="{!v.recordError}" theme="{!v.theme}" />
+        </aura:if>
+        {!v.body}
+        <aura:if isTrue="{!v.displayPdfViewer}">
+            <iframe
+                    aura:id="pdfFrame"
+                    src="/resource/lcins1_pdfjs/web/viewer.html"
+                    class="pdfFrame"
+                    style="{!'height:'+v.height+ 'px'}"
+            ></iframe>
+
+        </aura:if>
+    </div>
+
+</aura:component>

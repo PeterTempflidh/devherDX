@@ -1,0 +1,152 @@
+<apex:component controller="CtrCreateQuote" access="global">
+<apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+<apex:attribute name="oppQ" type="String" description="Placeholder" assignTo="{!oppQId}"/>
+
+   <center >
+      <table cellpadding="0" width="700" cellspacing="0" id="topTable" height="450" >
+         <tr valign="top" >
+            <td  style=" background-color:#FFFFFF; bEditID:r1st1; bLabel:header; vertical-align:top; height:60; text-align:left;"><img border="0" bEditID="r1sp1" bLabel="headerImage" id="r1sp1" src="{!$Resource.Talabat_logo}" style="height:60px"></img></td>
+         </tr>
+         <tr valign="top" >
+            <td  style=" background-color:#FFFFFF; bEditID:r2st1; bLabel:accent1; height:0;"></td>
+         </tr>
+         <tr valign="top" >
+            <td styleInsert="1" height="300"  style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;">
+               <table border="0" cellpadding="5" width="700" cellspacing="5" height="400" >
+                  <tr valign="top" height="400" >
+                     <td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="1" >
+                        <table class="MsoTableGrid" border="0" cellspacing="0" cellpadding="0" width="700" style="border-collapse:collapse;mso-table-layout-alt:fixed;border:none; mso-border-alt:solid black .5pt;mso-border-themecolor:text1;mso-yfti-tbllook: 1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
+                           <tbody>
+                              <tr>
+                                 <td width="429" valign="top" style="width:257.4pt;padding:0cm 5.4pt 0cm 5.4pt">
+                                 <br/>
+                                    <p class="MsoNormal" align="center" style="text-align:center">
+                                       <b>
+                                          <u>
+                                             <span lang="EN-US" style="font-family:Arial,sans-serif;mso-bidi-language:AR-KW">
+                                                ADDITIONAL PAYMENT METHODS
+                                                
+                                             </span>
+                                          </u>
+                                       </b>
+                                    </p>
+                                    <p class="MsoNormal" style="margin-bottom:0cm;margin-bottom:.0001pt;text-align: left">
+                                       <b><span lang="EN-US" style="font-family:Arial,sans-serif">Restaurant Name</span></b>
+                                       <span lang="EN-US" style="font-family:Arial,sans-serif">
+                                          &nbsp;&nbsp;&nbsp; {!accountWrapper.companyName}.
+                                          
+                                       </span>
+                                    </p>
+                                    <p class="MsoNormal" style="margin-bottom:0cm;margin-bottom:.0001pt;text-align: left">
+                                       <b><span lang="EN-US" style="font-family:Arial,sans-serif">Manager Name</span></b>
+                                       <span lang="EN-US" style="font-family:Arial,sans-serif">
+                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {!accountWrapper.ownerName}.
+                                          
+                                       </span>
+                                    </p>
+                                    <p class="MsoNormal" style="margin-bottom:0cm;margin-bottom:.0001pt;text-align: left">
+                                       <b><span lang="EN-US" style="font-family:Arial,sans-serif">Contact #</span></b>
+                                       <span lang="EN-US" style="font-family:Arial,sans-serif">
+                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{!accountWrapper.ownerPhone}.
+                                          
+                                       </span>
+                                    </p>
+                                    <p class="MsoNormal" style="margin-bottom:0cm;margin-bottom:.0001pt;text-align: left">
+                                       <b><span lang="EN-US" style="font-family:Arial,sans-serif">Dear Sir/Madam</span></b>
+                                       <span lang="EN-US" style="font-family:Arial,sans-serif">
+                                          ,
+                                          
+                                       </span>
+                                    </p>
+                                    <p class="MsoNormal" style="margin-bottom:0cm;margin-bottom:.0001pt;text-align: justify">
+                                       <span lang="EN-US" style="font-size:10.0pt;font-family:Arial,sans-serif">
+                                          We will be launching the <b><u>Debit/Credit Card</u></b> online payment service on Talabat.com and Foodonclick.com platforms based on the increased demand from our customers to enable this payment method on our platforms.
+                                          
+                                       </span>
+                                    </p>
+                                    <p class="MsoNormal" style="margin-bottom:0cm;margin-bottom:.0001pt;text-align: justify"></p>
+                                    <p class="MsoNormal" style="margin-bottom:0cm;margin-bottom:.0001pt;text-align: justify">
+                                       <span class="hps"><span lang="EN" style="font-size:10.0pt;font-family: Arial,sans-serif;color:#222222;mso-ansi-language:EN">Kindly note the bank charge rate for this service is (2%) from the total order amount.</span></span>
+                                    </p>
+                                    <p class="MsoNormal" style="margin-bottom:0cm;margin-bottom:.0001pt;text-align: justify"></p>
+                                    <p class="MsoNormal" style="text-align:justify">
+                                       <span lang="EN-US" style="font-size:10.0pt;font-family:Arial,sans-serif">
+                                          The Bank fees for the <b><u>Debit /Credit Card</u></b> online payment service will be paid directly by Talabat &amp; Foodonclick till 31/12/2015. The bank fees will be transferred to the subscribed partner restaurant after this date. 
+                                          
+                                       </span>
+                                    </p>
+                                    <p class="MsoNormal" style="text-align:justify">
+                                       <span lang="EN-US" style="font-size:10.0pt;font-family:Arial,sans-serif;mso-bidi-language: AR-KW">
+                                          You can subscribe to this service by filling and signing this form. Kindly return this form to the Fax or Email information highlighted below. 
+                                          
+                                       </span>
+                                    </p>
+                                    <p class="MsoNormal" style="text-align:justify">
+                                       <b><span lang="EN-US" style="font-size:10.0pt;font-family:Arial,sans-serif">Note 1:</span></b>
+                                       <span lang="EN-US" style="font-size:10.0pt;font-family:Arial,sans-serif">
+                                          Filling this form will be considered an official approval for subscribing to the <b><u>(Debit / Credit Card</u></b>) online payment method. The service will be automatically activated for your restaurant upon launching the service.
+                                          
+                                       </span>
+                                    </p>
+                                    <p class="MsoNormal" style="text-align:justify">
+                                       <b><span lang="EN-US" style="font-size:10.0pt;font-family:Arial,sans-serif">Note 2:</span></b>
+                                       <span lang="EN-US" style="font-size:10.0pt;font-family:Arial,sans-serif">
+                                          <b><u>Debit/Credit card</u></b> online transactions value will be deposited directly to Talabat and Foodonclick bank accounts. The transactions amount will be transferred to your respective restaurant within (7) working days from the end of each month.
+                                          
+                                       </span>
+                                    </p>
+                                    <p class="MsoNormal" style="text-align:left"><b><span lang="EN-US" style="font-family:Arial,sans-serif">Name: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></b></p>
+                                    <p class="MsoNormal"><b style="font-size: 12pt;"><span lang="EN-US" style="font-family:Arial,sans-serif"><br/></span></b></p>
+                                    <p class="MsoNormal" style="text-align:left"><b style="font-size: 12pt;"><span lang="EN-US" style="font-family:Arial,sans-serif">Signature:</span></b></p>
+                                    <p class="MsoNormal" style="margin-bottom:0cm;margin-bottom:.0001pt"><b><span lang="EN-US" style="font-family:Arial,sans-serif"><br/></span></b></p>
+                                    <p class="MsoNormal" style="margin-bottom:0cm;margin-bottom:.0001pt;text-align:left">
+                                       <b>
+                                          <span lang="EN-US" style="font-family:Arial,sans-serif">
+                                             Date:
+                                             
+                                          </span>
+                                       </b>
+                                    </p>
+                                    <p class="MsoNormal" style="margin-bottom:0cm;margin-bottom:.0001pt;text-align:left">
+                                       <b>
+                                          <span lang="EN-US" style="font-family:Arial,sans-serif">
+                                             Please sign and return it to 
+                                             
+                                          </span>
+                                       </b>
+                                    </p>
+                                    <p class="MsoNormal" style="margin-bottom:0cm;margin-bottom:.0001pt;text-align: justify">
+                                       <b><span lang="EN-US" style="font-family:Arial,sans-serif">Fax:</span></b>
+                                       <span lang="EN-US" style="font-family:Arial,sans-serif">
+                                          &nbsp;&nbsp;&nbsp;{!entityFax} 
+                                          
+                                       </span>
+                                    </p>
+                                    <p class="MsoNormal" style="margin-bottom:0cm;margin-bottom:.0001pt;text-align: justify">
+                                       <b><span lang="EN-US" style="font-family:Arial,sans-serif">E-mail:</span></b>
+                                       <span lang="EN-US" style="font-family:Arial,sans-serif">
+                                          {!entityEmail}
+                                       </span>
+                                    </p>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </td>
+                  </tr>
+               </table>
+            </td>
+         </tr>
+         <tr valign="top" >
+            <td  style=" background-color:#FFFFFF; bEditID:r4st1; bLabel:accent2; height:0;"></td>
+         </tr>
+         <tr valign="top" >
+            <td  style=" background-color:#FFFFFF; bEditID:r5st1; bLabel:footer; vertical-align:top; height:0; text-align:left;"></td>
+         </tr>
+         <tr valign="top" >
+            <td  style=" background-color:#FFFFFF; bEditID:r6st1; bLabel:accent3; height:0;"></td>
+         </tr>
+      </table>
+   </center>
+   
+</apex:component>

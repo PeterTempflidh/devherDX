@@ -1,0 +1,6 @@
+{!User.Name} has just {!Bank_Detail__c.Status__c} your Bank Detail Update request for {!Bank_Detail__c.Account__c}.
+
+{!Bank_Detail__c.Status__c} Reason:
+{!ApprovalRequest.Comments}
+
+Click here to access to Bank Detail Update record: {!Bank_Detail__c.Link}

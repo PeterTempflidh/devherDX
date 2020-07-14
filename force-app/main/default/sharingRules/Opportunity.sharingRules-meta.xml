@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>FP_Cambodia_Edit_all_Opportunities</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>SSC-1533</description>
+        <label>FP Cambodia Edit all Opportunities</label>
+        <sharedTo>
+            <group>FP_KH_Edit_all_Opportunities</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Opportunity_Country__c</field>
+            <operation>equals</operation>
+            <value>Cambodia</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Hong_Kong_Edit_All_Opportunities</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>SSC - 1533</description>
+        <label>FP Hong Kong Edit All Opportunities</label>
+        <sharedTo>
+            <group>FP_HK_Edit_all_Opportunities</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Opportunity_Country__c</field>
+            <operation>equals</operation>
+            <value>Hong Kong</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Japan_Edit_all_Opportunities</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FP Japan Edit all Opportunities</label>
+        <sharedTo>
+            <group>FP_JP_Edit_all_Opportunities</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Opportunity_Country__c</field>
+            <operation>equals</operation>
+            <value>Japan</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Laos_Edit_All_Opportunities</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>SSC-1533</description>
+        <label>FP Laos Edit All Opportunities</label>
+        <sharedTo>
+            <group>FP_LA_Edit_all_Opportunities</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Opportunity_Country__c</field>
+            <operation>equals</operation>
+            <value>Laos</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Malaysia_Edit_all_Opportunities</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>SSC-1533</description>
+        <label>FP Malaysia Edit all Opportunities</label>
+        <sharedTo>
+            <group>FP_MY_Edit_all_Opportunities</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Opportunity_Country__c</field>
+            <operation>equals</operation>
+            <value>Malaysia</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Myanmar_Edit_All_Opportunities</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>SSC-1533</description>
+        <label>FP Myanmar Edit All Opportunities</label>
+        <sharedTo>
+            <group>FP_MM_Edit_all_Opportunities</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Opportunity_Country__c</field>
+            <operation>equals</operation>
+            <value>Myanmar</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Philippines_Edit_all_Opportunities</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FP Philippines Edit all Opportunities</label>
+        <sharedTo>
+            <group>FP_PH_Edit_all_Opportunities</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Opportunity_Country__c</field>
+            <operation>equals</operation>
+            <value>Philippines</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Singapore_Edit_all_Opportunities</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>SSC-1533</description>
+        <label>FP Singapore Edit all Opportunities *</label>
+        <sharedTo>
+            <group>FP_SG_Edit_all_Opportunities</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Opportunity_Country__c</field>
+            <operation>equals</operation>
+            <value>Singapore</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Taiwan_Edit_all_Opportunities</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>SSC-1533</description>
+        <label>FP Taiwan Edit all Opportunities *</label>
+        <sharedTo>
+            <group>FP_TW_Edit_all_Opportunities</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Opportunity_Country__c</field>
+            <operation>equals</operation>
+            <value>Taiwan</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Thailand_Edit_all_Opportunities</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FP Thailand Edit all Opportunities</label>
+        <sharedTo>
+            <group>FP_TH_Edit_all_Opportunities</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Opportunity_Country__c</field>
+            <operation>equals</operation>
+            <value>Thailand</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>PY_Sales_Operations</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>PY Sales Operations</label>
+        <sharedTo>
+            <role>PY_Sales_Quality_Check</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>PY Opportunity</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>PY_Sales_Operations_Editorial_and_rest_Operations</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Sharing created because to activate add ons, branding, close cases linked to opportunities these teams need edit access to opportunities.</description>
+        <label>PY Sales Operations, Editorial and rest Operations</label>
+        <sharedTo>
+            <group>PY_Access_to_all_countries</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>PY Opportunity</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingOwnerRules>
+        <fullName>CD_Peru_Sharing_Management</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CD Peru Sharing Management</label>
+        <sharedTo>
+            <role>CD_Sales_Management_Peru</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>CD_Sales_Management_Peru</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>DE_Account_Management_sharing_OPP</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>They can edit opportunities between them</description>
+        <label>DE Account Management sharing OPP</label>
+        <sharedTo>
+            <role>DE_Account_Management</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>DE_Account_Management</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>DE_Editorial_edit_opportunity</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>DE Editorial edit opportunity</label>
+        <sharedTo>
+            <role>DE_Editorial</role>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>DE_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>DE_Restaurant_Operations_edit_access</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>DE Restaurant Operations edit access</label>
+        <sharedTo>
+            <role>DE_Restaurant_Operations</role>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>DE_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>DE_Sales_Coordinator</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>DE Sales Coordinator</label>
+        <sharedTo>
+            <group>DE_Sales_Coordinator</group>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>DE_Sales_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>DE_Sales_Operations</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>DE Sales Operations</label>
+        <sharedTo>
+            <group>DE_Sales_Operations</group>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>DE_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Opportunity_to_Menu_QA_team</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Opportunity to Menu QA team</label>
+        <sharedTo>
+            <group>UK_Menu_Final_Check</group>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>UK_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>UK_Restaurant_Ops_to_Opp</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Enables users in the Restaurant Opps Public Group to Read/Write on Opportunities they do not own</description>
+        <label>UK Restaurant Ops to Opp</label>
+        <sharedTo>
+            <group>UK_Restaurant_Operations</group>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>UK_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Yogiyo_ED_Opportunity_Sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Yogiyo Opportunity Sharing</label>
+        <sharedTo>
+            <roleAndSubordinates>Yogiyo_Local_Admin</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>Yogiyo_Local_Admin</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Yogiyo_Opportunity_Sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Yogiyo Opportunity Sharing</label>
+        <sharedTo>
+            <roleAndSubordinates>Yogiyo_Sales_Managment</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>Yogiyo_Local_Admin</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

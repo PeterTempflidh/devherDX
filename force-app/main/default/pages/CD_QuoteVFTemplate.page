@@ -1,0 +1,9 @@
+<apex:page controller="ctrDH_AU_QuoteVFTemplate" showheader="false" sidebar="false" standardStylesheets="false" language="es">
+     <c:CD_Quote_Colombia acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!colombia}"/>
+     <c:CD_Quote_Peru acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!peru}"/>
+      <c:CD_Quote_Ecuador acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!ecuador}"/>
+    <c:CD_Product acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!prodOnly}"/>
+    <c:CD_Foodora acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!foodoraColombia}"/>
+     <c:CD_Foodora_Peru acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!foodoraPeru}"/>
+      <c:CD_Foodora_Ecuador acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!foodoraEcuador}"/>
+</apex:page>

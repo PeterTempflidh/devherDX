@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY - Consulta sobre que es un voucher cupón</name>
+    <style>freeForm</style>
+    <subject>Gracias por Contactarnos - # {!Case.CaseNumber}</subject>
+    <textOnly>Estimado(a) Nombre, 
+ 
+Nos contactamos en respuesta a tu consulta sobre qué son los vouchers que ves en tus pedidos. 
+ 
+Te comentamos que los mismos son cupones de descuento que PedidosYa otorga a sus clientes como resarcimiento por inconvenientes o como parte de campañas de marketing, no te preocupes por el pago de los mismos ya que su valor es cortesía total de PedidosYa y se pagan todos los viernes.
+ 
+Tener esta función activa te permite formar parte de algunas campañas de Marketing, aumentar tu ranking y pertenecer a un filtro exclusivo de la plataforma llamado “Cupón”, lo que te traerá mayor visibilidad dentro de la plataforma y, por ende, más atracción de clientes.
+ 
+Esperamos haber aclarado todas tus dudas y quedamos a las órdenes ante cualquier consulta, 
+ 
+Saludos, 
+Nombre + Inicial del apellido - Claims Operator 
+PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>change is live</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP TH Menu Change - Menu change is live</name>
+    <style>freeForm</style>
+    <subject>เมนูของท่านออนไลน์แล้ว Your updated menu is live</subject>
+    <textOnly>เรียนพาร์ทเนอร์ที่เคารพ
+
+
+ทีมคอนเทนต์ของเราได้สร้างเมนูออนไลน์ของคุณเรียบร้อยแล้ว
+
+
+กรุณาไปที่ลิงค์ด้านล่างนี้เพื่อตรวจสอบความถูกต้องครบถ้วนของเมนูออนไลน์ของคุณและอย่าลืมบอกฟีดแบคให้กับเราด้วยนะคะ
+
+{!Case.Menu_URL__c}
+
+
+หากต้องมีการเปลี่ยนแปลงหรือแก้ไขใด ๆ กรุณาส่งอีเมลมาหาเราพร้อมรายละเอียดในการเปลี่ยนแปลงโดยใช้ตัวอย่างตามด้านล่างนี้ค่ะ
+
+
+ชื่อเมนู - การแก้ไข - ข้อมูล
+
+ตัวอย่าง: เม็กซิกันวิงส์ - เปลี่ยนชื่อ - ปีกไก่เม็กซิกัน
+
+
+หากมีคำถามหรือข้อสงสัย กรุณาติดต่อเราได้ที่อีเมล partner@foodpanda.co.th หรือเบอร์ +66 2 329 5771
+
+
+เรายินดีช่วยเหลือคุณเสมอค่ะ
+
+
+ด้วยความเคารพ
+
+ฝ่ายดูแลพาร์ทเนอร์ฟู้ดแพนด้า
+
+
+
+
+Dear Partner,
+
+
+Your menu has been completed by our content team and is now online (# {!Case.CaseNumber}). To have a look at it, please find the preview link of your menu here and let us know your feedback:
+
+{!Case.Menu_URL__c}
+
+
+If amendments are needed, please send us an email and write the requested changes in the following format:
+
+
+ITEM NAME - ACTION - INFORMATION
+
+Example: Mexican Wings - Change name - Fiery Wings
+
+
+Any questions? Feel free to contact us per E-Mail partner@foodpanda.co.th or via phone under +66 2 329 5771.
+
+
+
+We are happy to help you!
+
+
+See you soon,
+
+Your foodpanda Partner Care Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

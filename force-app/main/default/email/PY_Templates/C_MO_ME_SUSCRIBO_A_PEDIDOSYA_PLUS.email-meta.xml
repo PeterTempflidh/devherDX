@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>¿CÓMO ME SUSCRIBO A PEDIDOSYA PLUS?</name>
+    <style>freeForm</style>
+    <subject>¿CÓMO ME SUSCRIBO A PEDIDOSYA PLUS?</subject>
+    <textOnly>Estimada {!Case.Customer_Name__c}, es un gusto saludarte.
+
+Estimado {!Case.Customer_Name__c}, es un gusto saludarte.
+
+
+Hemos recibido tu consulta sobre cómo activar tu suscripción PedidosYa Plus, te comentamos que tendrás habilitado un banner de la misma en el último paso cuando estás haciendo un pedido aplicable. Si le das click al banner te aparecerá un formulario que necesitas llenar para completar el proceso.
+
+
+Una vez que PedidosYa Plus esté activo en tu cuenta la membersìa se renovará automáticamente mensualmente; para futuras consultas también encontrarás esta y más información en el siguiente enlace: https://www.pedidosya.cl/about/terminos-condiciones
+
+
+Quedamos a las órdenes ante cualquier consulta.
+
+
+Saludos Cordiales
+{!Case.OwnerFullName}
+Atención al Cliente - PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

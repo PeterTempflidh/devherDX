@@ -1,0 +1,909 @@
+<apex:page showHeader="false" standardStylesheets="false" standardController="AddressDetail__c" sidebar="false"
+           applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" extensions="CtrCreateNewAddress,FacilityUtilityController">
+
+
+    <html xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:v-once="http://vue/fake"
+          xmlns:v-html="http://vue/fake"
+          xmlns:v-bind="http://vue/fake"
+          xmlns:v-if="http://vue/fake"
+          xmlns:v-on="http://vue/fake"
+          xmlns:v-model="http://vue/fake"
+          xmlns:v-cloak="http://vue/fake">
+    <head>
+        <title></title>
+        <link rel="stylesheet" type="text/css"
+              href="{!URLFOR($Resource.slds231, 'assets/styles/salesforce-lightning-design-system-vf.css')}"/>
+        <style type="text/css">
+		[v-cloak] {
+			display: none !important;
+		}
+        </style>
+    </head>
+    <body>
+
+    <div id="app" class="slds">
+
+        <!-- PAGE HEADER -->
+        <div class="slds-page-header">
+            <div class="slds-media">
+                <div class="slds-media__figure">
+				<span class="slds-icon_container slds-icon-standard-address">
+						<svg class="slds-icon" aria-hidden="true">
+							<use
+                                 xlink:href="{!URLFOR($Resource.slds231, '/assets/icons/standard-sprite/svg/symbols.svg#address')}"></use>
+						</svg>
+					</span>
+                </div>
+                <div class="slds-media__body">
+                    <h1 class="slds-page-header__title slds-truncate slds-align-middle">{!$ObjectType.AddressDetail__c.Label}</h1>
+                    <p class="slds-text-body_small slds-line-height_reset">{!IF(ISBLANK(AddressDetail__c.Id), 'New Address', AddressDetail__c.Name)}</p>
+                </div>
+                <div class="slds-button-group" role="group">
+                    <button type="button" class="slds-button slds-button--neutral" v-on:click="cancel">Cancel</button>
+                    <button type="button" class="slds-button slds-button--neutral" v-on:click="saveAddress">Save
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- XAL ADDRESS FORM -->
+        <div v-if="addressFormModel == 'xal'" class="slds-tabs--scoped" v-cloak="v-cloak">
+            <ul class="slds-tabs--scoped__nav" role="tablist">
+                <li class="slds-tabs--scoped__item"
+                    title="Address details"
+                    role="presentation"
+                    v-bind:class="{'slds-active': activeTab == 1}">
+                    <a class="slds-tabs--scoped__link"
+                       href="#"
+                       role="tab"
+                       tabindex="0"
+                       aria-controls="tab-scoped-1"
+                       id="tab-scoped-1__item"
+                       v-bind:aria-selected="activeTab == 1"
+                       v-on:click.prevent="setActiveTab(1)">
+                        Address details
+                    </a>
+                </li>
+                <li class="slds-tabs--scoped__item"
+                    title="Map"
+                    role="presentation"
+                    v-bind:class="{'slds-active': activeTab == 2}">
+                    <a class="slds-tabs--scoped__link"
+                       href="#"
+                       role="tab"
+                       tabindex="-1"
+                       aria-controls="tab-scoped-2"
+                       id="tab-scoped-2__item"
+                       v-bind:aria-selected="activeTab == 2"
+                       v-on:click.prevent="setActiveTab(2)">
+                        Map
+                    </a>
+                </li>
+            </ul>
+            <div id="tab-scoped-1" class="slds-tabs--scoped__content"
+                 v-bind:class="[ activeTab == 1 ? 'slds-show' : 'slds-hide' ]" role="tabpanel"
+                 aria-labelledby="tab-scoped-1__item">
+                <address-form v-bind:address-detail="addressDetail" v-bind:countries="countries"></address-form>
+            </div>
+            <div id="tab-scoped-2" class="slds-tabs--scoped__content"
+                 v-bind:class="[ activeTab == 2 ? 'slds-show' : 'slds-hide' ]" role="tabpanel"
+                 aria-labelledby="tab-scoped-2__item">
+                <geolocation v-if="activeTab == 2" v-bind:lat="addressDetail.latitude"
+                             v-bind:lng="addressDetail.longitude" v-on:coords="onCoordsChange"></geolocation>
+            </div>
+        </div>
+
+        <!-- XAL NEW ADDRESS FORM -->
+        <div v-if="addressFormModel == 'xalnew'" class="slds-tabs--scoped" v-cloak="v-cloak">
+            <ul class="slds-tabs--scoped__nav" role="tablist">
+                <li class="slds-tabs--scoped__item"
+                    title="Address details"
+                    role="presentation"
+                    v-bind:class="{'slds-active': activeTab == 1}">
+                    <a class="slds-tabs--scoped__link"
+                       href="#"
+                       role="tab"
+                       tabindex="0"
+                       aria-controls="tab-scoped-1"
+                       id="tab-scoped-1__item"
+                       v-bind:aria-selected="activeTab == 1"
+                       v-on:click.prevent="setActiveTab(1)">
+                        Address details
+                    </a>
+                </li>
+                <li class="slds-tabs--scoped__item"
+                    title="Map"
+                    role="presentation"
+                    v-bind:class="{'slds-active': activeTab == 2}">
+                    <a class="slds-tabs--scoped__link"
+                       href="#"
+                       role="tab"
+                       tabindex="-1"
+                       aria-controls="tab-scoped-2"
+                       id="tab-scoped-2__item"
+                       v-bind:aria-selected="activeTab == 2"
+                       v-on:click.prevent="setActiveTab(2)">
+                        Map
+                    </a>
+                </li>
+            </ul>
+            <div id="tab-scoped-1" class="slds-tabs--scoped__content"
+                 v-bind:class="[ activeTab == 1 ? 'slds-show' : 'slds-hide' ]" role="tabpanel"
+                 aria-labelledby="tab-scoped-1__item">
+                <xal-address-form v-if="addressDetail.country" v-bind:address-detail="addressDetail" v-bind:country="country"></xal-address-form>
+            </div>
+            <div id="tab-scoped-2" class="slds-tabs--scoped__content"
+                 v-bind:class="[ activeTab == 2 ? 'slds-show' : 'slds-hide' ]" role="tabpanel"
+                 aria-labelledby="tab-scoped-2__item">
+                <geolocation v-if="activeTab == 2" v-bind:lat="addressDetail.latitude"
+                             v-bind:lng="addressDetail.longitude" v-on:coords="onCoordsChange"></geolocation>
+            </div>
+        </div>
+
+        <!-- GOOGLE PLACE API ADDRESS FORM -->
+        <div v-if="addressFormModel == 'gpa'">
+        	<google-place-api-form v-bind:address-detail="addressDetail" />
+        </div>
+
+        <!-- DAUM MAP API ADDRESS FORM -->
+        <div v-if="addressFormModel == 'daum'">
+            <daum-place-api-form v-bind:address-detail="addressDetail" />
+        </div>
+
+        <spinner v-bind:open="loaderState.state.isLoading"></spinner>
+        <error-handler
+                v-bind:message="errorState.state.message"
+                v-bind:type="errorState.state.type"
+                v-bind:timeout="errorState.state.timeout"
+                v-bind:callback="errorState.state.callback"
+                v-on:closed="errorState.clearErrorMsg()">
+        </error-handler>
+    </div>
+
+    <script src="/support/console/38.0/integration.js" type="text/javascript"></script>
+    <script src="{!URLFOR($Resource.DHHConsoleToolkit, 'js/ConsoleToolkit.js')}" type="text/javascript"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?client=gme-deliveryheroholding&channel=salesforcephoenix&libraries=places"></script>
+    <script src="{!URLFOR($Resource.Vue)}"></script>
+    <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
+    <c:VueCommonComponents />
+    <c:VueAddressDetailComponents />
+    <script type="text/javascript">
+
+        // SSC-2794 Facility_Account business config to get all countries for facility for different models
+        // SSC-334 talabat US will be covered with this
+        let xalNewModelCountries = '{!JSENCODE(wrpForFacilityValidation.addModels.xalNewCountries)}';
+		let xalModelCountries = '{!JSENCODE(wrpForFacilityValidation.addModels.xalCountries)}';
+		let gpaModelCountries = '{!JSENCODE(wrpForFacilityValidation.addModels.gpaCountries)}';
+		let facilityAccountRecType = '{!JSENCODE(wrpForFacilityValidation.recTypes.facilityRecordType)}';
+        // methods specific for XAL address model
+        var xalModelMixin = {
+            data: function() {
+                return {
+                  activeTab: 1,
+                  countries: [],
+                  addressFormModel: "xal"
+                };
+            },
+            methods: {
+                setActiveTab: function(tabIdx) {
+					this.activeTab = tabIdx;
+				},
+				saveAddress: function() {
+					if (!this.commonValidateForm()) {
+						this.errorState.setErrorMsg({
+							msg: "{!$Label.Required_Error_Message}",
+							type: "error"
+						});
+
+						this.activeTab = 1;
+						return;
+					}
+
+					// check restaurant address modification for story SSC-335/1937
+					var validationResult = this.validateRestaurantAddForm();
+                    if (validationResult != 'Success') {
+                        this.errorState.setErrorMsg({
+                            msg: validationResult,
+                            type: "error"
+                        });
+                        this.activeTab = 1;
+                        return;
+                    }
+
+					this.loaderState.startLoadingSpinner();
+
+					var self = this;
+					// Remote action
+					Visualforce.remoting.Manager.invokeAction(
+						'{!$RemoteAction.CtrCreateNewAddress.saveAddress}',
+						this.addressDetail,
+						function (result, event) {
+							self.loaderState.stopLoadingSpinner();
+
+							// Checks event status
+							if (!event.status || !result) {
+								self.errorState.setErrorMsg({
+									msg :"Impossible to save address. Error details: " + event.message,
+									type: "error"
+								});
+								return;
+							}
+
+			                if (self.consoleTool.inConsole()) {
+			                    self.consoleTool.openPrimaryTab("/".concat(result.account), "", function(err, tabId) {
+			                        if (err) return;
+			                        self.consoleTool.overrideSubTab(tabId, "/".concat(result.id), "");
+			                    });
+			                } else if (sforce.one) {
+			                	sforce.one.navigateToSObject(result.id);
+			                } else {
+			                	window.location.href = "/".concat(result.id);
+			                }
+
+
+						}, {
+							escape: false
+						}
+					);
+				},
+				onCoordsChange: function(coords) {
+					this.addressDetail.latitude = coords.lat;
+					this.addressDetail.longitude = coords.lng;
+				}
+            },
+            created: function() {
+				this.loaderState.startLoadingSpinner();
+
+				var self = this;
+
+				// load country picklist
+				Visualforce.remoting.Manager.invokeAction(
+					'{!$RemoteAction.CtrCreateNewAddress.getCountryByAccountCountryLabel}',
+					'{!AddressDetail__c.Account__c}',
+					function (result, event) {
+						self.loaderState.stopLoadingSpinner();
+
+						// Checks event status
+			            if (!event.status) {
+			                self.errorState.setErrorMsg({
+			                    msg: "{!$Label.AddressDetail_Loading_Error}" + event.message,
+			                    type: "error"
+			                });
+			                return;
+			            }
+
+						if (!result) {
+						    console.log("Result is empty");
+						    return;
+                        }
+
+						self.countries.push(result);
+
+						if (!"{!AddressDetail__c.Id}") {
+							// if new address force the country value
+							self.addressDetail = {
+								country: result,
+								account: "{!AddressDetail__c.Account__c}"
+							};
+						}
+						self.addressDetail.type = ["Billing Address","Shipping Address","Restaurant Address"];
+					}, {
+						escape: false
+					}
+				);
+
+                // load address record
+		        if ("{!AddressDetail__c.Id}") {
+
+		            this.loaderState.startLoadingSpinner();
+
+		            Visualforce.remoting.Manager.invokeAction(
+		                '{!$RemoteAction.CtrCreateNewAddress.getAddressDetails}',
+		                "{!AddressDetail__c.Id}",
+		                function (result, event) {
+		                    self.loaderState.stopLoadingSpinner();
+
+		                    // Checks event status
+		                    if (!event.status || !result) {
+		                        self.errorState.setErrorMsg({
+		                        	msg: "{!$Label.AddressDetail_Loading_Error}" + event.message,
+		                        	type: "error"
+		                        });
+		                        return;
+		                    }
+
+		                    self.addressDetail = result;
+
+		                    // checks if we are cloning
+		                    if ("{!JSENCODE($CurrentPage.parameters.clone)}" == 1) {
+		                    	self.addressDetail.id = "";
+		                    }
+		                }, {
+		                    escape: false
+		                }
+		            );
+		        }
+			}
+        };
+
+        var xalNewModelMixin = {
+            data: function() {
+                return {
+                    activeTab: 1,
+                    country: String,
+                    addressFormModel: "xalnew"
+                };
+            },
+            methods: {
+                setActiveTab: function(tabIdx) {
+                    this.activeTab = tabIdx;
+                },
+                saveAddress: function() {
+                    if (!this.commonValidateForm()) {
+                        this.errorState.setErrorMsg({
+                            msg: '{!$Label.Required_Error_Message}',
+                            type: "error"
+                        });
+
+                        this.activeTab = 1;
+                        return;
+                    }
+
+                    // check restaurant address modification for story SSC-335/1937
+					var validationResult = this.validateRestaurantAddForm();
+                    if (validationResult != 'Success') {
+                        this.errorState.setErrorMsg({
+                            msg: validationResult,
+                            type: "error"
+                        });
+                        this.activeTab = 1;
+                        return;
+                    }
+
+                    this.loaderState.startLoadingSpinner();
+
+                    var self = this;
+                    // Remote action
+                    Visualforce.remoting.Manager.invokeAction(
+                        '{!$RemoteAction.CtrCreateNewAddress.saveXALAddress}',
+                        this.addressDetail,
+                        function (result, event) {
+                            self.loaderState.stopLoadingSpinner();
+
+                            // Checks event status
+                            if (!event.status || !result) {
+                                self.errorState.setErrorMsg({
+                                    msg :"Impossible to save address. Error details: " + event.message,
+                                    type: "error"
+                                });
+                                return;
+                            }
+
+                            if (self.consoleTool.inConsole()) {
+                                self.consoleTool.openPrimaryTab("/".concat(result.account), "", function(err, tabId) {
+                                    if (err) return;
+                                    self.consoleTool.overrideSubTab(tabId, "/".concat(result.id), "");
+                                });
+                            } else if (sforce.one) {
+                                sforce.one.navigateToSObject(result.id);
+                            } else {
+                                window.location.href = "/".concat(result.id);
+                            }
+
+
+                        }, {
+                            escape: false
+                        }
+                    );
+                },
+                onCoordsChange: function(coords) {
+                    this.addressDetail.latitude = coords.lat;
+                    this.addressDetail.longitude = coords.lng;
+                }
+            },
+            created: function() {
+                this.loaderState.startLoadingSpinner();
+
+                var self = this;
+
+                // load country picklist
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.CtrCreateNewAddress.getAccountCountry}',
+                    '{!AddressDetail__c.Account__c}',
+                    function (result, event) {
+                        self.loaderState.stopLoadingSpinner();
+
+                        // Checks event status
+                        if (!event.status) {
+                            self.errorState.setErrorMsg({
+                                msg: "Impossible to load Address, error details are: " + event.message,
+                                type: "error"
+                            });
+                            return;
+                        }
+
+                        if (!result) {
+                            console.log("Result is empty");
+                            return;
+                        }
+                        self.country = result;
+
+                        if (!"{!AddressDetail__c.Id}") {
+                            // if new address force the country value
+                            self.addressDetail = {
+                                country: result,
+                                account: "{!AddressDetail__c.Account__c}"
+                            };
+                        }
+                        self.addressDetail.type = ["Billing Address","Shipping Address","Restaurant Address"];
+                    }, {
+                        escape: false
+                    }
+                );
+
+                // load address record
+                if ("{!AddressDetail__c.Id}") {
+
+                    this.loaderState.startLoadingSpinner();
+
+                    Visualforce.remoting.Manager.invokeAction(
+                        '{!$RemoteAction.CtrCreateNewAddress.getXALAddressDetails}',
+                        "{!AddressDetail__c.Id}",
+                        function (result, event) {
+                            self.loaderState.stopLoadingSpinner();
+
+                            // Checks event status
+                            if (!event.status || !result) {
+                                self.errorState.setErrorMsg({
+                                    msg: "Impossible to load Address, error details are: " + event.message,
+                                    type: "error"
+                                });
+                                return;
+                            }
+
+                            self.addressDetail = result;
+
+                            // checks if we are cloning
+                            if ("{!JSENCODE($CurrentPage.parameters.clone)}" == 1) {
+                                self.addressDetail.id = "";
+                            }
+                        }, {
+                            escape: false
+                        }
+                    );
+                }
+            }
+        };
+
+        var gpaModelMixin = {
+            data: function() {
+                return {
+                	addressFormModel: "gpa"
+                };
+            },
+            methods: {
+                validateForm: function() {
+                    return this.addressDetail.components.reduce(function(acc, cmp) {
+                        return acc && (!cmp.settings.Required__c || cmp.longValue);
+                    }, true);
+                },
+            	saveAddress: function() {
+            		if (!this.validateForm() || !this.commonValidateForm()) {
+						this.errorState.setErrorMsg({
+							msg: "{!$Label.Required_Error_Message}",
+							type: "error"
+						});
+						return;
+					}
+
+                    // check restaurant address modification for story SSC-335/1937
+					var validationResult = this.validateRestaurantAddForm();
+                    if (validationResult != 'Success') {
+                        this.errorState.setErrorMsg({
+                            msg: validationResult,
+                            type: "error"
+                        });
+
+                        return;
+                    }
+
+					this.loaderState.startLoadingSpinner();
+
+					var self = this;
+					// Remote action
+					Visualforce.remoting.Manager.invokeAction(
+						'{!$RemoteAction.CtrCreateNewAddress.gpa_saveAddress}',
+						this.addressDetail,
+						function (result, event) {
+							self.loaderState.stopLoadingSpinner();
+
+							// Checks event status
+							if (!event.status || !result) {
+								self.errorState.setErrorMsg({
+									msg :"Impossible to save address. Error details: " + event.message,
+									type: "error"
+								});
+								return;
+							}
+
+			                if (self.consoleTool.inConsole()) {
+			                    self.consoleTool.openPrimaryTab("/".concat(result.account), "", function(err, tabId) {
+			                        if (err) return;
+			                        self.consoleTool.overrideSubTab(tabId, "/".concat(result.id), "");
+			                    });
+			                } else if (sforce.one) {
+			                	sforce.one.navigateToSObject(result.id);
+			                } else {
+			                	window.location.href = "/".concat(result.id);
+			                }
+						}, {
+							escape: false
+						}
+					);
+            	}
+            },
+            created: function() {
+            	this.loaderState.startLoadingSpinner();
+            	var self = this;
+
+            	if ("{!AddressDetail__c.Id}") {
+            		Visualforce.remoting.Manager.invokeAction(
+            			'{!$RemoteAction.CtrCreateNewAddress.gpa_getAddressDetails}',
+            			"{!AddressDetail__c.Id}",
+            			function (result, event) {
+        					self.loaderState.stopLoadingSpinner();
+
+            				// Checks event status
+		                    if (!event.status || !result) {
+		                        self.errorState.setErrorMsg({
+		                        	msg: "{!$Label.AddressDetail_Loading_Error}" + event.message,
+		                        	type: "error"
+		                        });
+		                        return;
+		                    }
+
+		                    self.addressDetail = result;
+
+		                    // checks if we are cloning
+		                    if ("{!JSENCODE($CurrentPage.parameters.clone)}" == 1) {
+		                    	self.addressDetail.id = "";
+		                    }
+            			}, {
+            				escape: false
+            			}
+            		);
+            	} else {
+            		Visualforce.remoting.Manager.invokeAction(
+            			'{!$RemoteAction.CtrCreateNewAddress.gpa_getNewAddressDetailsPerAccount}',
+            			"{!AddressDetail__c.Account__c}",
+            			function (result, event) {
+            				self.loaderState.stopLoadingSpinner();
+
+            				// Checks event status
+		                    if (!event.status || !result) {
+		                        self.errorState.setErrorMsg({
+		                        	msg: "{!$Label.AddressDetail_Loading_Error}" + event.message,
+		                        	type: "error"
+		                        });
+		                        return;
+		                    }
+		                    self.addressDetail = result;
+		                    self.addressDetail.type = ["Billing Address","Shipping Address","Restaurant Address"];
+
+            			}, {
+            				escape: false
+            			}
+            		);
+            	}
+            }
+        }
+
+         var daumModelMixin = {
+            data: function() {
+                return {
+                	addressFormModel: "daum"
+                };
+            },
+            methods: {
+                splitAddressDetail: function() {
+                    var oldAddressDetail = {
+                        ...this.addressDetail,
+                        id: this.addressDetail.addressModel == "{!$Label.KR_Old_Address}" ? this.addressDetail.id : this.addressDetail.related_id,
+                        components: this.addressDetail.components.filter(comp => comp.settings.Name.endsWith("{!$Label.KR_OLD_SUFFIX}") && comp.settings.AddressFieldPrefix__c != "{!$Label.GPA_AddressLine_Prefix}"),
+                        formattedAddress: this.addressDetail.components.find(
+                            comp => comp.settings.AddressFieldPrefix__c == "{!$Label.GPA_AddressLine_Prefix}" && comp.settings.Name.endsWith("{!$Label.KR_OLD_SUFFIX}")
+                        ).longValue,
+                        addressModel: "{!$Label.KR_Old_Address}"
+                    };
+                    var newAddressDetail = {
+                        ...this.addressDetail,
+                        id: this.addressDetail.addressModel == "{!$Label.KR_New_Address}" ? this.addressDetail.id : this.addressDetail.related_id,
+                        components: this.addressDetail.components.filter(comp => comp.settings.Name.endsWith("{!$Label.KR_NEW_SUFFIX}") && comp.settings.AddressFieldPrefix__c != "{!$Label.GPA_AddressLine_Prefix}"),
+                        formattedAddress: this.addressDetail.components.find(
+                            comp => comp.settings.AddressFieldPrefix__c == "{!$Label.GPA_AddressLine_Prefix}" && comp.settings.Name.endsWith("{!$Label.KR_NEW_SUFFIX}")
+                        ).longValue,
+                        addressModel: "{!$Label.KR_New_Address}"
+                    };
+                    var addressDetailArray = [];
+                    if(oldAddressDetail.formattedAddress) {
+                        addressDetailArray.push(oldAddressDetail);
+                    }
+                    if(newAddressDetail.formattedAddress) {
+                        addressDetailArray.push(newAddressDetail);
+                    }
+                    return addressDetailArray;
+                },
+                validateForms: function(addressForms) {
+                    var components = [];
+                    addressForms.forEach(addressForm => components = components.concat(addressForm.components));
+                    return components.reduce(function(acc, cmp) {
+                        return acc && (!cmp.settings.Required__c || cmp.longValue);
+                    }, true);
+                },
+            	saveAddress: function() {
+            	    var addressDetails = this.splitAddressDetail();
+            		if (!this.validateForms(addressDetails) || !this.commonValidateForm()) {
+						this.errorState.setErrorMsg({
+							msg: "{!$Label.Required_Error_Message}",
+							type: "error"
+						});
+						return;
+					}
+
+                    // check restaurant address modification for story SSC-335/1937
+					var validationResult = this.validateRestaurantAddForm();
+                    if (validationResult != 'Success') {
+                        this.errorState.setErrorMsg({
+                            msg: validationResult,
+                            type: "error"
+                        });
+                        return;
+                    }
+
+					this.loaderState.startLoadingSpinner();
+
+					var self = this;
+					// Remote action
+					Visualforce.remoting.Manager.invokeAction(
+						'{!$RemoteAction.CtrCreateNewAddress.gpa_saveAddresses}',
+						this.splitAddressDetail(),
+						function (result, event) {
+							self.loaderState.stopLoadingSpinner();
+
+							// Checks event status
+							if (!event.status || !result) {
+								self.errorState.setErrorMsg({
+									msg :"Impossible to save address. Error details: " + event.message,
+									type: "error"
+								});
+								return;
+							}
+                            result = result[0];
+			                if (self.consoleTool.inConsole()) {
+			                    self.consoleTool.openPrimaryTab("/".concat(result.account), "", function(err, tabId) {
+			                        if (err) return;
+			                        self.consoleTool.overrideSubTab(tabId, "/".concat(result.id), "");
+			                    });
+			                } else if (sforce.one) {
+			                	sforce.one.navigateToSObject(result.id);
+			                } else {
+			                	window.location.href = "/".concat(result.id);
+			                }
+						}, {
+							escape: false
+						}
+					);
+            	}
+            },
+            created: function() {
+            	this.loaderState.startLoadingSpinner();
+            	var self = this;
+
+            	if ("{!AddressDetail__c.Id}") {
+            		Visualforce.remoting.Manager.invokeAction(
+            			'{!$RemoteAction.CtrCreateNewAddress.daum_getAddressDetails}',
+            			"{!AddressDetail__c.Id}", "{!AddressDetail__c.Account__c}",
+            			function (result, event) {
+        					self.loaderState.stopLoadingSpinner();
+
+            				// Checks event status
+		                    if (!event.status || !result) {
+		                        self.errorState.setErrorMsg({
+		                        	msg: "{!$Label.AddressDetail_Loading_Error}" + event.message,
+		                        	type: "error"
+		                        });
+		                        return;
+		                    }
+		                    self.addressDetail = result;
+
+		                    // checks if we are cloning
+		                    if ("{!JSENCODE($CurrentPage.parameters.clone)}" == 1) {
+		                    	self.addressDetail.id = "";
+		                    }
+            			}, {
+            				escape: false
+            			}
+            		);
+            	} else {
+            		Visualforce.remoting.Manager.invokeAction(
+            			'{!$RemoteAction.CtrCreateNewAddress.gpa_getNewAddressDetailsPerAccount}',
+            			"{!AddressDetail__c.Account__c}",
+            			function (result, event) {
+            				self.loaderState.stopLoadingSpinner();
+
+            				// Checks event status
+		                    if (!event.status || !result) {
+		                        self.errorState.setErrorMsg({
+		                        	msg: "{!$Label.AddressDetail_Loading_Error}" + event.message,
+		                        	type: "error"
+		                        });
+		                        return;
+		                    }
+		                    if(result.components && result.components[0].settings.CountryIso__c === "KR") {
+		                        self.addressFormModel = "daum";
+                            }
+		                    self.addressDetail = result;
+		                    self.addressDetail.type = ["Billing Address","Shipping Address","Restaurant Address"];
+
+            			}, {
+            				escape: false
+            			}
+            		);
+            	}
+            }
+        };
+
+        function initVue(mixin) {
+		    var root = new Vue({
+		    	mixins: [mixin],
+		        el: "#app",
+		        data: {
+		            consoleTool: new DHHConsoleToolkit(),
+		            loaderState: loaderSharedState,
+		            errorState: errorHandlerSharedState,
+		            inputElementsState: inputElementsSharedState,
+		            addressDetail: {}
+		        },
+		        methods: {
+		            commonValidateForm: function() {
+                        var isValid = true;
+                        for (var i = 0; i < this.inputElementsState.state.elements.length; i++) {
+                            var el = this.inputElementsState.state.elements[i];
+                            if (!el.isFilled) {
+                                el.isInError = true;
+                                isValid = false;
+                            } else {
+                                el.isInError = false; // clear the error message if any
+                            }
+                        }
+
+                        return isValid;
+                    },
+                    validateRestaurantAddForm: function() {
+                        let addressAccountType = "{!JSENCODE(AddressDetail__c.Account__r.Type)}";
+                        let addressAccountFacility = "{!JSENCODE(AddressDetail__c.Account__r.Facility__c)}";
+                        let validationResult = 'Success';
+                        let cb = this.inputElementsState.state.elements[0].values;
+                         //SSC-1937 Start and added Facility business config
+                         if(cb.includes('{!JSENCODE(wrpForFacilityValidation.condLabels.restaurantAddressType)}') &&
+                            addressAccountType.includes('{!JSENCODE(wrpForFacilityValidation.condLabels.branchKitchenRestaurantAccountType)}') && addressAccountFacility){
+                                validationResult = '{!JSENCODE(wrpForFacilityValidation.errMessages.errorAddressMessageForRestaurant)}';
+                                return validationResult;
+                         }
+                        return validationResult;
+                    },
+		            cancel: function() {
+		                if (this.consoleTool.inConsole()) {
+		                    this.consoleTool.closeCurrentTab();
+		                } else {
+		                    history.back();
+		                }
+		            }
+		        }
+		    });
+        }
+
+		Visualforce.remoting.timeout = 120000;
+
+		// get account record type and instantiate Vue with proper mixin
+		Visualforce.remoting.Manager.invokeAction(
+			'{!$RemoteAction.CtrCreateNewAddress.getAccountRecordType}',
+			"{!AddressDetail__c.Account__c}",
+			function (result, event) {
+				// Checks event status
+				if (!event.status) {
+					console.error('Error is: ', event.message)
+					return;
+				}
+
+				// Check result list
+				if (!result || result.length < 1) {
+					console.log('Empty result');
+					return;
+				}
+		        /** SP-2782, SP-2788
+		        Added account country names in the logic below with existing record type.
+		        Not a good practice to hard code record type/country. Optimise using business config. **/
+                switch(result.RecordType.DeveloperName) {
+					case "Talabat_Account":
+						 switch(result.Record_Country__c) {
+                            case "Egypt":
+                                initVue(xalNewModelMixin);
+                                break;
+                            default:
+                                initVue(xalModelMixin);
+                                break;
+                        } break;
+                    case "AT_Account":
+					case "HU_Account":
+					case "DE_Account":
+					case "SE_Account":
+					case "FI_Account":
+                    initVue(gpaModelMixin);
+					break;
+					case "FP_Account":
+                    case "CZ_Account":
+					initVue(xalNewModelMixin);
+					break;
+					case "Yogiyo_Account":
+					initVue(daumModelMixin);
+					break;
+                    case "PY_Account":
+              	  switch(result.Record_Country__c) {
+                      case "Panamá":
+                      case "Paraguay":
+                          initVue(xalModelMixin);
+                          break;
+                      case "Argentina":
+                      case "Chile":
+                      case "Bolivia":
+                          initVue(xalNewModelMixin);
+                          break;
+                      case "Uruguay":
+                      case 'Dominican Republic':
+                      case "Venezuela":
+                          initVue(gpaModelMixin);
+                          break;
+
+                  } break;
+                 // SSC-2794 added facility record type generic condition for every country
+                 case facilityAccountRecType:
+                     switch(true) {
+                      case xalNewModelCountries.includes(result.Record_Country__c):
+                      initVue(xalNewModelMixin);
+                      break;
+                      case xalModelCountries.includes(result.Record_Country__c):
+                      initVue(xalModelMixin);
+                      break;
+                      case gpaModelCountries.includes(result.Record_Country__c):
+                      initVue(gpaModelMixin);
+                      break;
+                      default:
+                      initVue(xalModelMixin);
+                      break;
+            	} break;
+
+          }
+			}, {
+				escape: false
+			}
+		);
+
+		window.addEventListener("load", function() {
+
+			// try to set tab title
+			if (sforce.console.isInConsole()) {
+				var title = "{!AddressDetail__c.Id}" ? "{!AddressDetail__c.Name}" : "New Address";
+				sforce.console.setTabTitle(title);
+			}
+
+		});
+
+    </script>
+
+    </body>
+    </html>
+</apex:page>

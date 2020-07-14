@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY - PQP Primer contacto - General</name>
+    <style>freeForm</style>
+    <subject>Gracias por Contactarnos - # {!Case.CaseNumber}</subject>
+    <textOnly>Estimado XXX,
+
+En esta oportunidad nos comunicamos para dejarte un breve resumen de nuestra llamada del día XX, donde hablamos sobre el desempeño de tu local XXX.
+
+Si es FR: La tasa de rechazos actual es de XX% (Quitar si es OD) es importante tener en cuenta que con cada rechazo estamos perjudicando la experiencia de nuestros usuarios; luego de recibir un rechazo, la mayoría de los usuarios optan por cambiar de local para su próximo pedido.
+
+Si es VL: Hemos modificado el tiempo establecido de preparación para tu local, es relevante que nos ajustemos al mismo para evitar retrasos en los pedidos. 
+
+Si es Response time: Todos los pedidos tienen un tiempo para ser confirmados o rechazados, estamos trabajando en que cada día este sea menor por lo que te pedimos por favor continúes trabajando en la velocidad de tu respuesta, ya que esto repercute directamente en tu posicionamiento en la plataforma. 
+
+Si es PP: Te recordamos que siempre puedes utilizar tu perfil de partner portal para autogestionar tu local, así podrás cumplir con un correcto funcionamiento en la plataforma y evitarás futuros inconvenientes. 
+
+AGREGAR RESUMEN DE LLAMADA:
+Motivos conversados/Problema detectado/Solución acordada.
+
+Adjunto folleto con las vías de contacto y manual de uso del Partner Portal.
+
+Recuerda que haremos un seguimiento en caso de que los objetivos no hayan sido alcanzados.
+
+Quedo a las órdenes.
+Saludos,</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>For AMs/Sales to have vendors to switch to weekly billing cycle</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>Foodpanda Weekly Billing Cycle Opt-In</name>
+    <style>freeForm</style>
+    <subject>Foodpanda Weekly Billing Cycle Opt-In</subject>
+    <textOnly>Hi {!Account.Name},
+
+Thanks for your interest to opt in for weekly billing on foodpanda. 
+
+We&apos;ll require you to endorse this form- HERE for us to process your application
+
+Cheers!
+
+The foodpanda Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

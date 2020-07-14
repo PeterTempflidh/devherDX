@@ -1,0 +1,9 @@
+<messaging:emailTemplate subject="Quote" recipientType="Contact" relatedToType="Opportunity">
+<messaging:htmlEmailBody >
+    <html>
+        <body><br />
+            <c:KoreanQuoteWithAsset acct="{!relatedTo.AccountId}" />
+        </body>
+    </html>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

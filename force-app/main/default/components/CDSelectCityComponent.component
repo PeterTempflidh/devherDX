@@ -1,0 +1,288 @@
+<apex:component controller="CtrCDSelectCityComponent">
+        
+    <!-- REQUIRED ATTRIBUTES -->
+    <apex:attribute name="countryCode" 
+        type="String" 
+        required="true" 
+        description="Country code to retrieve cities for" />
+
+    <apex:attribute name="assignTo" 
+        type="String" 
+        required="true" 
+        description="Reference to which assign the final value" />
+
+    <!-- OPTIONALS ATRIBUTES -->
+    <apex:attribute name="initialValue" 
+        type="String" 
+        required="false" 
+        description="Initial value assigned to the input field. Default is empty" 
+        default="" />
+
+    <apex:attribute name="focused" 
+        type="Boolean" 
+        required="false" 
+        description="If true focus the input field. Default is false" 
+        default="false"/>
+
+    <apex:attribute name="vueInstanceName" 
+        type="String" 
+        required="false" 
+        description="Name of the Vue component that will be created. Default is cityComp" 
+        default="cityComp" />
+
+    <apex:attribute name="includeVue" 
+        type="Boolean" 
+        required="false" 
+        description="If true this component will include the Vue script. Default is false" 
+        default="false" />
+
+    <apex:attribute name="includeSlds" 
+        type="Boolean" 
+        required="false" 
+        description="If true this component will include the Slds stylesheets. Default is false" 
+        default="false" />
+
+    <apex:attribute name="displayCityLabel" 
+        type="Boolean" 
+        required="false" 
+        description="If true display a label next to city input field. Default true" 
+        default="true" />
+
+    <apex:attribute name="visualforceStyle" 
+        type="Boolean" 
+        required="false" 
+        description="If true this component will use Visualforce style instead of LDS. Default is false" 
+        default="false" />
+
+    <apex:attribute name="componentId" 
+        type="String" 
+        required="false" 
+        description="Main div id to which bound Vue instance. Default is autoComplete" 
+        default="autoComplete" />
+
+
+    <!-- component styles -->
+    <style type="text/css">
+        #{!componentId} .active {
+            background-color: #f4f6f9 !important;
+        }
+
+        #{!componentId} .suggestionEntry {
+            padding-left: 2px !important; 
+            cursor: pointer;
+        }
+    </style>
+
+    <!-- LDS css, included on demand -->
+    <apex:outputPanel rendered="{!includeSlds}" layout="none">
+        <apex:stylesheet value="{!URLFOR($Resource.slds, 'assets/styles/salesforce-lightning-design-system-vf.css')}"/>     
+    </apex:outputPanel>
+
+    <!-- Vue component -->
+    <div xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlns:v-once="http://vue/fake"
+            xmlns:v-html="http://vue/fake"
+            xmlns:v-bind="http://vue/fake"
+            xmlns:v-if="http://vue/fake"
+            xmlns:v-on="http://vue/fake"
+            xmlns:v-model="http://vue/fake"
+            id="{!componentId}">
+
+        <!-- variable in which to store the city value -->
+        <apex:inputHidden value="{!assignTo}" html-v-model="selection" />
+
+        <!-- LDS version -->
+        <div v-if="isLDS" v-bind:class="{'slds' : addSldsWrapper}">
+            <div class="slds-grid slds-wrap">
+                <div class="slds-size--1-of-1">
+                    <div 
+                        class="slds-form-element"
+                        v-bind:class="{'slds-has-error': inError}">
+                        
+                        <label v-if="addFieldLabel" class="slds-form-element__label" for="sel">City</label>
+                        <div class="slds-form-element__control">
+                            <input class="slds-input fuzzyAutoComplete" aria-describedby="error-message"
+                                placeholder="Start typing to show the list" 
+                                autocomplete="off" 
+                                v-model="selection"
+                                v-on:keydown.enter.prevent="enter"
+                                v-on:keydown.down.prevent="down"
+                                v-on:keydown.up.prevent="up"
+                                v-on:input="change"
+                                v-on:blur="onBlur" />
+                        </div>
+                        <div v-if="inError" id="error-message" class="slds-form-element__help">{{errorMessage}}</div>
+                    </div>
+                </div>
+
+                
+                <!-- suggestion box -->
+                <div
+                    style="max-height: 240px;"
+                    v-bind:class="[ openSuggestion ? 'slds-show' : 'slds-hide' ]"
+                    class="slds-size--1-of-1 slds-box slds-box-small slds-scrollable--y">
+                    
+                    <div class="slds-scrollable--x">
+                        <table
+                            class="slds-table slds-table--cell-buffer">
+                            
+                            <tr v-bind:class="{'active' : isActive(index)}"
+                                v-for="(suggestion, index) in matches">
+                                
+                                <td class="suggestionEntry" v-on:mousedown="suggestionClick(index)">
+                                    {{suggestion}}
+                                </td>
+                                
+                            </tr>
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Standard Visualforce version -->
+        <div v-if="isVisualforce">
+            <select class="fuzzyAutoComplete" 
+                v-model="selection" 
+                v-on:change="change"
+                v-on:blur="onBlur">
+                    <option v-for="city in suggestions" v-bind:value="city" v-bind:label="city">
+                    </option>
+            </select>
+            <div v-if="inError" class="message errorMsg">{{errorMessage}}</div>
+        </div>
+
+    </div>
+
+    <!-- Vue script, included on demand -->
+    <apex:outputPanel rendered="{!includeVue}" layout="none">
+        <script src="{!URLFOR($Resource.Vue)}"></script>
+    </apex:outputPanel>
+    
+    <!-- JS logic -->
+    <script type="text/javascript">
+        function adjustSuggestionScrolling () {
+            document.querySelector("#{!componentId} .active").scrollIntoView(false);
+        }
+        
+        var {!vueInstanceName} = new Vue({
+            el: "#{!componentId}",
+            data: {
+                open: false,
+                current: -1,
+                suggestions: [],
+                selection: "{!initialValue}",
+                regExpCache: {},
+                
+                isVisualforce: {!visualforceStyle},
+                isLDS: !{!visualforceStyle},
+                addSldsWrapper: {!includeSlds},
+                addFieldLabel: {!displayCityLabel}
+            },
+            computed: {
+                matches: function() {
+                    if (!this.selection) {
+                        return [];  
+                    }
+                    
+                    var self = this;
+                    return this.suggestions.filter(function(str) {
+                        var fuzzyMatch = self.regExpCache[self.selection] || new RegExp(self.selection.replace(/\W/g, "").split("").join("\\w*"), "i");
+                        self.regExpCache[self.selection] = fuzzyMatch;
+                        return fuzzyMatch.test(str);
+                    });
+                },
+                openSuggestion: function() {
+                    return this.selection &&
+                        this.matches.length &&
+                        this.open === true;
+                },
+                inError: function() {
+                    return !this.open && this.suggestions.indexOf(this.selection) < 0;
+                },
+                errorMessage: function() {
+                    return this.selection ? this.selection + " is not a valid city, must match one of the list" : "City is not valid must match one of the list";
+                }
+            },
+            methods: {
+                enter: function() {
+                    this.selection = this.matches[this.current];
+                    this.open = false;
+                    this.current = -1;
+                },
+                up: function() {
+                    if (this.current >= 0) {
+                        this.current--;
+                    }
+                },
+                down: function() {
+                    if (this.current < this.matches.length - 1) {
+                        this.current++;
+                    }
+                },
+                change: function() {
+                    if (this.open == false) {
+                        this.open = true;
+                    }
+
+                    if (this.current > this.matches.length ||
+                        !this.selection) {
+                        this.current = -1;
+                    }
+                },
+                onBlur: function() {
+                    this.open = false;
+                },
+                suggestionClick: function(index) {
+                    this.selection = this.matches[index];
+                    this.open = false;
+                    this.current = -1;
+                },
+                isActive: function(index) {
+                    if (this.current === index) {
+                        this.$nextTick(adjustSuggestionScrolling);
+                        return true;
+                    }
+                    return false;
+                }
+            },
+            created: function() {
+                var self = this;
+                // Timeout
+                Visualforce.remoting.timeout = 120000;
+                // Remote action
+                Visualforce.remoting.Manager.invokeAction(
+                    "{!$RemoteAction.CtrCDSelectCityComponent.getCities}",
+                    "{!JSENCODE(countryCode)}",
+                    function handleRemoteResponse(result, event) {
+                        // Checks event status
+                        if (!event.status) {
+                            console.error("Error is: ", event.message)
+                            return;
+                        }
+
+                        // Check result list
+                        if (!result || result.length < 1) {
+                            console.log("Empty result");
+                            return;
+                        }
+
+                        self.suggestions = result.sort();
+
+                    }, {
+                        escape: false
+                    }
+                );
+            }
+        });
+
+        if ({!focused}) {
+            var elems = document.querySelectorAll(".fuzzyAutoComplete");
+            for (var i = 0; i < elems.length; i++) {
+                elems[i].focus();
+            }
+        }
+        </script>
+</apex:component>

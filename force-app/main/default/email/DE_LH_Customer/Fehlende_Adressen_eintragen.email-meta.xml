@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Erklärung zur Eintragung einer fehlenden Adresse bei Google bzw. Anfordern der Daten, damit wir es eintragen dürfen</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DE_Lieferheld</letterhead>
+    <name>Sonstiges - Fehlende Adressen eintragen</name>
+    <style>freeForm</style>
+    <subject>Deine Anfrage - fehlende Adresse bei Google Maps</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

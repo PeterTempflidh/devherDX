@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Template for SSC-3172</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Vendor_Registration_Form_JP</name>
+    <style>none</style>
+    <subject>Quote</subject>
+    <textOnly>Hi [Full Name],
+
+Welcome to the foodpanda family! You are now part of one of the largest food and groceries ordering and delivery platform in Asia, and we are happy to have you on board. Our mission is to create an amazing delivery experience &amp; you are now a part of making this mission a reality!
+
+How to get your brand online
+
+We would love to have your brand live on our platform as soon as possible.
+
+1. The first step is for you to provide us with the following:
+
+- A signed copy of the contract
+
+- All relevant licences, certifications, permissions and consents (“Licences”) in relation to your trade  (e.g. business registration, restaurant licence, distribution agreement, reseller licence, etc.)
+
+- Your current dine-in menu
+
+- Your official brand logo
+
+- A cover photo representing your restaurant’s cuisine (Spec: 4000 x 2080 px)
+
+To send us these documents, simply reply to this email with the documents attached. If you have already shared the documents previously, please ignore this step.
+
+2. We will prepare your menu on our platform and you will receive your Device(s) by post from a member of the Foodpanda team who will take you through the onboarding process.
+
+3. You will also receive a call from us to get you started. We will help you set up your account and provide operational training.with us including the set up of your Device(s).
+
+4. Once the above is done, your brand will go live on foodpanda!
+
+As a Vendor partner, you are a crucial part of our success. With your help, we hope to build a long-lasting relationship and support you in growing your business.
+
+
+Kind Regards,
+[Opportunity Owner First Name] [Opportunity Owner Last Name]
+
+
+E [Opportunity Owner email]
+
+W  https://www.foodpanda.jp
+
+CONFIDENTIALITY NOTICE: This message (including any attachments) is confidential.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>FI - ChatSurvey - Customer - Qualtrics</name>
+    <style>none</style>
+    <subject>Olitko tyytyväinen?</subject>
+    <textOnly>PIZZA ONLINE.FI
+
+Olitko tyytyväinen?
+
+Paina tästä avataksesi sähköposti selaimessa
+
+Olitko tyytyväinen?
+
+Hei {!Case.Customer_Name__c},
+
+Kiitos että otit yhteyttä Pizza-onlinen asiakaspalveluun!
+
+Asteikolla 0-10, kuinka todennäköisesti suosittelisit Pizza-online.fi –palvelua ystävillesi tai työtovereillesi?
+
+Epätodennäköisesti        Erittäin todennäköisesti
+
+Mielipiteesi on meille todella tärkeä!
+Pizza-online.fi:n tiimi
+
+Tämä viesti on lähetetty sinulle osana SLM Finland Oy:n asiakassuhdeviestintää
+
+Delivery Hero Finland Oy: Pasilankatu 10, 00240 Helsinki, Suomi - Finland
+Palvelunumeromme: +358-2-9300 0471, Sähköpostilla: info@pizza-online.fi
+Y-tunnus: 1936684-6</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

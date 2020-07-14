@@ -1,0 +1,268 @@
+<apex:page standardController="Case" extensions="CtrCaseReason" showHeader="false" >
+
+   
+    <apex:includeScript value="{!$Resource.jQuery}"/>
+    <apex:includeScript value="{!$Resource.AutoCompleteJqueryui}"/>
+    <apex:includeScript value="/soap/ajax/29.0/connection.js"/>
+    <apex:includeScript value="/soap/ajax/29.0/apex.js"/>
+    <apex:includeScript value="/support/console/35.0/integration.js"/>
+    <apex:includeScript value="/xdomain/xdomain.js"/>
+    <apex:includeScript value="/canvas/sdk/js/publisher.js"/>
+
+    <script>$j = jQuery.noConflict();</script>
+    <apex:stylesheet value="{!URLFOR($Resource.slds, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+
+    <!-- font-awesome to the rescue because SLDS svg icon markup is way more work than I care to manage -->
+    <apex:stylesheet value="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+
+    <style>
+        
+        .ui-state-focus {
+            outline: 0;
+            background-color: #f4f6f9;
+            color: #16325c;
+            text-decoration: none;
+
+        
+
+        }
+
+        .hideElements{
+            display:none;
+        }
+
+               
+    </style>
+
+    <div class="slds">
+       <apex:form id="demo">
+   
+            <!--auto complete -->
+           <div id="errorMsg" style="color:red;font-weight:bold"></div><br/>
+            <div class="slds-grid">
+                <div class="slds-col slds-size--1-of-1">
+                    <div class="slds-lookup" data-select="single" data-scope="single" data-typeahead="true">
+
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="lookup-input">Contact reason</label>
+                            <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+                                <span class="slds-input__icon" aria-hidden="true">
+                                    <i class="fa fa-search"></i>
+                                </span>
+                                <div class="slds-pill__container slds-hide"></div>
+                                <input id="lookup-input" class="slds-input slds-show" type="text" aria-autocomplete="list" role="combobox" aria-expanded="true" aria-activedescendant="" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div></div>
+            </div>
+            
+            <!-- Case Fields --> 
+            <div class="slds-col slds-size--1-of-1">
+                <label class="slds-form-element__label" for="combobox-unique-id">Case Type</label>
+                <div class="slds-form-element" >        
+                    <apex:inputField value="{!case.Type}" styleClass="slds-select" html-data-id="type" />
+                </div>
+            </div> 
+            <div class="slds-col slds-size--1-of-1">
+                <label class="slds-form-element__label" for="caseReason1">{!$ObjectType.Case.fields.Case_Reason_Level_1__c.label}</label>
+                <div class="slds-form-element" >
+                    <apex:inputField value="{!case.Case_Reason_Level_1__c}" styleClass="slds-select" html-data-id="reason1"  />
+                </div>
+            </div> 
+            <div class="slds-col slds-size--1-of-1">
+                <label class="slds-form-element__label" for="caseReason2">{!$ObjectType.Case.fields.Case_Reason_Level_2__c.label}</label>
+                <div class="slds-form-element">
+                    <apex:inputField value="{!case.Case_Reason_Level_2__c}" styleClass="slds-select" html-data-id="reason2" />
+                </div>
+            </div> 
+            <div class="slds-col slds-size--1-of-1">
+                <label class="slds-form-element__label" for="caseReason3">{!$ObjectType.Case.fields.Case_Reason_Level_3__c.label}</label>
+                <div class="slds-form-element">
+                    <apex:inputField value="{!case.Case_Reason_Level_3__c}" styleClass="slds-select" html-data-id="reason3" />
+                </div>
+            </div>  
+            <br/><br/>
+            <button value="Save"  id="saveReason" class="slds-button slds-button--brand slds-size--1-of-1" target="_blank" >Save</button>
+              
+        </apex:form>
+    </div>
+    
+
+    <script>
+       
+        var valText= new Array();
+        var level3to2='';
+        var level2to1='';
+        var level1toType='';
+        var isInConsole=false;
+       
+       
+        (function( $ ) {
+            var url = (window.location != window.parent.location)
+            ? document.referrer
+            : document.location.href;
+            console.log(document.location.href);
+
+
+            var getUrlParameter = function getUrlParameter(sParam) {
+                var sPageURL  = decodeURIComponent(window.location.search.substring(1)),
+                    sURLVariables = sPageURL.split('&'),
+                    sParameterName,
+                    i;
+
+                for (i = 0; i < sURLVariables.length; i++) {
+                    sParameterName = sURLVariables[i].split('=');
+                    console.log(sParameterName);
+                    if (sParameterName[0] === sParam) {
+                        return sParameterName[1] === undefined ? true : sParameterName[1];
+                    }
+                }
+            };
+
+            isInConsole=getUrlParameter('console');
+            console.log(isInConsole);
+           
+            var idx=0;
+            level3to2= {!json3to2};
+            console.log({!json3to2});
+            level2to1 ={!json2to1};
+            level1toType ={!json1totype};
+            window.pl = window.pl || {};
+
+            for (idx=0; idx<pl.vals_{!$Label.CaseReason3FieldId}_{!caseRecId}.length; idx++)
+            {
+               valText.push({label : pl.vals_{!$Label.CaseReason3FieldId}_{!caseRecId}[idx+1] , value :(pl.vals_{!$Label.CaseReason3FieldId}_{!caseRecId})[idx]});
+               idx++;
+              
+            }
+            sforce.connection.sessionId = "{!$Api.Session_ID}";
+            var result = sforce.connection.describeSObject("Case");
+
+
+
+           /* for (var i=0; i<result.fields.length; i++) {
+                var field = result.fields[i];
+            
+                if(field.name == 'Case_Reason_Level_3__c'){
+                    var oPicklistVals = field.picklistValues;
+                    for (var b=0; b<oPicklistVals.length; b++) 
+                    { 
+                       // console.log(oPicklistVals[b].value);
+                       }
+                  }
+                }*/
+
+
+
+
+            $.widget( 'slds.autocomplete', $.ui.autocomplete, {
+
+                _create: function() {
+
+                    this._super();
+                     $('.ui-helper-hidden, .ui-helper-hidden-accessible').addClass('hideElements');
+                    this.sldsMenu = $('<div>')
+                                        .addClass('slds-lookup__menu slds-hide')
+                                        .attr('role', 'listbox')
+
+                    this.element.parentsUntil('.slds-lookup').append( this.sldsMenu );
+  
+
+                },
+
+                _renderMenu: function( ul, items ) {
+
+                    var self = this;
+                    ul.addClass('slds-lookup__list').attr('role', 'presentation');
+                    ul.appendTo( this.sldsMenu );
+
+                    this.sldsMenu.addClass('slds-show').removeClass('slds-hide');
+
+                    $.each( items, function( index, item ) {
+                        self._renderItemData( ul, item );
+                    });
+
+                },
+
+                _renderItem: function( ul, item ) {
+
+                    return $('<li>')
+                        .addClass('slds-lookup__item')
+                        .append( '<a href="#" role="option">' + item.label + '</a>' )
+                        .appendTo( ul );
+
+                },
+
+                _close: function( event ) {
+
+                    this._super( event );
+
+                    this.sldsMenu.addClass('slds-hide').removeClass('slds-show');
+
+                }
+
+            });
+
+        })( jQuery );
+
+        $j(function() {
+            $j('#lookup-input').autocomplete({
+                source:  valText,
+                select: function( event, ui ) {
+                    event.preventDefault();
+                    $j("#lookup-input").val(ui.item.label);
+                    
+                    var val3to2 = level3to2[ui.item.value];
+                    var val2to1 = level2to1[val3to2];
+                    var val1tot = level1toType[val2to1];
+                    
+                    $j("[data-id=type]").val(val1tot);  
+                    $j("[data-id=type]").change();            
+                    $j("[data-id=reason1]").val(val2to1);
+                    $j("[data-id=reason1]").change(); 
+                    $j("[data-id=reason2]").val(val3to2);
+                    $j("[data-id=reason2]").change();  
+                    $j("[data-id=reason3]").val(ui.item.value);
+                         
+                },
+                      
+                
+            });
+
+
+             $j("#saveReason").click(function(){
+                
+                var record = new sforce.SObject("Case"); 
+                record.Id = "{!Case.Id}"; 
+                record.Type= $j("[data-id=type]").val();
+                record.Case_Reason_Level_1__c=$j("[data-id=reason1]").val();
+                record.Case_Reason_Level_2__c=$j("[data-id=reason2]").val();
+                record.Case_Reason_Level_3__c=$j("[data-id=reason3]").val();
+
+
+               result = sforce.connection.update([record]);
+               if (result[0].success=='false') {
+                   $j('#errorMsg').text('Error: '+result[0].errors.message);
+                   return false;
+                } else {
+                  window.parent.postMessage('caseReason', '*');
+                  Sfdc.canvas.publisher.publish({name : 'publisher.refresh',  payload : {feed: true,objectFields: true}});
+                }
+               
+                 
+
+             }) ; 
+
+             
+
+        });
+
+        
+
+    </script>
+
+</apex:page>

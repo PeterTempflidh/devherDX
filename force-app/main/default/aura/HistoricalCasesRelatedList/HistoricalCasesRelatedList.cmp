@@ -1,0 +1,86 @@
+<aura:component access="global" implements="force:lightningQuickAction,force:hasRecordId,force:hasSObjectName,flexipage:availableForRecordHome" controller="HistoricalCases_AuraController">
+
+    <aura:attribute name="chats" type="List" />
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="recordId" type="Id"/>
+    <aura:attribute name="sObjectName" type="String" />
+    <aura:attribute name="numberOfCases" type="Integer" default="0"/>
+    <aura:attribute name="nps" type="Decimal" default="0"/>
+    <aura:attribute name="casesIn30Days" type="Integer" default="0"/>
+    <aura:attribute name="casesForSameOrder" type="Integer" default="0"/>
+    <aura:attribute name="oldCasesPresent" type="Boolean" default="False"/>
+	<aura:attribute name="showCasesWithSameOrder" type="Boolean" default="False"/>
+    <aura:attribute name="colLabel" type="String"/>
+    <aura:attribute name="loadCriteria" type="String"/>
+    <lightning:workspaceAPI aura:id="workspace" />
+    <lightning:navigation aura:id="navService"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <lightning:card iconName="standard:case" footer="">
+        <aura:set attribute="title">
+            <div style="color: inherit;font-weight: 700;">{!$Label.c.Historical_Cases_Label +' ('+v.numberOfCases+')'}</div>
+        </aura:set>
+        <aura:set attribute="actions">
+            <lightning:badge label="{!'NPS: '+v.nps}" aura:id="score"/>
+            <lightning:button class="setBorder" iconName="action:refresh" onclick="{!c.doRefresh}" variant="brand"/>
+        </aura:set>
+        <aura:set attribute="footer">
+             <aura:if isTrue="{!and(v.oldCasesPresent,not(empty(v.data)))}">
+                <a onclick="{!c.openTabWithSubtab}">View All</a>
+            </aura:if>
+        </aura:set>
+        <span style="margin-left: 5%;color: slategrey;">Filters:</span>
+        <lightning:button class="setBorder" aura:id="last30Days" label="{!$Label.c.Customers_Cases_30_Days +' '+ v.casesIn30Days}" title="{!$Label.c.Customers_Cases_30_Days+' '+v.casesIn30Days}" onclick="{! c.loadInit }"/>
+        <aura:if isTrue="{!v.showCasesWithSameOrder}">
+            <lightning:button class="setBorder" aura:id="sameOrder" label="{!$Label.c.Cases_Same_Order +' '+ v.casesForSameOrder}" title="{!$Label.c.Cases_Same_Order+' '+v.casesForSameOrder}" onclick="{! c.loadOrdersList }"/>
+        </aura:if>
+        <br/>
+         <aura:if isTrue="{!and(v.oldCasesPresent,not(empty(v.data)))}">
+            <p class="slds-p-horizontal_small">
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered" style="table-layout:fixed;">
+                    <thead>
+                        <tr class="slds-line-height_reset" style="border-bottom:1px black">
+                            <th scope="col" width="4%" style="padding:0px!important"/>
+                            <th class="" scope="col" width="40%">
+                                <div class="slds-truncate" title="{!$Label.c.Custom_Report_Case_Reason}" style="font-size:var(--lwc-fontSizeSmall,0.75rem)">{!$Label.c.Custom_Report_Case_Reason}</div>
+                            </th>
+                            <th class="" scope="col" width="25%">
+                                <div class="slds-truncate" title="{!$Label.c.Order_Number}" style="font-size:var(--lwc-fontSizeSmall,0.75rem)">{!$Label.c.Order_Number}</div>
+                            </th>
+                            <th class="" scope="col" width="35%">
+                                <div class="slds-truncate" title="{!$Label.c.Opened_Date_Time}" style="font-size:var(--lwc-fontSizeSmall,0.75rem)">{!$Label.c.Opened_Date_Time}</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{!v.data}" var="data">
+                            <tr class="slds-hint-parent">
+                                <td data-label="" title="{!data.Status}" style="padding:0px!important">
+                                    <div class="slds-truncate setWidth">
+                                        <lightning:icon iconName="utility:record" class="{!data.StatusVal}" size="xx-small"/>
+                                    </div>
+                                </td>
+                                <td data-label="{!$Label.c.Custom_Report_Case_Reason}" title="{!data.Status}">
+                                    <div class="slds-truncate setWidth">
+                                        <lightning:formattedUrl value="{!data.caseReasonLink}" label="{!data.CaseReason}" target="_self"/>
+                                    </div>
+                                </td>
+                                <td data-label="{!$Label.c.Order_Number}">
+                                    <div class="slds-truncate setWidth">
+                                        {!data.Order_Number__c}
+                                    </div>
+                                </td>
+                                <td data-label="{!$Label.c.Opened_Date_Time}">
+                                    <div class="slds-truncate setWidth">
+                                        {!data.openedDate}
+                                    </div>
+                                </td>
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table>
+            </p>
+        </aura:if>
+        <lightning:spinner aura:id="loadingSpinner" size="medium" />
+    </lightning:card>
+</aura:component>

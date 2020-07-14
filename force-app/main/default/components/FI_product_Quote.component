@@ -1,0 +1,213 @@
+<apex:component controller="CtrCreateQuote" access="global">
+    <apex:attribute name="oppQ" type="String" description="Placeholder" assignTo="{!oppQId}"/>
+    <apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+    <head>
+	    <style type="text/css">
+		    /* A4 size */
+		    
+		    @page {
+		    	size: A4;
+			}
+	
+			@media print {
+				.pageBreak {
+		    		page-break-after: always;
+		    	}
+			}
+		</style>
+	</head>
+    
+            <div id="FI_QUOTE" style="width:700px; margin: auto;page-break-after:always;">
+                <div style="display:inline-block; width:50%;vertical-align: top;margin-left:5%;">
+                    <img src="{!URLFOR($Resource.FI_PizzaOnline_logo)}" style="width: 90%;" />
+                </div>
+                <div id="RestDesc" style="display:inline-block; width:44%;vertical-align: top; float:right;" >
+                    <table style="float:right;">
+                    	<tr>
+                    		<td style="padding:0px;text-align:right"><Strong>Delivery Hero Finland Oy</Strong></td>
+                    	</tr>
+                    	<tr>
+                    		<td style="padding:0px;text-align:right;">Pasilankatu 10, 00240 Helsinki</td>
+                    	</tr>
+                    	<tr>
+                    		<td style="padding:0px;text-align:right">Phone: 02 9300 0470</td>
+                    	</tr>
+                    	<tr>
+                    		<td style="padding:0px;text-align:right">Email: ravintolat@pizza-online.fi</td>
+                    	</tr>
+                    	<tr>
+                    		<td style="padding:0px;text-align:right">1936684-6</td>
+                    	</tr>
+                    </table>
+                </div>
+                
+                <div id="CQtitle" style="width:700px;margin: auto;margin-top:40px !important;text-align:center;font-size: 14pt">
+                    <strong>Palvelusopimus </strong><span style="font-size:12pt">(Service Agreement)</span>
+                </div><br/>
+                <div style="margin: auto;text-align:right;float:right;">
+                    <table style="float:right;">
+                    	<tr>
+                    		<td style="padding:0px;text-align:right">{!opportunity.owner.name}</td>
+                    	</tr>
+                    	<tr>
+                    		<td style="padding:0px;text-align:right">
+                    			<apex:outputText value="{0,date,dd'/'MM'/'yyyy}">
+								    <apex:param value="{!opportunity.closeDate}" /> 
+								</apex:outputText>
+                    		</td>
+                    	</tr>
+                    </table>
+                </div>
+                <br />
+                
+                <h4 style="text-align:left"><Strong>Ravintola-kumppanitiedot </Strong><span style="font-size:10pt">(Restaurant Partner Information)</span></h4>
+                <!-- RESTAURANT DESCRIPTION SECTION -->
+                <table border="1" style="width: 100%;border-collapse: collapse;">
+                	<tr>
+                		<td>
+                			Yrityksen virallinen nimi
+							<span style="font-size:8pt">(Official Business Name)</span>
+                		</td>
+                		<td>
+                			{!accountWrapper.companyName}
+                		</td>
+                	</tr>
+                	<tr>
+                		<td>
+                			Ravintolan nimi <span style="font-size:8pt">(Restaurant Name)</span>
+                		</td>
+                		<td>
+                			{!accountWrapper.RestaurantName}
+                		</td>
+                	</tr>
+                	<tr>
+                		<td>
+                			Puhelinnumero <span style="font-size:8pt">(ravintolan)(Restaurant Phone No.)</span>
+                		</td>
+                		<td>
+                			{!accountWrapper.ownerPhone}
+                		</td>
+                	</tr>
+                	<tr>
+                		<td>
+                			Ravintolan osoite
+							<span style="font-size:8pt">(Restaurant Address)</span>
+                		</td>
+                		<td>
+                			{!accountWrapper.restaurantAddress}
+                		</td>
+                	</tr>
+                	<tr>
+                		<td>
+                			Omistajan täydellinen nimi <span style="font-size:8pt">(Owner Full Name)</span>
+                		</td>
+                		<td>
+                			{!accountWrapper.ownerSalutation} {!accountWrapper.ownerName}
+                		</td>
+                	</tr>
+                	<tr>
+                		<td>
+                			Matkapuhelinnumero <span style="font-size:8pt">(yrityksen vastuuhenkilön) (Mobile Number)</span>
+                		</td>
+                		<td>
+                			{!accountWrapper.ownerMobilePhone}
+                		</td>
+                	</tr>
+                </table>
+                
+                <h4 style="text-align:left"><Strong>Lisäpalvelut </Strong><span style="font-size:10pt">(Service Package)</span> </h4>
+                <!--  PRODUCT SECTION -->
+                <apex:outputPanel rendered="{!listLineItems.size > 0}" >
+	                <table border="1" style="width: 100%;border-collapse: collapse;">
+	                	<tr>
+	                		<th>
+	                			Palvelu ja tuote
+								<span style="font-size:8pt">(Service and Product)</span>
+	                		</th>
+	                		<th style="text-align:center">
+	                			Hinta 
+								<span style="font-size:8pt">(Price)</span>	
+	                		</th>
+	                		<th style="text-align:center">
+	                			Määrä 
+								<span style="font-size:8pt">(Quantity)</span>	
+	                		</th>
+	                		<th style="text-align:center">
+	                			Hinta (ALV 0%)
+								<span style="font-size:8pt">(Total Price) (VAT 0%)</span>	
+	                		</th>
+	                		<th style="text-align:center">
+	                			Ostopäivä
+								<span style="font-size:8pt">(Purchase Date)</span>
+	                		</th>
+	                	</tr>
+	               		<apex:repeat value="{!listLineItems}" var="lineItem">
+	               			<tr>
+		               			<td>
+		                			{!lineItem.Id_List_Product_Price__r.Displayed_Name__c}
+		                		</td>
+		                		<td style="text-align:center">
+		                			{!lineItem.Listed_Price__c}
+		                		</td>
+		               			<td style="text-align:center">
+		                			{!lineItem.Quantity__c}
+		                		</td>
+		                		<td style="text-align:center">
+		                			{!lineItem.Total_Amount__c}
+		                		</td>
+		                		<td style="text-align:center">
+		                			<apex:outputText value="{0,date,dd'/'MM'/'yyyy}">
+									    <apex:param value="{!lineItem.Start_Date__c}" /> 
+									</apex:outputText>
+		                		</td>
+	                		</tr>
+	               		</apex:repeat>
+	                </table><br/>
+                </apex:outputPanel>
+                
+                <!--  ADD ON SECTION -->
+                <apex:outputPanel rendered = "{!listAddOnItems.size > 0}" >
+	                <table border="1" style="width: 100%;border-collapse: collapse;">
+	                	<tr>
+	                		<th>
+	                			Bonus
+								<span style="font-size:8pt">(Add-On)</span>
+	                		</th>
+	                		<th style="text-align:center">
+								Yksityiskohdat
+								<span style="font-size:8pt">(Details)</span>		
+	                		</th>
+	                		<th style="text-align:center">
+	                			Aloituspäivä
+								<span style="font-size:8pt">(Start Date)</span>
+	                		</th>
+	                		<th style="text-align:center">
+	                			Lopetuspäivä 
+								<span style="font-size:8pt">(End Date)</span>
+	                			
+	                		</th>
+	                	</tr>
+	                	<apex:repeat value="{!listAddOnItems}" var="lineItem" >
+		                	<tr>
+		                		<td>
+		                			{!lineItem.Name}
+		                		</td>
+		                		<td style="text-align:center">
+		                			{!lineItem.Contract_Addition__c}
+		                		</td>
+		                		<td style="text-align:center">
+		                			<apex:outputText value="{0,date,dd'/'MM'/'yyyy}">
+									    <apex:param value="{!lineItem.Start_Date__c}" /> 
+									</apex:outputText>
+		                		</td>
+		                		<td style="text-align:center">
+		                			<apex:outputText value="{0,date,dd'/'MM'/'yyyy}">
+									    <apex:param value="{!lineItem.End_Date__c}" /> 
+									</apex:outputText>
+		                		</td>
+		                	</tr>
+	                	</apex:repeat> 
+	                </table><br/> 
+                </apex:outputPanel> 
+            </div>
+</apex:component>

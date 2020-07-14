@@ -1,0 +1,38 @@
+.THIS .progress-bar {
+    z-index: 9050;
+}
+
+.THIS .input-group .lightningInput {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.THIS .custom-report-buttons .slds-button__icon {
+    height: 1.5vw;
+    width: 1.5vw;
+}
+
+.THIS .custom-report-buttons .refresh-button button {
+    float: right;
+    height: 100%;
+}
+
+.THIS .custom-report-buttons .download-button button {
+    padding-right: 1vw;
+    float: right;
+    height: 100%;
+}
+
+.THIS .custom-report-buttons .report-name {
+    text-align: center;
+    font-size: 1vw;
+}
+
+.THIS .custom-report-buttons .report-info {
+    text-align: center;
+    font-size: 0.7vw;
+}
+
+.THIS .custom-report-buttons p {
+    margin: auto;
+}

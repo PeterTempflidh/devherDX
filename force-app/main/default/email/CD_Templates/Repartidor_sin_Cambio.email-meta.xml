@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Clickdelivery</letterhead>
+    <name>Repartidor sin Cambio</name>
+    <style>formalLetter</style>
+    <subject>Repartidor sin Cambio</subject>
+    <textOnly>Se escala queja:
+
+Hola (Nombre del usuario), lamentamos mucho que esta situación se haya presentado. Realizaremos el feedback respectivo al domiciliario. Te queremos informar que hemos escalado la queja con el área encargada para que estas situaciones no se vuelvan a presentar. Recuerda que estamos para ti para cualquier inquietud
+
+Se escala queja y se gestiona solución
+
+Hola (Nombre del usuario), siempre queremos brindar el mejor servicio desde que realizas tu orden hasta que la empiezas a disfrutar. Te queremos informar que (solución del caso el repartidor no tenía cambio). Recuerda que estamos para ti para cualquier inquietud</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

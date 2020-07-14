@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>FP-TW onboarding email - Taiwan</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP TW Send ONB Email</name>
+    <style>freeForm</style>
+    <subject>{!Case.Account} - foodpanda 菜單校稿及開通信件</subject>
+    <textOnly>foodpanda 合作夥伴您好:  歡迎加入 foodpanda，請參照下方步驟，團隊將協助您開通上線！
+
+
+1. 請先記下您的店家編號: {!Account.Backend_ID__c} 2. 菜單校稿 請點選這裡預覽您的菜單: {!Case.Menu_URL__c} 請檢視品名、金額、可配合的外送時間，以及是否有不宜外送的品項，例如酒精飲料。  【請使用網頁瀏覽器開啟】 ※預覽模式需填入地址才能順利看到選項，請於空白欄位輸入【餐廳地址】 ※如該餐點有副選項，點擊菜單中桃紅色+號將彈出選單 3. foodpanda 餐廳平台  您亦可以透過餐廳平台查看菜單、歷史紀錄、營業績效及財務資訊，  請點選超連結或於網址輸入: https://foodpanda.portal.restaurant  餐廳平台帳號資訊，請至您的信箱搜尋 「歡迎加入餐廳平台」之電子郵件。  若未收到開通郵件，請&lt;&lt;點此&gt;&gt;提出申請: &lt;https://docs.google.com/forms/d/e/1FAIpQLSeo9tFYs60AdGvNSDck3tjpmq-1jRnWTW_Z9lmz_2NXvyMnkQ/viewform&gt;
+4. 菜單修改或開通上線  若菜單需修改，請&lt;&lt;點此&gt;&gt;提出需求。  若您確認無誤請觀看教學影片並完成表單，上線團隊將於可開通時間與您聯繫，開通接單。 https://FoodpandaSG.formstack.com/forms/menu_dh_tw?OID={!Case.OpportunityId__c}&amp;OStg=&amp;OName=&amp;OWID=&amp;Cdate= foodpanda 團隊
+
+
+Dear Partner,  Welcome to foodpanda! We are excited to have you on board with us!  Your menu has now been completed by our content team.  To have a look at your menu online, please find the preview link of your menu here: {!Case.Menu_URL__c} 【Please check the link with a web browser】 ※Please enter the restaurant address to get view your full menu.  You can view your menu via your Restaurant Portal account here. Your Restaurant Portal login credentials are provided in a separate email titled &quot;Welcome to Restaurant Portal&quot; that has already been sent to you.  If you have not received the email, please submit a request ticket over here.  Please click on below link to approve your menu and for next steps to be on-boarded on foodpanda!
+https://FoodpandaSG.formstack.com/forms/menu_dh_tw?OID={!Case.OpportunityId__c}&amp;OStg=&amp;OName=&amp;OWID=&amp;Cdate=
+
+You could also watch the goDroid film via youtube link.  Sincerely, Your foodpanda Partner Care Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

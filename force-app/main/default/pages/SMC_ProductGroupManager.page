@@ -1,0 +1,249 @@
+<apex:page controller="CtrProductGroupManager" showHeader="false" sidebar="false" standardStylesheets="false">
+<style type="text/css">
+    table.tableClass th {
+    text-align: left !important;
+    }
+
+    table.displayDataTable th:first-child {
+        background-image: none;
+        cursor: default;
+    }
+</style>
+<script>
+    function showProductGroupPopup(){
+        j$('#customProductGroupPopup').modal('show');
+    }
+    
+    function hideProductGroupPopup(){
+        j$('#customProductGroupPopup').modal('hide');
+    }
+</script>
+<script>
+    jQuery(function(j$) {
+        j$('th').click(function(){
+            var table = j$(this).parents('table').eq(0)
+            var rows = table.find('tr:gt(0)').toArray().sort(comparer(j$(this).index()))
+            this.asc = !this.asc
+            if (!this.asc){rows = rows.reverse()}
+            for (var i = 0; i < rows.length; i++){table.append(rows[i])}
+        })
+        function comparer(index) {
+            return function(a, b) {
+                var valA = getCellValue(a, index), valB = getCellValue(b, index)
+                return j$.isNumeric(valA) && j$.isNumeric(valB) ? valA - valB : valA.localeCompare(valB)
+            }
+        }
+        function getCellValue(row, index){ return j$(row).children('td').eq(index).html() }
+    });
+</script>
+
+
+<apex:form id="myFormProductGroup">
+        <div id="animated-example" class="animated fadeOut"><apex:pageMessages id="productGroupMessage"/></div>
+        <br style="clear:both;" />
+<!--<apex:actionStatus onstart="startSplash();" onStop="endSplash();" id="groupStatus"/>-->
+
+<!--  ..if you need ;)
+            <div class="contentSelectBox">          
+                <div class="styled-select blue">
+                    <apex:selectList id="x" value="xx" size="1">
+                        <apex:selectOptions value="xxxx"/>
+                    </apex:selectList> 
+                </div>
+            </div>
+ -->
+
+<table width="100%" border="0" cellspacing="6" cellpadding="6" style="margin-top:20px !important;">
+<tr>
+    <td>
+        <span class="s1icon s1icon-c-bigtop s1icon-sm pageIconPosition" style="margin-top:-70px !important;"></span>
+        <span class="pageIconPositionLabel" style="margin-top:-65px !important;">{!$Label.Overview_Product_Groups}</span>
+    </td>
+    <td>
+        <span class="s1icon s1icon-c-bigtop s1icon-sm pageIconPosition" style="margin-top:-70px !important;" ></span>
+        <span class="pageIconPositionLabel" style="margin-top:-65px !important;">{!$Label.Product_Groups}</span>
+    </td>
+</tr> 
+<tr>
+    <td></td>
+    <td>
+        <!-- info -->
+        <div class="info" style="float:right; margin-top:-25px;">
+            <div class="tool-tip bottom" style="top:160px; width: 270px;height: 160px; margin-right:40px">
+                <apex:outputText value="{!$Label.Your_Product_Group_Information}" escape="false" />
+            </div>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td style="padding-right:10px" valign="top"> 
+    <apex:pageBlock mode="maindetail " id="productGroupOverview" tabStyle="Sales_Management__tab">
+    
+        <table id="productGroups" class="displayDataTable display">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>{!$Label.Name}</th>
+                    <th>{!$Label.Country}</th>
+                    <th>{!$Label.SMC_Last_Modified_By}</th>
+                    <th>{!$Label.SMC_Last_Modified_Date}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <apex:repeat value="{!listProductGroups}" var="productGroup">
+                    <tr>
+                        <td>
+                            <apex:commandButton action="{!chooseProductGroupToDelete}"  
+                                Styleclass="btn1 btn-warning1 s1utility-close" id="commandlinkDelete" value="" title="{!IF(productGroup.In_Use__c, $Label.SMC_Product_Group_Delete_Not_Possible, $Label.Delete)}"  rerender="deleteProductGroupPopup" oncomplete="showProductGroupPopup();" status="LoadingSpinner" disabled="{!IF(productGroup.In_Use__c, 'true', 'false')}" immediate="true">
+                                <apex:param name="productGroupId" assignTo="{!productGroupId}" value="{!productGroup.Id}" />
+                            </apex:commandButton>
+                        </td>
+                        <td>
+                            <apex:commandLink id="theCommandLink" value="" title="{!$Label.Edit}" action="{!editItem}" rerender="myFormProductGroup" status="LoadingSpinner" oncomplete="scrollToTop(); rerenderDataTable('productGroups');">
+                                <apex:outputText value="{!productGroup.Name}"/>
+                                <apex:param name="productGroupId" assignTo="{!productGroupId}" value="{!productGroup.Id}" />
+                            </apex:commandLink></td>
+                        <td>{!productGroup.Id_Country__r.name}</td>
+                        <td>{!productGroup.LastModifiedBy.Name}</td>
+                        <td>
+                            <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                                <apex:param value="{!productGroup.LastModifiedDate}" /> 
+                            </apex:outputText>
+                        </td>
+                    </tr>
+                </apex:repeat>
+            </tbody>
+        </table>
+    <!-- <span class="s1icon s1icon-c-bigtop s1icon-sm pageIconPosition"></span>
+    <span class="pageIconPositionLabel">{!$Label.Overview_Product_Groups}</span>
+    <apex:dataTable value="{!listProductGroups}" var="productGroup" id="theTable" rowClasses="odd,even" columnClasses="s11Column" styleClass="tableClass" width="100%">
+        <apex:column style="width:30px;">
+         <apex:facet name="header"></apex:facet>
+             <apex:commandButton action="{!chooseProductGroupToDelete}" 
+             Styleclass="btn1 btn-warning1 s1utility-close" id="commandlinkDelete" value="" title="{!IF(productGroup.In_Use__c, $Label.SMC_Product_Group_Delete_Not_Possible, $Label.Delete)}"  rerender="deleteProductGroupPopup" oncomplete="showProductGroupPopup();" status="LoadingSpinner" disabled="{!IF(productGroup.In_Use__c, 'true', 'false')}" immediate="true">
+                <apex:param name="productGroupId" assignTo="{!productGroupId}" value="{!productGroup.Id}" />
+            </apex:commandButton>
+        </apex:column>
+
+        <apex:column style="text-align:left !important;">
+         <apex:facet name="header">{!$Label.Name}</apex:facet>
+        <apex:actionRegion >
+            <apex:commandLink id="theCommandLink" value="" title="{!$Label.Edit}" action="{!editItem}" rerender="myFormProductGroup" status="LoadingSpinner" oncomplete="scrollToTop();">
+            <apex:outputText value="{!productGroup.Name}"/>
+            <apex:param name="productGroupId" assignTo="{!productGroupId}" value="{!productGroup.Id}" />
+            </apex:commandLink>
+            </apex:actionRegion>
+        </apex:column>
+        <apex:column headerValue="{!$Label.SMC_Last_Modified_By}">
+            <apex:outputField value="{!productGroup.LastModifiedBy.Name}" />
+        </apex:column>
+        <apex:column headerValue="{!$Label.SMC_Last_Modified_Date}">
+            <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                <apex:param value="{!productGroup.LastModifiedDate}" /> 
+            </apex:outputText>
+        </apex:column>
+    </apex:dataTable> -->
+    </apex:pageBlock>
+</td>
+<td width="30%" valign="top">
+<apex:pageBlock mode="maindetail " id="productGroupBlock" tabStyle="Sales_Management__tab">
+<div>
+
+            <table width="100%">
+                <tr>
+                    <td></td>
+                    <td align="right"><apex:commandButton value="New" action="{!cancel}" Styleclass="btnFloatLeft3New" oncomplete="scrollToTop(); rerenderDataTable('productGroups');" reRender="productGroupBlock" status="LoadingSpinner" /></td>
+                </tr>
+                </table>
+<table width="100%" style="margin-top:20px; " Class="tableStandard ">
+    <tr>
+    <td style="width: 200px; text-align:left"><b>{!$Label.Product_Groups} {!$Label.Name}</b></td>
+    <td width="0px" colspan="2">
+        <apex:outputPanel >
+            <apex:inputText Style="width:205px;" html-placeholder="{!$Label.write_the_Product_Groups_here}" value="{!newProductGroupItem.Name}" /><span class="requiredRed"></span>
+        </apex:outputPanel>  
+    </td>
+</tr>
+<tr>
+    <td><b>{!$Label.Country}</b></td>
+    <td>
+    <apex:outputPanel rendered="{!showCountryDropdown}">
+<!-- <apex:outputPanel> -->
+        <span class="btnFloatLeft custom-dropdown custom-dropdown--red custom-dropdown--disabled">
+            <apex:selectList style="width:205px;" value="{!selectedCountry}" size="1" Styleclass="custom-dropdown__select custom-dropdown__select--red"  multiselect="false">
+                <apex:selectOptions value="{!countries}"/>
+            </apex:selectList>
+        </span>
+        <span class="requiredRed"></span>
+    </apex:outputPanel>
+    <apex:outputPanel styleClass="hideDropdown" rendered="{!hideCountryDropdown}">
+        <apex:outputText value="{!defaultCountry}" />
+    </apex:outputPanel>
+    </td>
+</tr>
+<tr>
+    <td><b>{!$Label.Company}</b></td>
+    <td>
+    <apex:outputPanel rendered="{!showCompanyDropdown}">
+<!-- <apex:outputPanel> -->
+        <span class="btnFloatLeft custom-dropdown custom-dropdown--red custom-dropdown--disabled">
+            <apex:selectList style="width:205px;" value="{!selectedCompany}" size="1" Styleclass="custom-dropdown__select custom-dropdown__select--red">
+            <apex:selectOptions value="{!companies}"/>
+            </apex:selectList>
+        </span>
+        <span class="requiredRed"></span>
+    </apex:outputPanel>
+    <apex:outputPanel styleClass="hideDropdown" rendered="{!hideCompanyDropdown}">
+        <apex:outputText value="{!defaultCompany}" />
+    </apex:outputPanel>
+    </td>
+</tr>
+</table>         
+<table width="100%" style="margin-top:20px;">
+    <tr>
+        <td></td>
+        <td align="right"> <apex:commandButton Styleclass="btnFloatLeft2" value="{!$Label.save}" action="{!addProductGroup}" reRender="myFormProductGroup, myForm, productM" status="LoadingSpinner" oncomplete="scrollToTop(); rerenderDataTable('productGroups');" /> &nbsp; &nbsp; 
+        <apex:commandButton value="{!$Label.Cancel}" action="{!cancel}" Styleclass="btnFloatLeft3" oncomplete="scrollToTop(); rerenderDataTable('productGroups');" reRender="productGroupBlock" status="LoadingSpinner" /></td>
+    </tr>
+    </table> 
+</div>
+    </apex:pageBlock>
+</td>
+</tr>
+</table>
+
+
+
+<!--
+###############################
+spinner / popup
+###############################
+-->
+<!-- <c:Spinner message="{!$Label.Please_Wait}" /> -->
+<apex:outputPanel id="deleteProductGroupPopup">
+<div class="modal fade" id="customProductGroupPopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+     <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <span class="s1icon s1icon-s-question-feed s1icon-sm "></span>
+            <span class="pageIconPositionLabelpopup">{!$Label.SMC_Product_Group_Deleting}</span>
+            
+            <h2><apex:outputText value="{!$Label.SMC_Product_Group_Deleting} : {!newProductGroupItem.Name}" /></h2>
+             <apex:outputText value="Are you sure you want to delete:  <b>{!newProductGroupItem.Name}</b> ?" escape="false"/>
+
+            <table width="100%" style="margin-top:50px;">
+                <tr>
+                <td><apex:commandButton html-data-dismiss="modal" Styleclass="btnFloatLeft2"  value="Cancel" onclick="return false;" /></td>
+                <td align="right"><apex:commandButton value="Delete" action="{!deleteItem}" Styleclass="btnFloatLeft3" status="LoadingSpinner" rerender="productGroupOverview, productGroupMessage" oncomplete="hideProductGroupPopup(); rerenderDataTable('productGroups');" immediate="true"/>
+                </td>
+                </tr>
+            </table>
+        </div>
+           
+      </div>
+    </div>
+</div>
+</apex:outputPanel>
+</apex:form>
+</apex:page>

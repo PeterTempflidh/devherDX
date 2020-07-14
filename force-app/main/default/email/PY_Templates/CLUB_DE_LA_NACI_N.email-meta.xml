@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>CLUB DE LA NACIÓN</name>
+    <style>freeForm</style>
+    <subject>CLUB DE LA NACIÓN</subject>
+    <textOnly>Estimada {!Case.Customer_Name__c}, es un gusto saludarte.
+
+Estimado {!Case.Customer_Name__c}, es un gusto saludarte.
+
+
+Te contactamos en respuesta a tu consulta sobre cómo asociar el beneficio del “Club La Nación” a tu cuenta.
+
+
+En la App podrás encontrarlo de dos maneras:
+
+
+A. Desde el menú lateral en &quot;mi cuenta&quot; y en &quot;mis suscripciones&quot;.
+
+B. Desde el newsfeed vas a visualizar un banner que dice &quot;asocia tu cuenta a club la nación&quot;.
+
+
+Utilizando cualquier de las opciones, te solicitaremos introducir tu número de club la nación o DNI (actualmente no es posible asociarse con número de credencial la nación).
+
+
+Después de asociada la cuenta de PedidosYa con la cuenta del Club La Nación, vas a tener un porcentaje de descuento en todo tu pedido (20% o más) en los locales que aparezcan en el filtro &quot;Club La Nación&quot;.
+
+
+Quedamos a las órdenes ante cualquier consulta.
+
+
+Saludos Cordiales
+
+{!Case.OwnerFullName}
+
+Atención al Cliente - PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

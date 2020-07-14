@@ -1,0 +1,5 @@
+<aura:event type="APPLICATION" description="Component message event">
+    <!-- Add aura:attribute tags to define event shape.
+         One sample attribute here. -->
+    <aura:attribute name="doRefresh" type="Boolean" default="false"/>
+</aura:event>

@@ -1,0 +1,6 @@
+<design:component label="Case Reason Modal Dialog">
+    <design:attribute name="modalTitle" label="Title" description="Modal title text" />
+    <design:attribute name="buttonText" label="Title" description="Button text" />
+    <design:attribute name="showFooter" label="Footer" description="Show footer with buttons" />
+    <design:attribute name="lookupFieldName" label="Lookup field name" datasource="CaseId,AccountId,--None--" default="CaseId" />
+</design:component>

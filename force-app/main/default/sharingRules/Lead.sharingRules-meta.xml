@@ -1,0 +1,843 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>Argentina</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Argentina</label>
+        <sharedTo>
+            <group>PY_Sales_Argentina</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Argentina</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>CZ_Lead_Sharing</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>CZ Lead Sharing</label>
+        <sharedTo>
+            <roleAndSubordinates>CZ_Management</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>CZ Lead</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Dominican_Republic</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>SP-4462</description>
+        <label>Dominican Republic</label>
+        <sharedTo>
+            <group>PY_Sales_Dominican_Republic</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Dominican Republic</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Bangladesh_Edit_All_Leads</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FP Bangladesh Edit All Leads</label>
+        <sharedTo>
+            <group>FP_BD_Edit_all_leads</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Bangladesh</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Bangladesh_Lead</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sharing rule to give read access on Leads from Bangladesh, for users from Bangladesh. SP-4138</description>
+        <label>FP Bangladesh Lead</label>
+        <sharedTo>
+            <group>FP_Bangladesh_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Bangladesh</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Cambodia_Edit_All_Leads</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FP Cambodia Edit All Leads</label>
+        <sharedTo>
+            <group>FP_KH_Edit_all_leads</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Cambodia</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Cambodia_lead</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>SSC-166</description>
+        <label>FP Cambodia lead</label>
+        <sharedTo>
+            <group>FP_Cambodia_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Cambodia</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Hong_Kong_Edit_All_Leads</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FP Hong Kong Edit All Leads</label>
+        <sharedTo>
+            <group>FP_HK_Edit_all_leads</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Hong Kong</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Hong_Kong_Lead</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sharing rule to give read access on Leads from Hong Kong, for users from Hong Kong. SP-4138</description>
+        <label>FP Hong Kong Lead</label>
+        <sharedTo>
+            <group>FP_Hong_Kong_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Hong Kong</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Japan_Edit_All_Leads</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FP Japan Edit All Leads</label>
+        <sharedTo>
+            <group>FP_JP_Edit_all_leads</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Japan</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Japan_Lead</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sharing rule to give read access on Leads from Japan, for users in Japan. SSC-2971</description>
+        <label>FP Japan Lead</label>
+        <sharedTo>
+            <group>FP_Japan_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Japan</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Laos_Edit_All_Leads</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FP Laos Edit All Leads</label>
+        <sharedTo>
+            <group>FP_LA_Edit_all_leads</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Laos</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Laos_Lead</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>SSC-166</description>
+        <label>FP Laos Lead</label>
+        <sharedTo>
+            <group>FP_Laos_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Laos</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Malaysia_Edit_All_Leads</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FP Malaysia Edit All Leads</label>
+        <sharedTo>
+            <group>FP_MY_Edit_all_leads</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Malaysia</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Malaysia_Lead</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sharing rule to give read access on Leads from Malaysia, for users from Malaysia. SP-4138</description>
+        <label>FP Malaysia Lead</label>
+        <sharedTo>
+            <group>FP_Malaysia_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Malaysia</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Myanmar_Edit_All_Leads</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FP Myanmar Edit All Leads</label>
+        <sharedTo>
+            <group>FP_MM_Edit_all_leads</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Myanmar</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Myanmar_Lead</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>SSC-166</description>
+        <label>FP Myanmar Lead</label>
+        <sharedTo>
+            <group>FP_Myanmar_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Myanmar</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Pakistan_Edit_All_Leads</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FP Pakistan Edit All Leads</label>
+        <sharedTo>
+            <group>FP_PK_Edit_all_leads</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Pakistan</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Pakistan_Lead</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sharing rule to give read access on Leads from Pakistan, for users from Pakistan. SP-4138</description>
+        <label>FP Pakistan Lead</label>
+        <sharedTo>
+            <group>FP_Pakistan_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Pakistan</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Philippines_Edit_All_Leads</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FP Philippines Edit All Leads</label>
+        <sharedTo>
+            <group>FP_PH_Edit_all_leads</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Philippines</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Philippines_Lead</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sharing rule to give read access on Leads from Philippines, for users from Philippines. SP-4138</description>
+        <label>FP Philippines Lead</label>
+        <sharedTo>
+            <group>FP_Philippines_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Philippines</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Singapore_Edit_All_Leads</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FP Singapore Edit All Leads</label>
+        <sharedTo>
+            <group>FP_SG_Edit_all_leads</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Singapore</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Singapore_Lead</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sharing rule to give read access on Leads from Singapore, for users from Singapore. SP-4138</description>
+        <label>FP Singapore Lead</label>
+        <sharedTo>
+            <group>FP_Singapore_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Singapore</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Taiwan_Edit_All_Leads</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FP Taiwan Edit All Leads</label>
+        <sharedTo>
+            <group>FP_TW_Edit_all_leads</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Taiwan</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Taiwan_Lead</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sharing rule to give read access on Leads from Taiwan, for users from Taiwan. SP-4138</description>
+        <label>FP Taiwan Lead</label>
+        <sharedTo>
+            <group>FP_Taiwan_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Taiwan</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Thailand_Edit_All_Leads</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FP Thailand Edit All Leads</label>
+        <sharedTo>
+            <group>FP_TH_Edit_all_leads</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Thailand</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Thailand_Lead</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sharing rule to give read access on Leads from Thailand, for users from Thailand. SP-4138</description>
+        <label>FP Thailand Lead</label>
+        <sharedTo>
+            <group>FP_Thailand_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Thailand</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>HU_Sharing_Rule</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>HU Sharing Rule</label>
+        <sharedTo>
+            <roleAndSubordinates>HU_Management</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>HU Lead</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Head_of_Bahrain_also_head_of_Jordan</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>The head of sales of Bahrain Badawy is also head of sales Jordan.</description>
+        <label>Head of Bahrain also head of Jordan</label>
+        <sharedTo>
+            <role>Talabat_Sales_Management_Bahrain</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Jordan</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Lead_Sharing_Bahrain</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Lead Sharing Bahrain</label>
+        <sharedTo>
+            <roleAndSubordinates>Talabat_Sales_Management_Bahrain</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Bahrain</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Lead_Sharing_Egypt</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Lead Sharing Egypt</label>
+        <sharedTo>
+            <roleAndSubordinates>Talabat_Sales_Management_Egypt</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Egypt</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Lead_Sharing_Jordan</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Lead Sharing Jordan</label>
+        <sharedTo>
+            <roleAndSubordinates>Talabat_Sales_Management_Jordan</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Jordan</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Lead_Sharing_KSA</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Lead Sharing KSA</label>
+        <sharedTo>
+            <roleAndSubordinates>Talabat_Sales_Management_Saudi_Arabia</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Kingdom of Saudi Arabia</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Lead_Sharing_Kuwait</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Lead Sharing Kuwait</label>
+        <sharedTo>
+            <roleAndSubordinates>Talabat_Sales_Management_Kuwait</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Kuwait</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Lead_Sharing_Oman</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Lead Sharing Oman</label>
+        <sharedTo>
+            <roleAndSubordinates>Talabat_Sales_Management_Oman</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Oman</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Lead_Sharing_Qatar</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Lead Sharing Qatar</label>
+        <sharedTo>
+            <roleAndSubordinates>Talabat_Sales_Management_Qatar</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Qatar</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Lead_Sharing_UAE</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Lead Sharing UAE</label>
+        <sharedTo>
+            <roleAndSubordinates>Talabat_Sales_Management_UAE</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>United Arab Emirates</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Oman_and_UAE_Leads</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Oman and UAE Leads</label>
+        <sharedTo>
+            <group>Talabat_Oman_and_UAE_users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Oman,United Arab Emirates</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>PY_Boliivia</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>PY Boliivia</label>
+        <sharedTo>
+            <group>PY_Sales_Bolivia</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Bolivia</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>PY_Chile</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>PY Chile</label>
+        <sharedTo>
+            <group>PY_Sales_Chile</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Chile</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>PY_Panama</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>PY Panama</label>
+        <sharedTo>
+            <group>PY_Sales_Panama</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Panamá</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>PY_Paraguay</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>PY Paraguay</label>
+        <sharedTo>
+            <group>PY_Sales_Paraguay</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Paraguay</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>PY_Uruguay</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>PY Uruguay</label>
+        <sharedTo>
+            <group>PY_Sales_Uruguay</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Uruguay</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>PY_Users_Access_to_CD</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>SP-4499</description>
+        <label>PY Users Access to CD</label>
+        <sharedTo>
+            <group>PY_CD_Shared_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>CD Lead</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>PY_all_countries</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>PY all countries</label>
+        <sharedTo>
+            <group>PY_Access_to_all_countries</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>PY Lead</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Venezuela</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>SSC-1020</description>
+        <label>Venezuela</label>
+        <sharedTo>
+            <group>PY_Sales_Venezuela</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Venezuela</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>uwait_HOD_is_Qatar_HOS_too</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>uwait HOD is Qatar HOS too</label>
+        <sharedTo>
+            <role>Talabat_Sales_Management_Kuwait</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Record_Country__c</field>
+            <operation>equals</operation>
+            <value>Qatar</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingOwnerRules>
+        <fullName>CD_All_management</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>CD All management</label>
+        <sharedTo>
+            <role>CD_Management</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>CD_Management</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>CD_Colombia_Sharing</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>CD Colombia Sharing</label>
+        <sharedTo>
+            <roleAndSubordinates>CD_Sales_Management_Colombia</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>CD_Sales_Management_Colombia</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>CD_Customer_Care</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>CD Customer Care</label>
+        <sharedTo>
+            <roleAndSubordinates>CD_Customer_Care_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>CD_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>CD_Ecuador_Sharing</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>CD Ecuador Sharing</label>
+        <sharedTo>
+            <roleAndSubordinates>CD_Sales_Management_Ecuador</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>CD_Sales_Management_Ecuador</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>CD_Peru_Sharing</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>CD Peru Sharing</label>
+        <sharedTo>
+            <roleAndSubordinates>CD_Sales_Management_Peru</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>CD_Sales_Management_Peru</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>DE_Sharing_Sales_Ops_write_leads</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>DE Sharing Sales Ops write leads</label>
+        <sharedTo>
+            <group>DE_Sales_Operations</group>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>DE_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>DE_general_sharing</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>DE general sharing</label>
+        <sharedTo>
+            <roleAndSubordinates>DE_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>DE_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FI_Lead_sharing</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>FI Lead sharing</label>
+        <sharedTo>
+            <roleAndSubordinates>FI_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>FI_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Korea_General_Sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Top down</description>
+        <label>Korea General Sharing</label>
+        <sharedTo>
+            <roleAndSubordinates>Yogiyo_Local_Admin</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>Yogiyo_Local_Admin</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Lead_AT_Mgmt_to_AT_Mgmt</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Leads are shared across entire company</description>
+        <label>Lead AT Mgmt to AT Mgmt</label>
+        <sharedTo>
+            <roleAndSubordinates>AT_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>AT_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>SEFI_Lead_Sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>SEFI Lead Sharing</label>
+        <sharedTo>
+            <group>SE_FI_Shared_Group</group>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>FI_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>SE_FI_Head_Of</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>03858146</description>
+        <label>SE &amp; FI Head Of</label>
+        <sharedTo>
+            <group>SE_FI_Shared_Group</group>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>SE_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>SE_Lead_Mgmt_to_Mgmt</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>SE - Lead - Mgmt to Mgmt</label>
+        <sharedTo>
+            <roleAndSubordinates>SE_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>SE_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Sales_Operations_queue</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Sales Operations queue</label>
+        <sharedTo>
+            <roleAndSubordinates>DE_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <queue>DE_Sales_Operations</queue>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Talabat_in_all_countries</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Talabat in all countries</label>
+        <sharedTo>
+            <group>Talabat_Users_in_all_countries</group>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>Talabat_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Talabat_research_queue</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Talabat research queue</label>
+        <sharedTo>
+            <roleAndSubordinates>Talabat_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <queue>Talabat_Lead_Research_Team</queue>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>UK_Lead_to_UK_Lead</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>UK Lead to UK Lead</label>
+        <sharedTo>
+            <roleAndSubordinates>UK_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>UK_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>UK_Research_Team_sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Edit Leads under this queue</description>
+        <label>UK Research Team sharing</label>
+        <sharedTo>
+            <roleAndSubordinates>UK_Sales_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <queue>UK_Research_Team</queue>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>UK_Sales_team_Sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>UK Sales team Sharing</label>
+        <sharedTo>
+            <roleAndSubordinates>UK_Sales_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <queue>UK_Sales_Team</queue>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

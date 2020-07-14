@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>SCC-369</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FI_Customer_Letterhead</letterhead>
+    <name>FI CC Customer Blank</name>
+    <style>freeForm</style>
+    <subject>Vastauksemme pyyntöösi foodoran asiakaspalvelusta {!Case.CaseNumber}</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

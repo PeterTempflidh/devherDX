@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY - MALAS CONDICIONES / PRODUCTO INCORRECTO + CUPÓN SI ES LOGÍSTICA</name>
+    <style>freeForm</style>
+    <subject>MALAS CONDICIONES / PRODUCTO INCORRECTO + CUPÓN SI ES LOGÍSTICA</subject>
+    <textOnly>Estimada {!Case.Customer_Name__c}, es un gusto saludarte.
+
+Estimado {!Case.Customer_Name__c}, es un gusto saludarte.
+
+
+Te contactamos en respuesta a tu reclamo por el pedido que hiciste el día XX/XX en XXX. Te pedimos disculpas por las molestias de no haber recibido el pedido tal y como lo ordenaste / en las condiciones que detallaste.
+
+
+En esta oportunidad no es posible volver a enviar el pedido, por lo que desde PedidosYa vamos a generar un cupón por el valor del producto incorrecto / afectado para que puedas utilizar en cualquiera de los locales que acepten cupón.
+
+
+El cupón que te estaremos generando tiene validez de 30 días y puedes visualizarlo en la sección del Menú &gt; Mis Cupones a través de la aplicación. Para poder utilizar el cupón tienes que chequear antes que el local acepta cupones, existe un filtro llamado &quot;cupón&quot; que te ayudará.
+
+
+Esperamos haber ayudado a resarcir lo sucedido con tu último pedido y quedamos a tu disposición.
+
+
+Saludos,
+{!Case.OwnerFullName}
+Atención al cliente PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

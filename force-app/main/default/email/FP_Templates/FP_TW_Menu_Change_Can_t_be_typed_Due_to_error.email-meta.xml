@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Menu can’t be typed (due to error, no markup)</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP TW Menu Change - Can’t be typed - Due to error</name>
+    <style>freeForm</style>
+    <subject>我們需要更多資訊以便著手更新菜單</subject>
+    <textOnly>親愛的foodpanda夥伴，
+
+
+
+很抱歉，我們現在無法立即處理您的菜單更改需求，原因可能為：
+
+1.您的電子郵件中未附上菜單檔案。
+
+2.您提供的檔案可能較模糊或角度不正確。
+
+
+
+另外，若貴餐廳於foodpanda平台有多個合作分店，請您於備註說明欲更動菜單的分店。
+
+再麻煩您協助提供較清晰的照片或PDF檔，收到您的回覆後我們將立即著手更新。
+
+如有任何疑問請透過電子郵件：partner@foodpanda.tw。
+
+
+
+祝您有個美好的一天！
+
+foodpanda團隊
+
+(# {!Case.CaseNumber})</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,4 @@
+<apex:page standardcontroller="Asset__c" extensions="CtrAssetScreen" title="Asset">  
+    <apex:sectionHeader id="sectionHeader" title="Asset" subtitle="Asset Cancellation History"/>
+    <c:CustomAssetCancellationHistory subject="{!listAssetCanceled}" someObjectParent="{!Asset__c.Id}" gotoList="false"/> 
+</apex:page>

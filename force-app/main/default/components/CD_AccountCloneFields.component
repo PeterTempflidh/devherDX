@@ -1,0 +1,395 @@
+<!--
+    Account clone component for CD_Account record type.
+    Display a list of fields that users are allowed to enter when cloning an
+    account.
+
+    This component assumes to be included inside an apex:form and that LDS
+    stylesheets is already available.
+-->
+<apex:component >
+    <apex:attribute name="clone" type="Account" required="true" description="Account to clone" />
+
+    <apex:attribute name="originalAccountType" type="String" required="true" description="Original account's type. Used to make some fields required" />
+
+    <apex:attribute name="mode" type="String"  required="true" description="Account clone mode, based on this value some account fields could be displayed or not" />
+
+    <apex:attribute name="cities" type="SelectOption[]" required="true" description="Valid billing cities" />
+
+        <!-- MODE = Account Clone Flyer 
+        
+            Available fields are:
+                Name
+                Restaurant_Name__c
+                BillingStreet
+                BillingPostalCode
+                BillingCity
+                BillingCountry
+                ShippingStreet
+                ShippingPostalCode
+                ShippingCity
+                ShippingCountry
+                Area__c
+                Company_Number__c
+                Number_of_Restaurants__c
+                Cuisine__c
+                Restaurant_Category__c
+                Platform__c
+
+        MODE = Account Clone Brand
+            Available fields are:
+                Name
+                Restaurant_Name__c
+                BillingStreet
+                BillingPostalCode
+                BillingCity
+                BillingCountry
+                ShippingStreet
+                ShippingPostalCode
+                ShippingCity
+                ShippingCountry
+                Area__c
+                Company_Number__c
+                Number_of_Restaurants__c
+                Cuisine__c
+                Restaurant_Category__c
+                Platform__c
+
+        MODE = Account Clone Owner Change
+
+            Available fields are:
+                Name
+                Restaurant_Name__c
+                BillingStreet
+                BillingPostalCode
+                BillingCity
+                BillingCountry
+                ShippingStreet
+                ShippingPostalCode
+                ShippingCity
+                ShippingCountry
+                Area__c
+                Company_Number__c
+                Number_of_Restaurants__c
+                Cuisine__c
+                Restaurant_Category__c
+                Platform__c 
+
+        MODE =  Clone Sibling
+            Available fields are:
+                Name
+                Restaurant_Name__c
+                BillingStreet
+                BillingPostalCode
+                BillingCity
+                BillingCountry
+                ShippingStreet
+                ShippingPostalCode
+                ShippingCity
+                ShippingCountry
+                Area__c
+                Company_Number__c
+                Number_of_Restaurants__c
+                Cuisine__c
+                Restaurant_Category__c
+                Platform__c
+                -->
+
+
+    <style type="text/css">
+        @media(min-width: 768px) {
+            .detailsFields .slds-col:nth-child(4) {
+                padding-left: 0.5rem;
+            }
+
+            .detailsFields .slds-col:nth-child(3) {
+                padding-right: 0.5rem;
+            }
+
+            .addressFields .billingAddress {
+                padding-right: 0.5rem;
+            }
+            .addressFields .shippingAddress {
+                padding-left: 0.5rem;
+            }
+        }
+    </style>
+
+
+    <!-- main grid -->
+    <div class="slds-form-element__group">
+
+        <!-- INFORMATION -->
+        <fieldset class="slds-form--compound">
+            <legend class="slds-form-element__label slds-text-title--caps">Information</legend>
+            <div class="slds-form-element__group slds-p-around--small">
+                
+                <div class="slds-form-element__row">
+                    <!-- account name -->
+                    <div class="slds-form-element slds-size--1-of-2">
+                        <label class="slds-form-element__label" for="{!$Component.input01}">
+                            <abbr class="slds-required" title="required">*</abbr>
+                            {!$ObjectType.Account.fields.name.label}
+                        </label>
+                        <apex:inputField id="input01" styleClass="slds-input" value="{!clone.Name}" required="true" html-data-required="true" />
+                    </div>
+
+                    <!-- restaurant name  -->
+                    <div class="slds-form-element slds-size--1-of-2">
+                        <label class="slds-form-element__label" for="{!$Component.input02}">
+                            {!$ObjectType.Account.fields.Restaurant_Name__c.label}
+                        </label>
+                        <apex:inputField id="input02" styleClass="slds-input" value="{!clone.Restaurant_Name__c}" />
+                    </div>
+                </div>
+
+                <div class="slds-form-element__row">
+
+                    <!-- company number (required only when cloning from franchise to client) -->
+                    <div class="slds-form-element slds-size--1-of-2">
+                        <!-- required -->
+                        <apex:outputPanel layout="none" rendered="{!AND(mode = 'Account Clone Brand', originalAccountType = 'Franchise')}">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.input11r}">
+                                <abbr class="slds-required" title="required">*</abbr>
+                                {!$ObjectType.Account.fields.Company_Number__c.label}
+                            </label>
+                            <apex:inputField id="input11r" styleClass="slds-input" value="{!clone.Company_Number__c}" required="true" html-data-required="true" />
+                        </apex:outputPanel>
+
+                        <!-- not required -->
+                        <apex:outputPanel layout="none" rendered="{!NOT(AND(mode = 'Account Clone Brand', originalAccountType = 'Franchise'))}">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.input11}">
+                                {!$ObjectType.Account.fields.Company_Number__c.label}
+                            </label>
+                            <apex:inputField id="input11" styleClass="slds-input" value="{!clone.Company_Number__c}" />
+                        </apex:outputPanel>
+                    </div>
+                    <div class="slds-form-element slds-size--1-of-2">
+                        <!-- empty just for alignment  -->
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- ADDRESS -->
+        <fieldset class="slds-form--compound slds-m-top--small">
+            <legend class="slds-form-element__label slds-text-title--caps">Address</legend>
+            <div class="slds-p-around--small slds-box">
+                <div class="slds-grid slds-wrap slds-size--1-of-1 addressFields">
+
+                    <!-- billing address  -->
+                    <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2 billingAddress">
+                        <div class="slds-grid slds-wrap">
+
+                            <!-- street -->
+                            <div class="slds-col slds-size--1-of-1 slds-m-bottom--small">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label slds-truncate" for="{!$Component.input03b}">
+                                        <abbr class="slds-required" title="required">*</abbr>
+                                        {!$ObjectType.Account.fields.BillingStreet.Label}
+                                    </label>
+                                    <apex:inputText id="input03b" styleClass="slds-input" value="{!clone.BillingStreet}" required="true" html-data-required="true" />
+                                </div>
+                            </div>
+
+                            <!-- city -->
+                            <div class="slds-col slds-size--1-of-2 slds-m-bottom--small">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label slds-truncate" for="{!$Component.bCity}">
+                                        <abbr class="slds-required" title="required">*</abbr>
+                                        {!$ObjectType.Account.fields.BillingCity.Label}
+                                    </label>
+                                    <apex:selectList id="bCity" styleClass="slds-select restrictedCity" multiselect="false" size="1" value="{!clone.BillingCity}" required="true" html-city-required="true" onchange="__checkCityValue(this)">
+                                        <apex:selectOptions value="{!cities}" />
+                                    </apex:selectList>
+                                </div>
+                            </div>
+
+                            <!-- postal code -->
+                            <div class="slds-col slds-size--1-of-2 slds-p-left--small slds-m-bottom--small">                                
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label slds-truncate" for="{!$Component.input05b}">
+                                        <abbr class="slds-required" title="required">*</abbr>
+                                        {!$ObjectType.Account.fields.BillingPostalCode.Label}
+                                    </label>
+                                    <apex:inputField id="input05b" styleClass="slds-input" value="{!clone.BillingPostalCode}" required="true" html-data-required="true" />
+                                </div>
+                            </div>
+
+                            <!-- area -->
+                            <div class="slds-col slds-m-bottom--small slds-size--1-of-1">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label slds-truncate" for="{!$Component.input102}">
+                                        {!$ObjectType.Account.fields.Area__c.label}
+                                    </label>
+                                    <apex:inputField id="input102" styleClass="slds-input" value="{!clone.Area__c}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- shipping address  -->
+                    <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2 shippingAddress">
+                        <div class="slds-grid slds-wrap">
+
+                            <!-- street -->
+                            <div class="slds-col slds-size--1-of-1 slds-m-bottom--small">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label slds-truncate" for="{!$Component.input03s}">
+                                        {!$ObjectType.Account.fields.ShippingStreet.Label}
+                                    </label>
+                                    <apex:inputText id="input03s" styleClass="slds-input" value="{!clone.ShippingStreet}" />
+                                </div>
+                            </div>
+
+                            <!-- city -->
+                            <div class="slds-col slds-size--1-of-2 slds-m-bottom--small">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label slds-truncate" for="{!$Component.sCity}">
+                                        {!$ObjectType.Account.fields.ShippingCity.Label}
+                                    </label>
+                                    <apex:selectList id="sCity" styleClass="slds-select restrictedCity" multiselect="false" size="1" value="{!clone.ShippingCity}" html-city-required="false" onchange="__checkCityValue(this)">
+                                        <apex:selectOption itemLabel="--- None ---" itemValue=""/>
+                                        <apex:selectOptions value="{!cities}" />
+                                    </apex:selectList>
+                                </div>
+                            </div>
+
+                            <!-- postal code -->
+                            <div class="slds-col slds-size--1-of-2 slds-p-left--small slds-m-bottom--small">                                
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label slds-truncate" for="{!$Component.input05s}">
+                                        {!$ObjectType.Account.fields.ShippingPostalCode.Label}
+                                    </label>
+                                    <apex:inputField id="input05s" styleClass="slds-input" value="{!clone.ShippingPostalCode}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </fieldset>
+
+        <!-- DETAILS -->
+        <fieldset class="slds-m-top--small">
+            <legend class="slds-form-element__label slds-text-title--caps">Details</legend>
+            <div class="slds-p-around--small">
+                <div class="slds-grid slds-wrap slds-size--1-of-1 detailsFields">
+
+                    <!-- number of restaurants -->
+                    <div class="slds-col slds-m-bottom--small slds-size--1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.input12}">
+                                {!$ObjectType.Account.fields.Number_of_Restaurants__c.label}
+                            </label>
+                            <apex:inputField id="input12" styleClass="slds-input" value="{!clone.Number_of_Restaurants__c}" />
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-size--1-of-2 slds-m-bottom--small">
+                        <!-- empty just for alignment -->
+                    </div>
+
+                    <!-- cuisine -->
+                    <div class="slds-col slds-m-bottom--small slds-size--1-of-1 slds-medium-size--6-of-12 slds-large-size--6-of-12">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.input09}">
+                                {!$ObjectType.Account.fields.Cuisine__c.Label}
+                            </label>
+                            <div class="slds-form-element__control multiselectContainer slds-box">
+                                <apex:inputField id="input09" value="{!clone.Cuisine__c}" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- restaurant category -->
+                    <div class="slds-col slds-m-bottom--small slds-size--1-of-1 slds-medium-size--6-of-12 slds-large-size--6-of-12">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.input13}">
+                                {!$ObjectType.Account.fields.Restaurant_Category__c.Label}
+                            </label>
+                            <div class="slds-form-element__control multiselectContainer slds-box">
+                                <apex:inputField id="input13" value="{!clone.Restaurant_Category__c}" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- utility functions -->
+        <script type="text/javascript">
+            // these functions are defined on the main page
+            if (typeof adjustMultiselectPicklist === "function") adjustMultiselectPicklist();
+            if (typeof checkRequiredFields === "function") checkRequiredFields();
+
+            /**
+             * Given a city select field checks if value belongs to the restricted list.
+             * Based on this check display or hide the error message
+             * @return {Boolean}    true if value belongs to list, false otherwise
+             */
+            function __checkCityValue(select, initialValue) {
+                var result = true; // assumes ok
+
+                var currentValue = initialValue != undefined ? initialValue : select.value;
+                var currentOption = !!currentValue ? select.querySelector("option[value='" + currentValue + "']") : undefined;
+
+                if (currentOption) {
+                    // valid city
+                    currentOption.setAttribute("selected", "true");
+                    var errorDiv = select.parentNode.querySelector(".cityErrorMessage");
+
+                    // remove error message if any
+                    if (errorDiv) {
+                        select.parentNode.removeChild(errorDiv);
+                        select.parentNode.className = select.parentNode.className.replace(/slds-has-error/, "");
+                    }
+                } else if (select.getAttribute("city-required") === "true" || currentValue) {
+                    // invalid city
+                    select.value = "";
+                    var errorDiv = select.parentNode.querySelector(".cityErrorMessage");
+
+                    // add error message if not already there
+                    if (!errorDiv) {
+                        errorDiv = document.createElement("div");
+                        errorDiv.className = "slds-form-element__help cityErrorMessage";
+                        errorDiv.textContent = currentValue ? currentValue + " is not a valid city, must match one of the list" : "City is not valid must match one of the list";
+                        select.parentNode.appendChild(errorDiv);
+                        select.parentNode.className += " slds-has-error";
+                    }
+
+                    result = false;
+                }
+
+                return result;
+            }
+
+            /**
+             * Called after Clone buttons is pressed but before submitting to server
+             * checks if all fields have proper values
+             * @return {Boolean} true if form has no errors, false otherwise
+             */
+            function beforeClone() {
+                var result = true; // assumes everything is fine
+
+                var selects = document.querySelectorAll(".restrictedCity");
+
+                if (!selects) {
+                    return result; // everything is fine
+                }
+
+                for (var i = 0; i < selects.length; i++) {
+                    result = __checkCityValue(selects[i]) && result;
+                }
+
+                return result;
+            }
+            
+            __checkCityValue(document.querySelector("[id$=sCity]"), "{!clone.ShippingCity}");
+            __checkCityValue(document.querySelector("[id$=bCity]"), "{!clone.BillingCity}");
+        </script>
+    </div>
+
+</apex:component>

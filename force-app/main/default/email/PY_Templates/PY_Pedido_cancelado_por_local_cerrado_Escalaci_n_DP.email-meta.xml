@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY - Pedido cancelado por local cerrado Escalación DP</name>
+    <style>freeForm</style>
+    <subject>Gracias por Contactarnos - # {!Case.CaseNumber}</subject>
+    <textOnly>Estimado(a) Nombre
+
+ 
+
+En esta oportunidad nos comunicamos para informarte que tu pedido al local XXXX fue cancelado ya que el local se encuentra cerrado.
+
+ 
+
+Si es PO: respecto al pago realizado no te preocupes ya que la devolución del mismo quedó gestionada automáticamente desde PedidosYa, sin embargo, la visualización de la misma dependerá de tu entidad financiera.
+
+ 
+
+Entendemos que esto pueda ser un imprevisto para ti, por lo que te pedimos disculpas por los inconvenientes; además quisiéramos resarcir este momento y hemos cargado en tu cuenta un cupón que podrás utilizar en cualquier local adherido, podrás visualizar el mismo en tu perfil bajo la sección “mis cupones”. 
+
+ 
+
+El cupón que te otorgamos tiene una validez de 30 días a partir de hoy y te recomendamos utilizar el filtro ‘Cupón’ para que puedas ver los locales que aceptan el descuento. 
+
+ 
+
+Quedamos a las órdenes ante cualquier consulta.
+
+ 
+
+Saludos, 
+
+Nombre + Inicial del apellido - Claims Operator 
+PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

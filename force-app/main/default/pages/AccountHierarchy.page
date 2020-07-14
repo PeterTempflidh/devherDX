@@ -1,0 +1,382 @@
+<apex:page showHeader="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" standardStylesheets="false" standardController="Account" extensions="CtrAccountHierarchy">
+<html xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+xmlns:v-once="http://vue/fake"
+xmlns:v-html="http://vue/fake"
+xmlns:v-bind="http://vue/fake"
+xmlns:v-if="http://vue/fake"
+xmlns:v-on="http://vue/fake"
+xmlns:v-model="http://vue/fake"
+xmlns:v-cloak="http://vue/fake">
+<head>
+    <title>Account Hierarchy v2</title>
+    <style type="text/css">
+        [v-cloak] {
+            display: none !important;
+        }
+    </style>
+    <style type="text/css">
+        .sectionHeader{
+            font-size: 22px;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.slds222, 'assets/styles/salesforce-lightning-design-system-vf.css')}"></link>
+</head>
+
+<body>
+    <script>
+        var accountHierarchy = "{!$RemoteAction.CtrAccountHierarchy.getTree}";
+        var managesFranchises = "{!$RemoteAction.CtrAccountHierarchy.getFranchiseHierarchy}";
+        var managedByFranchise = "{!$RemoteAction.CtrAccountHierarchy.getFranchiseChildRelations}";
+        var labelAccountHierarchy = "{!$Label.Account_Hierarchy_Header}";
+        var labelFranchiseHierarchy = "{!$Label.Franchise_Hierarchy_Header}";
+        var labelChildFranchises = "{!$Label.Franchise_Relation_Header}";
+    </script>
+
+    <div v-cloak="" class="slds" id="mainContainer" >
+        <hierarchy v-bind:controller-method="accountHierarchy" v-bind:section-header="labelAccountHierarchy"></hierarchy>
+        <hierarchy v-bind:controller-method="managesFranchises" v-bind:section-header="labelFranchiseHierarchy"></hierarchy>
+        <hierarchy v-bind:controller-method="managedByFranchise" v-bind:section-header="labelChildFranchises"></hierarchy>
+    </div>
+
+    <script src="/support/console/38.0/integration.js" type="text/javascript"></script>
+    <script src="{!URLFOR($Resource.DHHConsoleToolkit, 'js/ConsoleToolkit.js')}" type="text/javascript"></script>
+    <script src="{!URLFOR($Resource.Vue)}"></script>
+    <script type="text/javascript">
+
+        var DHH = new DHHConsoleToolkit();
+
+        Vue.component("tree-grid", {
+            props: ["headers", "nodes"],
+            data: function() {
+                return {
+                    expandAll: false
+                };
+            },
+            methods: {
+                toggleExpandAll: function() {
+                    this.expandAll = !this.expandAll;
+                }
+            },
+            updated: function() {
+                Array.prototype.slice.call(
+                    document.querySelectorAll("span.toRemove")
+                ).map(function(toRemove) {
+                    while (toRemove.hasChildNodes()) {
+                        toRemove.parentNode.appendChild(toRemove.firstChild);
+                    }
+                    toRemove.parentNode.removeChild(toRemove);
+                });
+            },
+            template: `<table 
+                            class="slds-table slds-table--bordered slds-tree slds-table--tree" 
+                            role="treegrid" 
+                            aria-readonly="true">
+                        
+                            <thead>
+                                <tr class="slds-text-title--caps">
+                                    <table-header 
+                                        v-for="(header, index) in headers" 
+                                        v-bind:title="header" 
+                                        v-bind:index="index" 
+                                        v-on:expandAll="toggleExpandAll">
+                                    </table-header>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tree-node 
+                                    v-for="(node, index) in nodes" 
+                                    v-bind:nodedef="node" 
+                                    v-bind:nodeid="'tree0-node'+index" 
+                                    v-bind:forceExpand="expandAll"
+                                    nodelevel="0">
+                                </tree-node>
+                            </tbody>
+                        </table>`
+        });
+
+        // table header component
+        Vue.component("table-header", {
+            props: ["title", "index"],
+            methods: {
+                onClick: function() {
+                    this.$emit("expandAll");
+                }
+            },
+            template: `<th 
+                            v-bind:class="{'slds-cell-buffer--left': !index}" 
+                            scope="col">
+
+                            <div 
+                                v-if="!index" 
+                                class="slds-grid slds-grid--vertical-align-center">
+                                
+                                <button 
+                                    type="button"
+                                    class="slds-button slds-button--icon-border-filled slds-button--icon-x-small slds-m-right--x-small slds-shrink-none slds-table--tree__toggle" 
+                                    title="Toggle"
+                                    v-on:click="onClick">
+                                    
+                                    <svg 
+                                        class="slds-button__icon slds-button__icon--small" 
+                                        aria-hidden="true">
+                                        <use xlink:href="{!URLFOR($Resource.slds222, '/assets/icons/utility-sprite/svg/symbols.svg#chevrondown')}"></use>
+                                    </svg>
+                                    
+                                    <span class="slds-assistive-text">Toggle</span>
+                                </button>
+
+                                <div
+                                    class="slds-truncate" 
+                                    v-bind:title="title">
+                                        {{ title }}
+                                </div>
+                            </div>
+                            
+                            <div v-else class="slds-truncate" v-bind:title="title">{{ title }}</div>
+                        </th>`
+        });
+
+        // node header
+        Vue.component("node-header", {
+            props: ["node", "expand", "showExpandBtn"],
+            methods: {
+                onClick: function() {
+                    if (this.node.children.length) {
+                        this.$emit("expandNode");
+                    }
+                }
+            },
+            computed: {
+                headerField: function() {
+                    var self = this;
+                    return this.node.fields.reduce(function(head, fld){
+                        if (fld.isHeaderField) {
+                            head = {
+                                value: fld.value,
+                                isLookup: true,
+                                referenceTo: self.node.id
+                            }
+                        }
+                        return head;
+                    }, null);
+                }
+            },
+            template: `<th v-bind:data-label="node.name" scope="row" class="slds-tree__item" v-on:click="onClick">
+                            <button 
+                                type="button"
+                                class="slds-button slds-button--icon slds-m-right--x-small" 
+                                v-bind:class="{'slds-button--icon-x-small': expand, 'slds-is-disabled': !showExpandBtn}" 
+                                v-bind:aria-controls="node.id" 
+                                title="Toggle">
+                                <svg class="slds-button__icon slds-button__icon--small" aria-hidden="true">
+                                    <use xlink:href="{!URLFOR($Resource.slds222, '/assets/icons/utility-sprite/svg/symbols.svg#chevronright')}"></use>
+                                </svg>
+                                <span class="slds-assistive-text">Toggle</span>
+                            </button>
+                            <node-field v-bind:field="headerField"></node-field>
+                        </th>`
+        });
+
+        // node field
+        Vue.component("node-field", {
+            props: ["field"],
+            methods: {
+                openReferenceLink: function() {
+                    var url = "/".concat(this.field.referenceTo);
+                    if (sforce.console.isInConsole()) {
+                        DHH.openPrimaryTab(url, "");
+                    } else {
+                        window.open(url);
+                    }
+                }
+            },
+            template: `<div class="slds-truncate" v-bind:title="field.value">
+                            <span v-if="!field.isLookup">{{ field.value }}</span>
+                            <a v-else href="#" v-on:click.stop="openReferenceLink"> {{ field.value }} </a>
+                        </div>`
+        });
+
+        // tree node
+        Vue.component("tree-node", {
+            props: ["nodedef", "nodeid", "nodelevel", "hideNode", "forceExpand"],
+            data: function() {
+                return {
+                    expanded: false
+                };
+            },
+            methods: {
+                toggleExpand: function() {
+                    this.expanded = !this.expanded;
+                },
+                getChildIdByIndex: function(idx) {
+                    return this.nodeid.concat("-").concat(idx);
+                }
+            },
+            computed: {
+                childrenIds: function() {
+                    var res = "";
+                    for (var i = 0; i < this.nodedef.children.length; i++) {
+                        res += this.getChildIdByIndex(i).concat(" ");
+                    }
+                    return res;
+                },
+                hasChildren: function() {
+                    return this.nodedef.children.length;
+                },
+                childLevel: function() {
+                    return Number.parseInt(this.nodelevel) + 1;
+                },
+                isCollapsed: function() {
+                    return (this.hideNode || !this.expanded);
+                },
+                fieldsWithoutHeader: function() {
+                    return this.nodedef.fields.filter(function(fld){
+                        return !fld.isHeaderField;
+                    });
+                },
+                isSelectedAccount: function() {
+                    return this.nodedef.id == "{!Account.Id}";
+                }
+            },
+            watch: {
+                forceExpand: function() {
+                    this.expanded = this.forceExpand;
+                }
+            },
+            created: function() {
+
+                // pre-order visit of the tree hierarchy
+                function checkNode(node) {
+                    if (!node) {
+                        return false;
+                    }
+
+                    if (node.id == "{!Account.Id}") {
+                        return true;
+                    }
+
+                    for (var i = 0; i < node.children.length; i++) {
+                        if (checkNode(node.children[i])) {
+                            return true;
+                        }
+                    }
+
+                    return false;
+                }
+
+                this.expanded = checkNode(this.nodedef);
+            },
+            template: `<span class="toRemove">
+                            <tr 
+                                class="slds-hint-parent" 
+                                role="row"
+                                v-bind:class="{'slds-hide': hideNode, 'slds-is-hovered': isSelectedAccount}" 
+                                v-bind:id="nodeid" 
+                                v-bind:aria-level="nodelevel" 
+                                v-bind:aria-owns="childrenIds" 
+                                v-bind:aria-expanded="expanded">
+                                
+                                <node-header 
+                                    v-bind:node="nodedef" 
+                                    v-bind:expand="expanded" 
+                                    v-bind:showExpandBtn="hasChildren" 
+                                    v-on:expandNode="toggleExpand">
+                                </node-header>
+                                
+                                <td v-for="fld in fieldsWithoutHeader">
+                                    <node-field v-bind:field="fld"></node-field>
+                                </td>
+                            </tr>
+
+                            <tree-node 
+                                v-for="(child, index) in nodedef.children" 
+                                v-bind:nodedef="child" 
+                                v-bind:nodeid="getChildIdByIndex(index)" 
+                                v-bind:nodelevel="childLevel" 
+                                v-bind:hideNode="isCollapsed"
+                                v-bind:forceExpand="forceExpand">
+                            </tree-node>
+                        </span>`
+        });
+
+        Vue.component('hierarchy', {
+            props: ["controllerMethod", "sectionHeader"],
+            data: function() {
+                return {
+                    accounts: [],
+                    headers: [],
+                    controllerMethod: undefined
+                }
+            },
+            mounted: function() {
+                console.log(this.controllerMethod);
+                var self = this;
+                // Timeout
+                Visualforce.remoting.timeout = 120000;
+
+                // get headers
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.CtrAccountHierarchy.getHeaders}',
+                    "{!Account.RecordType.DeveloperName}",
+                    function (result, event) {
+                        // Checks event status
+                        if (!event.status) {
+                            console.error('Error is: ', event.message)
+                            return;
+                        }
+
+                        // Check result list
+                        if (!result || result.length < 1) {
+                            console.log('Empty result');
+                            return;
+                        }
+
+                        self.headers = result;
+                    }, {
+                        escape: false,
+                        buffer: false
+                    }
+                );
+
+                // get tree
+                Visualforce.remoting.Manager.invokeAction(
+                    this.controllerMethod,
+                    "{!Account.Id}",
+                    function (result, event) {
+                        // Checks event status
+                        if (!event.status) {
+                            console.error('Error is: ', event.message)
+                            return;
+                        }
+
+                        // Check result list
+                        if (!result || result.length < 1) {
+                            console.log('Empty result');
+                            return;
+                        }
+
+                        self.accounts = result;
+                    }, {
+                        escape: false
+                    }
+                );
+            },
+            template: `
+                <div  v-show="accounts.length > 0">
+                    <p class="sectionHeader">{{sectionHeader}}</p>
+                    <table is="tree-grid" v-bind:headers="headers" v-bind:nodes="accounts"></table>
+                    <br class="sectionHeader"/>
+                </div>`
+        });
+
+        var vueInstance = new Vue({
+            el: "#mainContainer"
+        });
+
+    </script>
+
+</body>
+</html>
+</apex:page>

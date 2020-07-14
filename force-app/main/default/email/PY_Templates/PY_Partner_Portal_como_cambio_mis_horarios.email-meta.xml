@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY - Partner Portal como cambio mis horarios</name>
+    <style>freeForm</style>
+    <subject>Gracias por Contactarnos - # {!Case.CaseNumber}</subject>
+    <textOnly>Estimado XXXNombreXXX, 
+
+ 
+
+Nos contactamos en respuesta a tu consulta sobre cómo modificar tus horarios en Partner Portal, te comentamos que en el menú de la izquierda encontrarás la sección ‘Horarios’ en la que podrás ver los horarios que tienes actualmente, los feriados y la opción de crear cierres programados. 
+
+ 
+
+Para agregar un turno puedes hacer click en ‘Agregar nuevo turno’, allí le colocas un nombre y eliges las horas y días en los que estarás abierto.
+
+ 
+
+Para eliminar un turno encontrarás la opción ‘Eliminar turno’ cuando lo seleccionas para ver los detalles.
+
+ 
+
+Adicionalmente te hemos adjuntado el manual de la herramienta para futuras consultas. 
+
+ 
+
+Quedamos a las órdenes, 
+
+Saludos 
+
+ 
+
+(NOMBRE DEL AGENTE) - Claims Operator 
+PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

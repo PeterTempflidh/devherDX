@@ -1,0 +1,2171 @@
+<apex:component layout="none" controller="CtrCreateNewAddress" >
+	<script src="https://unpkg.com/vue-select@latest"></script>
+	<link rel="stylesheet" href="https://unpkg.com/vue-select@latest/dist/vue-select.css"/>
+	<script src="https://unpkg.com/vue-multiselect@2.1.0"></script>
+	<link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css"/>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={!DaumApiKey}&libraries=services,clusterer,drawing"></script>
+	<script type="text/javascript">
+	Vue.component('vue-multiselect', window.VueMultiselect.default);
+  	Vue.component('v-select', VueSelect.VueSelect);
+	/* ***** MIXINS AND SHARED STATES *****  */
+
+		var loaderSharedState = {
+			state: {
+				isLoading: 0
+			},
+			startLoadingSpinner: function() {
+				this.state.isLoading++;
+			},
+			stopLoadingSpinner: function() {
+				if (this.state.isLoading > 0) {
+					this.state.isLoading--;
+				}
+			}
+		};
+
+		var errorHandlerSharedState = {
+			state: {
+				message: "",
+				type: "",
+				timeout: undefined,
+				callback: undefined
+			},
+			setErrorMsg: function(err) {
+				this.state.message = err.msg;
+				this.state.type = err.type;
+				this.state.timeout = err.timeout;
+				this.state.callback = err.callback;
+			},
+			clearErrorMsg: function() {
+				this.state.message = "";
+				this.state.type = "";
+				this.state.timeout = undefined;
+				this.state.callback = undefined;
+			}
+		};
+
+		var inputElementsSharedState = {
+			state: {
+				elements: []
+			},
+			addElement: function(el) {
+				this.state.elements.push(el);
+			},
+			removeElement: function(el) {
+				var idx = this.state.elements.indexOf(el);
+				if (idx > -1) {
+					this.state.elements.splice(idx, 1);
+				}
+			}
+		};
+
+		var xALEntityMixin = {
+			props: ["records"],
+			data: function() {
+				return {
+					errorState: errorHandlerSharedState,
+					loaderState: loaderSharedState
+				};
+			},
+			computed: {
+				types: function() {
+					return this.records.reduce(function (acc, record) {
+						if (acc.indexOf(record.type) < 0) {
+							acc.push(record.type);
+						}
+						return acc;
+					}, []);
+				},
+				typeSelectionNeeded: function() {
+					return this.types.length > 1;
+				}
+			},
+			methods: {
+				parseRecordsAsOptions: function(selected, type) {
+					return this.records.filter(function (record) {
+						return !type || record.type == type;
+					}).map(function (record) {
+						return {
+							value: JSON.parse(JSON.stringify(record)),
+							label: record.label,
+							selected: (record.developerName == selected)
+						};
+					});
+				},
+		        getSelectedEntity: function(selected) {
+		            var res = {};
+
+		            // get record selected from records
+		            this.records.map(function(record) {
+		                if (record.developerName == selected.developerName) {
+		                    res = JSON.parse(JSON.stringify(record));
+		                    for (var prop in selected) {
+		                        if (selected.hasOwnProperty(prop)) {
+		                            res[prop] = selected[prop];
+		                        }
+		                    }
+		                }
+		            });
+
+		            return res;
+		        }
+		    }
+		};
+
+		var inputMixin = {
+			data: function() {
+				return {
+					isFilled: false,
+					isInError: false,
+					inputElementsState: inputElementsSharedState
+				};
+			},
+			created: function() {
+				this.inputElementsState.addElement(this);
+			},
+			destroyed: function() {
+				this.inputElementsState.removeElement(this);
+			}
+		};
+
+		var addressTypes = [];
+
+		// retirves translated values for address type picklist
+		Visualforce.remoting.Manager.invokeAction(
+			'{!$RemoteAction.CtrCreateNewAddress.getAddressTypes}',
+			function (result, event) {
+			    if (!event.status) {
+			    	console.log("error while retrieveing the address type");
+			    	return;
+       			}
+
+       			for (var type in result) {
+       			 	if (result.hasOwnProperty(type)) {
+       			 		addressTypes.push({
+       			 		   	value: type,
+       			 		   	label: result[type]
+             			});
+					}
+				}
+			}, {
+				escape: false
+			}
+		);
+		
+
+		/* ********* UTILITY COMPONENTS ********* */
+
+		Vue.component("checkbox-button", {
+			props: ["value", "name", "masterValues"],
+			methods: {
+				onChange: function() {
+					this.$emit("changed", this.value.value, !(this.isChecked > -1));
+				}
+			},
+			computed: {
+				isChecked: function() {
+					return this.masterValues.indexOf(this.value.value);
+				}
+			},
+			template: `<span class="slds-button slds-checkbox--button">
+				        <input type="checkbox" v-bind:name="name" v-bind:id="name" v-on:change="onChange" v-bind:checked="isChecked > -1" />
+				        <label class="slds-checkbox--button__label" v-bind:for="name">
+				          <span class="slds-checkbox--faux" style="display: block">{{value.label}}</span>
+				        </label>
+				      </span>`
+		});
+
+		Vue.component("checkbox-button-group", {
+			mixins: [inputMixin],
+			props: ["options", "label", "name", "selectedValues"],
+			created: function() {
+				if (this.selectedValues && this.selectedValues.length) {
+					this.values = this.selectedValues;
+				}
+			},
+			data: function() {
+				return {
+					values: []
+				}
+			},
+			methods: {
+				onValueChange: function(value, checked) {
+					if (!checked) {
+						var idx = this.values.indexOf(value);
+						if (idx > -1) {
+							this.values.splice(idx, 1);
+						}
+					} else {
+						this.values.push(value);
+					}
+				}
+			},
+			watch: {
+				values: function() {
+					this.isFilled = !!this.values.length;
+					this.$emit("changed", this.values);
+				},
+		        selectedValues: function() {
+		        	this.values = this.selectedValues;
+		        }
+			},
+			template: `<div class="slds-form-element" v-bind:class="{'slds-has-error': isInError}">
+						  <legend class="slds-form-element__legend slds-form-element__label">
+						    <abbr class="slds-required" title="required">*</abbr>
+						  	{{ label }}
+					  	  </legend>
+						  <div class="slds-form-element__control">
+						    <div class="slds-checkbox--button-group">
+						      <checkbox-button v-for="(option, index) in options" v-bind:value="option" v-bind:master-values="values" v-bind:name="name.concat(index)" v-on:changed="onValueChange" />
+						    </div>
+						    <div v-if="isInError" class="slds-form-element__help">This field is required</div>
+						  </div>
+						</div>`
+		});
+
+		Vue.component("input-text", {
+			mixins: [inputMixin],
+			props: ["name", "label", "maxlength", "value", "single", "countryName"],
+			created: function() {
+				this.text = this.value || "";
+
+				var nonMandatoryFields = ['postCode']
+				var nonPostCodeMandatoryCountries = ['Cambodia', 'Myanmar', 'Laos']
+				if(this.name && nonMandatoryFields.includes(this.name) && nonPostCodeMandatoryCountries.includes(this.countryName)) {
+					this.isFilled = "true";
+				}
+			},
+			data: function() {
+				return {
+					text: ""
+				};
+			},
+			methods: {
+				onBlur: function() {
+					this.$emit("filled", this.text);
+				}
+			},
+			watch: {
+				value: function() {
+					this.text = this.value || "";
+				},
+				text: function() {
+				    var nonMandatoryFields = ['postCode']
+				    var nonPostCodeMandatoryCountries = ['Cambodia', 'Myanmar', 'Laos']
+				    if(nonMandatoryFields.includes(this.name) && nonPostCodeMandatoryCountries.includes(this.countryName)) {
+				        this.isFilled = "true";
+        			}else {
+        			    this.isFilled = !!this.text;
+           			}
+				}
+			},
+			computed: {
+				 postCodeRequired: function() {
+				 	var nonPostCodeMandatoryCountries = ['Cambodia', 'Myanmar', 'Laos']
+				 	return !( (this.name == "postCode" && nonPostCodeMandatoryCountries.includes(this.countryName) ))
+				}
+   			},
+			template: `<div  class="slds-form-element" v-bind:class="{'slds-has-error': isInError}">
+							<label class="slds-form-element__label" v-bind:for="name">
+							<abbr v-if="postCodeRequired" class="slds-required" title="required">*</abbr>
+								{{ label }}
+							</label>
+							<div class="slds-form-element__control">
+								<textarea v-if="!single"
+									class="slds-textarea"
+									v-bind:id="name"
+									v-bind:placeholder="label.concat('...')"
+									v-bind:maxlength="maxlength"
+									v-model="text"
+									v-on:blur="onBlur">
+								</textarea>
+								<input v-if="single"
+									class="slds-input"
+									v-bind:id="name"
+									v-bind:placeholder="label.concat('...')"
+									v-model="text"
+									v-on:blur="onBlur">
+								</input>
+							</div>
+						</div>`
+		});
+
+		Vue.component("input-radio", {
+		    props: ["name", "value", "id", "checked"],
+		    methods: {
+		        onClick: function() {
+		            this.$emit("clicked", this.value);
+		        }
+		    },
+		    template: `<span class="slds-button slds-radio--button">
+							<input v-if="checked" type="radio" v-bind:name="name" v-bind:id="id" checked="checked" />
+							<input v-else type="radio" v-bind:name="name" v-bind:id="id" />
+							<label class="slds-radio--button__label" v-bind:for="id" v-on:click="onClick">
+								<span class="slds-radio--faux">{{ value }}</span>
+							</label>
+						</span>`
+		});
+
+		Vue.component("input-radio-group", {
+			mixins: [inputMixin],
+			props: ["values", "name", "value"],
+			methods: {
+				onRadioClicked: function(value) {
+					this.isFilled = !!value;
+					this.$emit("radio-selected", value);
+				}
+			},
+			watch: {
+				value: function() {
+					this.isFilled = !!this.value;
+				}
+			},
+			template: `<div class="slds-form-element" v-bind:class="{'slds-has-error': isInError}">
+							<legend class="slds-form-element__legend slds-form-element__label">
+								<abbr class="slds-required" title="required">*</abbr>
+								Please pick one between:
+							</legend>
+							<div class="slds-form-element__control">
+								<div class="slds-radio--button-group">
+									<input-radio 
+										v-for="(val, index) in values" 
+										v-bind:name="name" 
+										v-bind:id="name + index" 
+										v-bind:value="val" 
+										v-bind:checked="val == value"
+										v-on:clicked="onRadioClicked" />
+								</div>
+								<div v-if="isInError" class="slds-form-element__help">
+									This field is required
+								</div>
+							</div>
+						</div>`
+		});
+
+		Vue.component("input-select", {
+			mixins: [inputMixin],
+			props: ["options", "name", "label", "disabled", "selectedvalue"],
+			created: function() {
+				this.setSelectedOption();
+			},
+			data: function() {
+				return {
+					selected: undefined
+				}
+			},
+			methods: {
+				onSelect: function() {
+					this.$emit("selected", this.selected);
+				},
+				setSelectedOption: function() {
+				    if(this.selectedvalue != undefined){
+                        this.selected = this.selectedvalue;
+                    }else {
+						this.selected = this.options.reduce(function(acc, option) {
+							if (option.selected) {
+								acc = option.value;
+							}
+							return acc;
+						}, undefined);
+		            }
+				}
+			},
+		    watch: {
+		        options: function() {
+		        	/* This is  because when user change an entity's type only
+		        	options are updated */
+		            this.setSelectedOption();
+		        },
+		        selected: function() {
+		        	this.isFilled = !!this.selected;
+		        },
+		        selectedvalue: function(){
+                    this.selected = this.selectedvalue;
+                }
+		    },
+			template: `<div class="slds-form-element" v-bind:class="{'slds-has-error': isInError}">
+							<label class="slds-form-element__label" v-bind:for="name">
+								<abbr class="slds-required" title="required">*</abbr>
+								{{label}}
+							</label>
+							<div class="slds-form-element__control">
+								<div class="slds-select_container">
+									<select 
+										v-bind:name="name" 
+										v-bind:id="name" 
+										v-bind:disabled="!!disabled"
+										v-on:change="onSelect"
+										v-model="selected"
+										class="slds-select">
+										<option value=""> --- None --- </option>
+										<option v-for="opt in options" v-bind:value="opt.value">
+											{{opt.label}}
+										</option>
+									</select>
+								</div>
+							</div>
+						</div>`
+		});
+
+		Vue.component("country-select", {
+			props:["countryDetails", "readonly"],
+			data: function() {
+			    return {
+					selectedCountry: undefined,
+					suggestedCountries: [],
+					autoCompleteService: undefined,
+					sessionToken: undefined,
+					placesService: undefined,
+					geocoder: undefined,
+					isError: false,
+					errorText: undefined
+				};
+			},
+			created: function() {
+			  this.initialiseGoogle();
+			  this.selectedCountry = !this.countryDetails.longValue ? undefined :
+													{
+														name: this.countryDetails.longValue,
+														value: undefined,
+														label: this.countryDetails.longValue
+													};
+   			},
+   			methods: {
+   			    initialiseGoogle: function() {
+   			        if(!this.sessionToken) {
+   			            this.sessionToken = new google.maps.places.AutocompleteSessionToken();
+              		}
+              		if(!this.autoCompleteService) {
+   			            this.autoCompleteService = new google.maps.places.AutocompleteService();
+              		}
+              		if(!this.geocoder) {
+   			            this.geocoder = new google.maps.Geocoder;
+              		}
+          		},
+   				getCountrySuggestions: function(query) {
+   				    this.isError = false;
+   					var self = this;
+					this.suggestedCountries = [];
+					this.autoCompleteService.getPlacePredictions({input: query, sessionToken: this.sessionToken, types: ['(regions)']}, function(predictions, status) {
+						if(status != "OK" && status != "ZERO_RESULTS") {
+							self.errorText = "{!$Label.Google_API_Exception}";
+							self.isError = true;
+							throw "Google Places API Exception: error connecting. Status: " + status;
+      					}
+      					if(!Array.isArray(predictions) || !predictions.length) { return; }
+						predictions = predictions.filter(pre => pre.types.includes('country'));
+						if(!Array.isArray(predictions) || !predictions.length) { return; }
+						predictions.forEach(pre => self.suggestedCountries.push({label:pre.description, value:pre.place_id}));
+					});
+       			}
+			},
+			watch: {
+			    	countryDetails: {
+						handler(newVal, oldVal) {
+							this.selectedCountry = !this.countryDetails.longValue ? undefined :
+													{
+														name: this.countryDetails.longValue,
+														value: undefined,
+														label: this.countryDetails.longValue
+													};
+						},
+						deep: true
+       			},
+			    selectedCountry: function() {
+			        if(!this.selectedCountry) {
+			            this.countryDetails.longValue = "";
+			            this.countryDetails.shortValue = "";
+			            this.$emit("manual-change", this.countryDetails, undefined);
+			            return;
+           			} else if(!this.selectedCountry.value && this.selectedCountry.label) {
+           			  return;
+                    }
+                    this.isError = false;
+           			self = this;
+			        this.geocoder.geocode({ placeId: this.selectedCountry.value },
+						function(places, status) {
+							if(!Array.isArray(places) || !places.length) {
+							    self.selectedCountry = undefined;
+							   	self.errorText = "{!$Label.Google_API_Exception}";
+								self.isError = true;
+								throw "Google Goecode API Exception: error connecting. Status: " + status;
+       						}
+							places.forEach(place => {
+								self.countryDetails.longValue = place.address_components[0].long_name;
+								self.countryDetails.shortValue = place.address_components[0].short_name;
+								self.$emit("manual-change", self.countryDetails, undefined);
+							});
+						});
+       			}
+   			},
+			template: `
+					<v-select 	:disabled="readonly"
+					            :filterable="false"
+								@search="getCountrySuggestions"
+								v-model="selectedCountry"
+								:options="suggestedCountries">
+						<template slot="no-options">
+						 <div v-if="!isError">
+						  {!$Label.Search_Countries}
+						 </div>
+						 <div v-if="isError" style="color:red">
+						  {{errorText}}
+						 </div>
+						</template>
+						<template slot="option" slot-scope="option">
+						  <div class="d-center">
+							{{ option.label }}
+							</div>
+						</template>
+						<template slot="selected-option" slot-scope="option">
+						  <div class="selected d-center">
+							{{ option.label }}
+						  </div>
+						</template>
+					</v-select>`
+  		});
+		// DISPLAY A GOOGLE MAPS INTEGRATION
+		Vue.component("geolocation", {
+			props: ["lat", "lng", "disableGPSLocation", "search-address", "map-max-height","lead-gpa-Id"],
+			data: function() {
+				return {
+					mapId: "vueAddrFormMap",
+					searchBoxId: "searchBox",
+					marker: undefined,
+					map: undefined,
+					infoWindow: undefined,
+					searchBox: undefined,
+					geoOptions: {
+						enableHighAccuracy: true,
+					    maximumAge: 0,
+	    				timeout: 60000
+					},
+					loaderState: loaderSharedState,
+					errorState: errorHandlerSharedState,
+					pos: {
+						lat: null,
+						lng: null
+					},
+					gpaApiResponse: {}
+				};
+			},
+			mounted: function() {
+				this.initMap();
+
+				// prefill google place api address
+				if (this.searchAddress) {
+				    document.getElementById(this.searchBoxId).value = this.searchAddress;
+    			}
+
+    			if(this.leadGpaId)
+    				this.getPlaceFromId();
+
+				if (this.lat && this.lng) {
+					this.pos = {
+						lat: this.lat,
+						lng: this.lng
+					};
+
+					this.drawMarker();
+				}
+
+				if (!this.hasGeolocation) {
+					// location services are not enable
+					this.setErrorMsg({
+						msg: "This device do not support geolocation services. You won't be able to locate the restaurant",
+						type: "error"
+					});
+				}
+			},
+			computed: {
+				hasGeolocation: function() {
+					return ("geolocation" in navigator);
+				}
+			},
+			watch: {
+				pos: function() {
+					this.$emit("coords", this.pos);
+					this.drawMarker();
+				},
+				gpaApiResponse: function() {
+					this.$emit("place-selected", this.gpaApiResponse);
+				}
+			},
+			methods: {
+				clearPosition: function() {
+					this.pos = {
+						lat: null,
+						lng: null
+					};
+				},
+				initMap: function() {
+					var mapDiv = document.getElementById(this.mapId);
+					var mapHeight = Math.max(
+						Math.abs(window.innerHeight - document.body.getBoundingClientRect().height),
+						400 // minimum map size
+					);
+
+					if (this.mapMaxHeight && mapHeight > this.mapMaxHeight ) {
+						mapHeight = this.mapMaxHeight;
+     				}
+
+					mapDiv.style["height"] = mapHeight + "px";
+
+		            this.map = new google.maps.Map(mapDiv, {
+		                center: {
+		                	lat: 52.524818,
+		                	lng: 13.393072 // DHH Berlin HQ
+		                },
+		                zoom: 18
+		            });
+
+		            // init search box
+		            var self = this;
+		            this.searchBox = new google.maps.places.SearchBox(
+		            	document.getElementById(this.searchBoxId)
+	            	);
+
+	            	this.searchBox.addListener("places_changed", function() {
+	            		var places = self.searchBox.getPlaces();
+
+	            		if (!places.length) {
+	            			return; // no places
+	            		}
+
+	            		// get location of first place
+	            		self.pos = {
+	            			lat: places[0].geometry.location.lat(),
+	            			lng: places[0].geometry.location.lng()
+	            		};
+
+	            		// save first location result
+	            		self.gpaApiResponse = places[0];
+	            	});
+				},
+				getPlaceFromId : function(){
+				    var self = this;
+					var request = {
+						  placeId: this.leadGpaId
+					};
+
+					service = new google.maps.places.PlacesService(this.map);
+					service.getDetails(request, function (place, status){
+ 				    	if (status == google.maps.places.PlacesServiceStatus.OK) {
+						     var marker = new google.maps.Marker({
+						          position: place.geometry.location,
+								  map: this.map,
+       						});
+       						self.pos = {
+            					lat: place.geometry.location.lat(),
+            					lng: place.geometry.location.lng()
+            				};
+
+            				console.log(document.getElementById(this.searchBoxId));
+							document.getElementById("searchBox").value = place.formatted_address;
+            				self.gpaApiResponse = place;
+               		    }
+					});
+    			},
+				findMe: function() {
+					var self = this;
+					this.loaderState.startLoadingSpinner();
+		            navigator.geolocation.getCurrentPosition(
+		                function success(position) {
+		                	self.loaderState.stopLoadingSpinner();
+
+		                	self.pos = {
+		                		lat: position.coords.latitude,
+		                		lng: position.coords.longitude
+		                	};
+		                },
+		                function error(err) {
+		                	self.loaderState.stopLoadingSpinner();
+
+		                	switch(err.code) {
+		                		case err.PERMISSION_DENIED:
+		                			self.errorState.setErrorMsg({
+		                				msg: "GPS location is deactivated. Please make sure you enabled it.",
+		                				type: "warning"
+		                			});
+		                			break;
+                				case err.TIMEOUT:
+                					// try to increase timeout
+                					if (self.geoOptions.timeout < 120000) {
+				                        self.errorState.setErrorMsg({
+				                            msg: "GPS location will take some more time. Please be patient",
+				                            type: "",
+				                            timeout: 2500,
+				                            callback: function() {
+				                                self.findMe();
+				                            }
+				                        });
+				                        self.geoOptions.timeout += 30000; // increment timeout
+                					} else {
+                						self.errorState.setErrorMsg({
+                							msg: "GPS location is taking too long. Maybe try to move to a more open space and retry.",
+                							type: "warning"
+                						});
+                						self.geoOptions.timeout = 60000; // reset time out
+                					}
+                					break;
+            					case err.POSITION_UNAVAILABLE:
+            					default:
+            						self.errorState.setErrorMsg({
+	                					msg: "Oooops! Something went wrong. Please try again.",
+	                					type: "warning"
+	                				});
+            						break;
+		                	}
+
+		                }, this.geoOptions);
+				},
+				drawMarker: function() {
+					var self = this;
+
+					// checks position is valid
+					if (!this.pos.lat || !this.pos.lng) {
+						if (self.marker) {
+							self.marker.setMap(null); // remove marker from map
+						}
+						return;
+					}
+
+					if (!self.infoWindow) {
+						self.infoWindow = new google.maps.InfoWindow;
+
+						if (!self.disableGPSLocation) {
+							self.infoWindow.setContent(`<div>
+								Location found. If not correct, do one of the following:<br>
+								<ul class="slds-p-left--small" style="list-style: square inside">
+									<li>Drag and drop this pin into the right spot</li>
+									<li>Press "Find Me" button again</li>
+								</ul>
+							</div>`);
+						} else {
+							self.infoWindow.setContent(`<div>
+								Location found. If not correct, do one of the following:<br>
+								<ul class="slds-p-left--small" style="list-style: square inside">
+									<li>Drag and drop this pin into the right spot</li>
+									<li>Add more information to the address</li>
+								</ul>
+							</div>`);
+						}
+
+					}
+
+					if (!self.marker) {
+						// init marker for the first time
+						self.marker = new google.maps.Marker({
+							draggable: true
+						});
+
+						self.marker.addListener("drag", function(evt) {
+							self.pos.lat = evt.latLng.lat();
+							self.pos.lng = evt.latLng.lng();
+							// in this way vue don't fire the coords event
+						});
+
+						self.marker.addListener("dragend", function(evt) {
+							self.pos = {
+								lat: evt.latLng.lat(),
+								lng: evt.latLng.lng()
+							};
+							// new object, vue will fire the coords event
+						});
+
+						self.marker.addListener("click", function(evt) {
+							self.infoWindow.open(self.map, self.marker);
+						});
+
+						this.marker = self.marker;
+					}
+
+					self.marker.setMap(self.map);
+					self.marker.setPosition(self.pos);
+					self.map.setCenter(self.pos);
+					self.infoWindow.open(self.map, self.marker);
+				},
+				onSearchBoxChange: function() {
+					this.$emit("search-performed");
+				}
+			},
+			template: `<div v-if="hasGeolocation" class="slds-grid slds-box slds-wrap">
+							<div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2">
+								<div class="slds-form-element">
+									<label class="slds-form-element__label" v-bind:for="searchBoxId">{!$ObjectType.AddressDetail__c.Label}</label>
+									<div class="slds-form-element__control">
+										<input type="text" v-bind:id="searchBoxId" class="slds-input" @keypress="onSearchBoxChange" />
+									</div>
+								</div>
+							</div>
+
+							<div v-if="!disableGPSLocation" class="slds-col slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2 slds-align--absolute-center slds-p-around--small">
+								<button type="button" class="slds-button slds-button--stateful slds-button--brand" v-on:click="findMe">
+									<svg class="slds-button__icon--left slds-button__icon--stateful" aria-hidden="true">
+										<use xlink:href="{!URLFOR($Resource.slds231, '/assets/icons/utility-sprite/svg/symbols.svg#checkin')}"></use>
+									</svg>
+									Find me!
+								</button>
+								<span class="slds-m-left--small slds-form-element__label">GPS location could take some minutes</span>
+							</div>
+
+							<div class="slds-col slds-size--1-of-1 slds-m-top--small slds-m-bottom--small">
+
+								<div v-bind:id="mapId" class="slds-p-around--small" style="width: 100%" />
+
+							</div>
+
+							<div class="slds-col slds-size--6-of-12 slds-medium-size--5-of-12 slds-large-size--5-of-12">
+								<div class="slds-form-element">
+									<label class="slds-form-element__label" for="lat">{!$Label.AddressDetail_Latitude}</label>
+									<div class="slds-form-element__control">
+									<input type="text" readonly id="lat" class="slds-input" v-model="pos.lat"/>
+									</div>
+								</div>
+							</div>
+
+							<div class="slds-col slds-size--6-of-12 slds-medium-size--5-of-12 slds-large-size--5-of-12 slds-p-left--small">
+								<div class="slds-form-element">
+									<label class="slds-form-element__label" for="lng">{!$Label.AddressDetail_Longitude}</label>
+									<div class="slds-form-element__control">
+										<input type="text" readonly id="lng" class="slds-input" v-model="pos.lng"/>
+									</div>
+								</div>
+							</div>
+
+							<div v-if="!disableGPSLocation" class="slds-col slds-size--12-of-12 slds-medium-size--2-of-12 slds-large-size--2-of-12 slds-p-around--small slds-align--absolute-center">
+								<button type="button" class="slds-button slds-button--stateful slds-button--destructive" v-on:click="clearPosition">
+									<svg class="slds-button__icon--left slds-button__icon--stateful" aria-hidden="true">
+										<use xlink:href="{!URLFOR($Resource.slds231, '/assets/icons/utility-sprite/svg/symbols.svg#clear')}"></use>
+									</svg>
+									Clear
+								</button>
+							</div>
+
+						</div>`
+		});
+
+		/* ********* XAL MODEL COMPONENTS ********* */
+
+		Vue.component("postal-code", {
+			mixins: [xALEntityMixin],
+			props: ["postal-code-value"],
+			methods: {
+				onPostcodeSelected: function (value) {
+					this.$emit("postcode-selected", value || {});
+				}
+			},
+			computed: {
+				options: function() {
+					var postalCodeValue = this.postalCodeValue || {};
+					return this.parseRecordsAsOptions(postalCodeValue.developerName);
+				}
+			},
+			template: `<input-select v-bind:options="options" name="postalCode" label="Postal Code" v-on:selected="onPostcodeSelected"></input-select>`
+		});
+
+		Vue.component("locality", {
+			mixins: [xALEntityMixin],
+			props: ["level", "locality-value"],
+			data: function() {
+				return {
+					type: "",
+					hideDependentLocalities: false,
+					hidePostalCodes: false,
+					locality: {
+						dependentLocalities: [],
+						postalCodes: []
+					}
+				}
+			},
+			created: function() {
+				if (this.localityValue) {
+					this.type = this.localityValue.type;
+					this.locality = this.getSelectedEntity(this.localityValue);
+					this.hideDependentLocalities = (!!this.locality.postalCode);
+					this.hidePostalCodes = (!!this.locality.dependentLocality);
+				}
+			},
+			methods:{
+				onTypeSelected: function(value) {
+					this.locality = this.emptyLocality();
+					this.hideDependentLocalities = false;
+					this.hidePostalCodes = false;
+					this.type = value;
+				},
+				onLocalitySelected: function(value) {
+					if (!value) {
+		            	this.locality = this.emptyLocality();
+		            	return;
+					}
+
+					// load locality with dependencies
+					this.loaderState.startLoadingSpinner();
+
+		            var self = this;
+		            // Remote action
+		            Visualforce.remoting.Manager.invokeAction(
+		                '{!$RemoteAction.CtrCreateNewAddress.getLocalityByName}',
+		                value.developerName,
+		                function(result, event) {
+		                    self.loaderState.stopLoadingSpinner();
+
+		                    // Checks event status
+		                    if (!event.status || !result) {
+		                        self.errorState.setErrorMsg({
+		                            msg: "Impossible to load Localities, please try again. Error details: " + event.message,
+		                            type: "error"
+		                        });
+		                        return;
+		                    }
+
+		                    self.locality = result;
+		                }, {
+		                    escape: false
+		                }
+		            );
+				},
+				onDependentLocalitySelected: function(value) {
+					if (value.developerName) { // valid dependent locality
+						this.locality.dependentLocality = value;
+
+						// remove postal code if any
+						delete this.locality.postalCode;
+						this.hidePostalCodes = true;
+					} else {
+						delete this.locality.dependentLocality;
+						this.hidePostalCodes = false;
+					}
+				},
+				onPostcodeSelected: function(value) {
+					if (value.developerName) { // valid postal code
+						this.locality.postalCode = value;
+
+						// remove dependentLocality if any
+						delete this.locality.dependentLocality;
+						this.hideDependentLocalities = true;
+					} else {
+						delete this.locality.postalCode;
+						this.hideDependentLocalities = false;
+					}
+				},
+		        emptyLocality: function() {
+		            return {
+		                parentLocality: this.locality.parentLocality, // it's important in case of blank value to set correctly the parentLocality property
+		                dependentLocalities: [],
+		                postalCodes: []
+		            }
+		        }
+			},
+			watch: {
+				locality: {
+					handler: function(val, oldVal) {
+		                var evtName = this.locality.parentLocality ? "child-locality-selected" : "root-locality-selected";
+						this.$emit(evtName, this.locality);
+					},
+					deep: true
+				}
+			},
+			computed: {
+				typeRadioGroupName: function() {
+					return "localityType".concat(this.level);
+				},
+				localitySelectName: function() {
+					return "localityName".concat(this.level);
+				},
+				localitiesByType: function() {
+					if (!this.typeSelectionNeeded) {
+						this.type = this.types[0];
+					}
+		            return this.parseRecordsAsOptions(this.locality.developerName, this.type);
+				}
+			},
+			template: `<div>
+							<input-radio-group 
+								v-if="typeSelectionNeeded" 
+								v-bind:values="types" 
+								v-bind:name="typeRadioGroupName" 
+								v-bind:value="type"
+								v-on:radio-selected="onTypeSelected">
+							</input-radio-group>
+
+							<input-select 
+								v-if="localitiesByType.length" 
+								v-bind:options="localitiesByType" 
+								v-bind:name="localitySelectName"
+								v-bind:label="type"
+								v-on:selected="onLocalitySelected">
+							</input-select>
+
+							<locality 
+								v-if="!hideDependentLocalities && locality.dependentLocalities.length" 
+								v-bind:records="locality.dependentLocalities" 
+								v-bind:locality-value="locality.dependentLocality"
+								v-bind:level="level + 1"
+								v-on:child-locality-selected="onDependentLocalitySelected">
+							</locality>
+
+							<postal-code 
+								v-if="!hidePostalCodes && locality.postalCodes.length"
+								v-bind:records="locality.postalCodes"
+								v-bind:postal-code-value="locality.postalCode"
+								v-on:postcode-selected="onPostcodeSelected">
+							</postal-code>
+							
+						</div>`
+		});
+
+		Vue.component("sub-administrative-area", {
+			mixins: [xALEntityMixin],
+			props: ["sub-area-value"],
+			data: function() {
+				return {
+					hidePostalCodes: false,
+					hideLocalities: false,
+					type: "",
+					subArea: {
+						localities: [],
+						postalCodes: []
+					}
+				}
+			},
+			created: function () {
+				if (this.subAreaValue)	 {
+					this.type = this.subAreaValue.type;
+					this.subArea = this.getSelectedEntity(this.subAreaValue);
+					this.hidePostalCodes = (!!this.subArea.locality);
+					this.hideLocalities = (!!this.subArea.postalCode);
+				}
+			},
+			methods: {
+				onTypeSelected: function(value) {
+					this.subArea = this.emptySubArea();
+					this.hidePostalCodes = false;
+					this.hideLocalities = false;
+					this.type = value;
+				},
+				onSubAreaSelected: function(value) {
+					if (!value) {
+						this.subArea = this.emptySubArea();
+						return;
+					}
+
+					// load sub area with dependencies
+					this.loaderState.startLoadingSpinner();
+
+		            var self = this;
+		            // Remote action
+		            Visualforce.remoting.Manager.invokeAction(
+		                '{!$RemoteAction.CtrCreateNewAddress.getSubAdminAreaByName}',
+		                value.developerName,
+		                function(result, event) {
+		                    self.loaderState.stopLoadingSpinner();
+
+		                    // Checks event status
+		                    if (!event.status || !result) {
+		                        self.errorState.setErrorMsg({
+		                            msg: "Impossible to load Sub-Administrative Areas, please retry. Error details: " + event.message,
+		                            type: "error"
+		                        });
+		                        return;
+		                    }
+
+		                    self.subArea = result;
+		                }, {
+		                    escape: false
+		                }
+		            );
+				},
+				onLocalitySelected: function(value) {
+					if (value.developerName) {
+						// valid locality
+						this.subArea.locality = value;
+
+						// clear postal code if any
+						this.hidePostalCodes = true;
+						delete this.subArea.postalCode;
+					} else {
+						// not a valid locality
+						delete this.subArea.locality;
+						this.hidePostalCodes = false;
+					}
+				},
+				onPostcodeSelected: function(value) {
+					if (value.developerName) { // valid postal code
+						this.subArea.postalCode = value;
+
+						// clear locality if any
+						this.hideLocalities = true;
+						delete this.subArea.locality;
+					} else {
+						delete this.subArea.postalCode;
+						this.hideLocalities = false;
+					}
+				},
+				emptySubArea: function() {
+					return {
+						localities: [],
+						postalCodes: []
+					}
+				}
+			},
+			watch: {
+				subArea: {
+					handler: function() {
+						this.$emit("sub-area-selected", this.subArea);
+					},
+					deep: true
+				}
+			},
+			computed: {
+				subAreasByType: function() {
+					if (!this.typeSelectionNeeded) {
+						this.type = this.types[0];
+					}
+					return this.parseRecordsAsOptions(this.subArea.developerName, this.type);
+				}
+			},
+			template: `<div>
+							<input-radio-group
+								v-if="typeSelectionNeeded"
+								v-bind:values="types"
+								v-bind:value="type"
+								name="subAdministrativeAreaType"
+								v-on:radio-selected="onTypeSelected">
+							</input-radio-group>
+
+							<input-select
+								v-if="subAreasByType.length"
+								v-bind:options="subAreasByType"
+								name="subAreaSelectName"
+								v-bind:label="type"
+								v-on:selected="onSubAreaSelected">
+							</input-select>
+
+							<locality
+								v-if="!hideLocalities && subArea.localities.length"
+								v-bind:records="subArea.localities"
+								v-bind:locality-value="subArea.locality"
+								level="0"
+								v-on:root-locality-selected="onLocalitySelected">
+							</locality>
+
+							<postal-code 
+								v-if="!hidePostalCodes && subArea.postalCodes.length"
+								v-bind:records="subArea.postalCodes"
+								v-bind:postalCode="subArea.postalCode"
+								v-on:postcode-selected="onPostcodeSelected">
+							</postal-code>
+						</div>`
+		});
+		
+		Vue.component("administrative-area", {
+			mixins: [xALEntityMixin],
+		    props: ["admin-area-value"],
+		    data: function() {
+		        return {
+		            type: "",
+		            hideLocalities: false,
+		            hidePostalCodes: false,
+		            hideSubAreas: false,
+		            adminArea: {
+		                localities: [],
+		                postalCodes: [],
+		                subAdministrativeAreas: []
+		            }
+		        }
+		    },
+		    created: function() {
+		    	if (this.adminAreaValue) {
+		    		this.type = this.adminAreaValue.type;
+		    		this.adminArea = this.getSelectedEntity(this.adminAreaValue);
+		   			this.hideLocalities = (!!this.adminArea.postalCode || !!this.adminArea.subAdministrativeArea);
+					this.hidePostalCodes = (!!this.adminArea.locality || !!this.adminArea.subAdministrativeArea);
+					this.hideSubAreas = (!!this.adminArea.locality || !!this.adminArea.postalCode);
+		    	}
+		    },
+		    methods: {
+		    	onTypeSelected: function(value) {
+		    		this.adminArea = this.emptyAdminArea();
+		    		this.hideLocalities = false;
+		    		this.hidePostalCodes = false;
+		    		this.hideSubAreas = false;
+		    		this.type = value;
+		    	},
+		    	onAdminAreaSelected: function(value) {
+		    		if (!value) {
+		    			this.adminArea = this.emptyAdminArea();	
+		    			return;
+		    		}
+
+		    		// load admin area with dependencies
+		    		this.loaderState.startLoadingSpinner();
+
+		            var self = this;
+		            // Remote action
+		            Visualforce.remoting.Manager.invokeAction(
+		                '{!$RemoteAction.CtrCreateNewAddress.getAdminAreaByName}',
+		                value.developerName,
+		                function(result, event) {
+		                    self.loaderState.stopLoadingSpinner();
+
+		                    // Checks event status
+		                    if (!event.status || !result) {
+		                        self.errorState.setErrorMsg({
+		                            msg: "Impossible to load Administrative areas, please retry. Error details: " + event.message,
+		                            type: "error"
+		                        });
+		                        return;
+		                    }
+
+		                    self.adminArea = result;
+		                }, {
+		                    escape: false
+		                }
+		            );
+		    	},
+		    	onLocalitySelected: function(value) {
+		    		if (value.developerName) {
+		    			// valid locality
+		    			this.adminArea.locality = value;
+
+		    			// clear postal code and sub administrative area if any
+		    			delete this.adminArea.postalCode;
+		    			delete this.adminArea.subAdministrativeArea;
+		    			this.hidePostalCodes = true;
+		    			this.hideSubAreas = true;
+		    		} else {
+		    			delete this.adminArea.locality;
+		    			this.hidePostalCodes = false;
+		    			this.hideSubAreas = false;
+		    		}
+		    	},
+		    	onSubAreaSelected: function(value) {
+		    		if (value.developerName) {
+		    			// valid sub area
+		    			this.adminArea.subAdministrativeArea = value;
+
+		    			// clear locality and postal code if any
+		    			delete this.adminArea.locality;
+		    			delete this.adminArea.postalCode;
+		    			this.hidePostalCodes = true;
+		    			this.hideLocalities = true;
+		    		} else {
+		    			delete this.adminArea.subAdministrativeArea;
+		    			this.hidePostalCodes = false;
+						this.hideLocalities = false;
+		    		}
+		    	},
+		    	onPostcodeSelected: function(value) {
+		    		if (value.developerName) {
+		    			// valid postal code
+		    			this.adminArea.postalCode = value;
+
+		    			// clear locality and sub administrative area if any
+		    			delete this.adminArea.subAdministrativeArea;
+		    			delete this.adminArea.locality;
+		    			this.hideSubAreas = true;
+		    			this.hideLocalities = true;
+		    		} else {
+		    			delete this.adminArea.postalCode;
+		    			this.hideSubAreas = false;
+		    			this.hideLocalities = false;
+		    		}
+		    	},
+		    	emptyAdminArea: function() {
+		    		return {
+		    			localities: [],
+		                postalCodes: [],
+		                subAdministrativeAreas: []
+		    		};
+		    	}
+		    },
+		    watch: {
+		    	adminArea: {
+		    		handler: function() {
+		    			this.$emit("admin-area-selected", this.adminArea);
+		    		},
+		    		deep: true
+		    	}
+		    },
+		    computed: {
+		    	adminAreasByType: function() {
+		    		if (!this.typeSelectionNeeded) {
+		    			this.type = this.types[0];
+		    		}
+		    		return this.parseRecordsAsOptions(this.adminArea.developerName, this.type);
+		    	}
+		    },
+		    template: `<div>
+		    				<input-radio-group
+		    					v-if="typeSelectionNeeded"
+		    					v-bind:values="types"
+		    					v-bind:value="type"
+		    					name="administrativeAreaType"
+		    					v-on:radio-selected="onTypeSelected">
+	    					</input-radio-group>
+
+	    					<input-select
+	    						v-if="adminAreasByType.length"
+	    						v-bind:options="adminAreasByType"
+	    						name="adminAreaSelectName"
+	    						v-bind:label="type"
+	    						v-on:selected="onAdminAreaSelected">
+    						</input-select>
+
+    						<sub-administrative-area
+    							v-if="!hideSubAreas && adminArea.subAdministrativeAreas.length"
+    							v-bind:records="adminArea.subAdministrativeAreas"
+    							v-bind:sub-area-value="adminArea.subAdministrativeArea"
+    							v-on:sub-area-selected="onSubAreaSelected">
+							</sub-administrative-area>
+
+    						<locality
+    							v-if="!hideLocalities && adminArea.localities.length"
+    							v-bind:records="adminArea.localities"
+    							v-bind:locality-value="adminArea.locality"
+    							level="0"
+    							v-on:root-locality-selected="onLocalitySelected">
+							</locality>
+
+							<postal-code
+								v-if="!hidePostalCodes && adminArea.postalCodes.length"
+								v-bind:records="adminArea.postalCodes"
+								v-bind:postal-code-value="adminArea.postalCode"
+								v-on:postcode-selected="onPostcodeSelected">
+							</postal-code>
+		    			</div>`
+		});
+
+		Vue.component("country", {
+			mixins: [xALEntityMixin],
+			props: ["country-value"],
+			data: function () {
+				return {
+					country: {
+						adminAreas: []
+					}
+				};
+			},
+			created: function() {
+				if (this.countryValue) {
+					this.country = this.getSelectedEntity(this.countryValue);
+				}
+			},
+			methods: {
+				onCountrySelected: function(value) {
+					if (!value) {
+						this.country = {adminAreas: []}; // empty country
+						return;
+					}
+		            
+		            // load selected country with dependencies
+		            this.loaderState.startLoadingSpinner();
+
+		            var self = this;
+		            // Remote action
+		            Visualforce.remoting.Manager.invokeAction(
+		                '{!$RemoteAction.CtrCreateNewAddress.getCountryByName}',
+		                value.developerName,
+		                function(result, event) {
+		                    self.loaderState.stopLoadingSpinner();
+
+		                    // Checks event status
+		                    if (!event.status || !result) {
+		                        self.errorState.setErrorMsg({
+		                            msg: "Impossible to load selected country, please retry. Error details: " + event.message,
+		                            type: "error"
+		                        });
+		                        return;
+		                    }
+
+		                    self.country = result;
+		                }, {
+		                    escape: false
+		                }
+		            );
+				},
+				onAdminAreaSelected: function(value) {
+					if (value.developerName) {
+						// valid admin area
+						this.country.adminArea = value;
+					} else {
+						delete this.country.adminArea;
+					}
+				}
+			},
+			computed: {
+				countries: function() {
+					return this.parseRecordsAsOptions(this.country.developerName);
+				}
+			},
+			watch: {
+				country: {
+					handler: function() {
+						this.$emit("country-selected", this.country);
+					},
+					deep: true
+				}
+			},
+			template: `<div>
+							<input-select
+								name="countrySelectName"
+								v-bind:options="countries"
+								label="Country"
+								disabled="1"
+								v-on:selected="onCountrySelected">
+							</input-select>
+
+							<administrative-area
+								v-if="country.adminAreas.length"
+								v-bind:records="country.adminAreas"
+								v-bind:admin-area-value="country.adminArea"
+								v-on:admin-area-selected="onAdminAreaSelected">
+							</administrative-area>
+						</div>`
+		});
+
+		Vue.component("address-form", {
+			props: ["addressDetail", "countries"],
+			data: function() {
+				return {
+		            addressTypes: addressTypes
+		           };
+			},
+			methods: {
+				onCountrySelected: function(value) {
+		            if (value.developerName) {
+		                this.addressDetail.country = value;
+		            } else {
+		                delete this.addressDetail.country;
+		            }
+		        },
+		        onAddressTypeSelected: function(value) {
+		        	this.addressDetail.type = value;
+		        },
+		        onAddressLineFilled: function(text) {
+		        	this.addressDetail.addressLine = text;
+		        },
+		        onPostCodeFilled: function(text) {
+		        	this.addressDetail.postCode = text;
+		        }
+			},
+			computed: {
+				 postCodeRequired: function() {
+				 	return this.addressDetail.country && (this.addressDetail.country.label == 'Argentina' || this.addressDetail.country.label == 'Chile')
+				}
+   			},
+			template: `<div v-if="addressDetail" class="slds-grid slds-box">
+						<div class="slds-col">
+							<div class="slds-form slds-form_stacked">
+								<checkbox-button-group v-bind:options="addressTypes" v-bind:selected-values="addressDetail.type" label="Address type" name="addressType" v-on:changed="onAddressTypeSelected" />
+								<country v-if="countries.length" v-bind:records="countries" v-bind:country-value="addressDetail.country" v-on:country-selected="onCountrySelected" />
+								<input-text v-if="postCodeRequired" name="postCode" label="Post Code" single=true v-bind:value="addressDetail.postCode" v-on:filled="onPostCodeFilled" />
+								<input-text name="addressLine" label="Address Line" maxlength="255" v-bind:value="addressDetail.addressLine" v-on:filled="onAddressLineFilled" />
+							</div>
+						</div>
+					</div>`
+		});
+
+		/* ********* GPA MODEL COMPONENTS ********* */
+
+		Vue.component("gpa-address-fields", {
+		    mixins: [xALEntityMixin],
+			props: ["components", "formattedAddress", "type","recipientName", "enableFormattedAddressField","cityValue","addressDetails", "options"],
+			data: function() {
+				return {
+					addressTypes: addressTypes,
+					addressLine: "",
+					recipientNameLocal : this.recipientName,
+					valueBackup: null,
+					cityVal: this.cityValue,
+                    neighbourhoodOptions: [],
+                    neighbourhoodListDetail: {},
+                    selectedNeighbourhood: null,
+                    neighbourhoodValue: this.addressDetails.localityDevName
+				};
+			},
+			created: function() {
+				// orders components based on form position. This way the rows
+				// computed property can easily create the form layout
+				if (this.components) {
+					this.components.sort(function(x, y) {
+						return x.settings.FormPosition__c.localeCompare(
+							y.settings.FormPosition__c
+						);
+					});
+				}
+
+				if (this.formattedAddress) {
+					this.addressLine = this.formattedAddress;
+				}
+				recipientNameLocal = this.recipientName;
+
+				cityVal = this.cityValue;
+				if(this.addressDetails.localityDevName){
+					this.neighbourhoodValue = this.addressDetails.localityDevName;
+
+                /* To load neighbourhood values on page load */
+				var neighbourhood = [];
+				var self = this;
+                   if (self.addressDetails.gpaLocalityValue) {
+                       self.loaderState.startLoadingSpinner();
+					   Visualforce.remoting.Manager.invokeAction(
+							'{!$RemoteAction.CtrCreateNewAddress.getLocalityBySubAdminArea}',
+							 self.addressDetails.gpaLocalityValue,
+							function(result, event) {
+							self.loaderState.stopLoadingSpinner();
+								// Checks event status
+								if (!event.status || !result) {
+									self.errorState.setErrorMsg({
+										msg: "Impossible to load Neighbourhoods, please retry. Error details: " + event.message,
+										type: "error"
+									});
+									return;
+								}
+								for (var i in result) {
+									 if (result.hasOwnProperty(i)) {
+											neighbourhood.push({
+												value: result[i].developerName,
+												label: result[i].label
+										});
+									}
+								}
+								self.neighbourhoodOptions = neighbourhood;
+								self.neighbourhoodListDetail = JSON.parse(JSON.stringify(result));
+							}, {
+								escape: true
+							}
+						);
+                    }
+                }
+                /* end of neighbourhood values load */
+			},
+			methods: {
+				onManualChange: function(col, evt) {
+
+					this.$emit("manual-change", true);
+					if(!col.settings.TypeToLikelihood__c.includes('country')) {
+						// longValue was manually modified, overwrites shortValue with longValue
+						col.shortValue = col.longValue;
+					}
+					// try to update formatted address with new value
+					if(this.valueBackup){
+						var rexp = new RegExp("(\\s*)" + this.valueBackup + "(\\s*)", "i");
+						this.addressLine = this.addressLine.replace(rexp,'$1' + col.longValue + '$2');
+					}
+				},
+				onAddressTypeSelected: function(val) {
+				    this.$emit("type-changed", val);
+    			},
+    			setValueBackup: function(val, evt) {
+    				this.valueBackup = val;
+    			},
+    			onNeighbourhoodSelected: function(value) {
+                    this.selectedNeighbourhood = value;
+                    for (var i in this.neighbourhoodListDetail){
+                    if(this.selectedNeighbourhood == this.neighbourhoodListDetail[i].developerName){
+                            this.addressDetails.localityName = this.neighbourhoodListDetail[i].label;
+                            this.addressDetails.localityDevName = this.neighbourhoodListDetail[i].developerName;
+                            this.addressDetails.localityCode = this.neighbourhoodListDetail[i].code;
+                            this.addressDetails.localityType = this.neighbourhoodListDetail[i].type;
+                        }
+                    }
+               }
+			},
+			watch: {
+				addressLine: function() {	
+					this.$emit("address-line-changed", this.addressLine);
+				},
+				recipientNameLocal: function() {
+					this.$emit("recipient-name-changed", this.recipientNameLocal);
+				},
+				formattedAddress: function() {
+					this.addressLine = this.formattedAddress;
+
+					 var neighbourhood = [];
+                    // load selected country with dependencies
+                    var self = this;
+                    this.loaderState.startLoadingSpinner();
+                   Visualforce.remoting.Manager.invokeAction(
+                        '{!$RemoteAction.CtrCreateNewAddress.getLocalityBySubAdminArea}',
+                         cityVal,
+                        function(result, event) {
+                        self.loaderState.stopLoadingSpinner();
+                            //alert('result is'+result);
+                            // Checks event status
+                            if (!event.status || !result) {
+                                self.errorState.setErrorMsg({
+                                    msg: "Impossible to load Neighbourhoods, please retry. Error details: " + event.message,
+                                    type: "error"
+                                });
+                                return;
+                            }
+                           for (var i in result) {
+                                 if (result.hasOwnProperty(i)) {
+                                        neighbourhood.push({
+                                            value: result[i].developerName,
+                                            label: result[i].label
+                                    });
+                                }
+                            }
+                            self.neighbourhoodOptions = neighbourhood;
+                            self.neighbourhoodListDetail = JSON.parse(JSON.stringify(result));
+                        }, {
+                            escape: true
+                        }
+                    );
+				}
+			},
+			computed: {
+				rows: function() {
+				    if (!this.components) {
+				    	return;
+        			}
+        			this.components.sort(function(x, y) {
+						return x.settings.FormPosition__c.localeCompare(
+							y.settings.FormPosition__c
+						);
+					});
+					var res = [];
+					var currentRow = -1;
+					for (var i = 0; i < this.components.length; i++) {
+						var cmp = this.components[i]; 
+						// FormPosition__c is formatted as follow: X-Y where X is row and Y is column and 0 < X,Y <=9
+						var row = parseInt(cmp.settings.FormPosition__c.split("-")[0]);
+						var col = parseInt(cmp.settings.FormPosition__c.split("-")[1]);
+						if (row != currentRow) {
+							currentRow = res.push({
+								cols: [cmp]
+							});
+						} else {
+							res[currentRow - 1].cols.push(cmp);
+						}
+					}
+					return res;
+				}
+			},
+			template: `<div class="slds-form-element__group slds-p-around--small">
+							<fieldset class="slds-form--compound">
+								<legend :style="{visibility: !options || !options.hide_legend ? 'visible' : 'hidden'}"
+									class="slds-form-element__label slds-text-title--caps">{!$ObjectType.AddressDetail__c.Label}</legend>
+								<div class="slds-grid slds-wrap">
+									<div class="slds-col slds-size--1-of-1 slds-p-around--small">
+										<checkbox-button-group :style="{visibility: !options || !options.hide_types ? 'visible' : 'hidden'}"
+											v-bind:options="addressTypes"
+											v-bind:selected-values="type"
+											label="{!$ObjectType.AddressDetail__c.fields.Type__c.Label}"
+											name="addressType"
+											v-on:changed="onAddressTypeSelected" />
+									</div>
+									<div class="slds-col slds-size--1-of-1 slds-p-around--small">
+										<div class="slds-form-element" :style="{visibility: !options || !options.hide_types ? 'visible' : 'hidden'}">
+											<label class="slds-form-element__label">
+												{!$Label.recipient_name}
+											</label>
+											<input class="slds-input" type="text" v-model="recipientNameLocal" />
+										</div>
+									</div>
+									<div class="slds-col slds-size--1-of-1 slds-p-around--small" v-if="!options || !options.remove_faddress">
+										<div class="slds-form-element">
+											<label class="slds-form-element__label">
+												{!$ObjectType.AddressDetail__c.fields.FormattedAddress__c.label}
+											</label>
+											<input class="slds-input" type="text" v-model="addressLine" :disabled="!enableFormattedAddressField" />
+										</div>
+									</div>
+								</div>
+								<div v-for="row in rows" class="slds-grid slds-wrap">
+									<div v-for="col in row.cols" class="slds-col slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2 slds-p-around--small">
+										<div class="slds-form-element">
+											<label class="slds-form-element__label">
+												<abbr v-if="col.settings.Required__c" class="slds-required" title="required">*</abbr>
+				            					{{ col.settings.FormLabel__c }}
+					            			</label>
+											<country-select
+												:country-details="col"
+												v-if="col.settings.TypeToLikelihood__c.includes('country')"
+												v-bind:readonly="!col.settings.AllowManualEditing__c && !!col.shortValue"
+												v-on:manual-change="onManualChange"/>
+					            			<input
+					            				v-if="!col.settings.TypeToLikelihood__c.includes('country')"
+					            				class="slds-input" 
+					            				type="text" 
+					            				v-model="col.longValue" 
+					            				v-bind:readonly="!col.settings.AllowManualEditing__c && !!col.shortValue" 
+					            				v-on:focus="setValueBackup(col.longValue, $event)"
+					            				v-on:blur="setValueBackup(null, $event)"
+					            				v-on:change="onManualChange(col, $event)" />
+										</div>
+									</div>
+								</div>
+								<!--Neighbourhood -->
+                                <div class="slds-col slds-size--1-of-1 slds-p-around--small">
+                                        <div class="slds-form-element">
+                                            <input-select v-if="neighbourhoodOptions.length"
+                                            	  name="neighbourhood"
+                                                 v-bind:options="neighbourhoodOptions"
+                                                 label="{!$Label.Neighbourhood}"
+                                                 v-on:selected="onNeighbourhoodSelected"
+                                                 v-bind:selectedvalue="neighbourhoodValue"
+                                                 />
+                                        </div>
+                                    </div>
+							</fieldset>
+						</div>`
+		});
+
+		Vue.component("google-place-api-form", {
+			props: ["addressDetail", "searchAddress", "mapMaxHeight", "leadGpaId"],
+			data: function() {
+			  	return {
+			  	  	searchPerformed: false,
+			  	  	cityVal: undefined
+				};
+      },
+			methods: {
+				onPlaceSelected: function(place) {
+					
+					// reset manual changes
+					this.addressDetail.modifiedManually = false;
+
+					// set lat lng
+					this.addressDetail.longitude = place.geometry.location.lng();
+					this.addressDetail.latitude = place.geometry.location.lat();
+
+					// set address fields
+					this.addressDetail.formattedAddress = place.formatted_address;
+					this.addressDetail.placeId = place.place_id;
+
+					// clear previously filled components
+					this.addressDetail.components.map(function(cmp) {
+						cmp.lastTypeLikelihood = -1;
+						cmp.shortValue = "";
+						cmp.longValue = "";
+					});
+
+					var countryVal = '';
+                    var stateVal = '';
+                    cityVal = '';
+
+					// address components
+					for (var i = 0; i < place.address_components.length; i++) {
+						var cmp = place.address_components[i];
+						if(cmp.types == 'country'){
+                                countryVal = cmp.long_name;
+                        }
+                        if(cmp.types[0] == 'country'){
+                                countryVal = cmp.long_name;
+                        }
+                        if(cmp.types[0] == 'administrative_area_level_1'){
+                                stateVal = cmp.long_name;
+                        }
+                        if(cmp.types[0] == 'locality'){
+                                cityVal = cmp.long_name;
+                        }
+						for (var j = 0; j < cmp.types.length; j++) {
+							var type = this.typesLikelihoodToComponents[cmp.types[j]];
+							
+							if (!type) {
+								continue;
+							}
+
+							// checks last likelihood
+							if (type.likelihood > type.cmp.lastTypeLikelihood) {
+								type.cmp.lastTypeLikelihood = type.likelihood;
+								type.cmp.shortValue = cmp.short_name;
+								type.cmp.longValue = cmp.long_name;
+							}
+						}	
+					}
+				},
+				onCoordsChange: function(coords) {
+					this.addressDetail.latitude = coords.lat;
+					this.addressDetail.longitude = coords.lng;
+				},
+				onAddressLineChange: function(val) {
+					this.addressDetail.formattedAddress = val;
+				},
+				onRecipientNameChange: function(val) {
+					this.addressDetail.recipientName = val;
+				},
+				onManualChange: function() {
+					this.addressDetail.modifiedManually = true;
+				},
+				onTypeChanged: function(val) {
+					this.addressDetail.type = val;
+				},
+				onSearchPerformed: function() {
+					this.searchPerformed = true;
+				}
+			},
+			computed: {
+				typesLikelihoodToComponents: function() {
+					return this.addressDetail.components.reduce(function(acc, cmp) {
+						var typeToLikelihood = JSON.parse(cmp.settings.TypeToLikelihood__c);
+						for (var type in typeToLikelihood) {
+							acc[type] = {
+								likelihood: typeToLikelihood[type],
+								cmp: cmp
+							};
+						}
+						return acc;
+					}, {});
+				}
+			},
+			template: `<div v-if="addressDetail.components" class="slds-grid slds-wrap slds-theme--default slds-scrollable--x">
+							<div class="slds-col slds-size--1-of-1 slds-medium-size--2-of-3 slds-large-size--2-of-3">
+								<geolocation 
+									v-bind:lat="addressDetail.latitude" 
+									v-bind:lng="addressDetail.longitude"
+									v-bind:search-address="searchAddress"
+									v-bind:map-max-height="mapMaxHeight"
+									v-bind:lead-gpa-id="leadGpaId"
+									disableGPSLocation="true" 
+									v-on:place-selected="onPlaceSelected"
+									v-on:coords="onCoordsChange"
+								    v-on:search-performed="onSearchPerformed" />
+							</div>
+
+							<div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-3 slds-large-size--1-of-3">
+								<gpa-address-fields
+									v-bind:type="addressDetail.type"
+									v-bind:recipientName="addressDetail.recipientName"
+									v-bind:components="addressDetail.components" 
+									v-bind:formatted-address="addressDetail.formattedAddress"
+									v-bind:enableFormattedAddressField="searchPerformed"
+									v-on:address-line-changed="onAddressLineChange"
+									v-on:recipient-name-changed = "onRecipientNameChange"
+									v-on:manual-change="onManualChange"
+									v-on:type-changed="onTypeChanged"
+									v-bind:cityValue="cityVal"
+                                    v-bind:addressDetails="addressDetail" />
+							</div>
+					   </div>`
+		});
+		Vue.component("daum-place-api-form", {
+			props: ["addressDetail", "search-address", "map-max-height", "lead-gpa-Id"],
+			data: function() {
+			  	return {
+			  	  	searchPerformed: false,
+			  	  	options: {
+			  	  	  hide_types: true,
+			  	  	  hide_recipient: true,
+			  	  	  hide_legend: true,
+			  	  	  remove_faddress: true
+					},
+			  	  	map: undefined,
+			  	  	places: undefined,
+			  	  	geocoder: undefined,
+			  	  	geocoderResponse: [],
+			  	  	marker: undefined,
+			  	  	placesResponse: [],
+			  	  	foundPlaces: [],
+			  	  	daumResponse: {},
+			  	  	selectedPlaces: '',
+			  	  	isLoading: false
+				};
+      		},
+			methods: {
+			    limitText (count) {
+				  return `and ${count} other countries`
+				},
+			    onSearchBoxChange(keyword) {
+			        this.places.keywordSearch(keyword, this.placesCallback);
+			        this.geocoder.addressSearch(keyword, this.geocoderCallback);
+       			},
+			    placesCallback: function(result, status) {
+			    	 if (status === daum.maps.services.Status.OK) {
+						this.placesResponse = result;
+					} else {
+						this.placesResponse = [];
+     				}
+     				this.foundPlaces = this.geocoderResponse.concat(this.placesResponse);
+       			},
+       			geocoderCallback: function(result, status) {
+			    	 if (status === daum.maps.services.Status.OK) {
+						this.geocoderResponse = result;
+					} else {
+						this.geocoderResponse = [];
+     				}
+     				this.foundPlaces = this.geocoderResponse.concat(this.placesResponse);
+       			},
+       			clearAll () {
+				  this.selectedPlaces = [];
+				},
+				onPlaceSelected: function(place) {
+					// reset manual changes
+					this.addressDetail.modifiedManually = false;
+
+					// set lat lng
+					this.addressDetail.longitude = place.x;
+					this.addressDetail.latitude = place.y;
+
+					// set address fields
+					this.addressDetail.formattedAddress = place.formatted_address;
+					// clear previously filled components
+					this.addressDetail.components.map(function(cmp) {
+						cmp.lastTypeLikelihood = -1;
+						cmp.shortValue = "";
+						cmp.longValue = "";
+					});
+
+					// address components
+					for (var i = 0; i < place.address_components.length; i++) {
+						var cmp = place.address_components[i];
+						for (var j = 0; j < cmp.types.length; j++) {
+							var type = this.typesLikelihoodToComponents[cmp.types[j]];
+							if (!type) {
+								continue;
+							}
+
+							// checks last likelihood
+							if (type.likelihood > type.cmp.lastTypeLikelihood) {
+								type.cmp.lastTypeLikelihood = type.likelihood;
+								type.cmp.shortValue = cmp.short_name;
+								type.cmp.longValue = cmp.long_name;
+							}
+						}
+					}
+				},
+				onCoordsChange: function(result, status) {
+					if (status === daum.maps.services.Status.OK) {
+					    this.daumResponse = result;
+					    this.onPlaceSelected(this.parsedDaumResponse(result[0]));
+     				}
+				},
+				onAddressLineChange: function(val) {
+					this.addressDetail.formattedAddress = val;
+				},
+				onRecipientNameChange: function(val) {
+					this.addressDetail.recipientName = val;
+				},
+				onManualChange: function() {
+					this.addressDetail.modifiedManually = true;
+				},
+				onTypeChanged: function(val) {
+					this.addressDetail.type = val;
+				},
+				onSearchPerformed: function() {
+
+				},
+				parsedDaumResponse: function(daumResponse) {
+			        var placeItems = [];
+					if (daumResponse.road_address) {
+					    var roadAddress = daumResponse.road_address;
+					    placeItems.push({long_name: roadAddress.address_name, short_name: roadAddress.address_name, types: [ "address_new" ]});
+
+						if (roadAddress.region_2depth_name) {
+							roadAddress.region_2depth_name.split(" ").forEach(name => {
+								if (name.endsWith("구") || name.endsWith("군") || name.endsWith("gun") || name.endsWith("gu")) {
+									placeItems.push({long_name: name, short_name:name, types: [ "gungu_new" ]});
+								} else {
+									placeItems.push({long_name: name, short_name:name, types: [ "city_new" ]});
+								}
+							});
+						}
+
+						if (roadAddress.region_3depth_name) {
+							roadAddress.region_3depth_name.split(" ").forEach(name => {
+								if (!name.endsWith("리") && !name.endsWith('동') && !name.endsWith("ri") && !name.endsWith("dong")) {
+									placeItems.push({long_name: name, short_name:name, types: [ "eupmyun_new" ]});
+								}
+							});
+						}
+						placeItems.push({long_name: "대한민국", short_name:"KR", types: [ "country_new" ]});
+						placeItems.push({long_name: roadAddress.region_1depth_name,
+										short_name: roadAddress.region_1depth_name, types: [ "dometropolitan_new" ]});
+						placeItems.push({long_name: roadAddress.road_name,
+						                 short_name: roadAddress.road_name, types: [ "roadname_new" ]});
+						placeItems.push({long_name: roadAddress.zone_no,
+						                 short_name: roadAddress.zone_no, types: [ "postal_code_new" ]});
+						placeItems.push({long_name: roadAddress.address_name, short_name: roadAddress.address_name, types: [ "formatted_address_new" ]});
+
+						var building_number = roadAddress.sub_building_no ? roadAddress.main_building_no + " - " + roadAddress.sub_building_no
+																							: roadAddress.main_building_no;
+						placeItems.push({long_name: building_number, short_name:building_number, types: [ "building_number_new" ]});
+					}
+
+					if (daumResponse.address) {
+					    var address = daumResponse.address;
+						if (address.region_2depth_name) {
+							address.region_2depth_name.split(" ").forEach(name => {
+								if (name.endsWith("구") || name.endsWith("군") || name.endsWith("gun") || name.endsWith("gu")) {
+									placeItems.push({long_name: name, short_name:name, types: [ "gungu_old" ]});
+								} else {
+									placeItems.push({long_name: name, short_name:name, types: [ "city_old" ]});
+								}
+							});
+						}
+
+						if (address.region_3depth_name) {
+							address.region_3depth_name.split(" ").forEach(name => {
+								if (name.endsWith("리") || name.endsWith("ri")) {
+									placeItems.push({long_name: name, short_name:name, types: [ "ri_old" ]});
+								} else {
+									placeItems.push({long_name: name, short_name:name, types: [ "dongeupmyun_old" ]});
+								}
+							});
+						}
+
+						placeItems.push({long_name: "대한민국", short_name:"KR", types: [ "country_old" ]});
+						placeItems.push({long_name: address.region_1depth_name,
+								short_name: address.region_1depth_name, types: [ "dometropolitan_old" ]});
+						var buildingName = daumResponse.road_address ? daumResponse.road_address.building_name : "";
+						placeItems.push({long_name: buildingName, short_name: buildingName, types: [ "building_name_old" ]});
+						var mainAddress = buildingName ?  address.address_name + ' ' + buildingName : address.address_name;
+					    placeItems.push({long_name: mainAddress, short_name: mainAddress, types: [ "address_old" ]});
+						var zip_code = daumResponse.road_address ? daumResponse.road_address.zone_no : address.zip_code
+						placeItems.push({long_name: zip_code, short_name: zip_code, types: [ "postal_code_old" ]});
+						placeItems.push({long_name: address.address_name, short_name:address.address_name, types: [ "formatted_address_new" ]});
+
+						var bunji = address.sub_address_no ? address.main_address_no + " - " + address.sub_address_no
+																							: address.main_address_no;
+    					placeItems.push({long_name: bunji, short_name: bunji, types: [ "bunji_old" ]});
+    				}
+    				return { 	formatted_address: daumResponse.address_name,
+								address_components: placeItems,
+								x: daumResponse.x,
+								y: daumResponse.y };
+				}
+			},
+			watch: {
+				selectedPlaces: function (val) {
+				    if(val.x && val.y) {
+						this.geocoder.addressSearch(val.address_name, this.onCoordsChange);
+						this.map.setCenter(new daum.maps.LatLng(val.y, val.x));
+						this.marker.setPosition(new daum.maps.LatLng(val.y, val.x));
+						this.marker.setTitle(val.address_name);
+					}
+    			},
+    			addressDetail: {
+                    handler(newVal, oldVal) {
+                        if (newVal.latitude != oldVal.latitude || newVal.longitude != oldVal.longitude ) {
+                            this.map.setCenter(new daum.maps.LatLng(newVal.latitude, newVal.longitude));
+						    this.marker.setPosition(new daum.maps.LatLng(newVal.latitude, newVal.longitude));
+						    this.marker.setTitle(newVal.formattedAddress);
+                        }
+                    },
+                    deep: false
+                }
+
+			},
+			computed: {
+				typesLikelihoodToComponents: function() {
+					return this.addressDetail.components.reduce(function(acc, cmp) {
+						var typeToLikelihood = JSON.parse(cmp.settings.TypeToLikelihood__c);
+						for (var type in typeToLikelihood) {
+							acc[type] = {
+								likelihood: typeToLikelihood[type],
+								cmp: cmp
+							};
+						}
+						return acc;
+					}, {});
+				}
+			},
+			mounted: function() {
+			    var x = this.addressDetail.longitude ? this.addressDetail.longitude : 126.570667;
+			    var y = this.addressDetail.latitude ? this.addressDetail.latitude : 33.450701;
+        		var options = {
+            		center: new daum.maps.LatLng(y, x),
+            		level: 3
+        		};
+        		this.map = new daum.maps.Map(this.$refs.daummap, options);
+        		this.marker = new daum.maps.Marker({
+					map: this.map,
+					position: new daum.maps.LatLng(y, x),
+					draggable: true
+				});
+        		this.places = new daum.maps.services.Places();
+        		this.places.setMap(this.map);
+        		this.geocoder = new daum.maps.services.Geocoder();
+        		this.$refs.daummap.style.height = this.mapMaxHeight ? this.mapMaxHeight + "px" : "400px";
+        		var self = this;
+
+        		daum.maps.event.addListener(this.marker, 'dragend', function() {
+				 	self.addressDetail.longitude = self.marker.getPosition().getLng();
+					self.addressDetail.latitude = self.marker.getPosition().getLat();;
+				});
+        		setTimeout(function() { self.map.relayout() }, 1000);
+			},
+			template: `<div class="slds-grid slds-wrap slds-scrollable--x slds-box">
+							<div class="slds-col slds-size--1-of-1">
+								<div class="daum-map-container">
+								  <label class="typo__label" for="ajax">Daum 지도 시작하기</label>
+								  <vue-multiselect 	style="z-index: 4" v-model="selectedPlaces" id="ajax"
+								  					label="place_name" track-by="place_name"
+								  					placeholder="Type to search" open-direction="bottom"
+								  					:options="foundPlaces" :multiple="false"
+								  					:searchable="true" :loading="isLoading"
+								  					:internal-search="false" :clear-on-select="false"
+								  					:preserve-search="true"
+								  					:close-on-select="true" :options-limit="300"
+								  					:limit="3" :limit-text="limitText"
+								  					:max-height="600" :show-no-results="true"
+								  					:hide-selected="true" @search-change="onSearchBoxChange">
+										<template slot="option" slot-scope="props">
+											<div class="slds-grid_vertical">
+												<div class="slds-col">
+													{{ props.option.place_name }}
+												</div>
+												<div v-if="props.option.address_name" class="slds-col daum-option-address">
+													{{ props.option.address_name }}
+												</div>
+												<div v-if="props.option.road_address_name" class="slds-col daum-option-address">
+													{{ props.option.road_address_name }}
+												</div>
+											</div>
+										</template>
+								  </vue-multiselect>
+								</div>
+								<template slot="selection" slot-scope="selection" ></template>
+								<div class="slds-col slds-m-around_small">
+									<div class="slds-box" id="map" ref="daummap"></div>
+								</div>
+							</div>
+							<div v-if="addressDetail.components" class="slds-col slds-size--1-of-1 slds-medium-size--2-of-4 slds-large-size--2-of-4">
+								<gpa-address-fields
+									v-bind:type="addressDetail.type"
+									v-bind:recipientName="addressDetail.recipientName"
+									v-bind:components="addressDetail.components ? addressDetail.components.filter(cmp => cmp.settings.Name.endsWith('_NEW')) : undefined"
+									v-bind:formatted-address="addressDetail.formattedAddress"
+									v-bind:enableFormattedAddressField="searchPerformed"
+									v-on:address-line-changed="onAddressLineChange"
+									v-on:recipient-name-changed = "onRecipientNameChange"
+									v-on:manual-change="onManualChange"
+									v-on:type-changed="onTypeChanged"
+									v-bind:cityValue="''"
+									v-bind:options="{remove_faddress: true}"
+                                    v-bind:addressDetails="addressDetail" />
+							</div>
+							<div v-if="addressDetail.components" class="slds-col slds-size--1-of-1 slds-medium-size--2-of-4 slds-large-size--2-of-4">
+								<gpa-address-fields
+									v-bind:type="addressDetail.type"
+									v-bind:recipientName="addressDetail.recipientName"
+									v-bind:components="addressDetail.components ? addressDetail.components.filter(cmp => cmp.settings.Name.endsWith('_OLD')) : undefined"
+									v-bind:formatted-address="addressDetail.formattedAddress"
+									v-bind:enableFormattedAddressField="searchPerformed"
+									v-on:address-line-changed="onAddressLineChange"
+									v-on:recipient-name-changed = "onRecipientNameChange"
+									v-on:manual-change="onManualChange"
+									v-on:type-changed="onTypeChanged"
+									v-bind:cityValue="''"
+									v-bind:options="options"
+                                    v-bind:addressDetails="addressDetail" />
+							</div>
+					   </div>`
+		});
+	</script>
+
+	<c:VueXalAddressComponents />
+
+	<style>
+		.daum-map-container {
+			margin: 1vw;
+		}
+		.daum-option-address {
+			font-size:x-small;
+  		}
+	</style>
+</apex:component>

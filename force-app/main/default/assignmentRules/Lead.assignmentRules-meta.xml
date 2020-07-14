@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssignmentRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignmentRule>
+        <fullName>Basic Rules</fullName>
+        <active>true</active>
+        <ruleEntry>
+            <assignedTo>Talabat_Lead_Research_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName=&quot;Talabat_Lead&quot; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>SE_Sales_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Lead.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>SE Lead</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FI_Sales_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Lead.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>FI Lead</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>UK_Research_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Lead.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Uk lead</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CD_Research</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName=&quot;CD_Lead&quot;  
+&amp;&amp;
+ (ISNEW()  ||  ISCHANGED(RecordTypeId))
+ &amp;&amp;
+ NOT(TEXT(Type__c)=&quot;Brand&quot;)</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>PY_Lead_Management</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName=&quot;PY_Lead&quot; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>DE_Sales_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName=&quot;DE_Lead&quot;  &amp;&amp;  (ISNEW()  || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>HU_Lead_Research_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName=&apos;HU_Lead&apos; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CZ_Lead_Research_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName=&apos;CZ_Lead&apos; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_HK_Sales_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>TEXT(Record_Country__c) = &apos;Hong Kong&apos; &amp;&amp; RecordType.DeveloperName=&quot;FP_Lead&quot; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_LA_Sales_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>TEXT(Record_Country__c) = &apos;Laos&apos; &amp;&amp;  TEXT (LeadSource) &lt;&gt; &apos;Own Research&apos; &amp;&amp; RecordType.DeveloperName=&quot;FP_Lead&quot; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_MM_Sales_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>TEXT(Record_Country__c) = &apos;Myanmar&apos; &amp;&amp;  TEXT (LeadSource) &lt;&gt; &apos;Own Research&apos; &amp;&amp;  RecordType.DeveloperName=&quot;FP_Lead&quot; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_KH_Sales_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>TEXT(Record_Country__c) = &apos;Cambodia&apos; &amp;&amp;  TEXT (LeadSource) &lt;&gt; &apos;Own Research&apos; &amp;&amp;  RecordType.DeveloperName=&quot;FP_Lead&quot; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_SG_Sales_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>TEXT(Record_Country__c) = &apos;Singapore&apos; &amp;&amp; RecordType.DeveloperName=&quot;FP_Lead&quot; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_TW_Sales_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>TEXT(Record_Country__c) = &apos;Taiwan&apos; &amp;&amp; RecordType.DeveloperName=&quot;FP_Lead&quot; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_MY_Sales_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>TEXT(Record_Country__c) = &apos;Malaysia&apos; &amp;&amp; RecordType.DeveloperName=&quot;FP_Lead&quot; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_TH_Sales_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>TEXT(Record_Country__c) = &apos;Thailand&apos; &amp;&amp; RecordType.DeveloperName=&quot;FP_Lead&quot; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_PH_Sales_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>TEXT(Record_Country__c) = &apos;Philippines&apos; &amp;&amp; RecordType.DeveloperName=&quot;FP_Lead&quot; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_JP_Sales_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>TEXT(Record_Country__c) = &apos;Japan&apos; &amp;&amp; RecordType.DeveloperName=&quot;FP_Lead&quot; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <formula>True</formula>
+        </ruleEntry>
+    </assignmentRule>
+</AssignmentRules>

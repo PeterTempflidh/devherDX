@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY - Partner Portal como activo mi usuario</name>
+    <style>freeForm</style>
+    <subject>Gracias por Contactarnos - # {!Case.CaseNumber}</subject>
+    <textOnly>Estimado XXXNombreXXX, 
+
+ 
+
+Nos contactamos en respuesta a tu consulta sobre cómo activar tu usuario de Partner Portal, te hemos enviado un email a la dirección xxxxxx@xxxxx con asunto: ¡Bienvenido a Parner Portal!, allí encontrarás un botón rojo que dice ¡Activa tu cuenta! 
+
+ 
+
+Si le das click a ese botón te llevará directamente al ingreso de la herramienta y debajo del botón de ingresar te aparecerá un enlace que dice ‘Activa tu cuenta aquí’, en esa página coloca toda tu información y una contraseña, después le das click a ingresar y te dirigirá a tu perfil.
+
+ 
+
+Adicionalmente te hemos adjuntado el manual de la herramienta para futuras consultas. 
+
+ 
+
+Quedamos a las órdenes,
+
+Saludos 
+
+ 
+
+(NOMBRE DEL AGENTE) - Claims Operator 
+PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,247 @@
+<!--
+ - Created by c.kumari on 19.11.2018.
+   SP-2832 Used for Product Only Quotes for Argentina
+ -->
+
+<apex:component controller="CtrCreateQuote" access="global">
+    <apex:attribute name="oppQ" type="String" description="Placeholder" assignTo="{!oppQId}"/>
+    <apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+    <head>
+        <style type="text/css">
+		    /* A4 size */
+
+		    @page {
+		    	size: A4;
+			}
+
+			@media print {
+				.pageBreak {
+		    		page-break-after: always;
+		    	}
+			}
+
+			 .terms {
+				-webkit-column-count: 2; /* Chrome, Safari, Opera */
+			    -moz-column-count: 2; /* Firefox */
+			    column-count: 2;
+			    -webkit-column-gap: 40px; /* Chrome, Safari, Opera */
+			    -moz-column-gap: 40px; /* Firefox */
+			    column-gap: 40px;
+			}
+		</style>
+    </head>
+
+    <div id="PY_QUOTE" style="width:700px; margin: auto">
+        <div style="display:inline-block; width:50%;vertical-align: top;">
+            <apex:image id="theImage" value="{!If(accountWrapper.CountryName=="Panamá",$Resource.Appetito24,$Resource.peya_logo)}" style="width: 90%;"/>
+        </div>
+        <div id="RestDesc" style="display:inline-block; width:44%;vertical-align: top; float:right;" >
+            <c:TalabatLetterHead addressString="{!accountWrapper.letterheadAddress}"/>
+        </div>
+        <div id="RestDesc" style="text-align:right;" >
+            <br/><strong>Ciudad de Buenos Aires, {!DAY(TODAY())} de {!MONTH(TODAY())} de {!YEAR(TODAY())}</strong>
+        </div>
+        <br/><br/><br/>
+        <div id="CQtitle" style="text-align:center;font-size:11pt;">
+            <br/><strong>OFERTA DE ADENDA N° 1</strong>
+        </div>
+        <div style="width:100%">
+            <p>
+                <br/>Información del “Cliente”
+            </p>
+            <!-- RESTAURANT DETAILS -->
+            <table border="1" style="width:100%;border-collapse: collapse">
+                <tr>
+                    <td>
+                        <strong>Nombre o razón social</strong>
+                    </td>
+                    <td>
+                        {!accountWrapper.legalName}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Número de identificación fiscal</strong>
+                    </td>
+                    <td>
+                        {!accountWrapper.taxNumber}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Domicilio</strong>
+                    </td>
+                    <td>
+                        {!accountWrapper.restaurantAddress}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Teléfono</strong>
+                    </td>
+                    <td>
+                        {!accountWrapper.restaurantPhoneNumber}
+                    </td>
+                </tr>
+            </table>
+
+            <p>
+                Tenemos el agrado de dirigirnos a Uds. a fin de acercarles nuestra oferta irrevocable de adenda al acuerdo vigente de
+                prestación de servicios (de fecha <apex:outputText value=" {0,date,dd/MM/yy}"> <apex:param value="{!acceptedQuoteOn}" /> </apex:outputText>, el “Acuerdo”), que en caso de ser aceptada por Uds. regirá, junto con el Acuerdo,
+                el vínculo entre la Empresa y el Cliente.
+            </p>
+            <p>
+                La Empresa ofrece modificar únicamente lo que se establece a continuación:
+            </p>
+
+            <!-- PRODUCT SECTION -->
+            <apex:outputPanel rendered="{!listLineItems.size > 0}">
+                <br/>
+                <table border="1" style="width: 100%;border-collapse: collapse;">
+                    <tr>
+
+                        <th style="text-align:center">
+                            Item
+                        </th>
+                        <th style="text-align:center">
+                            Total
+                        </th>
+                        <th style="text-align:center">
+                            Especificaciones
+                        </th>
+                        <th style="text-align:center">
+                            Fecha de inicio
+                        </th>
+                        <th style="text-align:center">
+                            Fecha de terminación
+                        </th>
+                    </tr>
+                    <apex:repeat value="{!listLineItems}" var="lineItem">
+                        <tr>
+                            <td>
+                                {!lineItem.Id_List_Product_Price__r.Displayed_Name__c}
+                            </td>
+                            <td style="text-align:center">
+                                {!lineItem.Total_Amount__c}
+                            </td>
+                            <td style="text-align:center">
+                                {!lineItem.Specifications__c}
+                            </td>
+                            <td style="text-align:center">
+                                <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                                    <apex:param value="{!lineItem.Start_Date__c}" />
+                                </apex:outputText>
+                            </td>
+                            <td style="text-align:center">
+                                <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                                    <apex:param value="{!lineItem.End_Date__c}" />
+                                </apex:outputText>
+                            </td>
+                        </tr>
+                    </apex:repeat>
+                </table>
+            </apex:outputPanel>
+
+            <!--  ADD ON SECTION -->
+            <apex:outputPanel rendered = "{!listAddOnItems.size > 0}" >
+                <br/>
+                <table border="1" style="width: 100%;border-collapse: collapse;">
+                    <tr>
+                        <th>
+                            Otras especificaciones
+                        </th>
+                        <th style="text-align:center">
+                            Descripción
+                        </th>
+                        <th style="text-align:center">
+                            Especificaciones
+                        </th>
+                        <th style="text-align:center">
+                            Fecha de inicio
+                        </th>
+                        <th style="text-align:center">
+                            Fecha de terminación
+
+                        </th>
+                    </tr>
+                    <apex:repeat value="{!listAddOnItems}" var="lineItem" >
+                        <tr>
+                            <td>
+                                {!lineItem.Name}
+                            </td>
+                            <td style="text-align:left">
+                                <apex:outputField value="{!lineItem.Contract_Addition__c}" ></apex:outputField>
+                            </td>
+                            <td style="text-align:center">
+                                {!lineItem.Specifications__c}
+                            </td>
+                            <td style="text-align:center">
+                                <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                                    <apex:param value="{!lineItem.Start_Date__c}" />
+                                </apex:outputText>
+                            </td>
+                            <td style="text-align:center">
+                                <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                                    <apex:param value="{!lineItem.End_Date__c}" />
+                                </apex:outputText>
+                            </td>
+                        </tr>
+                    </apex:repeat>
+                </table>
+            </apex:outputPanel>
+
+            <apex:outputPanel rendered="{!listLineItems.size > 0}" >
+                <apex:repeat value="{!listLineItems}" var="lineItem">
+                    <div style="{!IF(lineItem.Id_List_Product_Price__r.Displayed_Name__c='Premium Placement', 'display:block', 'display:none')}">
+                        <p>
+                            {!accountWrapper.prodPremPlacement}
+                        </p>
+                    </div>
+                    <div style="{!IF(lineItem.Id_List_Product_Price__r.Displayed_Name__c='Premium Placement Gold', 'display:block', 'display:none')}">
+                        <p>
+                            {!accountWrapper.prodPremPlacGold}
+                        </p>
+                    </div>
+                    <div style="{!IF(lineItem.Id_List_Product_Price__r.Displayed_Name__c='Premium Placement Gold Category', 'display:block', 'display:none')}">
+                        <p>
+                            {!accountWrapper.prodPremPlacGoldCat}
+                        </p>
+                    </div>
+                </apex:repeat>
+            </apex:outputPanel>
+
+            <!-- TERMS AND CONDITIONS -->
+            <p>
+                <br/>En todo lo no indicado en la presente oferta, se mantendrá vigente lo previsto en el Acuerdo.
+            </p>
+            </div>
+        </div>
+        <div style="page-break-after:always"></div>
+    <table style="width:100%;border:none">
+        <tr style="text-align:right">
+            <td>Ciudad Autónoma de Buenos Aires, {!DAY(TODAY())} de {!MONTH(TODAY())} de {!YEAR(TODAY())}</td>
+        </tr>
+        <tr style="text-align:left">
+            <td >
+                <strong>Sres.</strong><br/>
+                <strong>PEDIDOSYA S.A.</strong><br/>
+                <strong>Cerrito 1186, 4° piso</strong><br/>
+                <strong>Ciudad de Buenos Aires</strong>
+            </td>
+        </tr>
+        <tr style="text-align:right">
+            <td><strong>Ref.: Oferta N° 01</strong></td>
+        </tr>
+        <tr>
+            <td>
+                <p>Por medio de la presente, informamos a Uds. que aceptamos vuestra Oferta N° 01 de fecha {!DAY(TODAY())} de {!MONTH(TODAY())} de {!YEAR(TODAY())},
+                    expresando nuestra conformidad con la misma en los términos de los artículos 978 y 980 inciso b) del Código Civil y Comercial.
+                </p>
+                <p>
+                    Sin otro particular, saludamos a Uds.  atentamente,
+                </p>
+            </td>
+        </tr>
+    </table>
+
+</apex:component>

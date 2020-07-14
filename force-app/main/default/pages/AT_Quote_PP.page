@@ -1,0 +1,3 @@
+<apex:page controller="ctrDH_AU_QuoteVFTemplate" showheader="false" sidebar="false" standardStylesheets="false">
+    <c:AT_PP acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}"/>
+</apex:page>

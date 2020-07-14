@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Approval Rule</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Approval Rules</value>
+    </caseValues>
+    <layouts>
+        <layout>Approval Rule Layout</layout>
+        <sections>
+            <label><!-- Add-Ons --></label>
+            <section>Add-Ons</section>
+        </sections>
+        <sections>
+            <label><!-- Commission or Product --></label>
+            <section>Commission or Product</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Filters --></label>
+            <section>Filters</section>
+        </sections>
+    </layouts>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- Level 1 has to be a number or a percentage ending in % --></errorMessage>
+        <name>Validate_Level_1</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Level 2 has to be a number or a percentage ending in % --></errorMessage>
+        <name>Validate_Level_2</name>
+    </validationRules>
+</CustomObjectTranslation>

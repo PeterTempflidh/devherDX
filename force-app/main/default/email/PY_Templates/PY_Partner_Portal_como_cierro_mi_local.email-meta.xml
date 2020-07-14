@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY - Partner Portal como cierro mi local</name>
+    <style>freeForm</style>
+    <subject>Gracias por Contactarnos - # {!Case.CaseNumber}</subject>
+    <textOnly>Estimado XXXNombreXXX, 
+
+ 
+
+Nos contactamos en respuesta a tu consulta sobre cómo cerrar tu local en PedidosYa, te comentamos que esta acción la podrás realizar en la barra superior del Partner Portal, donde figura el logo y nombre de tu local. Si haces click sobre el mismo, te aparecerán distintas opciones de tiempos de cierre y al hacer click sobre una de ellas, te aparecerá un mensaje señalando por cuánto tiempo dejarás de recibir pedidos en tu perfil, una vez que seleccionas el tiempo deseado queda efectivo el cierre cuando le das click al tick que aparece al lado. 
+
+ 
+
+Adicionalmente te hemos adjuntado el manual de la herramienta para futuras consultas. 
+
+ 
+
+Quedamos a las órdenes, 
+
+Saludos 
+
+ 
+
+(NOMBRE DEL AGENTE) - Claims Operator 
+PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

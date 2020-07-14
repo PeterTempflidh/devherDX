@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>REFERIDOS/COMO REFERIR</name>
+    <style>freeForm</style>
+    <subject>REFERIDOS/COMO REFERIR</subject>
+    <textOnly>Estimada {!Case.Customer_Name__c}, es un gusto saludarte.
+
+Estimado {!Case.Customer_Name__c}, es un gusto saludarte.
+
+
+Te contactamos en respuesta a tu consulta por el programa de referidos.
+
+
+Esta promoción consiste en compartir un código a amigos que no sean usuarios de PedidosYa y obtengan descuento para usarlo en su primer pedido.
+
+
+Para compartir el código y poder generar uno a tu favor, tienes que entrar en la app &gt; ir al menú de la app &gt; Click en sección &quot;Invita amigos. Gana $&quot;.
+
+
+¿Cómo funciona?
+
+
+Compartiendo el código con tus amigos a través de las redes sociales, correo electrónico o mensaje. Cuando tu amigo cree su cuenta y use tu código para su primera compra, recibirás un código de descuento aplicable únicamente a la vertical Restaurantes.
+
+
+Para cada amigo que se cree su cuenta y realice su primer pedido con el código que compartiste recibirás un cupón de descuento que será aplicable únicamente a la vertical restaurantes. Cada usuario puede referir a 10 amigos únicamente.
+
+
+Aprovechamos para comentarte que el cupón se asignará automáticamente en tu cuenta después que tu amigo realice su primer pedido y sólo si el mismo se encuentra confirmado.
+
+
+En caso de presentar inconvenientes con esta información, por favor, responde a este mail con la siguiente información: mail asociado a la cuenta de la persona a la que compartiste el código, el día específico del pedido que realizó y el código que le diste.
+
+
+Quedamos a las órdenes ante cualquier consulta.
+
+
+Saludos,
+{!Case.OwnerFullName}
+Atención al Cliente PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

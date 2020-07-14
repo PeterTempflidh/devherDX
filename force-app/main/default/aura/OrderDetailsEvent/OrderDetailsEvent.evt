@@ -1,0 +1,12 @@
+
+<aura:event type="APPLICATION" description="OrderDetailsEvent">
+    <aura:attribute name="orderNumber" type="String"/>
+    <aura:attribute name="platformName" type="String"/>
+    <aura:attribute name="country" type="String"/>
+    <aura:attribute name="vendorId" type="String"/>
+    <aura:attribute name="customerDet" type="Object"/>
+    <aura:attribute name="searchedOrderNumber" type="String"/>
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="customerURL" type="String"/>
+	<aura:attribute name="PandoraPlatformNames" type="List" />
+</aura:event>

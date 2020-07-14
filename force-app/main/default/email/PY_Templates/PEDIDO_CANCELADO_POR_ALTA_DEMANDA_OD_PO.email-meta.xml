@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PEDIDO CANCELADO POR ALTA DEMANDA - OD - PO</name>
+    <style>freeForm</style>
+    <subject>PEDIDO CANCELADO POR ALTA DEMANDA - OD - PO</subject>
+    <textOnly>Estimada {!Case.Customer_Name__c}, es un gusto saludarte.
+
+Estimado {!Case.Customer_Name__c}, es un gusto saludarte.
+
+
+
+En esta oportunidad nos comunicamos para informarte que tu pedido a {!Case.Order_Number__c} ha sido cancelado ya que no podremos cumplir con los tiempos estimados de envío del pedido.
+
+
+Respecto al pago realizado no te preocupes, ya que en este momento procedimos a realizar la anulación del mismo.
+
+
+Lamentamos la situación y entendemos los inconvenientes que esto pueda generarte. Por tal motivo, con el fin de resarcir este mal momento, desde PedidosYa vamos a brindarte un cupón con dinero a tu favor para que puedas disfrutar en un futuro pedido, en cualquiera de los locales adheridos.
+
+
+El cupón que te estaremos generando tiene validez de 30 días y puedes visualizarlo en la sección del Menú &gt; Mis Cupones. Para poder utilizar el cupón tienes que chequear antes que el restaurante acepta cupones, existe un filtro llamado &quot;cupón&quot; que te ayudará.
+
+
+Nuevamente, te pedimos disculpas por las molestias ocasionadas y quedamos a las órdenes ante cualquier consulta.
+
+
+
+
+Saludos,
+
+{!Case.OwnerFullName}
+
+Atención al Cliente - PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

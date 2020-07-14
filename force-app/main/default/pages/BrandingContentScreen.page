@@ -1,0 +1,585 @@
+<apex:page showHeader="false" sidebar="false" standardController="Branding_Content__c" extensions="CtrBrandingContentScreen" applyBodyTag="false" applyHtmlTag="false" standardStylesheets="false" docType="html-5.0">
+
+<html xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+xmlns:v-once="http://vue/fake"
+xmlns:v-html="http://vue/fake"
+xmlns:v-bind="http://vue/fake"
+xmlns:v-if="http://vue/fake"
+xmlns:v-on="http://vue/fake"
+xmlns:v-model="http://vue/fake">
+
+<head>
+    <title>
+        {!Branding_Content__c.Name}     
+    </title>
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.slds, 'assets/styles/salesforce-lightning-design-system-vf.css')}"/>
+    <style type="text/css">
+        .slds-field-label {
+            font-weight: 700;
+        }
+
+        [id^="tabs-path-"] {
+            cursor: default !important;
+        }
+    </style>
+    <script src="{!URLFOR($Resource.Vue)}"></script> <!-- leave here this scripts since there are different components using it -->
+</head>
+
+<body>
+    <div class="slds">
+
+        <apex:form id="buttonsForm">
+
+        <apex:actionStatus id="loading" onstart="vueSpinnerHandler.toggle()" onstop="vueSpinnerHandler.toggle()" />
+
+        <apex:actionFunction name="takeOwnershipAF" action="{!takeOwnership}" reRender="scriptPanel, buttonPanel, msgs, ownerIdPanel" status="loading" />
+        <apex:actionFunction name="submitAF" action="{!submit}" reRender="scriptPanel, buttonPanel, msgs, ownerIdPanel" status="loading" />
+        <apex:actionFunction name="approveAF" action="{!approve}" reRender="scriptPanel, buttonPanel, msgs, ownerIdPanel" status="loading" />
+        <apex:actionFunction name="rejectAF" action="{!reject}" reRender="scriptPanel, buttonPanel, msgs, ownerIdPanel" status="loading" />
+        <apex:actionFunction name="editAf" action="{!edit}" status="loading" />
+
+        <!-- page header & action buttons -->
+        <div class="slds-page-header slds-box slds-box-small" role="banner">
+            <div class="slds-grid">
+
+                <!-- page header -->
+                <div class="slds-col slds-has-flexi-truncate">
+                    <div class="slds-media slds-no-space slds-grow">
+                        <div class="slds-media__figure">
+                            <div class="slds-icon_container slds-icon-standard-quotes">
+                                <svg aria-hidden="true" class="slds-icon">
+                                    <use xlink:href="{!URLFOR($resource.slds, '/assets/icons/standard-sprite/svg/symbols.svg#quotes')}"></use>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="slds-media__body">
+                            <p class="slds-text-title--caps slds-line-height--reset">{!Branding_Content__c.RecordType.Name}</p>
+                            <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="{!Branding_Content__c.Name}">
+                                {!Branding_Content__c.Name}
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- action buttons -->
+                <div class="slds-col slds-no-flex slds-grid slds-align-top">
+                    <apex:outputPanel id="buttonPanel" styleClass="slds-button-group" layout="block" html-role="group">
+
+                        <!-- CD specific buttons  -->
+                        <apex:outputPanel layout="none" rendered="{!AND(Branding_Content__c.Type__c = 'Exclusive Special Offer', Branding_Content__c.RecordType.DeveloperName = 'CD_Branding_Content')}">
+                            <apex:outputPanel layout="none" rendered="{!displayTakeOwnership}">
+                                <button type="button" class="slds-button slds-button--neutral" onclick="takeOwnershipAF()">Take Ownership</button>
+                            </apex:outputPanel>
+                            
+                            <apex:outputPanel layout="none" rendered="{!displaySubmit}">
+                                <button type="button" class="slds-button slds-button--neutral" onclick="submitAF()">Submit</button>
+                            </apex:outputPanel>
+                            
+                            <apex:outputPanel layout="none" rendered="{!displayApprove}">
+                                <button type="button" class="slds-button slds-button--neutral" onclick="approveAF()">Approve</button>
+                            </apex:outputPanel>
+                            
+                            <apex:outputPanel layout="none" rendered="{!displayReject}">
+                                <button type="button" class="slds-button slds-button--neutral" onclick="rejectAF()">Reject</button>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+
+
+                        <button type="button" class="slds-button slds-button--neutral" onclick="editAf()">Edit</button>
+
+
+                    </apex:outputPanel>
+                </div>
+            </div>
+        </div>
+
+        <!-- branding content status process, only for CD -->
+        <apex:outputPanel layout="none" rendered="{!AND(Branding_Content__c.Type__c = 'Exclusive Special Offer', Branding_Content__c.RecordType.DeveloperName = 'CD_Branding_Content')}">
+            <div id="statusProcess" class="slds-grid slds-grid--vertical-align-center slds-box slds-box-small">
+                <div class="slds-p-right--medium" style="font-weight: 300">
+                    <span style="font-size: 1.57rem">
+                        {!$ObjectType.Branding_Content__c.fields.Status__c.Label}
+                    </span>
+                </div>
+                <div class="slds-tabs--path slds-scrollable--x" role="application">
+                    <ul class="slds-tabs--path__nav" role="tablist">
+                        <li class="slds-tabs--path__item" role="presentation" v-bind:class="{'slds-is-current': isCurrent(1), 'slds-is-complete': isAfter(1), 'slds-is-incomplete': isBefore(1)}">
+                            <a class="slds-tabs--path__link" id="tabs-path-426" aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+                                <span class="slds-tabs--path__stage">
+                                    <svg aria-hidden="true" class="slds-icon slds-icon--x-small">
+                                        <use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"></use>
+                                    </svg>
+                                </span>
+                                <span class="slds-tabs--path__title">New</span>
+                            </a>
+                        </li>
+
+                        <li v-if="!isCurrent(2.1)" class="slds-tabs--path__item" role="presentation" v-bind:class="{'slds-is-current': isCurrent(2), 'slds-is-complete': isAfter(2), 'slds-is-incomplete': isBefore(2)}">
+                            <a class="slds-tabs--path__link" id="tabs-path-427" aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+                                <span class="slds-tabs--path__stage">
+                                    <svg aria-hidden="true" class="slds-icon slds-icon--x-small">
+                                        <use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"></use>
+                                    </svg>
+                                </span>
+                                <span class="slds-tabs--path__title">Pending Design Approval</span>
+                            </a>
+                        </li>
+
+                        <li v-if="isCurrent(2.1)" class="slds-tabs--path__item slds-is-current" role="presentation" >
+                            <a class="slds-tabs--path__link" id="tabs-path-427" aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+                                <span class="slds-tabs--path__stage">
+                                    <svg aria-hidden="true" class="slds-icon slds-icon--x-small">
+                                        <use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"></use>
+                                    </svg>
+                                </span>
+                                <span class="slds-tabs--path__title">Design rejected</span>
+                            </a>
+                        </li>
+                        
+                        <li v-if="!isCurrent(3.1)" class="slds-tabs--path__item" role="presentation" v-bind:class="{'slds-is-current': isCurrent(3), 'slds-is-complete': isAfter(3), 'slds-is-incomplete': isBefore(3)}">
+                            <a class="slds-tabs--path__link" id="tabs-path-428" aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+                                <span class="slds-tabs--path__stage">
+                                    <svg aria-hidden="true" class="slds-icon slds-icon--x-small">
+                                        <use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"></use>
+                                    </svg>
+                                </span>
+                                <span class="slds-tabs--path__title">Pending final approval</span>
+                            </a>
+                        </li>
+
+                        <li v-if="isCurrent(3.1)" class="slds-tabs--path__item slds-is-current"  role="presentation">
+                            <a class="slds-tabs--path__link" id="tabs-path-428" aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+                                <span class="slds-tabs--path__stage">
+                                    <svg aria-hidden="true" class="slds-icon slds-icon--x-small">
+                                        <use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"></use>
+                                    </svg>
+                                </span>
+                                <span class="slds-tabs--path__title">Rejected</span>
+                            </a>
+                        </li>
+                        
+                        <li v-if="!isCurrent(-1)" class="slds-tabs--path__item" role="presentation" v-bind:class="{'slds-is-won slds-is-complete': isCurrent(4), 'slds-is-incomplete': isBefore(4)}">
+                            <a class="slds-tabs--path__link" id="tabs-path-429" aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+                                <span class="slds-tabs--path__stage">
+                                    <svg aria-hidden="true" class="slds-icon slds-icon--x-small">
+                                        <use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"></use>
+                                    </svg>
+                                </span>
+                                <span class="slds-tabs--path__title">Approved</span>
+                            </a>
+                        </li>
+
+                        <li v-if="isCurrent(-1)" class="slds-tabs--path__item slds-is-lost" role="presentation">
+                            <a class="slds-tabs--path__link" id="tabs-path-120" aria-controls="content-path-1" aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+                              <span class="slds-tabs--path__stage">
+                                <svg class="slds-icon slds-icon--x-small" aria-hidden="true">
+                                  <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#check"></use>
+                              </svg>
+                          </span>
+                          <span class="slds-tabs--path__title">Canceled</span>
+                          </a>
+                       </li>
+                       
+                       <li v-if="isCurrent(-2)" class="slds-tabs--path__item slds-is-lost" role="presentation">
+                            <a class="slds-tabs--path__link" id="tabs-path-121" aria-controls="content-path-1" aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+                              <span class="slds-tabs--path__stage">
+                                <svg class="slds-icon slds-icon--x-small" aria-hidden="true">
+                                  <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#check"></use>
+                              </svg>
+                          </span>
+                          <span class="slds-tabs--path__title">Expired</span>
+                          </a>
+                       </li>
+                       
+                       <li v-if="isCurrent(-3)" class="slds-tabs--path__item slds-is-lost" role="presentation">
+                            <a class="slds-tabs--path__link" id="tabs-path-122" aria-controls="content-path-1" aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+                              <span class="slds-tabs--path__stage">
+                                <svg class="slds-icon slds-icon--x-small" aria-hidden="true">
+                                  <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#check"></use>
+                              </svg>
+                          </span>
+                          <span class="slds-tabs--path__title">Terminated</span>
+                          </a>
+                       </li>
+                    </ul>
+                </div>
+            </div>  
+        </apex:outputPanel>
+
+        <!-- fields data, only for CD these fields must remain here on the page -->
+        <apex:outputPanel layout="none" rendered="{!Branding_Content__c.RecordType.DeveloperName = 'CD_Branding_Content'}">
+            <div class="slds-grid slds-wrap slds-box slds-box-small">
+                <div class="slds-col slds-size--1-of-1">
+                    <h3 class="slds-section-title--divider">Information</h3>
+                </div>
+
+                <!-- fields table -->
+                <div class="slds-col slds-size--1-of-1 slds-scrollable--x slds-grow-none">
+                    <table id="fieldsTable" class="slds-table slds-table--bordered slds-table--cell-buffer">
+                        <tbody>
+                            <tr>
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.Name.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.Name.Label}">
+                                    <div class="slds-truncate" title="{!Branding_Content__c.Name}">
+                                        {!Branding_Content__c.Name}
+                                    </div>
+                                </td>
+
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.Opportunity__c.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.Opportunity__c.Label}">
+                                    <div class="slds-truncate" title="{!Branding_Content__c.Opportunity__r.Name}">
+                                        <a href="/{!Branding_Content__c.Opportunity__c}" class="subTabLink" onclick="tryToOpenInConsole(event)">{!Branding_Content__c.Opportunity__r.Name}</a>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.Restaurant_Name__c.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.Restaurant_Name__c.Label}">
+                                    <div class="slds-truncate" title="{!Branding_Content__c.Restaurant_Name__r.Restaurant_Name__c}">
+                                        {!Branding_Content__c.Restaurant_Name__r.Restaurant_Name__c}
+                                    </div>
+                                </td>
+
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.OwnerId.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.OwnerId.Label}">
+                                    <div class="slds-truncate" title="{!Branding_Content__c.Owner.Name}">
+                                        <a href="/{!Branding_Content__c.OwnerId}" class="primaryTabLink" onclick="tryToOpenInConsole(event)">
+                                            <apex:outputPanel layout="inline" id="ownerIdPanel">{!ownerName}</apex:outputPanel>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td class="slds-field-label slds-cell-shrink">
+                                        <div class="slds-truncate">
+                                            {!$ObjectType.Branding_Content__c.fields.Product__c.Label}
+                                        </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.Product__c.Label}">
+                                        <div class="slds-truncate" title="{!record.Product__c}">
+                                             <a href="/{!record.product__c}" class="subTabLink" onclick="tryToOpenInConsole(event)">{!record.product__r.Product_Name__c}</a>
+                                        </div>
+                                </td>
+
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        <!-- just for alignment  -->
+                                    </div>
+                                </td>
+                                <td class="slds-field-value">
+                                    <div class="slds-truncate">
+                                        <!-- just for alignment  -->
+                                    </div>
+                                </td>
+                            
+                            </tr>
+
+                            <tr>
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.Type__c.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.Type__c.Label}">
+                                    <div class="slds-truncate" title="{!Branding_Content__c.Type__c}">
+                                        {!Branding_Content__c.Type__c}
+                                    </div>
+                                </td>
+                                
+                                <apex:outputPanel layout="none" rendered="{!Branding_Content__c.Type__c != 'Exclusive Special Offer'}">
+                                    <td class="slds-field-label slds-cell-shrink">
+                                        <div class="slds-truncate">
+                                            {!$ObjectType.Branding_Content__c.fields.Status__c.Label}
+                                        </div>
+                                    </td>
+                                    <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.Status__c.Label}">
+                                        <div class="slds-truncate" title="{!Branding_Content__c.Status__c}">
+                                            {!Branding_Content__c.Status__c}
+                                        </div>
+                                    </td>
+                                </apex:outputPanel>
+
+                                <apex:outputPanel layout="none" rendered="{!Branding_Content__c.Type__c == 'Exclusive Special Offer'}">
+                                    <td class="slds-field-label slds-cell-shrink">
+                                        <div class="slds-truncate">
+                                            {!$ObjectType.Branding_Content__c.fields.Quantity__c.Label}
+                                        </div>
+                                    </td>
+                                    <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.Quantity__c.Label}">
+                                        <div class="slds-truncate" title="{!$ObjectType.Branding_Content__c.fields.Quantity__c.Label}">
+                                            {!Branding_Content__c.Quantity__c}
+                                        </div>
+                                    </td>
+                                </apex:outputPanel>
+                            </tr>
+
+                            <apex:outputPanel rendered="{!Branding_Content__c.Type__c != 'Exclusive Special Offer'}" layout="none">
+                                <tr>
+                                    <td class="slds-field-label slds-cell-shrink">
+                                        <div class="slds-truncate">
+                                            {!$ObjectType.Branding_Content__c.fields.Description__c.Label}
+                                        </div>
+                                    </td>
+                                    <td class="slds-field-value slds-cell-wrap" data-label="{!$ObjectType.Branding_Content__c.fields.Description__c.Label}">
+                                        <div>
+                                            {!Branding_Content__c.Description__c}
+                                        </div>
+                                    </td>
+                                    <td class="slds-field-label slds-cell-shrink">
+                                        <div class="slds-truncate">
+                                            {!$ObjectType.Branding_Content__c.fields.Quantity__c.Label}
+                                        </div>
+                                    </td>
+                                    <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.Quantity__c.Label}">
+                                        <div class="slds-truncate" title="{!$ObjectType.Branding_Content__c.fields.Quantity__c.Label}">
+                                            {!Branding_Content__c.Quantity__c}
+                                        </div>
+                                    </td>
+                                </tr>
+                            </apex:outputPanel>
+
+                            <tr>
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.Installation_Date__c.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.Installation_Date__c.Label}">
+                                    <div class="slds-truncate" title="{!$ObjectType.Branding_Content__c.fields.Installation_Date__c.Label}">
+                                        <apex:outputField value="{!Branding_Content__c.Installation_Date__c}" />
+                                    </div>
+                                </td>
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.End_date__c.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.End_date__c.Label}">
+                                    <div class="slds-truncate" title="{!$ObjectType.Branding_Content__c.fields.End_date__c.Label}">
+                                        <apex:outputField value="{!Branding_Content__c.End_date__c}" />
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.Location__c.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value">
+                                    <div class="slds-truncate">
+                                        {!Branding_Content__c.Location__c}
+                                    </div>
+                                </td>
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.Size__c.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value slds-cell-wrap" data-label="{!$ObjectType.Branding_Content__c.fields.Size__c.Label}">
+                                    <div>
+                                        {!Branding_Content__c.Size__c}
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.Termination_Reason__c.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value slds-cell-wrap" data-label="{!$ObjectType.Branding_Content__c.fields.Termination_Reason__c.Label}">
+                                    <div>
+                                        {!Branding_Content__c.Termination_Reason__c}
+                                    </div>
+                                </td>
+
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        <!--just for alignement-->
+                                    </div>
+                                </td>
+                                <td class="slds-field-value slds-cell-wrap">
+                                    <div>
+                                        <!--just for alignement-->
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.CreatedById.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.CreatedById.Label}">
+                                    <div class="slds-truncate" title="{!Branding_Content__c.CreatedBy.Name}">
+                                        <a href="/{!Branding_Content__c.CreatedById}" class="primaryTabLink" onclick="tryToOpenInConsole(event)">{!Branding_Content__c.CreatedBy.name}</a>
+                                    </div>
+                                </td>
+
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.LastModifiedById.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.LastModifiedById.Label}">
+                                    <div class="slds-truncate" title="{!Branding_Content__c.LastModifiedBy.Name}">
+                                        <a href="/{!Branding_Content__c.LastModifiedById}" class="primaryTabLink" onclick="tryToOpenInConsole(event)">{!Branding_Content__c.LastModifiedBy.name}</a>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- comments section -->
+            <apex:outputPanel layout="none" rendered="{!AND(Branding_Content__c.Type__c = 'Exclusive Special Offer')}">
+                <div class="slds-grid slds-wrap slds-box slds-box-small">
+                    <div class="slds-col slds-size--1-of-1">
+                        <h3 class="slds-section-title--divider">
+                            {!$ObjectType.Branding_Content__c.fields.Description__c.Label}
+                        </h3>
+                    </div>
+
+                    <div class="slds-col slds-size--1-of-1">
+                        <div class="slds-form-element">
+                            <div class="slds-form-element__control">
+                                <apex:inputTextarea value="{!Branding_Content__c.Description__c}" styleClass="slds-textarea" disabled="{!NOT(OR(displayApprove, displayReject, displayTakeOwnership, displaySubmit))}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </apex:outputPanel>
+        </apex:outputPanel>
+
+        <!-- these are the fields for others record type -->
+
+        <c:Default_BrandingContentFields record="{!Branding_Content__c}" rendered="{!AND(Branding_Content__c.RecordType.DeveloperName != 'UK_Branding_Content', Branding_Content__c.RecordType.DeveloperName != 'CD_Branding_Content', Branding_Content__c.RecordType.DeveloperName != 'SE_Branding_Content')}" />
+
+        <c:UK_BrandingContentFields record="{!Branding_Content__c}" rendered="{!Branding_Content__c.RecordType.DeveloperName = 'UK_Branding_Content'}" />
+
+        <c:SE_BrandingContentFields record="{!Branding_Content__c}" rendered="{!Branding_Content__c.RecordType.DeveloperName = 'SE_Branding_Content'}" />
+        
+    </apex:form>
+
+    <!-- attachments related list -->
+    <c:LDSAttachmentsRelatedList recordId="{!Branding_Content__c.Id}" />
+    <c:LDSNotesRelatedList recordId="{!Branding_Content__c.Id}" />
+    <c:LDSHisotryRelatedList historyTable="Branding_Content__History" historyParentField="ParentId" parentSObject="Branding_Content__c" parentId="{!Branding_Content__c.Id}" />
+</div>
+    
+
+    <script src="/support/console/38.0/integration.js" type="text/javascript"></script>
+    <script src="{!URLFOR($Resource.DHHConsoleToolkit, 'js/ConsoleToolkit.js')}" type="text/javascript"></script>
+    <script type="text/javascript">
+        var DHH = new DHHConsoleToolkit();
+
+        // status bar manager
+        var statusProcessManager = new Vue({
+            el: "#statusProcess",
+            data: {
+                currentStatus: "{!Branding_Content__c.Status__c}",
+                
+                statusToStep: {
+                    "New" :                     1,
+                    "Pending design approval":  2,
+                    "Design rejected":          2.1,
+                    "Pending final approval":   3,
+                    "Rejected":                 3.1,
+                    "Approved":                 4,
+                    "Canceled":                 -1,
+                    "Expired":					-2,
+                    "Terminated":				-3
+                }
+            },
+            computed: {
+                currentStep: function() {
+                    return this.statusToStep[this.currentStatus];
+                }
+            },
+            methods: {
+                isCurrent: function(index) {
+                    return this.currentStep === index;
+                },
+                isAfter: function(index) {
+                    return this.currentStep > index;
+                },
+                isBefore: function(index) {
+                    return this.currentStep < index;
+                }
+            }
+        });
+
+        function tryToOpenInConsole(evt) {
+            if (!sforce.console.isInConsole()) {
+                return;
+            }
+
+            var url = evt.currentTarget.href;
+
+            if (/subTabLink/i.test(evt.currentTarget.className)) {
+                DHH.openPrimaryTab("/{!Branding_Content__c.Restaurant_Name__c}", "", function(err, id) {
+                    if (err) return;
+                    DHH.openSubTab(id, url, "");
+                });
+            } else if (/primaryTabLink/i.test(evt.currentTarget.className)) {
+                DHH.openPrimaryTab(url, "");
+            }
+
+            evt.preventDefault();
+        }
+
+        window.addEventListener("load", function() {
+            if (sforce.console.isInConsole()) {
+                // initialize current tab
+                sforce.console.getEnclosingTabId(function(result) {
+                    sforce.console.setTabTitle("{!Branding_Content__c.Name}", result.id);
+                    sforce.console.setTabLink(); // force tab's url to current page
+                });
+            }
+        });
+    </script>
+
+    <!-- used to update record's status after user pressed any button -->
+    <apex:outputPanel id="scriptPanel">
+        <script type="text/javascript">
+            statusProcessManager.currentStatus = "{!Branding_Content__c.Status__c}";
+        </script>
+    </apex:outputPanel> 
+
+    <!-- rerender any page messages as a modal dialog -->
+    <c:VueHandlePageMessagesAsModal id="msgs" />
+
+    <!-- lightening spinner -->
+    <c:VueSpinner />
+
+</body>
+</html>
+
+</apex:page>

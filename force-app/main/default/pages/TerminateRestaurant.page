@@ -1,0 +1,443 @@
+<apex:page standardController="Account" extensions="CtrTerminateRestaurant" title="Terminate" id="thePage" >
+    <apex:includeScript value="/soap/ajax/30.0/connection.js"/>
+    <apex:includeScript value="/support/console/35.0/integration.js"/>
+    <apex:includeScript value="/resource/jq211" />
+    <apex:includeScript value="/resource/bootbox/bootstrap.min.js" />
+    <apex:includeScript value="/resource/bootbox/bootbox.min.js" />
+    <link href="/resource/bootbox/bootstrapV1.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        function setFocusOnLoad() {}
+        var jq = $.noConflict();
+        jq(document).ready(function() {
+            console.log('document ready!');
+            sforce.console.setTabTitle('{!$Label.Terminate_restaurant_title}');
+
+            /*jq('input[type=checkbox]').each(function () {
+                         console.log('looping through checkboxes');
+                         if (this.checked) {
+                             console.log('found checked one!');
+                             setMandatory(this); 
+                         }
+            });*/
+        });
+
+        var primaryTabId;
+
+        function testGetFocusedPrimaryTabId() {
+            sforce.console.getEnclosingPrimaryTabId(showTabId);
+        }
+        var showTabId = function showTabId(result) {
+            console.log('result.id: ' + result.id);
+            primaryTabId = result.id;
+            getSSubtabIds(result.id);
+            sforce.console.refreshPrimaryTabById(result.id, true);
+
+        };
+
+        function reloadParent() {
+            var errorMsg = jq("[id$=messages]").html();
+            if (errorMsg.indexOf('error') < 0) {
+                if (sforce.console.isInConsole()) {
+                    testGetFocusedPrimaryTabId();
+                }
+                return true;
+            }
+            preserveMandatoryFlag();
+            return true;
+        }
+
+        function getActiveTabIdAndCloseTab() {
+            sforce.console.getFocusedPrimaryTabId(closeTab);
+        }
+
+        function closeTab(result) {
+            var tabId = result.id;
+            sforce.console.closeTab(tabId);
+        };
+
+        function getSSubtabIds(resultId) {
+            console.log('Primary:' + resultId);
+            sforce.console.getSubtabIds(resultId, showssTabId);
+        }
+
+        var showssTabId = function showssTabId(result) {
+            console.log('Subtab IDs: ' + result.ids);
+            jq.each(result.ids, function(index, value) {
+                sforce.console.getPageInfo(value, function(result) {
+                    showPageInfo(result, value);
+                });
+            });
+        };
+
+
+        function showPageInfo(result, tabID) {
+            var pageInfo = JSON.parse(result.pageInfo);
+            if (pageInfo.objectId.indexOf('a01') == 0) {
+                console.log('its Asset Page');
+                sforce.console.closeTab(tabID);
+                sforce.console.openSubtab(primaryTabId, pageInfo.url, false);
+            }
+        };
+
+        function selectAllCheckboxes(obj, receivedInputID) {
+            var inputCheckBox = document.querySelectorAll("input[type=checkbox]");
+            for (var i = 0; i < inputCheckBox.length; i++) {
+                if (inputCheckBox[i].id.indexOf(receivedInputID) != -1) {
+                    inputCheckBox[i].checked = obj.checked;
+                    setMandatory(inputCheckBox[i]);
+                }
+            }
+        }
+
+
+        function tickAllCheckboxes() {
+            var inputCheckBox = document.querySelectorAll("input[type=checkbox]");
+            for (var i = 0; i < inputCheckBox.length; i++) {
+                inputCheckBox[i].checked = true;
+                setMandatory(inputCheckBox[i]);
+            }
+        }
+
+        function preserveMandatoryFlag() {
+            var inputCheckBox = document.querySelectorAll("input[type=checkbox]");
+            for (var i = 0; i < inputCheckBox.length; i++) {
+                if (inputCheckBox[i].checked == true) {
+                    setMandatory(inputCheckBox[i]);
+                }
+            }
+        }
+
+        function terminate() {
+            if (checkAnyAvailable()) {
+                bootbox.confirm("{!$Label.Terminate_Restaurant_Confirmation_Message}", function(userResult) {
+                    if (userResult) {
+                        tickAllCheckboxes();
+                        terminateRestaurant();
+                        preserveMandatoryFlag();
+                    }
+                }).find('.modal-content').addClass("success");
+                //reloadParent();
+            } else {
+                bootbox.alert('no active contracts/additional charges').find('.modal-content').addClass("info");
+            }
+
+
+        }
+
+        function checkAnyAvailable() {
+            var returnValue = false;
+            jq('[id$="contracts"]').each(function() {
+                returnValue = true;
+                return true;
+            });
+            jq('[id$="additionals"]').each(function() {
+                returnValue = true;
+                return true;
+            });
+            jq('[id$="pps"]').each(function() {
+                returnValue = true;
+                return true;
+            });
+            jq('[id$="bcs"]').each(function() {
+                if (jq(this).prop('checked')) {
+                    returnValue = true;
+                    return true;
+                }
+            });
+            jq('[id$="aos"]').each(function() {
+                if (jq(this).prop('checked')) {
+                    returnValue = true;
+                    return true;
+                }
+            });
+            return returnValue;
+        }
+
+        function checkAnyAvailableCheckBox() {
+            var returnValue = false;
+            jq('[id$="contracts"]').each(function() {
+                if (jq(this).prop('checked')) {
+                    returnValue = true;
+                    return true;
+                }
+            });
+            jq('[id$="additionals"]').each(function() {
+                if (jq(this).prop('checked')) {
+                    returnValue = true;
+                    return true;
+                }
+            });
+            jq('[id$="pps"]').each(function() {
+                if (jq(this).prop('checked')) {
+                    returnValue = true;
+                    return true;
+                }
+            });
+            jq('[id$="bcs"]').each(function() {
+                if (jq(this).prop('checked')) {
+                    returnValue = true;
+                    return true;
+                }
+            });
+            jq('[id$="aos"]').each(function() {
+                if (jq(this).prop('checked')) {
+                    returnValue = true;
+                    return true;
+                }
+            });
+            return returnValue;
+        }
+
+        function terminateSelectedOnes() {
+            if (checkAnyAvailableCheckBox()) {
+                bootbox.confirm("{!$Label.Terminate_Restaurant_Confirmation_Message_Selected}", function(userResult) {
+                    if (userResult) {
+                        terminateSelected();
+                        preserveMandatoryFlag();
+                    }
+                }).find('.modal-content').addClass("success");
+                //reloadParent();
+            } else {
+                bootbox.alert('no contracts/additional charges selected').find('.modal-content').addClass("info");
+            }
+        }
+
+        function setMandatory(obj) {
+
+            var isMandatory = false;
+
+            if (/bcs/i.test(obj.id)) {
+                isMandatory = {!brandingTerminationReasonMandatory
+                };
+            } else if (/pps|additionals/i.test(obj.id)) {
+                isMandatory = {!addChargesTerminationReasonMandatory
+                };
+            } else if (/contracts/i.test(obj.id)) {
+                isMandatory = {!contractTerminationReasonMandatory
+                };
+            }else if (/aos/i.test(obj.id)) {
+                isMandatory = {!addOnTerminationReasonMandatory
+                        };
+            }
+
+            if (isMandatory) {
+                if (obj.checked) {
+                    if (!jq(obj).parent().parent().find('.requiredInput').length) {
+                        jq(obj).parent().parent().find('td select').wrap('<div class="requiredInput">').before('<div class="requiredBlock"></div>');
+                    }
+                } else {
+                    if (jq(obj).parent().parent().find('.requiredInput').length) {
+                        jq(obj).parent().parent().find('td select').unwrap('<div class="requiredInput">').after('<div class="requiredBlock"></div>');
+                    }
+                }
+            }
+        }
+    </script>
+
+    <apex:sectionHeader title="{!$Label.Terminate_Restaurant_Termination}" subtitle="{!Account.Restaurant_Name__c}" />
+    
+    <apex:form id="theForm">
+        <apex:actionFunction name="terminateRestaurant" action="{!terminateRestaurant}" reRender="theForm" status="LoadingSpinner" oncomplete="reloadParent()"/> 
+        <apex:actionFunction name="terminateSelected" action="{!terminateSelected}" reRender="theForm" status="LoadingSpinner" oncomplete="reloadParent()"/>
+        <apex:pageMessages id="messages" escape="false"/>
+        
+        <apex:pageBlock id="thePageBk">
+
+            <apex:pageBlockButtons rendered="{!showButtons}" location="both">
+                <input type="button" onclick="terminate();" value="{!$Label.Terminate_All}" class="btn"/>
+                <input type="button" onclick="terminateSelectedOnes();" value="{!$Label.Terminate_selected}" class="btn"/>
+            </apex:pageBlockButtons>
+
+            <!-- contract table  -->
+            <apex:outputPanel rendered="{!contractSize > 0}" style="margin-bottom: 0.5rem">
+                <apex:outputLabel value="Contracts" style="font-weight: bold;"/><br /><br />
+                <apex:pageBlockTable value="{!mapContracts}" var="contract" id="theCTable">
+                    
+                    <apex:column >
+                        <apex:facet name="header">
+                            <apex:inputCheckbox id="mainContCheck" onclick="selectAllCheckboxes(this,'contracts')"/>
+                        </apex:facet>
+                        <apex:inputCheckbox id="contracts" value="{!mapContracts[contract].isSelected}" html-data-id="{!if(mapContracts[contract].con.IsTiered__c=true,'tieredId','commId')}{!if(mapContracts[contract].con.IsTiered__c=true,mapContracts[contract].con.index__c,'')}" rendered="{!if(mapContracts[contract].con.status = 'Terminated',false,if(mapContracts[contract].con.IsTiered__c,if(mapContracts[contract].con.index__c=1,true,false),true))}" onChange="setMandatory(this)"/>
+                    </apex:column>
+
+                    <apex:column value="{!mapContracts[contract].con.ContractNumber}" />
+                    <apex:column value="{!mapContracts[contract].con.Commission__c}" />
+                    <apex:column value="{!mapContracts[contract].con.commission_per_order__c}" />
+                    <apex:column value="{!mapContracts[contract].con.online_payment_fee__c}" />
+                    <apex:column value="{!mapContracts[contract].con.Name__c}" />
+                    <apex:column value="{!mapContracts[contract].con.StartDate}" />
+                    <apex:column value="{!mapContracts[contract].con.Status}" />
+                    <apex:column headerValue="{!$ObjectType.Contract.fields.Termination_Reason__c.Label}">
+                        <apex:inputField value="{!mapContracts[contract].opp.Lost_Reason__c}" rendered="{!if(mapContracts[contract].con.status = 'Terminated',false,if(mapContracts[contract].con.IsTiered__c,if(mapContracts[contract].con.index__c=1,true,false),true))}" id="contractTerminationReason"/>
+                        <apex:outputField value="{!mapContracts[contract].opp.Lost_Reason__c}" rendered="{!if(mapContracts[contract].con.status = 'Terminated',true,false)}"/>
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Contract.fields.End_Date__c.Label}">
+                        <apex:inputField value="{!mapContracts[contract].opp.Lost_Date__c}"  rendered="{!if(mapContracts[contract].con.status = 'Terminated',false,if(mapContracts[contract].con.IsTiered__c,if(mapContracts[contract].con.index__c=1,true,false),true))}" />
+                        <apex:outputField value="{!mapContracts[contract].opp.Lost_Date__c}" rendered="{!if(mapContracts[contract].con.status = 'Terminated',true,false)}"/>
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:outputPanel>
+
+            <!-- addtional charges table  -->
+            <apex:outputPanel rendered="{!additionalSize > 0}" style="margin-bottom: 0.5rem">
+                <apex:outputLabel value="Additional Charges & Assets" style="font-weight: bold;" /><br /><br />
+                <apex:pageBlockTable value="{!mapAddCharges}" var="additional">
+                    <apex:column >
+                        <apex:facet name="header">
+                            <apex:inputCheckbox id="mainAddCheck" onclick="selectAllCheckboxes(this,'additionals')"/>
+                        </apex:facet>
+                        <apex:inputCheckbox id="additionals" value="{!mapAddCharges[additional].isSelected}" rendered="{!if(OR(mapAddCharges[additional].add.status__c='Terminated',mapAddCharges[additional].add.status__c='Expired'),'false','true')}" onclick="setMandatory(this)"/>
+                    </apex:column>
+
+                    <apex:column value="{!mapAddCharges[additional].add.Name}" />
+                    <apex:column value="{!mapAddCharges[additional].add.Total_Amount__c}" />
+                    <apex:column headerValue="{!$ObjectType.Additional_Charges__c.fields.Id_Opportunity__c.Label}">
+                        <apex:outputField value="{!mapAddCharges[additional].add.Id_Opportunity__c}" />
+                    </apex:column>
+                    <apex:column value="{!mapAddCharges[additional].add.Id_Asset__r.Name}" headerValue="Asset"/>
+                    <apex:column value="{!mapAddCharges[additional].add.Product__c}" />
+                    <apex:column headerValue="{!$ObjectType.Additional_Charges__c.fields.Termination_Reason__c.Label}">
+                        <apex:inputField value="{!mapAddCharges[additional].opp.Lost_Reason__c}" rendered="{!if(OR(mapAddCharges[additional].add.status__c='Terminated',mapAddCharges[additional].add.status__c='Expired'),'false','true')}" />
+                        <apex:outputField value="{!mapAddCharges[additional].opp.Lost_Reason__c}" rendered="{!if(OR(mapAddCharges[additional].add.status__c='Terminated',mapAddCharges[additional].add.status__c='Expired'),'true','false')}"/>
+                    </apex:column>
+                    
+                    <apex:column headerValue="{!$ObjectType.Additional_Charges__c.fields.Termination_Date__c.Label}">
+                        <apex:inputField value="{!mapAddCharges[additional].opp.Lost_Date__c}" rendered="{!if(OR(mapAddCharges[additional].add.status__c='Terminated',mapAddCharges[additional].add.status__c='Expired'),'false','true')}"/>
+                        <apex:outputField value="{!mapAddCharges[additional].opp.Lost_Date__c}" rendered="{!if(OR(mapAddCharges[additional].add.status__c='Terminated',mapAddCharges[additional].add.status__c='Expired'),'true','false')}"/>
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:outputPanel>
+
+            <!-- pp add charges table   -->
+            <apex:outputPanel rendered="{!premiumPlSize > 0}" style="margin-bottom: 0.5rem">
+                <apex:outputLabel value="Premium Placement" style="font-weight: bold;" /><br /><br />
+                <apex:pageBlockTable value="{!mapPPCharge}" var="additional">
+                    <apex:column >
+                        <apex:facet name="header">
+                            <apex:inputCheckbox id="mainPPCheck" onclick="selectAllCheckboxes(this,'pps')"/>
+                        </apex:facet>
+                        <apex:inputCheckbox id="pps" value="{!mapPPCharge[additional].isSelected}" rendered="{!if(OR(mapPPCharge[additional].add.status__c='Terminated',mapPPCharge[additional].add.status__c='Expired'),'false','true')}" onclick="setMandatory(this)"/>
+                    </apex:column>
+
+                    <apex:column value="{!mapPPCharge[additional].add.Name}"  />
+                    <apex:column value="{!mapPPCharge[additional].add.Booking_Api_Id__c}"  />
+                    <apex:column value="{!mapPPCharge[additional].add.Total_Amount__c}" />
+                    <apex:column value="{!mapPPCharge[additional].add.City_ZipCode__c}" />
+                    <apex:column value="{!mapPPCharge[additional].add.Position_fm__c}"  />
+                    <apex:column value="{!mapPPCharge[additional].add.id_opportunity__c}"  />
+                    <apex:column value="{!mapPPCharge[additional].add.status__c}"  />
+                    <apex:column value="{!mapPPCharge[additional].add.Start_Date__c}" />
+                    <apex:column headerValue="{!$ObjectType.Additional_Charges__c.fields.Termination_Reason__c.Label}">
+                        <apex:inputField value="{!mapPPCharge[additional].opp.Lost_Reason__c}" rendered="{!if(OR(mapPPCharge[additional].add.status__c='Terminated',mapPPCharge[additional].add.status__c='Expired'),'false','true')}" />
+                        <apex:outputField value="{!mapPPCharge[additional].opp.Lost_Reason__c}" rendered="{!if(OR(mapPPCharge[additional].add.status__c='Terminated',mapPPCharge[additional].add.status__c='Expired'),'true','false')}"/>
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Additional_Charges__c.fields.Termination_Date__c.Label}">
+                        <apex:inputField value="{!mapPPCharge[additional].opp.Lost_Date__c}" rendered="{!if(OR(mapPPCharge[additional].add.status__c='Terminated',mapPPCharge[additional].add.status__c='Expired'),'false','true')}"/>
+                        <apex:outputField value="{!mapPPCharge[additional].opp.Lost_Date__c}" rendered="{!if(OR(mapPPCharge[additional].add.status__c='Terminated',mapPPCharge[additional].add.status__c='Expired'),'true','false')}"/>
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:outputPanel>
+
+            <!-- branding content table -->
+            <apex:outputPanel rendered="{!brandingSize > 0}" style="margin-bottom: 0.5rem">
+                <apex:outputLabel value="{!$ObjectType.Branding_Content__c.Label}" style="font-weight: bold;" /><br /><br />
+                <apex:pageBlockTable value="{!mapBrandingCont}" var="bc">
+                    <apex:column >
+                        <apex:facet name="header">
+                            <apex:inputCheckbox id="mainBCCheck" onclick="selectAllCheckboxes(this,'bcs')"/>
+                        </apex:facet>
+                        <apex:inputCheckbox id="bcs" value="{!mapBrandingCont[bc].isSelected}" onclick="setMandatory(this)" rendered="{!OR(ISBLANK(mapBrandingCont[bc].branding.Status__c), IF(ISBLANK(mapBrandingCont[bc].branding.Opportunity__c), NOT(CONTAINS(brandingInactiveStatuses, mapBrandingCont[bc].branding.Status__c)), AND(NOT(CONTAINS(brandingInactiveStatuses, mapBrandingCont[bc].branding.Status__c)), mapBrandingCont[bc].branding.Opportunity__r.StageName == 'Closed Won')))}"/>
+                    </apex:column>
+                    
+                    <apex:column headerValue="{!$ObjectType.Branding_Content__c.fields.Name.Label}" >
+                        <apex:outputField value="{!mapBrandingCont[bc].branding.name}" />
+                    </apex:column>
+
+                    <apex:column headerValue="{!$ObjectType.Branding_Content__c.fields.Type__c.Label}" >
+                        <apex:outputField value="{!mapBrandingCont[bc].branding.Type__c}" />
+                    </apex:column>
+
+                    <apex:column headerValue="{!$ObjectType.Branding_Content__c.fields.Product__c.Label}" >
+                        <apex:outputField value="{!mapBrandingCont[bc].branding.Product__c}" />
+                    </apex:column>
+
+                    <apex:column headerValue="{!$ObjectType.Branding_Content__c.fields.Opportunity__c.Label}" >
+                        <apex:outputField value="{!mapBrandingCont[bc].branding.Opportunity__c}" />
+                    </apex:column>
+
+                    <apex:column headerValue="{!$ObjectType.Branding_Content__c.fields.Status__c.Label}" >
+                        <apex:outputField value="{!mapBrandingCont[bc].branding.Status__c}" />
+                    </apex:column>
+
+                    <apex:column headerValue="{!$ObjectType.Branding_Content__c.fields.Quantity__c.Label}" >
+                        <apex:outputField value="{!mapBrandingCont[bc].branding.Quantity__c}" />
+                    </apex:column>
+
+                    <apex:column headerValue="{!$ObjectType.Branding_Content__c.fields.Termination_Reason__c.Label}" >
+                        <apex:outputField value="{!mapBrandingCont[bc].branding.Termination_Reason__c}" rendered="{!NOT(OR(ISBLANK(mapBrandingCont[bc].branding.Status__c), IF(ISBLANK(mapBrandingCont[bc].branding.Opportunity__c), NOT(CONTAINS(brandingInactiveStatuses, mapBrandingCont[bc].branding.Status__c)), AND(NOT(CONTAINS(brandingInactiveStatuses, mapBrandingCont[bc].branding.Status__c)), mapBrandingCont[bc].branding.Opportunity__r.StageName == 'Closed Won'))))}" />
+                        <apex:inputField value="{!mapBrandingCont[bc].opp.Lost_Reason__c}" rendered="{!OR(ISBLANK(mapBrandingCont[bc].branding.Status__c), IF(ISBLANK(mapBrandingCont[bc].branding.Opportunity__c), NOT(CONTAINS(brandingInactiveStatuses, mapBrandingCont[bc].branding.Status__c)), AND(NOT(CONTAINS(brandingInactiveStatuses, mapBrandingCont[bc].branding.Status__c)), mapBrandingCont[bc].branding.Opportunity__r.StageName == 'Closed Won')))}" />
+                    </apex:column>
+
+                    <apex:column headerValue="{!$ObjectType.Branding_Content__c.fields.End_date__c.Label}" >
+                        <apex:inputField value="{!mapBrandingCont[bc].branding.End_Date__c}" rendered="{!OR(ISBLANK(mapBrandingCont[bc].branding.Status__c), IF(ISBLANK(mapBrandingCont[bc].branding.Opportunity__c), NOT(CONTAINS(brandingInactiveStatuses, mapBrandingCont[bc].branding.Status__c)), AND(NOT(CONTAINS(brandingInactiveStatuses, mapBrandingCont[bc].branding.Status__c)), mapBrandingCont[bc].branding.Opportunity__r.StageName == 'Closed Won')))}" />
+                        <apex:outputField value="{!mapBrandingCont[bc].branding.End_Date__c}" rendered="{!NOT(OR(ISBLANK(mapBrandingCont[bc].branding.Status__c), IF(ISBLANK(mapBrandingCont[bc].branding.Opportunity__c), NOT(CONTAINS(brandingInactiveStatuses, mapBrandingCont[bc].branding.Status__c)), AND(NOT(CONTAINS(brandingInactiveStatuses, mapBrandingCont[bc].branding.Status__c)), mapBrandingCont[bc].branding.Opportunity__r.StageName == 'Closed Won'))))}" />
+                    </apex:column>
+
+                </apex:pageBlockTable>
+                </apex:outputPanel>
+
+
+                <!-- add on table -->
+
+                <apex:outputPanel rendered="{!addOnSize > 0}" style="margin-bottom: 0.5rem">
+                    <apex:outputLabel value="{!$ObjectType.Add_on_Service__c.Label}" style="font-weight: bold;" /><br /><br />
+                    <apex:pageBlockTable value="{!mapAddOn}" var="ao">
+                        <apex:column >
+                            <apex:facet name="header">
+                                <apex:inputCheckbox id="mainoncheck" onclick="selectAllCheckboxes(this,'aos')"/>
+                            </apex:facet>
+                            <apex:inputCheckbox id="aos" value="{!mapAddOn[ao].isSelected}" onclick="setMandatory(this)"  rendered="{!OR(ISBLANK(mapAddOn[ao].addon.Status__c), IF(ISBLANK(mapAddOn[ao].addon.Opportunity__c), NOT(CONTAINS(addOnInactiveStatuses, mapAddOn[ao].addon.Status__c)), AND(NOT(CONTAINS(addOnInactiveStatuses, mapAddOn[ao].addon.Status__c)), mapAddOn[ao].addon.Opportunity__r.StageName == 'Closed Won')))}"/>
+                        </apex:column>
+
+                        <apex:column headerValue="{!$ObjectType.Add_on_Service__c.fields.Name.Label}" >
+                            <apex:outputField value="{!mapAddOn[ao].addon.name}" />
+                        </apex:column>
+
+                        <apex:column headerValue="{!$ObjectType.Add_on_Service__c.fields.Type__c.Label}" >
+                            <apex:outputField value="{!mapAddOn[ao].addon.Type__c}" />
+                        </apex:column>
+
+                        <apex:column headerValue="{!$ObjectType.Add_on_Service__c.fields.Id_List_Add_On__c.Label}" >
+                            <apex:outputField value="{!mapAddOn[ao].addon.Id_List_Add_On__c}" />
+                        </apex:column>
+
+                        <apex:column headerValue="{!$ObjectType.Add_on_Service__c.fields.Opportunity__c.Label}" >
+                            <apex:outputField value="{!mapAddOn[ao].addon.Opportunity__c}" />
+                        </apex:column>
+
+                         <apex:column headerValue="{!$ObjectType.Add_on_Service__c.fields.Status__c.Label}" >
+                            <apex:outputField value="{!mapAddOn[ao].addon.Status__c}" />
+                         </apex:column>
+
+
+
+                         <apex:column headerValue="{!$ObjectType.Add_on_Service__c.fields.Termination_Reason__c.Label}" >
+                            <apex:outputField value="{!mapAddOn[ao].addon.Termination_Reason__c}" rendered="{!NOT(OR(ISBLANK(mapAddOn[ao].addon.Status__c), IF(ISBLANK(mapAddOn[ao].addon.Opportunity__c), NOT(CONTAINS(addOnInactiveStatuses, mapAddOn[ao].addon.Status__c)), AND(NOT(CONTAINS(addOnInactiveStatuses, mapAddOn[ao].addon.Status__c)), mapAddOn[ao].addon.Opportunity__r.StageName == 'Closed Won'))))}"/>
+                            <apex:inputField value="{!mapAddOn[ao].opp.Lost_Reason__c}" rendered="{!OR(ISBLANK(mapAddOn[ao].addon.Status__c), IF(ISBLANK(mapAddOn[ao].addon.Opportunity__c), NOT(CONTAINS(addOnInactiveStatuses, mapAddOn[ao].addon.Status__c)), AND(NOT(CONTAINS(addOnInactiveStatuses, mapAddOn[ao].addon.Status__c)), mapAddOn[ao].addon.Opportunity__r.StageName == 'Closed Won')))}" />
+                         </apex:column>
+
+                         <apex:column headerValue="{!$ObjectType.Add_on_Service__c.fields.End_Date__c.Label}" >
+                            <apex:inputField value="{!mapAddOn[ao].addon.End_Date__c}" rendered="{!OR(ISBLANK(mapAddOn[ao].addon.Status__c), IF(ISBLANK(mapAddOn[ao].addon.Opportunity__c), NOT(CONTAINS(addOnInactiveStatuses, mapAddOn[ao].addon.Status__c)), AND(NOT(CONTAINS(addOnInactiveStatuses, mapAddOn[ao].addon.Status__c)), mapAddOn[ao].addon.Opportunity__r.StageName == 'Closed Won')))}" />
+                            <apex:outputField value="{!mapAddOn[ao].addon.End_Date__c}" rendered="{!NOT(OR(ISBLANK(mapAddOn[ao].addon.Status__c), IF(ISBLANK(mapAddOn[ao].addon.Opportunity__c), NOT(CONTAINS(addOnInactiveStatuses, mapAddOn[ao].addon.Status__c)), AND(NOT(CONTAINS(addOnInactiveStatuses, mapAddOn[ao].addon.Status__c)), mapAddOn[ao].addon.Opportunity__r.StageName == 'Closed Won'))))}" />
+                         </apex:column>
+
+                    </apex:pageBlockTable>
+                </apex:outputPanel>
+
+
+
+        </apex:pageBlock>
+    </apex:form>
+    <c:Spinner message="{!$Label.Please_Wait}" />
+
+</apex:page>

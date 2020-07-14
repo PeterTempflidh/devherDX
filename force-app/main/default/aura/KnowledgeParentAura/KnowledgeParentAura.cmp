@@ -1,0 +1,4 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId">
+    <aura:handler event="c:compRefreshEvent" action="{!c.handleRefreshEvent}"/>   
+    <c:knowledgeArticleLWC aura:id="knowledgeLWC" recordId="{!v.recordId}"></c:knowledgeArticleLWC>
+</aura:component>	

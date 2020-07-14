@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- List Service Price --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- List Service Price --></value>
+    </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>List Service Price Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- List Service Price Name --></nameFieldLabel>
+    <recordTypes>
+        <label><!-- AT List Service Price --></label>
+        <name>AT_List_Service_Price</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- CD List Service Price --></label>
+        <name>CD_List_Service_Price</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Czech Republic List Service Price --></description>
+        <label><!-- CZ List Service Price --></label>
+        <name>CZ_List_Service_Price</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DE List Service Price --></label>
+        <name>DE_List_Service_Price</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DH AU List Service Price --></label>
+        <name>DH_AU_List_Service_Price</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FI List Service Price --></label>
+        <name>FI_List_Service_Price</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FP List Service Price --></label>
+        <name>FP_List_Service_Price</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Hungary List Service Price --></description>
+        <label><!-- HU List Service Price --></label>
+        <name>HU_List_Service_Price</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Record type for Pedidos Ya and in future to be global for all countries --></description>
+        <label><!-- PY List Service Price --></label>
+        <name>PY_List_Service_Price</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SE List Service Price --></label>
+        <name>SE_List_Service_Price</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Talabat List Service Price --></label>
+        <name>Talabat_List_Service_Price</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- UK List Service Price --></label>
+        <name>UK_List_Service_Price</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Yogiyo List Service Price --></label>
+        <name>Yogiyo_List_Service_Price</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Service Name is required --></errorMessage>
+        <name>Service_Name_Required</name>
+    </validationRules>
+</CustomObjectTranslation>

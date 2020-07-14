@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingOwnerRules>
+        <fullName>FP_Bangladesh_Chats</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Access read and write for chats owned by a member of the group FP Bangladesh Service user with users on the same group</description>
+        <label>FP Bangladesh Chats</label>
+        <sharedTo>
+            <group>FP_Bangladesh_Service_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_Bangladesh_Service_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_Cambodia_Chats</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Access read and write for chats owned by a member of the group FP Cambodia Service user with users on the same group</description>
+        <label>FP Cambodia Chats</label>
+        <sharedTo>
+            <group>FP_Cambodia_Service_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_Cambodia_Service_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_Hong_Kong_Chats</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Access read and write for chats owned by a member of the group FP Hong Kong Service user with users on the same group</description>
+        <label>FP Hong Kong Chats</label>
+        <sharedTo>
+            <group>FP_Hong_Kong_Service_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_Hong_Kong_Service_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_Laos_Chats</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Access read and write for chats owned by a member of the group FP Laos Service user with users on the same group</description>
+        <label>FP Laos Chats</label>
+        <sharedTo>
+            <group>FP_Laos_Service_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_Laos_Service_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_Malaysia_Chats</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Access read and write for chats owned by a member of the group FP Malaysia Service user with users on the same group</description>
+        <label>FP Malaysia Chats</label>
+        <sharedTo>
+            <group>FP_Malaysia_Service_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_Malaysia_Service_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_Myanmar_Chats</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Access read and write for chats owned by a member of the group FP Myanmar Service user with users on the same group</description>
+        <label>FP Myanmar Chats</label>
+        <sharedTo>
+            <group>FP_Myanmar_Service_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_Myanmar_Service_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_Pakistan_Chats</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Access read and write for chats owned by a member of the group FP Pakistan  Service user with users on the same group</description>
+        <label>FP Pakistan Chats</label>
+        <sharedTo>
+            <group>FP_Pakistan_Service_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_Pakistan_Service_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_Philippines_Chats</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Access read and write for chats owned by a member of the group FP Philippines Service user with users on the same group</description>
+        <label>FP Philippines Chats</label>
+        <sharedTo>
+            <group>FP_Philippines_Service_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_Philippines_Service_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_Singapore_Chats</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Access read and write for chats owned by a member of the group FP Singapore Service user with users on the same group</description>
+        <label>FP Singapore Chats</label>
+        <sharedTo>
+            <group>FP_Singapore_Service_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_Singapore_Service_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_Taiwan_Chats</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Access read and write for chats owned by a member of the group FP Taiwan Service user with users on the same grou</description>
+        <label>FP Taiwan Chats</label>
+        <sharedTo>
+            <group>FP_Taiwan_Service_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_Taiwan_Service_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_Thailand_Chats</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Access read and write for chats owned by a member of the group FP Thailand Service user with users on the same group</description>
+        <label>FP Thailand Chats</label>
+        <sharedTo>
+            <group>FP_Thailand_Service_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_Thailand_Service_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>HK_Customer_Experience</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>HK Customer Experience</label>
+        <sharedTo>
+            <group>HK_Customer_Experience</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_Hong_Kong_Service_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Live_Chat_Transcription_sharing_for_KR</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Live Chat Transcription sharing for KR</label>
+        <sharedTo>
+            <roleAndSubordinates>Yogiyo_Local_Admin</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>Yogiyo_Local_Admin</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

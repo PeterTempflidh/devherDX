@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DH_AU_Letterhead</letterhead>
+    <name>DH AU Confirmation – Website</name>
+    <style>freeForm</style>
+    <subject>Delivery Hero Restaurant Website Confirmation</subject>
+    <textOnly>Hi {!Contact.FirstName},
+Thanks for your interest in setting up a free website with Delivery Hero! This will start to drive more orders to your restaurant.
+
+Website Setup:
+Website address: [Domain Address]
+Discounted Success Fee for orders from this website: [Commission]
+Standard merchant fee for online payment orders apply, does not apply to cash orders.
+
+Benefits:
+
+Completely free: we pay for the design, domain registration and web-hosting
+Fully leverage Delivery Hero expertise:
+
+Full order management and transmission by our experienced restaurant-care team
+Any changes that you make on your Delivery Hero listing (menu or delivery details) will be automatically synced and updated on the website
+Online menu that is available 24/7 (we will process pre-orders for when your restaurant is closed)
+
+Optimised online profile and search engine visibility on Google and major search engines
+More exposure and more orders for your restaurant!
+
+Sample of live websites:
+http://petershamturkish.com.au/
+http://meechaithaihornsby.com.au/
+
+What do you need to do:
+Absolutely nothing. We will set everything up for your restaurant, and send orders to your restaurant as how we always do. Orders that come through this channel will also be reflected on your regular invoices and statements so you can keep track of them.
+We do however encourage you to send back high-resolution photos so we can personalise it even further!
+
+Thanks {!Contact.FirstName}! Feel free to get back to us if you have any questions or need further assistance, we&apos;ll be happy to help.
+
+Kind regards,
+{!User.Name}
+{!User.Phone}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

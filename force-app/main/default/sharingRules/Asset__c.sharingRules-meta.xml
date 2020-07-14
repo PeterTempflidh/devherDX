@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>CZ_Asset_Sharing</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>CZ Asset Sharing</label>
+        <sharedTo>
+            <roleAndSubordinates>CZ_Management</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>CZ Asset</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>CZ_Edit_Assets</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CZ Edit Assets</label>
+        <sharedTo>
+            <group>CZ_Operations_Team</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>CZ Asset</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Cd_Sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Cd Sharing</label>
+        <sharedTo>
+            <roleAndSubordinates>CD_Management</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>CD Asset</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>DE_Asset</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>DE_Asset</label>
+        <sharedTo>
+            <roleAndSubordinates>DE_Management</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>DE Asset</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Dominican_Republic</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>SP-4462</description>
+        <label>Dominican Republic</label>
+        <sharedTo>
+            <group>PY_Sales_Dominican_Republic</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>CurrencyIsoCode</field>
+            <operation>equals</operation>
+            <value>DOP</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Bangladesh_Asset</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sharing rule to give read access on Assets from Bangladesh  Accounts, for users from Bangladesh. SP-4138</description>
+        <label>FP Bangladesh Asset</label>
+        <sharedTo>
+            <group>FP_Bangladesh_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Account_Country__c</field>
+            <operation>equals</operation>
+            <value>Bangladesh</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Cambodia_Asset</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>SSC-166</description>
+        <label>FP Cambodia Asset</label>
+        <sharedTo>
+            <group>FP_Cambodia_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Account_Country__c</field>
+            <operation>equals</operation>
+            <value>Cambodia</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Cambodia_Edit_All_Assets</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>FP Hong Kong Edit All Assets</description>
+        <label>FP Cambodia Edit All Assets</label>
+        <sharedTo>
+            <group>FP_KH_Restaurant_Operations</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Account_Country__c</field>
+            <operation>equals</operation>
+            <value>Cambodia</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Hong_Kong_Asset</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sharing rule to give read access on Assets from Hong Kong Accounts, for users from Hong Kong. SP-4138</description>
+        <label>FP Hong Kong Asset</label>
+        <sharedTo>
+            <group>FP_Hong_Kong_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Account_Country__c</field>
+            <operation>equals</operation>
+            <value>Hong Kong</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Hong_Kong_Edit_All_Assets</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FP Hong Kong Edit All Assets</label>
+        <sharedTo>
+            <group>FP_HK_Restaurant_Operations</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Account_Country__c</field>
+            <operation>equals</operation>
+            <value>Hong Kong</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Japan_Asset</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>SSC-2971</description>
+        <label>FP Japan Asset</label>
+        <sharedTo>
+            <group>FP_Japan_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Account_Country__c</field>
+            <operation>equals</operation>
+            <value>Japan</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Japan_Edit_All_Assets</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>SSC-2971</description>
+        <label>FP Japan Edit All Assets</label>
+        <sharedTo>
+            <group>FP_JP_Restaurant_Operations</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Account_Country__c</field>
+            <operation>equals</operation>
+            <value>Japan</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Laos_Asset</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>SSC-166</description>
+        <label>FP Laos Asset</label>
+        <sharedTo>
+            <group>FP_Laos_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Account_Country__c</field>
+            <operation>equals</operation>
+            <value>Laos</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Laos_Edit_All_Assets</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>SSC-166</description>
+        <label>FP Laos Edit All Assets</label>
+        <sharedTo>
+            <group>FP_LA_Restaurant_Operations</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Account_Country__c</field>
+            <operation>equals</operation>
+            <value>Laos</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Malaysia_Asset</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sharing rule to give read access on Assets from Malaysia Accounts, for users from Malaysia. SP-4138</description>
+        <label>FP Malaysia Asset</label>
+        <sharedTo>
+            <group>FP_Malaysia_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Account_Country__c</field>
+            <operation>equals</operation>
+            <value>Malaysia</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Malaysia_Edit_All_Assets</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FP Malaysia Edit All Assets</label>
+        <sharedTo>
+            <group>FP_MY_Restaurant_Operations</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Account_Country__c</field>
+            <operation>equals</operation>
+            <value>Malaysia</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Myanmar_Asset</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>SSC-166</description>
+        <label>FP Myanmar Asset</label>
+        <sharedTo>
+            <group>FP_Myanmar_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Account_Country__c</field>
+            <operation>equals</operation>
+            <value>Myanmar</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Myanmar_Edit_All_Assets</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>SSC-166</description>
+        <label>FP Myanmar Edit All Assets</label>
+        <sharedTo>
+            <group>FP_MM_Restaurant_Operations</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Account_Country__c</field>
+            <operation>equals</operation>
+            <value>Myanmar</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Pakistan_Asset</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sharing rule to give read access on Assets from Pakistan Accounts, for users from Pakistan. SP-4138</description>
+        <label>FP Pakistan Asset</label>
+        <sharedTo>
+            <group>FP_Pakistan_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Account_Country__c</field>
+            <operation>equals</operation>
+            <value>Pakistan</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Philippines_Asset</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sharing rule to give read access on Assets from Philippines Accounts, for users from Philippines. SP-4138</description>
+        <label>FP Philippines Asset</label>
+        <sharedTo>
+            <group>FP_Philippines_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Account_Country__c</field>
+            <operation>equals</operation>
+            <value>Philippines</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Philippines_Edit_All_Assets</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FP Philippines Edit All Assets</label>
+        <sharedTo>
+            <group>FP_PH_Restaurant_Operations</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Account_Country__c</field>
+            <operation>equals</operation>
+            <value>Philippines</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Singapore_Asset</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sharing rule to give read access on Assets from Singapore Accounts, for users from Singapore. SP-4138</description>
+        <label>FP Singapore Asset</label>
+        <sharedTo>
+            <group>FP_Singapore_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Account_Country__c</field>
+            <operation>equals</operation>
+            <value>Singapore</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Singapore_Edit_All_Assets</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FP Singapore Edit All Assets</label>
+        <sharedTo>
+            <group>FP_SG_Restaurant_Operations</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Account_Country__c</field>
+            <operation>equals</operation>
+            <value>Singapore</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Taiwan_Asset</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sharing rule to give read access on Assets from Taiwan Accounts, for users from Taiwan. SP-4138</description>
+        <label>FP Taiwan Asset</label>
+        <sharedTo>
+            <group>FP_Taiwan_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Account_Country__c</field>
+            <operation>equals</operation>
+            <value>Taiwan</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Taiwan_Edit_All_Assets</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FP Taiwan Edit All Assets</label>
+        <sharedTo>
+            <group>FP_TW_Restaurant_Operations</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Account_Country__c</field>
+            <operation>equals</operation>
+            <value>Taiwan</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Thailand_Asset</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sharing rule to give read access on Assets from Thailand Accounts, for users from Thailand. SP-4138</description>
+        <label>FP Thailand Asset</label>
+        <sharedTo>
+            <group>FP_Thailand_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Account_Country__c</field>
+            <operation>equals</operation>
+            <value>Thailand</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FP_Thailand_Edit_All_Assets</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FP Thailand Edit All Assets</label>
+        <sharedTo>
+            <group>FP_TH_Restaurant_Operations</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Account_Country__c</field>
+            <operation>equals</operation>
+            <value>Thailand</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>HU_Asset_Sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>HU Asset Sharing</label>
+        <sharedTo>
+            <roleAndSubordinates>HU_Management</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>HU Asset</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>PY_Argentina</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>PY Argentina</label>
+        <sharedTo>
+            <group>PY_Sales_Argentina</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>CurrencyIsoCode</field>
+            <operation>equals</operation>
+            <value>ARS</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>PY_Bolivia</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>PY Bolivia</label>
+        <sharedTo>
+            <group>PY_Sales_Bolivia</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>CurrencyIsoCode</field>
+            <operation>equals</operation>
+            <value>BOB</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>PY_Chile</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>PY Chile</label>
+        <sharedTo>
+            <group>PY_Sales_Chile</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>CurrencyIsoCode</field>
+            <operation>equals</operation>
+            <value>CLP</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>PY_Panama</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>PY Panama</label>
+        <sharedTo>
+            <group>PY_Sales_Panama</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>CurrencyIsoCode</field>
+            <operation>equals</operation>
+            <value>PAB</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>PY_Paraguay</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>PY  Paraguay</label>
+        <sharedTo>
+            <group>PY_Sales_Paraguay</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>CurrencyIsoCode</field>
+            <operation>equals</operation>
+            <value>PYG</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>PY_Uruguay</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>PY Uruguay</label>
+        <sharedTo>
+            <group>PY_Sales_Uruguay</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>CurrencyIsoCode</field>
+            <operation>equals</operation>
+            <value>UYU</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>PY_Users_Access_to_CD</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>SP-4499</description>
+        <label>PY Users Access to CD</label>
+        <sharedTo>
+            <group>PY_CD_Shared_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>CD Asset</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>PY_all_countries</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>PY all countries</label>
+        <sharedTo>
+            <group>PY_Access_to_all_countries</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>PY_Asset</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>SE_Assets_by_RecordType</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Criteria based sharing rule for Dataload/Migrated Assets</description>
+        <label>SE Assets by RecordType</label>
+        <sharedTo>
+            <roleAndSubordinates>SE_Management</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>SE Asset</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Talabat_Asset_Basic_Sharing</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Talabat Asset Basic Sharing</label>
+        <sharedTo>
+            <roleAndSubordinates>Talabat_Management</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Talabat Asset</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UK_Assets_Opp_Owner</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>UK Assets - Opp Owner</label>
+        <sharedTo>
+            <roleAndSubordinates>UK_Management</roleAndSubordinates>
+        </sharedTo>
+        <booleanFilter>1 AND (2 OR 3 OR 4)</booleanFilter>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>UK Asset</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OwnerId</field>
+            <operation>equals</operation>
+            <value>005w0000003gL8bAAE</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OwnerId</field>
+            <operation>equals</operation>
+            <value>005w0000003gLPjAAM</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OwnerId</field>
+            <operation>equals</operation>
+            <value>005w000000597VFAAY</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Venezuela</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>SSC-1020</description>
+        <label>Venezuela</label>
+        <sharedTo>
+            <group>PY_Sales_Venezuela</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Account_Country__c</field>
+            <operation>equals</operation>
+            <value>Venezuela</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>talabat_edit_access_to_Sales_Admin</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>talabat edit access to Sales Admin</label>
+        <sharedTo>
+            <group>Talabat_Sales_Admin</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Talabat Asset</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingOwnerRules>
+        <fullName>AT_Asset_Sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>AT Asset Sharing</label>
+        <sharedTo>
+            <roleAndSubordinates>AT_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>AT_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Asset_sharing_for_KR</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Asset sharing for KR</label>
+        <sharedTo>
+            <roleAndSubordinates>Yogiyo_Local_Admin</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>Yogiyo_Local_Admin</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Cd_Asset_Sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Cd Asset Sharing</label>
+        <sharedTo>
+            <roleAndSubordinates>CD_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>CD_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FI_Asset_Sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FI Asset Sharing</label>
+        <sharedTo>
+            <roleAndSubordinates>FI_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>FI_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>SEFI_Asset_Sharing</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>SEFI Asset Sharing</label>
+        <sharedTo>
+            <group>SE_FI_Shared_Group</group>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>FI_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>SE_Asset_MGMT_to_MGMT</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>SE - Asset - MGMT to MGMT</label>
+        <sharedTo>
+            <roleAndSubordinates>SE_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>SE_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>SE_FI_Management</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>03858146</description>
+        <label>SE &amp; FI Management</label>
+        <sharedTo>
+            <group>SE_FI_Shared_Group</group>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>SE_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>UK_Asset_Sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>UK Asset Sharing</label>
+        <sharedTo>
+            <roleAndSubordinates>UK_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>UK_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

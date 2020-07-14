@@ -1,0 +1,151 @@
+<apex:page standardController="Opportunity_Quote__c" sidebar="false"  extensions="CtrSendQuote" tabStyle="Opportunity_Quote__c" docType="html-5.0">
+<apex:includeScript value="/support/console/28.0/integration.js"/>
+<script type="text/javascript">
+    function closeCurrentTab() {
+        if (sforce.console.isInConsole()) {
+            sforce.console.getEnclosingTabId(closeSubtab);
+        }else if((typeof sforce != 'undefined') && sforce && (!!sforce.one)){
+            sforce.one.navigateToSObject('{!Opportunity_Quote__c.Id_Opportunity__c}');
+        }else{
+           window.parent.location.href = ('/apex/QuoteScreen?Id=' + '{!Opportunity_Quote__c.Id}'+'&sfdc.override=1');
+        }
+    }
+    
+    function test(){
+    	console.log('hallo');
+    }
+    
+    var closeSubtab = function closeSubtab(result) {
+        var tabId = result.id;
+        sforce.console.closeTab(tabId);
+    };
+</script>
+<style type="text/css">
+    .additionalRecipients{
+        width: 450px;
+        margin-right: 10px;
+    }
+</style>
+    <apex:Form >
+    <apex:inputHidden value="{!Opportunity_Quote__c.Attachment__c}"/>
+        <apex:sectionHeader title="Task" subtitle="Send an Email" />
+        <apex:pageMessages id="messages" escape="false"/>
+        <apex:pageBlock id="mainPageBlock" rendered="{!showSendQuote}">
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!sendQuote}" value="{!$Label.Quote_Email_Send_Email}" disabled="false" status="LoadingSpinner" />
+                <apex:commandButton value="{!$Label.Quote_Email_Cancel}"   onclick="closeCurrentTab(); return false;" disabled="false" />
+            </apex:pageBlockButtons>
+            <apex:actionRegion >
+                <apex:pageBlockSection title="{!$Label.Quote_Email_Quote_Reciipients}" collapsible="false" columns="1" id="recipientsPageBlockSection">
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$Label.Quote_Email_From} " />
+                        <apex:selectList value="{!fromAddress}" size="1" onchange="buildNumberOfRecordsToAddDropdown();">
+                            <apex:selectOptions value="{!fromEmailAddresses}"/>
+                        </apex:selectList>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem rendered="{!primaryContactEmail != null}">
+                        <apex:outputLabel value="{!$Label.Quote_Email_To}" />
+                        <apex:outputText value="{!primaryContactEmail}"  />
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem rendered="{!primaryContactEmail == null}">
+                        <apex:outputLabel value="{!$Label.Quote_Email_To}" />
+                        <apex:outputText value="{!$Label.Quote_Email_No_Primary_Contact}"  />
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$Label.Quote_Email_Related_To}" />
+                        <apex:outputText value="{!$Label.Quote_Email_Quote} : {!oppQuote.Name}" />
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$Label.Quote_Email_Additional_To}" style="width : 20%" />
+                        <apex:inputTextarea value="{!additionalTo}" cols="60" rows="2" style="width : 80%" />
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$Label.Quote_Email_CC}:"  style="width : 20%" />
+                        <apex:inputTextarea value="{!cc}" cols="60" rows="2" style="width : 80%" />
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$Label.Quote_Email_BCC}:" style="width : 20%" />
+                        <apex:inputTextarea value="{!bcc}" cols="60" rows="2" style="width : 80%" />
+                    </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.Quote_Email_Additional_Recipients}:" style="width : 20%" />
+                    <apex:pageBlockTable value="{!recipients}" var="emailKey">
+                        <apex:column headerValue="{!$Label.Quote_Email_Add_To}">
+                            <apex:commandButton action="{!addTo}" value="{!$Label.Quote_Email_To}" disabled="{!recipients[emailKey].addToTo}" reRender="recipientsPageBlockSection" status="LoadingSpinner">
+                                <apex:param name="emailToAddTo" assignTo="{!emailToAdd}" value="{!emailKey}" />
+                                <apex:param name="addToTo" assignTo="{!whereToAddOrRemoveEmail}" value="to" />
+                            </apex:commandButton>
+                            <apex:commandButton action="{!addTo}" value="{!$Label.Quote_Email_CC}" disabled="{!recipients[emailKey].addToCc}" reRender="recipientsPageBlockSection" status="LoadingSpinner">
+                                <apex:param name="emailToAddCc" assignTo="{!emailToAdd}" value="{!emailKey}" />
+                                <apex:param name="addToCc" assignTo="{!whereToAddOrRemoveEmail}" value="cc" />
+                            </apex:commandButton>
+                            <apex:commandButton action="{!addTo}" value="{!$Label.Quote_Email_BCC}" disabled="{!recipients[emailKey].addToBcc}" reRender="recipientsPageBlockSection" status="LoadingSpinner">
+                                <apex:param name="emailToAddBcc" assignTo="{!emailToAdd}" value="{!emailKey}" />
+                                <apex:param name="addToBcc" assignTo="{!whereToAddOrRemoveEmail}" value="bcc" />
+                            </apex:commandButton>
+                        </apex:column>
+                        <apex:column headerValue="{!$Label.Quote_Email_Remove_From  }">
+                            <apex:commandButton action="{!removeFrom}" value="{!$Label.Quote_Email_To}" disabled="{!recipients[emailKey].removeFromTo}" reRender="recipientsPageBlockSection" status="LoadingSpinner">
+                                <apex:param name="emailToAddTo" assignTo="{!emailToAdd}" value="{!emailKey}"/>
+                                <apex:param name="removeFromTo" assignTo="{!whereToAddOrRemoveEmail}" value="to"/>
+                            </apex:commandButton>
+                            <apex:commandButton action="{!removeFrom}" value="{!$Label.Quote_Email_CC}" disabled="{!recipients[emailKey].removeFromCc}" reRender="recipientsPageBlockSection" status="LoadingSpinner">
+                                <apex:param name="emailToAddCc" assignTo="{!emailToAdd}" value="{!emailKey}"/>
+                                <apex:param name="removeFromCc" assignTo="{!whereToAddOrRemoveEmail}" value="cc"/>
+                            </apex:commandButton>
+                            <apex:commandButton action="{!removeFrom}" value="{!$Label.Quote_Email_BCC}" disabled="{!recipients[emailKey].removeFromBcc}" reRender="recipientsPageBlockSection" status="LoadingSpinner">
+                                <apex:param name="emailToAddBcc" assignTo="{!emailToAdd}" value="{!emailKey}"/>
+                                <apex:param name="removeFromBcc" assignTo="{!whereToAddOrRemoveEmail}" value="bcc"/>
+                            </apex:commandButton>
+                        </apex:column>
+                        <apex:column headerValue="{!$ObjectType.Contact.Fields.Name.Label}">
+                            <apex:outputText value="{!recipients[emailKey].name}" />
+                        </apex:column>
+                        <apex:column headerValue="{!$ObjectType.Contact.Fields.Email.Label}">
+                            <apex:outputText value="{!recipients[emailKey].email}" />
+                        </apex:column>
+                    </apex:pageBlockTable>
+                    </apex:pageBlockSectionItem>
+                    </apex:pageBlockSection>
+                </apex:actionRegion>
+                <apex:pageBlockSection columns="1">
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$Label.Quote_Email_Subject}" style="width : 20%" />
+                        <apex:inputText value="{!subject}" style="width : 80%" />
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$Label.Quote_Email_Content}" style="width : 20%"  />
+                        <apex:inputTextarea id="defaultContent" value="{!content}" styleClass="defaultContent" cols="60" rows="12" richText="true" />
+                    </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection title="{!$Label.Quote_Email_Additional_Attachments}" columns="1" collapsible="false">
+                 <apex:outputPanel >
+                    <apex:outputText value="{!$Label.Quote_Email_Attachment_Limitations}" escape="false" />
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!attachQuotePdf}">
+                    <apex:outputLabel style="float: left; margin-right: 5px;" value="{!$Label.Quote_Email_Preview_Quote}: " />
+                    <apex:outputLink rendered="{!NOT(useQuoteTemplateNameAsPdf)}" onclick="window.open('/apex/RenderQuoteAsPDf?id={!oppQuote.Id}')" target="_blank">{!oppQuote.Name}</apex:outputLink>
+                    <apex:outputLink rendered="{!AND(useQuoteTemplateNameAsPdf)}" onclick="window.open('/apex/{!oppQuote.Template_Name__c}?id={!oppQuote.Id}&pdf=1')" target="_blank">{!oppQuote.Name}</apex:outputLink>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!attachTCPdf}">
+                    <apex:outputLabel style="float: left; margin-right: 5px;" value="{!$Label.Quote_Email_Preview_Quote}: " />
+                    <apex:outputLink onclick="window.open('{!URLFOR($Resource.Yogiyo_T_C)}')" target="_blank">{!$Label.Terms_Condition}</apex:outputLink>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!if(onlinePaymentPDf='TalabatPaymentDoc','true','false')}">
+                    <apex:outputLabel style="float: left; margin-right: 5px;" value="{!$Label.Quote_Email_Preview_Quote}: " />
+                    <apex:outputLink onclick="window.open('/apex/TalabatPaymentPdf?id={!oppQuote.Id}')" target="_blank">Online Payment methods</apex:outputLink>
+                </apex:outputPanel>
+                
+                <apex:outputPanel id="additionalAttachments">
+                    <apex:repeat value="{!additionalAttachments}" var="attachment">
+                        <apex:outputLabel value="{!$Label.Quote_Email_File}: " for="file" />
+                        <apex:inputFile value="{!attachment.body}" filename="{!attachment.name}" id="file" />
+                        <br /><br />
+                    </apex:repeat>
+                </apex:outputPanel>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <c:Spinner message="{!$Label.Please_Wait}" />
+    </apex:Form>
+</apex:page>

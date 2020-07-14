@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY - Malas Condiciones MP Voucher a cargo del local</name>
+    <style>freeForm</style>
+    <subject>Malas Condiciones MP Voucher a cargo del local</subject>
+    <textOnly>Estimada XXX, es un gusto saludarte.
+Estimado XXX, es un gusto saludarte.
+
+Te contactamos en respuesta a tu reclamo por el pedido que hiciste el día de ayer en XXX. Antes que nada, te pedimos disculpas por las molestias de no haber recibido el pedido tal y como lo esperabas. 
+
+Nos hemos comunicado con el local lamentablemente no es posible volver a enviar el pedido, por lo que vamos a generar un cupón por el valor del producto para que lo puedas utilizar en XXX.
+
+El cupón que te estaremos generando tiene validez de 30 días y puedes visualizarlo en la sección del Menú &gt; Mis Cupones.  Para poder utilizarlo tienes que hacer el pedido como lo haces normalmente, una vez que eliges tu comida y vas a la sección de método de pago, justo debajo aparece la opción de agregarlo. Seleccione &quot;finalizar pedido&quot; y una vez que esté finalizado, verás reflejado el descuento del cupón automáticamente.
+
+Esperamos haber ayudado a resarcir lo sucedido con tu último pedido y quedamos a tu entera disposición.
+
+Saludos,
+(Propietario del Caso)
+Atención al Cliente PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

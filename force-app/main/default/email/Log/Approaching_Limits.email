@@ -1,0 +1,9 @@
+Hello,
+
+The limits are approaching for the following operation
+
+Type: {!Log_Error_Message__c.Type__c}
+Sub Type: {!Log_Error_Message__c.Sub_Type__c}
+Parent Id:  {!Log_Error_Message__c.ParentId__c}
+Number of SOQL: {!Log_Error_Message__c.NUMBER_OF_QUERIES__c}
+Number of DML : {!Log_Error_Message__c.NUMBER_OF_DML_OPERATIONS__c}

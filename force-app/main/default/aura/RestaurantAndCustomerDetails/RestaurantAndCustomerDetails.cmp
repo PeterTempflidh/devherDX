@@ -1,0 +1,157 @@
+<aura:component description="RestaurantAndCustomerDetails" controller="CtrGlobalChatBot" implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId">
+    <aura:attribute name="customerDet" type="Object"/>
+    <aura:attribute name="accountDetail" type="Object"/>
+    <aura:attribute name="customerURL" type="String"/>
+    <aura:attribute name="vendorId" type="String"/>
+    <aura:attribute name="dataPresent" type="Boolean"/>
+    <lightning:workspaceAPI aura:id="restaurantWorkspace" />
+    <aura:handler event="c:OrderDetailsEvent" action="{!c.init}"/>
+	<!--SCC-259-->
+	<aura:attribute name="platformName" type="String"/>
+	<aura:attribute name="PandoraPlatformNames" type="List" default="[]"/>
+	
+      <aura:if isTrue="{!v.dataPresent}">
+        <div class="slds-grid">
+            <div class="slds-size--1-of-2" style="padding-right:1%">
+                <lightning:card iconName="standard:account">
+                    <aura:set attribute="title">
+                        <div style="font-weight:700">{!$Label.c.Restaurant_Details}</div>
+                    </aura:set>
+                    <div class="slds-form slds-form_stacked " role="list" style="margin-left:2%;height:161px">
+                        <br/>
+                        <div class="slds-grid slds-gutters_small mdp cols-2 forcePageBlockSectionRow">
+                            <div class="slds-col slds-grid slds-has-flexi-truncate  mdp forcePageBlockItem forcePageBlockItemView" role="listbox">
+                                <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element" style="margin-right: 1rem;">
+                                    <div class="test-id__field-label-container slds-form-element__label">
+                                    <span class="test-id__field-label">
+                                        {!$Label.c.Restaurant_Name}
+                                    </span>
+                                    </div>
+                                    <div class="slds-form-element__control slds-grid itemBody">
+                                    <span class="test-id__field-value slds-form-element__static slds-grow ">
+                                        <span class="uiOutputText" style="overflow-wrap: break-word;">
+                                            <aura:if isTrue="{!v.accountDetail.Restaurant_Name__c==null}">
+                                                <a href="#" onclick="{!c.openSubTab}">{!v.accountDetail.Name}</a>
+                                                <aura:set attribute="else">
+                                                    <a href="#" onclick="{!c.openSubTab}">{!v.accountDetail.Restaurant_Name__c}</a>
+                                                </aura:set>
+                                            </aura:if>
+                                        </span>
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element" style="margin-left: 1rem;">
+                                    <div class="test-id__field-label-container slds-form-element__label">
+                                    <span class="test-id__field-label">
+                                        {!$Label.c.Restaurant_Id}
+                                    </span>
+                                    </div>
+                                    <div class="slds-form-element__control slds-grid itemBody">
+                                    <span class="test-id__field-value slds-form-element__static slds-grow ">
+                                        <span class="uiOutputText" style="overflow-wrap: break-word;">
+                                            {!v.vendorId}
+                                        </span>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-gutters_small mdp cols-2 forcePageBlockSectionRow">
+                            <div class="slds-col slds-grid slds-has-flexi-truncate  mdp forcePageBlockItem forcePageBlockItemView" role="listbox">
+                                <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element" style="margin-right: 1rem;">
+                                    <div class="test-id__field-label-container slds-form-element__label">
+                                    <span class="test-id__field-label">
+                                        {!$Label.c.Email}
+                                    </span>
+                                    </div>
+                                    <div class="slds-form-element__control slds-grid itemBody">
+                                    <span class="test-id__field-value slds-form-element__static slds-grow ">
+                                        <span class="uiOutputText" style="overflow-wrap: break-word;">
+                                            {!v.accountDetail.Account_Email__c}
+                                        </span>
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element" style="margin-left: 1rem;">
+                                    <div class="test-id__field-label-container slds-form-element__label">
+                                    <span class="test-id__field-label">
+                                        {!$Label.c.Phone}
+                                    </span>
+                                    </div>
+                                    <div class="slds-form-element__control slds-grid itemBody">
+                                    <span class="test-id__field-value slds-form-element__static slds-grow ">
+                                        <lightning:clickToDial value="{!v.accountDetail.Phone}" style="overflow-wrap: break-word;"/>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </lightning:card>
+            </div>
+            <div class="slds-size--1-of-2" style="padding-left:1%">
+                <lightning:card iconName="standard:contact">
+                    <aura:set attribute="title">
+                        <div style="font-weight:700">{!$Label.c.Customer_Details}</div>
+                    </aura:set>
+                    <div class="slds-form slds-form_stacked " role="list" style="margin-left:2%;height:161px">
+                        <br/>
+                        <div class="slds-grid slds-gutters_small mdp cols-2 forcePageBlockSectionRow">
+                            <div class="slds-col slds-grid slds-has-flexi-truncate  mdp forcePageBlockItem forcePageBlockItemView" role="listbox">
+                                <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element" style="margin-right: 1rem;">
+                                    <div class="test-id__field-label-container slds-form-element__label">
+                                    <span class="test-id__field-label">
+                                        {!$Label.c.Name}
+                                    </span>
+                                    </div>
+                                    <div class="slds-form-element__control slds-grid itemBody">
+                                    <span class="test-id__field-value slds-form-element__static slds-grow ">
+                                        <span class="uiOutputText" style="overflow-wrap: break-word;">
+                                            <aura:if isTrue="{!v.customerURL==null}">
+                                                {!v.customerDet.first_name+' '+v.customerDet.last_name}
+                                                <aura:set attribute="else">
+                                                    <a onclick="{!c.openSubTab}">{!v.customerDet.first_name+' '+v.customerDet.last_name}</a>
+                                                </aura:set>
+                                            </aura:if>
+                                        </span>
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element" style="margin-left: 1rem;">
+                                    <div class="test-id__field-label-container slds-form-element__label">
+                                    <span class="test-id__field-label">
+                                        {!$Label.c.Email}
+                                    </span>
+                                    </div>
+                                    <div class="slds-form-element__control slds-grid itemBody">
+                                    <span class="test-id__field-value slds-form-element__static slds-grow ">
+                                        <span class="uiOutputText" style="overflow-wrap: break-word;">
+                                            {!v.customerDet.email}
+                                        </span>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-gutters_small mdp cols-2 forcePageBlockSectionRow">
+                            <div class="slds-col slds-grid slds-has-flexi-truncate  mdp forcePageBlockItem forcePageBlockItemView" role="listbox">
+                                <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element">
+                                    <div class="test-id__field-label-container slds-form-element__label">
+                                    <span class="test-id__field-label">
+                                        {!$Label.c.Phone}
+                                    </span>
+                                    </div>
+                                    <div class="slds-form-element__control slds-grid itemBody">
+                                    <span class="test-id__field-value slds-form-element__static slds-grow ">
+                                        <lightning:clickToDial value="{!v.customerDet.phone}" style="overflow-wrap: break-word;"/>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </lightning:card>
+            </div>
+        </div>
+    </aura:if>
+</aura:component>

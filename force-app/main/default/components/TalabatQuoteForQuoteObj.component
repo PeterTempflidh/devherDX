@@ -1,0 +1,238 @@
+<apex:component controller="CtrCreateQuote" access="global">
+
+<!-- DEPRECATED TO BE DELETED -->
+
+
+<!-- <apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+<apex:attribute name="oppQuote" type="String" description="Placeholder" assignTo="{!oppQuoteId}"/>
+<div style="display:none"> "{!accountWrapper}{!commissionFee}{!listQuoteLineItems}"</div>
+<html>
+
+<body>
+<apex:outputPanel rendered="{!Not(errorFlag)}">
+<table style="font-size:120%; line-height:12px" class="TalabatQuote">
+<tr>
+    <td align="center">
+        <img style="align:center;width: 100%;" src="{!URLFOR($Resource[entityHeader])}" />
+    </td>
+</tr>
+<tr>
+    <td>
+        <br/>
+    </td>
+</tr>
+<tr>
+    <td align="center">
+        <b style="font-weight:bold;text-decoration:underline;">SUBSCRIPTION CONTRACT</b>
+    </td>
+</tr>
+<tr>
+    <td>
+        <br/>
+    </td>
+</tr>
+<tr>
+    <td>
+        <b>On this day {!weekday} corresponding to &nbsp;<apex:outputText value="{0,date,dd/MM/yyyy}"><apex:param value="{!startDate}" /></apex:outputText> &nbsp;this contract was made between:</b>
+        <table border="0">
+            <tr>
+                <td valign="top">
+                    <b>1.</b>
+                </td>
+                <td></td>
+                <td>
+                    <b>{!entityName} represented by {!entityHead}, in his capacity as {!entityRole}.<br/>
+                    Located In: {!entityAddress} <br/>
+                    Phone: {!entityPhone} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fax: {!entityFax}<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(First Party- Talabat)</b>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <b>2.</b>
+                </td>
+                <td></td>
+                <td>
+                    <b>
+                        {!accountWrapper.companyName} by Mr. {!accountWrapper.ownerName}, in the capacity as Owner.<br/>
+                        Located In: {!accountWrapper.restaurantAddress}.<br/>                
+                        Phone: {!accountWrapper.ownerPhone} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fax: {!accountWrapper.fax}<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Second Party – The subscriber)</b><br/> 
+                        <b>Whereas, Talabat</b> owns the website <b>www.talabat.com</b> and E-commerce applications and has a business relations with its related partner company Foodonclick which operates in the same business of online food ordering and will be engaged in this Contract where all contractual terms related to <b>Talabat</b> will be applied to Foodonclick. 
+                        And whereas the <b>Subscriber</b> Owns <b>{!accountWrapper.companyName}</b> Restaurant.<br/>  
+                        <b>Therefore,</b> both Parties agree to sign this contract as per the following conditions.<br/>
+                </td>
+            </tr>
+        </table>
+        
+        <table border="0" style="font-size:105%; line-height:10px" class="TalabatQuote">
+            <tr>
+                <td>
+                    
+                </td>
+                <td valign="top">
+                    <b>1.</b>
+                </td>
+                <td>
+                    <b>Talabat</b> agrees to receive orders from “Customers” (via the agreed operational engagement method Talabat &amp; Foodonclick) on behalf of the <b>Subscriber. Talabat</b> is responsible for transmitting customer’s orders to the <b>Subscriber</b> within 3 minutes through the agreed Electronic Linked Connections.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                </td>
+                <td valign="top">
+                    <b>2.</b>
+                </td>
+                <td>
+                    <b>Talabat</b> shall contact first time “Customers” to confirm the Subscribership information of “Customers”. <b>Talabat</b> is not responsible for the faults arisen from “Customer” (refusing to accept the order, failing to be present at the address of the order delivery etc.). <b>Talabat</b> will do its best to prevent such circumstances, the parties agree that the <b>Subscriber</b> is not entitled to any type or kind of indemnity in relation with or resulting from such occurrences.
+                </td>
+            </tr><tr>
+                <td>
+                    
+                </td>
+                <td valign="top">
+                    <b>3.</b>
+                </td>
+                <td>
+                    The <b>Subscriber</b> shall unify the prices, minimum charge and delivery charges on the website of Talabat &amp; Foodonclick. The <b>Subscriber</b> is to provide <b>Talabat</b> with special offers and discounts that are available to the customers who’s ordering by phone and send it at least 48 hours before the commencement of said offers.
+                </td>
+            </tr><tr>
+                <td>
+                    
+                </td>
+                <td valign="top">
+                    <b>4.</b>
+                </td>
+                <td>
+                    <b>Talabat</b> may give the <b>Subscriber</b> direct access to its menu displayed on the Website (Talabat &amp; Foodonclick) without reference to <b>Talabat</b> to modify or update the menu, <b>Talabat</b> in this case is not responsible for any error caused by any amendment or update done by the <b>Subscriber</b>.
+                </td>
+            </tr><tr>
+                <td>
+                    
+                </td>
+                <td valign="top">
+                    <b>5.</b>
+                </td>
+                <td>
+                    The <b>Subscriber</b> shall receive and accept the orders sent by <b>Talabat</b> within the agreed time, if Customer’s order can’t be fulfilled on time or if any ordered items are unavailable, the <b>Subscriber</b> shall notify <b>Talabat</b> within 3 minutes of receiving the order so that <b>Talabat</b> can inform the Customer.
+                </td>
+            </tr><tr>
+                <td>
+                    
+                </td>
+                <td valign="top">
+                    <b>6.</b>
+                </td>
+                <td>
+                    The <b>Subscriber</b> is solely responsible for compliance with applicable local laws, regulations, rules and standards related to preparation, selling, marketing and safety of food and its components. <b>Talabat or Foodonclick</b> will not to be held liable for any food provided by the <b>Subscriber</b> that are rotten, not valid, causes harm, not acceptable to buyers or do not meet expectations of buyers in any way.
+                </td>
+            </tr><tr>
+                <td>
+                    
+                </td>
+                <td valign="top">
+                    <b>7.</b>
+                </td>
+                <td>
+                    <b>Registration, subscription fees &amp; Commission as following:</b><br/>
+                    <apex:outputPanel rendered="{!If(registrationQuoteProduct=null,'false','true')}">
+                -   <b>{!registrationQuoteProduct.name}: {!registrationQuoteProduct.Total_Amount__c} {!registrationQuoteProduct.CurrencyIsoCode}  (One-time fee payable upon signing this contract), (Waived and not applicable)</b><br/>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!If(annualRenewalQuoteProduct=null,'false','true')}"> 
+                -   <b>{!annualRenewalQuoteProduct.name}: {!annualRenewalQuoteProduct.Total_Amount__c} {!registrationQuoteProduct.CurrencyIsoCode} </b>(Paid annually upon renewal after two years from the start of operation).<br/>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!If(commissionFee=null,'false','true')}">
+                -   <b>Service commission: ({!commissionFee} %)</b> of the total value of each order sent by the First Party to the Second Party including delivery charges if applicable.<br/>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!If(quoteNonstandardText=null,'false','true')}">
+                -   {!quoteNonstandardText}<br/>
+                    </apex:outputPanel>
+                </td>
+            </tr><tr>
+                <td>
+                    
+                </td>
+                <td valign="top">
+                    <b>8.</b>
+                </td>
+                <td>
+                    The <b>Subscriber</b> shall pay (Talabat &amp; Foodonclick) the commissions within (5) days from the end of each calendar month, in the case of non-payment or delay of any monthly payment; <b>Talabat</b> is entitled to stop or suspend the service, until receipt of all its dues.
+                </td>
+            </tr><tr>
+                <td>
+                    
+                </td>
+                <td valign="top">
+                    <b>9.</b>
+                </td>
+                <td>
+                    If the <b>Subscriber</b> approves that their customers (users of Talabat &amp; Foodonclick) will use the First Party Debit or Credit Card payment gateways, the Second Party will bear alone all charges that are applied by the banks for such service applicable for each order paid through the first party’s payment gateway.<br/>
+                </td>
+            </tr><tr>
+                <td>
+                    
+                </td>
+                <td valign="top">
+                    <b>10.</b>
+                </td>
+                <td>
+                    This contract is subject to the provisions of laws applicable and the Jurisdiction of State of {!entityCountry} In case of any dispute that might arise from this contract between the parties, it will be solved amicably within (15) fifteen days, and in case of failure to resolve it amicably the dispute shall be raised to the courts of {!entityCountry}.
+                </td>
+            </tr><tr>
+                <td>
+                    
+                </td>
+                <td valign="top">
+                    <b>11.</b>
+                </td>
+                <td>
+                    The duration of this contract is one calendar year, effective from &nbsp;<apex:outputText value="{0,date,dd/MM/yyyy}"><apex:param value="{!startDate}" /></apex:outputText> &nbsp; till &nbsp;<apex:outputText value="{0,date,dd/MM/yyyy}"><apex:param value="{!endDate}" /></apex:outputText> &nbsp; and automatically renewed, unless any party notifies the other with their desire not to renew the contract, by sending a written notice to the other party two months earlier. Either party may terminate this contract after sending a written notice to the other party by registered mail one month before the termination, without prejudice to the rights of both parties towards each other.
+                </td>
+            </tr><tr>
+                <td>
+                    
+                </td>
+                <td valign="top">
+                    <b>12.</b>
+                </td>
+                <td>
+                    The Addresses on this Contract shall be each other’s notification addresses. Any changes must be submitted to the other party in writing.<br/><br/><br/>
+                    <table width="100%" style="font-size:105%; line-height:12px" class="TalabatQuote">
+                        <tr>
+                            <td>
+                                First Party<br/>
+                                Signature:  ----------------------------<br/>
+                                Stamp<br/>
+                            </td>
+                            <td>
+                                &nbsp;&nbsp;
+                            </td>
+                            <td>
+                                Second Party<br/>
+                                Signature: ------------------------------<br/>
+                                Stamp<br/>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr>
+    <td>
+        <br/><br/>
+    </td> 
+</tr>
+<tr>
+    <td align="center">
+        <img style="align:center;width: 100%;" src="{!URLFOR($Resource[entityFooter])}" />
+    </td>
+</tr>
+</table>
+</apex:outputPanel>
+</body>
+</html> -->
+</apex:component>

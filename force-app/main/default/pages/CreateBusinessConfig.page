@@ -1,0 +1,91 @@
+<apex:page standardController="Business_Config__c" extensions="CtrBusinessConfig">
+<apex:form id="theForm" >
+<apex:inputhidden value="{!Business_Config__c.Process_Name__c}" />
+<apex:inputhidden value="{!Business_Config__c.Record_Type_Id__c}" />
+<apex:inputhidden value="{!Business_Config__c.Id_Country__c}" />
+<apex:inputhidden value="{!Business_Config__c.Type__c}" />
+<apex:inputhidden value="{!Business_Config__c.Is_Active__c}" />
+<apex:inputhidden value="{!Business_Config__c.Description__c}" />
+<apex:pageBlock id="pageBlock1">
+<apex:pageMessages ></apex:pageMessages>
+<apex:pageBlockSection id="pageBlockSection1" title="Business Process">
+<apex:inputField value="{!genericObj.Process_Name__c}"/>
+<apex:inputField value="{!genericObj.Type__c}" onChange="changeType()"  required="true"  rendered="{!if(createdNew=true,true,false)}"/>
+<apex:outputField value="{!genericObj.Type__c}" rendered="{!if(createdNew=false,true,false)}"/>
+<apex:inputField value="{!genericObj.Is_Active__c}"/>
+<apex:inputField value="{!genericObj.Description__c}"/>
+<apex:inputField value="{!genericObj.Id_Country__c}" rendered="{!if(renderProcessDetails=true,'True','false')}" />
+<apex:inputField value="{!genericObj.Record_Type_Id__c}" rendered="{!if(renderProcessDetails=true,'True','false')}"/>
+
+<apex:inputField value="{!genericObj.Business_Rule_Name__c}" rendered="{!if(renderProcessDetails=true,'True','false')}" />
+<apex:inputField value="{!genericObj.Business_Rule_Value__c}" rendered="{!if(renderProcessDetails=true,'True','false')}"/>
+</apex:pageBlockSection>
+<apex:commandButton value="Save" title="Save" action="{!saveRecords}" rerender="pageBlock1" rendered="{!if(renderProcessDetails=false,'True','false')}"/>
+<apex:pageBlockSection id="pageBlockSection2" title="Additional Business rules" rendered="{!if(renderProcessDetails=true,'True','false')}">
+<apex:repeat value="{!mapBusinessRule}" var="newRule">
+
+<apex:pageBlockSectionItem >
+<apex:outputPanel >
+<apex:outputLabel value="BusinessRuleName" rendered="{!if(mapBusinessRule[newRule].Is_Json__c=false,'True','false')}"></apex:outputLabel>
+<apex:outputField value="{!mapBusinessRule[newRule].Business_Rule_Name__c}" rendered="{!if(mapBusinessRule[newRule].Is_Json__c=true,'True','false')}"/>
+</apex:outputPanel>
+<apex:outputPanel >
+<apex:inputField value="{!mapBusinessRule[newRule].Business_Rule_Name__c}" rendered="{!if(mapBusinessRule[newRule].Is_Json__c=false,'True','false')}"/>
+<apex:outputField value="{!mapBusinessRule[newRule].Description__c}"  rendered="{!if(mapBusinessRule[newRule].Is_Json__c=true,'True','false')}">
+<apex:inlineEditSupport event="ondblclick" />
+</apex:outputField>
+</apex:outputPanel>
+</apex:pageBlockSectionItem>
+
+<apex:pageBlockSectionItem >
+<apex:outputPanel >
+<apex:outputLabel value="BusinessRuleValue"></apex:outputLabel>
+</apex:outputPanel>
+<apex:outputPanel >
+<apex:inputField value="{!mapBusinessRule[newRule].Business_Rule_Value__c}"/>
+<!--<apex:commandButton value="Edit" title="Edit business rules" action="{!editRule}" rerender="theForm" rendered="{!if(mapBusinessRule[newRule].Is_Json__c=true,'True','false')}">
+<apex:param name="editBusinessRule" value="{!newRule}" assignTo="{!editBusinessRule}"/>
+</apex:commandButton>-->
+<apex:commandButton value="Remove" title="Remove business rules" action="{!removeBusinessRule}" rerender="pageBlockSection2">
+<apex:param name="removeBusinessRule" value="{!newRule}" assignTo="{!removeBusinessRule}"/>
+</apex:commandButton>
+</apex:outputPanel>
+</apex:pageBlockSectionItem>
+</apex:repeat>
+</apex:pageBlockSection>
+<!-- kept for internal case
+<apex:outputPanel id="taskSection" rendered="{!if(renderTaskSection=true,'True','false')}">
+<apex:pageBlockSection id="pageBlockSection3" title="Task Section" >
+<apex:inputField value="{!CustomTasks.RecordTypeId}">
+<apex:actionSupport event="onchange" reRender="taskSection" />
+</apex:inputField>
+<apex:inputField value="{!CustomTasks.OwnerId}" required="false"/>
+<apex:inputField value="{!CustomTasks.Call_Comments__c}"/>
+<apex:inputField value="{!CustomTasks.CRM_P_I_C__c}"/>
+<apex:inputField value="{!CustomTasks.Description__c}"/>
+<apex:inputField value="{!CustomTasks.Person_In_Charge__c}"/>
+<apex:inputField value="{!CustomTasks.Person_in_Charge_Final_Check__c}"/>
+<apex:inputField value="{!CustomTasks.Person_In_Charge_Take_Online__c}"/>
+<apex:inputField value="{!CustomTasks.Priority__c}"/>
+<apex:inputField value="{!CustomTasks.Problem__c}"/>
+<apex:inputField value="{!CustomTasks.Request_Reason__c}"/>
+<apex:inputField value="{!CustomTasks.Request_Source__c}"/>
+<apex:inputField value="{!CustomTasks.Status__c}"/>
+<apex:inputField value="{!CustomTasks.Subject__c}"/>
+<apex:inputField value="{!CustomTasks.Type__c}"/>
+</apex:pageBlockSection>
+<apex:commandButton action="{!SaveJson}" value="Save Task" rerender="theForm" immediate="false" rendered="{!if(renderUpdateButton=false,'True','false')}"/>
+<apex:commandButton action="{!updateTask}" value="Update Task" rerender="theForm" immediate="false" rendered="{!if(renderUpdateButton=true,'True','false')}"/>
+<apex:commandButton action="{!cancelTask}" value="Cancel" rerender="theForm" immediate="false"/>
+</apex:outputPanel>
+-->
+<apex:outputPanel id="buttonPanel" rendered="{!if(buttonPanel=true,'True','false')}">
+<apex:commandButton value="Add Rule" id="addButton" title="Add business rules" action="{!addBusinessRule}" rerender="pageBlockSection2" rendered="{!if(renderProcessDetails=true,'True','false')}"/>
+<!-- kept for internal case
+<apex:commandButton value="Add Task" id="addTaskButton" title="Add Task rules" action="{!addTask}" rerender="theForm" rendered="{!if(renderProcessDetails=true,'True','false')}"/>-->
+<apex:commandButton value="Save" title="Save" action="{!saveRecords}" rerender="pageBlock1,pageBlock2" rendered="{!if(renderProcessDetails=true,'True','false')}"/>
+</apex:outputPanel>
+</apex:pageBlock>
+<apex:actionFunction action="{!changeType}" name="changeType" reRender="pageBlock1"/>
+</apex:form>
+</apex:page>

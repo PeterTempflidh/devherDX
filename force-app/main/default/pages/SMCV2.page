@@ -1,0 +1,188 @@
+<apex:page showheader="true" standardStylesheets="false" sidebar="false" >
+<script src="{!URLFOR($Resource.Phoenix, '/SF1_Bootstrap/js/jquery-2.1.1.js')}" type="text/javascript" />
+<script src="{!URLFOR($Resource.Phoenix, '/js/bootstrap.min.js')}" type="text/javascript" />
+<script src="{!URLFOR($Resource.Phoenix, '/js/jquery.dataTables.min.js')}" type="text/javascript" />
+<apex:stylesheet value="{!URLFOR($Resource.Phoenix, '/css/jquery.dataTables.css')}" />  
+
+<script src="https://raw.githubusercontent.com/padolsey/jQuery-Plugins/master/sortElements/jquery.sortElements.js" type="text/javascript" />
+<c:SMC_CSS_bootstrap />
+<c:SMC_CSS />
+<body>
+<!-- container -->
+    <div id="container">
+<!-- rechts box -->
+        <apex:form id="myForm">
+
+        <script> 
+            var panels = ["productM","productGroupM", "serviceM","addOnM","tarifM"];
+            function switchPanel(panel){
+            for (index = 0; index < panels.length; index++) {
+            if( panels[index] == panel ){
+                    document.getElementById(panels[index]).className = "MyClass1";
+                }else{
+                    document.getElementById(panels[index]).className = "MyClass2";
+                    }
+                }
+            }
+            // activ navi link
+            j$ = jQuery.noConflict();
+            function mySetActive(id){
+                //aObj = document.getElementById(id).className='active';
+                j$('.active').removeClass('active');
+                j$('[id$='+ id +']').addClass('active');
+                j$('.active1').removeClass('active1');
+                j$('[id$='+ id +']').addClass('active1');
+            }
+            function setActiveTab(id){
+            //aObj = document.getElementById(id).className='active';
+                j$('.active').removeClass('active');
+                j$('.active1').removeClass('active1');
+                j$('a[id$='+ id +']').addClass('active');
+                j$('a[id$='+ id +']').addClass('active1');
+            }
+
+            // popup
+            jQuery(function(j$) {
+                j$(".popup_oeffnen").click(function() {
+                    if(popup_zustand == false) {
+                        j$("#popup").fadeIn("normal");
+                        j$("#hintergrund").css("opacity", "0.4");
+                        j$("#hintergrund").fadeIn("normal");
+                        popup_zustand = true;
+                    }
+                return false;
+                });
+                j$(".close").click(function() {
+                    if(popup_zustand == true) {
+                        j$("#popup").fadeOut("normal");
+                        j$("#hintergrund").fadeOut("normal");
+                        popup_zustand = false;
+                    }
+                });
+            });
+            // spinner 
+            function startSplash() {
+                document.getElementById('splashDiv').style.display='table';
+                $('.lightbox').fadeIn(300);
+            }   
+            function endSplash() {
+                document.getElementById('splashDiv').style.display='none';
+                $('.lightbox').fadeOut(300); 
+            }
+            function scrollToTop(){
+                document.body.scrollTop = document.documentElement.scrollTop = 0;
+            }
+            function showPopup(){
+                j$('#customPopup').modal('show');
+            }
+            function hidePopup(){
+                j$('#customPopup').modal('hide');
+            }
+        </script>
+<!-- navigation -->
+<!-- a link navigation -->
+        <div class="sidebarModule">
+            <h2 class="pageType"><span class="icon"></span>Management Console</h2>
+            <ul>
+	            <li>
+		            <span class="s1icon s1icon-c-bigtop s1icon-xs" ></span>
+		            <apex:commandLink StyleClass="active1" id="productGrpTab" value="{!$Label.Product_Groups}" 
+		            			onclick="switchPanel('productGroupM'); setActiveTab('productGrpTab');"   
+		            			oncomplete="rerenderDataTable('productGroups');" title="{!$Label.Product_Groups}" 
+		            			reRender="myFormProductGroup" status="LoadingSpinner">
+		            </apex:commandLink>
+	
+	            </li>
+	            <li>
+		            <span class="s1icon s1icon-c-buildingblock s1icon-xs" ></span>
+		            <apex:commandLink id="productMgtTab" value="{!$Label.Product_Management}" 
+		            			onclick="switchPanel('productM'); setActiveTab('productMgtTab')" 
+		            			oncomplete="rerenderDataTable('products');" title="{!$Label.Product_Management}" 
+		            			reRender="myFormProduct" status="LoadingSpinner">
+		            </apex:commandLink>
+	
+	            </li>
+	            <li>
+		            <span class="s1icon s1icon-c-14 s1icon-xs" ></span>
+		            <apex:commandLink id="serviceMgtTab" value="{!$Label.Service_Management}" 
+		            			onclick="switchPanel('serviceM'); setActiveTab('serviceMgtTab')" 
+		            			oncomplete="rerenderDataTable('services');" title="{!$Label.Service_Management}" 
+		                		reRender="myFormServiceManager" status="LoadingSpinner">
+		            </apex:commandLink>
+	
+	            </li>
+                <li>
+                    <span class="s1icon s1icon-c-redcross1 s1icon-xs" ></span>
+                    <apex:commandLink id="addOnTab" value="{!$Label.AddOn_Management}"
+                                      onclick="switchPanel('addOnM'); setActiveTab('addOnTab')"
+                                      oncomplete="rerenderDataTable('addOns');" title="{!$Label.AddOn_Management}"
+                                      reRender="AddOnForm" status="LoadingSpinner">
+                    </apex:commandLink>
+                </li>
+	            <li>
+		            <span class="s1icon s1icon-c-desk s1icon-xs" ></span>
+		            <apex:commandLink id="tariffTab" value="{!$Label.Tarif_Management}" 
+		            			onclick="switchPanel('tarifM'); setActiveTab('tariffTab')" 
+		            			oncomplete="rerenderDataTable('tariffs');" title="{!$Label.Tarif_Management}" 
+		            			reRender="TarifManagerForm" status="LoadingSpinner">
+		            </apex:commandLink>
+	            </li>
+            </ul>
+            <hr />    
+        </div>
+<!-- end a link navigation -->
+<!-- end navigation -->
+        <c:Spinner message="{!$Label.Please_Wait}" />
+        </apex:form> 
+<!-- end rechts box -->
+<!-- links box -->
+        <div style="padding-top:100px;">
+<!-- content start -->
+        <div id="productGroupM">
+              <apex:include pageName="SMC_ProductGroupManager" />
+        </div>
+        <div id="productM" class="contentBox">
+            <apex:include pageName="SMC_ProductManager" />
+        </div>
+        <div id="serviceM" class="contentBox">
+            <apex:include pageName="SMC_ServiceManager" />
+        </div>
+		<div id="addOnM" class = "Content Box">
+			<apex:include pageName="SMC_AddOnManager" />
+		</div>
+		<div id="tarifM" class="contentBox ">
+			<apex:include pageName="SMC_TarifManager" />
+        </div>  
+
+        <div style="clear:both"></div>
+<!-- end content -->
+                </div>
+<!-- end links box --> 
+                </div>
+<!-- end container -->
+        <script>
+                j$ = jQuery.noConflict();
+                j$( document ).ready(function() {
+                    
+                    document.getElementById("productGroupM").className = "MyClass1";
+                    document.getElementById("productM").className = "MyClass2";
+                    document.getElementById("serviceM").className = "MyClass2";
+                    document.getElementById("tarifM").className = "MyClass2";
+                    document.getElementById("addOnM").className = "MyClass2";
+                    var productGroups = j$('[id$="productGroups"]').DataTable({});
+                });
+         </script>
+         
+            <script type="text/javascript">
+            jQuery(function(j$) {
+                j$('table.tableClass a').click(function () {
+                    j$(this).closest('tr').addClass('submenu-active').siblings().removeClass('submenu-active');
+                });
+            });
+
+            function rerenderDataTable(tableId){
+                j$('[id$="' + tableId + '"]').DataTable({"retrieve": true});                  
+            }
+        </script>
+    </body>
+</apex:page>

@@ -1,0 +1,9 @@
+<messaging:emailTemplate subject="{!relatedTo.Id_Opportunity__r.Name} was rejected!" recipientType="User" relatedToType="Opportunity_Quote__c">
+<messaging:HtmlEmailBody >
+Hello!<br /><br />
+Unfortunately, your Quote has been rejected.<br /><br />
+The approver has left the following comments:<br />
+{!relatedTo.Approver_Action_Comments__c}<br /><br />
+Follow this link for further information:&nbsp; <apex:outputlink value="{!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)+'ui/support/servicedesk/ServiceDeskPage#/'+relatedTo.Id_Opportunity__c}">{!relatedTo.Id_Opportunity__r.Name}</apex:outputlink><br /><br />
+</messaging:HtmlEmailBody>
+</messaging:emailTemplate>

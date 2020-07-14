@@ -1,0 +1,134 @@
+<apex:component controller="CtrCreateQuote" access="global" >
+    <apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+    <apex:attribute name="oppQ" type="String" description="Placeholder" assignTo="{!oppQId}"/>
+    <div id="UK_Font">
+        <div id="UK_Header">
+            <img src="{!URLFOR($Resource.UK_Header)}" style="width:100%"/>
+        </div>
+        <div class="clearboth" />
+        <h2 class="bold">hungryhouse.co.uk - Premium Placement</h2>
+        <table width="100%">
+            <tr>
+                <td>{!accountWrapper.restaurantName} - {!accountWrapper.addressStreet}, {!accountWrapper.addressPostal} {!accountWrapper.addressCity}</td>
+                <td style="text-align:right;">
+                    <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                        <apex:param value="{!TODAY()}" /> 
+                    </apex:outputText></td>
+            </tr>
+            <tr>
+                <td>{!accountWrapper.ownerName}</td>
+                <td style="text-align:right;">{!opportunity.Owner.Name}</td>
+            </tr>
+            <tr>
+                <td>{!accountWrapper.ownerPhone}</td>
+                <td style="text-align:right;">{!opportunity.Owner.email}</td>
+            </tr>
+            <tr>
+                <td>{!accountWrapper.ownerMobilePhone}</td>
+                
+            </tr>
+            <tr>
+            <td >{!accountWrapper.ownerEmail}</td>
+            </tr>
+        </table>
+        <br />
+        <table>
+            <tr>
+                <td>{!$Label.UK_Quote_Dear} {!accountWrapper.ownerSalutation} {!accountWrapper.ownerFirstName} {!accountWrapper.ownerLastName},</td>
+            </tr>
+            <tr>
+                <td>{!$Label.UK_Quote_As_per_out_conversation}</td>
+            </tr>
+        </table>
+        <br />
+        <table id="CQTable" border="1" width="100%">
+            <tr>
+                <th><span class="bold">Postcode</span></th>
+                <th><span class="bold">Position</span></th>
+                <th><span class="bold">Start Date</span></th>
+                <th><span class="bold">End Date</span></th>
+                <th><span class="bold">Discount</span></th>
+                <th><span class="bold">Final Price</span></th>
+            </tr>
+            <apex:repeat value="{!listLineItems}" var="item">
+                <tr>               
+                    
+                    <td>
+                        <span>{!item.City_ZipCode__c}</span>
+                    </td>
+                    <td>
+                        <span>{!item.Position_fm__c}</span>
+                    </td>
+                    <td>
+                    <span><apex:outputText value="{0,date,dd.MM.yyyy}"><apex:param value="{!item.Start_Date__c}" /></apex:outputText></span>
+                    </td>
+                    <td>
+                    <span><apex:outputText value="{0,date,dd.MM.yyyy}"><apex:param value="{!item.End_Date__c}" /></apex:outputText></span>
+                    </td>
+                    <td>
+                       <span>£{!item.Discount__c}</span>
+                    </td>
+                    <td>
+                       <span>£{!item.Total_Amount__c}</span>
+                    </td>              
+                </tr>
+            </apex:repeat>
+        </table>
+        <br />
+        <div stlye="display:inline-blocz">
+        <table style="float:right;">
+            <tr>
+                <td>Subtotal:</td>
+                <td>
+                    <apex:outputText value="£{0, number, ###,##0.00}">
+                        £<apex:param value="{!oppQuote.SubTotalRF__c}" />
+                    </apex:outputText>
+                </td>
+            </tr>
+            <tr>
+                <td>VAT:</td>
+                <td>
+                    <apex:outputText value="{0, number, ###,##0.00}">
+                       £<apex:param value="{!oppQuote.VAT_fm__c}" />
+                    </apex:outputText>
+                </td>
+            </tr>
+            <tr>
+                <td>Total:</td>
+                <td>
+                    <apex:outputText value="{0, number, ###,##0.00}">
+                       £<apex:param value="{!oppQuote.Total_fm__c}" />
+                    </apex:outputText>
+                </td>
+            </tr>
+        </table>
+        </div>
+        <div style="clear:both;"/>
+        <br />
+        <table>
+            <tr>
+                <td>{!$Label.UK_Quote_NOTE}</td>
+            </tr>
+            <tr>
+                <td>{!$Label.UK_Quote_Top_Three}</td>
+            </tr>
+            <tr>
+                <td>{!$Label.UK_Quote_PP_contracts}</td>
+            </tr>
+            <tr>
+                  <td>By submitting your menu and logo, you accept the product(s) described above, agree to <a href="http://hungryhouse.co.uk">hungryhouse.com</a> ltd Terms and Conditions found at <a href="http://hungryhouse.co.uk/termsandconditions">http://hungryhouse.co.uk/termsandconditions</a> and consent to receive advertising material about hungry house offers from <a href="http://hungryhouse.co.uk">hungryhouse.com</a> ltd including by telephone.</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>{!$Label.UK_Quote_Kind_Regards}</td>
+            </tr>
+            <tr>
+                <td>{!$User.FirstName} {!$User.LastName}</td>
+            </tr>
+        </table>
+        <br/>
+         <div><apex:outputText value="{!$Label.UK_Quote_Packaging}" escape="false"/></div>
+    </div>
+</apex:component>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Inform user got a case from assignment rule</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Caso Assignado</name>
+    <style>none</style>
+    <subject>Caso assignado a ti</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

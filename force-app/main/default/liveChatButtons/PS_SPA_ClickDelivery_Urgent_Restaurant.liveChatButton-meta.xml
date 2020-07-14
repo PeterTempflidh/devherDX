@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LiveChatButton xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <autoGreeting>¡Hola! Hablas con {!User_FirstName}. ¿Cómo te puedo ayudar?</autoGreeting>
+    <deployments/>
+    <enableQueue>true</enableQueue>
+    <isActive>true</isActive>
+    <label>PS_SPA_ClickDelivery_Urgent_Restaurant</label>
+    <offlineImage>Chat_Offline_Image</offlineImage>
+    <onlineImage>Chat_Online_Image</onlineImage>
+    <optionsCustomRoutingIsEnabled>false</optionsCustomRoutingIsEnabled>
+    <optionsHasChasitorIdleTimeout>false</optionsHasChasitorIdleTimeout>
+    <optionsHasInviteAfterAccept>false</optionsHasInviteAfterAccept>
+    <optionsHasInviteAfterReject>false</optionsHasInviteAfterReject>
+    <optionsHasRerouteDeclinedRequest>false</optionsHasRerouteDeclinedRequest>
+    <optionsIsAutoAccept>true</optionsIsAutoAccept>
+    <optionsIsInviteAutoRemove>false</optionsIsInviteAutoRemove>
+    <overallQueueLength>5000</overallQueueLength>
+    <routingType xsi:nil="true"/>
+    <site>Live_Agent</site>
+    <type>Standard</type>
+    <windowLanguage>es</windowLanguage>
+</LiveChatButton>

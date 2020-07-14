@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>48.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__AppPage</target>
+        <target>lightning__RecordPage</target>
+        <target>lightning__HomePage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property name="componentTitle" type="String" label="Component Title" placeholder="ie.Vendor Localization" description="This is the title of the component" required="false"/>
+            <property name="sObjectName" type="String" label="SObject Name" placeholder="ie. Account" description="This is the name of the SObject on which picklist fields displayed" required="true"/>
+            <property name="picklistsConfig" type="String" label="Picklists Configuration" description="Please paste your JSON configuration here to display picklists" required="true"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

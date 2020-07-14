@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <processMetadataValues>
+            <name>ActionCallType</name>
+            <value>
+                <stringValue>flow</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>flowSelection</name>
+            <value>
+                <stringValue>UpdateAssetOnCase</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_1_A1</name>
+        <label>UpdateAssetOnCase</label>
+        <locationX>100</locationX>
+        <locationY>200</locationY>
+        <actionName>UpdateAssetOnCase</actionName>
+        <actionType>flow</actionType>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>OnboardingCaseId</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>1.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>OnboardingCaseId</name>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision</name>
+        <label>myDecision</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_1</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_1_A1</targetReference>
+            </connector>
+            <label>OnboardingCaseCheck</label>
+        </rules>
+    </decisions>
+    <description>Initiate the process to update asset on the onboarding case + CZ(SSC-1543)</description>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+NOT($Permission.Exclude_Migration_User_from_Validation) ,
+ISPICKVAL([Case].Type,  &apos;Onboarding&apos;),
+ISPICKVAL([Case].Case_Reason__c,  &apos;Onboarding&apos;),
+OR(
+[Case].RecordType.DeveloperName == &apos;DE_Restaurant_Operations&apos;,
+[Case].RecordType.DeveloperName == &apos;PY_Restaurant_Operations&apos;,
+[Case].RecordType.DeveloperName == &apos;FI_Restaurant_Operations&apos;,
+[Case].RecordType.DeveloperName == &apos;SE_Restaurant_Operations&apos;,
+[Case].RecordType.DeveloperName == &apos;Talabat_Restaurant_Ops&apos;,
+[Case].RecordType.DeveloperName == &apos;HU_Restaurant_Ops&apos;,
+[Case].RecordType.DeveloperName == &apos;FP_Restaurant_Operations&apos;,
+[Case].RecordType.DeveloperName == &apos;CZ_Restaurant_Operations&apos;
+))</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_1</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+NOT({!$Permission.Exclude_Migration_User_from_Validation}) ,
+ISPICKVAL({!myVariable_current.Type},  &apos;Onboarding&apos;),
+ISPICKVAL({!myVariable_current.Case_Reason__c},  &apos;Onboarding&apos;),
+OR(
+{!myVariable_current.RecordType.DeveloperName} == &apos;DE_Restaurant_Operations&apos;,
+{!myVariable_current.RecordType.DeveloperName} == &apos;PY_Restaurant_Operations&apos;,
+{!myVariable_current.RecordType.DeveloperName} == &apos;FI_Restaurant_Operations&apos;,
+{!myVariable_current.RecordType.DeveloperName} == &apos;SE_Restaurant_Operations&apos;,
+{!myVariable_current.RecordType.DeveloperName} == &apos;Talabat_Restaurant_Ops&apos;,
+{!myVariable_current.RecordType.DeveloperName} == &apos;HU_Restaurant_Ops&apos;,
+{!myVariable_current.RecordType.DeveloperName} == &apos;FP_Restaurant_Operations&apos;,
+{!myVariable_current.RecordType.DeveloperName} == &apos;CZ_Restaurant_Operations&apos;
+))</expression>
+    </formulas>
+    <interviewLabel>OnboardingCaseAssetUpdate-12_InterviewLabel</interviewLabel>
+    <label>OnboardingCaseAssetUpdate</label>
+    <processMetadataValues>
+        <name>ObjectType</name>
+        <value>
+            <stringValue>Case</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>ObjectVariable</name>
+        <value>
+            <elementReference>myVariable_current</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OldObjectVariable</name>
+        <value>
+            <elementReference>myVariable_old</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>TriggerType</name>
+        <value>
+            <stringValue>onCreateOnly</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Workflow</processType>
+    <startElementReference>myDecision</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>myVariable_current</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Case</objectType>
+    </variables>
+    <variables>
+        <name>myVariable_old</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Case</objectType>
+    </variables>
+</Flow>

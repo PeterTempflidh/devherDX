@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY Blank</name>
+    <style>freeForm</style>
+    <subject>Tu pregunta PedidosYa - # {!Case.CaseNumber}</subject>
+    <textOnly>Hola {!Case.Customer_Name__c}
+
+
+
+
+
+Gracias por comunicarte con nosotros,
+
+
+{!Case.OwnerFullName}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,27 @@
+<apex:component controller="CtrCreateQuote" access="global">
+<apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+<table width="100%" cellspacing="0" cellpadding="0"  style="padding: 4px;">
+    <tr>
+      <td style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;" width="20%" valign="top" >Participant <br />Restaurant</td>
+      <td class="DHAUInvoicingBorder" style="padding:5px;border-top:1px solid #c00000;border-left:1px solid #c00000;border-bottom:1px solid #c00000;border-right:1px solid #c00000;" width="40%" valign="top" >&nbsp;{!accountWrapper.restaurantName}<br />{!accountWrapper.restaurantAddress}</td>
+      <td style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;" width="20%" valign="top" >Bank Account Owner</td>
+      <td class="DHAUInvoicingBorder" style="border-top:1px solid #c00000;padding:5px;border-left:1px solid #c00000;border-bottom:1px solid #c00000;border-right:1px solid #c00000;" width="20%" valign="top" >&nbsp;{!accountWrapper.bankAccountOwner}</td>
+    </tr>
+    <tr>
+      <td style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;" width="20%" valign="top">Owner/Director</td>
+      <td class="DHAUInvoicingBorder" style="padding:5px;border-left:1px solid #c00000;border-bottom:1px solid #c00000;border-right:1px solid #c00000;" width="40%" valign="top" >&nbsp;{!accountWrapper.ownerName}</td>
+      <td style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;" width="20%" valign="top" >BSB Number</td>
+      <td class="DHAUInvoicingBorder" style="padding:5px;border-left:1px solid #c00000;border-bottom:1px solid #c00000;border-right:1px solid #c00000;" width="20%" valign="top" >&nbsp;{!accountWrapper.bankSortCode}</td>
+    </tr>
+    <tr>
+      <td style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;" width="20%" valign="top" >Landline</td>
+      <td class="DHAUInvoicingBorder" style="padding:5px;border-left:1px solid #c00000;border-bottom:1px solid #c00000;border-right:1px solid #c00000;" width="40%" valign="top" >&nbsp;{!accountWrapper.restaurantPhoneNumber}</td>
+      <td style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;" width="20%" valign="top" >Bank Account Number</td>
+      <td class="DHAUInvoicingBorder" style="padding:5px;border-left:1px solid #c00000;border-bottom:1px solid #c00000;border-right:1px solid #c00000;" width="20%" valign="top" >&nbsp;{!accountWrapper.bankAccountNumber}</td>
+    </tr>  
+     <tr>
+      <td style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;" width="20%" valign="top" >Mobile</td>
+      <td class="DHAUInvoicingBorder" style="padding:5px;border-left:1px solid #c00000;border-bottom:1px solid #c00000;border-right:1px solid #c00000;" valign="top" colspan="3" >&nbsp;{!accountWrapper.ownerMobilePhone}</td>
+    </tr>  
+    </table>
+</apex:component>

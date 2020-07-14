@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Used to send the ONB Email HK</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP Send ONB Email HK</name>
+    <style>freeForm</style>
+    <subject>{!Case.Account} - 按此預覽您的foodpanda餐牌 / Your foodpanda menu preview link</subject>
+    <textOnly>Dear Partner,
+
+
+
+Welcome to foodpanda! We are excited to have you on board with us!  Your menu has now been completed by our content team.  You can view your menu via your Restaurant Portal account here. Your Restaurant Portal login credentials are provided in a separate email titled &quot;Welcome to Restaurant Portal&quot; that has already been sent to you.  If you have not received the email, please submit a request ticket over here by selecting the &quot;Device, Software, Restaurant Portal Access&quot; option.
+
+
+
+Please click on below link to approve your menu and for next steps to be on-boarded on foodpanda!
+
+https://FoodpandaSG.formstack.com/forms/menudh_hk?OID={!Case.OpportunityId__c}&amp;OStg=&amp;OName=&amp;OWID=&amp;Cdate=
+
+
+
+Any questions? Feel free to contact us via request form over here or phone at +852 5819 8997  We are happy to help you!
+
+
+
+See you soon,
+
+Your foodpanda Partner Care Team
+
+
+
+
+
+親愛的合作夥伴﹕
+
+
+
+歡迎加入 foodpanda，我們非常期待您加入我們的旅程。
+
+
+
+我們的團隊已把您的餐牌完成上傳。
+
+
+
+您可以透過您的餐廳平台帳號查看餐牌 &lt;https://foodpanda.portal.restaurant/login&gt;。
+
+關於您餐廳平台的登錄資料，我們早前已寄了一封主旨為「Welcome to Restaurant Portal / 歡迎加入餐廳平台」的電郵給您。
+
+若您尚未收到有關餐廳平台登錄資料的電郵，請按以下連結提出餐廳平台申請 &lt;https://foodpandasg.formstack.com/forms/foodpanda_support_hk&gt;
+
+
+請依序點選「裝置、軟件及餐廳平台」選項。
+
+
+
+另外，您亦可以透過此連結來預覽您的餐牌﹕{!Case.Menu_URL__c}
+
+
+
+最後，請按以下連結核實餐牌內容，及觀看我們接單程式的教學。如您需要進一步協助，亦請透過此連結通知上架部門可聯絡您的時間。
+
+https://FoodpandaSG.formstack.com/forms/menudh_hk?OID={!Case.OpportunityId__c}&amp;OStg=&amp;OName=&amp;OWID=&amp;Cdate=
+
+
+
+
+如有任何疑問，歡迎按以下連結 &lt;https://foodpandasg.formstack.com/forms/foodpanda_support_hk&gt; 或致電 +852 5819 8997 與我們聯絡。  我們非常樂意解決您的疑問。
+
+
+
+謝謝，
+
+你的 foodpanda 合作餐廳服務小組</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

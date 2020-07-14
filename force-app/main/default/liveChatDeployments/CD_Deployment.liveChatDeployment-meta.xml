@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LiveChatDeployment xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brandingImage>ClickDelivery_Domicilios_Logo</brandingImage>
+    <connectionTimeoutDuration>300</connectionTimeoutDuration>
+    <connectionWarningDuration>150</connectionWarningDuration>
+    <displayQueuePosition>false</displayQueuePosition>
+    <enablePrechatApi>true</enablePrechatApi>
+    <enableTranscriptSave>false</enableTranscriptSave>
+    <label>CD Deployment</label>
+    <mobileBrandingImage>ClickDelivery_Domicilios_Logo</mobileBrandingImage>
+    <site>Live_Agent</site>
+    <windowTitle>Atencion al Cliente - ClickDelivery</windowTitle>
+</LiveChatDeployment>

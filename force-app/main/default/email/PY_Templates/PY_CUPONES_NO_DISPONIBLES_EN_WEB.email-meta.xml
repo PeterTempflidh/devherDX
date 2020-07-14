@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY - CUPONES NO DISPONIBLES EN WEB</name>
+    <style>freeForm</style>
+    <subject>CUPONES NO DISPONIBLES EN WEB</subject>
+    <textOnly>Estimada {!Case.Customer_Name__c}, es un gusto saludarte.
+
+Estimado {!Case.Customer_Name__c}, es un gusto saludarte.
+
+
+Te contactamos en respuesta a tu reclamo referente a los cupones desde la web. Te pedimos disculpas por las molestias.
+
+
+Actualmente los cupones serán visibles únicamente desde la aplicación para verificar esto, puedes ingresar en Menú &gt; Mis cupones. En caso de  contar con problemas recomendamos actualizar la app con la última versión y validar el teléfono registrado.
+
+
+Si el problema persiste, solicitamos que nos envíes una imagen del error que te aparece al intentar utilizarlo. Puedes enviarlo como archivo adjunto en respuesta a éste mail.
+
+
+Quedamos a las órdenes ante cualquier consulta.
+
+Saludos,
+{!Case.OwnerFullName}
+Atención al cliente PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,706 @@
+<apex:page controller="CtrAccountList" showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" >
+<apex:includeScript value="/support/console/35.0/integration.js"/>
+<apex:includeScript value="{!URLFOR($Resource.jq211)}"/>
+<apex:includeScript value="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.27.5/js/jquery.tablesorter.js"/>
+
+
+<apex:stylesheet value="{!URLFOR($Resource.slds, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <head>
+    <style type="text/css">
+        .message {
+            -moz-border-radius: 4px;
+            -webkit-border-radius: 4px;
+            border-radius: 4px;
+        }
+        .errorM6, .errorM4, .errorM3, .errorM2, .errorS1 {
+            border-color: #c00;
+        }
+        .message {
+            background-color: #ffc;
+            border-style: solid;
+            border-width: 1px;
+            color: #000;
+            padding: 6px 8px 6px 6px;
+            margin: 4px 20px;
+        }
+    </style>
+
+    </head>
+    <body>
+    <c:Spinner message="{!$Label.Please_Wait}" />
+    <div class="slds">
+    <apex:pageMessages id="errorMessages"/>
+    <!-- <div id="errorMsg" style="color:red;"/> -->
+    <div id="CountryPicklistBlock">
+        <label class="slds-form-element__label" for="combobox-unique-id">Select a country</label>
+        <select class="slds-input slds-combobox__input slds-col slds-size--1-of-4" id="countryPicklist">
+
+    </select>
+    </div><br/>
+    <div class="slds-tabs--scoped">
+        <ul class="slds-tabs--scoped__nav" role="tablist">
+            <li class="slds-tabs--scoped__item slds-text-heading--label slds-active" title="Item One" role="presentation" id="li_tab-scoped-1__item"><a class="slds-tabs--scoped__link" href="#void" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-scoped-1" id="tab-scoped-1__item">Accounts</a></li>
+            <li class="slds-tabs--scoped__item slds-text-heading--label" title="Item Two" role="presentation" id="li_tab-scoped-2__item"><a class="slds-tabs--scoped__link" href="#void" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-scoped-2" id="tab-scoped-2__item">Cancel</a></li>
+            <li class="slds-tabs--scoped__item slds-text-heading--label" title="Item Three" role="presentation" id="li_tab-scoped-3__item"><a class="slds-tabs--scoped__link" href="#void" role="tab" tabindex="-2" aria-selected="false" aria-controls="tab-scoped-3" id="tab-scoped-3__item">Zip Code</a></li>
+            </ul>
+        <div id="tab-scoped-1" class="slds-tabs--scoped__content slds-show" role="tabpanel" aria-labelledby="tab-scoped-1__item">
+            <table id="table" class="slds-table slds-table--bordered slds-table--fixed-layout tablesorter" role="grid"></table>
+        </div>
+        <div id="tab-scoped-2" class="slds-tabs--scoped__content slds-hide" role="tabpanel" aria-labelledby="tab-scoped-2__item">Cancellation
+            <div class="slds-form--inline">
+                <div class="slds-form-element">
+                    <input id="backendId" class="slds-input" type="text" placeholder="Backend Id / GRID" />
+                </div>
+                <div class="slds-form-element">
+                    <input id="bookingId" class="slds-input" type="text" placeholder="Booking Id" />
+                </div>
+                <div class="slds-form-element">
+                  <button class="slds-button slds-button--brand" id="searchOpl" type="button">Search</button>
+                </div>
+                <div class="slds-form-element" id="cancelBtnDiv" style="display:none">
+                  <button class="slds-button slds-button--brand" id="cancelBtn" type="button">Cancel Bookings</button>
+                </div>
+            </div>
+            <br/>
+            <table id="cancelTable" class="slds-table slds-table--bordered"></table>
+        </div>
+        <div id="tab-scoped-3" class="slds-tabs--scoped__content slds-hide" role="tabpanel" aria-labelledby="tab-scoped-3__item">
+        <div class="slds-form--inline">
+            <div class="slds-form-element">
+                <input id="zipCode" class="slds-input" type="text" placeholder="Zip code" />
+            </div>
+            <div class="slds-form-element">
+                <button class="slds-button slds-button--brand" id="searchZip" disabled="disabled">Search</button>
+            </div>
+            <div class="slds-form-element">
+                <button class="slds-button slds-button--brand" id="showRest" disabled="disabled">Show Restaurant</button>
+            </div>
+        </div>
+            <br/>
+            <div class="slds-form--inline slds-hide" id="labelForZipTable">
+            <div class="slds-form-element">
+            <h3 class="slds-section__title slds-text-heading--medium " id="labelForZipTabless">Booked Zipcodes</h3>
+            </div>
+            <div class="slds-form-element">
+                <button class="slds-button slds-button--brand" id="bookedNext" >Next Month</button>
+            </div>
+            <div class="slds-form-element">
+            <span class="slds-badge" id="BookedMonth"></span>
+            </div>
+            </div>
+            <table id="ZipTable" class="slds-table slds-table--bordered slds-table--cell-buffer"></table>
+            <br/>
+            <div class="slds-form--inline slds-hide" id="labelForZipTable2">
+            <div class="slds-form-element">
+            <h3 class="slds-section__title slds-text-heading--medium " id="labelForZipTabless">Available Restaurants</h3>
+            </div>
+            <div class="slds-form-element">
+                <button class="slds-button slds-button--brand" id="restNext" >Next Month</button>
+            </div>
+            <div class="slds-form-element">
+            <span class="slds-badge" id="RestMonth"></span>
+            </div>
+            </div>
+            <table id="ZipTable2" class="slds-table slds-table--bordered slds-table--cell-buffer"></table>
+        </div>
+    </div>
+</div>
+<!-- <apex:remoteObjects jsNamespace="RemoteObjectModel">
+    <apex:remoteObjectModel name="Opportunity_Line_Item__c" fields="Booking_Api_Id__c,Position_fm__c,City_ZipCode__c,Id_Opportunity__c" jsShorthand="OpplineItems"/>
+</apex:remoteObjects> -->
+</body>
+</html>
+<script type="text/javascript">
+// var opl = new RemoteObjectModel.OpplineItems();
+
+var jq = jQuery.noConflict();
+var errorMsg =  jq("[id$=errorMessages]");
+var LoadingSpinner  = jq("[id$=LoadingSpinner\\.start]");
+var userRoles = "{!$UserRole.Name}";
+
+var userEmail = "{!$User.Email}";
+var indexOfMngtRole =-1
+var mgmt= userRoles.indexOf("Management");
+var head = userRoles.indexOf("Head");
+if(mgmt>-1 || head >-1){
+    indexOfMngtRole =1;
+}
+var compleateList = false;
+var errorDiv = jq('<div class="message errorM3" role="alert"><div class="messageText"></div></div>');
+var messagetext = jq(errorDiv,'.messageText');
+var currentDate = new Date();
+var country='';
+
+// [Taj: 02-11-2016] added for V2 API premium placement
+var currentDateISO = currentDate.toISOString().split('T')[0];
+var endOfMonthdateISO = new Date(currentDate.getFullYear(),currentDate.getMonth() + 1,0,23,59,59).toISOString().split('T')[0];
+var begOfMonthISO  =    new Date(currentDate.getFullYear(),currentDate.getMonth(),2).toISOString().split('T')[0];
+var begOfNextMonthISO = new Date(currentDate.getFullYear(),currentDate.getMonth() +1,2).toISOString().split('T')[0];
+var endOfNextMonthISO = new Date(currentDate.getFullYear(),currentDate.getMonth() +2,0,23,59,59).toISOString().split('T')[0];
+
+var cMonth = currentDate.getMonth() + 1;
+var cYear = currentDate.getFullYear();
+var nMonth = cMonth + 1;
+var nYear = cYear;
+Visualforce.remoting.timeout = 20000;
+
+var months = ['undefined', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+if(cMonth==12){
+    nMonth = 1;
+nYear = cYear+1;
+}
+    //console.log('cMonth: '+cMonth);
+
+function clearErrorMsg(){
+    messagetext.html("");
+    errorMsg.html("");
+}
+
+function showErrorMsg(msgs){
+    clearErrorMsg();
+    var err = jq('<div>'+msgs+'</div>');
+    errorDiv.appendTo(errorMsg);
+    err.appendTo(messagetext);
+    LoadingSpinner.css("display","none");
+    jq('html, body').animate({ scrollTop: jq(errorMsg).offset().top }, 'slow');
+}
+
+jq(document).ready(function() {
+    //console.log('userRoles: '+userRoles);
+    if(indexOfMngtRole == -1){
+        compleateList = true;
+        jq("#tab-scoped-2__item").css("display","none");
+        jq("#tab-scoped-2").css("display","none");
+    }
+    getCountryUserSetting();
+
+
+    });
+
+
+jq("#tab-scoped-2__item").click(function(){
+    //console.log('clicked 2');
+    jq("#li_tab-scoped-2__item").addClass("slds-active");
+    jq("#li_tab-scoped-1__item").removeClass("slds-active");
+    jq("#li_tab-scoped-3__item").removeClass("slds-active");
+    jq("#tab-scoped-2").addClass("slds-show");
+    jq("#tab-scoped-1").removeClass("slds-show").addClass("slds-hide");
+    jq("#tab-scoped-3").removeClass("slds-show").addClass("slds-hide");
+
+    });
+
+jq("#tab-scoped-1__item").click(function(){
+    //console.log('clicked 1');
+    jq("#li_tab-scoped-1__item").addClass("slds-active");
+    jq("#li_tab-scoped-2__item").removeClass("slds-active");
+    jq("#li_tab-scoped-3__item").removeClass("slds-active");
+    jq("#tab-scoped-1").addClass("slds-show");
+    jq("#tab-scoped-2").removeClass("slds-show").addClass("slds-hide");
+    jq("#tab-scoped-3").removeClass("slds-show").addClass("slds-hide");
+
+    });
+
+jq("#tab-scoped-3__item").click(function(){
+    //console.log('clicked 1');
+    jq("#li_tab-scoped-3__item").addClass("slds-active");
+    jq("#li_tab-scoped-1__item").removeClass("slds-active");
+    jq("#li_tab-scoped-2__item").removeClass("slds-active");
+    jq("#tab-scoped-3").addClass("slds-show");
+    jq("#tab-scoped-1").removeClass("slds-show").addClass("slds-hide");
+    jq("#tab-scoped-2").removeClass("slds-show").addClass("slds-hide");
+    });
+
+jq('#countryPicklist').change(function(){
+    country=jq('#countryPicklist').val();
+     jq('#searchZip').attr("disabled",true);
+     jq('#table tbody').remove();
+     jq('#table thead').remove();
+    if(country!=''){
+        getRemoteAccounts(country,null,null);
+         jq('#searchZip').removeAttr("disabled");
+    }
+});
+
+
+function getCountryUserSetting(){
+    clearErrorMsg();
+    //console.log('loading');
+    LoadingSpinner.css("display","block");
+    Visualforce.remoting.Manager.invokeAction(
+        '{!$RemoteAction.CtrAccountList.getCountryPerCurrentUser}',
+        function(result, event){
+            if(event.status){
+                console.log(result);
+                if(result.length>1){
+                    jq('#countryPicklist').append(jq('<option>', {
+                        value: '',
+                        text : '--None--'
+                    }));
+                    //getRemoteAccounts();
+                }
+                jq.each(result,function (i, item) {
+                    jq('#countryPicklist').append(jq('<option>', {
+                        value: item,
+                        text : item
+                    }));
+                });
+
+                if(result.length==1){
+                    getRemoteAccounts(result[0],null,null);
+                    country=result[0];
+                     jq('#CountryPicklistBlock').hide();
+                      jq('#searchZip').removeAttr("disabled");
+                }
+            }
+        });
+         LoadingSpinner.css("display","none");
+
+
+
+}
+
+
+
+function getRemoteAccounts(country,nextCodes,previousRestaurants) {
+    clearErrorMsg();
+    LoadingSpinner.css("display","block");
+
+    Visualforce.remoting.Manager.invokeAction(
+        '{!$RemoteAction.CtrAccountList.loadAccountList}',compleateList,userRoles,country,nextCodes,previousRestaurants,
+        function(result, event){
+
+            console.log('RemoteAccounts');
+            if (event.status) {
+                if(result.isError){
+                    showErrorMsg('<div>'+result.errorMessage+'</div>');
+                }else{
+                    var arrays = result;
+                    console.log("Result received " + result.nextCodes);
+                    if(arrays.nextCodes.length > 0){
+                    	console.log("Making next call for the codes " + arrays.nextCodes);
+                    	getRemoteAccounts(country,arrays.nextCodes,arrays.data.restaurants);
+                    }else{
+                    	var tableElem = jq("#table");
+	                    var tableHead = jq('<thead>      <tr class="slds-text-heading--label">        <th class="slds-is-sortable" scope="col">          <div class="slds-truncate">Restaurant Id </div></th><th class="slds-is-sortable" scope="col"><div class="slds-truncate">Restaurant owner email </div></th><th class="slds-is-sortable" scope="col"><div class="slds-truncate">Ownership Reason</div></th><th class="slds-is-sortable" scope="col"><div class="slds-truncate">Restaurant Name</div></th><th class="slds-is-sortable" scope="col"><div class="slds-truncate">Rating</div></th><th class="slds-is-sortable" scope="col"><div class="slds-truncate">Status </div></th><th class="slds-is-sortable" scope="col"><div class="slds-truncate">Zip Code</div></th><th class="slds-cell-shrink"></th></tr></thead><tbody>');
+	                    tableHead.appendTo(tableElem);
+	                    
+                    	jq.each(arrays.data.restaurants,function(i,val){
+	                        var elem;
+	
+	                        //console.log('res'+ val.owner);
+	
+	                        //console.log(indexOfMngtRole);
+	
+	                        if(val.sf_restaurant_id!=null && (val.owner =='{!$User.email}' || indexOfMngtRole > -1)){
+	                            var elem = jq('<tr class="slds-hint-parent">    <td class="slds-truncate" scope="row" data-label="Restaurant Id" ><a name="accLink" html-data="0018E00000I4cCV" href="#" onclick="createOppForAccount(\''+val.sf_restaurant_id+'\')" class="'+val.owner+'">'+val.id+'</a></td> <td class="slds-truncate" data-label="Restaurant owner Id">'+val.owner+'</td> <td class="slds-truncate" data-label="Ownership Reason">'+val.ownership_reason+'</td> <td class="slds-truncate" data-label="Restaurant Name"><a name="accLink" href="#" onclick="testGenerateConsoleURL(\''+val.sf_restaurant_id+'\')">'+val.name+'</a></td><td class="slds-truncate" scope="row" data-label="rating" >'+val.rating+'</td><td class="slds-truncate" scope="row" data-label="Status" >'+val.status+'</td><td class="slds-truncate" data-label="Zip Code">'+val.postcode+'</td>  </tr>');
+	                        }else if(val.sf_restaurant_id!=null && val.owner!='{!$User.email}'){
+	                            var elem = jq('<tr class="slds-hint-parent"><td class="slds-truncate" scope="row" data-label="Restaurant Id" >'+val.id+'</td><td class="slds-truncate" data-label="Restaurant owner Id">'+val.owner+'</td><td class="slds-truncate" data-label="Ownership Reason">'+val.ownership_reason+'</td><td class="slds-truncate" data-label="Restaurant Name"><a name="accLink" href="#" onclick="testGenerateConsoleURL(\''+val.sf_restaurant_id+'\')">'+val.name+'</a></td><td class="slds-truncate" scope="row" data-label="Rating" >'+val.rating+'</td><td class="slds-truncate" scope="row" data-label="Status" >'+val.status+'</td><td class="slds-truncate" data-label="Zip Code">'+val.postcode+'</td></tr>');
+	                        }
+	                        else{
+	                        var elem = jq('<tr class="slds-hint-parent">    <td class="slds-truncate" scope="row" data-label="Restaurant Id">'+val.id+'</td> <td class="slds-truncate" data-label="Restaurant owner Id">'+val.owner+'</td><td class="slds-truncate" data-label="Ownership Reason">'+val.ownership_reason+'</td> <td class="slds-truncate" data-label="Restaurant Name">'+val.name+'</td><td class="slds-truncate" scope="row" data-label="Rating" >'+val.rating+'</td><td class="slds-truncate" scope="row" data-label="Status" >'+val.status+'</td>  <td class="slds-truncate" data-label="Zip Code">'+val.postcode+'</td>  </tr>');
+	                        }
+	                        //var elem = jq('<tr><td>'+val.restaurant_id+'</td><td>'+val.restaurant_owner_id+'</td><td>'+val.restaurant_name+'</td><td>'+val.restaurant_postcode+'</td></tr>');
+	                        elem.appendTo(tableElem);
+	                    });
+	                    jq('</tbody>').appendTo(tableElem);
+	                	LoadingSpinner.css("display","none");
+	                	jq("#table").tablesorter({
+                             sortList : [[1,1]] // initial sort columns (2nd and 3rd)
+                         });
+	               	}
+                }
+            } else if (event.type === 'exception') {
+            		console.log("Error");
+                    showErrorMsg(event.where);
+            } else {
+            	console.log("Error 2")
+                showErrorMsg(event.message);
+            }
+        },{escape: false}
+    );
+}
+
+
+jq("#searchOpl").click(function(){
+    clearErrorMsg();
+    var bknd = jq("#backendId").val();
+    var book = jq("#bookingId").val();
+    //console.log(bknd);
+    //console.log(book);
+    //console.log('clickked');
+
+    if(bknd.length==0 && book.length > 0){
+    getOppLines(bknd,book);
+    }else if(bknd.length>0 && book.length == 0){
+    getOppLines(bknd,book);
+    }else{
+        showErrorMsg("Error: Enter either Backend Id or Booking Id but not both.");
+    }
+});
+
+var validZip = null;
+jq("#searchZip").click(function(){
+    clearErrorMsg();
+    if(country=='United Kingdom')
+        var zipcd = jq("#zipCode").val().toUpperCase();
+    else
+          var zipcd = encodeURIComponent(jq("#zipCode").val());
+    validZip = zipcd;
+    // console.log(zipcd);
+    if(zipcd.length > 0){
+        jq("#ZipTable2").html("");
+        jq("#labelForZipTable2").addClass("slds-hide");
+        jq("#labelForZipTable").removeClass("slds-hide");
+        getPPSlots(zipcd,begOfMonthISO,endOfMonthdateISO);
+        jq("#showRest").removeAttr("disabled");
+        jq("#bookedNext").removeAttr("disabled");
+    }else{
+        showErrorMsg("Error: Enter zip code.");
+    }
+});
+
+jq("#bookedNext").click(function(){
+    clearErrorMsg();
+    //console.log(validZip);
+    if(validZip.length > 0){
+        getPPSlots(validZip,begOfNextMonthISO,endOfNextMonthISO);
+     jq("#bookedNext").attr("disabled","disabled");
+
+    }else{
+        showErrorMsg("Error: Enter zip code.");
+    }
+});
+
+jq("#showRest").click(function(){
+    clearErrorMsg();
+    //console.log(validZip);
+    if(validZip.length > 0){
+        jq("#labelForZipTable2").removeClass("slds-hide");
+        getPPAccounts(validZip,currentDateISO);
+        jq("#restNext").removeAttr("disabled");
+
+    }else{
+        showErrorMsg("Error: Enter zip code.");
+    }
+});
+
+
+jq("#restNext").click(function(){
+    clearErrorMsg();
+    //console.log(validZip);
+    if(validZip.length > 0){
+        jq("#labelForZipTable2").removeClass("slds-hide");
+        getPPAccounts(validZip,begOfNextMonthISO);
+        jq("#restNext").attr("disabled","disabled");
+
+    }else{
+        showErrorMsg("Error: Enter zip code.");
+    }
+});
+
+ jq('#zipCode').on('input',function(e){
+     //console.log('Changed!');
+     jq("#showRest").attr("disabled","disabled");
+     jq("#restNext").attr("disabled","disabled");
+     jq("#bookedNext").attr("disabled","disabled");
+
+    });
+
+function getPPSlots(zipdata,begDate,endDate) {
+    var month = begDate.split('-')[1];
+    clearErrorMsg();
+    var tableElem = jq("#ZipTable");
+    LoadingSpinner.css("display","block");
+    Visualforce.remoting.Manager.invokeAction(
+        '{!$RemoteAction.CtrAccountList.loadPPSlots}',zipdata,userRoles,begDate,endDate,country,
+        function(result, event){
+            //console.log('loadPPSlots1');
+            if (event.status) {
+                if(result.indexOf('Error:')>=0){
+                    showErrorMsg('<div>'+result+'</div>');
+                }else{
+                    tableElem.html("");
+                    //console.log('result: '+result);
+                    //console.log(result);
+                    var tableHead = jq('<thead><tr class="slds-text-heading--label"><th class="slds-is-sortable" scope="col"><div class="slds-truncate">Restaurant Id </div></th><th class="slds-is-sortable" scope="col"><div class="slds-truncate">Restaurant Name </div></th><th class="slds-is-sortable" scope="col"><div class="slds-truncate">Platform </div></th><th class="slds-is-sortable" scope="col"><div class="slds-truncate">Username </div></th><th class="slds-is-sortable" scope="col"><div class="slds-truncate">Status </div></th><th class="slds-is-sortable" scope="col"><div class="slds-truncate">Zip Code</div></th><th class="slds-is-sortable" scope="col"><div class="slds-truncate">Booking Id </div></th><th class="slds-is-sortable" scope="col"><div class="slds-truncate">Position </div></th><th class="slds-is-sortable" scope="col"><div class="slds-truncate">Amount </div></th><th class="slds-cell-shrink"></th></tr></thead><tbody>');
+                    tableHead.appendTo(tableElem);
+
+                    var arrays = JSON.parse(result);
+                    jq.each(arrays.data.bookings,function(i,val){
+                        var elem;
+                        //if(val.sf_restaurant_id!=null){
+                            var elem = jq('<tr class="slds-hint-parent">    <td class="slds-truncate" scope="row" data-label="Restaurant Id">'+ val.restaurant_id +'</td><td class="slds-truncate" scope="row" data-label="Restaurant Name">'+val.restaurant_name+'</td><td class="slds-truncate" data-label="platform">'+val.site+'</td><td class="slds-truncate" data-label="Username">'+val.created_by+'</td><td class="slds-truncate" data-label="Status">'+val.status+'</td> <td class="slds-truncate" data-label="Zip Code">'+val.postcode+'</td><td class="slds-truncate" data-label="Booking Id">'+val.id+'</td><td class="slds-truncate" data-label="Position">'+val.restaurant_package_description+'</td><td class="slds-truncate" data-label="Amount">'+val.amount+'</td> </tr>');
+                        /*}else{
+                        var elem = jq('<tr class="slds-hint-parent">    <td class="slds-truncate" scope="row" data-label="Restaurant Id">'+val.restaurant_id+'</td> <td class="slds-truncate" data-label="platform">'+val.site+'</td> <td class="slds-truncate" data-label="Restaurant owner Id">'+val.account_owner_email+'</td> <td class="slds-truncate" data-label="Restaurant Name">'+val.restaurant_name+'</td> <td class="slds-truncate" data-label="Postcode">'+val.restaurant_postcode+'</td>  </tr>');
+                        }*/
+                        elem.appendTo(tableElem);
+                    });
+                    jq('</tbody>').appendTo(tableElem);
+                    var monthStr = months[month.replace(/^0+/, '')];
+                    jq('#BookedMonth').html(monthStr);
+
+                LoadingSpinner.css("display","none");
+
+                }
+            } else if (event.type === 'exception') {
+                    showErrorMsg(event.where);
+            } else {
+                showErrorMsg(event.message);
+            }
+        },{escape: false}
+    );
+}
+
+
+function getPPAccounts(zipdata,currDateISO) {
+    var month = currDateISO.split('-')[1];
+    clearErrorMsg();
+    var tableElem = jq("#ZipTable2");
+    LoadingSpinner.css("display","block");
+    Visualforce.remoting.Manager.invokeAction(
+        '{!$RemoteAction.CtrAccountList.loadPPAccountsConitnuation}',zipdata,userRoles,compleateList,currDateISO,country,
+        function(result, event){
+            //console.log('loadPPSlots2');
+            if (event.status) {
+                if(result.indexOf('Error:')>=0){
+                    showErrorMsg('<div>'+result+'</div>');
+                }else{
+                    tableElem.html("");
+                    //console.log('result: '+result);
+                    //console.log(result);
+                    var tableHead = jq('<thead><tr class="slds-text-heading--label">'+
+                                       '<th class="slds-is-sortable" scope="col"><div class="slds-truncate">Restaurant Id </div></th>'+
+                                       '<th class="slds-is-sortable" scope="col"><div class="slds-truncate">Restaurant owner email </div></th>'+
+                                       '<th class="slds-is-sortable" scope="col"><div class="slds-truncate">Ownership Reason</div></th>'+
+                                       '<th class="slds-is-sortable" scope="col"><div class="slds-truncate">Restaurant Name</div></th>'+
+                                       '<th class="slds-is-sortable" scope="col"><div class="slds-truncate">Rating</div></th>'+
+                                       '<th class="slds-is-sortable" scope="col"><div class="slds-truncate">Status</div>'+
+                                       '</th><th class="slds-is-sortable" scope="col"><div class="slds-truncate">Zip Code</div></th>'+
+                                       '<th class="slds-cell-shrink"></th></tr></thead><tbody>');
+                    tableHead.appendTo(tableElem);
+
+                    var arrays = JSON.parse(result);
+                    jq.each(arrays.data.restaurants,function(i,val){
+                        var elem;
+                        //console.log('In Get Restaurants');
+                        if(val.sf_restaurant_id!=null && val.owner=='{!$User.email}' || indexOfMngtRole > -1){
+                            var elem =jq('<tr class="slds-hint-parent">' +
+                                         '<td class="slds-truncate" scope="row" data-label="Restaurant Id" ><a name="accLink" html-data="0018E00000I4cCV" href="#" onclick="createOppForAccount(\''+val.sf_restaurant_id+'\')" class="'+val.owner+'">'+val.id+'</a></td>'+
+                                          '<td class="slds-truncate" data-label="Restaurant owner Id">'+val.owner+'</td>'+
+                                          '<td class="slds-truncate" data-label="Ownership Reason">'+val.ownership_reason+'</td>'+
+                                          '<td class="slds-truncate" data-label="Restaurant Name"><a name="accLink" href="#" onclick="testGenerateConsoleURL(\''+val.sf_restaurant_id+'\')">'+val.name+'</a></td>'+
+                                          '<td class="slds-truncate" scope="row" data-label="Rating" >'+val.rating+'</td>'+
+                                          '<td class="slds-truncate" scope="row" data-label="Status" >'+val.status+'</td>'+
+                                          '<td class="slds-truncate" data-label="Zip Code">'+val.postcode+'</td>'+
+                                          '</tr>');
+                        }else if(val.sf_restaurant_id!=null && val.owner!='{!$User.email}'){
+                            var elem = jq('<tr class="slds-hint-parent">'+
+                                          '<td class="slds-truncate" scope="row" data-label="Restaurant Id" >'+val.id+'</td>'+
+                                          '<td class="slds-truncate" data-label="Restaurant owner Id">'+val.owner+'</td>'+
+                                          '<td class="slds-truncate" data-label="Ownership Reason">'+val.ownership_reason+'</td>' +
+                                          '<td class="slds-truncate" data-label="Restaurant Name"><a name="accLink" href="#" onclick="testGenerateConsoleURL(\''+val.sf_restaurant_id+'\')">'+val.name+'</a></td>' +
+                                          '<td class="slds-truncate" scope="row" data-label="Rating" >'+val.rating+'</td>'+
+                                          '<td class="slds-truncate" data-label="Status">'+val.status+'</td>' +
+                                          '<td class="slds-truncate" data-label="Zip Code">'+val.postcode+'</td>  </tr>');
+                        }else{
+                            var elem = jq('<tr class="slds-hint-parent">' +
+                                          '<td class="slds-truncate" scope="row" data-label="Restaurant Id" >'+val.id+'</td>'+
+                                          '<td class="slds-truncate" data-label="Restaurant owner Id">'+val.owner+'</td>'+
+                                          '<td class="slds-truncate" data-label="Ownership Reason">'+val.ownership_reason+'</td>'+
+                                          '<td class="slds-truncate" data-label="Restaurant Name"><a name="accLink" href="#" onclick="testGenerateConsoleURL(\''+val.sf_restaurant_id+'\')">'+val.name+'</a></td>'+
+                                          '<td class="slds-truncate" scope="row" data-label="Rating" >'+val.rating+'</td>'+
+                                          '<td class="slds-truncate" scope="row" data-label="Status" >'+val.status+'</td>'+
+                                          '<td class="slds-truncate" data-label="Zip Code">'+val.postcode+'</td>'+
+                                          '</tr>');
+                        }
+                        elem.appendTo(tableElem);
+                    });
+                    jq('</tbody>').appendTo(tableElem);
+                    var monthStr = months[month.replace(/^0+/, '')];
+                    jq('#RestMonth').html(monthStr);
+
+
+                LoadingSpinner.css("display","none");
+
+                }
+            } else if (event.type === 'exception') {
+                    showErrorMsg(event.where);
+            } else {
+                showErrorMsg(event.message);
+            }
+        },{escape: false}
+    );
+}
+
+
+
+
+// var searchCrt = {where:{and:{}},orderby:[{Id_Opportunity__r.Account.Booking_Api_Id__c:'ASC'}]};
+// if(backendId.length>0){
+//     searchCrt.where.and = {Id_Opportunity__r.StageName:{ne:"Closed Won"},Id_Opportunity__r.Account.Backend_ID__c:{eq:backendId}};
+// }else if(bookingId.length>0){
+//     searchCrt.where.and = {Id_Opportunity__r.StageName:{ne:"Closed Won"},Id_Opportunity__r.Account.Booking_Api_Id__c:{eq:bookingId}};
+// }
+// opl.retrieve(searchCrt,function(err, records){
+//     if (err) {
+//         jq("#errorMsg").text(err);
+//     } else {
+//         console.log(records.length);
+//         console.log(records[0]);
+//     }
+// });
+
+function getOppLines(backendId,bookingId){
+    LoadingSpinner.css("display","block");
+    clearErrorMsg();
+    var canTable = jq("#cancelTable");
+    jq("#cancelBtnDiv").css("display","none");
+Visualforce.remoting.Manager.invokeAction(
+        '{!$RemoteAction.CtrAccountList.getOppLineItems}',backendId,bookingId,country,
+        function(result, event){
+            //console.log('OppLines');
+            if (event.status) {
+                if(result.indexOf('Error:')>=0){
+                    showErrorMsg('<div>'+result+'</div>');
+                }else{
+                    //console.log(result);
+                    canTable.html("");
+                    var arrays = JSON.parse(result);
+                    var thead = jq('<thead> <tr class="slds-text-heading--label"> <th class="slds-cell-shrink" > <label class="slds-checkbox"> <input type="checkbox" name="mainCheck"> <span class="slds-checkbox--faux"></span> <span class="slds-assistive-text">Select All</span> </label> </th><th class="slds-is-sortable" scope="col"> <div class="slds-truncate" >Booking Id</div> </th> <th class="slds-is-sortable" scope="col"> <div class="slds-truncate">Platform</div> </th> </th> <th class="slds-is-sortable" scope="col"> <div class="slds-truncate">Position</div> </th> <th class="slds-is-sortable" scope="col"> <div class="slds-truncate">Zip Code</div> </th> <th class="slds-is-sortable" scope="col"> <div class="slds-truncate">GRID</div> </th> <th class="slds-is-sortable" scope="col"> <div class="slds-truncate">Opportunity name</div> </th> </tr> </thead><tbody>');
+                    thead.appendTo(canTable);
+
+                    if(arrays.length > 0){
+                        jq.each(arrays,function(i,val){
+                             var tbody =  jq('<tr class="slds-hint-parent"> <td class="slds-cell-shrink" data-label="Select Row"> <label class="slds-checkbox"> <input type="checkbox" name="options" html-data-company="'+val.Id_List_Price_Product__r.Company__r.Name+'" html-data="'+val.Booking_Api_Id__c+'" id="'+val.Id+'" class="mycheckbb"> <span class="slds-checkbox--faux"></span> <span class="slds-assistive-text">Select Row</span> </label> </td><td class="slds-truncate" data-label="Booking Id">'+val.Booking_Api_Id__c+'</td> <td class="slds-truncate" data-label="Platform">'+val.Id_List_Price_Product__r.Company__r.Name+'</td> <td class="slds-truncate" data-label="Position">'+val.Position_fm__c+'</td> <td class="slds-truncate" data-label="Zip Code">'+val.City_ZipCode__c+'</td> <td class="slds-truncate" data-label="GRID"><a name="accLink" html-data="0018E00000I4cCV" href="#" onclick="testGenerateConsoleURL(\''+val.Id_Opportunity__r.AccountId+'\')">'+val.Id_Opportunity__r.Account.GRID__c+'</a></td> <td class="slds-truncate" data-label="Opportunity name"><a name="oppLink" html-data="0018E00000I4cCV" href="#" onclick="testGenerateConsoleURL(\''+val.Id_Opportunity__r.Id+'\')">'+val.Id_Opportunity__r.Name+'</a></td></tr>');
+                           tbody.appendTo(canTable);
+                        });
+                    }
+                    jq('</tbody>').appendTo(canTable);
+                    if(jq("#cancelTable tbody").html()!=''){
+                        jq("#cancelBtnDiv").removeAttr("style");
+                    }else{
+                        jq("#cancelTable tbody").html('<tr class="slds-hint-parent"><td class="slds-truncate" data-label="Booking Id" colspan="6">Zero records found!</td></tr>');
+                    }
+                    LoadingSpinner.css("display","none");
+                }
+            } else if (event.type === 'exception') {
+                showErrorMsg(event.where);
+            } else {
+                showErrorMsg(event.message);
+            }
+        },{escape: false}
+    );
+
+}
+
+
+
+function createOppForAccount(accId) {
+    LoadingSpinner.css("display","none");
+    clearErrorMsg();
+    //console.log('In CreateOpportunity and accountId = ' + accId);
+        LoadingSpinner.css("display","block");
+        Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.CtrAccountList.createOpportunity}',accId,
+            function(result, event){
+                //console.log('OppLink');
+                if (event.status) {
+                    if(result.indexOf('Error:')>=0){
+                        showErrorMsg('<div>'+result+'</div>');
+                    }else{
+                        //console.log('result: '+result);
+                        if(result.length>14){
+                           LoadingSpinner.css("display","none");
+                            testGenerateConsoleURL(result);
+                            //sforce.console.openPrimaryTab(null,'/'+result,true);
+                        }
+                    }
+                } else if (event.type === 'exception') {
+                    showErrorMsg(event.where);
+                } else {
+                    showErrorMsg(event.message);
+                }
+            },{escape: false}
+        );
+
+
+}
+
+var checkedValues = [];
+jq('#cancelTable').on('change',':checkbox',function(){
+    if(jq(this).attr('name')=='mainCheck'){
+        if(jq(this).is(":checked")){
+            jq('input[name="options"]').prop("checked","checked");
+        }else{
+            //console.log("unchecked");
+            jq('input[name="options"]').removeAttr("checked");
+        }
+    }
+    //console.log(checkedValues);
+});
+
+
+
+jq('#cancelBtn').on('click',function(){
+    clearErrorMsg();
+    checkedValues = [];
+    jq('input[name="options"]:checked').each(function(i){
+        var oo = {}; 
+        oo.bookingId = jq(this).attr("html-data");
+        oo.opplineId = this.id;
+        oo.companyName = jq(this).attr("html-data-company"); 
+        checkedValues[i] = oo;
+    });
+    //console.log('Hallo' + checkedValues);
+if(checkedValues.length==0){
+    showErrorMsg('Error: Select atleast one Booking Id to cancel');
+    return;
+}else{
+    LoadingSpinner.css("display","block");
+    Visualforce.remoting.Manager.invokeAction(
+        '{!$RemoteAction.CtrAccountList.cancelBookings}',checkedValues,userRoles,userEmail,country,false,
+        function(result, event){
+            //console.log('cancel');
+            if (event.status) {
+                if(result.indexOf('Error:')>=0){
+                    showErrorMsg('<div>'+result+'</div>');
+                }else{
+                    //console.log('result: '+result);
+                    var bknd = jq("#backendId").val();
+                    var book = jq("#bookingId").val();
+                    LoadingSpinner.css("display","none");
+                    if(bknd.length==0 && book.length > 0){
+                        getOppLines(bknd,book);
+                    }else if(bknd.length>0 && book.length == 0){
+                        getOppLines(bknd,book);
+                    }
+
+                }
+            } else if (event.type === 'exception') {
+                showErrorMsg(event.where);
+            } else {
+                showErrorMsg(event.message);
+            }
+        },{escape: false}
+    );
+
+}
+
+});
+
+
+var testGenerateConsoleURL = function testGenerateConsoleURL(entityId) {
+    sforce.console.generateConsoleUrl(['/'+entityId], showConsoleUrl);
+ }
+var showConsoleUrl = function showConsoleUrl(result) {
+    sforce.console.openConsoleUrl(null, result.consoleUrl, true);
+ }
+
+ jq(function(){
+  jq("#table").tablesorter();
+});
+
+</script>
+</apex:page>

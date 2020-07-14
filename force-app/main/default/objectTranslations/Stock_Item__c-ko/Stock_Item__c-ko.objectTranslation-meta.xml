@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Stock Item --></value>
+    </caseValues>
+    <layouts>
+        <layout>CD Stock Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- SIM Information --></label>
+            <section>SIM Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SE Stock Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- SIM Information --></label>
+            <section>SIM Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Stock Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- SIM Information --></label>
+            <section>SIM Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Talabat Stock Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- SIM Information --></label>
+            <section>SIM Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>UK Stock Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- SIM Information --></label>
+            <section>SIM Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Yogiyo Stock Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- SIM Information --></label>
+            <section>SIM Information</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Serial Number --></nameFieldLabel>
+    <recordTypes>
+        <label><!-- AT Stock Item --></label>
+        <name>AT_Stock_Item</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- CD Stock Item --></label>
+        <name>CD_Stock_Item</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Delivery Hero Australia Stock Items --></description>
+        <label><!-- DH AU Stock Item --></label>
+        <name>DH_AU_Stock_Item</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FI Stock Item --></label>
+        <name>FI_Stock_Item</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FP Stock Item --></label>
+        <name>FP_Stock_Item</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Hungary Stock item --></description>
+        <label><!-- HU Stock Item --></label>
+        <name>HU_Stock_Item</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SE Stock Item --></label>
+        <name>SE_Stock_Item</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Talabat Stock Item --></label>
+        <name>Talabat_Stock_Item</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- UK Stock Item --></label>
+        <name>UK_Stock_Item</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Yogiyo Stock Items --></description>
+        <label><!-- Yogiyo Stock Item --></label>
+        <name>Yogiyo_Stock_Item</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Field Agent Owner is required when Ownership = Field Agent --></errorMessage>
+        <name>Field_Agent_Owner_is_Required</name>
+    </validationRules>
+</CustomObjectTranslation>

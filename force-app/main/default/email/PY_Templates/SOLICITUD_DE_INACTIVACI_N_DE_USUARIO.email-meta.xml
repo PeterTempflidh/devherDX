@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>SOLICITUD DE INACTIVACIÓN DE USUARIO</name>
+    <style>freeForm</style>
+    <subject>SOLICITUD DE INACTIVACIÓN DE USUARIO</subject>
+    <textOnly>Estimada {!Case.Customer_Name__c}, es un gusto saludarte.
+
+Estimado {!Case.Customer_Name__c}, es un gusto saludarte.
+
+
+
+En esta oportunidad nos comunicamos en respuesta a tu solicitud de inactivación de tu usuario en nuestra plataforma.
+
+
+Te informamos que la misma fue correctamente gestionada por lo que el usuario quedó inactivado.
+
+
+Quedamos a las órdenes ante cualquier consulta.
+
+
+
+
+Saludos,
+
+{!Case.OwnerFullName}
+
+Atención al Cliente - PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

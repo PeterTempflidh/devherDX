@@ -1,0 +1,59 @@
+<aura:component controller="CustomReport_AuraController">
+    <aura:attribute name="reportDefinition" type='String' default="Empty" required="true"/>
+    <aura:attribute name="reportName" type='String' default="Empty" required="true"/>
+    <aura:attribute name="columns" type="List" default="[]"/>
+    <aura:attribute name="data" type="List" default="[]"/>
+    <aura:attribute name="keyField" type="String" default="id"/>
+    <aura:attribute name="selectedRowsCount" type="Integer" default="0"/>
+    <aura:attribute name="rowsToLoad" type="Integer" default="100"/>
+    <aura:attribute name="loadMoreOffset" type="Integer" default="20"/>
+    <aura:attribute name="loadMoreStatus" type="String" default=""/>
+    <aura:attribute name="enableInfiniteLoading" type="Boolean" default="true"/>
+    <aura:attribute name="totalRows" type="Integer" default="0"/>
+    <aura:attribute name="reportData" type="CustomReport_AuraController" />
+    <aura:attribute name="progress" type="Integer" default="1"/>
+
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+        <div class="slds-align--absolute-center">
+            <lightning:spinner aura:id="spinner" variant="brand" size="large" class=""/>
+            <lightning:progressBar aura:id="progressBar" value="{! v.progress }" size="large" style="width:200vw" class="slds-hide progress-bar"/>
+        </div>
+        <div class="slds-m-vertical_small slds-grid">
+            <div class="input-group slds-col slds-grid custom-report-buttons">
+                <div class="slds-col close-button slds-size_2-of-12">
+                </div>
+                <div class="slds-col slds-size_8-of-12 slds-grid_vertical">
+                    <div class="slds-col report-name">{!v.reportName}</div>
+                    <div class="slds-col report-info slds-color__text_gray-10">
+                        ({!$Label.c.Custom_Report_Preview})
+                    </div>
+                </div>
+                <div class="slds-col slds-size_2-of-12 slds-grid">
+                    <div class="slds-col refresh-button slds-size_3-of-4">
+                        <lightning:buttonIcon iconName="utility:refresh" variant="bare" onclick="{! c.resetRows }" alternativeText="Refresh" />
+                    </div>
+                    <div class="slds-col download-button slds-size_1-of-4">
+                        <lightning:buttonIcon iconName="utility:download" variant="bare" onclick="{! c.downloadCsv }" alternativeText="Download" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div style="height: 70vh; overflow-x: auto; width: inherit;">
+                <lightning:datatable
+                        columns="{! v.columns }"
+                        data="{! v.data }"
+                        keyField="{! v.keyField }"
+                        showRowNumberColumn="true"
+                        enableInfiniteLoading="{! v.enableInfiniteLoading }"
+                        loadMoreOffset="{! v.loadMoreOffset }"
+                        onloadmore="{! c.loadMoreData }"
+                        hideCheckboxColumn="true"
+                />
+            </div>
+            {! v.loadMoreStatus }
+            <div class="slds-text-align--right slds-color__text_gray-9 slds-p-right--small">
+                <h1 class="slds-m-vertical_small">{! v.data.length } - {! v.totalRows }+</h1>
+            </div>
+        </div>
+</aura:component>

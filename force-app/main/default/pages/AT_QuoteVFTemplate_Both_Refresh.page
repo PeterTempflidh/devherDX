@@ -1,0 +1,3 @@
+<apex:page controller="CtrTalabatRefreshQuoteTemplate" showheader="false" sidebar="false" standardStylesheets="false">
+    <c:AT_Main_Quote_Refresh acct="{!theQuote.Id_Account__c}" oppQuote="{!theQuote.Id}"/>
+</apex:page>

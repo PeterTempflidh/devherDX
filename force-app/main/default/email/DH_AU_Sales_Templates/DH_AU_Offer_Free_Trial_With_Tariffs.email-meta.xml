@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>DH_AU_Menu_Samples/Menu_Printing_Offer_Delivery_Hero.jpg</attachedDocuments>
+    <attachedDocuments>DH_AU_Sales_Documents/Delivery_Hero_Sign_Up_Form.pdf</attachedDocuments>
+    <attachedDocuments>DH_AU_Sales_Documents/Free_Trial_Brochure_2014.pdf</attachedDocuments>
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>DH_AU_Letterhead</letterhead>
+    <name>DH AU Offer - Free Trial With Tariffs</name>
+    <style>freeForm</style>
+    <subject>Important {!Account.Name} &amp; Delivery Hero Free Trial Offer</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

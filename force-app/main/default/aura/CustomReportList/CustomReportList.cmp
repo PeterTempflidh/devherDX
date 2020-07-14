@@ -1,0 +1,29 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" description="CustomReportList" controller="CustomReportList_AuraController">
+    <aura:attribute description="report descriptions" name="reportDescriptions" type="List"/>
+    <aura:attribute description="Display report buttons" name="displayButtons" type="Boolean" default="true"/>
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+        <div class="slds-vertical-tabs custom-report-list-container">
+            <ul class="slds-vertical-tabs__nav" role="tablist" aria-orientation="vertical">
+                <aura:iteration items="{!v.reportDescriptions}" var="reportDescription" indexVar="index">
+                    <li class="{! 'slds-vertical-tabs__nav-item'  + (reportDescription.isVisible  ? ' slds-is-active' : '')}"
+                            title="{!reportDescription.reportName}" role="presentation">
+                        <a class="slds-vertical-tabs__link" onclick="{! c.openReport }" data-id="{!index}" href="javascript:void(0)" role="tab" tabindex="0" aria-selected="true" aria-controls="slds-vertical-tabs-0" id="slds-vertical-tabs-0__nav">
+                            <span class="slds-vertical-tabs__left-icon"></span>
+                            <span class="slds-truncate" title="{!reportDescription.reportName}">{!reportDescription.reportName}</span>
+                            <span class="slds-vertical-tabs__right-icon"></span>
+                        </a>
+                    </li>
+                </aura:iteration>
+            </ul>
+            <aura:iteration items="{!v.reportDescriptions}" var="reportDescription" indexVar="index">
+                <aura:If isTrue="{!reportDescription.isVisible}">
+                    <div class="{!'slds-vertical-tabs__content custom-report-tab' + (reportDescription.isVisible ? ' slds-show' : 'slds-hide')}" id="{!'slds-vertical-tabs-' + index}" role="tabpanel" aria-labelledby="{!'slds-vertical-tabs-' + index + '__nav'}">
+                        <div class="slds-text-longform custom-report-container">
+                            <c:CustomReport reportDefinition="{!reportDescription.definitionJson}" reportName="{!reportDescription.reportName}" />
+                        </div>
+                    </div>
+                </aura:If>
+            </aura:iteration>
+        </div>
+
+</aura:component>

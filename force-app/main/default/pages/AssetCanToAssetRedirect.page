@@ -1,0 +1,3 @@
+<apex:page standardController="Asset_Cancellation__c" showHeader="true" sidebar="true" extensions="CtrAssetCanToAssetRedirect" action="{!redirectToAssetPage}">
+	<div style="display:none">{!Asset_Cancellation__c.Asset__c}" </div>
+</apex:page>

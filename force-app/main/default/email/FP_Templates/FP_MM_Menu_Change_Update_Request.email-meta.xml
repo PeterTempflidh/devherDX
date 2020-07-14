@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>我們已收到你的餐單更改要求，並會盡快處理 | Your Menu Update request has been received and will be processed ASAP</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP MM Menu Change - Update Request</name>
+    <style>freeForm</style>
+    <subject>我們已收到你的餐單更改要求，並會盡快處理 | Your Menu Update request has been received and will be processed ASAP</subject>
+    <textOnly>親愛的合作餐廳：
+
+
+感謝你的訊息，我們已收到你的請求，並有相關團隊跟進，希望於 24 小時提供解決方案。
+
+
+謝謝，
+
+你的 foodpanda 合作餐廳服務小組
+
+
+Dear Restaurant partner,
+
+
+Hello,
+
+
+Thank you for your message!
+
+
+Your request has arrived and is currently being processed by our Partner Service Team.
+
+
+We will do our best to answer you within 24 hours and solve your request.
+
+
+Best regards,
+
+
+Your foodpanda team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

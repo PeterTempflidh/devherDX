@@ -1,0 +1,1273 @@
+<apex:page standardController="Lead" extensions="CtrOrderConfirmation" showHeader="false" sidebar="false" standardStylesheets="false"  applyHtmlTag="false" docType="html-5.0">
+    <apex:includeScript value="/canvas/sdk/js/publisher.js" />
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <head>
+            <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.slds, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+            <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.min.js"></script>
+           <script   src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"   ></script>
+            
+            <script>
+                j$ = jQuery.noConflict();
+                var tabid;
+                var ua=navigator.userAgent; 
+                if((ua.indexOf('Salesforce')!=-1)&&(ua.indexOf('iPhone')!=-1||ua.indexOf('iPad')!=-1)&&(ua.indexOf('OS/9')!=-1||ua.indexOf('OS 9')!=-1)&&(ua.indexOf('Safari')==-1)){ 
+                    function IOS_SCROLL_BOOTSTRAP() { 
+                    var children = Array.prototype.slice.call(document.body.children), 
+                    placeholder = document.createElement('section'), 
+                    fragment = document.createDocumentFragment(), 
+                    styles, 
+                    width, 
+                    height; 
+                    children.forEach(function(c){fragment.appendChild(c);}); 
+                    placeholder.appendChild(fragment); 
+                    styles = [ 
+                    'width:100%;', 
+                    'height:', (window.screen.height - 42), 'px;', 
+                    'position: absolute; overflow: auto; -webkit-overflow-scrolling: touch' 
+                    ].join(''); 
+                    placeholder.style.cssText = styles; 
+                    document.body.appendChild(placeholder); 
+                    } 
+                    window.addEventListener('load', function (e) { 
+                    IOS_SCROLL_BOOTSTRAP(); 
+                    }); 
+                } 
+
+                function htmlDecode(input){
+                  var e = document.createElement('div');
+                  e.innerHTML = input;
+                  return e.childNodes[0].nodeValue;
+                }
+
+                j$(document).ready(function() { 
+                    //loadData();
+                   // document.getElementById('commission').style.display='none';
+                   j$("#regionalTariffAppend").hide();
+                   j$("#regionalTariffTC").hide();
+                    j$("#commissionAppendRT").hide();
+                    j$("#rewardStamp").hide();
+                    j$("#commissionRT").hide();
+                    j$("#bladeSignText").css("display", "none");
+                    
+                     
+                   
+                    j$(".tabs-menu a").click(function(event) {
+                        event.preventDefault();
+                        j$(this).parent().addClass("slds-active");
+                        tabid=j$(this).parent().attr('id');
+                       
+                         displayAdditionalText(tabid,"true");
+                        j$(this).parent().siblings().removeClass("slds-active");
+                        // j$(this).parent().siblings().addClass("slds-active");
+                        var tab = j$(this).attr("href");
+                        j$(".tab-content").not(tab).css("display", "none");
+                        j$(tab).fadeIn();
+                           
+                       
+                        
+                       
+                    });
+
+                    function displayAdditionalText(tabid,blade){
+                        if(tabid=='tabTwo'){
+                             j$("#regionalTariffAppend").show();
+                             j$("#regionalTariffTC").show();
+                             j$("#commissionAppendRT").show();
+                             j$("#rewardStamp").show();
+                             if(j$("#splOffer").is(':checked')) {
+                                j$("#commissionRT").show();
+                     
+                             }
+                             //if(blade=="true");
+                                 //j$("#bladeSign").attr("checked", "true");
+                             
+                             j$("#tablinktakeover").removeAttr('checked');                   
+                             j$("#tablinksharing").removeAttr('checked');                   
+                             j$("#livelinktakeover").removeAttr('checked');
+                             j$("#livelinklinked").removeAttr('checked');
+                            j$(".hideForRegional").hide();
+                             
+                        }
+                        else{
+                             j$("#regionalTariffAppend").hide();
+                             j$("#regionalTariffTC").hide();
+                             j$("#commissionAppendRT").hide();
+                              j$("#rewardStamp").hide();
+                              j$("#commissionRT").hide();
+                               j$(".hideForRegional").show();
+                        
+                        }
+                    
+                    
+                    
+                    }
+                    function decodeHtml(html) {
+                        var txt = document.createElement("textarea");
+                        txt.innerHTML = html;
+                        return txt.value;
+                    }
+                    
+                                       //populate commission name
+                    Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.CtrOrderConfirmation.getLead}','{!Lead.Id}',
+          
+                        function(result, event) {
+                            if (event.status) {    
+                                //debugger;
+                                console.log(result.Best_Time_To_Contact__c);
+                                j$("#salutation").val(result.Salutation).change();
+                                //console.log(result.Salutation);
+                                j$("#restName").val(decodeHtml(result.Restaurant_Name__c));
+                                j$("#name").val(result.Name);
+                                j$("#street").val(result.Street);
+                                j$("#postalCode").val(result.PostalCode);
+                                j$("#city").val(result.City);
+                                j$("#email").val(result.Email);
+                                j$("#phone").val(result.Phone);
+                                j$("#mobile").val(result.MobilePhone);
+                                j$("#otherPhone").val(result.Other_Phone__c);
+
+                                if(result.Description != null) {
+                                    var desc = htmlDecode(result.Description);
+                                    var obj = j$.parseJSON(desc);
+                                    if(!j$.isEmptyObject(obj)) {
+                                        for (var item in obj) {
+                                            console.log("item: " + item + " value: " + obj[ item ]);
+                                            if(item == "yes" && obj[ item ] == "true")
+                                                j$("#"+item).attr("checked", "true");
+                                            else if(item == "no" && obj[ item ] == "true")
+                                                j$("#"+item).attr("checked", "true");
+                                            else if (obj[ item ] == "true")
+                                                j$("#"+item).attr("checked", "true");
+                                            else
+                                                j$("#"+item).val(obj[ item ]);
+                                        }
+                                    }
+                                }
+                                var now = new Date();
+
+                                var day = ("0" + now.getDate()).slice(-2);
+                                var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+                                var today = now.getFullYear()+"-"+(month)+"-"+(day);
+                                j$("#date").val(today);
+                                j$("#preparedBy").val('{!$User.FirstName} ' + '{!$User.LastName}');
+                                j$('#businessOwnerText').text(result.Owner.Name);
+                                j$("#setupFee").val(result.Setup_Fee__c);
+                                j$("#commission").val(result.Commission__c);
+                                j$("#installments").val(result.Installments__c);
+                                j$("#cuisine").val(result.Cuisine__c);
+                                j$("#bestTimeContact").val(result.Best_Time_to_contact__c);
+                        
+                                if(result.Tariff_Name__c != null) {
+                                    tarifCheck(result.Tariff_Name__c);
+                                    bladeSignChecked();
+                                   if((result.Tariff_Name__c).indexOf('egional')>0){                                  
+                                       if((result.Non_Standard_Contract_Components__c)!=null && (result.Non_Standard_Contract_Components__c).indexOf('xclusive Special')>0){
+                                           j$("#splOffer").attr("checked", "true");
+                                       
+                                       }else {
+                                          j$("#tasteTest").attr("checked", "true");
+                                       }
+                                        if((result.Non_Standard_Contract_Components__c)!=null && (result.Non_Standard_Contract_Components__c).indexOf('lade')>0)
+                                            j$("#bladeSign").attr("checked", "true");
+                                        bladeSignChecked();    
+                                       j$("#tabs-container").tabs();
+                                       
+                                        j$('#tabs-container').tabs( "option", "active", 1 );
+                                        j$("#tabTwo").addClass("slds-active");
+                                        tabid="tabTwo";
+                           
+                                        displayAdditionalText(tabid,"false");
+                                        j$("#tabOne").removeClass("slds-active");
+                        
+                                        var tab = j$("#tabTwo").attr("href");
+                                       // j$(".tab-content").not(tab).css("display", "none");
+                                       
+                                       //j$('#tabs-container').tabs('select', 1);
+                                        
+                                       
+                                   }
+                                }
+
+                                otherRestYes();
+                            } 
+                            else if (event.type === 'exception') {
+                                document.getElementById("responseErrors").innerHTML =
+                                event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                            }else {
+                                document.getElementById("responseErrors").innerHTML = event.message;
+                            }
+                        },
+                        {escape: true}
+                    );
+
+
+                    });
+
+                function splOfferSelect(){
+                   if(j$("#splOffer").is(':checked')) {
+                        j$("#commissionRT").show();
+                     
+                     }else{
+                        j$("#commissionRT").hide();
+                     }
+                }
+                function checkboxChecked() {
+                    if(j$("#termsConditions").is(':checked') && j$("#advertMaterial").is(':checked')) {
+                        j$("#confirmOrder").removeAttr("disabled");
+                    }
+                    else {
+                        j$("#confirmOrder").attr("disabled", "true");
+                    }
+                }
+
+                function bladeSignChecked() {
+                    if(j$("#bladeSign").is(':checked')) {
+                        j$("#bladeSignText").css("display", "block");
+                    } else {
+                        j$("#bladeSignText").css("display", "none");
+                    }
+                }
+
+                function getDesc(description) {
+                    var minOrderDelivery = j$("#minOrderDelivery").val();
+                    var minOrderFreeDelivery = j$("#minOrderFreeDelivery").val();
+                   // var deliveryCharge = j$("#deliveryCharge").val();
+                    var cuisineNote = j$("#cuisineNote").val();
+                    var zip1 = j$("#zip1").val();
+                    var zip2 = j$("#zip2").val();
+                    var zip3 = j$("#zip3").val();
+                    var zip4 = j$("#zip4").val();
+                    var zip5 = j$("#zip5").val();
+                    var zip6 = j$("#zip6").val();
+                    var zip7 = j$("#zip7").val();
+                    var zip8 = j$("#zip8").val();
+                    var zip9 = j$("#zip9").val();
+                    var zip10 = j$("#zip10").val();
+                    var zip11 = j$("#zip11").val();
+                    var zip12 = j$("#zip12").val();
+                    var zip13 = j$("#zip13").val();
+                    var zip14 = j$("#zip14").val();
+                    var zip15 = j$("#zip15").val();
+                    var zip16 = j$("#zip16").val();
+                    var zip17 = j$("#zip17").val();
+                    var zip18 = j$("#zip18").val();
+
+                    var zipFee1 = j$("#zipFee1").val();
+                    var zipFee2 = j$("#zipFee2").val();
+                    var zipFee3 = j$("#zipFee3").val();
+                    var zipFee4 = j$("#zipFee4").val();
+                    var zipFee5 = j$("#zipFee5").val();
+                    var zipFee6 = j$("#zipFee6").val();
+                    
+                    
+
+
+                    if(minOrderDelivery.length > 0)
+                        description += '"minOrderDelivery": "' + minOrderDelivery + '", ';
+                    if(minOrderFreeDelivery.length > 0)
+                        description += '"minOrderFreeDelivery": "' + minOrderFreeDelivery + '", ';
+                   // if(deliveryCharge.length > 0)
+                    //    description += '"deliveryCharge": "' + deliveryCharge + '", ';
+                    if(cuisineNote.length > 0)
+                       description += '"cuisineNote": "' + cuisineNote + '", ';
+
+                    if(zip1.length > 0)
+                        description += '"zip1": "' + zip1 + '", ';
+                    if(zip2.length > 0)
+                        description += '"zip2": "' + zip2 + '", ';
+                    if(zip3.length > 0)
+                        description += '"zip3": "' + zip3 + '", ';
+                    if(zip4.length > 0)
+                        description += '"zip4": "' + zip4 + '", ';
+                    if(zip5.length > 0)
+                        description += '"zip5": "' + zip5 + '", ';
+                    if(zip6.length > 0)
+                        description += '"zip6": "' + zip6 + '", ';
+                    if(zip7.length > 0)
+                        description += '"zip7": "' + zip7 + '", ';
+                    if(zip8.length > 0)
+                        description += '"zip8": "' + zip8 + '", ';
+                    if(zip9.length > 0)
+                        description += '"zip9": "' + zip9 + '", ';
+                    if(zip10.length > 0)
+                        description += '"zip10": "' + zip10 + '", ';
+                    if(zip11.length > 0)
+                        description += '"zip11": "' + zip11 + '", ';
+                    if(zip12.length > 0)
+                        description += '"zip12": "' + zip12 + '", ';
+                    if(zip13.length > 0)
+                        description += '"zip13": "' + zip13 + '", ';
+                    if(zip14.length > 0)
+                        description += '"zip14": "' + zip14 + '", ';
+                    if(zip15.length > 0)
+                        description += '"zip15": "' + zip15 + '", ';
+                    if(zip16.length > 0)
+                        description += '"zip16": "' + zip16 + '", ';
+                    if(zip17.length > 0)
+                        description += '"zip17": "' + zip17 + '", ';
+                    if(zip18.length > 0)
+                        description += '"zip18": "' + zip18 + '", ';
+
+                   if(zipFee1.length > 0)
+                        description += '"zipFee1": "' + zipFee1 + '", ';
+                   if(zipFee2.length > 0)
+                        description += '"zipFee2": "' + zipFee2 + '", ';
+                   if(zipFee3.length > 0)
+                        description += '"zipFee3": "' + zipFee3 + '", ';
+                   if(zipFee4.length > 0)
+                        description += '"zipFee4": "' + zipFee4 + '", ';
+                   if(zipFee5.length > 0)
+                        description += '"zipFee5": "' + zipFee5 + '", ';
+                   if(zipFee6.length > 0)
+                        description += '"zipFee6": "' + zipFee6 + '", ';
+
+
+
+                    var fridayStarts = j$("#fridayStarts").val();
+                    var fridayEnds = j$("#fridayEnds").val();
+                    var saturdayStarts = j$("#saturdayStarts").val();
+                    var saturdayEnds = j$("#saturdayEnds").val();
+                    var sundayStarts = j$("#sundayStarts").val();
+                    var sundayEnds = j$("#sundayEnds").val();
+                    var mondayStarts = j$("#mondayStarts").val();
+                    var mondayEnds = j$("#mondayEnds").val();
+                    var tuesdayStarts = j$("#tuesdayStarts").val();
+                    var tuesdayEnds = j$("#tuesdayEnds").val();
+                    var wednesdayStarts = j$("#wednesdayStarts").val();
+                    var wednesdayEnds = j$("#wednesdayEnds").val();
+                    var thursdayStarts = j$("#thursdayStarts").val();
+                    var thursdayEnds = j$("#thursdayEnds").val();
+                    var bankholidaysStarts = j$("#bankholidaysStarts").val();
+                    var bankholidaysEnds = j$("#bankholidaysEnds").val();
+                    
+               
+
+                    
+
+                    if(fridayStarts.length > 0)
+                        description += '"fridayStarts": "' + fridayStarts + '", ';
+                    if(fridayEnds.length > 0)
+                        description += '"fridayEnds": "' + fridayEnds + '", ';
+                    if(saturdayStarts.length > 0)
+                        description += '"saturdayStarts": "' + saturdayStarts + '", ';
+                    if(saturdayEnds.length > 0)
+                        description += '"saturdayEnds": "' + saturdayEnds + '", ';
+                    if(sundayStarts.length > 0)
+                        description += '"sundayStarts": "' + sundayStarts + '", ';
+                    if(sundayEnds.length > 0)
+                        description += '"sundayEnds": "' + sundayEnds + '", ';
+                    if(mondayStarts.length > 0)
+                        description += '"mondayStarts": "' + mondayStarts+ '", ';
+                    if(mondayEnds.length > 0)
+                        description += '"mondayEnds": "' + mondayEnds + '", ';
+                    if(tuesdayStarts.length > 0)
+                        description += '"tuesdayStarts": "' + tuesdayStarts + '", ';
+                    if(tuesdayEnds.length > 0)
+                        description += '"tuesdayEnds": "' + tuesdayEnds + '", ';
+                    if(wednesdayStarts.length > 0)
+                        description += '"wednesdayStarts": "' + wednesdayStarts + '", ';
+                    if(wednesdayEnds.length > 0)
+                        description += '"wednesdayEnds": "' + wednesdayEnds + '", ';
+                    if(thursdayStarts.length > 0)
+                        description += '"thursdayStarts": "' + thursdayStarts + '",';
+                    if(thursdayEnds.length > 0)
+                        description += '"thursdayEnds": "' + thursdayEnds + '", ';
+                    if(bankholidaysStarts.length > 0)
+                        description += '"bankholidaysStarts": "' + bankholidaysStarts + '", ';
+                    if(bankholidaysStarts.length > 0)
+                        description += '"bankholidaysEnds": "' + bankholidaysStarts + '", ';
+
+
+                    //var bestTimeContact = j$("#bestTimeContact").val();
+                    var yes = j$("#yes").is(':checked');
+                    var no = j$("#no").is(':checked');
+                    var otherRestName = j$("#otherRestName").val();
+                    var otherRestZip = j$("#otherRestZip").val();
+                    console.log('test1');
+                    //validateOtherRest(otherRestName, otherRestZip);
+
+
+                    //if(bestTimeContact.length > 0)
+                    //    description += '"bestTimeContact": "' + bestTimeContact.toString() + '", ';
+                    if(yes == true)
+                        description += '"yes": "' + yes.toString() + '", ';
+                    if(no == true)
+                        description += '"no": "' + no.toString() + '", ';
+                    if(otherRestName.length > 0)
+                        description += '"otherRestName": "' + otherRestName + '", ';
+                    if(otherRestZip.length > 0)
+                        description += '"otherRestZip": "' + otherRestZip + '", ';
+
+                    var tgtablink = j$("#tgtablink").is(':checked');
+                    var wifitablink = j$("#wifitablink").is(':checked');
+                    
+                    var tablinktakeover = j$("#tablinktakeover").is(':checked');
+                    var tablinksharing = j$("#tablinksharing").is(':checked');
+                    var livelinktakeover = j$("#livelinktakeover").is(':checked');
+                    var livelinklinked = j$("#livelinklinked").is(':checked');
+                    
+                    var bladeSign = j$("#bladeSign").is(':checked');
+                    var rewardStamps=false;
+                    
+                    var commissionRT ='';
+                    if(tabid=='tabTwo'){
+                        rewardStamps = j$("#rewardStamps").is(':checked');
+                        tasteTest=j$("#tasteTest").is(':checked');
+                        splOffer=j$("#splOffer").is(':checked');
+                        commissionRT=j$("#commissionRT").val();
+                    }
+                    if(rewardStamps== true)
+                        description += '"rewardStamps":"'+rewardStamps.toString()+'",';
+                    if(tasteTest== true)
+                        description += '"tasteTest":"'+tasteTest.toString()+'",';
+                    if(splOffer== true)
+                        description += '"splOffer":"'+splOffer.toString()+'",';
+                    if(commissionRT!=null && commissionRT!='' )
+                        description += '"commissionRT":"'+commissionRT.toString()+'",';
+                    
+                    if(tgtablink == true)
+                        description += '"tgtablink": "' + tgtablink.toString() + '", ';
+                    if(wifitablink == true)
+                        description += '"wifitablink": "' + wifitablink.toString() + '", ';
+        
+                    if(tablinktakeover == true)
+                        description += '"tablinktakeover": "' + tablinktakeover.toString() + '", ';
+                    if(tablinksharing == true)
+                        description += '"tablinksharing": "' + tablinksharing.toString() + '", ';
+
+                    if(livelinktakeover == true)
+                        description += '"livelinktakeover": "' + livelinktakeover.toString() + '", ';
+                    if(livelinklinked == true)
+                        description += '"livelinklinked": "' + livelinklinked.toString() + '", ';
+
+                    if(bladeSign == true)
+                        description += '"bladeSign": "' + bladeSign.toString() + '", ';
+
+                    return description.slice(0,-2);
+                }
+
+                function convertLead(obj) {
+                   
+                    j$(obj).prop( "disabled", true );
+                    var salutation = j$("#salutation option:selected").text();
+                    //console.log(salutation);
+                    var restName = j$("#restName").val();
+                    var name = j$("#name").val();
+                    var street = j$("#street").val();
+                    var postlCode = j$("#postalCode").val();
+                    var city = j$("#city").val();
+                    var email = j$("#email").val();
+                    var nonStandardComponent = "";
+                    var nonStandardTerm ="";
+                    if(j$("#bladeSign").is(':checked'))
+                        nonStandardComponent = "BladeT&C";
+                    if(j$("#splOffer").is(':checked')){
+                        nonStandardTerm =j$("#commissionRT").val();
+                       
+                        if(nonStandardComponent!=null && nonStandardComponent!="")
+                            nonStandardComponent+=";Exclusive Special Offer";
+                        else
+                            nonStandardComponent="Exclusive Special Offer";
+                    }
+                    //debugger;
+                   
+                        //return false;
+
+                    var phone =  j$("#phone").val();
+                    var mobile = j$("#mobile").val();
+                    var date = j$("#date").val();
+                    var commission = j$("#commission").val();
+                    //if(commission == null || commission == "")
+                    //    commission = -1;
+                    var setup = j$("#setupFee").val();
+                    //if(setup == null || setup == "")
+                    //    setup = -1;
+                    var tarif = getTarif();
+                   
+                    var bestTimeContact = j$("#bestTimeContact").val();
+                    //if(bestTimeContact == null)
+                     //   bestTimeContact = "";
+                    var otherPhone = j$("#otherPhone").val();
+                    var installments = j$("#installments").val();
+                    //if(installments == null || installments == "")
+                    //    installments = -1;
+
+                    // saving description
+                    var otherRestName = j$("#otherRestName").val();
+                    var otherRestZip = j$("#otherRestZip").val();
+                    var description = "{";
+                    description += getDesc(description);
+                    description += "}";
+                    description = description.replace("{{", "{");
+                    var validEmail = validateEmail(email);
+                    var validPhone = validatePhone(phone);
+                    var validOtherPhone = validateOtherPhone(otherPhone);
+                    var validMobile = validateMobilePhone(mobile);
+                    var validCommission = validateCommission(commission);
+                    var validSetupFee = validateSetupFee(setup);
+                    var validInstallments = validateInstallments(installments);
+                    var validTariff = validateTarif();
+                    var validOffer = true;
+                    
+                    if(tabid=="tabTwo")
+                        validOffer=validateOffer();
+           
+                    
+                    
+                    var validName = validateName(name);
+                    var validRestName = validateRestName(restName);
+                    var validStreet = validateStreet(street);
+                    var validCity = validateCity(city);
+                    var validPostalCode = validatePostalCode(postlCode);
+                    var validOtherRestName = validateOtherRestName(otherRestName);
+                    var validOtherRestZip = validateOtherRestZip(otherRestZip);
+                    console.log(validOtherRestName);
+                    console.log(validOtherRestZip);
+                    if(validEmail == false || validPhone == false || validOffer==false || validMobile == false || validateCommission == false || validSetupFee == false || validInstallments == false || validTariff == false || validName == false || validRestName == false || validStreet == false || validCity == false || validPostalCode == false || validOtherRestName == false || validOtherRestZip == false || validOtherPhone == false) {
+                        j$(obj).prop( "disabled", false );
+                        return;
+                    }
+   
+                    var i = 0;
+                    //if(validateRequiredFields(commission, setup, tarif, installments)) {
+                    j$("#spinnerDiv").css("display", "block");
+                    Visualforce.remoting.Manager.invokeAction(
+
+                        '{!$RemoteAction.CtrOrderConfirmation.updateLead}','{!Lead.Id}', restName ,nonStandardTerm, name,street ,postlCode ,city ,email ,phone,mobile ,date ,commission ,setup , tarif, description, installments, bestTimeContact, nonStandardComponent, otherPhone,
+                            salutation,
+                            function(result, event) {
+                                if (event.status) { 
+                                    if(i == 0) {
+                                        i++;
+                                    Visualforce.remoting.Manager.invokeAction(
+
+                                    '{!$RemoteAction.CtrOrderConfirmation.convertLead}',result,tarif,
+                                        function(result, event) {
+                                            if (event.status) { 
+                                                console.log(result);
+                                                j$("#spinnerDiv").css("display", "none");
+                                                sforce.one.navigateToURL(result);
+                                            } 
+                                            else if (event.type === 'exception') {
+                                                j$("#spinnerDiv").css("display", "none");
+                                                //document.getElementById("responseErrors").innerHTML =
+                                                //event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                                            }else {
+                                                j$("#spinnerDiv").css("display", "none");
+                                                //document.getElementById("responseErrors").innerHTML = event.message;
+                                            }
+                                        },
+                                        {escape: true}
+                                    );
+                                   }
+
+                                } 
+                                else if (event.type === 'exception') {
+                                    j$("#spinnerDiv").css("display", "none");
+                                    //document.getElementById("responseErrors").innerHTML =
+                                    //event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                                }else {
+                                    j$("#spinnerDiv").css("display", "none");
+                                    //document.getElementById("responseErrors").innerHTML = event.message;
+                                }
+                            },
+                            {escape: true}
+                        );
+                    //}
+                }
+
+
+                function validateEmail(email) {
+                    if(email.length > 0) {
+                        var re = /\S+@\S+\.\S+/;
+                        if(!email.match(re)) {
+                            j$("#email-error-message").remove();
+                             j$("#emailAppend").append('<div id="email-error-message" class="slds-form-element__help" style="display:inline !important;">Email not valid</div>');
+                            j$("#emailAppend").attr('class', 'slds-has-error');
+                            j$("#email").focus();
+                            return false;
+                        }
+                        else {
+                            j$("#email-error-message").remove();
+                            j$("#emailAppend").removeAttr('class', 'slds-has-error');
+                            return true;
+                        }
+
+                    }
+                    else {
+                        j$("#email-error-message").remove();
+                        j$("#emailAppend").append('<div id="email-error-message" class="slds-form-element__help" style="display:inline !important;">This field is required</div>');
+                        j$("#emailAppend").attr('class', 'slds-has-error');
+                        j$("#email").focus();
+                        return false;
+                    }
+                }
+
+                function validatePhone(phone) {
+                    if(phone.length > 0) {
+                        var re = /^0044[1-2][0-9]+$/;
+                        if(!phone.match(re)) {
+                            j$("#phone-error-message").remove();
+                             j$("#phoneAppend").append('<div id="phone-error-message" class="slds-form-element__help" style="display:inline !important;">Phone number needs to start with 00441 or 00442.</div>');
+                            j$("#phoneAppend").attr('class', 'slds-has-error');
+                            j$("#phone").focus();
+                            return false;
+                        }
+                        else {
+                            j$("#phone-error-message").remove();
+                            j$("#phoneAppend").removeAttr('class', 'slds-has-error');
+                            return true;
+                        }
+
+                    }
+                    else {
+                        j$("#phone-error-message").remove();
+                        j$("#phoneAppend").append('<div id="phone-error-message" class="slds-form-element__help" style="display:inline !important;">This field is required</div>');
+                        j$("#phoneAppend").attr('class', 'slds-has-error');
+                        j$("#phone").focus();
+                        return false;
+                    }
+                }
+
+                function validateOtherPhone(phone) {
+                    if(phone.length > 0) {
+                        var re = /^0044[1-2][0-9]+$/;
+                        if(!phone.match(re)) {
+                            j$("#otherphone-error-message").remove();
+                             j$("#otherPhoneAppend").append('<div id="otherphone-error-message" class="slds-form-element__help" style="display:inline !important;">Phone number needs to start with 00441 or 00442.</div>');
+                            j$("#otherPhoneAppend").attr('class', 'slds-has-error');
+                            j$("#otherPhone").focus();
+                            return false;
+                        }
+                        else {
+                            j$("#otherphone-error-message").remove();
+                            j$("#otherPhoneAppend").removeAttr('class', 'slds-has-error');
+                            return true;
+                        }
+
+                    }
+                    else {
+                        j$("#otherphone-error-message").remove();
+                        j$("#otherPhoneAppend").removeAttr('class', 'slds-has-error');
+                        return true;
+                    }
+                }
+
+                function validateMobilePhone(mobile) {
+                    if(mobile.length > 0) {
+                        var re = /^00447[0-9]+$/;
+                        if(!mobile.match(re)) {
+                            j$("#mobile-error-message").remove();
+                             j$("#mobileAppend").append('<div id="mobile-error-message" class="slds-form-element__help" style="display:inline !important;">Phone number needs to start with 00447</div>');
+                            j$("#mobileAppend").attr('class', 'slds-has-error');
+                            j$("#mobile").focus();
+                            return false;
+                        }
+                        else {
+                            j$("#mobile-error-message").remove();
+                            j$("#mobileAppend").removeAttr('class', 'slds-has-error');
+                            return true;
+                        }
+
+                    }
+                    else {
+                        j$("#mobile-error-message").remove();
+                        j$("#mobileAppend").append('<div id="mobile-error-message" class="slds-form-element__help" style="display:inline !important;">This field is required</div>');
+                        j$("#mobileAppend").attr('class', 'slds-has-error');
+                        j$("#mobile").focus();
+                        return false;
+                    }
+                }
+
+                function validateName(name) {
+                    if(name.length > 0) {
+                        j$("#name-error-message").remove();
+                        j$("#nameAppend").removeAttr('class', 'slds-has-error');
+                        return true;
+                    }
+                    else {
+                        j$("#name-error-message").remove();
+                        j$("#nameAppend").append('<div id="name-error-message" class="slds-form-element__help" style="display:inline !important;">This field is required</div>');
+                        j$("#nameAppend").attr('class', 'slds-has-error');
+                        j$("#name").focus();
+                        return false;
+                    }
+                }
+
+                function validateRestName(restName) {
+                    if(restName.length > 0) {
+                        j$("#restName-error-message").remove();
+                        j$("#restNameAppend").removeAttr('class', 'slds-has-error');
+                        return true;
+                    }
+                    else {
+                        j$("#restName-error-message").remove();
+                        j$("#restNameAppend").append('<div id="restName-error-message" class="slds-form-element__help" style="display:inline !important;">This field is required</div>');
+                        j$("#restNameAppend").attr('class', 'slds-has-error');
+                        j$("#restName").focus();
+                        return false;
+                    }
+                }
+
+                function validateCommission(commission) {
+                    if(commission.length > 0) {
+                        j$("#commission-error-message").remove();
+                        j$("#commissionAppend").removeAttr('class', 'slds-has-error');
+                        return true;
+                    }
+                    else {
+                        j$("#commission-error-message").remove();
+                        j$("#commissionAppend").append('<div id="commission-error-message" class="slds-form-element__help" style="display:inline !important;">This field is required</div>');
+                        j$("#commissionAppend").attr('class', 'slds-has-error');
+                        j$("#commission").focus();
+                        return false;
+                    }
+                }
+
+                function validateSetupFee(setupFee) {
+                    if(setupFee.length > 0) {
+                        j$("#setupFee-error-message").remove();
+                        j$("#setupFee").removeAttr('class', 'slds-has-error');
+                        return true;
+                    }
+                    else {
+                        j$("#setupFee-error-message").remove();
+                        j$("#setupFeeAppend").append('<div id="setupFee-error-message" class="slds-form-element__help" style="display:inline !important;">This field is required</div>');
+                        j$("#setupFeeAppend").attr('class', 'slds-has-error');
+                        j$("#setupFee").focus();
+                        return false;
+                    }
+                }
+
+                function validateInstallments(installements) {
+                    if(installements.length > 0) {
+                        if (installements >>> 0 === parseFloat(installements)) {
+                            j$("#installments-error-message").remove();
+                            j$("#installments").removeAttr('class', 'slds-has-error');
+                            return true;
+                        } else {
+                             j$("#installments-error-message").remove();
+                            j$("#installmentsAppend").append('<div id="installments-error-message" class="slds-form-element__help" style="display:inline !important;">Incorrect value for Installment</div>');
+                            j$("#installmentsAppend").attr('class', 'slds-has-error');
+                            j$("#installments").focus();
+                            return false;
+                        }
+                      
+                    }
+                    else {
+                        j$("#installments-error-message").remove();
+                        j$("#installmentsAppend").append('<div id="installments-error-message" class="slds-form-element__help" style="display:inline !important;">This field is required</div>');
+                        j$("#installmentsAppend").attr('class', 'slds-has-error');
+                        j$("#installments").focus();
+                        return false;
+                    }
+                }
+
+                function validateStreet(street) {
+                    if(street.length > 0) {
+                        j$("#street-error-message").remove();
+                        j$("#street").removeAttr('class', 'slds-has-error');
+                        return true;
+                    }
+                    else {
+                        j$("#street-error-message").remove();
+                        j$("#streetAppend").append('<div id="street-error-message" class="slds-form-element__help" style="display:inline !important;">This field is required</div>');
+                        j$("#streetAppend").attr('class', 'slds-has-error');
+                        j$("#street").focus();
+                        return false;
+                    }
+                }
+
+                function validateCity(city) {
+                    if(city.length > 0) {
+                        j$("#city-error-message").remove();
+                        j$("#city").removeAttr('class', 'slds-has-error');
+                        return true;
+                    }
+                    else {
+                        j$("#city-error-message").remove();
+                        j$("#cityAppend").append('<div id="city-error-message" class="slds-form-element__help" style="display:inline !important;">This field is required</div>');
+                        j$("#cityAppend").attr('class', 'slds-has-error');
+                        j$("#city").focus();
+                        return false;
+                    }
+                }
+
+                function validatePostalCode(postalCode) {
+                    if(postalCode.length > 0) {
+                        var re = /^[A-Za-z]{1,2}[0-9A-Za-z]{1,2}[ ]? [0-9]{0,1}[A-Za-z]{2}$/;
+                        if(!postalCode.match(re)) {
+                            j$("#postalCode-error-message").remove();
+                             j$("#postalCodeAppend").append('<div id="postalCode-error-message" class="slds-form-element__help" style="display:inline !important;">Please enter correct format</div>');
+                            j$("#postalCodeAppend").attr('class', 'slds-has-error');
+                            j$("#postalCode").focus();
+                            return false;
+                        }
+                        else {
+                            j$("#postalCode-error-message").remove();
+                            j$("#postalCodeAppend").removeAttr('class', 'slds-has-error');
+                            return true;
+                        }
+                    }
+                    else {
+                        j$("#postalCode-error-message").remove();
+                        j$("#postalCodeAppend").append('<div id="postalCode-error-message" class="slds-form-element__help" style="display:inline !important;">This field is required</div>');
+                        j$("#postalCodeAppend").attr('class', 'slds-has-error');
+                        j$("#postalCode").focus();
+                        return false;
+                    }
+                }
+                function validateOtherRestName(otherRestName) {
+                    if(j$("#yes").is(':checked')) {
+                        if(otherRestName.length == 0){
+                            console.log('test4');
+                            j$("#otherRestName-error-message").remove();
+                            j$("#otherRestNameAppend").append('<div id="otherRestName-error-message" class="slds-form-element__help" style="display:inline !important;">This field is required</div>');
+                            j$("#otherRestNameAppend").attr('class', 'slds-has-error');
+                            j$("#otherRestName").focus();
+                            return false;
+                        }
+                        else {
+                            j$("#otherRestName-error-message").remove();
+                            j$("#otherRestNameAppend").removeAttr('class', 'slds-has-error');
+                            return true;
+                        }
+                    }
+                    else {
+                        j$("#otherRestName-error-message").remove();
+                        j$("#otherRestZip-error-message").remove();
+                        j$("#otherRestNameAppend").removeAttr('class', 'slds-has-error');
+                        j$("#otherRestZipAppend").removeAttr('class', 'slds-has-error');
+                        otherRestNo();
+                        return true;
+                    }
+                }
+                function validateOtherRestZip(otherRestZip) {
+                      if(j$("#yes").is(':checked')) {
+                        if(otherRestZip.length == 0) {
+                            j$("#otherRestZip-error-message").remove();
+                            j$("#otherRestZipAppend").append('<div id="otherRestZip-error-message" class="slds-form-element__help" style="display:inline !important;">This field is required</div>');
+                            j$("#otherRestZipAppend").attr('class', 'slds-has-error');
+                            j$("#otherRestZip").focus();
+                            return false;
+                        }
+                        else {
+                            j$("#otherRestZip-error-message").remove();
+                            j$("#otherRestZipAppend").removeAttr('class', 'slds-has-error');
+                            return true;
+                        }
+                    }
+                    else {
+                        j$("#otherRestName-error-message").remove();
+                        j$("#otherRestZip-error-message").remove();
+                        j$("#otherRestNameAppend").removeAttr('class', 'slds-has-error');
+                        j$("#otherRestZipAppend").removeAttr('class', 'slds-has-error');
+                        otherRestNo();
+                        return true;
+                    }
+                }
+                /*function validateOtherRest(otherRestName, otherRestZip) {
+                    if(j$("#yes").is(':checked')) {
+                        if(otherRestName.length == 0){
+                            console.log('test4');
+                            j$("#otherRestName-error-message").remove();
+                            j$("#otherRestNameAppend").append('<div id="otherRestName-error-message" class="slds-form-element__help" style="display:inline !important;">This field is required</div>');
+                            j$("#otherRestNameAppend").attr('class', 'slds-has-error');
+                            j$("#otherRestName").focus();
+                            return;
+                        }
+                        else {
+                            j$("#otherRestName-error-message").remove();
+                            j$("#otherRestNameAppend").removeAttr('class', 'slds-has-error');
+                        }
+                        if(otherRestZip.length == 0) {
+                            j$("#otherRestZip-error-message").remove();
+                            j$("#otherRestZipAppend").append('<div id="otherRestZip-error-message" class="slds-form-element__help" style="display:inline !important;">This field is required</div>');
+                            j$("#otherRestZipAppend").attr('class', 'slds-has-error');
+                            j$("#otherRestZip").focus();
+                            return;
+                        }
+                        else {
+                            j$("#otherRestZip-error-message").remove();
+                            j$("#otherRestZipAppend").removeAttr('class', 'slds-has-error');
+                        }
+                    }
+                    else {
+                        j$("#otherRestName-error-message").remove();
+                        j$("#otherRestZip-error-message").remove();
+                        j$("#otherRestNameAppend").removeAttr('class', 'slds-has-error');
+                        j$("#otherRestZipAppend").removeAttr('class', 'slds-has-error');
+                        otherRestNo();
+
+                    }
+                } */
+
+                function validateTarif() {
+                    if(j$("#tgtablink").is(':checked')) {
+                        j$("#tariff-error-message").remove();
+                        j$("#tariffAppend").removeAttr('class', 'slds-has-error');
+                        return true;
+                    }
+                    else if(j$("#wifitablink").is(':checked')) {
+                        j$("#tariff-error-message").remove();
+                        j$("#tariffAppend").removeAttr('class', 'slds-has-error');
+                        return true;
+                    }
+                    else if(j$("#tablinktakeover").is(':checked')) {
+                        j$("#tariff-error-message").remove();
+                        j$("#tariffAppend").removeAttr('class', 'slds-has-error');
+                        return true;
+                    }
+                    else if(j$("#tablinksharing").is(':checked')) {
+                        j$("#tariff-error-message").remove();
+                        j$("#tariffAppend").removeAttr('class', 'slds-has-error');
+                        return true;
+                    }
+                    else if(j$("#livelinktakeover").is(':checked')) {
+                        j$("#tariff-error-message").remove();
+                        j$("#tariffAppend").removeAttr('class', 'slds-has-error');
+                        return true;
+                    }
+                    else if(j$("#livelinklinked").is(':checked')) {
+                        j$("#tariff-error-message").remove();
+                        j$("#tariffAppend").removeAttr('class', 'slds-has-error');
+                        return true;
+                    }
+                    else {
+                        j$("#tariff-error-message").remove();
+                        j$("#tariffAppend").append('<div id="tariff-error-message" class="slds-form-element__help" style="display:inline !important;">This field is required</div>');
+                        j$("#tariffAppend").attr('class', 'slds-has-error');
+                        j$("#tgtablink").focus();
+                        return false;
+                    }
+                }
+                
+                function validateOffer() {
+                    if(j$("#rewardStamps").is(':checked')) {
+                        if(j$("#tasteTest").is(':checked')) {
+                            j$("#offer-error-message").remove();
+                            j$("#regionalTariffAppend").removeAttr('class', 'slds-has-error');
+                            return true;
+                        }
+                        else if(j$("#splOffer").is(':checked')) {
+                            j$("#offer-error-message").remove();
+                            j$("#regionalTariffAppend").removeAttr('class', 'slds-has-error');
+                            return true;
+                        }
+                        
+                        else {
+                            j$("#offer-error-message").remove();
+                            j$("#regionalTariffAppend").append('<div id="offer-error-message" class="slds-form-element__help" style="display:inline !important;">This field is required</div>');
+                            j$("#regionalTariffAppend").attr('class', 'slds-has-error');
+                            j$("#splOffer").focus();
+                            return false;
+                        }
+                    }
+                }
+
+                function getTarif() {
+            
+                    if(j$("#bladeSign").is(':checked')) {
+                        if(tabid!="tabTwo"){
+                            if(j$("#tgtablink").is(':checked'))
+                                return "New Sign up 3G / Branding";
+                            if(j$("#wifitablink").is(':checked'))
+                                return "New Sign up Wifi / Branding";
+                            if(j$("#tablinktakeover").is(':checked')) {
+                                return "New Sign up/COO Tablink Takeover / Branding";
+                            }
+                            if(j$("#tablinksharing").is(':checked')) {
+                                return "New Sign up/COO TabLink Sharing / Branding";
+                            }
+                            if(j$("#livelinktakeover").is(':checked')) {
+                                return "New Sign up/COO Livelink Takeover / Branding";
+                            }
+                            if(j$("#livelinklinked").is(':checked')) {
+                                return "New Sign up/COO Livelink Linked / Branding";
+                            }
+                            if(j$("#livelinklinked").is(':checked')) {
+                                return "New Sign up/COO Livelink Linked / Branding";
+                            }
+                        }
+                        else{
+                            if(j$("#rewardStamps").is(':checked')) {
+                                if(j$("#tgtablink").is(':checked')){
+                                    return "Regional Tariff 3G";
+                                    
+                                    
+                                }
+                                if(j$("#wifitablink").is(':checked')){
+                                   return "Regional Tariff Wifi";
+                                    
+                                }
+                            } else {
+                                if(j$("#tgtablink").is(':checked')){
+                                    return "Regional Tariff 3G Without Stamps";
+                                    
+                                    
+                                }
+                                if(j$("#wifitablink").is(':checked')){
+                                   return "Regional Tariff Wifi Without Stamps";
+                                    
+                                }
+                            }
+                        
+                        }
+                    }
+                    else {
+                       if(tabid!="tabTwo"){ 
+                            if(j$("#tgtablink").is(':checked'))
+                                return "New Sign up 3G";
+                            if(j$("#wifitablink").is(':checked'))
+                                return "New Sign up Wifi";
+                            if(j$("#tablinktakeover").is(':checked')) {
+                                return "New Sign up/COO Tablink Takeover";
+                            }
+                            if(j$("#tablinksharing").is(':checked')) {
+                                return "New Sign up/COO TabLink Sharing";
+                            }
+                            if(j$("#livelinktakeover").is(':checked')) {
+                                return "New Sign up/COO Livelink Takeover";
+                            }
+                            if(j$("#livelinklinked").is(':checked')) {
+                                return "New Sign up/COO Livelink Linked";
+                            }
+                        } 
+                        else{
+                            if(j$("rewardStamps").is(':checked')) {
+                                if(j$("#tgtablink").is(':checked')){
+                                    return "Regional Tariff 3G No Blade Sign";
+                                  
+                                }if(j$("#wifitablink").is(':checked')){
+                                   return "Regional Tariff Wifi No Blade Sign";
+                                    
+                                }
+                            } else {
+                                 if(j$("#tgtablink").is(':checked')){
+                                    return "Regional Tariff 3G No Blade Sign Without Stamps";
+                                  
+                                }if(j$("#wifitablink").is(':checked')){
+                                   return "Regional Tariff Wifi No Blade Sign Without Stamps";
+                                    
+                                }
+                            }
+                        
+                        
+                        
+                        }
+                    }
+                }
+
+                function otherRestYes() {
+                    if(j$("#yes").is(':checked')) {
+                        j$("#otherRestName").removeAttr('readonly');
+                        j$("#otherRestZip").removeAttr('readonly');
+                    }
+                }
+
+                function otherRestNo() {
+                    if(j$("#no").is(':checked')) {
+                        j$("#otherRestName").val('');
+                        j$("#otherRestZip").val('');
+                        j$("#otherRestName").attr('readonly', 'true');
+                        j$("#otherRestZip").attr('readonly', 'true');
+                    }
+                }
+
+
+                function tarifCheck(tarif) {
+                   // alert(tarif);
+                    if(tarif == "New Sign up/COO Tablink Takeover") {
+                        j$("#tablinktakeover").attr("checked", "true");
+                    }
+                    if(tarif == "New Sign up/COO TabLink Sharing") {
+                        j$("#tablinksharing").attr("checked", "true");
+                    }
+                    if(tarif == "New Sign up/COO Livelink Takeover") {
+                        j$("#livelinktakeover").attr("checked", "true");
+                    }
+                    if (tarif == "New Sign up/COO Livelink Linked") {
+                        j$("#livelinklinked").attr("checked", "true");
+                    }
+
+                    if(tarif == "New Sign up/COO Tablink Takeover / Branding") {
+                        j$("#bladeSign").attr("checked", "true");
+                        j$("#tablinktakeover").attr("checked", "true");
+                    }
+                    if(tarif == "New Sign up/COO TabLink Sharing / Branding") {
+                        j$("#bladeSign").attr("checked", "true");
+                        j$("#tablinksharing").attr("checked", "true");
+                    }
+                    if(tarif == "New Sign up/COO Livelink Takeover / Branding") {
+                        j$("#bladeSign").attr("checked", "true");
+                        j$("#livelinktakeover").attr("checked", "true");
+                    }
+                    if (tarif == "New Sign up/COO Livelink Linked / Branding") {
+                        j$("#bladeSign").attr("checked", "true");
+                        j$("#livelinklinked").attr("checked", "true");
+                    }
+
+                    if(tarif == "New Sign up 3G / Branding") {
+                        j$("#bladeSign").attr("checked", "true");
+                        j$("#tgtablink").attr("checked", "true");
+                    }
+                    if(tarif == "New Sign up Wifi / Branding") {
+                        j$("#bladeSign").attr("checked", "true");
+                        j$("#wifitablink").attr("checked", "true");
+                    }
+                    if(tarif == "New Sign up 3G") {
+                        j$("#tgtablink").attr("checked", "true");
+                    }
+                    if(tarif == "New Sign up Wifi") {
+                        j$("#wifitablink").attr("checked", "true");
+                    }
+                   
+                    if(tarif.indexOf("egional")>0){
+                       console.log(tarif);
+                        //j$("rewardStamps").attr("checked", "true");
+                        if(tarif.indexOf("Branding")>0)
+                            j$("#bladeSign").attr("checked", "true");
+                        
+                        if(tarif == "Regional Tariff 3G" || tarif == "Regional Tariff 3G Without Stamps"){
+                            j$("#tgtablink").attr("checked", "true");
+                            j$("#bladeSign").attr("checked", "true");
+                            //alert('test');
+                           }
+                        else if(tarif == "Regional Tariff Wifi" || tarif == "Regional Tariff Wifi Without Stamps") {
+                            j$("#wifitablink").attr("checked", "true");
+                            j$("#bladeSign").attr("checked", "true");
+                        }
+                        else if(tarif =="Regional Tariff Wifi No Blade Sign" || tarif =="Regional Tariff Wifi No Blade Sign Without Stamps"){
+                            j$("#wifitablink").attr("checked", "true");
+                        
+                        }else if(tarif =="Regional Tariff 3G No Blade Sign" || tarif =="Regional Tariff 3G No Blade Sign Without Stamps" ){
+                             j$("#tgtablink").attr("checked", "true");
+                        
+                        }
+                    
+                    
+                    }
+                }
+            </script>
+            <style>
+                .spinnerImage {
+                     margin-left: 36px;
+                     margin-top: 19px;
+                     height: 30px;
+                     width: 30px;
+                     float: left;
+                     background: #fff url(/img/support/servicedesk/loading.gif) center center no-repeat;
+                }
+                .spinnerDescription { 
+                     margin-top: 11px;
+                     display: block;
+                     color: black;
+
+                }
+                .spinnerContainer {
+                          opacity: 1;
+                     filter: alpha(opacity=100); /* IE's opacity*/
+                     background-color: #fff;
+                     border: 1px solid black;
+                     font-size: 1.2em;
+                     color: #27282e;
+                     font-weight: bold;
+                     line-height: 50px;
+                     height: 70px;
+                     position: relative;
+                     top: 45%;
+                     border-radius: 5px;
+                     margin: auto;
+                     display: block;
+                     width: 200px;
+                     white-space: nowrap;
+                }
+                .spinnerDiv {
+
+                     background-color: lightgrey;
+                     border-radius: 5px 5px 5px 5px;
+                     opacity: .75;
+                     filter: alpha(opacity=75); /* IE's opacity*/
+                     text-align: center;
+                     width: 100%;
+                     height: 100%;
+                     position: fixed;
+                     z-index: 99999999999999999999999999;
+                     top: 0;
+                     left: 0;
+                }    
+                
+                .tabs-menu li {
+                    
+                    float: left; 
+                    background-color:#efefef;  
+                    
+                }
+                
+                .tabs-menu li.current {
+                    position: relative;
+                   
+                    z-index: 5;
+                }
+                
+                .tabs-menu li a {
+                   
+                   
+                }
+                
+                .tabs-menu .current a {
+                 
+                }
+                
+                .tab {
+                    
+                    float: left;
+                   
+                    width: auto;
+                }
+                
+                .tab-content {
+                   
+                    
+                   
+                    display: none;
+                }
+                
+                #normal {
+                 display: block;   
+                }
+                
+
+                </style>
+        </head>
+        <body>
+            <div class="slds" id="content">
+                <div id="spinnerDiv" class="spinnerDiv" style="display:none" >
+                    <span id="spinnerContainer" class="spinnerContainer">
+                        <div class="spinnerImage" title="Loading..." />
+                        <span class="spinnerDescription">Please Wait</span>
+                    </span>
+                </div>
+                 <div id="tabs-container" >
+                    <ul class="tabs-menu slds-tabs--scoped__nav" role="tablist">
+                        <li class="slds-tabs--scoped__item slds-text-heading--label slds-active" title="Item One" id="tabOne"><a class="slds-tabs--scoped__link" href="#normal" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-scoped-1" id="tab-scoped-1__item">Normal Tariff</a></li>
+    <li class="slds-tabs--scoped__item slds-text-heading--label " title="Item Two" role="presentation" id="tabTwo"><a class="slds-tabs--scoped__link" href="#normal" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-scoped-2" id="tab-scoped-2">Regional Tariff</a></li>
+    
+                       <!-- <li class="current slds-tabs--scoped__item slds-text-heading--label" style="display:inline"><a href=">Normal Tariff</a></li>
+                        <li style="display:inline slds-tabs--scoped__item slds-text-heading--label"><a href=">Regional Tariff</a></li>-->
+        
+                    </ul>
+                    <div id="normal" class="tab-content">
+                         <c:UK_OrderConfirmation lead="{!Lead.Id}"/>
+                    </div>
+                    
+                  </div>
+               
+
+            </div>
+        </body>
+    </html>
+</apex:page>

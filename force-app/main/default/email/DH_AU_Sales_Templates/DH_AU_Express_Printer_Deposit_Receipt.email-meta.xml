@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>DH_AU_Letterhead</letterhead>
+    <name>DH AU Express Printer Deposit Receipt</name>
+    <style>freeForm</style>
+    <subject>Delivery Hero Express Printer Deposit Receipt</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+Thank you for the deposit for the Delivery Hero Express Printer! One will be sent out to you shortly.
+
+Once you receive the Printer, please give us a call to activate it.
+
+After it is activated:
+It is important that the Printer remains switched on.
+If the Printer is switched off, your restaurant will be displayed as CLOSED on your listing, so customers cannot order.
+
+Security Deposit Receipt for Express Printer
+Amount: $100.00
+Received from: {!Contact.Name}
+Restaurant Name: {!Account.Name}
+Restaurant Address:
+{!Account.BillingAddress}
+Restaurant ID: {!Account.Id}
+Received by: {!User.Name}
+Date: {!Today}
+
+This receipt acknowledges that the amount recorded above has been received by Delivery Hero as a security deposit for the Express Printer.
+• The Express Printer is provided to you on loan and will remain at all times the property of Delivery Hero.
+• You must keep the Equipment in good and useable condition at all times (fair wear and tear excepted) until returned to, or collected by, Delivery Hero.
+• Delivery Hero is responsible to pay for telecommunication costs in communicating with the Express Printer
+• The Partner Restaurant is responsible to pay for the consumables required to run the Delivery Hero Express Printer including and not limited to: thermal paper and electricity.
+• The deposit will be refunded when the Express Printer is returned to Delivery Hero in good condition.
+
+Thank you!
+
+Kind Regards,
+{!User.Name}
+{!User.Phone}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

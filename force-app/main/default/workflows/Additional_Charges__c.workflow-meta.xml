@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Change_status_to_Activated</fullName>
+        <field>Status__c</field>
+        <literalValue>Active</literalValue>
+        <name>Change status to Activated</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Change_status_to_Terminated</fullName>
+        <field>Status__c</field>
+        <literalValue>Terminated</literalValue>
+        <name>Change status to Terminated</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Run_Approval_Trigger</fullName>
+        <field>Run_Approval_Trigger__c</field>
+        <literalValue>1</literalValue>
+        <name>Run Approval Trigger</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Run_Approve_Trigger_For_Add_Charges</fullName>
+        <description>Changes value of Run_Approval_Trigger__c to true</description>
+        <field>Run_Approval_Trigger__c</field>
+        <literalValue>1</literalValue>
+        <name>Run Approve Trigger For Add Charges</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Status_To_Activated</fullName>
+        <description>Updates Add Charges to Activated after approval.</description>
+        <field>Status__c</field>
+        <literalValue>Active</literalValue>
+        <name>Status To Activated</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Status_To_Terminated</fullName>
+        <description>Update Add Charges record to &apos;Rejected&apos; after apprroval rejection</description>
+        <field>Status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>Status To Terminated</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UpdateAddChargeLastModified</fullName>
+        <description>Connector: The workflow rule is needed for the connector. It copies the last modified date in a custom field. It is a workaround as only the custom field can be indexed, the standard last modified field cannot be indexed.</description>
+        <field>ON_LastModified__c</field>
+        <formula>NOW()</formula>
+        <name>UpdateAddChargeLastModified</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Start_Date_to_Today</fullName>
+        <description>When start date &lt; Created Date</description>
+        <field>Start_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>Update Start Date to Today</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>AddChargeSetLastModified</fullName>
+        <actions>
+            <name>UpdateAddChargeLastModified</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Writes the last modified date in a separate custom field. This is necessary for the upserted job as the normal last modified field cannot be indexed and this custom field can now be indexed.</description>
+        <formula>RecordType.DeveloperName = &quot;DE_Additional_Charges&quot;</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Global - Start Date of Additonal Charges updated to Today if Past</fullName>
+        <actions>
+            <name>Update_Start_Date_to_Today</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>03743581 - The additional charge start date should be updated to today if created date is bigger than start date.</description>
+        <formula>Start_Date__c&lt;TODAY()  &amp;&amp;  RecordType.DeveloperName = &quot;SE_Additional_Charges&quot;</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

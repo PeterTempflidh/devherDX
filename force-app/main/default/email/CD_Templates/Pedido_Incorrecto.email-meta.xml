@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Clickdelivery</letterhead>
+    <name>Pedido Incorrecto</name>
+    <style>formalLetter</style>
+    <subject>Pedido Incorrecto</subject>
+    <textOnly>Usuario no contesta
+
+Hola (Nombre del usuario), queremos hablar contigo pero no ha sido posible encontrarte en el número que nos brindas (1234567890). Nos gustaría saber en qué momento nos podemos contactar contigo o si tienes otro número de contacto para poder ayudarte con tu solicitud de pedido incorrecto.  Que tengas buen día
+
+Usuario confirma
+
+Hola (Nombre del usuario), nos alegra escucharte y te queremos confirmar que (solución brindada de pedido incorrecto).Nuestros domi héroes están 24/7 para colaborarte con todo lo que necesites.
+
+Respuesta inmediata
+
+Hola (Nombre del usuario), queremos generar una nueva experiencia con nosotros por esto te confirmamos que realizamos la gestión de tu solicitud y el restaurante ( solución brindada de pedido incorrecto). Nuestros domi héroes están 24/7 para colaborarte con todo lo que necesites</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

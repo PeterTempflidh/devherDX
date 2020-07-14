@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- HistoricalCasesColumns --></label>
+        <name>HistoricalCasesColumns</name>
+    </fieldSets>
+    <layouts>
+        <layout>Live Chat Transcript (In Progress) Layout</layout>
+        <layoutType>LiveChatTranscriptActive</layoutType>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Live Chat Transcript (Waiting) Layout</layout>
+        <layoutType>LiveChatTranscriptWaiting</layoutType>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Live Chat Transcript Layout</layout>
+        <sections>
+            <label><!-- Custom Info. --></label>
+            <section>Custom Info.</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

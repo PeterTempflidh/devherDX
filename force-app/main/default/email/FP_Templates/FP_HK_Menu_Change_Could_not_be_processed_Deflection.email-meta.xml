@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Your menu update request could not be processed</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP HK Menu Change - Could not be processed - Deflection</name>
+    <style>freeForm</style>
+    <subject>我們未能處理您的更改餐牌請求 Your Menu update request could not be processed</subject>
+    <textOnly>您好，
+
+感謝您提交了申請。
+
+我們發現您近日在餐廳申請表格提交了有關更改餐牌的請求，由於此表格已經暫停為非連鎖餐廳處理此方面的服務，因此未能為您處理您的申請。
+
+請到餐廳平台登入您的帳號，在餐牌管理中以提交您的餐牌更改。我們會於2個工作天內審視您的申請。
+
+餐廳平台：https://foodpanda.portal.restaurant/login
+
+
+更多協助：
+獲取更多登入的資料 (接單裝置、應用程式、餐廳平台 &gt; 餐廳平台 )
+https://foodpandasg.formstack.com/forms/foodpanda_support_hk
+按此若您忘記密碼 
+https://foodpanda.portal.restaurant/reset-password
+按此獲取餐牌管理教學
+https://docs.google.com/presentation/d/1CqdX9m1PzFVV5_XKLpmOAeldNJAGeO2AAwk1Vn63WxM/edit?usp=sharing
+
+
+感謝您的諒解。
+
+祝安好，
+您的foodpanda團隊
+
+---------------------------------------------------------------------------------------------------
+
+Subject: Your Menu update request could not be processed
+
+Body:
+Dear Partner,
+
+Thank you for your submission. 
+
+We have noticed that you recently submitted a menu update request via our Vendor Request Form. As this feature in the Vendor Request Form is no longer supported for single outlet vendors, we cannot proceed with processing your request.
+
+Please log in to your Restaurant Portal account and head on over to our Menu Management feature to update your menu with just a few clicks. Your request will be reviewed within 2 business days by our internal team.
+
+Restaurant Portal: https://foodpanda.portal.restaurant/login
+
+Need more help?
+Click here to request login detail by selecting “Devices, App, Restaurant Portal Access” https://foodpandasg.formstack.com/forms/foodpanda_support_hk
+
+Click here if you forgot password 
+https://foodpanda.portal.restaurant/reset-password
+
+Click here to view Menu Management Guide https://docs.google.com/presentation/d/1VsRlDN8dVSqPRb16l4pq2_ScFRYxH_LpMwRVyCQTZwE/edit?usp=sharing
+
+
+Cheers,
+Your foodpanda team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

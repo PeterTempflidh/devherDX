@@ -1,0 +1,10 @@
+<design:component Label="Terminate Restaurant" >
+    <sfdc:objects>
+        <sfdc:object>Account</sfdc:object>
+    </sfdc:objects>
+
+    <design:attribute name="modalTitle" label="Popup title" description="Title content" />
+    <design:attribute name="buttonText" label="Button text" description="Button text" />
+    <design:attribute name="showFooter" label="Footer" description="Show footer with buttons" />
+    <design:attribute name="showNewPage" label="New Termination Page" description="Show new termination page" />
+</design:component>

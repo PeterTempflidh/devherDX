@@ -1,0 +1,169 @@
+<apex:page sidebar="false" showHeader="false" applyBodyTag="false" applyHtmlTag="false" docType="html-5.0" standardStylesheets="false" language="de">
+    <html>
+    <head>
+        <title>Chat</title>
+        <!-- NOTE: live agent deployment, must be changed when going to live -->
+        <script type="text/javascript" src="https://c.la1-c1cs-lon.salesforceliveagent.com/content/g/js/41.0/deployment.js"></script>
+
+        <!-- liveagent prechat api to access custom detail, https://help.salesforce.com/articleView?id=000206551&type=1 -->
+        <script type="text/javascript" src="https://c.la1c1.salesforceliveagent.com/content/g/js/40.0/prechat.js"></script>
+
+        <!-- lh branding style  -->
+        <style>
+            /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+            /* Please note that this CSS was not done by Salesforce Team but from PDE frontend team */
+            img,legend{border:0}pre,textarea{overflow:auto}legend,td,th{padding:0}body,html{height:100%;overflow-y:scroll}.inpCls,sub,sup{position:relative}#imgBlock,svg:not(:root){overflow:hidden}body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background-color:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,optgroup,strong{font-weight:700}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button{overflow:visible}button,select{text-transform:none}button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}input{line-height:normal}.de_Button,html{line-height:1.5}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0}input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{height:auto}input[type=search]{-webkit-appearance:textfield;box-sizing:content-box}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}textarea{height:6rem}table{border-collapse:collapse;border-spacing:0}html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-size:14px;font-family:"Museo Sans","Helvetica Neue",Helvetica,Arial,sans-serif}#prechatForm{padding:1rem 1.5rem .5rem}input[type=email],input[type=text],select,textarea{box-sizing:border-box;display:block;width:100%;padding:.6em .5rem;border:1px solid #ccc;border-radius:2px;outline:0;box-shadow:none;background-color:#fff;color:#2a2a2a;font-size:14px;line-height:1.5;-webkit-appearance:none;-moz-appearance:none;appearance:none}select{height:40px}.inpCls{margin-bottom:1rem}#imgBlock{width:100%}#bannerImg{padding-left:12px}.de_Button{box-sizing:border-box;background-color:#ff5900;color:#fff;text-transform:uppercase;-webkit-tap-highlight-color:transparent;display:inline-block;vertical-align:middle;width:100%;height:auto;padding:.6em 1.5em;border:1px solid transparent;border-radius:2px;box-shadow:0 3px 1px -2px rgba(42,42,42,.2);font-size:1em;white-space:nowrap;font-weight:400;text-align:center;text-decoration:none;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-transition:background-color .15s cubic-bezier(.4,1,.75,.9);-o-transition:background-color .15s cubic-bezier(.4,1,.75,.9);transition:background-color .15s cubic-bezier(.4,1,.75,.9)}.de_Button:hover{background-color:#cc4800}input+span[style],select+span[style]{position:absolute;left:-1rem;top:30px;text-align:center}#radioblck{padding-top:.5rem}#radioblck>div{width:auto!important;margin-right:1.5rem}.slds-radio input{margin-right:.5rem}br{display:none}
+        </style>
+
+        <!-- managed by salesforce team -->
+        <style type="text/css">
+            body {
+                overflow: hidden;
+            }
+
+            input:valid + .errorMsg,
+            input:focus + .errorMsg {
+                display: none;
+            }
+
+            input:invalid + .errorMsg {
+                display: "";
+                padding-left: 10px;
+                color: red;
+            }
+        </style>
+    </head> 
+
+    <body>
+
+        <!-- image logo -->
+        <div id="imgBlock">
+            <img src="{!URLFOR($Resource.PizzadeChatLogo)}" id="bannerImg" />
+        </div>
+
+        <form method="post" id="prechatForm" name="prechatForm">
+            <div style="margin-top: 10px;">
+                
+                <!-- user info  -->
+                <div id="userInfo">
+                    
+                    <!-- user name -->
+                    <div class="inpCls">
+                        <div class="inpLabel">Name:</div>
+                        <div>
+                            <input type='text' name='liveagent.prechat:UserName' />
+                            <br />
+                        </div>
+                    </div>
+                    
+                    <!-- email -->
+                    <div class="inpCls">
+                        <div class="inpLabel">
+                            Email:<span style="color:red">&nbsp;*</span>
+                        </div>
+                        <div>
+                            <input type='text' name='liveagent.prechat:EmailDetail' id="emailDetail" required="true" pattern="^[a-zA-Z0-9._%+-/!#$%&'*=?^_`{|}~]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" />
+                            <span class="errorMsg">Bitte gib eine gültige Emailadresse an.</span>
+                            <br />
+                        </div>
+                    </div>
+
+                    <!-- order number -->
+                    <div class="inpCls">
+                        <div class="inpLabel">Bestellnummer:</div>
+                        <div>
+                            <input type='text' name='liveagent.prechat:OrderNumber' pattern="9[0-9]{13}" maxlength="14" />
+                            <span class="errorMsg">Die Bestellnummer besteht aus 14 Ziffern und startet mit 9.</span>
+                        </div>
+                    </div>
+
+                    <!-- my problem -->
+                    <div class="inpCls" id="problem">
+                      <div class="inpLabel">Wobei koennen wir dir helfen?:</div>
+                          <div>
+                            <select name="liveagent.prechat:Problem" id="selectOpt" required="required">               
+                                <option></option>
+                                <option>Bestellung</option>
+                                <option>Gutschein-Code</option>
+                                <option>Zahlung</option>
+                                <option>Ich bin ein Restaurant Partner</option>
+                            </select><span style="color:red">&nbsp;*</span>
+                            <br />
+                       </div>
+                   </div>
+
+                </div>
+                
+                <!-- survey -->
+                <div class="inpCls" id="surveyRadio">
+                    <div class="inpLabel" id="surveyLabel">Im Anschluss an den Chat möchte ich einen Fragebogen zur Bewertung der Qualität des Kundenservice erhalten.<span style="color:red">&nbsp;*</span></div>
+                    <div id="radioblck">
+                        <div style="width:35%;display:inline-block;">
+                            <label class="slds-radio" for="surveyYes">
+                                <input type="radio" name="survey" id="yes" onclick="setSurvey(this)" value="Yes" required="required" />
+                                <span class="selRadio">Ja</span>
+                            </label>
+                        </div>
+                        <div style="width:35%;display:inline-block;">
+                            <label class="slds-radio" for="surveyNo">
+                                <input type="radio" name="survey" id="no" onclick="setSurvey(this)" value="No" required="required" />
+                                <span class="selRadio">Nein</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br/>
+            
+            <!-- hidden input fields -->
+            <div id="hiddenSection" style="display: none">
+                <input type="hidden" name="liveagent.prechat.save:UserName" value="User_Name__c" />
+                <input type="hidden" name="liveagent.prechat.save:EmailDetail" value="Email__c" />
+                <input type="hidden" name="liveagent.prechat.save:OrderNumber" value="Order_Number__c" />
+                <input type="hidden" name="liveagent.prechat.save:Survey" value="Survey__c" />
+                <input type="hidden" name="liveagent.prechat.save:Platform" value="Platform__c" />
+                <input type="hidden" name="liveagent.prechat.save:Problem" value="My_Problem__c" />
+
+                <input type="text" name="liveagent.prechat:Platform" id="Platform" value="PizzaDE" />
+
+                <!-- this one is set by setSurvey(), since it's displayed as a radio -->
+                <select name="liveagent.prechat:Survey" id="selectSurvey" required="required">
+                    <option value="Yes"></option>
+                    <option value="No"></option>
+                </select>
+            </div>
+
+            <div class="inpCls">
+                <input type="submit" value="Request Chat" id="prechat_submit" class="de_Button" />
+            </div>
+        </form>
+
+        <script type="text/javascript">
+            function detailsCallback (details) {
+                // instead of LH, here we receive nothing
+            }
+
+            // set survey select option
+            function setSurvey (radio) {
+                document.getElementById("selectSurvey").value = radio.value;
+            }
+            
+            /**
+             * Called on page load, initializes prechat form
+             */
+            function onPageLoad() {
+                // NOTE: this must be changed when going to live
+                var chatUrl = "https://d.la1-c2-frf.salesforceliveagent.com/chat";
+
+                // form id
+                var formId = "prechatForm";
+
+                liveagent.details.preChatInit(chatUrl, "detailsCallback", formId);
+            }
+
+            window.addEventListener("load", onPageLoad, false); 
+        </script>
+    </body>
+    </html>
+</apex:page>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Includes access/permissions applicable to CZ Management Team.</description>
+    <label>CZ Management</label>
+    <permissionSets>CZ_Account_Management</permissionSets>
+    <permissionSets>CZ_Finance</permissionSets>
+    <permissionSets>CZ_Operations</permissionSets>
+    <permissionSets>CZ_Sales</permissionSets>
+    <permissionSets>Create_Run_Export_Report</permissionSets>
+    <permissionSets>DocGen_User_Additional_Permissions</permissionSets>
+    <permissionSets>Edit_Commission_Base_Field</permissionSets>
+    <permissionSets>Transfer_Lead</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>

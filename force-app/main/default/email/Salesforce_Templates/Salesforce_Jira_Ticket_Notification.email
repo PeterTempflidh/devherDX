@@ -1,0 +1,6 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[Hey there!<div><br></div><div>Your Feature Request with number&nbsp;{!Case.CaseNumber} has been approved and transferred to <a href="{!Case.Jira_Link__c}">Jira</a>.&nbsp;</div><div><br></div><div><div>The Salesforce Team will now plan how best to implement your request and y<span style="font-size: 12pt;">ou can track the progress in</span><span style="font-size: 12pt;">&nbsp;<a href="{!Case.Jira_Link__c}">Jira</a>.</span></div><div><br></div><div>Best regards,</div><div>You Salesforce Team</div></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><span style="color: rgb(33, 33, 33); font-family: arial, sans-serif; font-size: 15px; background-color: rgb(255, 255, 255);">{!Case.Thread_Id}</span></div>]]></td>
+</tr>
+</table>

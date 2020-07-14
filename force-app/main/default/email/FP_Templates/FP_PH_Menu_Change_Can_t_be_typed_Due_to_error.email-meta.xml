@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Menu can’t be typed (due to error, no markup)</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP PH Menu Change - Can’t be typed - Due to error</name>
+    <style>freeForm</style>
+    <subject>We need more information to proceed with your menu update</subject>
+    <textOnly>Dear Restaurant Partner,
+
+Thank you for your recent email # {!Case.CaseNumber} regarding the update to your menu. We are currently unable to process the menu for one of the reasons outlined below:
+
+1. There was no copy of the menu attached to the request
+2. The quality of the image is too low (blurry, flash, sections not readable). The menu image sent needs to be a clear photo or PDF of your menu.
+
+In case your restaurant has various locations listed on our platform, please specify which one(s) require changes.
+
+Please submit again your menu update request so we can proceed. Once we have received this again in one of the required formats, we will happily complete this request for you.
+
+Any questions? Feel free to contact us per E-Mail partner@foodpanda.ph or via phone under +63 2 555 5205.
+
+
+Regards,
+Your foodpanda Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

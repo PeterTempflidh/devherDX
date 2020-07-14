@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Reminder für Endkunden - mehr Details benötigt nach 48 Stunden</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DE_Pizza_de</letterhead>
+    <name>Waiting for answer - 2 Tage</name>
+    <style>freeForm</style>
+    <subject>Deine Anfrage bei pizza.de</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

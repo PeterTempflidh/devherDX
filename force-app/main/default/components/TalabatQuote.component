@@ -1,0 +1,509 @@
+<apex:component controller="CtrCreateQuote" access="global">
+    <apex:attribute name="oppQ" type="String" description="Placeholder" assignTo="{!oppQId}"/>
+    <apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+    <head>
+	    <style type="text/css">
+		    /* A4 size */
+		    
+		    @page {
+		    	size: A4;
+			}
+	
+			@media print {
+				.pageBreak {
+		    		page-break-after: always;
+		    	}
+			}
+		</style>
+	</head>
+    
+            <div id="FI_QUOTE" style="width:700px; margin: auto;page-break-after:always;">
+                <div style="display:inline-block; width:50%;vertical-align: top;">
+                    <img src="{!URLFOR($Resource.Talabat_logo_new)}" style="width: 90%;" />
+                </div>
+                <div id="RestDesc" style="display:inline-block; width:44%;vertical-align: top; float:right;" >
+                    <c:TalabatLetterHead addressString="{!accountWrapper.letterheadAddress}"/>
+                </div>
+                
+                <div id="CQtitle" style="width:700px;margin: auto;margin-top:40px !important;text-align:left;font-size: 14pt">
+                    <strong>Letter of Agreement </strong>
+                </div><br/>
+                <div style="margin: auto;text-align:right;width:100%">
+                    <table style="width:100%">
+                        <tr>
+                            <td style="padding:0px;text-align:right">{!opportunity.owner.name}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:0px;text-align:right">
+                                <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                                    <apex:param value="{!opportunity.closeDate}" /> 
+                                </apex:outputText>
+                            </td>
+                        </tr>
+                        <apex:repeat value="{!accountwrapper.entityname}" var="addLine">
+            				<tr>
+                				<td style="padding:0px;text-align:right">
+                    				{!addLine}  
+                				</td>
+            				</tr>
+        				</apex:repeat>
+                    	<tr>
+                    		<td style="padding:0px;text-align:right">
+                    			(“Talabat”)
+                    		</td>
+                    	</tr>
+                    </table>
+                </div>
+                <br/>
+                <div style="width:100%">
+                	<p>
+                		WHEREAS, Talabat is in the business of food ordering and delivery, and owns the website “www.talabat.com” 
+                		and related E-commerce applications;
+                	</p>
+                	<p>
+                		WHEREAS, the “Subscriber” owns and/or operates (collectively, the “Restaurants”):
+                	</p>
+                	<!-- RESTAURANT DETAILS -->
+                	<table border="1" style="width:100%;border-collapse: collapse">
+                		<tr>
+                			<th style="text-align:left">
+                				Restaurant contact details
+                			</th>
+                			<th style="text-align:left">
+                				Restaurant Invoice details
+                			</th> 
+                		</tr>
+                		<tr>
+                			<td>
+                				Restaurant Name: {!accountWrapper.companyName},
+                				<br/> Legal Name: {!accountWrapper.legalName}
+                			</td>
+                			<td>
+                				Bank Account Owner: {!accountWrapper.bankAccountOwner}
+                			</td>
+                		</tr>
+                		<tr>
+                			<td>
+                				{!accountWrapper.restaurantAddress}
+                			</td>
+                			<td>
+                				IBAN: {!accountWrapper.IBAN}
+                			</td>
+                		</tr>
+                		<tr>
+                			<td>
+                				{!accountWrapper.ownerSalutation} {!accountWrapper.ownerFirstname} {!accountWrapper.ownerLastname}	
+                			</td>
+                			<td>
+                				Bank Account Number: {!accountWrapper.bankAccountNumber}
+                			</td>
+                		</tr>
+                		<tr>
+                			<td>
+                				{!accountWrapper.ownerPhone}
+                			</td>
+                			<td>
+                				Bank Name: {!accountWrapper.bankName}
+                			</td>
+                		</tr>
+                		<tr>
+                			<td>
+                				{!accountWrapper.ownerMobilePhone}
+                			</td>
+                			<td>
+                				Bank Code: {!accountWrapper.swiftCode}
+                			</td>
+                		</tr>
+                		<tr>
+                			<td>
+                				{!accountWrapper.ownerEmail}
+                			</td>
+                			<td>
+                				Invoice Email: {!accountWrapper.billingContactEmail}
+                			</td>
+                		</tr>
+                	</table><br/>
+                	
+                	<apex:outputPanel rendered="{!isTalabatGo}">
+		                <p>
+		                	WHEREAS, the Subscriber wishes Talabat to (i) receive and transmit customers’ orders to the Restaurants 
+		                	and, (ii) accept payments on behalf of the Subscriber through Talabat Debit or Credit payment gateways 
+		                	(the “Payment Gateways”), and (iii) provide the Talabat Go services, whereby Talabat oversees the 
+		                	readiness of the customers’ orders, handles the orders on behalf of the customers and delivers the 
+		                	ordered food to customers (the “Services”) the whole as further described in the Terms and Conditions, 
+		                	and Talabat wishes to provide the Services to the Subscriber.
+		                </p>
+	                </apex:outputPanel>
+	                <apex:outputPanel rendered="{!NOT(isTalabatGo)}">
+	                	<p>
+	                		WHEREAS, the Subscriber wishes Talabat to receive and transmit customers’ orders to the 
+	                		Restaurants, and accept payments on behalf of the Subscriber through Talabat’s Debit or 
+	                		Credit Card payment gateways (the “Payment Gateways”)(the “Services”) the whole as further 
+	                		described in the Terms and Conditions, and Talabat wishes to provide the Services to the 
+	                		Subscriber.
+	                	</p>
+	                </apex:outputPanel>
+                	
+                	<p>
+                		NOW THEREFORE, in consideration of the mutual agreements contained hereunder, 
+                		the Parties agree as follows: 
+                	</p>
+                	
+                	<p>
+                		1&nbsp;&nbsp;&nbsp;Commission, Registration fee, Renewal fee and Bank Charges
+                	</p>
+                	<!-- COMMISSION SECTION -->
+                	<apex:outputPanel rendered="{!listCommisionItems.size > 0}" >
+		                <table border="1" style="width: 100%;border-collapse: collapse;">
+		                	<tr>
+		                		<th>
+		                			Commission Name
+		                		</th>
+		                		<th style="text-align:center">
+		                			Commission
+		                		</th>
+		                		<th style="text-align:center">
+		                			Start Date
+		                		</th>
+		                		<th style="text-align:center">
+		                			End Date
+		                		</th>
+		                		
+		                	</tr>
+		                	<apex:repeat value="{!listCommisionItems}" var="lineItem">
+		                		<tr>
+			                		<td>
+			                			{!lineItem.Id_List_Service_Price__r.Displayed_Name__c}
+			                		</td>
+			                		<td style="text-align:center">
+			                			<!-- CHECK FOR TIERED COMMISSION -->
+			                			<apex:outputPanel rendered="{!lineItem.Scaled__c }" >
+			                				<apex:variable value="1" var="num"/>
+			                				<table style="width: 100%;cellspacing:0">
+			                					<tr>
+			                						<th style="padding:0px;">
+			                							Tier		
+			                						</th>
+			                						<th style="padding:0px;">
+			                							From		
+			                						</th>
+			                						<th style="padding:0px;">
+			                							To		
+			                						</th>
+			                						<th style="padding:0px;">
+			                							Commission		
+			                						</th>
+			                					</tr>
+			                					<apex:repeat value="{!lineItem.Tiers__r}" var="tier">
+			                						<tr>
+			                							<td style="padding:0px;">
+			                							 	{!num}
+			                							</td>
+			                							<td style="padding:0px;">
+			                								{!tier.Min__c}
+			                							</td>
+			                							<td style="padding:0px;">
+			                								<apex:outputPanel rendered="{!tier.Max__c != null}">
+			                									{!tier.Max__c}
+			                								</apex:outputPanel>
+			                								<apex:outputPanel rendered="{!tier.Max__c == null}">
+			                									<span style="font-family: 'Arial Unicode MS';">∞</span>    
+			                								</apex:outputPanel>
+			                							</td>
+			                							<td style="padding:0px;">
+			                								<apex:outputPanel rendered="{!tier.Commission_in_percentage__c != null}">
+								                				{!ROUND(tier.Commission_in_percentage__c, 2)} %
+								                			</apex:outputPanel>
+								                			<apex:outputPanel rendered="{!tier.Commission_per_order__c != null}">
+								                				{!tier.Commission_per_order__c} {!lineItem.CurrencyIsoCode}
+								                			</apex:outputPanel>
+			                							</td>
+			                						</tr>
+			                						<apex:variable var="num" value="{!VALUE(num) + 1}"/>
+			                					</apex:repeat>
+			                				</table>
+			                			</apex:outputPanel>
+			                			<apex:outputPanel rendered="{!NOT(lineItem.Scaled__c) }" >
+			                				<apex:outputPanel rendered="{!lineItem.Commission_In_Percentage__c != null}">
+				                				{!lineItem.Commission_In_Percentage__c} %
+				                			</apex:outputPanel>
+				                			<apex:outputPanel rendered="{!lineItem.Commission_Per_Order__c != null}">
+				                				{!lineItem.Commission_Per_Order__c} {!lineItem.CurrencyIsoCode}
+				                			</apex:outputPanel>
+			                			</apex:outputPanel>
+			                		</td>
+			                		<td style="text-align:center">
+			                			<apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+										    <apex:param value="{!lineItem.Start_Date__c}" /> 
+										</apex:outputText>
+			                		</td>
+			                		<td style="text-align:center">
+			                			<apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+										    <apex:param value="{!lineItem.End_Date__c}" /> 
+										</apex:outputText>
+			                		</td>
+			                	</tr>
+		                	</apex:repeat>
+		                </table><br/>
+	                </apex:outputPanel>
+	                
+	                <!-- PRODUCT SECTION -->
+	                <apex:outputPanel rendered="{!listLineItems.size > 0}" >
+		                <table border="1" style="width: 100%;border-collapse: collapse;">
+		                	<tr>
+
+		                		<th style="text-align:center">
+		                			Product Name	
+		                		</th>
+		                		<th style="text-align:center">
+		                			Start Date
+		                		</th>
+		                		<th style="text-align:center">
+		                			End Date
+		                		</th>
+		                		<th style="text-align:center">
+		                			Price
+		                		</th>
+		                		<th style="text-align:center">
+		                			Discount
+		                		</th>
+		                		<th style="text-align:center">
+		                			Total
+		                		</th>
+		                	</tr>
+		               		<apex:repeat value="{!listLineItems}" var="lineItem">
+		               			<tr>
+
+			               			<td>
+			                			{!lineItem.Id_List_Product_Price__r.Displayed_Name__c}
+			                		</td>
+			                		<td style="text-align:center">
+			                			<apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+										    <apex:param value="{!lineItem.Start_Date__c}" /> 
+										</apex:outputText>
+			                		</td>
+			                		<td style="text-align:center">
+			                			<apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+										    <apex:param value="{!lineItem.End_Date__c}" /> 
+										</apex:outputText>
+			                		</td>
+			                		<td style="text-align:center">
+			                			{!lineItem.Listed_Price__c}
+			                		</td>
+			                		<td style="text-align:center">
+			                			{!lineItem.Discount__c}
+			                		</td>
+			                		<td style="text-align:center">
+			                			{!lineItem.Total_Amount__c}
+			                		</td>
+		                		</tr>
+		               		</apex:repeat>
+		                </table><br/>
+	                </apex:outputPanel>
+	                
+	                 <!--  ADD ON SECTION -->
+	                <apex:outputPanel rendered = "{!listAddOnItems.size > 0}" >
+		                <table border="1" style="width: 100%;border-collapse: collapse;">
+		                	<tr>
+		                		<th>
+		                			Add-On Name
+		                		</th>
+		                		<th style="text-align:center">
+									Description		
+		                		</th>
+		                		<th style="text-align:center">
+									Specifications		
+		                		</th>
+		                		<th style="text-align:center">
+		                			Start Date
+		                		</th>
+		                		<th style="text-align:center">
+		                			End Date
+		                			
+		                		</th>
+		                	</tr>
+		                	<apex:repeat value="{!listAddOnItems}" var="lineItem" >
+			                	<tr>
+			                		<td>
+			                			{!lineItem.Name}
+			                		</td>
+			                		<td style="text-align:left">
+			                			<apex:outputField value="{!lineItem.Contract_Addition__c}" ></apex:outputField>
+			                		</td>
+			                		<td style="text-align:center">
+			                			{!lineItem.Specifications__c}
+			                		</td>
+			                		<td style="text-align:center">
+			                			<apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+										    <apex:param value="{!lineItem.Start_Date__c}" /> 
+										</apex:outputText>
+			                		</td>
+			                		<td style="text-align:center">
+			                			<apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+										    <apex:param value="{!lineItem.End_Date__c}" /> 
+										</apex:outputText>
+			                		</td>
+			                	</tr>
+		                	</apex:repeat>
+		                </table><br/>
+	                </apex:outputPanel>
+	                
+	                 <!-- TERMS AND CONDITIONS -->
+	                
+	                <p>
+            		1.1&nbsp;&nbsp;&nbsp;In consideration for the Services, the Subscriber shall pay to Talabat the 
+            		Commission / Gross Commission, Registration fee, Renewal fee, and Bank Charges specified in the tables 
+            		above 
+	            	</p>
+	            	
+	            	<p>
+	            	1.2&nbsp;&nbsp;&nbsp;The Registration and Renewal Fee shall be paid by the Subscriber to Talabat upon 
+	            	execution of this Letter of Agreement, and the Annual Renewal Fee shall be paid by the Subscriber to Talabat 
+	            	on each anniversary date of the execution of this Letter of Agreement.
+	            	</p>
+					
+					<p>
+					1.3&nbsp;&nbsp;&nbsp;The Commission shall be deducted from the amount due to the Subscriber and collected by 
+					Talabat through the Payment Gateways, the whole as further described in the Terms and Conditions.
+					</p>
+					
+					<p>
+					1.4&nbsp;&nbsp;&nbsp;For any reason, and in case Talabat could not settle its all dues described in the 
+					Terms and Conditions, and as described in clause 1.3 in this Letter of Agreement, Talabat shall be paid by 
+					the Subscriber to Talabat within seven (7) business days of the receipt by the Subscriber of Talabat’s 
+					monthly invoice, the whole as further described in the Terms and Conditions
+					</p>
+					
+					<p>
+					1.5&nbsp;&nbsp;&nbsp;The Net amount (as defined in the Terms and Conditions) shall be made remitted to 
+					Bank account detailed in the Restaurants Invoice Details mentioned above. As described in this clause, 
+					the payable dues to Talabat shall be paid in cash or to the following bank account details:<br/>
+					Beneficiary Name: {!accountWrapper.bankDetails[0]}<br/>
+					IBAN No.: {!accountWrapper.bankDetails[1]}&nbsp;&nbsp;&nbsp;Bank Name: {!accountWrapper.bankDetails[2]}<br/> 
+					Account No.: {!accountWrapper.bankDetails[3]}&nbsp;&nbsp;&nbsp;Swift Code: {!accountWrapper.bankDetails[4]}
+					</p>
+
+					<p>
+					1.6&nbsp;&nbsp;&nbsp;The start date of the calculation of the restaurant’s commission shall be the activation
+					date of the ordering service provided by Talabat, and which shall be communicated to the restaurant by email
+					</p>
+
+			<apex:outputPanel rendered="{!IF(entityCountry == 'Bahrain',true,false)}">
+                        	<p>
+                        	1.7&nbsp;&nbsp;&nbsp;All fees referred to in the contract shall be subject to 5% VAT in accordance with the Laws of the Kingdom of Bahrain.
+                        	</p>
+                    	</apex:outputPanel>
+			<apex:outputPanel rendered="{!IF(entityCountry == 'Kingdom of Saudi Arabia',true,false)}">
+                        	<p>
+                        	1.7&nbsp;&nbsp;&nbsp;All fees referred to in the contract shall be subject to 5% VAT in accordance with the Laws of the Kingdom of Saudi Arabia.
+                        	</p>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!IF(entityCountry == 'United Arab Emirates',true,false)}">
+                        	<p>
+                        	1.7&nbsp;&nbsp;&nbsp;All fees referred to in the contract shall be subject to 5% VAT in accordance with the Laws of the United Arab Emirates.
+                        	</p>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!IF(entityCountry == 'Jordan',true,false)}">
+                        	<p>
+                        	1.7&nbsp;&nbsp;&nbsp;All fees referred to in the contract shall be subject to 16% VAT in accordance with the Laws of Kingdom of Jordan.
+                        	</p>
+                    </apex:outputPanel>
+					
+
+					<p>
+					2&nbsp;&nbsp;&nbsp;EQUIPMENT<br/>
+					2.1 &nbsp;&nbsp;&nbsp;In case it is agreed, Talabat shall provide to the Subscriber on a lease basis 
+					electronic devices (the “Devices”) for total amount mentioned in the above table. which enables the 
+					Subscriber to use the Software. The Subscriber is obliged to pay the amount of the machines that have 
+					not been returned to Talabat according to the full market price. (as defined in the Terms and Conditions).
+					</p>
+					
+					<p>
+					3&nbsp;&nbsp;&nbsp;TERM<br/>
+					3.1&nbsp;&nbsp;&nbsp;This Agreement shall be effective from the date first written above and shall remain in 
+					full force and effect for a period of 1 year. The term of the Agreement shall automatically extend at the end 
+					of the initial term for a series of similar terms, unless either Party gives written notice of non-renewal to 
+					the other party, not later thirty (30) days before the end of the initial term (or subsequent terms).
+					</p>
+					
+					<p>
+					4&nbsp;&nbsp;&nbsp;TALABAT’S SUBSCRIBERS TERMS AND CONDITIONS<br/>
+					4.1&nbsp;&nbsp;&nbsp;This Letter of Agreement shall be governed by, and subject to, Talabat’s terms and 
+					conditions shared here as 
+					<a href="https://campaigns.talabat.com/partner-terms-conditions">
+					https://campaigns.talabat.com/partner-terms-conditions</a> (the “Terms and 
+					Conditions”). For clarification purposes, the term “Agreement” as used herein shall collectively refers 
+					to this Letter of Agreement and the Terms and Conditions. By signing this Letter of Agreement, the Subscriber 
+					agrees to be bound by the Terms and Conditions.
+					</p>
+					
+					<p>
+					5&nbsp;&nbsp;&nbsp;AMENDMENTS	<br/>			
+					5.1&nbsp;&nbsp;&nbsp;No amendment, variation or supplement to this Letter of Agreement shall be effective 
+					unless it is in writing and signed by both Parties.
+					</p>
+					
+					<p>
+					6&nbsp;&nbsp;&nbsp;COUNTERPARTS<br/>
+					6.1&nbsp;&nbsp;&nbsp;This Agreement may be executed and delivered (including by facsimile or other means of 
+					electronic transmission, such as by electronic mail in “pdf” form) in two or more counterparts, and by both 
+					parties hereto in separate counterparts, each of which when executed shall be deemed to be an original, but 
+					all of which taken together shall constitute one and the same.
+					</p>
+					
+					<p>
+					IN WITNESS WHEREOF, the Parties have duly executed this Agreement as of the date first above written.
+					</p>
+	                
+	                <table style="page-break-inside:avoid">
+	                	<tr>
+	                		<th style="text-align:center">
+	                			FOR AND OF BEHALF OF
+								<apex:outputPanel rendered="{!accountWrapper.countryName == 'United Arab Emirates'}" layout="none">
+									<apex:repeat value="{!accountwrapper.entityname}" var="addLine">
+										<br/>
+										{!addLine}
+									</apex:repeat>
+								</apex:outputPanel>
+								{!IF(accountWrapper.countryName == 'United Arab Emirates','','Talabat')}<br/>&nbsp;
+	                		</th>
+	                		<th style="text-align:center">
+	                			FOR AND ON BEHALF OF Subscriber<br/>&nbsp;
+	                		</th>
+	                	</tr> 
+	                	<tr> 
+	                		<td>
+	                			<br/>____________________________________________
+	                		</td>
+	                		<td>
+	                			<br/>____________________________________________
+	                		</td>
+	                	</tr>
+	                	<tr>
+	                		<td>
+	                			Name:
+	                		</td>
+	                		<td>
+	                			Name:
+	                		</td>
+	                	</tr>
+	                	<tr>
+	                		<td>
+	                			Position: 
+	                		</td>
+	                		<td>
+	                			Position:
+	                		</td>
+	                	</tr>
+	                	<tr>
+	                		<td>
+	                			Date: 
+	                		</td>
+	                		<td>
+	                			Date: 
+	                		</td>
+	                	</tr>
+	                </table>
+                </div>
+            </div>   
+</apex:component>

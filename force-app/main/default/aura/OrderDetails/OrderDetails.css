@@ -1,0 +1,20 @@
+.THIS {
+
+}
+.THIS .marginClass{
+    padding-left:2%;
+    padding-right:2%;
+}
+.THIS .rotateClass{
+    transform:rotate(270deg);
+}
+.THIS .disableCursor{
+    cursor: not-allowed;
+}
+.THIS .statusText{
+    overflow-wrap: break-word;
+    padding-top:4px;
+    font-weight:bolder;
+    color:white;
+    padding-left:10px
+}

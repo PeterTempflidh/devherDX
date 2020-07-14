@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Nemůžeme se vám dovolat</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>CZ_Letterhead</letterhead>
+    <name>Zákazník nereaguje na doručení</name>
+    <style>freeForm</style>
+    <subject>Nemůžeme se vám dovolat</subject>
+    <textOnly>Dobrý den,
+
+snažíme se doručit vaši objednávku. Bohužel se nemůžeme dovolat na vámi uvedený telefon.
+Spojte se s námi, prosím, co nejdříve prostřednictvím chatu, pokusíme se zajistit doručení vaší objednávky.
+
+V zákaznickém účtu přejděte do Centra pomoci, zvolte danou objednávku a poté možnost &quot;Moje objednávka je označená jako doručená, ale neobdržel jsem ji&quot;.
+
+Krásný den,
+Tým Dáme jídlo</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

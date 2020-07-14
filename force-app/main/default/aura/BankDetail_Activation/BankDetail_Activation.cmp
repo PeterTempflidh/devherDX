@@ -1,0 +1,25 @@
+<!--
+ - Created by c.kumari on 25.09.2019.
+ -->
+
+<aura:component description="BankDetail_Activation" implements="force:lightningQuickAction,force:hasRecordId,flexipage:availableForRecordHome">
+
+
+    <aura:attribute name="recordId" type="Id" />
+    <div class="slds-notify__content">
+        <p class="slds-align_absolute-center">{!$Label.c.Activate_Bank_Detail_Message}</p>
+    </div>
+    <lightning:recordEditForm aura:id="editForm"
+                              recordId="{!v.recordId}"
+                              objectApiName="Bank_Detail__c"
+                              onload="{!c.handleSaveRecord}"
+                              onsuccess="{!c.closeModal}">
+        <lightning:messages />
+        <lightning:inputField aura:id="statusField" fieldName="Status__c" disabled="true"/>
+        <div class="slds-align_absolute-center">
+            <lightning:button aura:id="submit" type="submit" label="{!$Label.c.Bank_Activation_Button}" class="slds-m-top_medium" variant="brand"/>
+        </div>
+    </lightning:recordEditForm>
+
+
+</aura:component>

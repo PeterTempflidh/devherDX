@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>AT_Letterhead</letterhead>
+    <name>(R) Vertragsunterlagen Eingangsbestätigung</name>
+    <style>freeForm</style>
+    <subject>{!If(ISPICKVAL(Case.Origin,&apos;Email&apos;),&apos;Re: &apos;+Case.Subject,&apos;Ihre Anfrage bei Mjam&apos;)}</subject>
+    <textOnly>Liebes mjam Partnerrestaurant,
+
+sollte diese Nachricht nicht korrekt dargestellt werden, möchten wir Sie bitten, diese mit einem anderen E-Mail Programm zu öffnen. Für Rückfragen stehen wir Ihnen jederzeit zur Verfügung.
+
+Beste Grüße
+
+mjam Kundenservice</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

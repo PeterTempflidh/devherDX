@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Status_Update_to_Recycled</fullName>
+        <description>Stock Item status is updated to &apos;Recycled&apos;</description>
+        <field>Status__c</field>
+        <literalValue>Recycled</literalValue>
+        <name>Status Update to &apos;Recycled&apos;</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>GLOBAL - Condition updated to %27D - Damaged%2FNo longer usable%27</fullName>
+        <actions>
+            <name>Status_Update_to_Recycled</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Stock_Item__c.Condition__c</field>
+            <operation>equals</operation>
+            <value>D - Damaged/No longer usable</value>
+        </criteriaItems>
+        <description>Fires when the Status Condition field is updated to &apos;D - Damaged/No longer usable&apos;.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

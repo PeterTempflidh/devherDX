@@ -1,0 +1,7 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId" controller="SetConsoleTabName_AuraController" description="SetConsoleTabName">
+    <aura:attribute name="tabName" type="String" />
+    <lightning:workspaceAPI aura:id="workspace" />
+    <lightning:conversationToolkitAPI aura:id="conversationKit" />
+    <aura:handler event="lightning:tabFocused" action="{!c.onTabFocused}"/>
+    <aura:handler event="lightning:conversationAgentSend" action="{!c.onAgentSend}"/>
+</aura:component>

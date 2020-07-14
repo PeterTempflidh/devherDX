@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>AT Lead layout</layout>
+        <sections>
+            <label><!-- Lead Score &amp; Grade --></label>
+            <section>Lead Score &amp; Grade</section>
+        </sections>
+        <sections>
+            <label><!-- Sales Information --></label>
+            <section>Sales Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CD Lead Layout</layout>
+        <sections>
+            <label><!-- Lead Score &amp; Grade --></label>
+            <section>Lead Score &amp; Grade</section>
+        </sections>
+        <sections>
+            <label><!-- Sales Information --></label>
+            <section>Sales Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CZ Lead Layout</layout>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Grade --></label>
+            <section>Grade</section>
+        </sections>
+        <sections>
+            <label><!-- Vendor Information --></label>
+            <section>Vendor Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>DE Lead Layout</layout>
+        <sections>
+            <label><!-- Lead Score &amp; Grade --></label>
+            <section>Lead Score &amp; Grade</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>DH AU - Lead Layout</layout>
+        <sections>
+            <label><!-- Lead Score &amp; Grade --></label>
+            <section>Lead Score &amp; Grade</section>
+        </sections>
+        <sections>
+            <label><!-- Sales Information --></label>
+            <section>Sales Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>FP Lead layout</layout>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Score &amp; Grade --></label>
+            <section>Lead Score &amp; Grade</section>
+        </sections>
+        <sections>
+            <label><!-- Vendor Information --></label>
+            <section>Vendor Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>HU Lead Layout</layout>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Grade --></label>
+            <section>Grade</section>
+        </sections>
+        <sections>
+            <label><!-- Vendor Information --></label>
+            <section>Vendor Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PY Lead Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Address Details --></label>
+            <section>Address Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Score &amp; Grade --></label>
+            <section>Lead Score &amp; Grade</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SE/FI Lead Layout</layout>
+        <sections>
+            <label><!-- Lead Score &amp; Grade --></label>
+            <section>Lead Score &amp; Grade</section>
+        </sections>
+        <sections>
+            <label><!-- Sales Information --></label>
+            <section>Sales Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Talabat Lead Layout</layout>
+        <sections>
+            <label><!-- Lead Score &amp; Grade --></label>
+            <section>Lead Score &amp; Grade</section>
+        </sections>
+        <sections>
+            <label><!-- Sales Information --></label>
+            <section>Sales Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>UK Lead Layout</layout>
+        <sections>
+            <label><!-- Sales Information --></label>
+            <section>Sales Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Yogiyo Lead Layout</layout>
+        <sections>
+            <label><!-- Additional Sales Information --></label>
+            <section>Additional Sales Information</section>
+        </sections>
+        <sections>
+            <label><!-- Sales Information --></label>
+            <section>Sales Information</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Convert --></label>
+        <name>Convert</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Log a Call --></label>
+        <name>Log_a_call_Lightning</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Task --></label>
+        <name>New_Task_Lightning</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Event --></label>
+        <name>New_event_Lightning</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- SocialPublisher --></label>
+        <name>SocialPublisher</name>
+    </quickActions>
+    <recordTypes>
+        <label><!-- AT Lead --></label>
+        <name>AT_Lead</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Click Delivery Lead Process --></description>
+        <label><!-- CD Lead --></label>
+        <name>CD_Lead</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Czech Republic Lead --></description>
+        <label><!-- CZ Lead --></label>
+        <name>CZ_Lead</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DE Lead --></label>
+        <name>DE_Lead</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DH AU Lead --></label>
+        <name>DH_AU_Lead</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FI Lead --></label>
+        <name>FI_Lead</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Used for APAC Foodpanda countries. --></description>
+        <label><!-- FP Lead --></label>
+        <name>FP_Lead</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Hungary Lead Process --></description>
+        <label><!-- HU Lead --></label>
+        <name>HU_Lead</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- PedidosYa Lead Process --></description>
+        <label><!-- PY Lead --></label>
+        <name>PY_Lead</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Sweden lead --></description>
+        <label><!-- SE Lead --></label>
+        <name>SE_Lead</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Lead for Talabat --></description>
+        <label><!-- Talabat Lead --></label>
+        <name>Talabat_Lead</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- UK Lead --></label>
+        <name>UK_Lead</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Korea Lead Record Type --></description>
+        <label><!-- Yogiyo Lead --></label>
+        <name>Yogiyo_Lead</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Please enter Area --></errorMessage>
+        <name>APAC_Area_Validation_for_HK</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please Enter a Valid Email Address --></errorMessage>
+        <name>APAC_Lead_Email_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add phone in the right format. It should start with +852 and be followed by 8 digits, without space --></errorMessage>
+        <name>APAC_Phone_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a Postcode --></errorMessage>
+        <name>AT_Lead_Postcode_Mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter phone number --></errorMessage>
+        <name>AT_Phone_Mandatory_before_qualified</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add phone in the right format. It should start with +880 and be followed by 8 to 10 digits, without space --></errorMessage>
+        <name>Bangladesh_Phone_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Category should be blank. It can only be selected for Regular Restaurants. --></errorMessage>
+        <name>CZ_Category_Selection</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Přidejte prosím telefonní číslo ve správném formátu. Mělo by začínat předvolbou +420 NEBO +421, která bude následována 9 číslicemi, bez mezery.</errorMessage>
+        <name>CZ_Phone_Format</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add phone in the right format. It should start with +855 and be followed by 8 or 9 digits, without space --></errorMessage>
+        <name>Cambodia_Phone_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This Category or Vertical Segment is not allowed in your country. --></errorMessage>
+        <name>FP_Category_Selection</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This Category or Vertical Segment is not allowed in your country. --></errorMessage>
+        <name>FP_Category_Selection_Wave1</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select the Category of the Restaurant --></errorMessage>
+        <name>FP_Category_is_Mandatory_for_Restaurants</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Categories for shops are not available for APAC --></errorMessage>
+        <name>FP_No_categories_for_shops</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This Vertical Segment is not allowed in your country. --></errorMessage>
+        <name>FP_Vertical_Segment_Selection</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please put a lost reason. --></errorMessage>
+        <name>GLOBAL_Lost_Leads</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This lead doesn&apos;t have a GRID and can&apos;t be converted. --></errorMessage>
+        <name>GLOBAL_NoConversionWithoutGRID</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can not change the status to converted, please press the button &quot;Convert&quot; to convert your lead --></errorMessage>
+        <name>GLOBAL_Not_Allow_to_set_status_convert</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select the cuisine of the Restaurant --></errorMessage>
+        <name>Gl_Enter_Cusine_when_industry_Restaurant</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add the Id / GRID of the duplicate Lead in the field &quot;Duplicate Id&quot;. --></errorMessage>
+        <name>Global_Duplicate_Id_Mandatory_on_DupLead</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a valid email address. --></errorMessage>
+        <name>Global_Lead_Email_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add  the following information before changing the lead status: External rating,Number of reviews, Feature Competitor, Number of Restaurants and Target Partner --></errorMessage>
+        <name>Global_complete_lead_grade_fields</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This required field must be completed: City --></errorMessage>
+        <name>HU_CZ_City_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This required field must be completed: ZIP/Postal Code --></errorMessage>
+        <name>HU_CZ_PostalCode_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This required field must be completed: Street --></errorMessage>
+        <name>HU_CZ_Street_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Mobile number should start with country code and not include spaces --></errorMessage>
+        <name>HU_MobilePhone_Format</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Phone number should start with country code and not include spaces --></errorMessage>
+        <name>HU_OtherPhone_Format</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Phone number should start with country code and not include spaces --></errorMessage>
+        <name>HU_Phone_Format</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add phone in the right format. It should start with +856 and be followed by 8 to 10 digits, without space --></errorMessage>
+        <name>Laos_Phone_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please put the city before you save it --></errorMessage>
+        <name>Lead_City_Mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add  the following information before changing the lead status: External Rating, Number of Reviews, Review Source, Feature Competitor, Number of Restaurants and Target Partner --></errorMessage>
+        <name>ME_Lead_Score_Data_Mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add phone in the right format. It should start with +60 and be followed by 8 to 10 digits, without space --></errorMessage>
+        <name>Malaysia_Phone_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add phone in the right format. It should start with +95 and be followed by 6 - 10 digits, without space --></errorMessage>
+        <name>Myanmar_Phone_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You have no permissions to convert a lead that you do not own --></errorMessage>
+        <name>Not_able_to_convert_if_not_lead_owner</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Add the Person in charge field --></errorMessage>
+        <name>Person_in_Charge_Mandatory_fields</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add phone in the right format. It should start with +63 and be followed by 8 to 10 digits, without space --></errorMessage>
+        <name>Philippines_Phone_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Telephone numbers have to be formatted like this: +4955523681234 (+CountryCodeAreaCodeNumber) --></errorMessage>
+        <name>Phone_Number_Formating</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Phone numbers must start with +46 or +47 followed by 7-9 digits. --></errorMessage>
+        <name>SE_Phone_Format</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add phone in the right format. It should start with +65 and be followed by 8 digits, without space --></errorMessage>
+        <name>Singapore_Phone_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add phone in the right format. It should start with +886 and be followed by 8 to 10 digits, without space --></errorMessage>
+        <name>Taiwan_Phone_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter Email --></errorMessage>
+        <name>Talabat_Lead_Email_mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can not change the status to qualified, this needs to be done by the Research Team. --></errorMessage>
+        <name>Talabat_Not_Allow_to_set_status_qualifie</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add phone in the right format. It should start with +66 and be followed by 8 to 10 digits, without space --></errorMessage>
+        <name>Thailand_Phone_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The mobile number has to start with 0044 7 and contain only numbers. --></errorMessage>
+        <name>UK_Mobile_Format</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The lead should have at least one restaurant --></errorMessage>
+        <name>UK_Number_of_restaurants_can_not_be_0</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The phone number has to start with 0044 and should contain only numbers. --></errorMessage>
+        <name>UK_OtherPhone_Format</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter 0044 before the number and Only phone number, no mobile --></errorMessage>
+        <name>UK_Phone_Format</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter correct format: (AN NAA; &quot;M1 1AA&quot;), (ANN NAA; &quot;M60 1NW&quot;), (AAN NAA; &quot;CR2 6XH&quot;), (AANN NAA; &quot; DN55 1PT&quot;), ( ANA NAA; &quot;W1A 1HQ&quot;), (AANA NAA; &quot;EC1A 1BB&quot;) --></errorMessage>
+        <name>UK_Postcode_Mandatory_and_right_format</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Attach_File --></label>
+        <name>Attach_File</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Convert_v2 --></label>
+        <name>Convert_v2</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- GoogleMaps --></label>
+        <name>GoogleMaps</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- GoogleNews --></label>
+        <name>GoogleNews</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- GoogleSearch --></label>
+        <name>GoogleSearch</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Lead_Conversion --></label>
+        <name>Lead_Conversion</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_Edit --></label>
+        <name>Mass_Edit</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_Email --></label>
+        <name>Mass_Email</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_Update --></label>
+        <name>Mass_Update</name>
+    </webLinks>
+</CustomObjectTranslation>

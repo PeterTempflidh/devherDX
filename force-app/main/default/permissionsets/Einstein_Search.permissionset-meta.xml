@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>SSC-2221
+
+Permissions:
+
+Einstein Search
+Einstein Search Record Previews
+Einstein Search Results Based on Conversational Search</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Einstein Search</label>
+    <license>MySearchPsl</license>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>UseAssistantDialog</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>UseMySearch</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>UseQuerySuggestions</name>
+    </userPermissions>
+</PermissionSet>

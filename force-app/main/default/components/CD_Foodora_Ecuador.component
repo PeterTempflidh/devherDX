@@ -1,0 +1,361 @@
+<apex:component controller="CtrCreateQuote" access="global">
+    <apex:attribute name="oppQ" type="String" description="Placeholder" assignTo="{!oppQId}"/>
+    <apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+    <div class="UK_Font">
+        <!-- LOGO -->
+        <div style="display:inline-block;width:100%">
+             <img src="{!URLFOR($Resource.CD_Logo)}" style="float:right; width:300px;"/>
+        </div>
+        <div class="clearboth" />
+        <!-- TITLE -->
+        <div style="display:inline-block;width:100%">
+            <h3 style="width: 250px; margin: 0 auto;font-weight: bold;padding-top:20px;"> CONTRATO DE CORRETAJE Y REPARTO</h3>
+        </div>
+        <!-- SUBTITLE -->
+        <h3 style="font-weight: bold !important;" class="Bold"><b> CONTRATO DE CORRETAJE </b></h3>
+        <!-- STATIC TABLE -->
+        <table border="1" style="width:100%" id="CQTable">
+            <tr>
+                <td style="width:50%">Enseña o nombre comercial del ESTABLECIMIENTO DE COMERCIO</td>
+                <td style="width:50%;text-align:right;font-weight: bold">{!accountWrapper.restaurantName}</td>
+            </tr>
+            <tr>
+                <td>Razón social o nombre completo del propietario</td>
+                <td style="width:50%;text-align:right;font-weight: bold">{!accountWrapper.companyName}</td>
+            </tr>
+            <tr>
+                <td>RUC o Identificación</td>
+                <td style="width:50%;text-align:right;font-weight: bold">{!accountWrapper.companyId}</td>
+            </tr>
+            <tr>
+                <td>Dirección oficinas principales – Domicilio</td>
+                <td style="width:50%;text-align:right;font-weight: bold">{!accountWrapper.restaurantAddress}</td>
+            </tr>
+            <tr>
+                <td>Nombre del Representante Legal</td>
+                <td style="width:50%;text-align:right;font-weight: bold">{!accountWrapper.ownerName}</td>
+            </tr>
+            <tr>
+                <td>Teléfonos fijos</td>
+                <td style="width:50%;text-align:right;font-weight: bold">{!accountWrapper.ownerPhone}</td>
+            </tr>
+            <tr>
+                <td>Teléfonos móviles</td>
+                <td style="width:50%;text-align:right;font-weight: bold">{!accountWrapper.ownerMobilePhone}</td>
+            </tr>
+            <tr>
+                <td>Correo electrónico</td>
+                <td style="width:50%;text-align:right;font-weight: bold">{!accountWrapper.ownerEmail}</td>
+            </tr>
+            <tr>
+                <td>Datos de la cuenta en entidad financiera donde recibe pagos</td>
+                <td>
+                    <table style="margin-bottom: 0 !important" width="100%">
+                         <tr >
+                             <td style="border: 0 !important">Banco<br/></td>
+                            <td style="border: 0 !important">Tipo de Cuenta</td>
+                            <td style="border: 0 !important">Número</td>
+                        </tr>   
+                        <tr>
+                             <td style="border: 0 !important"><span style="font-weight: bold">{!accountWrapper.BankName}</span></td>
+                            <td style="border: 0 !important;font-weight: bold" ><apex:outputText value="{!accountWrapper.bankAccountType}"/></td>
+                            <td style="border: 0 !important"><span style="font-weight: bold">{!accountWrapper.bankAccountNumber}</span></td>                         
+                        </tr>    
+                    </table>                        
+                </td>
+            </tr>
+        </table>
+        
+        <h2> DATOS DEL CORREDOR </h2>
+        <table border="1" style="width:100%" id="CQTable">
+            <tr>
+                <td style="width:50%">Denominación social</td>
+                <td style="width:50%;text-align:right;font-weight: bold">Inversiones Delivery Hero CMR S.A</td>
+            </tr>
+            <tr>
+                <td style="width:50%">RUC</td>
+                <td style="width:50%;text-align:right;font-weight: bold">1792512433001</td>
+            </tr>
+            <tr>
+                <td style="width:50%">Dirección oficinas principales - Domicilio</td>
+                <td style="width:50%;text-align:right;font-weight: bold">Av. Mariana de Jesus E6-136 y Av. Amazonas</td>
+            </tr>
+            <tr>
+                <td style="width:50%">Correo electrónico</td>
+                <td style="width:50%;text-align:right;font-weight: bold">rmedina@clickdelivery.com  gbaquero@clickdelivery.com</td>
+            </tr>
+        </table>
+        <h2> REMUNERACIÓN </h2>
+         <br />
+        <apex:outputPanel rendered="{!comissionsExist}">
+        <table id="CQTable" border="1" width="100%">
+            <tr>
+                <th><span class="bold">Producto</span></th>
+                <th><span class="bold">Fecha de Inicio</span></th>
+                <th><span class="bold">Fecha de Terminación </span></th>
+                <th><span class="bold">Tasa(%)</span></th>
+            </tr>
+            <apex:repeat value="{!listCommisionItems}" var="item">
+                <tr>               
+                    <td>
+                        <span>{!item.Id_List_Service_Price__r.Displayed_Name__c}</span>
+                    </td>
+                    <td>
+                        <span>
+                            <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                                <apex:param value="{!item.Start_Date__c}" /> 
+                            </apex:outputText>
+                        </span>
+                    </td>
+                    <td>
+                        <span>
+                            <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                                <apex:param value="{!item.End_Date__c}" /> 
+                            </apex:outputText>
+                        </span>
+                   </td>    
+                   <td>
+                        <span>{!item.Commission_In_Percentage__c}</span>
+                    </td>     
+                </tr>
+            </apex:repeat>
+        </table>
+        <apex:outputPanel rendered="{!if(oppquote.Non_Standard_Contract_Components__c=='Platform exclusivity','true','false')}">
+        <br/>
+        {!quoteNonstandardText}
+        <br/><br/>
+        El descuento otorgado bajo este Contrato se reconocerá durante el período de tiempo en que el ESTABLECIMIENTO DE COMERCIO publique únicamente sus marcas y productos para la prestación de los servicios aquí descritos en las Plataformas del CORREDOR, siendo otorgado como una contraprestación por dicha concesión y el beneficio económico percibido por el ESTABLECIMIENTO DE COMERCIO. En el evento que el ESTABLECIMIENTO DE COMERCIO decida publicar sus productos y marcas en otras plataformas, no podrá acceder a este descuento y, desde el momento de dicha determinación, Se aplicará por parte del CORREDOR de manera inmediata la comisión normal mencionada anteriormente.
+        
+        </apex:outputPanel>
+        </apex:outputPanel>
+        <br />
+        <apex:outputPanel rendered="{!tieredCommissionExist}">
+        La siguiente comisión "<b>{!listCommisionItems[0].Id_List_Service_Price__r.Displayed_Name__c}</b>" será activada desde la fecha &nbsp;<apex:outputText value="{0,date,dd'.'MM'.'yyyy}"><apex:param value="{!listCommisionItems[0].Start_Date__c}" /></apex:outputText> <apex:outputPanel rendered="{!If(listCommisionItems[0].End_Date__c=null,false,true)}">&nbsp; hasta &nbsp;<apex:outputText value="{0,date,dd'.'MM'.'yyyy}"><apex:param value="{!listCommisionItems[0].End_Date__c}" /></apex:outputText> </apex:outputPanel>
+        <br/>
+        <br/>
+        <table id="CQTable" border="1" width="100%">
+            <tr>
+                <th><span class="bold">Desde</span></th>
+                <th><span class="bold">Hasta</span></th>
+                <th><span class="bold">Tasa(%)</span></th>
+            </tr>
+            <apex:repeat value="{!listCommisionItems}" var="item">
+                <tr style="{!if(item.Min__c=null,'display:none','')}">               
+                     <td>
+                        <apex:outputText value="{0, number, 0}">
+                           <apex:param value="{!item.Min__c}" />
+                        </apex:outputText>
+                                               
+                    </td>
+                    <td>
+                        <span>
+                            <apex:outputText value="{0, number, 0}">
+                           <apex:param value="{!item.Max__c}" />
+                        </apex:outputText>
+                        </span>
+                    </td>
+                   <td>
+                        <span>{!item.Commission_In_Percentage__c}</span>
+                    </td>     
+                </tr>
+            </apex:repeat>
+        </table>
+        </apex:outputPanel>
+        <br />
+        <apex:outputPanel rendered="{!additionalCostsExist}">
+        <table id="CQTable" border="1" width="100%">
+            <tr>
+                <th><span class="bold">Producto</span></th>
+                <th><span class="bold">Precio de Venta</span></th>
+                <th style="display:{!if(isDiscount,'','none')}"><span class="bold">Descuento</span></th>
+                <th><span class="bold">Precio Final</span></th>
+                <th><span class="bold">Plazos</span></th>
+                <th><span class="bold">Importe de los Plazos Individuales</span></th>
+            </tr>
+            <apex:repeat value="{!listLineItems}" var="item">
+                <tr>               
+                    <td>
+                       
+                        <span>{!item.Id_List_Product_Price__r.Displayed_Name__c} <span style="display:{!if(item.Id_List_Product_Price__r.Displayed_Name__c=='Exclusive Special Offer','block','none')}">{!quoteNonstandardText}</span></span>
+                    </td>
+                    <td>
+                       <span>${!item.Listed_Price__c}</span>
+                    </td>
+                    <td  style="display:{!if(isDiscount,'','none')}">
+                       <span>{!item.discount__c}</span>
+                    </td>
+                    <td>
+                       <span>${!item.Total_Amount__c}</span>
+                    </td>            
+                    <td style="width:70px">
+                       <span>{!item.Installments__c}</span>
+                    </td> 
+                    <td>
+                       <span>${!if(item.Installments__c != null && item.Installments__c > 0, ROUND(item.Total_Amount__c / item.Installments__c,2), item.Total_Amount__c)}</span>
+                    </td>       
+                </tr>
+            </apex:repeat>
+        </table>
+        </apex:outputPanel>
+        <table style="width:100%">
+            <tr>
+                <td style="width:50%">Entre los suscritos, identificados como aparece anteriormente y al pie de sus firmas, denominados como el “ <span class="bold">CORREDOR</span>” y el “<span class="bold">ESTABLECIMIENTO DE COMERCIO</span>” respectivamente, han celebrado el presente <span class="bold">CONTRATO DE CORRETAJE</span>, a partir de las siguientes:<br/></td>
+                <td style="width:50%;border:1px solid;"><span class="bold">Comentarios:</span> {!oppQuote.Approval_Comments__c}</td>
+            </tr>
+        </table>
+        <div id="col_short" style="-moz-column-count: 2;-webkit-column-count: 2;column-count: 2;">
+        <div style="width:100px; margin: 0 auto;"><span class="bold">CONSIDERACIONES</span></div><br/>
+
+        <ol type="a">
+            <li>El CORREDOR opera, administra y aprovecha comercialmente en Ecuador, pero sin limitarse, el portal web www.adomicilioYa.com, la aplicación transaccional para dispositivos móviles ADOMICILIOYA (disponible para ser descargada en la tienda de aplicaciones de los sistemas operativos IOS y Android)  y otras plataformas administradas u operadas por el CORREDOR (en adelante las “Plataformas CLICKDELIVERY”), que permiten poner en contacto al ESTABLECIMIENTO DE COMERCIO con sus clientes, para que a través del uso de las Plataformas estos últimos puedan efectuar o realizar pedidos de cualquiera de los productos que comercializa el ESTABLECIMIENTO DE COMERCIO, que son entregados y suministrados directamente por el ESTABLECIMIENTOS DE COMERCIO. </li>
+            <li>El ESTABLECIMIENTO DE COMERCIO tiene la intención de incluir sus productos en la plataforma y aplicación ADOMICILIOYA del CORREDOR.</li>
+            <li>Los contratantes, son plenamente capaces y sus representantes legales cuentan con las facultades legales y estatutarias para celebrar el presente contrato, y en virtud de lo anterior, suscriben el presente contrato el cual se regirá por las normas legales vigentes aplicables y en especial por las siguientes:</li>
+        </ol>
+        <br/>
+
+        <div style="width:100px; margin: 0 auto;"><span class="bold">CLÁUSULAS</span></div><br/>
+        <span class="bold">PRIMERA.- OBJETO.</span>En virtud del presente contrato el CORREDOR actuará como intermediario en la tarea de promover y publicitar los productos del ESTABLECIMIENTO DE COMERCIO, en el portal web www.adomicilioYa.com, en la aplicación, actual o futura para dispositivos móviles de CLICKDELIVERY y cualquier otra plataforma, para poner en relación y contacto al ESTABLECIMIENTO DE COMERCIO con los Usuarios de las Plataformas CLICKDELIVERY (los “Usuarios”) y así facilitar la realización de pedidos de sus productos online para ser entregados por el CORREDOR a domicilio o que sean entregados directamente por el ESTABLECIMIENTO DE COMERCIO en sus propias instalaciones a los Usuarios.<br/>
+        <span class="bold">SEGUNDA.- ROL DEL CORREDOR.</span>El papel desarrollado por el CORREDOR en virtud del presente contrato se ajusta únicamente a poner en disposición del ESTABLECIMIENTO DE COMERCIO y de los Usuarios un espacio virtual con el fin que celebren entre ellos un negocio comercial, sin estar vinculados de ninguna forma con el ESTABLECIMIENTO DE COMERCIO o con los Usuarios por relaciones de colaboración, dependencia, mandato o representación.<br />
+        <span class="bold">TERCERA.- PROCEDIMIENTO. El CORREDOR</span>El CORREDOR registrará los pedidos de productos del ESTABLECIMIENTO DE COMERCIO efectuados por los Usuarios en sus plataformas y los transmitirá al ESTABLECIMIENTO DE COMERCIO quien se encargará, de manera exclusiva, de preparar los productos. La responsabilidad de entrega a los Usuarios será del CORREDOR en los términos de este contrato. <br/>
+        
+        <span class="bold">PARÁGRAFO 1.- </span>Los pedidos serán transmitidos por el CORREDOR al ESTABLECIMIENTO DE COMERCIO por cualquier medio habilitado entre las partes, y especialmente, sin limitarse, a través de los siguientes: a) Sistema en línea de las Plataformas CLICKDELIVERY; b) Llamada telefónica al ESTABLECIMIENTO DE COMERCIO efectuada desde el call center del CORREDOR; c) Integración con el sistema POS; o d) Terminales POS <br />
+        <span class="bold">PARÁGRAFO 2.- </span>El ESTABLECIMIENTO DE COMERCIO deberá comunicar al CORREDOR cualquier modificación o actualización que pretenda efectuar sobre su menú, antes de realizarla, y con al menos diez (10) días hábiles de anticipación a la fecha de implementación, de ser posible, a fin que, dentro de un término razonable, el CORREDOR pueda generar las modificaciones respectivas en los menús incluidos en las plataformas. En todo caso, el ESTABLECIMIENTO DE COMERCIO se compromete a respetar el precio y los demás términos y condiciones informados inicialmente a los Usuarios, garantizando que se mantendrán frente a aquellos pedidos realizados con anterioridad a la fecha que se actualice la información en las Plataformas CLICKDELIVERY.<br/>
+        <span class="bold">PARÁGRAFO 3.-</span> El ESTABLECIMIENTO DE COMERCIO deberá informar inmediatamente al CORREDOR cualquier situación que impida la entrega al CORREDOR de los productos para su posterior reparto a los Usuarios, con el propósito que el CORREDOR pueda ofrecer al Usuario otras opciones dentro de las Plataformas CLICKDELIVERY, de ser solicitado por el Usuario o para efectos de dar respuesta a cualquier solicitud o reclamo presentado por el Usuario.<br/>
+
+        <span class="bold">CUARTA.- PAGOS. </span>El CORREDOR recibirá todos los dineros correspondientes de la venta de los productos, estando expresamente facultado y autorizado por el ESTABLECIMIENTO DE COMERCIO para recaudarlos en nombre del ESTABLECIMIENTO DE COMERCIO, y transferirá al ESTABLECIMIENTO DE COMERCIO al finalizar cada período mensual (quincenal) a la cuenta bancaria informada por el ESTABLECIMIENTO DE COMERCIO. El CORREDOR aplicará los valores correspondientes por las tarifas de los servicios de reparto y logística, las sanciones a que haya lugar (según se definen estos valores en la cláusula octava del contrato) y la remuneración que le corresponda por todas las órdenes o pedidos efectuados a través de las Plataformas CLICKDELIVERY.  La distribución de los recursos al Establecimiento de Comercio se realizará quincenalmente tomando como fechas de corte del 25 al 10 y del 11 al 24 , Los pagos se realizarán máximo diez (10) días hábiles siguientes al cierre de cada corte.<br/>
+
+        <span class="bold">PARÁGRAFO 1.-</span> El CORREDOR podrá compensar y descontar de lo que deba consignar o transferir al ESTABLECIMIENTO DE COMERCIO, cualquier suma que el ESTABLECIMIENTO DE COMERCIO le adeude por cualquier concepto, siempre y cuando la obligación sea exigible al momento de la compensación. Se aclara que la remuneración del CORREDOR es exigible desde el mismo momento en que se realiza la orden o pedido.<br/>
+        <span class="bold">PARÁGRAFO 2.-</span> La consignación o transferencia a favor del ESTABLECIMIENTO DE COMERCIO deberá efectuarse a la cuenta en entidad financiera señalada en la carátula del presente contrato.<br/>
+
+        
+        <span class="bold">QUINTA.- FACULTADES DEL CORREDOR.</span>En virtud del presente contrato el CORREDOR se encuentra facultado para:
+        <ol type="a">
+            <li>Crear y exhibir públicamente piezas publicitarias para la promoción de los productos del ESTABLECIMIENTO DE COMERCIO, en las Plataformas CLICKDELIVERY y en cualquier otro medio, cumpliendo con la LICENCIA DE USO.</li>
+            <li>Ofrecer por cualquier medio los productos y servicios del ESTABLECIMIENTO DE COMERCIO.</li>
+            <li>Entregar a los Usuarios del ESTABLECIMIENTO DE COMERCIO, regalos de cortesía marcados con los signos distintivos del CORREDOR y del ESTABLECIMIENTO DE COMERCIO.</li>
+            <li>Ejecutar todas las demás actividades convenientes o necesarias para la ejecución del presente contrato.</li>
+        </ol>
+        <br/>
+
+        <span class="bold">
+            SEXTA.- OBLIGACIONES DEL CORREDOR. 
+        </span>
+        En virtud del presente contrato el CORREDOR estará especialmente obligado a:
+        <ol type="a">
+            <li>Permitir al ESTABLECIMIENTO DE COMERCIO la inclusión de su menú en las Plataformas CLICKDELIVERY.</li>
+            <li>Suministrar asistencia virtual y/o telefónica a los Usuarios en la realización de los pedidos online de los productos y servicios de ESTABLECIMIENTO DE COMERCIO.</li>
+            <li>Suministrar asistencia virtual y/o telefónica al ESTABLECIMIENTO DE COMERCIO para coordinar una adecuada inclusión de su menú en las Plataformas CLICKDELIVERY.</li>
+            <li>Prestar los servicios de reparto y logística en los términos y condiciones previstos bajo el presente contrato. Para los efectos de este Contrato, se entenderá que el CORREDOR no tendrá responsabilidad en la entrega efectiva de un pedido, en caso de presentarse un evento de caso fortuito o fuerza mayor o por razones imputables al ESTABLECIMIENTO DE COMERCIO. Se entenderá como un evento de caso fortuito o fuerza mayor cualquier evento o circunstancia imprevista e irresistible para el CORREDOR o los Domiciliarios, incluyendo, pero sin limitarse, a guerras o emergencias nacionales, levantamiento civil, incendio, explosión, inundación u otro fenómeno natural o de otras características, huelgas generales prolongadas que afecten materialmente la actividad del CORREDOR, cualquier mandato judicial, decreto, orden, ley o regulación de cualquier autoridad pública que impida la realización de actividades o la operación del CORREDOR de manera normal.</li>
+            <li>Capacitar e instruir a sus empleados o sub-contratistas destinados para la ejecución y prestación de los servicios de reparto y logística (los "Domiciliarios"), respecto del manejo y tratamiento de los productos, en especial, respecto de la prohibición de alterar o manipular indebidamente de cualquier forma los productos.</li>
+            <li>Informar de manera mensual al ESTABLECIMIENTO DE COMERCIO sobre los pedidos atendidos para efectos que el mismo pueda realizar el seguimiento y monitoreo de los mismos.</li>
+            <li>Recibir todos los dineros recibidos de la venta de los productos en los términos de la cláusula Cuarta del presente contrato. </li>
+            <li>Mantener en secreto la información confidencial a la que tenga acceso con ocasión del presente contrato.</li>
+            <li>Cuando el CORREDOR y el ESTABLECIMIENTO DE COMERCIO hayan llegado a un acuerdo puntual al respecto, desarrollar una aplicación móvil personalizada y/o una plataforma virtual personalizada con los signos distintivos del ESTABLECIMIENTO DE COMERCIO.</li>
+            <li>Usar los derechos licenciados por el ESTABLECIMIENTO DE COMERCIO exclusivamente para dar cumplimiento a este CONTRATO DE CORRETAJE, específicamente con la Cláusula Quinta.</li>
+        </ol>
+        <br/>
+
+        <span class="bold">SÉPTIMA.- OBLIGACIONES DEL ESTABLECIMIENTO DE COMERCIO </span><br/>
+        En virtud del presente contrato el ESTABLECIMIENTO DE COMERCIO estará especialmente obligado a:
+        <ol type="a">
+            <li>Pagar al CORREDOR la remuneración acordada en la cláusula octava del presente contrato, así como la contraprestación por los servicios de reparto y logística, que serán pagaderas mediante descuento directo aplicado por el CORREDOR del monto total recibido por las ventas de los productos del ESTABLECIMIENTO DE COMERCIO bajo este contrato.</li>
+            <li>Comunicar su disponibilidad de entrega de los productos a los Domiciliarios, tan pronto la orden sea transmitida por el CORREDOR. Para tales efectos, deberá tener a disposición de los Domiciliarios los productos objeto de los pedidos dentro de los diez minutos posteriores al procesamiento de cada pedido, de tal forma que los Domiciliarios puedan entregar los productos dentro del plazo o término informado al Usuario. El ESTABLECIMIENTO DE COMERCIO será el único responsable frente a las demoras en la preparación o elaboración del Producto, que impidan entregar el producto al Usuario dentro del plazo informado.</li>
+            <li>Entregar a los Domiciliarios los productos, de conformidad con los pedidos procesados a través de las Plataformas CLICKDELIVERY, en las mismas condiciones y cantidades solicitadas por los Usuarios.</li>
+            <li>En el evento que los productos hayan sido entregados de manera incompleta a los Domiciliarios, o no se ajusten al pedido del Usuario, el CORREDOR estará facultado para aplicar la penalidad prevista en la cláusula octava del contrato, por cada evento de esta naturaleza que se presente. En el evento que el Usuario devuelva el pedido por (i) las situaciones anteriormente descritas en este literal d), (ii) por la demora en la entrega del pedido al Usuario ocasionada y derivada del retraso por parte del ESTABLECIMIENTO DE COMERCIO en la preparación y entrega del mismo a los Domiciliarios, o (iii) cualquier otra situación imputable al ESTABLECIMIENTO DE COMERCIO, (en adelante los "Eventos de Devolución del Pedido"), el ESTABLECIMIENTO DE COMERCIO declara conocer y aceptar que en los Eventos de Devolución del Pedido no habrá lugar a la entrega de ninguna suma de dinero por parte del CORREDOR a favor del ESTABLECIMIENTO DE COMERCIO, sin perjuicio de la aplicación de la penalidad prevista en este contrato.</li>
+            <li>Preparar por su propia cuenta y riesgo los productos, destinando el personal necesario e idóneo para tales efectos.</li>
+            <li>Obtener y mantener vigentes por su propia cuenta y riesgo, todos los permisos, licencias y/o autorizaciones que se requieran para ofrecer, comercializar y promover los productos a sus clientes y el público en general.</li>
+            <li>Responder directamente ante los Usuarios por la calidad y presentación de los productos, atendiendo oportunamente todos los reclamos presentados por los Usuarios, bien sea recibidos directamente por el CORREDOR o por el ESTABLECIMIENTO DE COMERCIO. En el evento que los reclamos sean recibidos directamente por el CORREDOR, colaborar en la atención y respuesta inmediata de dichos reclamos. </li>
+            <li>Suministrar oportunamente al CORREDOR toda la información relevante para la ejecución del presente contrato especialmente la concerniente a los precios y características de los productos del ESTABLECIMIENTO DE COMERCIO.</li>
+            <li>Comunicar al CORREDOR cualquier actualización o modificación de su menú, en los plazos definidos en este contrato.</li>
+            <li>Facilitar la instalación de la tienda en línea CLICKDELIVERY en su sitio o portal web</li>
+            <li>Cuando entre CORREDOR y ESTABLECIMIENTO DE COMERCIO hayan llegado a un acuerdo específico para el desarrollo personalizado de una aplicación móvil y/o una plataforma virtual con los signos distintivos del ESTABLECIMIENTO DE COMERCIO, este último no podrá utilizar una aplicación móvil y/o plataforma virtual diferente de las suministradas por el CORREDOR.</li>
+            <li>Ofrecer sus productos a través de las Plataformas CLICKDELIVERY a los mismos precios que los ofrece por otros canales</li>
+            <li>Mantener en secreto la información confidencial a la que tenga acceso con ocasión de la ejecución del presente contrato. </li>
+            <li>Dentro de los horarios que El ESTABLECIMIENTO DE COMERCIO informe al CORREDOR que presta los servicios que se ofrecen en las Plataforma CLICKDELIVERY, el primero se compromete a mantener un canal de comunicación capaz de generar una respuesta a todos los pedidos recibidos en un término menor a 10 minutos. En dado caso que el CORREDOR se vea obligado a rechazar un pedido por no recibir respuesta del ESTABLECIMIENTO DE COMERCIO, este será cobrado por el CORREDOR de acuerdo a la cláusula octava del presente contrato.</li>
+            <li>Con la suscripción de este contrato, de manera libre y voluntaria, el ESTABLECIMIENTO DE COMERCIO otorga una licencia de uso al CORREDOR para la utilización de las marcas, logos, nombres y enseñas comerciales y demás signos distintivos de propiedad del ESTABLECIMIENTO DE COMERCIO, o sobre los cuales el ESTABLECIMIENTO DE COMERCIO tenga una licencia legítima para que terceros lo utilicen, (en adelante la “LICENCIA DE USO”) para que el CORREDOR pueda adelantar las actividades contempladas en este documento, y en especial aquellas contenidas en la cláusula quinta y sexta.</li>
+            <li>Cumplir con todos los deberes y obligaciones especiales que le competen en su calidad de encargado del tratamiento de los datos personales de los usuarios de las Plataformas CLICKDELIVERY. De conformidad con las estipulaciones adoptadas en la Cláusula Décima Cuarta del presente contrato.</li>
+        </ol>
+
+        <span class="bold">
+            OCTAVA.- REMUNERACIÓN. 
+        </span>
+        El ESTABLECIMIENTO DE COMERCIO pagará al CORREDOR bajo este contrato, reconociendo como remuneración por la intermediación el valor indicado en la carátula del presente contrato, la cual se calculará como un porcentaje del monto total de las órdenes o pedidos, efectuadas en el periodo inmediatamente anterior, a través de las Plataformas CLICKDELIVERY. 
+Adicionalmente, reconocerá como remuneración por la prestación de los servicios de reparto y logística una contraprestación equivalente a la indicada en la carátula del presente contrato,  que se calculará como un porcentaje del monto total de las órdenes o pedidos, efectuadas en el periodo inmediatamente anterior, a través de las Plataformas CLICKDELIVERY.
+8.1. En el evento que se configure la situación prevista en el literal d) de la cláusula sexta de este contrato, el ESTABLECIMIENTO DE COMERCIO reconocerá a favor del CORREDOR como penalidad por tal situación la suma de dos mil pesos colombianos (USD 1.00) por cada pedido incompleto o incorrectamente entregado al Domiciliario, o de presentarse un Evento de Devolución del Pedido (en adelante la "Sanción").<br/>
+
+
+        <span class="bold">PARÁGRAFO 1.-</span> El porcentaje de remuneración por la intermediación se calculará sobre el total de cada transacción realizada sobre las Plataformas CLICKDELIVERY, incluido el valor de los impuestos  sin efectuar descuentos por concepto alguno.<br/>
+        <span class="bold">PARÁGRAFO 2.-</span> El ESTABLECIMIENTO DE COMERCIO declara conocer y aceptar que los valores indicados en esta cláusula se aplicarán y descontarán directamente por el CORREDOR de las ventas de productos del ESTABLECIMIENTO DE COMERCIO.<br/>   
+
+
+
+        <span class="bold">PARÁGRAFO 3.-</span>El CORREDOR enviará la factura digital de los pedidos mensuales al restaurante entre el día 25 y el 30 de cada mes, incluyendo los pedidos desde el 25 del mes anterior hasta el día 24 del mes que se genera la factura.<br/>
+        <span class="bold">PARÁGRAFO 4.-</span>
+        Las partes acuerdan que la contraprestación por la Sanción prevista se ajustará cada primero (1) de Enero en un porcentaje igual al incremento del Índice de Precios al Consumidor calculado por el INEC para el año inmediatamente anterior.
+        <br/>
+        <span class="bold">NOVENA.- EXPENSAS.</span>Sin perjuicio de los gastos que en virtud de este contrato serán asumidos por el ESTABLECIMIENTO DE COMERCIO, el CORREDOR no tendrá derecho a que se le abonen expensas o gastos adicionales por su gestión, pues se entiende que estos gastos se encuentran incluidos dentro de la remuneración acordada. <br/>
+        <span class="bold">DÉCIMA.- IMPUESTOS Y RETENCIONES</span>. Cada contratante será el responsable de pagar los impuestos y practicar las retenciones que correspondan de acuerdo con la Ley. Cuando fuere legalmente procedente el CORREDOR trasladará o certificará a favor del ESTABLECIMIENTO DE COMERCIO la totalidad o porción que le corresponda, según el caso, en dichas retenciones que le hubieren practicado a los ingresos que como intermediario hubiere recibido o le hubieren retenido por cuenta del ESTABLECIMIENTO DE COMERCIO.<br/>
+
+        <span class="bold">DÉCIMA.- INFRAESTRUCTURA. </span>Los contratantes declaran que cuentan con los medios materiales, técnicos,  personales y demás, para el cumplimiento de las obligaciones y cargas que se generen con la celebración del presente contrato. Cuando alguna de las partes deba realizar adecuaciones, modificaciones o mejoras a su infraestructura, y con esto afecte de alguna forma la ejecución del presente contrato, deberá notificar dicha situación a la otra parte, para que Los contratantes acuerden los plazos y términos para llevar a cabo las obras, a fin de entorpecer en lo mínimo el desarrollo del negocio en común.<br/>
+
+        <span class="bold">DÉCIMA PRIMERA.- INFRAESTRUCTURA</span>Los contratantes declaran que cuentan con los medios materiales, técnicos,  personales y demás, para el cumplimiento de las obligaciones y cargas que se generen con la celebración del presente contrato. Cuando alguna de las partes deba realizar adecuaciones, modificaciones o mejoras a su infraestructura, y con esto afecte de alguna forma la ejecución del presente contrato, deberá notificar dicha situación a la otra parte, para que Los contratantes acuerden los plazos y términos para llevar a cabo las obras, a fin de entorpecer en lo mínimo el desarrollo del negocio en común.<br/>
+        <span class="bold">DÉCIMA SEGUNDA.- EXCLUSIVIDAD</span>EL CORREDOR desarrollará sus actividades sin estar sujeto a exclusividad alguna, es así como por ejemplo, podrá actuar en condición de corredor, mandatario, comisionista, agente comercial, representante o bajo cualquier otra figura, con otros ESTABLECIMIENTOS DE COMERCIO. <br/>
+        <span class="bold">DÉCIMA TERCERA.- CONFIDENCIALIDAD</span>Considerando que las partes poseen información valiosa y confidencial que deben mantener en secreto, aceptan los siguientes términos, condiciones y obligaciones bajo los cuales se deberá manejar la Información Confidencial a la que tengan acceso con ocasión de la celebración del presente contrato. Obligaciones de confidencialidad que en todo caso no excluyen ni afectan otras obligaciones especiales de este carácter, contenidas en otros apartes del presente contrato. Así, las partes se obligan especialmente: (i) La Información Confidencial incluye sin limitación alguna, todos los datos, datos personales, listas de clientes, políticas, contratos, procesos, métodos, fórmulas, know-how, secretos empresariales, ideas, creaciones, diseños, creaciones técnicas o artísticas, y cualquier otra información sujeta a reserva, que haya sido accesible a los contratantes por cualquier medio, (ii)Las partes mantendrán la información confidencial en secreto y no la divulgarán a terceros, utilizándola únicamente con el propósito de desempeñar las funciones propias del objeto contractual pactado en este documento, (iii) La Información Confidencial no podrá ser copiada, reproducida, distribuida, tratada, transferida o transmitida por ningún medio, en todo o en parte, sin la aprobación previa y por escrito manifestada por la parte propietaria de la información, siendo necesario que todas las personas que legítimamente bajo este contrato deban acceder a dicha información, como lo son los empleados de cualquiera de las partes, o frente a las cuales se obtenga una autorización previa de la parte propietaria de la misma, sean informadas acerca de la naturaleza reservada de la información, y en caso de ser requerido, suscriban un acuerdo de confidencialidad o en sus contratos se establezca una cláusula en términos similares a los aquí descritos, (iv) las partes se comprometen a que, una vez hayan empleado la Información Confidencial, dejarán en manos de los titulares respectivos, todos los documentos y medios, ya sean originales o copias que hubieren tomado, en los cuales esté contenida la Información Confidencial, y (v) se comprometen a destruir en un término no menor a TREINTA (30) días calendario a partir de la fecha de la solicitud por parte del propietario, cualquier documento o medio que contenga Información Confidencial y a enviar constancia escrita de la destrucción a la parte propietaria. Las partes reconocen que no gozan de ningún derecho o licencia sobre el uso de la Información Confidencial que siendo exclusiva de la parte que la emita, haya sido entregada para la materialización de los fines descritos en este contrato y que por un período de DIEZ (10) años a partir de la fecha de terminación del presente contrato, no podrán divulgar la Información Confidencial utilizada en la ejecución del presente convenio, salvo las excepciones previstas en la normatividad vigente, y en especial, cuando la información tenga el carácter de pública.<br/>
+        
+        <span class="bold">DÉCIMA CUARTA.- OBLIGACIONES ESPECIALES DERIVADAS DE LA TRANSMISIÓN DE LOS DATOS PERSONALES DE LOS USUARIOS. </span>Considerando que una de las obligaciones consustanciales del ESTABLECIMIENTO DE COMERCIO consiste en <b>darle tratamiento a los datos personales de los usuarios de las Plataformas CLICKDELIVERY </b>bajo responsabilidad del CORREDOR, y considerando que dicho tratamiento tiene como propósito el poder concretar la relación de consumo en la que el CORREDOR intermedió, sin perjuicio de las obligaciones generales de confidencialidad que se establecen en la Cláusula Décima Tercera de este contrato, el ESTABLECIMIENTO DE COMERCIO particularmente se compromete a las estipulaciones que se pactan en el presente contrato, con el fin de dar fiel cumplimiento a los mandatos de la normativa nacional de protección de datos. Ante cualquier discrepancia en las obligaciones de confidencialidad contenidas en el presente contrato, en lo concerniente a la protección de los datos personales de los usuarios de las Plataformas CLICKDELIVERY, prevalecerán aquellas contenidas en esta Cláusula. Así bien, el ESTABLECIMIENTO DE COMERCIO especialmente se compromete a: 
+
+        <ol type="a">
+            <li>Limitarse a utilizar los datos personales de los usuarios de las Plataformas CLICKDELIVERY con el propósito de poder concretar la relación de consumo que estos adquirieron a través de las Plataformas CLICKDELIVERY.</li>
+            <li>Almacenar los datos personales de los usuarios de las Plataformas CLICKDELIVERY en sus propias bases de datos, de manera tal que los datos de un determinado usuario se tengan a disposición para poder concretar nuevas relaciones de consumo que este usuario adquiera por medio de las Plataformas CLICKDELIVERY.</li>
+            <li>Tratar los datos personales de los usuarios de las Plataformas CLICKDELIVERY cumpliendo con los principios de legalidad, finalidad, libertad, veracidad, transparencia, acceso y circulación restringida, seguridad y confidencialidad.</li>
+            <li>Comprometerse a emplear todos los mecanismos técnicos y humanos que estén a su alcance para garantizar la confidencialidad de los datos personales de los usuarios de las Plataformas CLICKDELIVERY.</li>
+            <li>Comprometerse a implementar los mecanismos técnicos y humanos que estén a su alcance para proteger la integridad y seguridad de las bases de datos que sean empleadas para guardar los datos personales de los usuarios de las Plataformas CLICKDELIVERY que le sean suministrados.</li>
+        </ol>
+
+        <span class="bold">DÉCIMA QUINTA.- NO TRANSFERENCIA DE TECNOLOGÍA. </span>Acuerdan las partes que el presente contrato no tiene como efecto una transferencia de tecnología entre las partes ni a terceros.<br/>
+
+        <span class="bold">DÉCIMA SEXTA.- DERECHOS DE PROPIEDAD INTELECTUAL. </span>Los contratantes reconocen que en virtud del presente contrato no se transmite ningún derecho y no se otorga ningún tipo de licencia, respecto de los derechos de autor de los cuales cada contratante es titular, salvo los otorgados al CORREDOR en la LICENCIA DE USO.  Así mismo, acuerdan que la titularidad de los derechos de autor que se generen en publicidad o en cumplimiento del presente contrato, corresponderá a quien la Ley considere su autor y no ocurrirá ninguna transferencia a menos que así lo acuerden los contratantes, por escrito y con las formalidades que establezca la Ley. De conformidad con ésta cláusula, el soporte lógico o software que el CORREDOR, diseñe y desarrolle será de su exclusiva propiedad.<br/>
+        <span class="bold">DÉCIMA SÉPTIMA.- DECLARACIONES DEL ESTABLECIMIENTO DE COMERCIO.  </span>El ESTABLECIMIENTO DE COMERCIO, y su propietario de ser aplicable, declaran que el origen de los recursos utilizados para su empresa y aquellos a los cuales se hace referencia en este contrato, no provienen de ninguna actividad ilícita de las contempladas en el código ecuatoriano. Cualquier inexactitud respecto a la información consignada, exime a Inversiones Delivery Hero CMR S.A de toda responsabilidad derivada por tal situación, facultándolo a dar por terminada la relación comercial y denunciar dichas inexactitudes a la autoridad competente. Con la suscripción de este contrato, el ESTABLECIMIENTO DE COMERCIO autoriza expresa y voluntariamente a Inversiones Delivery Hero CMR S.Ao a quien represente sus derechos u ostenten en el futuro a cualquier titulo la calidad de acreedor, para consultar, verificar, reportar, y transmitir información comercial personal, económica y financiera del suscrito y en especial, sobre su comportamiento comercial en las centrales de riesgo. Adicionalmente el ESTABLECIMIENTO DE COMERCIO y la persona que lo representa en el presente contrato tienen la capacidad jurídica y financiera y las facultades para la celebración del presente contrato.<br/>
+
+        <span class="bold">DÉCIMA OCTAVA.- PROPIEDAD INDUSTRIAL.  </span>Como consecuencia del presente contrato no se transfiere ninguna propiedad industrial de los contratantes. El uso de las marcas y otros signos distintivos de propiedad de cada uno de los contratantes se limitará a lo estrictamente necesario para la ejecución del presente contrato, conforme a la LICENCIA DE USO. Los contratantes emplearán la mayor diligencia y cuidado en el uso o manipulación de las marcas y signos distintivos ajenos, cuando haya lugar a ello; se comprometen a utilizar los signos distintivos exactamente iguales a como fueren suministrados por sus titulares y a evitar cualquier uso que pueda ocasionar daños en la imagen de dichos signos.<br/>
+        <span class="bold">DÉCIMA NOVENA.- INDEMNIDAD</span>Dado que la función del CORREDOR es únicamente acercar unas partes para la celebración de un contrato entre ellas, el ESTABLECIMIENTO DE COMERCIO será el único responsable por resolver las reclamaciones presentadas al CORREDOR por Usuarios, por competidores del ESTABLECIMIENTO DE COMERCIO y por cualquier tercero. EL ESTABLECIMIENTO DE COMERCIO mantendrá indemne al CORREDOR frente a cualquier proceso, acción o reclamación que se intente en su contra derivados o con ocasión de dichos hechos. <br/>
+        <span class="bold">VIGÉSIMA.- DURACIÓN </span>El presente contrato es de duración indefinida. Sin embargo, cualquiera de las partes podrá terminarlo unilateralmente, en cualquier momento, comunicando por escrito su intención a la otra parte con al menos TREINTA (30) días calendario de antelación a la fecha deseada de terminación, sin que por esta terminación se genere indemnización alguna a favor de la otra parte.<br/>
+        <span class="bold">VIGÉSIMA PRIMERA.- TERMINACIÓN DEL CONTRATO</span>El contrato terminará por:
+        <ol type="a">
+            <li>Mutuo acuerdo.</li>
+            <li>b)  Unilateralmente por manifestación de cualquiera de los contratantes, con el preaviso previsto en la cláusula anterior.</li>
+        </ol><br/>
+        <span class="bold">VIGÉSIMA SEGUNDA.- UNIDAD. </span>El texto del presente acuerdo recoge y regula todas las negociaciones entre las partes sobre el mismo objeto, y cualquier negociación que no haya sido incluida se entenderá como no pactada. Adicionalmente, la nulidad, ineficacia o inexigibilidad de alguna de las cláusulas de acuerdo no afectará la validez, eficacia y exigibilidad de las demás cláusulas. Las partes harán todo lo que esté a su alcance para lograr el propósito de la cláusula que sea eventualmente considerada como nula, ineficaz o inexigible. El presente contrato solo podrá modificarse por acuerdo escrito firmado por las partes contratantes.<br/>
+        <span class="bold">VIGESIMA TERCERA.- CESIÓN </span>El presente contrato no podrá ser cedido por ninguno de los contratantes sin autorización previa y por escrito del otro contratante. No obstante lo anterior, el ESTABLECIMIENTO DE COMERCIO autoriza a CLICKDELIVERY la cesión de este contrato en aquellos casos que se presente, sin limitarse, un cambio de control de CLICKDELIVERY, la fusión o integración de CLICKDELIVERY con cualquier tercero relacionado con el negocio de recepción de domicilios por internet o a través de cualquier tipo de plataforma, o con la prestación de servicios de tecnologías, y en especial, se autoriza de manera previa la cesión a favor de cualquier sociedad afiliada o vinculada a CLICKDELIVERY, que esté en la capacidad de operar y prestar los servicios objeto de este contrato. En todas estas situaciones, CLICKDELIVERY se obliga a informar al ESTABLECIMIENTO DE COMERCIO sobre tal situación. <br/>
+        <span class="bold">VIGESIMA CUARTA.- COMUNICACIONES Y NOTIFICACIONES. </span>
+        Acuerdan las partes que recibirán comunicaciones y notificaciones para todos los efectos legales en las direcciones físicas y electrónicas indicadas en la carátula del presente contrato.<br/>
+        <span class="bold">VIGESIMA QUINTA.- CLÁUSULA ARBITRAL.  </span>Toda diferencia o controversia relativa a este acuerdo y su ejecución se solucionará preferiblemente mediante los mecanismos de arreglo directo y conciliación y, en su defecto se someterá a la decisión en Derecho de un (1) árbitro que se sujetará al reglamento del Cámara de Comercio de Quito. El árbitro será designado por las partes de común acuerdo y en su defecto, será designado por el Cámara de Comercio de Quito, a solicitud de cualquiera de las partes. El tribunal de arbitramento tendrá su sede en la ciudad de Quito. La secretaría del tribunal estará integrada por un (1) miembro de la lista oficial de secretarios de la Cámara de Comercio de Quito. Leído y aprobado en su integridad el presente documento, se han suscrito en constancia de aceptación en la ciudad de Quito, el día {!oppCloseDateDayAsLiteral} ({!DAY(opportunity.CloseDate)}) de {!$Label[oppCLoseDateMonthName]} de {!YEAR(opportunity.CloseDate)} en dos (2) ejemplares con destino a cada uno de las partes.
+<br/>
+
+        </div>
+        <table width="100%">
+            <tr>
+                <td>
+                        <br/><br/><br/>
+                    <span style="width:49%; float:left;">EL CORREDOR</span>
+                    <span style="width:49%; float:right;">EL ESTABLECIMIENTO DE COMERCIO </span>
+                    <br/><br/><br/><br/><br/>
+                    <span style="width:49%; float:left;">______________________________________________</span>
+                    <span style="width:49%; float:right;">______________________________________________</span><br/>
+                    <span style="width:49%; float:left;">Inversiones Delivery Hero CMR S.A.</span>
+                    <span style="width:49%; float:right;">Razon Social</span><br/>
+                    <span style="width:49%; float:left;">RUC: 1792512433 001 </span>
+                    <span style="width:49%; float:right;">RUC o C.I#</span><br/>
+                    <span style="width:49%; float:left;">Representante Legal</span>
+                    <span style="width:49%; float:right;">Representante Legal</span><br/>
+                    <span style="width:49%; float:left;">Gianfranco Baquero Torres</span>
+                    <span style="width:49%; float:right;">Nombre:</span><br/>
+                    <span style="width:49%; float:left;">C.I. 1711056299</span>
+                    <span style="width:49%; float:right;">C.I.:</span>
+                </td>
+        
+            </tr>
+        </table>
+        <!-- END OF COLOMBIA -->
+    </div>
+</apex:component>

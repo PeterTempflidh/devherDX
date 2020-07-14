@@ -1,0 +1,334 @@
+<apex:component controller="CtrCreateQuote" access="global" >
+    <apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+    <apex:attribute name="oppQ" type="String" description="Placeholder" assignTo="{!oppQId}"/>
+     <div id="UK_Font">
+        <div id="UK_Header">
+            <img src="{!URLFOR($Resource.UK_Header)}" style="width:100%;"/>
+           <!-- <img src="{!URLFOR($Resource.UK_Header_Quiqup)}" style="width:100%;display:{!if(AND(accountWrapper.thirdPartyDeliveryService=='Quiqup',isFixedAmt),'block','none')}"/>
+            <img src="{!URLFOR($Resource.UK_Header)}" style="width:100%;display:{!if(AND(accountWrapper.thirdPartyDeliveryService!='Quiqup',isFixedAmt),'block','none')}"/>-->
+           
+        </div>
+        <div class="clearboth" />
+        <h2 class="bold">{!$Label.UK_Quote_Partnership_Agreement}</h2>
+        <table width="100%">
+            <tr>
+                <td>{!accountWrapper.restaurantName} - {!accountWrapper.addressStreet}, {!accountWrapper.addressPostal} {!accountWrapper.addressCity}</td>
+                <td style="text-align:right;">
+                    <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                        <apex:param value="{!TODAY()}" /> 
+                    </apex:outputText></td>
+            </tr>
+            <tr>
+                <td>{!accountWrapper.ownerName}</td>
+                <td style="text-align:right;">{!opportunity.Owner.Name}</td>
+            </tr>
+            <tr>
+                <td>{!accountWrapper.ownerPhone}</td>
+                <td style="text-align:right;">{!opportunity.Owner.Email}</td>
+            </tr>
+            <tr>
+                <td>{!accountWrapper.ownerMobilePhone}</td>
+            </tr>
+            <tr>
+                <td >{!accountWrapper.ownerEmail}</td>
+                
+            </tr>
+        </table>
+        <br />
+        <table>
+            <tr>
+                <td>{!$Label.UK_Quote_Dear} {!accountWrapper.ownerSalutation} {!accountWrapper.ownerFirstName} {!accountWrapper.ownerLastName},</td>
+            </tr>
+            <tr>
+                <td>{!$Label.UK_Quote_As_per_out_conversation}</td>
+            </tr>
+        </table>
+        <br />
+        <apex:outputPanel rendered="{!comissionsExist}">
+        <table id="CQTable" border="1" width="100%">
+            <tr>
+                <th><span class="bold">Product</span></th>
+                <th><span class="bold">Start Date</span></th>
+                <th><span class="bold">End Date</span></th>
+                <th><span class="bold">Fee</span></th>
+                
+            </tr>
+            <apex:repeat value="{!listCommisionItems}" var="item">
+                <tr>               
+                    <td>
+                        <span>{!item.Id_List_Service_Price__r.Displayed_Name__c}</span>
+                    </td>
+                    <td>
+                        <span>
+                            <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                                <apex:param value="{!item.Start_Date__c}" /> 
+                            </apex:outputText>
+                        </span>
+                    </td>
+                    <td>
+                        <span>
+                            <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                                <apex:param value="{!item.End_Date__c}" /> 
+                            </apex:outputText>
+                        </span>
+                   </td>    
+                   <td>
+                         <span style="display:{!if(item.Commission_In_Percentage__c!=null,'block','none')}">{!item.Commission_In_Percentage__c}%</span>
+                       <span style="display:{!if(item.Commission_Per_Order__c!=null,'block','none')}">£{!item.Commission_Per_Order__c} per order</span>
+                    </td>     
+                </tr>
+            </apex:repeat>
+        </table>
+        </apex:outputPanel>
+        <br />
+        <apex:outputPanel rendered="{!additionalCostsExist}">
+        <table id="CQTable" border="1" width="100%">
+            <tr>
+                <th><span class="bold">Product</span></th>
+                <th><span class="bold">List Price</span></th>
+                <th><span class="bold">Final Price</span></th>
+                <th><span class="bold">Installments</span></th>
+                <th><span class="bold">Installment Amount</span></th>
+                
+            </tr>
+            <apex:repeat value="{!listLineItems}" var="item">
+                <tr>               
+                    <td>
+                       
+                        <span>{!item.Id_List_Product_Price__r.Displayed_Name__c} <span style="display:{!if(item.Id_List_Product_Price__r.Displayed_Name__c=='Exclusive Special Offer','block','none')}">{!quoteNonstandardText}</span></span>
+                    </td>
+                    <td>
+                       <span>£{!item.Listed_Price__c}</span>
+                    </td>
+                    <td>
+                       <span>£{!item.Total_Amount__c}</span>
+                    </td>            
+                    <td style="width:70px">
+                       <span>{!item.Installments__c}</span>
+                    </td> 
+                    <td>
+                       <span>£{!if(item.Installments__c != null && item.Installments__c > 0, ROUND(item.Total_Amount__c / item.Installments__c,2), item.Total_Amount__c)}</span>
+                    </td>       
+                </tr>
+            </apex:repeat>
+        </table>
+        </apex:outputPanel>
+        <br />
+        <div stlye="display:inline-blocz">
+        <table style="float:right;">
+            <tr>
+                <td>Subtotal:</td>
+                <td>
+                    <apex:outputText value="{0, number, ###,##0.00}">
+                        £<apex:param value="{!oppQuote.SubTotalRF__c}" />
+                    </apex:outputText>
+                </td>
+            </tr>
+            <tr>
+                <td>VAT:</td>
+                <td>
+                    <apex:outputText value="{0, number, ###,##0.00}">
+                       £<apex:param value="{!oppQuote.VAT_fm__c}" />
+                    </apex:outputText>
+                </td>
+            </tr>
+            <tr>
+                <td>Total:</td>
+                <td>
+                    <apex:outputText value="{0, number, ###,##0.00}">
+                       £<apex:param value="{!oppQuote.Total_fm__c}" />
+                    </apex:outputText>
+                </td>
+            </tr>
+        </table>
+        </div>
+        <div style="clear:both;"/>
+        <br />
+        <table>
+            <tr style="display:{!if(reccuringFee, 'block', 'none')}">
+                <td>{!$Label.UK_Quote_Administration_Fee}</td>
+            </tr>
+            <tr>
+                <td>{!$Label.UK_Quote_NOTE}</td>
+            </tr>
+            <tr style="display:{!if(menuPrinting,'block','none')}">
+                <td>{!$Label.UK_Quote_Menu_Printing_1}</td>
+            </tr>
+            <tr style="display:{!if(menuPrinting,'block','none')}">
+                <td>{!$Label.UK_Quote_Menu_Printing_2}</td>
+            </tr>
+            <tr style="display:{!if(menuPrinting,'block','none')}">
+                <td>{!$Label.UK_Quote_Menu_Printing_3}</td>
+            </tr>
+            
+         
+          
+            <apex:outputPanel rendered="{!if(contains(opportunity.Id_tarif__r.name,'Regional'),true,false)}">
+                
+                <td>
+                Regional Tariff Terms and Conditions
+                    <ul>
+                        <li>Restaurant must have a blade sign installed by hungryhouse on shop front.</li>
+                        <li>Restaurant must be on Livelink or Tablink ordering system</li>
+                        <li>Restaurant must have at least one visible window sticker on display shop front</li>
+                        <li>Restaurant must provide an exclusive offer(e.g. taste test or menu deal)</li>
+                        <li>hungryhouse has the right to increase the commission to the premium tariff of 14% with immeddiate effect if restaurant fails to comply with above conditions.</li>
+                    </ul>
+                    <p>As long as these terms and conditions are met,this offer is valid for a minimum of two years.</p>
+                </td>           
+            </apex:outputPanel>
+            
+            <apex:outputPanel rendered="{!if(AND(NOT(isFixedAmt),comissionsExist),true,false)}">
+            <tr>
+                <td>{!$Label.UK_Quote_Service}
+                    <ul>
+                        <li>{!$Label.UK_Quote_Service_li_1}</li>
+                        <li>{!$Label.UK_Quote_Service_li_2}</li>             
+                        <li>{!$Label.UK_Quote_Service_li_4}</li>                                          
+                        <li>{!$Label.UK_Quote_Service_li_3}</li>
+                        <li>{!$Label.UK_Quote_Service_li_5}</li>
+                        
+                    </ul>
+                </td>
+            </tr>
+            </apex:outputPanel>
+            
+           <!-- <apex:outputPanel rendered="{!if(AND(accountWrapper.thirdPartyDeliveryService=='Quiqup',isFixedAmt,comissionsExist),true,false)}">
+            <tr>
+                <td>{!$Label.UK_Quote_Service}
+                    <ul>
+                        <li>{!$Label.UK_Quote_Service_li_1}</li>                                  
+                        <li>{!$Label.UK_Quote_Service_li_4}</li>                     
+                        <li>For order transmission issue: hungryhouse 0800 612 3333 - Available 24/7</li>
+                        <li>For delivery issue: Quiqup 02038001232 - 12:00 - 22:30 Monday to Sunday</li>
+                      
+                        <b>General Terms agreed:</b>
+                        <li >{!accountWrapper.thirdPartyDeliveryService}  Delivery Fee for Customer is paid to restaurant by customer and invoiced to restaurant by hungryhouse.</li>
+                        <li>Maximum delivery radius is 1.24 miles.</li>
+                        <li>{!$Label.UK_Quote_Service_li_3}</li>
+                         <li>{!$Label.UK_Quote_Service_li_5}</li>
+                        
+                    </ul>
+                </td>
+            </tr>
+            </apex:outputPanel>-->
+            
+           <!-- <apex:outputPanel rendered="{!if(AND(accountWrapper.thirdPartyDeliveryService=='One Hour Delivery',isFixedAmt,comissionsExist),true,false)}">
+            <tr>
+                <td>{!$Label.UK_Quote_Service}
+                    <ul>
+                        <li>{!$Label.UK_Quote_Service_li_1}</li>          
+                        <li>{!$Label.UK_Quote_Service_li_4}</li>                                          
+                        <li>For order transmission issue: hungryhouse 0800 612 3333 - Available 24/7</li>                         
+                        <li>For delivery issues: Please call your local One Hour Delivery representative</li>
+                        
+                        <b>General Terms agreed:</b>
+                        <li >{!accountWrapper.thirdPartyDeliveryService} Fee for Customer is paid to restaurant by customer and invoiced to restaurant by hungryhouse.</li>
+                        <li>Maximum delivery radius is 2 miles.</li>
+                        <li>{!$Label.UK_Quote_Service_li_3}</li>
+                        <li>{!$Label.UK_Quote_Service_li_5}</li>
+                        
+                    </ul>
+                </td>
+            </tr>
+            </apex:outputPanel>-->
+            <tr style="display:{!if(marketingMaterial,'block','none')}">
+                <td>{!$Label.UK_Quote_I} {!accountWrapper.ownerName} {!$Label.UK_Quote_blade_sign}
+                    <ul>
+                        <li>{!$Label.UK_Quote_blade_li_1}</li>
+                        <li>{!$Label.UK_Quote_blade_li_2}</li>
+                        <li>{!$Label.UK_Quote_blade_li_3}</li>
+                        <!--<li>{!$Label.UK_Quote_blade_li_4}</li>-->
+                        <li>{!$Label.UK_Quote_blade_li_5}</li>
+                        <li>{!$Label.UK_Quote_blade_li_6}</li>
+                        <li>{!$Label.UK_Quote_blade_li_7}</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr style="display:{!if(marketingMaterial,'block','none')}">
+                <td>{!$Label.UK_Quote_Expect_Blade_Sign}</td>
+            </tr>
+            <tr style="display:{!if(nineCookies,'block','none')}">
+                <td>{!$Label.UK_Quote_nine_cookies}
+                    <ul>
+                        <li>{!$Label.UK_Quote_9cookies_li_1}</li>
+                        <li>{!$Label.UK_Quote_9cookies_li_2}</li>
+                        <li>{!$Label.UK_Quote_9cookies_li_3}</li>
+                        <li>{!$Label.UK_Quote_9cookies_li_7}</li>
+                        <li>{!$Label.UK_Quote_9cookies_li_4}</li>
+                        <li>{!$Label.UK_Quote_9cookies_li_5}</li>
+                        <li>{!$Label.UK_Quote_9cookies_li_6}</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr style="display:{!if(nineCookies,'block','none')}">
+                <td>I hereby accept the product(s) described above and agree hungryhouse.com ltd’s terms and conditions, which can be found at <a href="http://hungryhouse.co.uk/termsandconditions">http://hungryhouse.co.uk/termsandconditions</a>. I consent to receive advertising material about hungryhouse's offers from hungryhouse.com ltd, including by telephone.</td>
+            </tr>
+            <tr style="display:{!if(nineCookies,'block','none')}">
+                <td>{!$Label.UK_Quote_Expect_Call}</td>
+            </tr>
+            <tr style="display:{!if(nineCookies,'none','block')}">
+                <td>By submitting your menu and logo, you accept the product(s) described above, agree to <a href="http://hungryhouse.co.uk">hungryhouse.com</a> ltd Terms and Conditions found at <a href="http://hungryhouse.co.uk/termsandconditions">http://hungryhouse.co.uk/termsandconditions</a><span style="display:{!if(AND(accountWrapper.thirdPartyDeliveryService!='',isFixedAmt),'inline','none')}"> and {!accountWrapper.thirdPartyDeliveryService} terms and conditions below.</span> You also consent to receive advertising material about hungry house offers from <a href="http://hungryhouse.co.uk">hungryhouse.com</a> ltd including by telephone.</td>
+            </tr>
+            <tr style="display:{!if(menuPrinting,'block','none')}">
+                <td>{!$Label.UK_Quote_Menu_Printing_4}</td>
+            </tr>
+            <tr>
+                <td>{!$Label.UK_Quote_Looking_forward}</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>         
+            <tr>
+            
+                <td>{!$Label.UK_Quote_Kind_Regards}</td>
+            </tr>
+            <tr>
+                <td>{!$User.FirstName} {!$User.LastName}</td>
+            </tr>
+        </table>
+        <br/>
+        <div><apex:outputText value="{!$Label.UK_Quote_Packaging}" escape="false"/></div>
+        <table>
+          <!--  <apex:OutputPanel rendered="{!if(AND(accountWrapper.thirdPartyDeliveryService!='',isFixedAmt),true,false)}">
+            <div style="font-weight:bold"><b>hungryhouse and {!accountWrapper.thirdPartyDeliveryService} Special Terms and Conditions</b></div>
+            <br/>
+                <tr>
+                    <td><u>Cancellation of orders</u>
+                        <ul>
+                            <li>If you cancel or reschedule your booking once it has been made then the following shall apply:<ul>
+                                <li>if a Carrier has not been assigned, you may cancel or reschedule without charge;</li>
+                                <li>if a Carrier has been assigned but they have not yet collected your Collected Item from your chosen collection point, you may cancel or reschedule within the first 5 minutes without charge, after which time you will be charged £5.00;</li>
+                                <li>if a Carrier has been assigned and has already collected your Collected Items, you will not be able to cancel or reschedule your booking and will liable for the full charge for the delivery.</li> 
+                            </ul></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td><u>Delivery</u>
+                        <ul>
+                            <li>Delivery and collection times selected by you or allocated via the Service are approximate only.</li>
+                            <li>In the event that the Carrier is unable to fulfil a delivery for one of the following reasons:<ul>
+                                <li>you fail to provide adequate instructions or any other instructions that are relevant to the collection or delivery of the Collected Items and such failure results in the Carrier being unable to collect or deliver the Collected Items (as applicable) within a reasonable amount of time;</li>
+                                <li>you (or someone on your behalf) are unavailable to hand over the Collected Items to the Carrier within a reasonable time following the Carrier's arrival at your chosen collection location; or</li>
+                                <li>a Recipient is unavailable to take possession of the Collected Items within a reasonable time following arrival at a delivery location by the Carrier,
+                                we will still be entitled to charge you the full Fees for your booking or the full Fees we would have charged should the delivery had been completed (as applicable). </li>                            
+                            </ul></li>
+                            <li>You shall ensure that Collected Items are available for collection from your chosen collection location within 5 minutes of the time of arrival for the Carrier for the order.  If Collected Items are not available for collection from your chosen collection location within 5 minutes of the time of arrival for the Carrier for at least 95% of orders within a calendar month, we will be entitled to charge you £2.50 for each order that exceeds that 5 minute period by up to 10 minutes, and incrementally charge further £2.50 for every order per additional 10 minute period, in addition to any other fees.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td><u>Complaints</u>
+                        <ul>
+                            <li>If a customer makes a complaint to us about a Collected Item itself (such as a complaint about the quality of a Product), we shall be entitled to re-direct that complaint to you.</li>
+                        </ul>
+                    
+                    
+                    </td>
+                </tr>
+            </apex:outputPanel>-->
+        </table>
+        
+    </div>
+</apex:component>

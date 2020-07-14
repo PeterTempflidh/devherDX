@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>change is live</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP TW Menu Change - Menu change is live</name>
+    <style>freeForm</style>
+    <subject>{!Account.Name} - 您的新菜單已經上線囉！</subject>
+    <textOnly>親愛的foodpanda夥伴您好：
+
+
+歡迎您加入 foodpanda，我們很開心能有您成為我們的合作店家。
+
+
+我們團隊已將您的菜單資料上傳至網站。請點選以下連結預覽菜單，如有任何問題，請盡快通知我們︰{!Case.Menu_URL__c}
+
+
+如您需要更改菜單，請傳送電子郵件聯絡我們，並將您所欲更改的餐點內容以此形式條列︰
+
+原餐點名稱 - 欲更改項目 - 更改後的資料
+
+例︰墨西哥雞翅 - 更改餐點名稱 - 辣味雞翅
+
+
+如未收到您的任何回覆，我們將於數天內再次與您聯繫並進行確認。確認完成後，{!Account.Name} 將會於foodpanda 官方網站正式上線。
+
+
+如有任何疑問請透過店家服務部電子郵件：partner@foodpanda.tw 或撥打專線+886 2 5594 1115 與我們聯繫。
+
+
+謝謝，
+
+foodpanda 團隊
+(# {!Case.CaseNumber})</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,28 @@
+<template>
+	<div class="slds-form-element">
+		<lightning-card title={componentTitle} icon-name="standard:hierarchy">
+			<ul class="slds-m-around_medium">
+				<template for:each={fieldDetails} for:item="info" if:true={info.picklist}>
+					<li key={info.name} data-key={info.name}>
+						<lightning-combobox name="progress" label={info.label} placeholder="--None--"
+							disabled={info.disable} options={info.values} value={info.values} onchange={handleChange}>
+						</lightning-combobox>
+					</li>
+				</template>
+				<template for:each={fieldDetails} for:item="info" if:true={info.multiPicklist}>
+					<li key={info.name} data-key={info.name}>
+						<lightning-dual-listbox id={info.name} name={info.label} label={info.label}
+							disabled={info.disable} source-label="Available Options" selected-label="Selected Options"
+							options={info.values} value={info.values} required-options={info.values}
+							onchange={handleChange}>
+						</lightning-dual-listbox>
+					</li>
+				</template>
+			</ul>
+			<div class="centerize">
+				<lightning-button variant="brand" label="Save" disabled={disableSaveButton} title="Save values on record"
+					onclick={saveFields} class="slds-m-right_x-small"></lightning-button>
+			</div>
+		</lightning-card>
+	</div>
+</template>

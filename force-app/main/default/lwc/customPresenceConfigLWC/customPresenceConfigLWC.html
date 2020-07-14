@@ -1,0 +1,97 @@
+<!--
+ - Created by p.bansal on 09-Dec-19.
+ -->
+
+<!-- Custom Presence Config Lwc -->
+<template>
+    <lightning-card title={label.PresConfig_ComponentHeader} icon-name="custom:custom63">
+        
+        <div class="slds-p-left_x-large" if:true={noConfigAvailForCurrUser}>{noConfigErrorMsg}</div>
+            
+        <div if:false={noConfigAvailForCurrUser}>
+            
+            <lightning-button variant="brand" label={label.PresConfig_RefreshListButtonName} title="" onclick={refreshList}
+                              disabled={refreshDis} class="slds-m-right_medium  slds-float_right  slds-is-static">
+            </lightning-button>
+            <lightning-button variant="brand" label={label.PresConfig_ChangeCapButtonName} title="" onclick={openmodal}
+                              disabled={disablCapBut}  class="slds-m-right_medium  slds-float_right  slds-is-static">
+            </lightning-button>
+            <br/><br/>
+            <template if:true={loaded}>                
+                <div class="slds-p-around_medium lgc-bg"> 
+                    <lightning-layout>
+                        <lightning-layout-item size="3">                                 
+                            <lightning-input 
+                                type="search"
+                                value={searchKey}
+                                label={label.PresConfig_SearchFieldHeaderLabel}
+                                onchange={handleKeyChange}
+                                placeholder = {label.PresConfig_SearchFieldDefText}>
+                            </lightning-input>
+                        <div class="slds-float_left slds-text-color_destructive">{noResString}</div> <br/><br/>
+                        <div class="slds-float_left">{selectionCountMessage} </div>                            
+                        </lightning-layout-item> 
+                        <lightning-layout-item size="8">                                 
+                            <div class="slds-float_right slds-m-top_x-large">{loadedcount} {label.PresConfig_AgentCountLoadMessage} {dataLength} </div> 
+                        </lightning-layout-item> 
+                    </lightning-layout>
+
+                </div>              
+                <div style="height: 450px;"> 
+                    <lightning-datatable
+                        key-field="agentPresenceConfigId"
+                        data={agents}
+                        columns={gridColumns}
+                        show-row-number-column
+                        enable-infinite-loading={isInfinLoadEnabled}
+                        onloadmore={loadMoreData} 
+                        selected-rows={selRows}
+                        onrowselection={getSelectedAgents}                           	
+                        onsave={handleSave}  
+                        sorted-by = {sortBy}                        
+                        default-sort-direction="desc"
+                        sorted-direction={sortDirection}                       
+                        onsort={updateColumnSorting}> 
+                    </lightning-datatable>                    
+				</div>       
+                </template>
+            
+        </div>
+		<template if:false={loaded} class="slds-is-relative">
+			<lightning-spinner alternative-text="Loading"></lightning-spinner>
+		</template>
+    </lightning-card>    
+    
+    <template if:true={openmodel}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">                       
+                        <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">{label.PresConfig_ModalHeading}</h2>
+                    </header>
+                    <div class="slds-modal__content" id="modal-content-id-1">
+                        <lightning-datatable
+                                key-field="Id"
+                                data={presenceConfigs} 
+                                columns={modalColumns}                               
+                                show-row-number-column	
+                                max-row-selection = 1
+                                sorted-by = {Capacity}
+                                sorted-direction="asc"
+                                onrowselection={getSelectedConfig}>
+                        </lightning-datatable>                       
+                    </div>
+                   <footer class="slds-modal__footer">
+                            <center>
+                                <lightning-button label={label.PresConfig_SaveButtonLabel} variant="brand" onclick={saveMethod} class="slds-p-right_xx-small"></lightning-button>
+                                <lightning-button label={label.PresConfig_CancelButtonLabel} variant="neutral" onclick={closeModal} class="slds-p-left_xx-small"></lightning-button>
+                                
+                            </center>
+                    </footer> 
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+			<template if:true={loadedpopup} class="slds-is-relative">
+                <lightning-spinner alternative-text="Loading"></lightning-spinner>
+            </template> 
+    </template>
+</template>

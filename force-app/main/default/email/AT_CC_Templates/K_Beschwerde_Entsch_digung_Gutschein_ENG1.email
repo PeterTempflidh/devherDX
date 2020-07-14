@@ -1,0 +1,13 @@
+<div style="font-size:13px;font-family:arial">
+<p style="text-align:left;"></br>Dear {!Case.Customer_Name__c},</br></br>
+
+thanks for contacting mjam.</br></br>I am very sorry that your order did not arrive as expected. I would like to send you a voucher for mjam in the amount of XXXX Euro for your next order. The code for this is XXXX. You can redeem it within the next 30 days at a restaurant of your choice.</br></br>
+
+If you have further questions you can contact me or my colleagues via the mjam <a href="https://www.mjam.net/kontakt/">contact form</a>. </br></br>
+
+
+Kind regards</br></br>
+{!User.FirstName}</br>
+mjam customer service</br></br></br>
+
+You can also contact our <a href="https://www.mjam.net/chat/">Chat</a> to receive live support

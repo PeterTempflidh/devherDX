@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY - VALIDACIÓN DE TELÉFONO</name>
+    <style>freeForm</style>
+    <subject>VALIDACIÓN DE TELÉFONO</subject>
+    <textOnly>Estimada {!Case.Customer_Name__c}, es un gusto saludarte.
+Estimado {!Case.Customer_Name__c}, es un gusto saludarte
+
+
+Te contactamos en respuesta a tu reclamo por la validación de teléfono.
+
+
+Necesitamos que por favor nos indiques el número de teléfono que te encuentras ingresando para reportar lo que nos comentas. Solicitamos si nos puedes especificar cual es el error que te arroja al momento de validar el mismo.
+
+
+Recordamos que el número de teléfono puede ser utilizado solamente por una cuenta, en caso que exista más de una cuenta asociada al mismo número no será posible realizar la validación.
+
+
+Aguardamos su respuesta y quedamos a las órdenes.
+
+
+Saludos,
+{!Case.OwnerFullName}
+Atención al cliente PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

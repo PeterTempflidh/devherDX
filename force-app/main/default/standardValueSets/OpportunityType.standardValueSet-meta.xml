@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>Contract Only</fullName>
+        <default>false</default>
+        <label>Contract Only</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Product Only</fullName>
+        <default>false</default>
+        <label>Product Only</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Contract &amp; Product</fullName>
+        <default>false</default>
+        <label>Contract &amp; Product</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Additional Contract</fullName>
+        <default>false</default>
+        <label>Additional Contract</label>
+    </standardValue>
+</StandardValueSet>

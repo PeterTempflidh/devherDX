@@ -1,0 +1,1652 @@
+<!-- *********************************************************** -->
+    <!-- Created by: K.verheyden -->
+    <!-- Comment for using the controller/controllers like this:  -->
+    <!-- your comment for using this controller only/extension/not -->
+    <!-- Visualforce Page Access: no limitations/Profilnames-->
+    <!-- Last modified by: 26-01-2014 Marcel Hirthe -->
+    <!-- Last modified date: face lift -->
+    <!-- Last modified by: 01-09-2014 Magesh Mani -->
+    <!-- *********************************************************** -->
+
+    <apex:page id="thePage" showHeader="false" sidebar="false" standardcontroller="Opportunity" standardStylesheets="true" extensions="CtrCreateProductLineItems" cache="false" docType="html-5.0">
+    <apex:includeScript value="/support/console/35.0/integration.js"/>
+    <apex:includeScript value="{!URLFOR($Resource.jq211)}"/>
+    <apex:includeScript value="/resource/bootbox/bootstrap.min.js"/>
+    <apex:includeScript value="/resource/bootbox/bootbox.min.js"/>
+        <!-- <link href="{!URLFOR($Resource.Phoenix, '/css/jquery-ui.min.css')}" rel="stylesheet" /> -->
+    <link rel='stylesheet' type='text/css' href='/resource/bootbox/bootstrapV1.css' />
+        <!--<apex:includescript value="{!URLFOR($Resource.ckEditor, 'ckeditor/ckeditor.js')}"/>
+        <apex:includescript value="{!URLFOR($Resource.TinyMc, 'tinymce/js/tinymce/tinymce.min.js')}"/>-->
+        <!--<apex:includescript value="{!URLFOR($Resource.InlineVFHeightResize, 'InlineVFHeightResize/CrossDomainUtility.js')}"/>-->
+
+        <style>
+        input[type="text"]{
+            height: 14px;
+            padding: 3px 3px;
+            border: 1px solid #cfd0d2;
+            border-radius: 4px;
+        }
+        .scrolling{
+            height: 850px;
+            width: 100%;
+            overflow-x: auto;
+
+        }
+        .totalBox{
+            width: 143px;
+            position: absolute;
+            right: 72px;
+            margin-top: 11px;
+
+        }
+        .totalTXT{
+            margin-top: 6px;
+            font-weight: bolder;
+            display: block;
+            float: left; 
+            text-align: right;
+        }
+        td.ErrorInRed{
+            background: #e8bdbd !important;
+        }
+
+        .headerCenter{
+            text-align: center;
+        }
+        
+                
+        </style>
+        <script type="text/javascript">
+            var userRoles = "{!$UserRole.Name}";
+            var quoteFlg = false;
+            var jq = $.noConflict();
+            var lineslocked = {!lockLineItems};
+            var accId = '{!Opportunity.AccountId}';
+            var oppId = '{!Opportunity.id}';
+            var mapSelect = {};
+            var mapOriginal = {};
+            var objs = [];
+            var postcodes = [];
+            var errorDiv = jq('<div class="message errorM3" role="alert"><div class="messageText"></div></div>');
+            var messagetext = jq(errorDiv,'.messageText');
+            var LoadingSpinner  = jq("[id$=LoadingSpinner\\.start]");
+            var pc ='';
+            function getRestaurantInfo(accountId,monthyear) {
+                if(lineslocked!=true){
+                    mapSelect = {};
+                    mapOriginal = {};
+                    objs = [];
+                    postcodes = [];
+                    LoadingSpinner.css("display","block");
+                    Visualforce.remoting.Manager.invokeAction(
+                        '{!$RemoteAction.CtrCreateProductLineItems.getRestaurantInfo}',accountId,monthyear,userRoles, 
+                        function(result, event){
+                            //console.log('RestaurantInfo');
+                            if (event.status) {
+                                if(result.indexOf('Error:')>=0){
+                                    showErrorMsg(result);
+                                }else{
+                                    //console.log('in response');
+                                    clearErrorMsg();
+                                    //console.log('table: '+table);
+                                    table.html("");
+                                    //console.log('result: '+result);
+                                    jq('<thead><tr class="headerRow"><th class="headerRow headerCenter" scope="col" colspan="1" style="width:80px"><div>Zip code</div></th><th class="headerRow headerCenter" scope="col" colspan="1" style="width:80px"><div>Coverage</div></th><th class="headerRow headerCenter" scope="col" colspan="1" style="width:150px"><div>Distance</div></th><th class="headerRow headerCenter" scope="col" colspan="1" style="width:200px"><div>Base Price</div></th><th class="headerRow headerCenter" scope="col" colspan="1" style="width:200px"><div>Packages</div></th><th class="headerRow headerCenter" scope="col" colspan="1" style="width:80px"><div>Available slots</div></th><th class="headerRow headerCenter" scope="col" colspan="1" style="width:200px"><div>Price</div></th><th class="headerRow headerCenter" scope="col" colspan="1" style="width:200px"><div>Action</div></th></tr></thead><tbody>').appendTo(table);
+                                    var jsonstr = JSON.parse(result);
+                                    var jsData = jsonstr.data;
+                                    jq.each(jsData.postcodes,function(i,val){
+                                        if(val.status=='open'){
+
+                                        var values = {};
+                                        values.distance = val.distance+' '+val.distance_units;
+                                        values.postcode = val.postcode;
+                                        values.coverage = val.coverage;
+                                        pc=val.postcode.replace(/[^a-zA-Z0-9 -]/g, "").replace(/\s|'/g, '');
+                                        //values.baseprice = val.price_base;
+                                        //values.available_slots = val.available_slots;
+                                        mapOriginal[val.postcode.replace(/[^a-zA-Z0-9 -]/g, "")] = values;
+                                        var defaultPrice = 0;
+                                        var isDefault = false;
+                                        var setPrice =false;
+                                         //var select = jq('<select id="'+val.postcode+'" />');
+                                         var select = jq('<select id="ppselect" html-data="'+pc+'" />');
+                                        jq.each(val.restaurant_packages,function(j,value){
+                                            if(value.is_default==true){
+                                                isDefault=true;
+                                             jq('<option value="'+value.id+'"="selected" html-data="'+value.price+'">'+value.description+'</option>').appendTo(select);
+                                             defaultPrice = value.price;
+                                            }else{
+                                             jq('<option value="'+value.id+'" html-data="'+value.price+'">'+value.description+'</option>').appendTo(select);
+
+                                              if(setPrice==false && isDefault==false){
+                                                defaultPrice = value.price;
+                                                setPrice=true;
+                                                }
+                                            }
+                                            //mapSelect[key] = value.price;
+                                        });
+                                        var tdelem = jq('<td class="dataCell" colspan="1" style="text-align:center;"></td>');
+                                        select.appendTo(tdelem);
+                                        var elem = jq('<tr id="tr_'+pc+'" class="dataRow even first" onmouseover="if (window.hiOn){hiOn(this);}" onmouseout="if (window.hiOff){hiOff(this);}" onblur="if (window.hiOff){hiOff(this);}" onfocus="if (window.hiOn){hiOn(this);}"><td class="dataCell" colspan="1">'+val.postcode.replace(/[^a-zA-Z0-9 -]/g, "")+'</td><td class="dataCell" colspan="1" style="text-align:right">'+val.coverage.toFixed(2)+'%</td><td class="dataCell" colspan="1" style="text-align:center" >'+val.distance.toFixed(2)+' '+val.distance_units+'</td><td class="dataCell" colspan="1" style="text-align:right">'+val.price_base+'</td>');
+
+                                        tdelem.appendTo(elem);
+                                        var tableData = '<td class="dataCell" colspan="1" style="text-align:center;">'+val.available_items+'</td><td class="dataCell" colspan="1" style="text-align:center;"><input type=number id="price_'+pc+'" value="'+defaultPrice+'" class="numeric-only" style="width:70px;text-align:right;"/> / <label id="default_'+pc+'">'+defaultPrice+'</label></td>';
+                                        //var tablebtn = '<td class="dataCell" colspan="1" style="text-align:center; id="addBtnTd'+val.postcode+'"></td></tr>';
+                                        //if(val.status=='free'){
+                                           var tablebtn =  '<td class="dataCell" colspan="1" style="text-align:center; id="addBtnTd'+pc+'"><input class="btn green btnbutton" id="add_btn" html-data="'+val.postcode.replace(/[^a-zA-Z0-9 -]/g, "")+'" value="+" style="width:30px;font-size: 15px;" type="button" /></td></tr>';
+                                        //}
+                                        var tt = jq(tableData+tablebtn);
+                                        //tablebtn.appendTo(tableData);
+                                        tt.appendTo(elem);
+                                        elem.appendTo(table);
+
+                                        // jq("#btnsPP").prepend('<input class="btn save" id="savePP" name="savePP"  value="Save" style="float:left;margin-top:-32px;" type="button">');
+                                       //console.log('in response 2');
+                                        }
+
+                                    });
+                                    
+                                    jq('</tbody>').appendTo(table); 
+                                    if(jq("#pptab tbody").html()==''){
+                                        jq("#pptab tbody").html('<tr class="dataRow even first"><td class="dataCell" colspan="6">No free slots available for this month!</td></tr>');
+                                    }else{
+                                        jq('<tr class="dataRow even first" onmouseover="if (window.hiOn){hiOn(this);}" onmouseout="if (window.hiOff){hiOff(this);}" onblur="if (window.hiOff){hiOff(this);}" onfocus="if (window.hiOn){hiOn(this);}"><td colspan="6" class="dataCell" style="text-align:right">Total</td><td style="text-align:center"><input type=number id="totalPP" value="0" class="numeric-only" style="width:70px;text-align:right;" readonly/><span style="padding-left: 25px;">                                             </span></td><td></td></tr>').appendTo(table);
+                                    };
+                                    LoadingSpinner.css("display","none");
+                                }
+                            } else if (event.type === 'exception') {
+                                showErrorMsg(event.where);
+                            } else {
+                                showErrorMsg(event.message);
+                            }
+                        },{escape: false}
+                    );
+                }else{
+                    jq("[id$=PPBlockAPI]").css('display','none');
+                    jq("[id$=monthYearSelect]").attr('disabled','disabled');
+                    LoadingSpinner.css("display","none");  
+                }
+                
+            }
+
+            function clearErrorMsg(){
+                messagetext.html("");
+                errorMsg.html("");
+            }
+
+            function showErrorMsg(msgs){
+                clearErrorMsg();
+                var err = jq('<div>'+msgs+'</div>');
+                errorDiv.appendTo(errorMsg);
+                err.appendTo(messagetext);
+                LoadingSpinner.css("display","none");
+                jq('html, body').animate({ scrollTop: jq(errorMsg).offset().top }, 'slow');
+            }
+        </script>
+        
+        
+        <body>
+        <div class="scrolling">
+            <c:Spinner message="{!$Label.Please_Wait}" />
+            <apex:form id="thisForm">
+            <div id="test"></div>
+            <apex:outputPanel id="errorPanel">
+            <apex:pageMessages id="errorMessages" />
+
+            <script>
+            var errorMsg =  jq("[id$=errorMessages]");
+            LoadingSpinner  = jq("[id$=LoadingSpinner\\.start]");
+            var openSubTab1 = {!openSubTAbForQuote};
+            var invokeAPIPP = false;
+
+            var redirectToQuote = {!showQuoteDetail};
+            var oppQuoteId = null;
+            if(('{!oppQuote.Id}').length>14){
+                oppQuoteId = '{!oppQuote.Id}';
+            }
+            
+            //console.log('redirectToQuote 1: '+redirectToQuote);
+            //console.log('oppQuoteId 1: '+oppQuoteId);
+
+
+            </script>
+            </apex:outputPanel>
+            <!-- <apex:actionFunction name="populateDescQuote" action="{!populateDescriuptionQuote}" oncomplete="return reloadParent();" reRender="thisForm" status="LoadingSpinner"/> -->
+            <apex:actionFunction name="showQuotePageForAPIPP" action="{!showQuotePageForAPIPP}" reRender="thisForm" status="LoadingSpinner" />
+            <apex:actionFunction name="getAPIPPLines" action="{!getOppLines}" reRender="ppAPILinetable,tarifSelect,errorPanel" status="LoadingSpinner" />
+            <apex:actionFunction name="jsSortLineItems" action="{!sortLineItems}"  reRender="refereshServiceLine,tieredCommPanel,errorPanel" status="LoadingSpinner" />
+            <apex:actionFunction name="autoEndDate" action="{!autoEndDate}"  reRender="refereshServiceLine,tieredCommPanel,errorPanel" status="LoadingSpinner" />
+            <apex:actionFunction name="getRelatedGroupProducts" action="{!getRelatedGroupProducts}" reRender="refereshProductLine, errorPanel" status="LoadingSpinner"/>
+            <apex:actionFunction name="getRelatedProduct" action="{!getRelatedProduct}" reRender="refereshProductLine,refereshPPProductLine,refereshMPProductLine,refereshMSProductLine,refereshDPProductLine,errorPanel" status="LoadingSpinner" />
+            <!--<apex:actionFunction name="getRelatedTarifMember" action="{!getRelatedTarifMember}" reRender="adSalesPanelContainer, recurringChargesSection,refereshProductLineContainer, refereshProductLine, refereshServiceLineContainer, refereshServiceLine,errorPanel" status="LoadingSpinner"  />-->
+            <apex:actionFunction name="getRelatedTarifMember" action="{!getRelatedTarifMember}" reRender="productSection, errorPanel" status="LoadingSpinner"  />
+            <apex:actionFunction name="getServiceDetails" action="{!getServiceDetails}" reRender="refereshServiceLine, errorPanel" status="LoadingSpinner" />
+            <apex:actionFunction name="calculateAdSalesAmountWithDate" action="{!calculateAdSalesAmountWithDate}" reRender="adSalesPanelContainer,errorPanel" status="LoadingSpinner">
+            <apex:param name="indexOfAdsales" value=""/>
+            </apex:actionFunction>
+            <apex:actionFunction name="calculateFlatCommissionAmountWithDate" action="{!calculateFlatCommissionAmountWithDate}" reRender="flatPanelContainer,errorPanel" status="LoadingSpinner">
+            <apex:param name="indexOfFlatProd" value=""/>
+            </apex:actionFunction>
+            <apex:actionFunction name="getRecurringProduct" action="{!getRecurringProduct}" reRender="recurringChargesSection, errorMessagesRecurringCharge" status="LoadingSpinner" />
+            <apex:actionFunction name="addNonstandardcontract" action="{!addNonstandardcontract}" reRender="NonStandardContractComponentsSection, errorPanel" status="LoadingSpinner" />
+
+            <apex:outputPanel id="productSection" rendered="{!if(showProductSection=true,true,false)}" >
+                
+                <br />
+                <!-- Tarife -->
+                <apex:pageBlock title="{!$Label.OppTarif}" id="tarifSelect">
+                    <apex:outputPanel >
+                        <apex:selectList id="tarifSelectList" style="width:300px; height:20px; margin-left:30%;" value="{!selectedTarifItem}"
+                            onChange="getRelatedTarifMember();" multiselect="false" size="1" disabled="{!lockTariffSelection}" >
+                            <apex:selectOptions value="{!tarifItems}" />
+                        </apex:selectList>
+                    </apex:outputPanel>
+                    <apex:outputPanel id="apiPPDatePanel" rendered="{!showAPIPPBlock}">
+                    <label style="padding-left:60px">Select M-YYYY</label>
+                        <apex:selectList id="monthYearSelect" style="height:20px;" value="{!selectedMY}"
+                             multiselect="false" size="1" onchange="getResInfo();" >
+                            <apex:selectOptions value="{!myOptions}" />
+                        </apex:selectList>
+                    </apex:outputPanel>
+                </apex:pageBlock>
+                <!-- end Tarif -->
+                <br />
+                <br />
+                <!-- Tiered Commission -->
+                <apex:outputPanel id="tieredCommPanel" rendered="{!showTieredBlock}">
+                    <apex:pageBlock title="Tiered Commission">
+                        <apex:pageBlockTable value="{!serviceLineItems}" var="lineItem" styleClass="tableone">
+                            <apex:column headerValue="{!$Label.Service_Name}"  styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                <apex:outputText value="{!lineItem.service.Name}" />
+                            </apex:column>
+                            <!-- <apex:column headerValue="{!$ObjectType.List_Service_Price__c.fields.Service_Type__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                <apex:outputText value="{!lineItem.service.Sub_type__c}" />
+                            </apex:column> -->
+                            <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Min__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                
+                                 <apex:inputText size="10" value="{!lineItem.min}"  style="text-align:right;background-color:#EBEBE4" html-data-id="tieredLineMin{!lineItem.service.index__c}" html-readonly="true" onfocus="removeReadOnly();"/>
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Max__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                <apex:inputText size="10" value="{!lineItem.max}" style="text-align:right;" html-data-id="tieredLineMax{!lineItem.service.index__c}" disabled="{!if(lineItem.service.index__c=7,true,false)}" onkeypress="return  inputLimiter(this,event,'Decimals')" onkeyup="return incrementMinByOne('tieredLineMax{!lineItem.service.index__c}','{!lineItem.service.index__c}');"/>
+                            </apex:column>
+                            <apex:column headerValue="{!$Label.Commission_in_percentage}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                            <apex:inputText size="10" value="{!lineItem.commission}" style="text-align:right;" disabled="{!if(mapCommissionType[lineItem.service.Id_List_Service_Price__c]='Per Order','true','false')}" onkeypress="return inputLimiter(this,event,'Decimals')"/>
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.List_Service_Price__c.fields.Commission_Per_Order__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}" rendered="{!if(showCommissionPerOrder && opp.Company_Code__c='CD','true','false')}">
+                                    <apex:inputText size="10" value="{!lineItem.comissionperorder}" style="text-align:right;" disabled="{!if(mapCommissionType[lineItem.service.Id_List_Service_Price__c]='Percentage','true','false')}" onkeypress="return inputLimiter(this,event,'Decimals')"/>
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Online_Payment_Fee__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}" rendered="{!if(opp.Company_Code__c='CD',true,false)}">
+                            <apex:inputText size="10" value="{!lineItem.onlinePayment}" style="text-align:right;" onkeypress="return inputLimiter(this,event,'Decimals')" rendered="{!if(opp.Company_Code__c='CD',true,false)}"/>
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Start_Date__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                <apex:inputField value="{!lineItem.service.Start_Date__c}" style="text-align:right;" html-data="tieredStartDate" rendered="{!If(lineItem.service.index__c=1,true,false)}"  onChange="autoEndDate();"/>
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.End_Date__c.label}"  style="width:200px;"  styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                <apex:inputField value="{!lineItem.service.End_Date__c}" html-data="tieredEndDate" style="text-align:right;" rendered="{!If(lineItem.service.index__c=1,true,false)}" /> 
+                            </apex:column>
+                        </apex:pageBlockTable>
+                        <br />
+                        <br />
+                        <br />
+                        <apex:outputPanel rendered="{!if(lockLineItems=false, true, false)}" >
+                            <apex:commandButton styleClass="save" value="Save" action="{!saveLineItems}" oncomplete="reloadParent();"
+                                reRender="errorPanel,tieredCommPanel" status="LoadingSpinner" style="float:left;margin-top:-32px;"/>
+                            <apex:commandButton styleClass="save" action="{!showQuotePage}" id="tieredQuote" value="Create Quote " rendered="{!if(availableForQuote=true,true,false)}" reRender="thisForm" status="LoadingSpinner" style="float:left;margin-top:-32px;margin-left:40px;" oncomplete="scrollToTop();"/>
+                            <apex:commandButton styleClass="save" action="{!saveLineItemsAndShowQuotePage}" value="Create Quote" rendered="{!if(useCombinedSaveAndCreateQuote=true,true,false)}" reRender="thisForm" status="LoadingSpinner" style="float:left;margin-top:-32px;margin-left:40px;" oncomplete="scrollToTop();"/>
+                        </apex:outputPanel>
+                    </apex:pageBlock>
+                </apex:outputPanel>
+                <!--end Tiered commission -->
+                <!-- AdSales -->
+
+                <apex:outputPanel id="adSalesPanelContainer" rendered="{!if(showAdSalesBlock=true,true,false)}">
+                    <apex:pageBlock title="{!$Label.AdSales}">
+                    <apex:pageBlockSection columns="1" id="adSalesUserSelection">
+                        <apex:pageBlockSectionItem >
+                        <apex:outputPanel >
+                        <table width="100%">
+                        <th><apex:outputLabel value="{!$Label.Type}" style="font-weight:bold"/></th>
+                        <th><apex:outputLabel value="{!$ObjectType.Opportunity_Line_Item__c.fields.Category__c.Label}" style="font-weight:bold"/></th>
+                        <th><apex:outputLabel value="{!$ObjectType.Opportunity_Line_Item__c.fields.District__c.Label}" style="font-weight:bold"/></th>
+                        <th><apex:outputLabel value="{!$ObjectType.Opportunity_Line_Item__c.fields.Listed_Price__c.Label}" style="font-weight:bold"/></th>
+                        <th><apex:outputLabel value="{!$ObjectType.Opportunity_Line_Item__c.fields.Start_Date__c.Label}" style="font-weight:bold"/></th>
+                        <th></th>
+                        <tr>
+                            <td width="20%">
+                                <apex:selectList value="{!selectedAdSalesTypes}" multiselect="false" size="1">
+                                    <apex:selectOptions value="{!adSalesTypes}" />
+                                </apex:selectList>
+                            </td>
+                            <td width="20%">
+                                <apex:selectList value="{!selectedCategories}" multiselect="false" size="1">
+                                    <apex:selectOptions value="{!categories}" />
+                                </apex:selectList>
+                            </td>
+                            <td width="20%">
+                                <apex:inputField value="{!adSalesProductDates.District__c}" />
+                            </td>
+                            <td width="20%">
+                                <apex:inputText value="{!adSalesProductDates.Listed_Price__c}" onkeypress="return inputLimiter(this,event,'Decimals')"/>
+                            </td>
+                            <td width="25%">
+                                <apex:inputField value="{!adSalesProductDates.Start_Date__c}" />
+                            </td>
+                            <td width="25%">
+                                <apex:commandButton value="+" action="{!addAdSalesProduct}" reRender="adSalesPanelContainer,errorPanel" style="text-align:center;width:20px;" status="LoadingSpinner"/>
+                            </td>
+                        </tr>
+                        </table>
+                        </apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                    </apex:pageBlockSection>
+                        <apex:outputPanel id="adSalesPanel" >
+                            <apex:pageBlockTable value="{!adSalesProductLineItems}" var="lineItem" styleClass="tableone">
+                                <apex:column headerValue="{!$Label.Type}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:outputText value="{!lineItem.product.Sub_type__c}" rendered="{!IF(lineItem.lastRecord, false, true)}" />
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Category__c.Label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:outputText value="{!lineItem.product.Category__c}" rendered="{!IF(lineItem.lastRecord, false, true)}" />
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.District__c.Label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:outputText value="{!lineItem.product.District__c}" rendered="{!IF(lineItem.lastRecord, false, true)}" />
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.List_Product_Price__c.fields.List_Price__c.Label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputText value="{!lineItem.product.Listed_Price__c}" style="text-align:right;" html-readonly="true" rendered="{!IF(lineItem.lastRecord == false, true, false)}"/>
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Start_Date__c.Label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputField value="{!lineItem.product.Start_Date__c}" rendered="{!IF(lineItem.lastRecord == false, true, false)}"/>
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.End_Date__c.Label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputField value="{!lineItem.product.End_Date__c}" rendered="{!IF(lineItem.lastRecord == false, true, false)}"/>
+                                    <apex:outputLabel value="{!$Label.Total}" style="text-align:right; width:75px; font-weight: bold; display:block;" rendered="{!lineItem.lastRecord}" />
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Total_Amount__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                        <apex:inputText html-data-id="AdSalesTotalAmount_{!lineItem.position}" style="text-align:right;" value="{!lineItem.product.Total_Amount__c}" rendered="{!IF(lineItem.lastRecord == false, true, false)}" html-readonly="true" />
+                                        <apex:inputText value="{!lineItem.subTotalAmount}" style="text-align:right;" rendered="{!lineItem.lastRecord}" html-readonly="true" />
+                                </apex:column>
+                                <apex:column styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">    
+                                    <apex:commandButton value="-" action="{!removeAdSalesProduct}" status="LoadingSpinner" rendered="{!IF(lineItem.lastRecord == false, true, false)}" reRender="adSalesPanelContainer,errorPanel" style="text-align:center;width:20px;">
+                                         <apex:param name="adSalesProductToRemove" value="{!lineItem.position}" assignTo="{!adSalesProductToRemove}" />
+                                    </apex:commandButton>
+                                </apex:column>
+                            </apex:pageBlockTable>
+                            <br />
+                            <br />
+                            <br />
+                            <apex:outputPanel rendered="{!if(lockLineItems=false, true, false)}" >
+                                <apex:commandButton styleClass="save" value="Save" action="{!saveLineItems}" oncomplete="reloadParent();"
+                                    reRender="errorPanel,adSalesPanelContainer" status="LoadingSpinner" style="float:left;margin-top:-32px;"/>
+                                <apex:commandButton styleClass="save" action="{!showQuotePage}" id="quoteAdSales" value="Create Quote" rendered="{!if(availableForQuote=true,true,false)}"  reRender="thisForm" status="LoadingSpinner" style="float:left;margin-top:-32px;margin-left:40px;"/>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                    </apex:pageBlock>
+                </apex:outputPanel>
+
+                <!--<apex:outputPanel id="adSalesPanelContainer" rendered="{!if(showAdSalesBlock=true,true,false)}">
+                    <apex:pageBlock title="{!$Label.AdSales}">
+
+                    <apex:pageBlockSection columns="1" id="adSalesUserSelection">
+                        <apex:pageBlockSectionItem >
+                        <apex:outputPanel >
+                        <table width="100%">
+                        <th><apex:outputLabel value="{!$ObjectType.Opportunity_Line_Item__c.fields.Category__c.Label}" style="font-weight:bold"/></th>
+                        <th><apex:outputLabel value="{!$ObjectType.Opportunity_Line_Item__c.fields.District__c.Label}" style="font-weight:bold"/></th>
+                        <th><apex:outputLabel value="{!$ObjectType.Opportunity_Line_Item__c.fields.Start_Date__c.Label}" style="font-weight:bold"/></th>
+                        <th></th>
+                        <tr>
+                            <td width="20%">
+                                
+                                <apex:selectList value="{!selectedCategories}" multiselect="true" size="5">
+                                    <apex:selectOptions value="{!categories}" />
+                                </apex:selectList>
+                            </td>
+                            <td width="30%">
+                                                
+                                <apex:selectList value="{!selectedDistricts}" multiselect="true" size="5">
+                                    <apex:selectOptions value="{!typeDistricts}" />
+                                </apex:selectList>
+                            </td>
+                            <td width="25%">
+                            
+                                <apex:inputField value="{!adSalesProductDates.Start_Date__c}" />
+                            </td>
+                            <td width="25%">
+                                <apex:commandButton value="+" action="{!addAdSalesProduct}" reRender="adSalesPanelContainer, errorPanel" style="text-align:center;width:20px;" status="LoadingSpinner"/>
+                            </td>
+                        </tr>
+                        </table>
+                        </apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                    </apex:pageBlockSection>
+                        <apex:outputPanel id="adSalesPanel" >
+                            <apex:pageBlockTable value="{!adSalesProductLineItems}" var="lineItem" styleClass="tableone">
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Ad_Sales_Type__c.Label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:outputText value="{!lineItem.product.Ad_Sales_Type__c}" rendered="{!IF(lineItem.lastRecord, false, true)}" />
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Category__c.Label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:outputText value="{!lineItem.product.Category__c}" rendered="{!IF(lineItem.lastRecord, false, true)}" />
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.District__c.Label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:outputText value="{!lineItem.product.District__c}" rendered="{!IF(lineItem.lastRecord, false, true)}" />
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.List_Product_Price__c.fields.List_Price__c.Label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputText value="{!lineItem.product.Listed_Price__c}" style="text-align:right;" html-readonly="true" rendered="{!IF(lineItem.lastRecord == false, true, false)}"/>
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Start_Date__c.Label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputField value="{!lineItem.product.Start_Date__c}" onchange="calculateAdSalesAmountWithDate({!lineItem.position})" rendered="{!IF(lineItem.lastRecord == false, true, false)}"/>
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.End_Date__c.Label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputField value="{!lineItem.product.End_Date__c}" onchange="calculateAdSalesAmountWithDate({!lineItem.position})" rendered="{!IF(lineItem.lastRecord == false, true, false)}"/>
+                                    <apex:outputLabel value="{!$Label.Total}" style="text-align:right; width:75px; font-weight: bold; display:block;" rendered="{!lineItem.lastRecord}" />
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Total_Amount__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                        <apex:inputText html-data-id="AdSalesTotalAmount_{!lineItem.position}" style="text-align:right;" value="{!lineItem.product.Total_Amount__c}" rendered="{!IF(lineItem.lastRecord == false, true, false)}" html-readonly="true" />
+                                        <apex:inputText value="{!lineItem.subTotalAmount}" style="text-align:right;" rendered="{!lineItem.lastRecord}" html-readonly="true" />
+                                </apex:column>
+                                <apex:column styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">    
+                                    <apex:commandButton value="-" action="{!removeAdSalesProduct}" status="LoadingSpinner" rendered="{!IF(lineItem.lastRecord == false, true, false)}" reRender="adSalesPanelContainer, errorPanel" style="text-align:center;width:20px;">
+                                         <apex:param name="adSalesProductToRemove" value="{!lineItem.position}" assignTo="{!adSalesProductToRemove}" />
+                                    </apex:commandButton>
+                                </apex:column>
+                            </apex:pageBlockTable>
+                            <br />
+                            <br />
+                            <br />
+                            <apex:outputPanel rendered="{!if(lockLineItems=false, true, false)}" >
+                                <apex:commandButton styleClass="save" value="Save" action="{!saveLineItems}" oncomplete="reloadParent();"
+                                    reRender="errorPanel,adSalesPanelContainer" status="LoadingSpinner" style="float:left;margin-top:-32px;"/>
+                                <apex:commandButton styleClass="save" action="{!showQuotePage}" value="Create Quote" rendered="{!if(availableForQuote=true,true,false)}" reRender="thisForm" status="LoadingSpinner" style="float:left;margin-top:-32px;margin-left:40px;"/>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                    </apex:pageBlock>
+                </apex:outputPanel>-->
+                <!-- End AdSales -->
+
+
+                <!-- Flat Commission -->
+                <apex:outputPanel id="flatPanelContainer" rendered="{!if(showFlatProductBlock=true,true,false)}">
+                    <apex:pageBlock title="{!$Label.Flat_Commission}">
+
+                    <apex:pageBlockSection columns="1" id="flatUserSelection">
+                        <apex:pageBlockSectionItem >
+                        <apex:outputPanel >
+                        <!--Used table because Pageblock section with 4 column is not equally placed-->
+                        <table width="100%">
+                        <th><apex:outputLabel value="{!$ObjectType.Opportunity_Line_Item__c.fields.Category__c.Label}" style="font-weight:bold"/></th>
+                        <th><apex:outputLabel value="{!$ObjectType.Opportunity_Line_Item__c.fields.District__c.Label}" style="font-weight:bold"/></th>
+                        <th><apex:outputLabel value="{!$ObjectType.Opportunity_Line_Item__c.fields.Start_Date__c.Label}" style="font-weight:bold"/></th>
+                        <th></th>
+                        <tr>
+                            <td width="20%">
+                                
+                                <apex:selectList value="{!selectedFlatCategories}" multiselect="true" size="5">
+                                    <apex:selectOptions value="{!categoriesFlat}" />
+                                </apex:selectList>
+                            </td>
+                            <td width="30%">
+                                                
+                                <apex:selectList value="{!selectedFlatDistricts}" multiselect="true" size="5">
+                                    <apex:selectOptions value="{!districtsFlat}" />
+                                </apex:selectList>
+                            </td>
+                            <td width="25%">
+                            
+                                <apex:inputField value="{!flatProductDates.Start_Date__c}" />
+                            </td>
+                            <td width="25%">
+                                <apex:commandButton value="+" action="{!addFlatProduct}" reRender="flatPanelContainer,errorPanel" style="text-align:center;width:20px;" status="LoadingSpinner"/>
+                            </td>
+                        </tr>
+                        </table>
+                        </apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                    </apex:pageBlockSection>
+                        <!--<apex:pageBlockSection columns="4" id="flatUserSelection">
+                            <apex:pageBlockSectionItem >
+                                <apex:outputLabel value="{!$ObjectType.Opportunity_Line_Item__c.fields.Category__c.Label}" />
+                                <apex:selectList value="{!selectedCategories}" multiselect="true" size="5">
+                                    <apex:selectOptions value="{!categories}" />
+                                </apex:selectList>
+                            </apex:pageBlockSectionItem>
+                            <apex:pageBlockSectionItem >
+                                <apex:outputLabel value="{!$ObjectType.Opportunity_Line_Item__c.fields.District__c.Label}" />                
+                                <apex:selectList value="{!selectedDistricts}" multiselect="true" size="5">
+                                    <apex:selectOptions value="{!typeDistricts}" />
+                                </apex:selectList>
+                            </apex:pageBlockSectionItem>
+                            <apex:inputField value="{!flatProductDates.Start_Date__c}" />
+                            <apex:commandButton value="+" action="{!addAdSalesProduct}" reRender="flatPanelContainer, errorPanel" style="text-align:center;width:20px;" status="LoadingSpinner"/>
+                        </apex:pageBlockSection>-->
+                        <apex:outputPanel id="flatPanel" >
+                            <apex:pageBlockTable value="{!flatProductLineItems}" var="lineItem" styleClass="tableone">
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Category__c.Label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:outputText value="{!lineItem.product.Category__c}" rendered="{!IF(lineItem.lastRecord, false, true)}" />
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.District__c.Label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:outputText value="{!lineItem.product.District__c}" rendered="{!IF(lineItem.lastRecord, false, true)}" />
+                                </apex:column>
+                                <!--<apex:column headerValue="{!$ObjectType.List_Product_Price__c.fields.List_Price__c.Label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputText value="{!lineItem.product.Listed_Price__c}" style="text-align:right;" rendered="{!IF(lineItem.lastRecord == false, true, false)}"/>
+                                </apex:column>-->
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Start_Date__c.Label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <!--<apex:inputField value="{!lineItem.product.Start_Date__c}" onchange="calculateFlatCommissionAmountWithDate({!lineItem.position})" rendered="{!IF(lineItem.lastRecord == false, true, false)}"/>-->
+                                    <apex:inputField value="{!lineItem.product.Start_Date__c}" rendered="{!IF(lineItem.lastRecord == false, true, false)}"/>
+                                </apex:column>
+                                <!--<apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.End_Date__c.Label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputField value="{!lineItem.product.End_Date__c}" onchange="calculateFlatCommissionAmountWithDate({!lineItem.position})" rendered="{!IF(lineItem.lastRecord == false, true, false)}"/>
+                                    <apex:outputLabel value="{!$Label.Total}" style="text-align:right; width:75px; font-weight: bold; display:block;" rendered="{!lineItem.lastRecord}" />
+                                </apex:column>-->
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Total_Amount__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                        <apex:inputText html-data-id="flatTotalAmount_{!lineItem.position}" style="text-align:right;" value="{!lineItem.product.Total_Amount__c}" rendered="{!IF(lineItem.lastRecord == false, true, false)}" />
+                                        <apex:inputText value="{!lineItem.subTotalAmount}" style="text-align:right;" rendered="{!lineItem.lastRecord}" html-readonly="true" />
+                                </apex:column>
+                                <apex:column styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">    
+                                    <apex:commandButton value="-" action="{!removeFlatProduct}" status="LoadingSpinner" rendered="{!IF(lineItem.lastRecord == false, true, false)}" reRender="flatPanelContainer,errorPanel" style="text-align:center;width:20px;">
+                                         <apex:param name="flatProductToRemove" value="{!lineItem.position}" assignTo="{!flatProductToRemove}" />
+                                    </apex:commandButton>
+                                </apex:column>
+                            </apex:pageBlockTable>
+                            <br />
+                            <br />
+                            <br />
+                            <apex:outputPanel rendered="{!if(lockLineItems=false, true, false)}" >
+                                <apex:commandButton styleClass="save" value="Save" action="{!saveLineItems}" oncomplete="reloadParent();"
+                                    reRender="errorPanel,flatPanelContainer" status="LoadingSpinner" style="float:left;margin-top:-32px;"/>
+                                <apex:commandButton styleClass="save" action="{!showQuotePage}" id="quoteFlat" value="Create Quote" rendered="{!if(availableForQuote=true,true,false)}" reRender="thisForm" status="LoadingSpinner" style="float:left;margin-top:-32px;margin-left:40px;" oncomplete="scrollToTop();" />
+                                <apex:commandButton styleClass="save" action="{!saveLineItemsAndShowQuotePage}" value="Create Quote" rendered="{!if(useCombinedSaveAndCreateQuote=true,true,false)}" reRender="thisForm" status="LoadingSpinner" style="float:left;margin-top:-32px;margin-left:40px;" oncomplete="scrollToTop();"/>
+                            
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                    </apex:pageBlock>
+                </apex:outputPanel>
+                <!-- End Flat Commission -->
+                <!-- Menu Printing -->
+                <apex:outputPanel id="refereshMPProductLine" rendered="{!showMPBlock}">
+                        <apex:pageBlock title="{!$Label.OppProducts}">
+                            <apex:pageBlockTable value="{!mpProductLineItems}" var="lineItem" styleClass="tableone" >
+                                 <apex:column headerValue="{!$ObjectType.List_Product_Price__c.fields.Product_Name__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:outputField value="{!lineItem.product.Name}" rendered="{!IF(OR(lineItem.firstRecord, lineItem.lastRecord), false, true)}" />
+                                    <apex:selectList value="{!selectedProductLineItem}" onChange="getRelatedProduct();" multiselect="false" size="1"
+                                    rendered="{!lineItem.firstRecord}">
+                                        <apex:selectOptions value="{!mpProductItems}" />
+                                    </apex:selectList>
+                                </apex:column>
+                                
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Size__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:outputField value="{!lineItem.product.Size__c}" rendered="{!IF(OR(lineItem.firstRecord, lineItem.lastRecord), false, true)}" />
+                                    <apex:inputField value="{!lineItem.product.Size__c}"   rendered="{!lineItem.firstRecord}" />
+                                    
+                                   <!-- <apex:selectList value="{!selectedProductLineItem}" onChange="getRelatedProduct();" multiselect="false" size="1"
+                                    rendered="{!lineItem.firstRecord}">
+                                        <apex:selectOptions value="{!mpProductItems}" />
+                                    </apex:selectList>-->
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Weight__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:outputField value="{!lineItem.product.Weight__c}" rendered="{!IF(OR(lineItem.firstRecord, lineItem.lastRecord), false, true)}" />
+                                    <apex:inputField value="{!lineItem.product.Weight__c}"   rendered="{!lineItem.firstRecord}" />
+                                    
+                                   <!-- <apex:selectList value="{!selectedProductLineItem}" onChange="getRelatedProduct();" multiselect="false" size="1"
+                                    rendered="{!lineItem.firstRecord}">
+                                        <apex:selectOptions value="{!mpProductItems}" />
+                                    </apex:selectList>-->
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Number_of_Copies__c.Label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:outputField value="{!lineItem.product.Number_of_Copies__c}" rendered="{!IF(OR(lineItem.firstRecord, lineItem.lastRecord), false, true)}" style="text-align:right;width:75px;"/>
+                                    <apex:inputField value="{!lineItem.product.Number_of_Copies__c}"  rendered="{!lineItem.firstRecord}" style="text-align:right;width:75px;"/>
+                                
+                                </apex:column>
+                                 <apex:column headerValue="{!$ObjectType.List_Product_Price__c.fields.List_Price__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                     <apex:inputText html-data-id="productPrice_{!lineItem.position}" value="{!lineItem.product.Listed_Price__c}" style="text-align:right;width:75px;"  rendered="{!lineItem.firstRecord}" onkeypress="return inputLimiter(this,event,'Decimals')" onkeyup="return calculateTotalAmountMenu('productPrice_{!lineItem.position}','totalAmount_{!lineItem.position}');"/>
+                                    <apex:inputText html-data-id="productPrice_{!lineItem.position}" value="{!lineItem.product.Listed_Price__c}" style="text-align:right;width:75px;"  rendered="{!IF(OR(lineItem.firstRecord, lineItem.lastRecord), false, true)}"  html-readonly="true" />
+                                
+                                </apex:column>
+                                
+                               
+                               <!-- <apex:column headerValue="{!$Label.Discount}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputField html-data-id="rabbat_{!lineItem.position}" value="{!lineItem.product.Discount__c}"
+                                    rendered="{!IF(lineItem.lastRecord, false, true)}" onkeypress="return inputLimiter(this,event,'percentage')"
+                                    onkeyup="return calculateTotalAmount('productPrice_{!lineItem.position}','quantity_{!lineItem.position}','rabbat_{!lineItem.position}','totalAmount_{!lineItem.position}');" style="text-align:right;width:75px;" />
+                                </apex:column>-->
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Deposit_Method__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputField value="{!lineItem.product.Deposit_Method__c}"
+                                    rendered="{!IF(lineItem.lastRecord, false, true)}" style="text-align:right;width:75px;"  />
+                                </apex:column>
+                                
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Deposit__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputField html-data-id="deposit_{!lineItem.position}" value="{!lineItem.product.Deposit__c}"
+                                    rendered="{!IF(lineItem.lastRecord, false, true)}" style="text-align:right;width:75px;" onkeypress="return inputLimiter(this,event,'Decimals')" />
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Design_Note__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputField html-data-id="design_{!lineItem.position}" value="{!lineItem.product.Design_Note__c}"
+                                    rendered="{!IF(lineItem.lastRecord, false, true)}" style="text-align:right;width:75px;" />
+                                </apex:column>
+                                
+                                <!--<apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Quantity__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputText html-data-id="quantity_{!lineItem.position}" value="{!lineItem.product.Quantity__c}" style="text-align:right;width:75px;" rendered="{!lineItem.firstRecord}" onkeypress="return inputLimiter(this,event,'Numbers')"   onkeyup="return calculateTotalAmountMenu('productPrice_{!lineItem.position}','quantity_{!lineItem.position}','deposit_{!lineItem.position}','totalAmount_{!lineItem.position}');"/>
+                                    <apex:inputText html-data-id="quantity_{!lineItem.position}" value="{!lineItem.product.Quantity__c}" style="text-align:right;width:75px;" rendered="{!IF(OR(lineItem.firstRecord, lineItem.lastRecord), false, true)}" html-readonly="true"  />
+                                    
+                                    <apex:outputLabel value="{!$Label.Total}" style="text-align:right; width:75px; font-weight: bold; display:block;" rendered="{!lineItem.lastRecord}" />
+                                </apex:column>-->
+                                <!--<apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Installments__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputField id="installments" value="{!lineItem.product.Installments__c}" onkeypress="return inputLimiter(this,event,'Numbers')" style="text-align:right;width:75px;" rendered="{!IF(lineItem.lastRecord, false, true)}" />
+                                    <apex:outputLabel value="{!$Label.Total}" style="text-align:right; width:75px; font-weight: bold; display:block;" rendered="{!lineItem.lastRecord}" />
+                                </apex:column>-->
+                                 <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Total_Amount__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputText html-data-id="totalAmount_{!lineItem.position}" value="{!lineItem.product.Total_Amount__c}" style="text-align:right;width:75px;" rendered="{!IF(lineItem.lastRecord, false, true)}" html-readonly="true"/>
+                                    <apex:inputText value="{!lineItem.subTotalAmount}" style="text-align:right;width:75px;" rendered="{!lineItem.lastRecord}" id="product_subTotal" html-readonly="true" />
+                                </apex:column>
+                                <apex:column rendered="{!IF(lockLineItems=false, true, false)}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:commandButton styleClass="green btnbutton" value="+" action="{!addMPProduct}" reRender="refereshMPProductLine,errorPanel" status="LoadingSpinner"  style="text-align:center;width:20px;" rendered="{!lineItem.firstRecord}"/>
+                                    <apex:commandButton styleClass="gray btnbutton" value="-" action="{!removeMPProduct}" reRender="refereshMPProductLine,errorPanel" status="LoadingSpinner" 
+                                    rendered="{!IF(AND(lineItem.product.Has_Related_Tarif__c == false, lineItem.firstRecord == false, lineItem.lastRecord == false), true, false)}" style="text-align:center;width:20px;"  >
+                                        <apex:param name="productToRemove" value="{!lineItem.position}" assignTo="{!productToRemove}" />
+                                    </apex:commandButton>
+                                </apex:column>
+                            </apex:pageBlockTable>
+                             <br /> 
+                            <br />
+                            <br />
+                            <apex:outputPanel rendered="{!if(lockLineItems=false, true, false)}" >
+                                <apex:commandButton styleClass="save" value="Save" action="{!saveLineItems}" oncomplete="reloadParent();"
+                                    reRender="errorPanel,refereshPPProductLine" status="LoadingSpinner" style="float:left;margin-top:-32px;"/>
+                                <apex:commandButton styleClass="save" action="{!showQuotePage}" id="quoteOppLine" value="Create Quote" rendered="{!if(availableForQuote=true,true,false)}" reRender="thisForm" status="LoadingSpinner" style="float:left;margin-top:-32px;margin-left:40px;" oncomplete="scrollToTop();"/>
+                                <apex:commandButton styleClass="save" action="{!saveLineItemsAndShowQuotePage}" value="Create Quote" rendered="{!if(useCombinedSaveAndCreateQuote=true,true,false)}" reRender="thisForm" status="LoadingSpinner" style="float:left;margin-top:-32px;margin-left:40px;" oncomplete="scrollToTop();"/>
+                            </apex:outputPanel>
+                        </apex:pageBlock>
+                </apex:outputPanel>
+                <!-- end of Menu Printing-->
+
+                <!-- Marketting Shipping -->
+                <apex:outputPanel id="refereshMSProductLine" rendered="{!showMSBlock}">
+                        <apex:pageBlock title="{!$Label.OppProducts}">
+                            <apex:pageBlockTable value="{!msProductLineItems}" var="lineItem" styleClass="tableone" >
+                                 <apex:column headerValue="{!$ObjectType.List_Product_Price__c.fields.Product_Name__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:outputField value="{!lineItem.product.Name}" rendered="{!IF(OR(lineItem.firstRecord, lineItem.lastRecord), false, true)}" />
+                                    <apex:selectList value="{!selectedProductLineItem}" onChange="getRelatedProduct();" multiselect="false" size="1"
+                                    rendered="{!lineItem.firstRecord}">
+                                        <apex:selectOptions value="{!msProductItems}" />
+                                    </apex:selectList>
+                                </apex:column>
+                                 <apex:column headerValue="{!$ObjectType.List_Product_Price__c.fields.List_Price__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputText html-data-id="productPrice_{!lineItem.position}" value="{!lineItem.product.Listed_Price__c}" style="text-align:right;width:75px;"  rendered="{!IF(lineItem.lastRecord, false, true)}"  html-readonly="true" />
+                                </apex:column>
+                                <apex:column headerValue="{!$Label.Discount}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputField html-data-id="rabbat_{!lineItem.position}" value="{!lineItem.product.Discount__c}"
+                                    rendered="{!IF(lineItem.lastRecord, false, true)}" onkeypress="return inputLimiter(this,event,'percentage')"
+                                    onkeyup="return calculateTotalAmount('productPrice_{!lineItem.position}','quantity_{!lineItem.position}','rabbat_{!lineItem.position}','totalAmount_{!lineItem.position}');" style="text-align:right;width:75px;" />
+                                </apex:column>
+                                <apex:column headerValue="{!$Label.Comments}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputField html-data-id="design_{!lineItem.position}" value="{!lineItem.product.Design_Note__c}"
+                                    rendered="{!IF(lineItem.lastRecord, false, true)}" style="text-align:right;width:75px;" />
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Start_Date__c.Label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputField value="{!lineItem.product.Start_Date__c}" rendered="{!IF(lineItem.lastRecord, false, true)}"/>
+                                </apex:column>
+                                
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Quantity__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputText html-data-id="quantity_{!lineItem.position}" value="{!lineItem.product.Quantity__c}" rendered="{!IF(lineItem.lastRecord, false, true)}" onkeypress="return inputLimiter(this,event,'Numbers')" onkeyup="return calculateTotalAmount('productPrice_{!lineItem.position}','quantity_{!lineItem.position}','rabbat_{!lineItem.position}','totalAmount_{!lineItem.position}');" style="text-align:right;width:75px;" />
+                                </apex:column>
+                                 <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Total_Amount__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputText html-data-id="totalAmount_{!lineItem.position}" value="{!lineItem.product.Total_Amount__c}" style="text-align:right;width:75px;" rendered="{!IF(lineItem.lastRecord, false, true)}" html-readonly="true"/>
+                                    <apex:inputText value="{!lineItem.subTotalAmount}" style="text-align:right;width:75px;" rendered="{!lineItem.lastRecord}" id="product_subTotal" html-readonly="true" />
+                                </apex:column>
+                                <apex:column rendered="{!IF(lockLineItems=false, true, false)}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:commandButton styleClass="green btnbutton" value="+" action="{!addMSProduct}" reRender="refereshMSProductLine,errorPanel" status="LoadingSpinner"  style="text-align:center;width:20px;" rendered="{!lineItem.firstRecord}"/>
+                                    <apex:commandButton styleClass="gray btnbutton" value="-" action="{!removeMSProduct}" reRender="refereshMSProductLine,errorPanel" status="LoadingSpinner" 
+                                    rendered="{!IF(AND(lineItem.product.Has_Related_Tarif__c == false, lineItem.firstRecord == false, lineItem.lastRecord == false), true, false)}" style="text-align:center;width:20px;"  >
+                                        <apex:param name="productToRemove" value="{!lineItem.position}" assignTo="{!productToRemove}" />
+                                    </apex:commandButton>
+                                </apex:column>
+                            </apex:pageBlockTable>
+                             <br /> 
+                            <br />
+                            <br />
+                            <apex:outputPanel rendered="{!if(lockLineItems=false, true, false)}" >
+                                <apex:commandButton styleClass="save" value="Save" action="{!saveLineItems}" oncomplete="reloadParent();"
+                                    reRender="errorPanel,refereshPPProductLine" status="LoadingSpinner" style="float:left;margin-top:-32px;"/>
+                                <apex:commandButton styleClass="save" action="{!showQuotePage}" id="quoteOppLine" value="Create Quote" rendered="{!if(availableForQuote=true,true,false)}" reRender="thisForm" status="LoadingSpinner" style="float:left;margin-top:-32px;margin-left:40px;" oncomplete="scrollToTop();"/>
+                                <apex:commandButton styleClass="save" action="{!saveLineItemsAndShowQuotePage}" value="Create Quote" rendered="{!if(useCombinedSaveAndCreateQuote=true,true,false)}" reRender="thisForm" status="LoadingSpinner" style="float:left;margin-top:-32px;margin-left:40px;" oncomplete="scrollToTop();"/>
+                            </apex:outputPanel>
+                        </apex:pageBlock>
+                </apex:outputPanel>
+                <!-- end of Marketting Shipping-->
+                
+                <!-- Design Product -->
+                <apex:outputPanel id="refereshDPProductLine" rendered="{!showDPBlock}">
+                        <apex:pageBlock title="{!$Label.OppProducts}">
+                            <apex:pageBlockTable value="{!dpProductLineItems}" var="lineItem" styleClass="tableone" >
+                                 <apex:column headerValue="{!$ObjectType.List_Product_Price__c.fields.Product_Name__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:outputField value="{!lineItem.product.Name}"  />
+                                   <!-- <apex:selectList value="{!selectedProductLineItem}" onChange="getRelatedProduct();" multiselect="false" size="1"
+                                    rendered="{!lineItem.firstRecord}">
+                                        <apex:selectOptions value="{!dpProductItems}" />
+                                    </apex:selectList>-->
+                                </apex:column>
+                                 <apex:column headerValue="{!$ObjectType.List_Product_Price__c.fields.List_Price__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputText html-data-id="productPrice_{!lineItem.position}" value="{!lineItem.product.Listed_Price__c}" style="text-align:right;width:75px;"  rendered="{!IF(lineItem.lastRecord, false, true)}" 
+                                    onkeypress="return inputLimiter(this,event,'Decimals')" onkeyup="return calculateTotalAmountExclQuan('productPrice_{!lineItem.position}','rabbat_{!lineItem.position}','totalAmount_{!lineItem.position}','design_{!lineItem.position}');"  />
+                                </apex:column>
+                               <apex:column headerValue="{!$Label.Discount}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputField html-data-id="rabbat_{!lineItem.position}" value="{!lineItem.product.Discount__c}"
+                                    rendered="{!IF(lineItem.lastRecord, false, true)}" onkeypress="return inputLimiter(this,event,'percentage')"
+                                    onkeyup="return calculateTotalAmountExclQuan('productPrice_{!lineItem.position}','rabbat_{!lineItem.position}','totalAmount_{!lineItem.position}','design_{!lineItem.position}');" style="text-align:right;width:75px;" />
+                                </apex:column>
+                                <apex:column headerValue="{!$Label.Subsidy}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputText html-data-id="design_{!lineItem.position}" value="{!lineItem.product.Subsidy__c}"
+                                     rendered="{!IF(lineItem.lastRecord, false, true)}" onkeypress="return inputLimiter(this,event,'Decimals')"
+                                    onkeyup="return calculateTotalAmountExclQuan('productPrice_{!lineItem.position}','rabbat_{!lineItem.position}','totalAmount_{!lineItem.position}','design_{!lineItem.position}');" style="text-align:right;width:75px;" />
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Start_Date__c.Label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputField value="{!lineItem.product.Start_Date__c}" rendered="{!IF(lineItem.lastRecord, false, true)}"/>
+                                </apex:column> 
+                                
+                               <!--<apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Quantity__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputText html-data-id="quantity_{!lineItem.position}" value="{!lineItem.product.Quantity__c}" rendered="{!IF(lineItem.lastRecord, false, true)}" onkeypress="return inputLimiter(this,event,'Numbers')" onkeyup="return calculateTotalAmount('productPrice_{!lineItem.position}','quantity_{!lineItem.position}','rabbat_{!lineItem.position}','totalAmount_{!lineItem.position}');" style="text-align:right;width:75px;" />
+                                </apex:column>-->
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.End_Date__c.Label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputField value="{!lineItem.product.End_Date__c}" rendered="{!IF(lineItem.lastRecord == false, true, false)}"/>
+                                    <apex:outputLabel value="{!$Label.Total}" style="text-align:right; width:75px; font-weight: bold; display:block;" rendered="{!lineItem.lastRecord}" />
+                                </apex:column>
+                                 <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Total_Amount__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputText html-data-id="totalAmount_{!lineItem.position}" value="{!lineItem.product.Total_Amount__c}" style="text-align:right;width:75px;" rendered="{!IF(lineItem.lastRecord, false, true)}" html-readonly="true"/>
+                                    <apex:inputText value="{!lineItem.subTotalAmount}" style="text-align:right;width:75px;" rendered="{!lineItem.lastRecord}" id="product_subTotal" html-readonly="true" />
+                                </apex:column>
+                                <apex:column rendered="{!IF(lockLineItems=false, true, false)}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:commandButton styleClass="green btnbutton" value="+" action="{!adddpProduct}" reRender="refereshDPProductLine,errorPanel" status="LoadingSpinner"  style="text-align:center;width:20px;" rendered="false"/>
+                                    <apex:commandButton styleClass="gray btnbutton" value="-" action="{!removedpProduct}" reRender="refereshDPProductLine,errorPanel" status="LoadingSpinner" 
+                                    rendered="{!IF(AND(lineItem.product.Has_Related_Tarif__c == false, lineItem.firstRecord == false, lineItem.lastRecord == false), true, false)}" style="text-align:center;width:20px;"  >
+                                        <apex:param name="productToRemove" value="{!lineItem.position}" assignTo="{!productToRemove}" />
+                                    </apex:commandButton>
+                                </apex:column>
+                            </apex:pageBlockTable>
+                             <br /> 
+                            <br />
+                            <br />
+                            <apex:outputPanel rendered="{!if(lockLineItems=false, true, false)}" >
+                                <apex:commandButton styleClass="save" value="Save" action="{!saveLineItems}" oncomplete="reloadParent();"
+                                    reRender="errorPanel,refereshPPProductLine" status="LoadingSpinner" style="float:left;margin-top:-32px;"/>
+                                <apex:commandButton styleClass="save" action="{!showQuotePage}" id="quoteOppLine" value="Create Quote" rendered="{!if(availableForQuote=true,true,false)}" reRender="thisForm" status="LoadingSpinner" style="float:left;margin-top:-32px;margin-left:40px;" oncomplete="scrollToTop();"/>
+                                <apex:commandButton styleClass="save" action="{!saveLineItemsAndShowQuotePage}" value="Create Quote" rendered="{!if(useCombinedSaveAndCreateQuote=true,true,false)}" reRender="thisForm" status="LoadingSpinner" style="float:left;margin-top:-32px;margin-left:40px;" oncomplete="scrollToTop();"/>
+                            </apex:outputPanel>
+                        </apex:pageBlock>
+                </apex:outputPanel>
+                <!-- end of Design Product-->
+
+                <!-- Premium Placement -->
+                <apex:outputPanel id="refereshPPProductLine" rendered="{!showPPBlock}">
+                        <apex:pageBlock title="{!$Label.OppProducts}">
+                            <apex:pageBlockTable value="{!ppProductLineItems}" var="lineItem" styleClass="tableone" >
+                                
+                                <apex:column headerValue="{!$ObjectType.List_Product_Price__c.fields.Product_Name__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:outputField value="{!lineItem.product.Name}" rendered="{!IF(OR(lineItem.firstRecord, lineItem.lastRecord), false, true)}" />
+                                    <apex:selectList value="{!selectedProductLineItem}" onChange="getRelatedProduct();" multiselect="false" size="1"
+                                    rendered="{!lineItem.firstRecord}">
+                                        <apex:selectOptions value="{!ppProductItems}" />
+                                    </apex:selectList>
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.City_ZipCode__c.Label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputField value="{!lineItem.product.City_ZipCode__c}" rendered="{!IF(lineItem.lastRecord, false, true)}" style="text-align:right;width:75px;"/>
+                                </apex:column>
+                                 <apex:column headerValue="{!$ObjectType.List_Product_Price__c.fields.List_Price__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                     <apex:inputText html-data-id="productPrice_{!lineItem.position}" value="{!lineItem.product.Listed_Price__c}" style="text-align:right;width:75px;" html-readonly="true" rendered="{!IF(lineItem.lastRecord, false, true)}" />
+                                </apex:column>
+                                
+                               <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Start_Date__c.Label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputField value="{!lineItem.product.Start_Date__c}" rendered="{!IF(lineItem.lastRecord, false, true)}"/>
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.End_Date__c.Label}" rendered="{!if(opp.Company_Code__c='Talabat',true,false)}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}" >
+                                    <apex:inputField value="{!lineItem.product.End_Date__c}" rendered="{!IF(lineItem.lastRecord, false, true)}" />
+                                </apex:column>
+                                <apex:column headerValue="{!$Label.Discount}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputField html-data-id="rabbat_{!lineItem.position}" value="{!lineItem.product.Discount__c}"
+                                    rendered="{!IF(lineItem.lastRecord, false, true)}" onkeypress="return inputLimiter(this,event,'percentage')"
+                                    onkeyup="return calculateTotalAmount('productPrice_{!lineItem.position}','quantity_{!lineItem.position}','rabbat_{!lineItem.position}','totalAmount_{!lineItem.position}');" style="text-align:right;width:75px;" />
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Quantity__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputText html-data-id="quantity_{!lineItem.position}" value="{!lineItem.product.Quantity__c}" style="text-align:right;width:75px;" html-readonly="true" rendered="{!IF(lineItem.lastRecord, false, true)}" />
+                                    <apex:outputLabel value="{!$Label.Total}" style="text-align:right; width:75px; font-weight: bold; display:block;" rendered="{!lineItem.lastRecord}" />
+                                </apex:column>
+                                <!--<apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Installments__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputField id="installments" value="{!lineItem.product.Installments__c}" onkeypress="return inputLimiter(this,event,'Numbers')" style="text-align:right;width:75px;" rendered="{!IF(lineItem.lastRecord, false, true)}" />
+                                    <apex:outputLabel value="{!$Label.Total}" style="text-align:right; width:75px; font-weight: bold; display:block;" rendered="{!lineItem.lastRecord}" />
+                                </apex:column>-->
+                                 <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Total_Amount__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputText html-data-id="totalAmount_{!lineItem.position}" value="{!lineItem.product.Total_Amount__c}" style="text-align:right;width:75px;" rendered="{!IF(lineItem.lastRecord, false, true)}" html-readonly="true"/>
+                                    <apex:inputText value="{!lineItem.subTotalAmount}" style="text-align:right;width:75px;" rendered="{!lineItem.lastRecord}" id="product_subTotal" html-readonly="true" />
+                                </apex:column>
+                                <apex:column rendered="{!IF(lockLineItems=false, true, false)}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:commandButton styleClass="green btnbutton" value="+" action="{!addPPProduct}" reRender="refereshPPProductLine,errorPanel" status="LoadingSpinner"  style="text-align:center;width:20px;" rendered="{!lineItem.firstRecord}"/>
+                                    <apex:commandButton styleClass="gray btnbutton" value="-" action="{!removePPProduct}" reRender="refereshPPProductLine,errorPanel" status="LoadingSpinner" 
+                                    rendered="{!IF(AND(lineItem.product.Has_Related_Tarif__c == false, lineItem.firstRecord == false, lineItem.lastRecord == false), true, false)}" style="text-align:center;width:20px;"  >
+                                        <apex:param name="productToRemove" value="{!lineItem.position}" assignTo="{!productToRemove}" />
+                                    </apex:commandButton>
+                                </apex:column>
+                            </apex:pageBlockTable>
+
+                            <br /> 
+                            <br />
+                            <br />
+                            <apex:outputPanel rendered="{!if(lockLineItems=false, true, false)}" >
+                                <apex:commandButton styleClass="save" value="Save" action="{!saveLineItems}" oncomplete="reloadParent();"
+                                    reRender="errorPanel,refereshPPProductLine" status="LoadingSpinner" style="float:left;margin-top:-32px;"/>
+                                <apex:commandButton styleClass="save" action="{!showQuotePage}" id="quoteOppLine" value="Create Quote" rendered="{!if(availableForQuote=true,true,false)}" reRender="thisForm" status="LoadingSpinner" style="float:left;margin-top:-32px;margin-left:40px;" oncomplete="scrollToTop();"/>
+                                <apex:commandButton styleClass="save" action="{!saveLineItemsAndShowQuotePage}" value="Create Quote" rendered="{!if(useCombinedSaveAndCreateQuote=true,true,false)}" reRender="thisForm" status="LoadingSpinner" style="float:left;margin-top:-32px;margin-left:40px;" oncomplete="scrollToTop();"/>
+                            </apex:outputPanel>
+                        </apex:pageBlock> 
+                    </apex:outputPanel>
+                    <apex:outputPanel id="apiPPPanel" rendered="{!showAPIPPBlock}">
+                    <apex:pageBlock title="Booked">
+                    <apex:pageBlockTable value="{!ppAPILineItems}" var="lineItem" styleClass="tableone" id="ppAPILinetable" >
+                        <apex:column headerValue="Booking Id" >
+                            <apex:outputField value="{!lineItem.Booking_Api_Id__c}" />
+                        </apex:column>
+                        <apex:column headerValue="{!$ObjectType.List_Product_Price__c.fields.Product_Name__c.label}" >
+                            <apex:outputField value="{!lineItem.Name}" />
+                        </apex:column>
+                        <apex:column headerValue="Zip Code" >
+                            <apex:outputField value="{!lineItem.City_ZipCode__c}" style="text-align:right;width:75px;"/>
+                        </apex:column>
+                        <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Position__c.Label}" >
+                            <apex:outputField value="{!lineItem.Position_fm__c}" style="text-align:right;width:75px;"/>
+                        </apex:column>
+                         <apex:column headerValue="{!$ObjectType.List_Product_Price__c.fields.List_Price__c.label}" >
+                             <apex:outputField value="{!lineItem.Listed_Price__c}" style="text-align:right;width:75px;"   />
+                        </apex:column>
+                       <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Start_Date__c.Label}" >
+                            <apex:outputField value="{!lineItem.Start_Date__c}" />
+                        </apex:column>
+                        <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.End_Date__c.Label}" >
+                            <apex:outputField value="{!lineItem.End_Date__c}" />
+                        </apex:column>
+                        <apex:column headerValue="{!$Label.Discount}" >
+                            <apex:outputField value="{!lineItem.Discount__c}" style="text-align:right;width:75px;" />
+                        </apex:column>
+                         <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Total_Amount__c.label}" >
+                            <apex:outputField value="{!lineItem.Total_Amount__c}" style="text-align:right;width:75px;"  />
+                        </apex:column>
+                    </apex:pageBlockTable>
+                    </apex:pageBlock>
+                    
+                    <apex:pageBlock id="PPBlockAPI" title="Premium Placement">
+                        <table class="list tableone" id="pptab" border="0" cellpadding="0" cellspacing="0"></table>
+                        <br/><br/><br/>
+                        <span id="btnsPP" />
+                    </apex:pageBlock>
+                    <script type="text/javascript">
+                        //invokeAPIPP = true;
+                        
+ 
+                        function getResInfo(){
+                            //console.log('its working');
+                        
+                        //jq("[id$=tarifSelect]").on('change','[id$=monthYearSelect]',function(){
+                        clearErrorMsg();
+                        var v = jq("[id$=monthYearSelect] option:selected").text();
+                            //console.log('v: '+v);
+                            //console.log(accId);   
+                        getRestaurantInfo(accId,v);
+                        // myyyy = jq("[id$=monthYearSelect] option:selected").text();
+            
+                        
+                        }
+                        
+                        
+                        mapSelect = {};
+                        mapOriginal = {};
+                        var table = jq("#pptab");
+                        LoadingSpinner  = jq("[id$=LoadingSpinner\\.start]");
+                        LoadingSpinner.css("display","block");
+
+                        //if(invokeAPIPP){
+                        var myyyy = jq("[id$=monthYearSelect] option:selected").text();
+                        getRestaurantInfo(accId,myyyy);
+                            //invokeAPIPP = false;
+                        //}
+
+                        table.on('change','#ppselect',function() {
+                            clearErrorMsg();
+                            var postCode = jq(this).attr('html-data');
+
+                            var priceVal = jq('option:selected', this).attr('html-data');
+                            jq('#price_'+postCode).val(priceVal);
+                            jq('#default_'+postCode).text(priceVal);
+                        });
+
+                        table.on('click','#add_btn',function() {
+                                        clearErrorMsg();
+                                        var postCode = jq(this).attr('html-data');
+                                        pc=postCode.replace(/\s|'/g, '');
+                                        console.log(postCode);
+                                        //console.log('Postcode'+ postCode);
+                                        var price = parseFloat(jq('#price_'+pc).val());
+                                        //console.log('price'+ price);
+                                        var total = parseFloat(jq("#totalPP").val());
+                                        if(this.value=='+'){
+                                            
+                                            //var pkgSelect = jq("#ppselect='"+postCode+"']");
+                                              var pkgSelect = jq("#ppselect[html-data='"+pc+"']");
+                                            //console.log('pkgSelect' + pkgSelect);
+                                            jq('#price_'+pc).attr('disabled','disabled');
+                                            pkgSelect.attr('disabled','disabled');
+                                            this.value = "-";
+                                            var value = mapOriginal[postCode];
+                                            value.package_type = jq(pkgSelect).val();
+                                             value.package_description = jq(pkgSelect).find(":selected").text();
+                                            //console.log('package_Type' + value.package_type);
+                                            value.price = price;
+                                            value.listedPrice = parseFloat(jq('#default_'+pc).text()); 
+                                            mapSelect[postCode] = value;
+                                            total += price;
+                                            jq("#totalPP").val(total);
+                                        }else{
+                                            jq('#price_'+pc).removeAttr('disabled');
+                                            jq("#ppselect[html-data='"+pc+"']").removeAttr('disabled');
+                                            this.value = "+";
+                                            total -= price;
+                                            jq("#totalPP").val(total);
+                                            delete mapSelect[postCode];
+                                        }
+                                        //console.log('mapselect: '+Object.keys(mapSelect).length);
+                                        //var priceVal = jq('option:selected', this).attr('html-data');
+                                        
+                                        //jq('#default_'+postCode).text(priceVal);
+                        });
+
+                        jq("[id$=tarifSelect]").on('change','[id$=monthYearSelect]',function(){
+                        clearErrorMsg();
+                        var v = jq('option:selected', this).text();
+                        console.log('v: '+v);
+                        getRestaurantInfo(accId,v);
+
+                        });
+                        
+
+                        jq("#btnsPP").on('click','input',function(){
+                            clearErrorMsg();
+                            objs = [];
+                            var i=0;
+                            for(var key in mapSelect){
+                                postcodes[i] = key;
+                                //console.log(mapSelect[key]);
+                                objs[i] = mapSelect[key];
+                                i++;
+                            }
+                            quoteFlg = false;
+
+                            if(this.name=='savePP'){
+                                //console.log(postcodes);
+                                //console.log(objs);
+                                if(objs.length==0){
+                                    showErrorMsg('Add a postcode before saving!');
+                                    //jq(errorMsg).focus();
+                                    return;
+                                }else{
+                                    quoteFlg = false;
+                                    confirmBox();
+                                    //window.top.location.reload();
+                                    
+                                    // console.log('confirm: '+proceed);
+                                    // if(proceed==true){
+                                    //     savePPApi(false);
+                                    // }
+                                }
+                                //console.log('save triggered');
+                            }else{
+                                var existingAPIPPTable = jq("[id$=ppAPILinetable] tbody");
+                                //console.log('hiqq1');
+                                if(objs.length==0 && existingAPIPPTable.html()==''){
+                                    showErrorMsg('Add a postcode before creating quote!');
+                                    //jq(errorMsg).focus();
+                                    return;
+                                }else{
+                                    //console.log('hiqq2');
+                                    if(objs.length!=0){
+                                        quoteFlg = true;
+                                        confirmBox();
+                                        // console.log('confirm: '+proceed);
+                                        // if(proceed==true){
+                                        //     savePPApi(true);
+                                        // }
+                                    }else{
+                                        savePPApi(true);
+                                    }
+                                    
+                                }
+                                //console.log('quote triggered');
+                            }
+                        });
+                        
+
+                        jq("div.scrolling").removeClass();
+
+                        
+                    </script>
+                    </apex:outputPanel>
+
+
+
+                <!-- Commission / Service-->
+                <apex:outputPanel id="refereshServiceLineContainer">
+                    <apex:outputPanel id="refereshServiceLine" rendered="{!showServiceLineItems}">
+                        <apex:pageBlock title="{!$Label.OppServices}">
+                            <apex:pageBlockTable value="{!serviceLineItems}" var="lineItem" styleClass="tableone">
+                                <apex:column headerValue="{!$Label.Service_Name}"  styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:outputText value="{!lineItem.service.Name}" rendered="{!IF(lineItem.firstRecord, false, true)}"/>
+                                    <apex:selectList value="{!selectedServiceItem}" onChange="getServiceDetails();" multiselect="false" size="1" rendered="{!lineItem.firstRecord}">
+                                        <apex:selectOptions value="{!serviceItems}" />
+                                    </apex:selectList>
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.List_Service_Price__c.fields.Service_Type__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:outputText value="{!lineItem.service.Sub_type__c}" />
+                                </apex:column>
+                                <apex:column headerValue="{!$Label.Commission_in_percentage}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                  <!--<apex:inputText value="{!lineItem.service.Commission_In_Percentage__c}" style="text-align:right;" onkeypress="return inputLimiter(this,event,'Decimals')"/>-->
+                                 
+                                <apex:inputText size="10" value="{!lineItem.service.Commission_In_Percentage__c}" style="text-align:right;" disabled="{!if(mapCommissionType[lineItem.service.Id_List_Service_Price__c]='Per Order','true','false')}" onkeypress="return inputLimiter(this,event,'Decimals')"/>
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.List_Service_Price__c.fields.Commission_Per_Order__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}" rendered="{!showCommissionPerOrder}">
+                                    <apex:inputText size="10" value="{!lineItem.service.Commission_Per_Order__c}" style="text-align:right;" disabled="{!if(mapCommissionType[lineItem.service.Id_List_Service_Price__c]='Percentage','true','false')}" onkeypress="return inputLimiter(this,event,'Decimals')"/>
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Start_Date__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputField value="{!lineItem.service.Start_Date__c}" style="text-align:right;" rendered="{!lineItem.firstRecord}"/>
+                                    <apex:inputField value="{!lineItem.service.Start_Date__c}" onChange="jsSortLineItems();" style="text-align:right;" 
+                                    rendered="{!IF(lineItem.firstRecord, false, true)}"/>
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.End_Date__c.label}"  style="width:200px;"  styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:outputField value="{!lineItem.service.End_Date__c}" style="text-align:right;" />
+                                </apex:column>
+                                <apex:column rendered="{!IF(lockLineItems = false, true, false)}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:commandButton style="width:20px;" styleClass="green btnbutton" value="+" action="{!addService}" status="LoadingSpinner" 
+                                    reRender="refereshServiceLine,refereshProductLineContainer,errorPanel" rendered="{!IF(AND(lockLineItems = false, lineItem.firstRecord), true, false)}"/>
+                                    
+                                    <apex:commandButton styleClass="gray btnbutton" value="-" action="{!removeService}" reRender="refereshServiceLine,refereshProductLineContainer,errorPanel" status="LoadingSpinner" rendered="{!IF(AND(lineItem.service.Has_Related_Tarif__c == false, lineItem.firstRecord == false), true, false)}" style="width:20px;">
+                                        <apex:param name="serviceToRemove" value="{!lineItem.position}" assignTo="{!serviceToRemove}" />
+                                    </apex:commandButton>
+                                </apex:column>
+                            </apex:pageBlockTable>
+                        </apex:pageBlock>
+                    </apex:outputPanel>
+                    <br />
+                    <br />
+                    <br />
+                </apex:outputPanel>
+                
+                <!-- end Service-->
+
+                
+
+                <!-- Recurring charges -->
+                <apex:outputPanel id="recurringChargesSection" rendered="{!usesRecurringCharges}">
+                    <apex:pageMessages id="errorMessagesRecurringCharge" />
+                    <apex:pageBlock title="{!$Label.Opportunity_Recurring_Charges}">
+                        <apex:pageBlockTable value="{!recurringChargeLineItems}" var="lineItem">
+                            <apex:column headerValue="{!$ObjectType.List_Product_Price__c.fields.Product_Name__c.Label}">
+                                <apex:outputText value="{!lineItem.product.Name}" rendered="{!IF(lineItem.firstRecord, false, true)}" />
+                                <apex:selectList value="{!selectedRecurringCharge}" onchange="getRecurringProduct();" multiselect="false" size="1" rendered="{!lineItem.firstRecord}">
+                                    <apex:selectOptions value="{!recurringChargesList}" />
+                                </apex:selectList>
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.List_Product_Price__c.fields.List_Price__c.Label}">
+                                <apex:inputText value="{!lineItem.product.Listed_Price__c}" html-readonly="true" />
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Start_Date__c.Label}">
+                                <apex:inputField value="{!lineItem.product.Start_Date__c}" />
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.End_Date__c.Label}">
+                                <apex:inputField value="{!lineItem.product.End_Date__c}" />
+                            </apex:column>
+                            <apex:column >
+                                <apex:commandButton value="+" action="{!addRecurringCharge}" rendered="{!lineItem.firstRecord}" reRender="recurringChargesSection,refereshProductLineContainer,errorMessagesRecurringCharge" style="text-align:center;width:20px;" status="LoadingSpinner"/>
+                                <apex:commandButton value="-" action="{!removeRecurringCharge}" status="LoadingSpinner" rendered="{!IF(AND(lineItem.product.Has_Related_Tarif__c == false, lineItem.firstRecord == false), true, false)}" reRender="recurringChargesSection,refereshProductLineContainer,errorMessagesRecurringCharge" style="text-align:center;width:20px;">
+                                     <apex:param name="recurringChargeToRemove" value="{!lineItem.position}" assignTo="{!recurringChargeToRemove}" />
+                                </apex:commandButton>
+                            </apex:column>
+                        </apex:pageBlockTable>
+                    </apex:pageBlock>
+                    <br />
+                    <br />
+                    <br />
+                </apex:outputPanel>
+                
+                <!-- End Recurring charges -->
+
+                <!-- Products / Additional Charges & Assets -->
+                <apex:outputPanel id="refereshProductLineContainer">
+                    <apex:outputPanel id="refereshProductLine" rendered="{!showProductLineItems}">
+                        <apex:pageBlock title="{!$Label.OppProducts}">
+
+                            <apex:pageBlockTable id="prodLineTable" value="{!productLineItems}" var="lineItem" styleClass="tableone" >
+                        
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Product_Group__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:outputField value="{!lineItem.product.Product_Group__c}"  rendered="{!IF(OR(lineItem.firstRecord, lineItem.lastRecord), false, true)}" />
+                                    <apex:selectList value="{!selectedProductGroup}" onChange="getRelatedGroupProducts();" multiselect="false" size="1" 
+                                    rendered="{!lineItem.firstRecord}">
+                                        <apex:selectOptions value="{!groupItems}" />
+                                    </apex:selectList> 
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.List_Product_Price__c.fields.Product_Name__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:outputField value="{!lineItem.product.Name}" rendered="{!IF(OR(lineItem.firstRecord, lineItem.lastRecord), false, true)}" />
+                                    <apex:selectList value="{!selectedProductLineItem}" onChange="getRelatedProduct();" multiselect="false" size="1"
+                                    rendered="{!lineItem.firstRecord}">
+                                        <apex:selectOptions value="{!productItems}" />
+                                    </apex:selectList>
+                                    
+                                </apex:column>
+                                 <apex:column headerValue="{!$ObjectType.List_Product_Price__c.fields.List_Price__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                     <apex:inputText html-data-id="productPrice_{!lineItem.position}" value="{!lineItem.product.Listed_Price__c}" style="text-align:right;width:75px;" html-readonly="true" rendered="{!IF(lineItem.lastRecord, false, true)}" />
+                                </apex:column>
+                                <apex:column headerValue="{!$Label.Discount}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputField html-data-id="rabbat_{!lineItem.position}" value="{!lineItem.product.Discount__c}"
+                                    rendered="{!IF(lineItem.lastRecord, false, true)}" onkeypress="return inputLimiter(this,event,'percentage')"
+                                    onkeyup="return calculateTotalAmount('productPrice_{!lineItem.position}','quantity_{!lineItem.position}','rabbat_{!lineItem.position}','totalAmount_{!lineItem.position}');" style="text-align:right;width:75px;" />
+                                </apex:column>
+                                <apex:column headerValue="{!$Label.Comments}" rendered="{!if(opp.Company_Code__c='CD',true,false)}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputField html-data-id="design_{!lineItem.position}" value="{!lineItem.product.Design_Note__c}"
+                                    rendered="{!IF(lineItem.lastRecord, false, true)}" style="text-align:right;width:75px;" />
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Start_Date__c.Label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}" rendered="{!if(opp.Company_Code__c='Talabat',true,false)}">
+                                    <apex:inputField value="{!lineItem.product.Start_Date__c}" rendered="{!IF(lineItem.lastRecord == false, true, false)}"/>
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Quantity__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                     <apex:inputField html-data-id="quantity_{!lineItem.position}"
+                                                        value="{!lineItem.product.Quantity__c}" 
+                                                        rendered="{!IF(lineItem.lastRecord, false, true)}" 
+                                                        onkeypress="return inputLimiter(this,event,'Numbers')"
+                                                        onkeyup="return calculateTotalAmount('productPrice_{!lineItem.position}','quantity_{!lineItem.position}','rabbat_{!lineItem.position}','totalAmount_{!lineItem.position}');" style="text-align:right;width:75px;" />
+                                </apex:column>
+                                <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Installments__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputField id="installments" value="{!lineItem.product.Installments__c}" onkeypress="return inputLimiter(this,event,'Numbers')" style="text-align:right;width:75px;" rendered="{!IF(lineItem.lastRecord, false, true)}" />
+                                    <apex:outputLabel value="{!$Label.Total}" style="text-align:right; width:75px; font-weight: bold; display:block;" rendered="{!lineItem.lastRecord}" />
+                                </apex:column>
+                                 <apex:column headerValue="{!$ObjectType.Opportunity_Line_Item__c.fields.Total_Amount__c.label}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:inputText html-data-id="totalAmount_{!lineItem.position}" value="{!lineItem.product.Total_Amount__c}" style="text-align:right;width:75px;" rendered="{!IF(lineItem.lastRecord, false, true)}" html-readonly="true"/>
+                                    <apex:inputText value="{!lineItem.subTotalAmount}" style="text-align:right;width:75px;" rendered="{!lineItem.lastRecord}" id="product_subTotal" html-readonly="true" />
+                                </apex:column>
+
+                                <apex:column rendered="{!IF(lockLineItems=false, true, false)}" styleClass="{!if(lineItem.showError=true,'ErrorInRed','')}">
+                                    <apex:commandButton styleClass="green btnbutton" value="+" action="{!addProduct}" reRender="refereshProductLine,refereshProductLineContainer,errorPanel" status="LoadingSpinner"  style="text-align:center;width:20px;" rendered="{!lineItem.firstRecord}"/>
+                                    <apex:commandButton styleClass="gray btnbutton" value="-" action="{!removeProduct}" reRender="refereshProductLine,refereshProductLineContainer,errorPanel" status="LoadingSpinner" 
+                                    rendered="{!IF(AND(lineItem.product.Has_Related_Tarif__c == false, lineItem.firstRecord == false, lineItem.lastRecord == false), true, false)}" style="text-align:center;width:20px;">
+                                        <apex:param name="productToRemove" value="{!lineItem.position}" assignTo="{!productToRemove}" />
+                                    </apex:commandButton>
+                                </apex:column>
+
+                            </apex:pageBlockTable>
+
+                            <br /> 
+                            <br />
+                            <br />
+                            <apex:outputPanel rendered="{!if(lockLineItems=false, true, false)}" >
+                                <apex:commandButton styleClass="save" value="Save" action="{!saveLineItems}" oncomplete="reloadParent();"
+                                    reRender="errorPanel,productSection" status="LoadingSpinner" style="float:left;margin-top:-32px;"/>
+                                <apex:commandButton styleClass="save" action="{!showQuotePage}" id="quoteOppLine" value="Create Quote " rendered="{!if(availableForQuote=true,true,false)}" reRender="thisForm" status="LoadingSpinner" style="float:left;margin-top:-32px;margin-left:40px;" oncomplete="scrollToTop();"/>
+                                <apex:commandButton styleClass="save" action="{!saveLineItemsAndShowQuotePage}" value="Create Quote" rendered="{!if(useCombinedSaveAndCreateQuote=true,true,false)}" reRender="thisForm" status="LoadingSpinner" style="float:left;margin-top:-32px;margin-left:40px;" oncomplete="scrollToTop();"/>
+                            </apex:outputPanel>
+                        </apex:pageBlock> 
+                    </apex:outputPanel>
+                    <br />
+                    <br />
+                </apex:outputPanel>
+
+            </apex:outputPanel>
+            <!--<apex:outputPanel id="QuoteSection" rendered="{!if(showQuoteSection=true,true,false)}">
+                <apex:pageBlock id="PageBlock" html-style="width:800px; margin:0 auto;">
+                    <apex:pageMessages id="errorPanel" />
+                    <apex:commandButton value="{!$Label.Create_Quote_Go_Back}" styleClass="red" action="{!cancelShowQuote}" reRender="thisForm" oncomplete="scrollToTop();" rendered="{!if(showQuoteSectionError=true,true,false)}" status="LoadingSpinner"/>
+                    <apex:outputPanel id="QuoteSection" rendered="{!if(showQuoteSectionError=false,true,false)}">
+                        <apex:inputTextarea id="sendEmail" value="{!htmlEmailQuote}" disabled="true" ></apex:inputTextarea>
+                                <script type="text/javascript">
+                                    tinymce.init({
+                                    menubar : false,
+                                    toolbar: false,
+                                        selector: "#thePage\\:thisForm\\:PageBlock\\:sendEmail",
+                                        statusbar : false,
+                                        height : 670
+                                     });
+                                     
+                                </script>
+
+                        <apex:commandButton value="Save" styleClass="{!$Label.Create_Quote_Save}" action="{!createQuote}" oncomplete="return reloadParent();" reRender="errorPanel" status="LoadingSpinner"/>
+                        <apex:commandButton value="{!$Label.Create_Quote_Cancel}" styleClass="red" action="{!cancelShowQuote}" reRender="refereshProductLine,thisForm,refereshProductLineContainer,errorPanel" oncomplete="scrollToTop();" status="LoadingSpinner"/>
+                    </apex:outputPanel>
+                </apex:pageBlock>
+            </apex:outputPanel>--> 
+            <apex:outputPanel id="QuoteSection" rendered="{!if(showProductSection=false,true,false)}">
+                <apex:outputPanel id="QuoteCommentSection" rendered="{!if(showApprovalCommentsSection=true,true,false)}">
+                    <apex:pageBlock id="PageBlockApprovalComments" html-style="width:800px; margin:0 auto;" title="Quote approval comments">
+                       <!-- <apex:pageMessages id="errorMessages"/>-->
+                        <apex:inputTextarea id="approvalComments" style="width:770px; margin:0 auto;" value="{!OppQuote.Approval_Comments__c}" disabled="false" /><br></br>
+                        <!--<apex:commandButton value="Save" styleClass="{!$Label.Create_Quote_Save}" action="{!createQuote}" oncomplete="return reloadParent();" status="LoadingSpinner" reRender="thisForm"/>
+                        <apex:commandButton value="{!$Label.Create_Quote_Cancel}" styleClass="red" action="{!cancelShowQuote}" reRender="thisForm" oncomplete="scrollToTop();" status="LoadingSpinner"/>-->
+                    </apex:pageBlock>
+                </apex:outputPanel>
+
+                <apex:outputPanel id="NonStandardContractComponentsSection" rendered="{!if(showNonStandardContractComponentsSection=true,true,false)}">
+                    <apex:pageBlock id="PageBlockNonStandardContractComponents" html-style="width:800px; margin:0 auto;" title="Non Standard Contract Components">
+                        <!--ME approval flow v5.5:pageMessage block shall only appear if no comments section is rendered. Otherwise message would show double. pagemessage block is neccesary
+                                                  because its needed for pagerefresh javascript reloadParent() 
+                            ME approval flow v6.0: pageblock gets commented out because comments section shall appear always-->
+                       <!-- <apex:pageMessages id="errorMessages" rendered="{!if(showApprovalCommentsSection=true,false,true)}"/>-->
+                        
+                        <apex:inputField id="NonStandardConractComponents" value="{!OppQuote.Non_Standard_Contract_Components__c}" onchange="addNonstandardcontract()">
+                            <!--commented out for ME approval flow v.6.0 -->
+                            <!--<apex:actionSupport event="onchange" rerender="PageBlockNonStandardContractComponents" status="LoadingSpinner" />-->
+                        </apex:inputField><br></br>
+                        <!--commented out for ME approval flow v.6.0 -->
+                        <apex:outputPanel rendered="{!showNonStandardContractTerms}">
+                            {!$Label.Please_specify_non_standard_contract_terms}<br></br>
+                            <apex:inputField id="NonStandardContractTerms" style="width:770px; margin:0 auto;" value="{!OppQuote.Non_Standard_Contract_Terms__c}" />
+                        </apex:outputPanel>
+                        <!--<apex:pageBlockSection title="{!$Label.Please_specify_non_standard_contract_terms}" rendered="{!IF(OppQuote.Non_Standard_Contract_Components__c == 'Other',True,False)}">
+                            <apex:inputTextArea id="NonStandardContractTerms" style="width:750px; margin:0 auto;" value="{!OppQuote.Non_Standard_Contract_Terms__c}" />
+                        </apex:pageBlockSection>-->
+                        <apex:commandButton value="Save" styleClass="{!$Label.Create_Quote_Save}" action="{!createQuote}" oncomplete="return reloadParent();" status="LoadingSpinner" reRender="thisForm"/>
+                        <apex:commandButton value="{!$Label.Create_Quote_Cancel}" styleClass="red" action="{!cancelShowQuote}" reRender="thisForm" oncomplete="scrollToTop();" status="LoadingSpinner"/>
+                    </apex:pageBlock>
+                </apex:outputPanel>
+            </apex:outputPanel>
+
+
+            </apex:form>
+        </div>
+        </body>
+        <script type="text/javascript">
+            //var jq = $.noConflict();
+            function setFocusOnLoad() {};
+            var primarytabId = null;
+            LoadingSpinner  = jq("[id$=LoadingSpinner\\.start]");
+            
+            
+            jq(document).ready(function() {
+                //console.log('document ready');
+                if (sforce.console.isInConsole()) {
+                    testGetFocusedPrimaryTabId();
+                }
+                 jq('[id$="rabbat"]').bind("cut copy paste",function(e) {
+                    e.preventDefault();
+                 });
+
+                 jq('[id$="rabbat"]').bind("contextmenu",function(e) {
+                    e.preventDefault();
+                 });
+
+                 // jq("[data-id=tieredLineMax3]").attr('disabled','true');
+                 // jq("[data-id=tieredLineMax3]").val(null);
+                
+
+            });
+            
+            function calculateSubTotal() {
+                var total = 0,grandTotal=0,vatTotal=0;
+                //var vat = parseFloat('!vatinPercentage');
+                var vat = 0;
+                jq("[data-id*='totalAmount_']").each(function() {
+                    total += jq(this).val() * 1;
+                });
+                jq("[id$=product_subTotal]").val(total);
+                vatTotal = total * (vat/100);
+                grandTotal = vatTotal + total;
+                jq("[id$=product_vatTotal]").val(vatTotal);
+                jq("[id$=product_total]").val(grandTotal);
+            }
+
+            function inputLimiter(obj, e, allow) {
+                var AllowableCharacters = '';
+                if (allow == 'Numbers') {
+                    AllowableCharacters = '1234567890';
+                }
+                if (allow == 'Decimals') {
+                    AllowableCharacters = '1234567890.';
+                }
+                if (allow == 'percentage') {
+                    AllowableCharacters = '1234567890.%';
+                }
+
+                var k = document.all ? parseInt(e.keyCode) : parseInt(e.which);
+                if (k != 13 && k != 0) {
+                    if ((e.ctrlKey == false) && (e.altKey == false)) {
+                        if (String.fromCharCode(k) == '%'
+                                && obj.value.indexOf('%') != -1) {
+                        } else {
+                            if (AllowableCharacters.indexOf(String.fromCharCode(k)) != -1) {
+                                return true;
+                            } else if (k == 8) {
+                                return true;
+                            }
+                        }
+                        return false;
+                    } else {
+                        return true;
+                    }
+                } else {
+                    return true;
+                }
+
+            }
+
+            function calculateTotalAmount(priceId, quanId, rabId, totalId) {
+                var priceValue = jq("[data-id$=" + priceId + "]").val();
+                var quanValue = jq("[data-id$=" + quanId + "]").val();
+                var rabValue = jq("[data-id$=" + rabId + "]").val();
+                var totalObj = jq("[data-id$=" + totalId + "]");
+
+                var percentageFlag = false;
+                var rabbatValue;
+                if (rabValue.indexOf('%') != -1) {
+                    percentageFlag = true;
+                    var textvalue = rabValue;
+                    rabbatValue = textvalue.substr(0, textvalue.indexOf('%') - 0);
+                } else {
+                    rabbatValue = rabValue;
+                }
+                if (quanValue != '' && priceValue != '') {
+                    var discountAmount;
+                    var listPrice = parseFloat(priceValue);
+                    quanValue =parseFloat(quanValue.replace(/[^0-9-]/g, ''));
+                    if (percentageFlag) {
+                        discountAmount = listPrice * (parseFloat(rabbatValue) / 100);
+                    } else {
+                        discountAmount = rabbatValue;
+                    }
+                    var discountedListPrice = listPrice - discountAmount;
+                    var result = parseInt(quanValue) * discountedListPrice;
+                    result=+result.toFixed(2);
+                    //var result = total - discountAmount;
+                    if(result < 0){
+                        totalObj.val(0);
+                    }else{
+                    totalObj.val(result);
+                    }
+                } else {
+                    totalObj.val(0);
+                }
+                calculateSubTotal();
+                return true;
+            }
+            
+            function calculateTotalAmountExclQuan(priceId,  rabId, totalId,subsidyId) {
+                var priceValue = jq("[data-id$=" + priceId + "]").val();
+                //var quanValue = jq("[data-id$=" + quanId + "]").val();
+                var rabValue = jq("[data-id$=" + rabId + "]").val();
+                var totalObj = jq("[data-id$=" + totalId + "]");
+                var subsidy = jq("[data-id$=" + subsidyId + "]").val();
+                
+
+                var percentageFlag = false;
+                var rabbatValue;
+                if (rabValue.indexOf('%') != -1) {
+                    percentageFlag = true;
+                    var textvalue = rabValue;
+                    rabbatValue = textvalue.substr(0, textvalue.indexOf('%') - 0);
+                } else {
+                    rabbatValue = rabValue;
+                }
+                if ( priceValue != '') {
+                    var discountAmount;
+                    var listPrice = parseFloat(priceValue);
+                    //quanValue =parseFloat(quanValue.replace(/[^0-9-]/g, ''));
+                    if (percentageFlag) {
+                        discountAmount = listPrice * (parseFloat(rabbatValue) / 100);
+                    } else {
+                        discountAmount = rabbatValue;
+                    }
+                    var discountedListPrice = (listPrice - discountAmount)-subsidy;
+                    var result =  discountedListPrice;
+                    result=+result.toFixed(2);
+                    //var result = total - discountAmount;
+                    if(result < 0){
+                        totalObj.val(0);
+                    }else{
+                    totalObj.val(result);
+                    }
+                } else {
+                    totalObj.val(0);
+                }
+                calculateSubTotal();
+                return true;
+            }
+            
+           function calculateTotalAmountMenu(priceId, totalId) {
+                var priceValue = jq("[data-id$=" + priceId + "]").val();
+                //var quanValue = jq("[data-id$=" + quanId + "]").val();
+                //var rabValue = jq("[data-id$=" + rabId + "]").val();
+                var totalObj = jq("[data-id$=" + totalId + "]");
+
+                var percentageFlag = false;
+               
+                if( priceValue != ''){
+                     var result = parseFloat(priceValue );
+                    totalObj.val(result);
+                } else {
+                    totalObj.val(0);
+                }
+                calculateSubTotal();
+                return true;
+            }
+
+             function removeReadOnly(){
+               jq("[data-id=tieredLineMin1").removeAttr("readonly");
+            }
+
+            function incrementMinByOne(maxId,index){
+                //console.log('called');
+
+                
+                    var indexVal = parseInt(index);
+                    var chkForDecimal=(jq("[data-id="+maxId+"]").val());
+                    var maxVal = parseFloat(jq("[data-id="+maxId+"]").val());
+                    //console.log(maxVal);
+                if(chkForDecimal.indexOf('.')==-1){    
+                    if(maxVal!=null && !isNaN(maxVal)){
+                        jq("[data-id=tieredLineMin"+(indexVal+1)+"]").val(maxVal+1);
+                    }else{
+                       jq("[data-id=tieredLineMin"+(indexVal+1)+"]").val(null); 
+                    }
+                    console.log(maxVal);
+                    return true;
+                }else{
+                    
+                    //console.log(maxVal);
+                    if(maxVal!=null && !isNaN(maxVal)){
+                        var mxVl=parseFloat((maxVal+0.01).toFixed(2));
+
+                        jq("[data-id=tieredLineMin"+(indexVal+1)+"]").val(mxVl);
+                    }else{
+                       jq("[data-id=tieredLineMin"+(indexVal+1)+"]").val(null); 
+                    }
+                    return true;
+                }
+                
+            }
+
+
+        // Use custom label or custom setting to store this 
+        // The origin domain should be the top level domain of current salesforce org 
+        // where all the standard sfdc pages are hosted. 
+        //CrossDomainUtility.origin = 'https://cs17.salesforce.com'; //example: 'https://na6.salesforce.com'; 
+        //CrossDomainUtility.iframeURL = "{!URLFOR($Resource.InlineVFHeightResize, 'InlineVFHeightResize/CrossBrowserPage.html')}"; // this will give the relative address of the static resource
+        //alert("{!URLFOR($Resource.InlineVFHeightResize, 'InlineVfHeightResize/CrossBrowserPage.html')}");
+        /*var pageOnLoad = function() {
+            CrossDomainUtility.setHeight();
+        }
+        CrossDomainUtility.addEvent(window, 'load', pageOnLoad, false);*/
+
+            var showTabId = function showTabId(result) {
+                //console.log('result.id:'+result.id );
+                //console.log('result.success:'+result.success );
+                primarytabId = result.id;
+            };
+
+            function testGetFocusedPrimaryTabId() {
+                //console.log('getFocusedPrimaryTabId...');
+                //sforce.console.getEnclosingPrimaryTabId(showTabId);
+                sforce.console.getFocusedPrimaryTabId(showTabId);
+            }
+
+            // var currentSubtab = function currentSubtab(result) {
+            //                             var tabId = result.id;
+            //                             sforce.console.refreshSubtabById(tabId, true);
+            //             };
+
+            function reloadParent(){
+                console.log('in reload...');
+                var errorMsgs = errorMsg.html();
+                //console.log('errorMsg..'+errorMsgs);
+                //console.log('primarytabId: '+primarytabId);
+                if(errorMsgs==''){
+                        if(redirectToQuote == true){
+                            if (sforce.console.isInConsole()) {
+                                sforce.console.openSubtab(primarytabId , '/'+oppQuoteId, true,'quote', null);
+                                sforce.console.refreshPrimaryTabById(primarytabId, true);
+                            //sforce.console.getFocusedSubtabId(currentSubtab);
+                        }else if((typeof sforce != 'undefined') && sforce && (!!sforce.one)){
+                            sforce.one.navigateToSObject(oppQuoteId);
+                        }//else if((typeof sforce == 'undefined'){
+                            else if(!sforce.one){
+                            //navigateToUrl(oppQuoteId);
+                            window.parent.location.href="/"+oppQuoteId;
+                            //window.parent.location.href="/{!opp.id}";
+                        }
+                        return true;
+                    }
+                    if (sforce.console.isInConsole()) {
+                        //console.log('refreshing...');
+                        sforce.console.refreshPrimaryTabById(primarytabId, true);
+                        //sforce.console.getFocusedSubtabId(currentSubtab);
+                    }else if((typeof sforce != 'undefined') && sforce && (!!sforce.one)){
+                        sforce.one.navigateToSObject("{!opp.id}");
+                    }//else if((typeof sforce == 'undefined'){
+                        else if(!sforce.one){
+                        //navigateToUrl("/{!opp.id}");
+                        window.parent.location.href="/{!opp.id}";
+                    }
+
+                }
+                return true;            
+            }
+
+            function scrollToTop(){
+                if(openSubTab1==true){
+                    //console.log('@reloadParent');
+                    //console.log('@done');
+                    return reloadParent();
+                    
+                    
+                }else{
+                    //console.log('scroll scroll');
+                    document.body.scrollTop = document.documentElement.scrollTop = 0;
+                    document.getElementById("thePage:thisForm:PageBlockNonStandardContractComponents:NonStandardConractComponents_unselected").focus();
+                    //var objDiv = document.getElementById("test");
+                    //objDiv.scrollTop = objDiv.scrollHeight;
+                    //document.getElementById("test").scrollIntoView();
+                    document.getElementById("thePage:thisForm:errorMessages").focus();
+                }
+            }
+
+
+            function hidePPLines(postcds){
+                jq('#tr_' + postcds.join(',#tr_')).css('display','none');
+            }
+            jq('<input class="btn save" id="savePP" name="savePP"  value="Save" style="float:left;margin-top:-32px;" type="button"><input class="btn save" id="quotePP" name="quotePP" value="Create Quote" style="float:left;margin-top:-32px;margin-left:40px;" type="button">').appendTo('#btnsPP');
+
+            function savePPApi(quoteFlag){
+                var tarifSelectList = jq("[id$=tarifSelectList]").val();
+                myyyy = jq("[id$=monthYearSelect] option:selected").text();
+                LoadingSpinner.css("display","block");
+                //console.log(accId);
+                //console.log(oppId);
+                //console.log(objs);
+                
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.CtrCreateProductLineItems.savePPLines}',accId,oppId,objs,myyyy,userRoles, 
+                    function(result, event){
+                        //console.log('inside savePP');
+                        //console.log(result);
+                        if (event.status) {
+                            if(result.indexOf('Error:')>=0){
+                                showErrorMsg(result);
+                            }else{
+                                //console.log('result: '+result);
+                                LoadingSpinner.css("display","none");
+                                if(quoteFlag==true){
+                                    LoadingSpinner.css("display","block");
+                                    //console.log('loading start..');
+                                    saveQuotePPApi();
+                                }else{
+                                    getAPIPPLines();
+                                }
+                                
+                                mapSelect = {};
+                                objs = [];
+                                hidePPLines(postcodes);
+                                postcodes = [];
+                                jq("#totalPP").val("0");
+                                //console.log('hi');
+
+                                //getRestaurantInfo(accId,myyyy);
+                            }
+                        } else if (event.type === 'exception') {
+                            showErrorMsg(event.where);
+                        } else {
+                            //console.log(event.message);
+                            showErrorMsg(event.message);
+                        }
+                    },{escape: false}
+                );
+            }
+
+
+            function saveQuotePPApi(){
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.CtrCreateProductLineItems.createQuotePP}',oppId, 
+                    function(result, event){
+                        LoadingSpinner.css("display","block");
+                        //console.log('inside saveQuotePP');
+                        if (event.status) {
+                            if(result.indexOf('Error:')>=0){
+                                showErrorMsg(result);
+                            }else{
+                                //console.log('result: '+result);
+                                mapSelect = {};
+                                objs = [];
+                                hidePPLines(postcodes);
+                                postcodes = [];
+                                jq("#totalPP").val("0");
+                                if (sforce.console.isInConsole()) {
+                                    sforce.console.openSubtab(primarytabId , '/'+result, true,'quote', null);
+                                    sforce.console.refreshPrimaryTabById(primarytabId, true);
+                                //sforce.console.getFocusedSubtabId(currentSubtab);
+                            }else if((typeof sforce != 'undefined') && sforce && (!!sforce.one)){
+                                sforce.one.navigateToSObject(result);
+                            }else if(!sforce.one){
+                                window.parent.location.href="/"+result;
+                            }
+                                LoadingSpinner.css("display","none");
+                                //console.log('loading ends..');
+                            }
+                        } else if (event.type === 'exception') {
+                            showErrorMsg(event.where);
+                        } else {
+                            showErrorMsg(event.message);
+                        }
+                    },{escape: false}
+                );
+            }
+
+            function confirmBox(){
+                //console.log('quoteflag1: '+quoteFlg);
+                bootbox.confirm("This creates booking for the selected postcodes.<br/> Do you want to proceed?",function(result){
+                    if(result==true){
+                        savePPApi(quoteFlg);
+                        //console.log('quoteflag2: '+quoteFlg);
+                    }
+                }).find('.modal-content').addClass( "success" ).css("margin-top","50%").css("top","0");
+               
+                //window.top.location.reload();
+            }
+
+    // table.on('keyup', '.numeric-only', function(e) {
+    //      this.value = this.value.replace(/[^0-9\.]/g,'');
+    // });
+        </script>
+    </apex:page>

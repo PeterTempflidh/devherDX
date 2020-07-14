@@ -1,0 +1,801 @@
+<apex:page standardController="Lead" standardStylesheets="false" extensions="CtrLeadExten" showHeader="false" showChat="false " sidebar="false" docType="html-5.0">
+    <apex:stylesheet value="{!URLFOR($Resource.SLDS214, 'assets/styles/salesforce-lightning-design-system.min.css')}" />
+<head>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&libraries=geometry&client=gme-deliveryheroholding&channel=salesforcephoenix"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/js-marker-clusterer/1.0.0/markerclusterer_compiled.js"></script>
+
+   
+<apex:includeScript value="/support/console/37.0/integration.js"/>
+<apex:includeScript value="{!$Resource.jq211}"/>    
+<apex:includeScript value="{!$Resource.tableSorterJquery}"/>
+<apex:includeScript value="{!$Resource.moment}"/>
+
+<script type="text/javascript"> 
+var infoWindow = new google.maps.InfoWindow();   
+
+$(document).ready(function() { 
+    
+    var listIsEmpty = Boolean({!listEmpty});
+    
+    //console.log('listEmpty' + listIsEmpty);
+    
+    //test if geocode found
+    if(!(listIsEmpty) && !(isNaN(parseFloat('{!Lead.Latitude}')))){
+    
+    init();
+    
+    $('.slds-tabs--scoped__link').on('click', function(){
+      $(this).parent('li').addClass('slds-active');
+      $(this).attr('aria-selected', true);
+      
+      var $divId =  $(this).attr('aria-controls');
+
+      // add or remove class:
+      $('#' + $divId).removeClass('slds-hide');
+      $('#' + $divId).addClass('slds-show');
+     
+      $(this).parent('li').siblings().removeClass('slds-active');
+      $(this).parent('li').siblings().find('a').attr('aria-selected', false);
+        
+      $('#' + $divId).siblings('div').removeClass('slds-show');
+      $('#' + $divId).siblings('div').addClass('slds-hide');  
+
+  });
+        
+ 
+ 
+    
+   }else{
+   
+      var myOptions = {
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapTypeControl: false
+      }
+
+      var map;
+      var marker;
+
+      var geocoder = new google.maps.Geocoder();
+      var address = `{!Lead.Street}, ` + "{!Lead.City}, " + "{!Lead.PostalCode}, " + "{!Lead.Country}";
+
+      var infowindow = new google.maps.InfoWindow({
+        content: `<b>{!Lead.Name}</b><br>{!Lead.Street}<br>{!Lead.City}, {!Lead.PostalCode}<br>{!Lead.Country}`
+      });
+
+      geocoder.geocode( { address: address}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK && results.length) {
+            if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
+
+              //create map
+               map = new google.maps.Map(document.getElementById("map"), myOptions);
+
+              //center map
+               map.setCenter(results[0].geometry.location);
+
+              //create marker
+               marker = new google.maps.Marker({
+                  position: results[0].geometry.location,
+                  map: map,
+                  title: "{!Lead.Name}"
+              });
+
+              //add listeners
+                google.maps.event.addListener(marker, 'click', function() {
+                  infowindow.open(map,marker);
+              });
+                    
+              google.maps.event.addListener(infowindow, 'closeclick', function() {
+                  map.setCenter(marker.getPosition()); 
+              });
+
+            }
+
+        } else {
+            $('#map').css({'height' : '15px'});
+            $('#map').html("Oops! {!Lead.Name}'s address could not be found, please make sure the address is correct.");
+            resizeIframe();
+        }
+                    
+    });
+
+      function resizeIframe() {
+         var me = window.name;
+        if (me) {
+           var iframes = parent.document.getElementsByName(me);
+          if (iframes && iframes.length == 1) {
+          height = document.body.offsetHeight;
+          iframes[0].style.height = height + "px";
+        }
+    }
+  }  
+       
+
+   }     
+})
+
+function CenterControl(controlDiv, map) {
+    
+        var controlUI = document.createElement('div');
+        controlUI.style.backgroundColor = '#fff';
+        controlUI.style.border = '2px solid #fff';
+        controlUI.style.borderRadius = '3px';
+        controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+        controlUI.style.cursor = 'pointer';
+        controlUI.style.marginBottom = '22px';
+        controlUI.style.textAlign = 'center';
+        controlUI.title = 'Click to recenter the map';
+        controlDiv.appendChild(controlUI);
+
+
+        var controlText = document.createElement('div');
+        controlText.style.color = 'rgb(25,25,25)';
+        controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+        controlText.style.fontSize = '16px';
+        controlText.style.lineHeight = '38px';
+        controlText.style.paddingLeft = '5px';
+        controlText.style.paddingRight = '5px';
+        controlText.innerHTML = 'Center Map';
+        controlUI.appendChild(controlText);
+
+     
+        controlUI.addEventListener('click', function() {
+        map.setCenter({lat:parseFloat('{!Lead.Latitude}'),lng:parseFloat('{!Lead.Longitude}')});
+        });
+
+      }
+
+
+function init(){
+    var map = new google.maps.Map(document.getElementById('map'),{
+    
+        zoom: 16,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapTypeControl: false,
+        center:{lat:parseFloat('{!Lead.Latitude}'),lng:parseFloat('{!Lead.Longitude}')
+        }
+        
+    });
+    
+    var centerControlDiv = document.createElement('div');
+    var centerControl = new CenterControl(centerControlDiv, map);
+    var initleadArray = [];
+
+    centerControlDiv.index = 1;
+    map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+    
+    initleadArray.push({name:`{!Lead.Restaurant_Name__c}`,Id:'{!Lead.Id}'});
+    
+    var initMarker = new google.maps.Marker(
+        {position:{lat:parseFloat('{!Lead.Latitude}'),lng:parseFloat('{!Lead.Longitude}')},
+        map:map,
+        title:`{!Lead.Restaurant_Name__c}`,
+        _leadId:'{!Lead.Id}',
+        _leadStatus: '{!Lead.Status}',
+        _leadObjectArray : initleadArray,
+         label: ''
+        })
+    //initMarker.setIcon('https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|FF0000|000000');
+    var markers = [];
+    markers.push(initMarker);
+    
+    var cnt = 0;
+    
+    var geoCodesLeads = [];
+    
+    //funtion to sort array based on distance
+    function SortByDistance(a, b){
+      var aDis = a.distance;
+      var bDis = b.distance; 
+      return ((aDis < bDis) ? -1 : ((aDis > bDis) ? 1 : 0));
+  }
+    
+    // convert to javascript array and enrich with distance which will be used for sorting
+
+    <apex:repeat value="{!getLeadAcc}" var="item">
+    var distance =  google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(parseFloat('{!Lead.Latitude}'),parseFloat('{!Lead.Longitude}')), 
+                                                                        new google.maps.LatLng(parseFloat('{!item.lt}'),parseFloat('{!item.lng}')))
+    geoCodesLeads.unshift({name:"{!item.name}",
+                        Id:'{!item.recId}',
+                        lat:parseFloat('{!item.lt}'),
+                        lng:parseFloat('{!item.lng}'),
+                        distance:distance,
+                        type:'{!item.rcType}'
+                       })
+    </apex:repeat> 
+
+
+     
+    //sort the array
+    geoCodesLeads.sort(SortByDistance);
+
+    var goldStar = {
+    path: 'M 100 100 L 300 100 L 200 300 z',
+    fillColor: 'green',
+    fillOpacity: 1,
+    scale: 0.1,
+    strokeColor: 'black',
+    strokeWeight: 2
+  };
+
+    
+     
+
+    for (i = 0; i < geoCodesLeads.length; i++) {
+        console.log('type'+geoCodesLeads[i].type);
+
+        //Code for checking multiple leads in same location.
+        
+        var curMarker = markers[cnt]  //our initial marker
+        var geoCode = {lat:geoCodesLeads[i].lat,lng:geoCodesLeads[i].lng};
+  
+      // Compute distance to check if  lead has same address
+        if(!(google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(geoCode.lat,geoCode.lng), 
+                                                                   new google.maps.LatLng(curMarker.getPosition().lat(),curMarker.getPosition().lng())) <=0)){
+            
+            // Create a new Marker
+            var leadArray = [];
+            leadArray.push({name:geoCodesLeads[i].name,Id:geoCodesLeads[i].Id});
+          if(geoCodesLeads[i].type=='Lead'){
+            var marker = new google.maps.Marker({
+          
+          position: geoCode,    
+          map:map,
+          title: geoCodesLeads[i].name,
+            icon: {scale:4},   
+          _leadId :geoCodesLeads[i].Id,
+            _leadObjectArray : leadArray,
+            label: ''
+                
+         }); 
+          marker.setIcon('https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FFBF00')
+
+            }else{
+               var marker = new google.maps.Marker({
+          
+          position: geoCode,    
+          map:map,
+          title: geoCodesLeads[i].name,
+            icon: goldStar, 
+          _leadId :geoCodesLeads[i].Id,
+            _leadObjectArray : leadArray,
+            label: ''
+                
+         }); 
+          //marker.setIcon('https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FEBF00')
+
+
+            }
+              
+           
+             
+         markers.push(marker);
+            
+            cnt++;
+            curMarker = markers[cnt];
+            
+            
+      }else {
+            
+            // check if initial marker was the same as the current one. just check the cnt != zero.
+            
+            if ( cnt === 0){
+            
+            // its the initial marker so keep the color red. add lead id and restaurant name to the lead object.
+            //curMarker[_leadObjectArray] = leadArray.push({name:"{!record.Restaurant_Name__c}",Id:'{!record.Id}'});
+            
+            var ldArray = curMarker._leadObjectArray;
+            ldArray.push({name:geoCodesLeads[i].name,Id:geoCodesLeads[i].Id});
+            curMarker._leadObjectArray = ldArray;
+            curMarker.label = {text:ldArray.length.toString(),fontWeight:'bold',fontSize:'15px'};
+            
+            markers[cnt] = curMarker;  
+                
+            }else {
+            
+        var ldArray = curMarker._leadObjectArray;
+              ldArray.push({name:geoCodesLeads[i].name,Id:geoCodesLeads[i].Id});
+              curMarker._leadObjectArray = ldArray; 
+                curMarker.setIcon('http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + ldArray.length.toString() + '|FFBF00')
+                markers[cnt] = curMarker; 
+            
+            }
+
+    }
+ }        
+
+ 
+  
+    var markerCluster = new MarkerClusterer(map,markers,{imagePath: 'https://cdn.rawgit.com/googlemaps/js-marker-clusterer/gh-pages/images/m'}); 
+    
+    google.maps.event.addListener(markerCluster, 'clusterclick', function(cluster) {
+
+        var markers = cluster.getMarkers();
+
+        var array = [];
+        var num = 0;
+
+        for (i = 0; i < markers.length; i++) {
+
+            num++;
+            array.push(markers[i].getTitle() + '<br>');
+        }
+        
+        if (map.getZoom() <= markerCluster.getMaxZoom()) {
+            
+            infoWindow.setContent(markers.length + " markers<br>" + array);
+            infoWindow.setPosition(cluster.getCenter());
+            infoWindow.open(map);
+        }
+  });
+
+  for (i = 0; i < markers.length; i++) {
+      
+    var marker = markers[i];
+    google.maps.event.addListener(marker, 'click', (function(marker) {
+    
+    return function() {
+        
+        //Get the marker leadObject
+        var leadDet = marker._leadObjectArray;
+
+        if(leadDet.length == 1){
+        
+          // No need to change anything
+          var ldContent = '<p><a href = "">' + marker.getTitle() + '</a></p>'
+            var contentString   ='<div id="myInfoWinDiv'+marker._leadId+'">'+ ldContent +'</div>'
+        
+        }else{
+        
+          var ldcontent = '';
+          var contentString; 
+ 
+          for (i=0; i < leadDet.length; i++){
+
+              ldcontent = ldcontent+  '<div id="myInfoWinDiv' + leadDet[i].Id +'">' + '<p><a href="">' +leadDet[i].name + '</a></p>' + '</div> <br/>';
+          
+          } 
+        
+            contentString = '<div>' + ldcontent + '</div>';
+        }
+        
+       google.maps.event.addListener(infoWindow,'domready',function(){
+           if(leadDet.length == 1){
+            // No Change Required   
+           
+            $('#myInfoWinDiv'+marker._leadId).click(function() {
+                var isTab = false;
+                // first check if tab is not aleady open.
+                sforce.console.getPrimaryTabIds(function callback(result){
+                    
+                    var sTabIds = result.ids;
+                    //var isTab = false;
+                
+                  for(i=0; i< sTabIds.length;i++){
+                      
+                        (function(i){
+                            
+                          
+                          sforce.console.getPageInfo(sTabIds[i], function callBack(result) {
+
+                              if(result.success){
+
+                                  var pTabPageInfo = JSON.parse(result.pageInfo);
+                                  var ldIdOpenTab = marker._leadId.substring(0, marker._leadId.length - 3)
+
+                              if(pTabPageInfo.objectId == ldIdOpenTab){
+                            
+                                      // primary tab already open so refocus.
+                                      sforce.console.focusPrimaryTabById(sTabIds[i], function(){});
+                                        isTab = true;
+                                  }
+
+                              } 
+
+                          });
+                            
+                            
+                        
+                        })(i)
+                        
+                        if(isTab) break;
+                       
+                    }  
+                    
+                });
+                
+                if(!(isTab)){
+                sforce.console.openPrimaryTab(null, '/' + marker._leadId, true,marker.getTitle(), openSuccess);  
+                }
+            })
+            }else {
+           
+               //code to handle with multiple leads
+                 for (i=0; i < leadDet.length; i++){
+                       
+                    $('#myInfoWinDiv'+leadDet[i].Id).click(function() {
+                            
+                          var lead_id = $(this).attr('id').slice(12);
+                          var lead = $.grep(marker._leadObjectArray, function(e){ return e.Id == lead_id;})
+                          var isTab = false;
+                            
+                        // first check if tab is not aleady open.
+                      sforce.console.getPrimaryTabIds(function callback(result){
+                    
+                          var sTabIds = result.ids;
+                          //var isTab = false;
+                
+                        for(i=0; i< sTabIds.length;i++){
+                      
+                              (function(i){
+                            
+                                
+                                sforce.console.getPageInfo(sTabIds[i], function callBack(result) {
+
+                                    if(result.success){
+
+                                        var pTabPageInfo = JSON.parse(result.pageInfo);
+                                        var ldIdOpenTab = lead_id.substring(0, lead_id.length - 3)
+
+                                  if(pTabPageInfo.objectId == ldIdOpenTab){
+                            
+                                          // primary tab already open so refocus.
+                                          sforce.console.focusPrimaryTabById(sTabIds[i], function(){});
+                                            isTab = true;
+                
+                                       }
+
+                                    } 
+
+                                });
+                            
+                              })(i)
+                        
+                          if(isTab) break;
+                       
+                        }  
+                    });
+                
+                  if(!(isTab)){
+                  sforce.console.openPrimaryTab(null, '/' + lead_id, true,lead[0].name, openSuccess); 
+                }       
+
+            })
+           
+           }
+           
+           }
+           var openSuccess = function openSuccess(result) {
+
+            if (result.success == true) {
+                
+                //console.log('Primarys tab successfully opened');
+                sforce.console.setTabIcon("{!URLFOR($Resource.SLDS214,'/assets/icons/standard/lead_60.png')}", result.id, function(){});
+
+                
+            } else {
+                
+                console.log('Primary tab cannot be opened');
+ 
+                //sforce.console.focusPrimaryTabById('scc-pt-0', function(){});
+            }
+        };
+           
+           
+    });   
+          
+        infoWindow.setContent(contentString);
+        infoWindow.open(map, this);
+
+
+      }
+    })(marker));
+    
+  }
+    
+google.maps.event.addListener(map, 'zoom_changed', function() {
+infoWindow.close();
+  });
+
+
+}
+    
+function getOtherLeads(){
+ 
+    if ( $('#tab-scoped-1').children().length <= 0 ) {
+        
+            var startTable ='<table id="leadTable" class="slds-table slds-table--bordered slds-table--fixed-layout" role="grid">' +
+                    '<thead>' +
+                      '<tr class="slds-text-title--caps">' +
+                                        '<th class="slds-is-sortable slds-is-resizable" scope="col" aria-label="Lead Company Name">'  +
+                            '<a href="javascript:void(0);" class="slds-th__action slds-text-link--reset">' +
+                                '<span class="slds-truncate" title="Lead Company Name">Lead Company Name</span>' +
+                                '<span class="slds-icon_container">' +
+                                  '<svg aria-hidden="false" class="slds-icon slds-icon--x-small slds-icon-text-default slds-is-sortable__icon">' +
+                                      '<use xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href=' +"{!URLFOR($Resource.SLDS214,'/assets/icons/action-sprite/svg/symbols.svg#sort')}" + '></use>' +
+                                  '</svg>' +
+                                '</span>'+
+                                '<span class="slds-assistive-text" aria-live="assertive" aria-atomic="true"></span>' +
+                            '</a>' +
+                          '</th>' +                              
+                          '<th class="slds-is-sortable slds-is-resizable" scope="col" aria-label="Lead Address">'  +
+                            '<a href="javascript:void(0);" class="slds-th__action slds-text-link--reset">' +
+                                '<span class="slds-truncate" title="Lead Address">Lead Address</span>' +
+                                '<span class="slds-icon_container">' +
+                                  '<svg aria-hidden="false" class="slds-icon slds-icon--x-small slds-icon-text-default slds-is-sortable__icon">' +
+                                      '<use xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href=' +"{!URLFOR($Resource.SLDS214,'/assets/icons/action-sprite/svg/symbols.svg#sort')}" + '></use>' +
+                                  '</svg>' +
+                                '</span>'+
+                                '<span class="slds-assistive-text" aria-live="assertive" aria-atomic="true"></span>' +
+                            '</a>' +
+                          '</th>' +
+                          '<th class="slds-is-sortable slds-is-resizable" scope="col" aria-label="Last Call Date">'  +
+                            '<a href="javascript:void(0);" class="slds-th__action slds-text-link--reset">' +
+                                '<span class="slds-truncate" title="Last Call Date">Last Call Date</span>' +
+                                '<span class="slds-icon_container">' +
+                                  '<svg aria-hidden="false" class="slds-icon slds-icon--x-small slds-icon-text-default slds-is-sortable__icon">' +
+                                      '<use xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href=' +"{!URLFOR($Resource.SLDS214,'/assets/icons/action-sprite/svg/symbols.svg#sort')}" + '></use>' +
+                                  '</svg>' +
+                                '</span>'+
+                                '<span class="slds-assistive-text" aria-live="assertive" aria-atomic="true"></span>' +
+                            '</a>' +
+                          '</th>' +
+                          '<th class="slds-is-sortable slds-is-resizable" scope="col" aria-label="Lead Vendor Grade">'  +
+                            '<a href="javascript:void(0);" class="slds-th__action slds-text-link--reset">' +
+                                '<span class="slds-truncate" title="Lead Vendor Grade">Lead Vendor Grade</span>' +
+                                '<span class="slds-icon_container">' +
+                                  '<svg aria-hidden="false" class="slds-icon slds-icon--x-small slds-icon-text-default slds-is-sortable__icon">' +
+                                      '<use xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href=' +"{!URLFOR($Resource.SLDS214,'/assets/icons/action-sprite/svg/symbols.svg#sort')}" + '></use>' +
+                                  '</svg>' +
+                                '</span>'+
+                                '<span class="slds-assistive-text" aria-live="assertive" aria-atomic="true"></span>' +
+                            '</a>' +
+                          '</th>' +
+                      '</tr>' +
+                    '</thead>' +
+                    '<tbody>';
+                         var midTable ="";
+                                       <apex:repeat value="{!getSurGeoCodes}" var="record">
+                                           
+                                           var sfdcdateStr = "";
+                                           
+                                           if("{!record.Last_Call_Date__c}"){
+                                               sfdcdateStr = "{!record.Last_Call_Date__c}";
+                                               var d = new Date(sfdcdateStr);
+                                               sfdcdateStr = moment(d).format('DD.MM.YYYY HH:mm');
+                                           }
+                                               
+                          midTable = midTable + '<tr>' + 
+                            '<th scope="row" data-label="Name">' +
+                              '<div class="slds-truncate" title="Lead Company Name"><a href=' + 'javascript:openPrimaryTab("{!record.Id}")>' + "{!record.Restaurant_Name__c}" + '</a></div>' +
+                            '</th>' +
+                            '<td data-label="Address" class="slds-cell-wrap">' +
+                              '<div class="slds-truncate" title="Street">' + `{!record.street}` + '</div>' + 
+                          '</td>' +
+                            '<td data-label="Phone Number">' +
+                              '<div class="slds-truncate" title="Last Call Date">' + sfdcdateStr + '</div>' +
+                            '</td>' +
+                            '<td data-label="Vendor Grade">' +
+                              '<div class="slds-truncate" title="Lead Vendor Grade">{!record.Vendor_Grade__c}</div>' + 
+                            '</td>' + 
+                        '</tr>';
+                                        </apex:repeat> 
+              
+               var endTable ='</tbody>' + '</table>';
+             var completeTable = startTable + midTable + endTable;
+               $('#tab-scoped-1').append(completeTable);
+        $("#leadTable").tablesorter();
+        $("#leadTable").bind("sortEnd",function(event) {
+          
+            $( "#leadTable thead th" ).each(function( index ) {
+                //console.log( index + ": " + $( this).text() );
+                
+                if($(this).hasClass('headerSortUp')){
+                    $(this).find('use').attr('xlink:href',"{!URLFOR($Resource.SLDS214,'/assets/icons/utility-sprite/svg/symbols.svg#arrowup')}");
+                }else if($(this).hasClass('headerSortDown')){
+                  $(this).find('use').attr('xlink:href',"{!URLFOR($Resource.SLDS214,'/assets/icons/utility-sprite/svg/symbols.svg#arrowdown')}");
+                }else{
+                    $(this).find('use').attr('xlink:href',"{!URLFOR($Resource.SLDS214,'/assets/icons/action-sprite/svg/symbols.svg#sort')}");
+                }
+      })
+      });
+    }
+     
+}
+
+ 
+function openPrimaryTab(Id){
+    
+  var isTab = false;
+  // first check if tab is not aleady open.
+    sforce.console.getPrimaryTabIds(function callback(result){
+                
+      var sTabIds = result.ids;
+  
+      for(i=0; i< sTabIds.length;i++){
+                      
+          (function(i){
+                            
+            
+            sforce.console.getPageInfo(sTabIds[i], function callBack(result) {
+
+              if(result.success){
+
+                var pTabPageInfo = JSON.parse(result.pageInfo);
+                  var ldIdOpenTab = Id.substring(0,Id.length - 3)
+
+                  if(pTabPageInfo.objectId == ldIdOpenTab){
+                            
+                    // primary tab already open so refocus.
+                  sforce.console.focusPrimaryTabById(sTabIds[i], function(){});
+                    isTab = true;
+                    }
+
+                  } 
+
+             });
+                            
+           })(i)
+                        
+           if(isTab) break;
+                       
+       }  
+    })                     
+    
+  if(!(isTab)){
+    sforce.console.openPrimaryTab(null, '/' + Id, true,Id.name);
+  }
+}    
+
+function checkRes(result){
+  if (result.success == true) {
+      //console.log('Primarys tab successfully opened');
+    } else {
+    console.log('Primary tab cannot be opened');
+        //sforce.console.focusPrimaryTabByName(this.Id.name, focusSuccess);
+    }
+}
+
+    
+function getAccounts(){
+
+    if ( $('#tab-scoped-2').children().length <= 0 ) {
+      var startTable = '<table id="accountTable" class="slds-table slds-table--bordered slds-table--fixed-layout" role="grid">' +
+                    '<thead>' +
+                      '<tr class="slds-text-title--caps">' +
+                        '<th class="slds-is-sortable slds-is-resizable" scope="col" aria-label="Restaurant Name">'  +
+                            '<a href="javascript:void(0);" class="slds-th__action slds-text-link--reset">' +
+                                '<span class="slds-truncate slds-text-align--left" title="Restaurant Name">Restaurant Name</span>' +
+                                '<span class="slds-icon_container">' +
+                                  '<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default slds-is-sortable__icon">' +
+                                      '<use xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href=' +"{!URLFOR($Resource.SLDS214,'/assets/icons/action-sprite/svg/symbols.svg#sort')}" + '></use>' +
+                                  '</svg>' +
+                                '</span>'+
+                                '<span class="slds-assistive-text" aria-live="assertive" aria-atomic="true"></span>' +
+                            '</a>' +
+                          '</th>' +   
+                          '<th class="slds-is-sortable slds-is-resizable" scope="col" aria-label="Restaurant Address">'  +
+                            '<a href="javascript:void(0);" class="slds-th__action slds-text-link--reset">' +
+                                '<span class="slds-truncate slds-text-align--left" title="Restaurant Address">Restaurant Address</span>' +
+                                '<span class="slds-icon_container">' +
+                                  '<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default slds-is-sortable__icon">' +
+                                      '<use xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href=' +"{!URLFOR($Resource.SLDS214,'/assets/icons/action-sprite/svg/symbols.svg#sort')}" + '></use>' +
+                                  '</svg>' +
+                                '</span>'+
+                                '<span class="slds-assistive-text" aria-live="assertive" aria-atomic="true"></span>' +
+                            '</a>' +
+                          '</th>' +
+                          '<th class="slds-is-sortable slds-is-resizable" scope="col" aria-label="Restaurant Online Status">'  +
+                            '<a href="javascript:void(0);" class="slds-th__action slds-text-link--reset">' +
+                                '<span class="slds-truncate slds-text-align--left" title="Restaurant Online Status">Restaurant Online Status</span>' +
+                                '<span class="slds-icon_container">' +
+                                  '<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default slds-is-sortable__icon">' +
+                                      '<use xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href=' +"{!URLFOR($Resource.SLDS214,'/assets/icons/action-sprite/svg/symbols.svg#sort')}" + '></use>' +
+                                  '</svg>' +
+                                '</span>'+
+                                '<span class="slds-assistive-text" aria-live="assertive" aria-atomic="true"></span>' +
+                            '</a>' +
+                          '</th>' +
+                          '</th>' +
+                          '<th class="slds-is-sortable slds-is-resizable" scope="col" aria-label="Branding Status">'  +
+                            '<a href="javascript:void(0);" class="slds-th__action slds-text-link--reset">' +
+                                '<span class="slds-truncate slds-text-align--left" title="Branding Status">Branding Status</span>' +
+                                '<span class="slds-icon_container">' +
+                                  '<svg aria-hidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default slds-is-sortable__icon">' +
+                                      '<use xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href=' +"{!URLFOR($Resource.SLDS214,'/assets/icons/action-sprite/svg/symbols.svg#sort')}" + '></use>' +
+                                  '</svg>' +
+                                '</span>'+
+                                '<span class="slds-assistive-text" aria-live="assertive" aria-atomic="true"></span>' +
+                            '</a>' +
+                          '</th>' +
+                      '</tr>' +
+                    '</thead>' +
+                    '<tbody>';
+                       var midTable ="";
+                                       <apex:repeat value="{!getSurAccounts}" var="rec">
+                                midTable = midTable +'<tr>' + 
+                            '<th scope="row" data-label="Name">' +
+                              '<div class="slds-truncate" title="Restaurant Name"><a href=' + 'javascript:openPrimaryTab("{!rec.Id}")>' + `{!rec.Name}` + '</a></div>' +
+                            '</th>' +
+                            '<td data-label="Address" class="slds-cell-wrap">' +
+                            '<div class="slds-truncate slds-resizable slds-cell-wrap" title="BillingStreeet">' + `{!rec.billingstreet}` + '</div>' + 
+                          '</td>' +
+                            '<td data-label="Vendor Grade">' +
+                              '<div class="slds-truncate" title="Restaurant Online Status">{!rec.Online_Status_Backend__c}</div>' + 
+                            '</td>' + 
+                            '<td data-label="Vendor Grade">' +
+                              '<div class="slds-truncate" title="Branding Status">{!rec.Branding_Status__c}</div>' + 
+                            '</td>' + 
+                        '</tr>'
+                                        </apex:repeat> 
+                    '</tbody>' +
+                '</table>';
+                    var endTable ='</tbody>' + '</table>';
+                  var completeTable = startTable + midTable + endTable;
+                    $('#tab-scoped-2').append(completeTable);
+        $("#accountTable").tablesorter(); 
+        
+        $("#accountTable").bind("sortEnd",function(event) {
+          
+            $( "#accountTable thead th" ).each(function( index ) {
+                //console.log( index + ": " + $( this).text() );
+                
+                if($(this).hasClass('headerSortUp')){
+                    $(this).find('use').attr('xlink:href',"{!URLFOR($Resource.SLDS214,'/assets/icons/utility-sprite/svg/symbols.svg#arrowup')}");
+                }else if($(this).hasClass('headerSortDown')){
+                  $(this).find('use').attr('xlink:href',"{!URLFOR($Resource.SLDS214,'/assets/icons/utility-sprite/svg/symbols.svg#arrowdown')}");
+                }else{
+                    $(this).find('use').attr('xlink:href',"{!URLFOR($Resource.SLDS214,'/assets/icons/action-sprite/svg/symbols.svg#sort')}");
+                }
+      })
+      });
+        
+        
+      }
+    
+    
+} 
+
+    
+</script>
+    
+
+
+</head>
+
+<body>
+<div id="map"></div>
+<apex:form > 
+<apex:commandButton action="{!getCodesByDistance}"  value="In 5 km" rendered="{!DisplayButtonDistance}"></apex:commandButton> 
+<apex:commandButton action="{!getCodesByPostcode}"  value="In same Postcode" rendered="{!DisplayButtonPostCode}"></apex:commandButton>
+</apex:form>  
+    <br/>
+
+<div class="slds-tabs--scoped">
+
+
+  <ul class="slds-tabs--scoped__nav" role="tablist">
+    <li class="slds-tabs--scoped__item slds-text-title--caps" title="Item One" role="presentation"><a class="slds-tabs--scoped__link" href="javascript:getOtherLeads();" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-scoped-1" id="tab-scoped-1__item">Other Leads</a></li>
+    <li class="slds-tabs--scoped__item slds-text-title--caps" title="Item Two"
+      role="presentation"><a class="slds-tabs--scoped__link" href="javascript:getAccounts();" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-scoped-2" id="tab-scoped-2__item">accounts</a></li>
+  </ul>
+  <div id="tab-scoped-1" class="slds-tabs--scoped__content slds-hide" role="tabpanel" aria-labelledby="tab-scoped-1__item"></div>   
+  <div id="tab-scoped-2" class="slds-tabs--scoped__content slds-hide" role="tabpanel" aria-labelledby="tab-scoped-2__item"></div>
+</div>
+
+</body>
+<style>
+#map {
+  font-family: Arial;
+  font-size:12px;
+  line-height:normal !important;
+  height:500px;
+  min-width:300px;
+  background:transparent;
+}
+
+</style> 
+  
+        
+</apex:page>

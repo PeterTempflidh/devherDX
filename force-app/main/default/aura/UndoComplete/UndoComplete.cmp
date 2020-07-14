@@ -1,0 +1,22 @@
+<aura:component implements="force:lightningQuickAction,force:hasRecordId,force:hasSObjectName,flexipage:availableForAllPageTypes"
+                controller="CaseControllerLightning">
+
+    <ltng:require styles="{!$Resource.SLDS274 + '/assets/styles/lightning-design-system-ltng.css'}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:attribute name="btnDisabled" type="Boolean" default="false"/>
+    <force:recordData aura:id="recordLoader"
+                      mode="VIEW"
+                      recordId="{!v.recordId}"
+                      targetRecord="{!v.record}"
+                      targetFields="{!v.recordFields}"
+                      fields="Status, Type, Subject, Description"
+                      recordUpdated="{!c.handleRecordUpdated}"/>
+
+    <aura:attribute name="record" type="Object"/>
+
+    <button class="slds-button slds-button_destructive widebutton"
+            disabled="{!v.btnDisabled}"
+            onclick = "{!c.undoCompleteJs}">
+        {!$Label.c.Undo_Complete_Button}
+    </button>
+</aura:component>

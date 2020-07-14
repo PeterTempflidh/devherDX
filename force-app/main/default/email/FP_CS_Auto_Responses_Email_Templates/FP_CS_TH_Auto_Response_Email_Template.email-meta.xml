@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP CS TH Auto Response Email Template</name>
+    <style>freeForm</style>
+    <subject>Thank you - your request {!Case.CaseNumber} has been received!</subject>
+    <textOnly>สวัสดีค่ะ,
+
+ขอบพระคุณที่ติดต่อฝ่ายบริการลูกค้าฟู้ดแพนด้านะคะ
+
+ขณะนี้ทางเราได้รับคำขอหมายเลข ({!Case.CaseNumber}) ของคุณลูกค้าเรียบร้อยแล้ว แต่เนื่องจากสถานการณ์การระบาดของเชื้อไวรัสโควิด-19 (COVID-19) ประกอบกับที่ลูกค้าติดต่อเข้ามาเป็นจำนวนมาก ทำให้ทางฝ่ายดูแลลูกค้าอาจไม่สามารถดำเนินการแก้ไขปัญหาให้กับลูกค้าได้อย่างรวดเร็วและทั่วถึง ทางเราต้องขออภัยในความล่าช้าที่อาจจะเกิดขึ้นนะคะ ทั้งนี้เราจะพยายามเร่งตรวจสอบและแก้ไขปัญหาของลูกค้าให้เร็วที่สุดและจะพยายามติดต่อลูกค้ากลับไปภายใน 3-4 วันทำการค่ะ 
+
+ทั้งนี้ฟู้ดแพนด้าต้องขอแจ้งให้ลูกค้าทราบว่า เราไม่สามารถรับเรื่องหรือดำเนินการยกเลิกออเดอร์ให้คุณลูกค้าได้ผ่านทางช่องทางอีเมล หากลูกค้าต้องการยกเลิกออเดอร์สามารถทำได้โดยติดต่อเจ้าหน้าที่ Live Chat หรือยกเลิกด้วยตัวเอง โดยเข้าไปที่เมนู Help Center (ข้อมูลและการช่วยเหลือ) แล้วกดเลือกออเดอร์ที่ต้องการยกเลิกและเลือก ”ฉันสามารถยกเลิกคำสั่งซื้อได้หรือไม่” จากนั้นจึงเลือกเหตุผลที่ต้องการยกเลิกและกดยืนยันการทำรายการได้เลยค่ะ
+
+ร่วมมือกันฝ่าวิกฤติครั้งนี้ไปด้วยกันด้วยการด้วยการรักษาความสะอาด อยู่บ้านลดการระบาดของเชื้อ และให้เราส่งอาหารให้กับคุณนะคะ
+
+ขอบพระคุณที่ไว้วางใจฟู้ดแพนด้าค่ะ
+
+ฝ่ายบริการลูกค้าฟู้ดแพนด้า
+
+
+
+Dear Customer,
+
+Thank you for contacting foodpanda Customer Support! 
+
+Your request ({!Case.CaseNumber}) has been received. However, our team might not be able to promptly support or contact you back regarding your request at this moment due to the current Covid-19 outbreak situation that puts pressure on our capacity. We sincerely apologize for any delays that may arise and will make our best effort to revert back to you within the next 3-4 business days. 
+
+We are sorry to inform you that we will not be able to process your order cancellation request via email*. If you wish to cancel your order, please contact our agents via Live Chat. You can also cancel the order by yourself following these steps: log-in to your foodpanda account and go to Help Center, choose the order you wish to cancel, select “Can I cancel my order”, then choose your reason for cancellation, and confirm
+
+Stay safe, wash your hands regularly, maintain social distance, and let us deliver food to you!
+
+Thank you for choosing foodpanda,
+
+foodpanda Customer Support Team
+
+
+
+{!Case.Thread_Id__c}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

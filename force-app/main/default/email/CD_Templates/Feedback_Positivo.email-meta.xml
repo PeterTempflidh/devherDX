@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Clickdelivery</letterhead>
+    <name>Feedback Positivo</name>
+    <style>formalLetter</style>
+    <subject>Feedback Positivo</subject>
+    <textOnly>Hola (Nombre del usuario), para nosotros es muy importante conocer tu opinión del servicio, seguiremos mejorando para siempre brindarte lo mejor. Gracias por elegirnos!! :)</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

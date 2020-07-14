@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>true</sorted>
+    <standardValue>
+        <fullName>Advertisement</fullName>
+        <default>false</default>
+        <label>Advertisement</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Competition</fullName>
+        <default>false</default>
+        <label>Competition</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Competitor</fullName>
+        <default>false</default>
+        <label>Competitor</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Eatability</fullName>
+        <default>false</default>
+        <label>Eatability</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Employee Referral</fullName>
+        <default>false</default>
+        <label>Employee Referral</label>
+    </standardValue>
+    <standardValue>
+        <fullName>External Referral</fullName>
+        <default>false</default>
+        <label>External Referral</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Facebook</fullName>
+        <default>false</default>
+        <label>Facebook</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Flyer</fullName>
+        <default>false</default>
+        <label>Flyer</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Google</fullName>
+        <default>false</default>
+        <label>Google</label>
+    </standardValue>
+    <standardValue>
+        <fullName>GrubFinder</fullName>
+        <default>false</default>
+        <label>GrubFinder</label>
+    </standardValue>
+    <standardValue>
+        <fullName>IMPORT</fullName>
+        <default>false</default>
+        <label>IMPORT</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Inbound</fullName>
+        <default>false</default>
+        <label>Inbound</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Lieferservice.at</fullName>
+        <default>false</default>
+        <label>Lieferservice.at</label>
+    </standardValue>
+    <standardValue>
+        <fullName>menu collector</fullName>
+        <default>false</default>
+        <label>menu collector</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Naver/Daum Research</fullName>
+        <default>false</default>
+        <label>Naver/Daum Research</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Newsletter</fullName>
+        <default>false</default>
+        <label>Newsletter</label>
+    </standardValue>
+    <standardValue>
+        <fullName>NPS</fullName>
+        <default>false</default>
+        <label>NPS</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Offline Directory</fullName>
+        <default>false</default>
+        <label>Offline Directory</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Offline magazine</fullName>
+        <default>false</default>
+        <label>Offline magazine</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Other</fullName>
+        <default>false</default>
+        <label>Other</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Other Offline source</fullName>
+        <default>false</default>
+        <label>Other Offline source</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Other online directory</fullName>
+        <default>false</default>
+        <label>Other online directory</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Other online source</fullName>
+        <default>false</default>
+        <label>Other online source</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Own Research</fullName>
+        <default>false</default>
+        <label>Own Research</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Partner</fullName>
+        <default>false</default>
+        <label>Partner</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Partnership</fullName>
+        <default>false</default>
+        <label>Partnership</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Public Relations</fullName>
+        <default>false</default>
+        <label>Public Relations</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Purchased</fullName>
+        <default>false</default>
+        <label>Purchased</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Recommendation from customer</fullName>
+        <default>false</default>
+        <label>Recommendation from customer</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Recommendation from employee</fullName>
+        <default>false</default>
+        <label>Recommendation from employee</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Recommended Flyer</fullName>
+        <default>false</default>
+        <label>Recommended Flyer</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Restaurant Suggestion App</fullName>
+        <default>false</default>
+        <label>Restaurant Suggestion App</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Restaurant Suggestion Portal</fullName>
+        <default>false</default>
+        <label>Restaurant Suggestion Portal</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Restauranttester.at</fullName>
+        <default>false</default>
+        <label>Restauranttester.at</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Self Sign Up</fullName>
+        <default>false</default>
+        <label>Self Sign Up</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Seminar - Internal</fullName>
+        <default>false</default>
+        <label>Seminar - Internal</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Seminar - Partner</fullName>
+        <default>false</default>
+        <label>Seminar - Partner</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Survey</fullName>
+        <default>false</default>
+        <label>Survey</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Trade Show</fullName>
+        <default>false</default>
+        <label>Trade Show</label>
+    </standardValue>
+    <standardValue>
+        <fullName>TripAdvisor</fullName>
+        <default>false</default>
+        <label>TripAdvisor</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Unknown</fullName>
+        <default>false</default>
+        <label>Unknown</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Urbanspoon</fullName>
+        <default>false</default>
+        <label>Urbanspoon</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Web</fullName>
+        <default>false</default>
+        <label>Web</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Word of mouth</fullName>
+        <default>false</default>
+        <label>Word of mouth</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Yellow pages</fullName>
+        <default>false</default>
+        <label>Yellow pages</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Yelp</fullName>
+        <default>false</default>
+        <label>Yelp</label>
+    </standardValue>
+</StandardValueSet>

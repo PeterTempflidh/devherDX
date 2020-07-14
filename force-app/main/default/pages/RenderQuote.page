@@ -1,0 +1,7 @@
+<apex:page standardController="Opportunity_Quote__c" showHeader="false" sidebar="false" standardStylesheets="false">
+	<body style="font-family: Arial Unicode MS; font-size: 9px;"> 
+		<apex:form >
+			<apex:outputText value="{!Opportunity_Quote__c.Description__c}" escape="false"/>
+		</apex:form>
+	</body>
+</apex:page>

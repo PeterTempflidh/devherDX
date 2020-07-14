@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>myVariable_waitStartTimeAssignment</name>
+        <label>myVariable_waitStartTimeAssignment</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>myVariable_waitStartTimeVariable</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>myPreWaitDecision_myWait_myRule_1</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>myWaitAssignment_myWait_myRule_1</name>
+        <label>myWaitAssignment_myWait_myRule_1</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>cancelWaits</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>myWait_myRule_1</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>myDecision</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>myWaitEvent_myWait_myRule_1_event_0_postWaitExecutionAssignment</name>
+        <label>myWaitEvent_myWait_myRule_1_event_0_postWaitExecutionAssignment</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>myWaitEvent_myWait_myRule_1_event_0_postActionExecutionVariable</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>myWait_myRule_1</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>myDecision</name>
+        <label>Primary Decision</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_1</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_1_pmetdec</targetReference>
+            </connector>
+            <label>Trigger Retention case when Commission is terminated</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myPostWaitDecision_myWaitEvent_myWait_myRule_1_event_0</name>
+        <label>myPostWaitDecision_myWaitEvent_myWait_myRule_1_event_0</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myPostWaitRule_myWaitEvent_myWait_myRule_1_event_0</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>myVariable_current.EndDate</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myWaitEvent_myWait_myRule_1_event_0_SA1</targetReference>
+            </connector>
+            <label>myPostWaitRule_myWaitEvent_myWait_myRule_1_event_0</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myPreWaitDecision_myWait_myRule_1</name>
+        <label>myPreWaitDecision_myWait_myRule_1</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myWaitAssignment_myWait_myRule_1</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myPreWaitRule_myWait_myRule_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_1</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myDecision</targetReference>
+            </connector>
+            <label>myPreWaitRule_myWait_myRule_1</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_1_pmetdec</name>
+        <label>Previously Met Decision</label>
+        <locationX>100</locationX>
+        <locationY>100</locationY>
+        <defaultConnector>
+            <targetReference>myWait_myRule_1</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Previously Met</defaultConnectorLabel>
+        <rules>
+            <name>myRule_1_pmetnullrule</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>myVariable_old</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myWait_myRule_1</targetReference>
+            </connector>
+            <label>Previously Met - Null</label>
+        </rules>
+        <rules>
+            <name>myRule_1_pmetrule</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_1_pmetrule</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Previously Met - Prev</label>
+        </rules>
+    </decisions>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>ISCHANGED([Contract].End_Date__c ) 
+&amp;&amp; (
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Comission too high&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Cannot contact&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Issues with payments to restaurant&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Language issues&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Legal Issues&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;New owner ? No new contract&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;No delivery service&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;No willingness to talk&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Not enough capacity&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Not enough orders&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Not interested in product&quot;)||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Other&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Price too high&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Terminal Issues&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Termination&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Unhappy with service&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Website issues&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Welcome call unsuccessful&quot;)
+     )
+&amp;&amp;
+([Contract].RecordType.DeveloperName =  &quot;DH_AU_Contract&quot;)
+
+
+</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_1</name>
+        <dataType>Boolean</dataType>
+        <expression>ISCHANGED({!myVariable_current.End_Date__c} ) 
+&amp;&amp; (
+ISPICKVAL({!myVariable_current.Termination_Reason__c}, &quot;Comission too high&quot;) ||
+ISPICKVAL({!myVariable_current.Termination_Reason__c}, &quot;Cannot contact&quot;) ||
+ISPICKVAL({!myVariable_current.Termination_Reason__c}, &quot;Issues with payments to restaurant&quot;) ||
+ISPICKVAL({!myVariable_current.Termination_Reason__c}, &quot;Language issues&quot;) ||
+ISPICKVAL({!myVariable_current.Termination_Reason__c}, &quot;Legal Issues&quot;) ||
+ISPICKVAL({!myVariable_current.Termination_Reason__c}, &quot;New owner ? No new contract&quot;) ||
+ISPICKVAL({!myVariable_current.Termination_Reason__c}, &quot;No delivery service&quot;) ||
+ISPICKVAL({!myVariable_current.Termination_Reason__c}, &quot;No willingness to talk&quot;) ||
+ISPICKVAL({!myVariable_current.Termination_Reason__c}, &quot;Not enough capacity&quot;) ||
+ISPICKVAL({!myVariable_current.Termination_Reason__c}, &quot;Not enough orders&quot;) ||
+ISPICKVAL({!myVariable_current.Termination_Reason__c}, &quot;Not interested in product&quot;)||
+ISPICKVAL({!myVariable_current.Termination_Reason__c}, &quot;Other&quot;) ||
+ISPICKVAL({!myVariable_current.Termination_Reason__c}, &quot;Price too high&quot;) ||
+ISPICKVAL({!myVariable_current.Termination_Reason__c}, &quot;Terminal Issues&quot;) ||
+ISPICKVAL({!myVariable_current.Termination_Reason__c}, &quot;Termination&quot;) ||
+ISPICKVAL({!myVariable_current.Termination_Reason__c}, &quot;Unhappy with service&quot;) ||
+ISPICKVAL({!myVariable_current.Termination_Reason__c}, &quot;Website issues&quot;) ||
+ISPICKVAL({!myVariable_current.Termination_Reason__c}, &quot;Welcome call unsuccessful&quot;)
+     )
+&amp;&amp;
+({!myVariable_current.RecordType.DeveloperName} =  &quot;DH_AU_Contract&quot;)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>ISCHANGED([Contract].End_Date__c ) 
+&amp;&amp; (
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Comission too high&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Cannot contact&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Issues with payments to restaurant&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Language issues&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Legal Issues&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;New owner ? No new contract&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;No delivery service&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;No willingness to talk&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Not enough capacity&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Not enough orders&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Not interested in product&quot;)||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Other&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Price too high&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Terminal Issues&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Termination&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Unhappy with service&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Website issues&quot;) ||
+ISPICKVAL([Contract].Termination_Reason__c, &quot;Welcome call unsuccessful&quot;)
+     )
+&amp;&amp;
+([Contract].RecordType.DeveloperName =  &quot;DH_AU_Contract&quot;)
+
+
+</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_1_pmetrule</name>
+        <dataType>Boolean</dataType>
+        <expression>ISCHANGED({!myVariable_old.End_Date__c} ) 
+&amp;&amp; (
+ISPICKVAL({!myVariable_old.Termination_Reason__c}, &quot;Comission too high&quot;) ||
+ISPICKVAL({!myVariable_old.Termination_Reason__c}, &quot;Cannot contact&quot;) ||
+ISPICKVAL({!myVariable_old.Termination_Reason__c}, &quot;Issues with payments to restaurant&quot;) ||
+ISPICKVAL({!myVariable_old.Termination_Reason__c}, &quot;Language issues&quot;) ||
+ISPICKVAL({!myVariable_old.Termination_Reason__c}, &quot;Legal Issues&quot;) ||
+ISPICKVAL({!myVariable_old.Termination_Reason__c}, &quot;New owner ? No new contract&quot;) ||
+ISPICKVAL({!myVariable_old.Termination_Reason__c}, &quot;No delivery service&quot;) ||
+ISPICKVAL({!myVariable_old.Termination_Reason__c}, &quot;No willingness to talk&quot;) ||
+ISPICKVAL({!myVariable_old.Termination_Reason__c}, &quot;Not enough capacity&quot;) ||
+ISPICKVAL({!myVariable_old.Termination_Reason__c}, &quot;Not enough orders&quot;) ||
+ISPICKVAL({!myVariable_old.Termination_Reason__c}, &quot;Not interested in product&quot;)||
+ISPICKVAL({!myVariable_old.Termination_Reason__c}, &quot;Other&quot;) ||
+ISPICKVAL({!myVariable_old.Termination_Reason__c}, &quot;Price too high&quot;) ||
+ISPICKVAL({!myVariable_old.Termination_Reason__c}, &quot;Terminal Issues&quot;) ||
+ISPICKVAL({!myVariable_old.Termination_Reason__c}, &quot;Termination&quot;) ||
+ISPICKVAL({!myVariable_old.Termination_Reason__c}, &quot;Unhappy with service&quot;) ||
+ISPICKVAL({!myVariable_old.Termination_Reason__c}, &quot;Website issues&quot;) ||
+ISPICKVAL({!myVariable_old.Termination_Reason__c}, &quot;Welcome call unsuccessful&quot;)
+     )
+&amp;&amp;
+({!myVariable_old.RecordType.DeveloperName} =  &quot;DH_AU_Contract&quot;)</expression>
+    </formulas>
+    <interviewLabel>DH_AU_RetentionCase-1_Contract</interviewLabel>
+    <label>DH_AU_RetentionCase</label>
+    <processMetadataValues>
+        <name>ObjectType</name>
+        <value>
+            <stringValue>Contract</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>ObjectVariable</name>
+        <value>
+            <elementReference>myVariable_current</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OldObjectVariable</name>
+        <value>
+            <elementReference>myVariable_old</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>TriggerType</name>
+        <value>
+            <stringValue>onAllChanges</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Workflow</processType>
+    <recordCreates>
+        <name>myWaitEvent_myWait_myRule_1_event_0_SA1</name>
+        <label>Create DH_AU_Retention Case</label>
+        <locationX>100</locationX>
+        <locationY>200</locationY>
+        <connector>
+            <targetReference>myWaitEvent_myWait_myRule_1_event_0_postWaitExecutionAssignment</targetReference>
+        </connector>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Account ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>AccountId</field>
+            <value>
+                <elementReference>myVariable_current.Account.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Business Hours ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>BusinessHoursId</field>
+            <value>
+                <stringValue>01mw0000000A5gz</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Case Reason</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Case_Reason__c</field>
+            <value>
+                <stringValue>Termination</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Case Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>CurrencyIsoCode</field>
+            <value>
+                <stringValue>AUD</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Case Origin</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Origin</field>
+            <value>
+                <stringValue>Automatic</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Owner ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>OwnerId</field>
+            <value>
+                <stringValue>005w0000004JClSAAW</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Status</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Status</field>
+            <value>
+                <stringValue>New</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Subject</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Subject</field>
+            <value>
+                <stringValue>Retention</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Case Type</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Type</field>
+            <value>
+                <stringValue>Retention</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Case</object>
+    </recordCreates>
+    <startElementReference>myVariable_waitStartTimeAssignment</startElementReference>
+    <status>Obsolete</status>
+    <variables>
+        <name>cancelWaits</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>myVariable_current</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Contract</objectType>
+    </variables>
+    <variables>
+        <name>myVariable_old</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contract</objectType>
+    </variables>
+    <variables>
+        <name>myVariable_waitStartTimeVariable</name>
+        <dataType>DateTime</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <elementReference>$Flow.CurrentDateTime</elementReference>
+        </value>
+    </variables>
+    <variables>
+        <name>myWaitEvent_myWait_myRule_1_event_0_postActionExecutionVariable</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <waits>
+        <name>myWait_myRule_1</name>
+        <label>myWait_myRule_1</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>defaultLabel</defaultConnectorLabel>
+        <waitEvents>
+            <processMetadataValues>
+                <name>inputParameterType</name>
+                <value>
+                    <stringValue>referenced</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>myWaitEvent_myWait_myRule_1_event_0</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>myWaitEvent_myWait_myRule_1_event_0_postActionExecutionVariable</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myPostWaitDecision_myWaitEvent_myWait_myRule_1_event_0</targetReference>
+            </connector>
+            <eventType>DateRefAlarmEvent</eventType>
+            <inputParameters>
+                <name>TimeTableColumnEnumOrId</name>
+                <value>
+                    <stringValue>Contract</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>EntityObjectId</name>
+                <value>
+                    <elementReference>myVariable_current.Id</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>TimeOffsetUnit</name>
+                <value>
+                    <stringValue>Days</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>TimeOffset</name>
+                <value>
+                    <numberValue>7.0</numberValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>TimeFieldColumnEnumOrId</name>
+                <value>
+                    <stringValue>EndDate</stringValue>
+                </value>
+            </inputParameters>
+            <label>myWaitEvent_myWait_myRule_1_event_0</label>
+        </waitEvents>
+    </waits>
+</Flow>

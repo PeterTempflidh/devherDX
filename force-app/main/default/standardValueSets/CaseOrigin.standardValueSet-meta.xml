@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>true</sorted>
+    <standardValue>
+        <fullName>App-Android</fullName>
+        <default>false</default>
+        <label>App-Android</label>
+    </standardValue>
+    <standardValue>
+        <fullName>App-Ipad</fullName>
+        <default>false</default>
+        <label>App-Ipad</label>
+    </standardValue>
+    <standardValue>
+        <fullName>App-Iphone</fullName>
+        <default>false</default>
+        <label>App-Iphone</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Automatic</fullName>
+        <default>false</default>
+        <label>Automatic</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Bulk Insert</fullName>
+        <default>false</default>
+        <label>Bulk Insert</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Call Center</fullName>
+        <default>false</default>
+        <label>Call Center</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Chat</fullName>
+        <default>false</default>
+        <label>Chat</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Customer Care</fullName>
+        <default>false</default>
+        <label>Customer Care</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Customer Review</fullName>
+        <default>false</default>
+        <label>Customer Review</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Delivery</fullName>
+        <default>false</default>
+        <label>Delivery</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Email</fullName>
+        <default>false</default>
+        <label>Email</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Email - B2B Franchise</fullName>
+        <default>false</default>
+        <label>Email - B2B Franchise</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Email - BPG</fullName>
+        <default>false</default>
+        <label>Email - BPG</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Email - Contract Request</fullName>
+        <default>false</default>
+        <label>Email - Contract Request</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Email - Customer</fullName>
+        <default>false</default>
+        <label>Email - Customer</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Email - Franchise</fullName>
+        <default>false</default>
+        <label>Email - Franchise</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Email - Info</fullName>
+        <default>false</default>
+        <label>Email - Info</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Email - Menu Change</fullName>
+        <default>false</default>
+        <label>Email - Menu Change</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Email - Privacy</fullName>
+        <default>false</default>
+        <label>Email - Privacy</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Email - Restaurant</fullName>
+        <default>false</default>
+        <label>Email - Restaurant</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Email - Support</fullName>
+        <default>false</default>
+        <label>Email - Support</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Email - Trust</fullName>
+        <default>false</default>
+        <label>Email - Trust</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Enquiry</fullName>
+        <default>false</default>
+        <label>Enquiry</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Facebook</fullName>
+        <default>false</default>
+        <label>Facebook</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Fax</fullName>
+        <default>false</default>
+        <label>Fax</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Instagram</fullName>
+        <default>false</default>
+        <label>Instagram</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Internal</fullName>
+        <default>false</default>
+        <label>Internal</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Logistics</fullName>
+        <default>false</default>
+        <label>Logistics</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Outbound</fullName>
+        <default>false</default>
+        <label>Outbound</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Phone</fullName>
+        <default>false</default>
+        <label>Phone</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Portal</fullName>
+        <default>false</default>
+        <label>Portal</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Product Blog</fullName>
+        <default>false</default>
+        <label>Product Blog</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Restaurant</fullName>
+        <default>false</default>
+        <label>Restaurant</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Restaurant Quality call</fullName>
+        <default>false</default>
+        <label>Restaurant Quality call</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Sales</fullName>
+        <default>false</default>
+        <label>Sales</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Satmetrix NPS</fullName>
+        <default>false</default>
+        <label>Satmetrix NPS</label>
+    </standardValue>
+    <standardValue>
+        <fullName>SMS</fullName>
+        <default>false</default>
+        <label>SMS</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Social Media</fullName>
+        <default>false</default>
+        <label>Social Media</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Twitter</fullName>
+        <default>false</default>
+        <label>Twitter</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Voicemail</fullName>
+        <default>false</default>
+        <label>Voicemail</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Web</fullName>
+        <default>false</default>
+        <label>Web</label>
+    </standardValue>
+    <standardValue>
+        <fullName>YouTube</fullName>
+        <default>false</default>
+        <label>YouTube</label>
+    </standardValue>
+</StandardValueSet>

@@ -1,0 +1,12 @@
+<apex:component >
+    <apex:attribute name="addressString" type="String[]" description="Address lines delimitted by semicolon"/>
+    <table style="float:right;">
+        <apex:repeat value="{!addressString}" var="addLine">
+            <tr>
+                <td style="padding:0px;text-align:right">
+                    {!addLine}
+                </td>
+            </tr>
+        </apex:repeat>
+    </table>
+</apex:component>

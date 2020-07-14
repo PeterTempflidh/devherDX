@@ -1,0 +1,28 @@
+<aura:component implements="force:lightningQuickAction,force:hasRecordId,force:hasSObjectName,flexipage:availableForAllPageTypes" access="global"
+                controller="ChatPageController">
+    <aura:attribute name="iframeUrl" type="String" />
+    <aura:attribute name="width" type="String" />
+    <aura:attribute name="height" type="String" />
+    <aura:attribute name="scrolling" type="String" />
+    <aura:attribute name="frameBorder" type="String" />
+    <aura:attribute name="style" type="String" />
+    <aura:attribute name="oneViewUrl" type="String"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+
+    <lightning:card title="">
+        <aura:set attribute="actions">
+            <lightning:button label="Refresh" class="applyShadow" onclick="{!c.onInit}" variant="brand"/>
+        </aura:set>
+        <div class="isComponentLoading">
+            <lightning:spinner size="medium" aura:id="spinner"/>
+        </div>
+        <iframe src="{!v.oneViewUrl}"
+                height = "{!v.height}"
+                width = "{!v.width}"
+                frameBorder="{!v.frameBorder}"
+                scrolling="{!v.scrolling}"
+                style="{!v.style}"
+        />
+    </lightning:card>
+</aura:component>

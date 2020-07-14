@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>FP-MY onboarding email - Malaysia</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP MY Send ONB Email</name>
+    <style>freeForm</style>
+    <subject>{!Case.Account} - Your foodpanda menu preview link</subject>
+    <textOnly>Dear Partner,
+
+Welcome to foodpanda! We are excited to have you on board with us!
+
+Your menu has now been completed by our content team.
+
+You can view your menu via your Restaurant Portal account here. Your Restaurant Portal login credentials are provided in a separate email titled &quot;Welcome to Restaurant Portal&quot; that has already been sent to you.
+
+If you have not received the email, please submit a request ticket over here by selecting the &quot;Device, Software, Restaurant Portal Access&quot; option.
+
+
+Please click on the link below to approve your menu and for next steps to be on-boarded on foodpanda:
+https://FoodpandaSG.formstack.com/forms/menu_dh_my?OID={!Case.OpportunityId__c}&amp;OStg=&amp;OName=&amp;OWID=&amp;Cdate=
+
+Any questions? Feel free to contact us via phone at +60 16 299 1481
+
+We are happy to help you!
+
+Sincerely,
+
+Your foodpanda Partner Care Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

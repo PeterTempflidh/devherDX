@@ -1,0 +1,11 @@
+<apex:component >
+    <apex:actionFunction action="{!loadProductManager}" name="loadServiceManager" rerender="kim" /> 
+    <apex:actionFunction action="{!goBack}" name="goBack" rerender="kim" /> 
+    
+    <apex:actionFunction name="reInitProductGroup" reRender="myFormProductGroup" immediate="true"/>
+    <apex:actionFunction name="reInitProductManager" reRender="myFormProduct" immediate="true"/>
+    <apex:actionFunction name="reInitServiceManager" status="serviceStatus" reRender="myFormServiceManager" immediate="true"/>
+    <apex:actionFunction name="reInitTarifManager" status="tarifStatus" reRender="TarifManagerForm" immediate="true"/>
+    
+    
+</apex:component>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Template for SP-4533</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Contract_Amendment</name>
+    <style>none</style>
+    <subject>Quote</subject>
+    <textOnly>Subject:Updated Contract Agreement from foodpanda
+
+
+
+
+
+
+
+
+
+
+
+Hi  [First Name],
+
+Please find attached the summary of our contract amendment. Please sign this document and return it to us so we can proceed.
+
+If you have any questions, please don’t hesitate to get in touch.
+
+We look forward to our continued partnership!
+
+Kind Regards,
+
+[Opportunity Owner Name]
+
+https://www.foodpanda.hk</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

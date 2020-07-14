@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>PY Inbound</label>
+    <protected>false</protected>
+    <values>
+        <field>Entity_Name__c</field>
+        <value xsi:type="xsd:string">PY_Inbound</value>
+    </values>
+    <values>
+        <field>Value_Assignment__c</field>
+        <value xsi:type="xsd:string">{
+&quot;101:=Country__c&quot;:&quot;EmailToAddress__c==contactos@appetito24.com||panama@appetito24.com,Panamá&quot;,
+&quot;102:=AND&quot;:&quot;&quot;,
+&quot;201:=Platform__c&quot;:&quot;EmailToAddress__c==contactos@appetito24.com||panama@appetito24.com,Appetito24&quot;,
+&quot;202:=Platform__c&quot;:&quot;Country__c==Panamá,Appetito24&quot;,
+&quot;203:=Platform__c&quot;:&quot;PedidosYa&quot;,
+&quot;204:=AND&quot;:&quot;&quot;,
+&quot;301:=OwnerId&quot;:&quot;OwnerId==User,User&quot;,
+&quot;302:=OwnerId&quot;:&quot;Origin==Email&amp;&amp;Subject==REDES SOCIALES CHILE,PY_Social_Networks&quot;,
+&quot;303:=OwnerId&quot;:&quot;Origin==Email&amp;&amp;Subject==DP_CUSTOMER_CANCEL||DP_REDELIVERY_FAILED&amp;&amp;EmailToAddress__c==soporte@pedidosya.com,PY_Dispatch_Escalation_Customers&quot;,
+&quot;304:=OwnerId&quot;:&quot;Origin==Email&amp;&amp;Subject==DP_,PY_Dispatch_Escalations&quot;,
+&quot;305:=AND&quot;:&quot;&quot;,
+&quot;401:=Type&quot;:&quot;Type==ISBLANK&amp;&amp;EmailToAddress__c==sf.soporte@pedidosya.com||soporte@pedidosya.com||panama@appetito24.com,Partner&quot;,
+&quot;402:=Type&quot;:&quot;Type==ISBLANK&amp;&amp;EmailToAddress__c==contacto@pedidosya.com||reclamos@pedidosya.com||contactos@appetito24.com,Customer&quot;
+}</value>
+    </values>
+</CustomMetadata>

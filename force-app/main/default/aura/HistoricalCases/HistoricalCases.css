@@ -1,0 +1,23 @@
+.THIS .good{
+    background-color:forestgreen !important;
+    color: white;
+    cursor:not-allowed;
+}
+.THIS .ok{
+    background-color:orange !important;
+    color: white;
+    cursor:not-allowed;
+}
+.THIS .bad{
+    background-color:darkred !important;
+    color: white;
+    cursor:not-allowed;
+}
+.THIS .setBorder{
+    border-radius: 1rem;
+}
+.THIS .selected{
+    background-color:royalblue !important;
+    color:white;
+    cursor:not-allowed;
+}

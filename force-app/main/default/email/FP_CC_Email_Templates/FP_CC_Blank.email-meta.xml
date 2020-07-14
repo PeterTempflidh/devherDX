@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP CC Blank</name>
+    <style>freeForm</style>
+    <subject>Your Answer from FoodPanda Support-{!Case.CaseNumber}</subject>
+    <textOnly>--
+
+{!Case.OwnerFullName} from FoodPanda</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

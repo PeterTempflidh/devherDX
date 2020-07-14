@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Your menu update request could not be processed</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP TH Menu Change - Could not be processed - Deflection</name>
+    <style>freeForm</style>
+    <subject>ไม่สามารถดำเนินการคำขออัปเดตเมนูของคุณได้  Your Menu update request could not be processed</subject>
+    <textOnly>เรียนพาร์ทเนอร์
+
+ขอบพระคุณที่ได้ส่งคำขอการอัปเดตเมนูเข้ามา
+
+ทางเราขออภัยเป็นอย่างสูงที่ไม่สามารถทำตามคำขอของท่านได้ กรุณาเข้าไปที่หัวข้อ Menu Management ใน Restaurant Portal เพื่ออัปเดตเมนูของท่าน ทีมงานของเราจะดำเนินการตรวจสอบคำขอของท่านภายใน 2 วันทำการ
+
+- คลิก ที่นี่ เพื่อลงชื่อเข้า Menu Management
+https://foodpanda.portal.restaurant/menu-management-pd
+
+- คลิก ที่นี่ หากท่านลืมรหัสผ่าน (forgot password)
+https://foodpanda.portal.restaurant/reset-password
+
+- คลิก ที่นี่ เพื่อขอรายละเลียดการลงชื่อเข้าใช้ของท่าน
+https://foodpandasg.formstack.com/forms/foodpanda_support_th
+
+- คลิก ที่นี่ เพื่อเข้าไปศึกษาการใช้งานพอร์ทัลร้านอาหาร (เช่น การเปลี่ยนแปลงเมนู หรือ การเปลี่ยนแปลงเวลาทำการร้านค้า)
+https://drive.google.com/file/d/1tkILSKiQLIJJdV6Bkdm82RBW0XMAVnro/view
+
+
+ด้วยความเคารพเป็นอย่างสูง
+ทีมงาน foodpanda
+
+------------------------------------------------------------------------------------------------------
+
+Dear Partner,
+
+Thank you for your submission. Unfortunately we cannot process your request. Please head on over to Menu Management in Restaurant Portal to update your menu with just a few clicks. Your request will be reviewed within 2 business days by our Quality Control team.
+
+- Click here to log in to Menu Management
+https://foodpanda.portal.restaurant/menu-management-pd
+
+- Click here if you forgot your password
+https://foodpanda.portal.restaurant/reset-password
+
+- Request for your login details here
+https://foodpandasg.formstack.com/forms/foodpanda_support_th
+
+- Click here to view Menu Management Guide
+https://drive.google.com/file/d/1nAoHGk_DLIOgUrRGrPOR-Bq3hvAubofj/view
+
+
+Cheers,
+Your foodpanda team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

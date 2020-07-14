@@ -1,0 +1,109 @@
+<template>
+    <lightning-card title="Knowledge" icon-name="standard:knowledge" class=".slds-text-title_bold" > 
+		<!--Search component and Search Results section on top-->
+        <lightning-layout class="slds-m-around_small">		
+            <lightning-layout-item size="12"> 
+				<lightning-layout>
+					<lightning-layout-item size="11">
+						<c-searchcomponent onchange={handleOnchange} placeholder={label.Search_Knowledge}>                        
+						</c-searchcomponent> 
+					</lightning-layout-item> 
+					<lightning-layout-item size="1">
+					<div class="slds-grid slds-wrap">
+							<div class="slds-col slds-m-around_medium  slds-m-left_none">
+						<lightning-button-icon  icon-name="utility:refresh" alternative-text="Refresh" 
+						onclick={handleRefresh}></lightning-button-icon> 
+						</div>
+						</div>
+					</lightning-layout-item> 
+				</lightning-layout>
+                    <template if:false={selectedRecord}>
+                            <template if:true={searchResults}>
+                                <div style={searchResultPanelHeight}>  
+									<template for:each={searchResults} for:item="itemRec">                                   
+										<c-searchresults key={itemRec.Id} record={itemRec} display-info={itemRec.Title}
+											onselect={handleSelect} iconname={iconname} rec-id={itemRec.Id}
+											fieldname="">
+										</c-searchresults>                                  
+									</template>                               
+                                </div>
+                            </template>
+                    </template> 
+                <div class="slds-m-top_medium slds-m-bottom_large slds-border_bottom " ></div>                                  
+            </lightning-layout-item>
+        </lightning-layout>
+		<!--Count of suggested articles-->
+        <div  class="slds-m-left_small slds-text-color_weak" style="font-weight:300; font-size:.8rem">
+			<h3 class="slds-text-heading_x-small ">{label.Suggested_Article}</h3>
+			<p>{articleCount} Results</p>
+        </div>
+		
+		<!--List suggested articles-->
+        <div class="slds-scrollable_y" style={compheight}>       
+			<lightning-layout class="slds-m-around_medium">
+				<template if:true={articlesList}>
+				   <lightning-layout-item size="12" >              
+					   <template for:each={articlesList} for:item="item" for:index="index"> 
+						<span key={item.Id}  data-recindex={index} 
+							onmouseover={showArticleDetail} >                       
+							   <a key={item.Id} data-recind={item.Id} onclick={navigateToRecord} >{item.Title}</a>                         
+							   <div key={item.Id} class="slds-border_bottom slds-m-bottom_medium"></div>          
+						   </span> 
+					   </template>							   
+				   </lightning-layout-item>
+				  </template>
+				  <template if:false={articlesList}>
+					<h3 class="slds-m-left_small slds-text-heading_x-small ">{label.No_Result}</h3>
+				  </template>
+			</lightning-layout>
+        </div>
+		<!--List suggested articles ended-->
+		<!--Popover on hovering on article link-->
+        <template if:true={showPopUp}>      
+		 <span onmouseover={showPopOver} onmouseleave={hidePopOver}>
+		 <section class="slds-popover slds-popover_large" style={boxClass}
+			aria-describedby="popBody" aria-labelledby="popHeader" role="dialog">
+				<div class="slds-popover__header" style="background:rgba(243, 242, 242, 1)" >
+					<header class="slds-media slds-media_center slds-m-bottom_small">
+						<lightning-layout>
+							<lightning-layout-item size="2">
+								<span class="slds-icon_container">                              
+								<lightning-icon icon-name="standard:knowledge" alternative-text="Knowledge" 
+								title="Knowledge"></lightning-icon>
+								</span>
+							</lightning-layout-item>
+							<lightning-layout-item size="11">
+								<div class="slds-media__body">
+									<h2 class="slds-text-heading_medium" id="popHeader"> 
+										<a onclick={navigateToRecord}> {hoveredArticle.Title} </a> 
+									</h2>
+								</div>                                        
+							</lightning-layout-item>
+							<lightning-layout-item size="1">
+								<div class="closebuttoncss" onclick={hidePopOver}>
+									<lightning-button-icon icon-name="utility:close"  alternative-text="Settings" 
+									title="Close" click={hidePopOver}></lightning-button-icon>
+							   </div>  
+							</lightning-layout-item>
+						</lightning-layout>
+					</header>
+				 </div>
+				<div class="slds-popover__body" id="popBody">
+					<div class="slds-text-longform">
+						<div>Title</div>
+						<div>{hoveredArticle.Title}</div>
+						<div class="slds-m-bottom_medium slds-border_bottom"></div>
+						<div>Summary</div>
+						<div>{hoveredArticle.Summary}</div>
+						<div class="slds-m-bottom_medium slds-border_bottom"></div>  
+						<div>Article Detail</div>
+						<lightning-formatted-rich-text value={hoveredArticle.Article_Detail__c}></lightning-formatted-rich-text>
+						<div class="slds-m-bottom_medium slds-border_bottom"></div> 
+					</div>
+				</div>
+			</section>	
+			</span>
+        </template>
+		<!--Popover end-->
+		</lightning-card>
+        </template>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>CUPÓN VENCIDO</name>
+    <style>freeForm</style>
+    <subject>CUPÓN VENCIDO</subject>
+    <textOnly>Estimada {!Case.Customer_Name__c}, es un gusto saludarte.
+
+Estimado {!Case.Customer_Name__c}, es un gusto saludarte.
+
+
+Te contactamos en respuesta a tu reclamo por los inconvenientes al intentar utilizar el cupón.
+
+
+En este caso vemos que el cupón que tenías cargado en tu cuenta finalizó su fecha de vigencia el día XXX. Te recomendamos tener en cuenta esta información para utilizar tus cupones en el futuro.
+
+
+Quedamos a las órdenes ante cualquier consulta.
+
+
+Saludos Cordiales
+
+{!Case.OwnerFullName}
+
+Atención al Cliente - PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

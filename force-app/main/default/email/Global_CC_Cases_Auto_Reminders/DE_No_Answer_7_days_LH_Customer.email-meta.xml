@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DE_Lieferheld</letterhead>
+    <name>DE - No Answer 7 days - LH Customer</name>
+    <style>freeForm</style>
+    <subject>Ihre Anfrage bei Lieferheld</subject>
+    <textOnly>Sehr geehrter Kunde,
+
+wir gehen davon aus, dass sich Ihr Anliegen jetzt gelöst hat und schließen Ihren Fall. 
+
+Bei weiteren Fragen sind wir natürlich gern für Sie da. Wir wünschen Ihnen noch einen guten Tag!</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

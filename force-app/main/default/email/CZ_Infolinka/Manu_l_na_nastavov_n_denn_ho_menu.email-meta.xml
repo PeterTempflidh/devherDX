@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>CZ_Letterhead</letterhead>
+    <name>Manuál na nastavování denního menu</name>
+    <style>freeForm</style>
+    <subject>Návod jak si nastavit denní menu</subject>
+    <textOnly>Vážení obchodní partneři,
+
+v případě, že na Dáme jídlo nabízíte denní menu, připravili jsme si pro vás několik scénářů, které by vám v zadávání denního menu měly pomoci.
+
+POZOR! Kvůli přechodu je třeba zadat denní menu na období od 12.6. do 16.6.2020 dopředu ještě ve starém systému pro všechny dny, a to nejpozději do 12.6. 22:30, poté se systém úplně zamrazí pro úpravy a nebude možné menu měnit ani přidávat. Jakmile dostanete přístupové údaje do Restauračního portálu, můžete denní menu zadávat již pouze pro nový web.
+
+Mám stálé denní menu a neměním ho
+Již nyní byste měli mít denní menu nahrané na novém profilu a jakmile dostanete přístup do Restauračního portálu, stačí zkontrolovat, že jej máte nahrané ve správné Menu sekci, se správným časem zobrazování. V případě, že denní menu v Restauračním portálu nevidíte, stačí si ho do příslušné sekce nahrát (viz video - odkaz níže).
+Znám denní menu na celý týden dopředu
+V restauračním portálu si ho můžete sami nahrát (viz video - odkaz níže) do nedělní půlnoci na následující týden. V případě, že s nahráváním budete mít problém, můžete kontaktovat svého Account managera, nasdílí vám excelovou tabulku, kam nám menu vyplníte a my vám jej nahrajeme na celý týden. Tabulka musí být doručena nejpozději v pátek aktuálního týdne do 22 hodin. V pondělí ráno si na tabletu zkontrolujte nabídku a položky které nejsou aktuální si skryjte.
+Denní menu vytvářím každý den
+Denní menu si můžete zadat sami v Restauračním portálu. Doporučujeme zadávat s dostatečným časovým předstihem, abychom vám menu stihli schválit před začátkem otevírací doby. Pokud byste menu neměli zadané vaše restaurace se bude na webu zobrazovat bez nabídky.
+Denní menu na Dáme jídlo se mi stahovalo ze Zomato
+Bohužel, nové nastavení systému tuto funkci nepodporuje, a tak je třeba, abyste se řídili jednou z výše zmíněných možností.
+Denní menu pro restauraci s integrací POS
+Pokud máte na profilu integraci na pokladní systém, stačí kontaktovat svého Account managera, ten vám nasdílí excelovou tabulku, kam nám menu včetně pokladních kódů vyplníte a my vám jej nahrajeme.
+
+Návod na nastavení denního menu najdete zde, nebo se můžete podívat na krátké video, jak si denní menu nově zadat. Kontaktní email pro zasílání menu je menu@damejidlo.cz, email bude fungovat od 15.6.2020.
+
+S přáním hezkého dne,
+Tým Dáme jídlo</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

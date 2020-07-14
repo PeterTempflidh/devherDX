@@ -1,0 +1,295 @@
+<apex:page controller="CtrAddOnManager" showHeader="false" sidebar="false" standardStylesheets="false">
+	<style type="text/css">
+	    table.tableClass th {
+	    text-align: left !important;
+	    }
+	
+	    table.displayDataTable th:first-child {
+	        background-image: none;
+	        cursor: default;
+	    }
+	</style>
+	<script>
+	    function showAddOnPopup(){
+	        j$('#customAddOnPopup').modal('show');
+	    }
+	    
+	    function hideAddOnPopup(){
+	        j$('#customAddOnPopup').modal('hide');
+	    }
+	
+	    jQuery(function(j$) {
+	        j$('th').click(function(){
+	            var table = j$(this).parents('table').eq(0)
+	            var rows = table.find('tr:gt(0)').toArray().sort(comparer(j$(this).index()))
+	            this.asc = !this.asc
+	            if (!this.asc){rows = rows.reverse()}
+	            for (var i = 0; i < rows.length; i++){table.append(rows[i])}
+	        })
+	        function comparer(index) {
+	            return function(a, b) {
+	                var valA = getCellValue(a, index), valB = getCellValue(b, index)
+	                return j$.isNumeric(valA) && j$.isNumeric(valB) ? valA - valB : valA.localeCompare(valB)
+	            }
+	        }
+	        function getCellValue(row, index){ return j$(row).children('td').eq(index).html() }
+	    });
+	</script>
+
+
+	<apex:form id="AddOnForm">
+        <div id="animated-example" class="animated fadeOut"><apex:pageMessages id="addOnMessage"/></div>
+        <br style="clear:both;" />
+	
+		<table width="100%" border="0" cellspacing="6" cellpadding="6" style="margin-top:20px !important;">
+			<tr>
+				<td>
+					<span class="s1icon s1icon-c-redcross1 s1icon-sm pageIconPosition" style="margin-top:-70px !important;"></span>
+		    		<span class="pageIconPositionLabel" style="margin-top:-65px !important;">{!$Label.Overview_AddOns}</span>
+		    	</td>
+		    	<td>
+					<span class="s1icon s1icon-c-redcross1 s1icon-sm pageIconPosition" style="margin-top:-70px !important;"></span>
+					<span class="pageIconPositionLabel" style="margin-top:-65px !important;">{!$Label.Add_Ons}</span>
+		    	</td>
+		    </tr>
+		   	<tr>
+	        	<td></td>
+	        	<td>
+	        		<!-- info -->
+					<div class="info" style="float:right; margin-top:-25px;">
+		    			<div class="tool-tip bottom" style="top:160px; width: 270px;height: 160px; margin-right:40px">
+		        			<apex:outputText value="{!$Label.Add_On_Information}" escape="false" />
+		    			</div>
+					</div>
+				</td>
+	        </tr>	
+			<tr>
+		    	<td style="padding-right:10px" valign="top"> 
+		    		<apex:pageBlock mode="maindetail " id="addOnOverview" tabStyle="Sales_Management__tab">
+	    
+				        <table id="addOns" class="displayDataTable display">
+				            <thead>
+				                <tr>
+				                    <th></th>
+                                    <th>{!$Label.Is_Active}</th>
+				                    <th>{!$Label.Name}</th>
+				                    <th>{!$Label.Country}</th>
+				                    <th>{!$Label.Type}</th>
+				                    <th><apex:outputText value="{!$Label.Contract_Addition}" escape="false" /></th>
+				                    <th>{!$Label.SMC_Last_Modified_By}</th>
+				                    <th>{!$Label.SMC_Last_Modified_Date}</th>
+				                </tr>
+				            </thead>
+				            <tbody>
+				                <apex:repeat value="{!listAddOns}" var="addOn">
+				                    <tr>
+				                        <td>
+                                            <apex:commandButton action="{!chooseAddOnToDelete}" Styleclass="btn1 btn-warning1 s1utility-close"
+																id="serviceId" value=""
+																title="{!IF(addOn.Is_Active__c, $Label.SMC_Service_Delete_Not_Possible, $Label.Delete)}"
+																rerender="deleteAddOnPopup" oncomplete="showAddOnPopup();" status="LoadingSpinner"
+																disabled="{!IF(addOn.Is_Active__c, 'true', 'false')}" immediate="true">
+                                                <apex:param name="serviceId" assignTo="{!serviceId}" value="{!addOn.Id}" />
+                                            </apex:commandButton>
+				                        </td>
+                                        <td data-sort="{!addOn.Is_Active__c}">
+                                            <span class="Active{!addOn.Is_Active__c} s1utility "></span>
+                                        </td>
+				                        <td>
+				                            <apex:commandLink id="theCommandLink" value="" title="{!$Label.Edit}" action="{!editItem}" 
+				                            	rerender="AddOnForm" status="LoadingSpinner" 
+				                            	oncomplete="scrollToTop(); rerenderDataTable('addOns');">
+				                                	<apex:outputText value="{!addOn.Name}"/>
+				                                	<apex:param name="addOnId" assignTo="{!addOnId}" value="{!addOn.Id}" />
+				                            </apex:commandLink></td>
+				                        <td>{!addOn.Id_Country__r.name}</td>
+				                        <td>{!addOn.Type__c}</td>
+				                        <td>{!addOn.Contract_Addition__c}</td>
+				                        <td>{!addOn.LastModifiedBy.Name}</td>
+				                        <td>
+				                            <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+				                                <apex:param value="{!addOn.LastModifiedDate}" /> 
+				                            </apex:outputText>
+				                        </td>
+				                    </tr>
+				                </apex:repeat>
+				            </tbody>
+				        </table>
+	    		</apex:pageBlock>
+			</td>
+			<td width="30%" valign="top">
+				<apex:pageBlock mode="maindetail " id="addOnBlock" tabStyle="Sales_Management__tab">
+
+		            <table width="100%">
+		                <tr>
+		                    <td></td>
+		                    <td align="right">
+		                    	<apex:commandButton value="New" action="{!cancel}" Styleclass="btnFloatLeft3New" 
+		                    		oncomplete="scrollToTop(); rerenderDataTable('addOns');" reRender="addOnBlock" 
+		                    		status="LoadingSpinner" />
+		                    </td>
+		                </tr>
+	                </table>
+					<table width="100%" style="margin-top:20px; " Class="tableStandard ">
+					    <tr>
+						    <td style="width: 200px; text-align:left"><b>{!$Label.Add_On} {!$Label.Name}</b></td>
+						    <td width="0px" colspan="2">
+						        <apex:outputPanel >
+						            <apex:inputText Style="width:205px;" 
+						            	html-placeholder="{!$Label.write_the_Add_On_here}" 
+						            	value="{!newAddOnItem.Name}" /><span class="requiredRed"></span>
+						        </apex:outputPanel>  
+						    </td>
+						</tr>
+						<tr>
+						    <td><b>{!$Label.Country}</b></td>
+							<td>
+							    <apex:outputPanel rendered="{!showCountryDropdown}">
+							        <span class="btnFloatLeft custom-dropdown custom-dropdown--red custom-dropdown--disabled">
+							            <apex:selectList style="width:205px;" value="{!selectedCountry}" size="1" 
+							            	Styleclass="custom-dropdown__select custom-dropdown__select--red"  
+							            	multiselect="false">
+							                	<apex:selectOptions value="{!countries}"/>
+							            </apex:selectList>
+							        </span>
+							        <span class="requiredRed"></span>
+							    </apex:outputPanel>
+							    <apex:outputPanel styleClass="hideDropdown" rendered="{!hideCountryDropdown}">
+							        <apex:outputText value="{!defaultCountry}" />
+							    </apex:outputPanel>
+						    </td>
+						</tr>
+						<tr>
+						    <td><b>{!$Label.Company}</b></td>
+						    <td>
+							    <apex:outputPanel rendered="{!showCompanyDropdown}">
+							        <span class="btnFloatLeft custom-dropdown custom-dropdown--red custom-dropdown--disabled">
+							            <apex:selectList style="width:205px;" value="{!selectedCompany}" size="1" 
+							            	Styleclass="custom-dropdown__select custom-dropdown__select--red">
+							            		<apex:selectOptions value="{!companies}"/>
+							            </apex:selectList>
+							        </span>
+							        <span class="requiredRed"></span>
+							    </apex:outputPanel>
+							    <apex:outputPanel styleClass="hideDropdown" rendered="{!hideCompanyDropdown}">
+							        <apex:outputText value="{!defaultCompany}" />
+							    </apex:outputPanel>
+						    </td>
+						</tr>
+						<tr>
+						    <td style="width: 200px; text-align:left"><b>{!$Label.Type}</b></td>
+						    <td width="0px" colspan="2">
+						        <apex:outputPanel >
+						        	<span class="btnFloatLeft custom-dropdown custom-dropdown--red custom-dropdown--disabled">
+						            <apex:inputField Style="width:205px;" 
+						            	Styleclass="custom-dropdown__select custom-dropdown__select--red"
+						            	value="{!newAddOnItem.Type__c}" />
+						            <span class="requiredRed"></span>
+						            </span>
+						        </apex:outputPanel>  
+						    </td>
+						</tr>
+						<tr>
+						    <td style="width: 200px; text-align:left"><b>{!$Label.Contract_Addition}</b></td>
+						    <td width="0px" colspan="2">
+						        <apex:outputPanel >
+						            <apex:inputTextArea Style="width:205px;"  rows="5"
+						            	html-placeholder="Contract Ammendment details" 
+						            	value="{!newAddOnItem.Contract_Addition__c}" />
+						        </apex:outputPanel>  
+						    </td>
+						</tr>
+                        <tr>
+                            <td><b>{!$Label.Is_Active}</b></td>
+                            <td>
+                                <apex:outputPanel >
+                                    <label class="switch">
+                                        <apex:inputCheckbox styleClass="switch-input" value="{!newAddOnItem.Is_Active__c}" />
+                                        <span class="switch-label" data-on="{!$Label.On}" data-off="{!$Label.Off}"></span>
+                                        <span class="switch-handle"></span>
+                                    </label>
+                                </apex:outputPanel>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>{!$Label.Requires_Approval}</b></td>
+                            <td>
+                                <apex:outputPanel >
+                                    <label class="switch">
+                                        <apex:inputCheckbox styleClass="switch-input" value="{!newAddOnItem.Requires_Approval__c}" />
+                                        <span class="switch-label" data-on="{!$Label.On}" data-off="{!$Label.Off}"></span>
+                                        <span class="switch-handle"></span>
+                                    </label>
+                                </apex:outputPanel>
+                            </td>
+                        </tr>
+						<tr>
+							<td style="width: 200px; text-align:left"><b>{!$Label.Requires_Esignature}</b></td>
+							<td width="0px" colspan="2">
+								<apex:outputPanel >
+						        	<span class="btnFloatLeft custom-dropdown custom-dropdown--red custom-dropdown--disabled">
+						            <apex:inputField Style="width:205px;"
+													 Styleclass="custom-dropdown__select custom-dropdown__select--red"
+													 value="{!newAddOnItem.Requires_Esignature__c}" />
+						            <span class="requiredRed"></span>
+						            </span>
+								</apex:outputPanel>
+							</td>
+						</tr>
+					</table>         
+					<table width="100%" style="margin-top:20px;">
+					    <tr>
+					        <td></td>
+					        <td align="right"> 
+					        	<apex:commandButton Styleclass="btnFloatLeft2" value="{!$Label.save}" action="{!addAddOn}" 
+					        		reRender="AddOnForm, myForm, addOnM" 
+					        		status="LoadingSpinner" oncomplete="scrollToTop(); rerenderDataTable('addOns');" /> &nbsp; &nbsp; 
+					        	<apex:commandButton value="{!$Label.Cancel}" action="{!cancel}" Styleclass="btnFloatLeft3" 
+					        		oncomplete="scrollToTop(); rerenderDataTable('addOns');" reRender="addOnBlock" 
+					        		status="LoadingSpinner" />
+			        		</td>
+					    </tr>
+				    </table> 
+				</apex:pageBlock>
+			</td>
+		</tr>
+	</table>
+	
+	
+	
+	<!--
+	###############################
+	spinner / popup
+	###############################
+	-->
+	<!-- <c:Spinner message="{!$Label.Please_Wait}" /> -->
+	<apex:outputPanel id="deleteAddOnPopup">
+		<div class="modal fade" id="customAddOnPopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+		     <div class="modal-content">
+		        <div class="modal-header">
+		            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		            <span class="s1icon s1icon-s-question-feed s1icon-sm "></span>
+		            <span class="pageIconPositionLabelpopup">{!$Label.SMC_Add_On_Deleting}</span>
+		            
+		            <h2><apex:outputText value="{!$Label.SMC_Add_On_Deleting} : {!newAddOnItem.Name}" /></h2>
+		             <apex:outputText value="Are you sure you want to delete:  <b>{!newAddOnItem.Name}</b> ?" escape="false"/>
+		
+		            <table width="100%" style="margin-top:50px;">
+		                <tr>
+			                <td><apex:commandButton html-data-dismiss="modal" Styleclass="btnFloatLeft2"  value="Cancel" onclick="return false;" /></td>
+			                <td align="right">
+			                	<apex:commandButton value="Delete" action="{!deleteItem}" Styleclass="btnFloatLeft3" 
+			                		status="LoadingSpinner" rerender="addOnOverview, addOnMessage" 
+			                		oncomplete="hideAddOnPopup(); rerenderDataTable('addOns');" immediate="true"/>
+		                	</td>
+		                </tr>
+		            </table>
+		        </div>
+		           
+		      </div>
+		    </div>
+		</div>
+	</apex:outputPanel>
+	</apex:form>
+</apex:page>

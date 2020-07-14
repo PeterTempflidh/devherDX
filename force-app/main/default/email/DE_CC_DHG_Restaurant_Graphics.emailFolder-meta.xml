@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>DE - CC - DHG Restaurant Graphics</name>
+    <publicFolderAccess>ReadOnly</publicFolderAccess>
+    <sharedTo>
+        <group>DE_Associate</group>
+        <group>DE_CC_Sales_Operations_Inhouse</group>
+        <group>DE_CMX_Team_Leaders</group>
+        <group>DE_CMX_Users</group>
+        <group>DE_Customer_Care</group>
+        <group>DE_ExpertCloud_Team_Leaders</group>
+        <group>DE_ExpertCloud_Users</group>
+        <group>DE_Jr_Associate</group>
+        <group>DE_Key_Account</group>
+        <group>DE_New_Hire_Associate</group>
+        <group>Global_International_Team</group>
+        <role>DE_Customer_Care_Management</role>
+        <role>DE_Editorial</role>
+        <role>DE_Restaurant_Operations</role>
+    </sharedTo>
+</EmailFolder>

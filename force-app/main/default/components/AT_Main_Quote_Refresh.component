@@ -1,0 +1,634 @@
+<apex:component controller="CtrCreateQuote" access="global" >
+
+
+    <!-- deprecated to be deleted -->
+
+    <!-- <apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+    <apex:attribute name="oppQuote" type="String" description="Placeholder" assignTo="{!oppQuoteId}"/>
+    <div id="AT_Main_Quote"></div>
+    <div id="AT_MQ_Wrapper">
+        <div id="AT_MQ_Page1">
+            <div> <img src="{!URLFOR($Resource.ATResources, 'ATResource/mjamat.png')}" style="height:100px"/></div>
+           <br/>
+           <div class="AT_MQ_Page1LeftDiv">
+                <span class="marginLeft"><b>{!accountWrapper.restaurantName}</b></span><br />
+                <span class="marginLeft" id="ownerName"><b>{!accountWrapper.ownerName}</b></span><br />
+                <span class="marginLeft" id="addressStreet">{!accountWrapper.addressStreet}</span><br />
+                <span class="marginLeft" id="addressPostal">{!accountWrapper.addressPostal}</span> <span id="addressCity">{!accountWrapper.addressCity}</span>
+            </div>
+            <div class="clear"/>
+            <br />
+            <div class="AT_MQ_Page1RightDiv2">
+                <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                    <apex:param value="{!TODAY()}" /> 
+                </apex:outputText>
+            </div>
+            <br />
+            <div class="clear" />
+            <h3 class="futuraBold">Vertragsunterlagen &amp; Willkommen bei Mjam!</h3>
+            <p>
+                Liebe(r) <span id="salutation">{!accountWrapper.ownerSalutation}</span> {!accountWrapper.ownerLastname},
+            </p>
+            <p class="justify">     
+                Willkommen bei Mjam! Bevor die Zusammenarbeit mit uns richtig durchstarten kann, müssen Sie bitte folgende Anlagen durchgehen und an uns zurückschicken:
+            </p>
+            <ol class="justify">
+                <li class="justify"><b>Handelsvertretervertrag</b>: Bitte lesen Sie sich alles gut durch und senden Sie uns den firmenmäßig gestempelten und auf beiden Seiten unterzeichneten Vertrag zurück. Unsere AGB finden Sie unter https://www.mjam.net/vertragsbedingungen/</li>
+                <li class="justify"><b>Stammdatenblatt</b>: Bitte füllen Sie es vollständig aus. Wir schicken Ihnen die Zugangsdaten zu Ihrem Partnerbereich an die angegebene E-Mail-Adresse. Sollten sich Ihre Stammdaten einmal ändern, teilen Sie uns das schnellstmöglich mit, damit wir Ihre Interessen immer bestmöglich wahren können!</li>
+                <li class="justify" style="list-style-type: square;">Verwenden Sie dazu das beigelegte Kuvert – das Porto übernehmen wir.</li>
+            </ol>
+            <p class="justify">
+                Außerdem finden Sie anbei – für Sie zum behalten:
+            </p>
+            <ul class="justify">
+                <li class="justify">Fenster-Sticker - den Sie am besten sichtbar an Ihre Eingangstür/Fenster kleben können</li>
+                <li class="justify">Kleinere Sticker um z.B. Essensboxen zu verschließen</li>
+            </ul>
+            <p class="justify">
+                Wenn Sie Fragen haben oder weitere Informationen benötigen, wenden Sie sich jeder Zeit an mich unter {!$User.Email}. Ich bin gerne für Sie da! 
+            </p>
+            <p  class="justify">
+                Vielen Dank und auf eine erfolgreiche Partnerschaft!
+            </p>
+            <br />
+            <p>
+                {!$User.FirstName} {!$User.LastName} <br />
+                (Sales Manager)
+            </p>
+            <br />
+            <br /><br /><br /><br />
+           
+        </div>
+         <p style="text-align: center;font-size:7pt"><b>Mjam GmbH</b> • c/o Sektor 5 • Siebenbrunnengasse 44 • A-1050 Wien • FN 309771 x Handelsgericht Wien • Geschäftsführer: Lars Niklas Östberg </p>
+            <p style="text-align: center;font-size:7pt">UID-Nr.: ATU6421546 • Hypovereinsbank Filiale Berlin-Charlottenburg • IBAN: DE67 1002 0890 0024 1039 35 • BIC: HYVEDEMM488</p>
+        <pre />
+        <h1 class="futuraBold">HANDELSVERTRETERVERTRAG</h1>
+        <p class="AT_MQ_Title">ABGESCHLOSSEN ZWISCHEN</p>
+        <table id="AT_MQ_TopTables" width="100%" border="1" >
+            <tr>
+                <td id="AT_MQ_NoRightBorder" style="width:30%;">
+                    FIRMA, FN UND UID NR.:
+                </td>
+                <td id="AT_MQ_NoLeftBorder">
+                   <span id="companyName">{!accountWrapper.companyName}</span>, <span>{!accountWrapper.tradeRegNumber}</span>, <span id="taxNumber">{!accountWrapper.taxNumber}</span>
+                </td>
+            </tr>
+            <tr>
+                <td id="AT_MQ_NoRightBorder">
+                    INHABER/GESCHÄFTSFÜHRER:
+                </td>
+                <td id="AT_MQ_NoLeftBorder">
+                    {!accountWrapper.ownerName}
+                </td>
+            </tr>
+            <tr>
+                <td id="AT_MQ_NoRightBorder">
+                    ADRESSE:
+                </td>
+                <td id="AT_MQ_NoLeftBorder">
+                    {!accountWrapper.ownerMailingStreet}, {!accountWrapper.ownerMailingPostalCode} {!accountWrapper.ownerMailingCity}
+                </td>
+            </tr>
+        </table>
+        <p class="AT_MQ_Title">NACHFOLGEND “GESCHÄFTSHERR”</p>
+        <p class="AT_MQ_Title">UND</p>
+        <table id="AT_MQ_TopTables" width="100%" border="1">
+            <tr>
+                <td id="AT_MQ_NoRightBorder" style="width:30%">
+                    FIRMA, FN UND UID NR.:
+                </td>
+                <td id="AT_MQ_NoLeftBorder">
+                    Mjam GmbH, FN 309771x Handelsgericht Wien, ATU64215469
+                </td>
+            </tr>
+            <tr>
+                <td id="AT_MQ_NoRightBorder">
+                    INHABER/GESCHÄFTSFÜHRER:
+                </td>
+                <td id="AT_MQ_NoLeftBorder">
+                    Lars Niklas Östberg
+                </td>
+            </tr>
+            <tr>
+                <td id="AT_MQ_NoRightBorder">
+                    ADRESSE:
+                </td>
+                <td id="AT_MQ_NoLeftBorder">
+                    Siebenbrunnengasse 44, 1050 Wien
+                </td>
+            </tr>
+        </table>
+        <p class="AT_MQ_Title">NACHFOLGEND “MJAM”</p>
+        <p class="AT_MQ_Title">WIE FOLGT:</p>
+        <br />
+        <p id="AT_MQ_StammTextTitle">PRÄAMBEL</p>
+        <table  cellspacing="0" id="AT_MQ_StammText">
+            <tr>
+                <td>A.</td>
+                <td>Dieser Handelsvertretervertrag wird unter den Allgemeinen Geschäftsbedingungen der Mjam GmbH für den Geschäftsverkehr
+                    mit Geschäftsherren („unsere AGB“, siehe Anhang I) geschlossen, die mit der Unterzeichnung dieses Handelsvertretervertrages
+                    in Papierform ausgehändigt und vom Geschäftsherrn als Vertragsinhalt akzeptiert wurden</td>
+            </tr>
+            <tr>
+                <td>B.</td>
+                <td>Mjam ist Handelsvertreterin für mehrere Unternehmer (Geschäftsherrn) und betreibt zur Vermittlung von Geschäftsabschlussmöglichkeiten
+                    an ihre Geschäftsherrn Online-Plattformen.</td>
+            </tr>
+            <tr>
+                <td>C.</td>
+                <td>Der Geschäftsherr ist ein Unternehmer, der die Zubereitung und/oder Lieferung von Speisen und Getränken aller Art und/oder
+                    die Lieferung von gewöhnlich in Supermärkten angebotenen Produkten anbietet. </td>
+            </tr>
+        </table>
+        <br />
+        <p id="AT_MQ_StammTextTitle">§ 1 Definitionen</p>
+        <table cellspacing="0" id="AT_MQ_StammText">
+            <tr>
+                <td>(1.)</td>
+                <td>Nutzer: Jederman der eine von Mjam betriebene Online-Plattform (“Plattformen”) aufruft.</td>
+            </tr>
+            <tr>
+                <td>(2.)</td>
+                <td>Bestellung: verbindliche elektronische Willenserklärung des Nutzers bestimmte Waren und Dienstleistungen zu Preis und
+                    Konditionen laut Plattform vom Geschäftsherrn kaufen zu wollen. </td>
+            </tr>
+            <tr>
+                <td>(3.)</td>
+                <td>Vermittlung: Weiterleitung der Bestellung des Nutzers an den Geschäftsherrn.</td>
+            </tr>
+            <tr>
+                <td>(4.)</td>
+                <td>Platzierung: Mjam listet auf Anfrage des Nutzers sämtliche vertretenen Unternehmen, in deren Liefergebiet die Anfrage fällt,
+                    auf. Die Platzierung ist der Listenplatz, auf dem das Unternehmen des Geschäftsherrn angeführt wird. </td>
+            </tr>
+        </table>
+        <br />
+        <p id="AT_MQ_StammTextTitle">§ 2 Rechtsstellung der Mjam, Umfang der Vertretung</p>
+        <table cellspacing="0" id="AT_MQ_StammText">
+            <tr>
+                <td>(1.)</td>
+                <td>Mjam übernimmt für den Geschäftsherrn die Vermittlung und den Abschluss von Geschäften mit Nutzern über die in § 3 näher
+                    bezeichneten Vertragsdienstleistungen und –produkte. </td>
+            </tr>
+            <tr>
+                <td>(2.)</td>
+                <td>Mjam ist berechtigt, im Namen und für Rechnung des Geschäftsherrn Geschäfte abzuschließen und den Kaufpreis vom Dritten
+                    zu kassieren.</td>
+            </tr>
+            <tr>
+                <td>(3.)</td>
+                <td>Mjam ist Mehrfirmenvertreter und vertreibt während aufrechter Geschäftsverbindung konkurrenzierende Produkte und Dienst- leistungen als Handelsvertreter auch für andere Unternehmer. Ohne die Erlaubnis konkurrenzierende Produkte vertreiben zu
+                    dürfen, würde Mjam diesen Vertrag nicht abschließen: Für die Funktionalität und Attraktivität der Plattformen ist systemimma- nent, dass Mjam möglichst viele mit einander im Wettbewerb stehende Unternehmen vertritt. Der Unternehmer hat die Plattfor- men eingehend begutachtet und stimmt in Kenntnis der Umstände ausdrücklich zu, dass Mjam andere Vertretungen durchführt
+                    und auch künftig weitere Vertretungen ohne Zustimmung des Geschäftsherrn übernehmen darf. Ebenfalls keiner Zustimmung
+                    bedarf die Übernahme ergänzender Dienstleistungen (siehe § 5) für andere von Mjam vertretene Unternehmer, sowie die
+                    Setzung von Werbemaßnahmen für konkurrenzierende Produkte und Dienstleistungen. Der Geschäftsherr nimmt zur Kenntnis,
+                    dass es aufgrund der Mehrfirmenvertretung zu unterschiedlicher Preis- und Konditionengestaltung zwischen den vertretenen
+                    Unternehmern kommen kann.</td>
+            </tr>
+        </table>
+        <br />
+        <p id="AT_MQ_StammTextTitle">§ 3 Vertragsdienstleistungen und -produkte</p>
+        <table cellspacing="0" id="AT_MQ_StammText">
+            <tr>
+                <td>(1.)</td>
+                <td>Der Geschäftsherr legt diesem Vertrag sein aktuelles Produkt- und Dienstleistungssortiment mit Bruttopreisen bei. Die Vertretung
+                    umfasst die im Produkt- und Dienstleistungssortiment genannten Produkte und Dienstleistungen.</td>
+            </tr>
+            <tr>
+                <td>(2.)</td>
+                <td>Auf Verlangen des Geschäftsherrn übernimmt Mjam gerne die Vertretung weiterer, neu ins Sortiment des Geschäftsherrn aufgenommener
+                    Produkte und Dienstleistungen. Die Details dazu sind in unseren AGB, insbesondere in Punkt F, geregelt. </td>
+            </tr>
+            <tr>
+                <td>(3.)</td>
+                <td>Der Geschäftsherr ist jederzeit berechtigt, einzelne Produkte unter Einhaltung des in den AGB festgelegten Verfahrens aus der
+                    Vertretung durch Mjam wieder herauszunehmen. </td>
+            </tr>
+        </table>
+        <br /><br />
+        <p style="text-align: center;font-weight:bold;font-size:6pt;">1/2</p>
+        <p style="text-align: center;font-size:6pt"><b>Mjam GmbH</b> • GmbH Siebenbrunnengasse 44 • 1050 Wien • FN 309771 X Handelsgericht Wien • UID-Nummer: ATU64215469</p>
+        <p style="text-align: center;font-size:6pt">Vertragsstand: 16.02.2016</p>
+        <pre />
+        <h1 class="futuraBold">HANDELSVERTRETERVERTRAG</h1>
+        <p id="AT_MQ_StammTextTitle">§ 4 Rechte und Pflichten der Mjam</p>
+        <table cellspacing="0" id="AT_MQ_StammText">
+            <tr>
+                <td>(1.)</td>
+                <td>Mjam bemüht sich fortlaufend um die Vermittlung von Bestellungen, indem Mjam das Unternehmen des Geschäftsherrn samt
+                    Produkt- und Dienstleistungssortiment auf den von ihr betriebenen Plattformen darstellt. Ein darüber hinausgehendes Bemühen
+                    schuldet Mjam nicht.</td>
+            </tr>
+            <tr>
+                <td>(2.)</td>
+                <td>Die Tätigkeit der Mjam umfasst neben der Vermittlung die Akquisition neuer Nutzer für die Plattformen und die Pflege der
+                    Geschäftsbeziehungen mit bereits registrierten Nutzern, letzteres insbesondere durch elektronische Kontaktaufnahme im Rahmen
+                    der gesetzlichen Bestimmungen, insbesondere des TKG.</td>
+            </tr>
+            <tr>
+                <td>(3.)</td>
+                <td>Bei Ausübung ihrer Tätigkeiten ist Mjam dem Geschäftsherrn gegenüber, insbesondere hinsichtlich der technischen und
+                    graphischen Gestaltung der Plattformen, der Darstellung des Unternehmens des Geschäftsherrn auf den Plattformen, der
+                    Bewerbung der Plattformen sowie des Unternehmens des Geschäftsherrn, der Betreuung, Bewerbung bestehender sowie der
+                    Akquisition neuer Nutzer weisungsfrei gestellt. </td>
+            </tr>
+            <tr>
+                <td>(4.)</td>
+                <td>Der Geschäftsherr ist in Kenntnis und einverstanden, dass die Platzierung seines Betriebes auf den Plattformen durch einen
+                    Algorithmus erfolgt, der weder zu seinen Gunsten noch Ungunsten von Mjam beeinflusst wird. Mjam ist jedoch berechtigt,
+                    jedem vertretenen Unternehmer gegen Entgelt eine Positionierung auf den obersten Listenplätzen zu verkaufen. Diese Positionierungen
+                    werden auf der Plattform als „bezahlte Positionierung“ gekennzeichnet und beeinflussen die Platzierungen nicht.</td>
+            </tr>
+            <tr>
+                <td>(5.)</td>
+                <td>Die Details hinsichtlich der Vermittlung, der Platzierung, Premiumpositionierung sowie der allgemeinen Tätigkeiten der
+                    Mjam sind in den AGB (Anhang I) geregelt.</td>
+            </tr>
+        </table>
+        <br />
+        <p id="AT_MQ_StammTextTitle">§ 5 Ergänzende Dienstleistungen</p>
+        <table cellspacing="0" id="AT_MQ_StammText">
+            <tr>
+                <td style="padding-bottom:5px !important;">(1.)</td>
+                <td>Zusätzlich zu der in § 4 (1) genannten Vermittlungstätigkeit bietet Mjam derzeit folgende ergänzende Dienstleistungen an: 
+                <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a) Erstellung eines Werbevideos für ein Unternehmen des Geschäftsherrn (Image Video)
+                <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b) Erstellung einer Webseite für ein Unternehmen des Geschäftsherrn 
+                <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c) Premiumpositionierung, das ist eine bezahlte Positionierung eines Unternehmens an einem der obersten Listen
+                plätze, welche als „bezahlte &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Positionierung“ gekennzeichnet wird. </td>
+
+            </tr>
+            <tr>
+                <td>(2.)</td>
+                <td>Ergänzenden Dienstleistungen können vom Geschäftsherrn jederzeit zusätzlich in Auftrag gegeben werden und sind nicht
+                    mit der Provision abgegolten. Die Höhe der Vergütung für ergänzenden Dienstleistungen bestimmt sich nach dem im Zeitpunkt
+                    der Beauftragung aktuellen Preisblatt. Für die Ausführung der ergänzenden Dienstleistungen darf Mjam ohne vorige
+                    Zustimmung des Geschäftsherrn selbstständige Unternehmer heranziehen. Details zu den ergänzenden Dienstleistungen sind
+                    in unseren AGB, insbesondere in Punkt T geregelt. Sinngemäßes gilt für zusätzlichen Informationsservice, siehe unsere AGB
+                    Punkt I. </td>
+            </tr>
+        </table>
+        <br />
+        <p id="AT_MQ_StammTextTitle">§ 6 Entgelt</p>
+        <table cellspacing="0" id="AT_MQ_StammText">
+            <tr>
+                <td>(1.)</td>
+                <td>Mjam gebührt für jede vermittelte Bestellung eine Provision in Höhe von 15 % zzgl USt. vom Bruttobestellwert (siehe unsere
+                    AGB Punkt L). </td>
+            </tr>
+            <tr>
+                <td>(2.)</td>
+                <td>Für die erstmalige Aufnahme des Produkt- und Dienstleistungssortiments auf die Online-Plattformen gebührt Mjam eine Einrichtungsgebühr
+                    in Höhe von EUR 199,- zzgl USt. </td>
+            </tr>
+            <tr>
+                <td>(3.)</td>
+                <td>Mjam ist berechtigt, vom Dritten kassierte Entgelte als Provisionsvorschuss bis zum Ende des Kalendermonats zinsfrei einzubehalten
+                    und anschließend mit ihren Ansprüchen gegenüber dem Geschäftsherrn zu verrechnen. Davon kann eine ChargeBack-Reserve
+                    (siehe AGB Punkt N) in Höhe von bis zu 33 % des Gesamtvolumens der inkassierten Forderungen für die
+                    Dauer von 3 Monaten ab Ende der laufenden Rechnungsperiode einbehalten werden. Auszahlungen an den Geschäftsherrn
+                    erfolgen bargeldlos bis zum 15ten des Folgemonats auf das zuletzt vom Geschäftsherrn bekannt gegebene Konto. Spesen
+                    und Gebühren der Zahlungsdienstleister und Bankinstitute werden dem Geschäftsherrn weiterverrechnet.</td>
+            </tr>
+            <tr>
+                <td>(4.)</td>
+                <td>Hinsichtlich der Einzelheiten der Abrechnung und der Rechnungslegung wird auf unsere AGB, insbesondere auf Punkt M
+                    und N verwiesen. </td>
+            </tr>
+        </table>
+        <br />
+        <p id="AT_MQ_StammTextTitle">§ 7 Rechte und Pflichten des Geschäftsherrn</p>
+        <table cellspacing="0" id="AT_MQ_StammText">
+            <tr>
+                <td>(1.)</td>
+                <td>Der Geschäftsherr lässt Mjam rechtzeitig alle erforderlichen Informationen zukommen und unterstützt Mjam bei der Ausübung
+                    ihrer Tätigkeit nach besten Kräften. </td>
+            </tr>
+            <tr>
+                <td>(2.)</td>
+                <td>Der Geschäftsherr ist verpflichtet, sämtliche gesetzlichen Informationspflichten, insbesondere aber nicht ausschließlich des
+                    KSchG, FAGG, ECG und Preisauszeichnungsgesetzes, gegenüber den Nutzern proaktiv und auf eigene Verantwortung ein- zuhalten. Entstehen Mjam Schäden oder Kosten aufgrund unvollständiger oder unrichtiger Informationen, hält der Geschäfts- herr Mjam diesbezüglich auf erste Anforderung vollkommen schad- und klaglos. Die Verrechnung allfälliger Ansprüche erfolgt
+                    in Anwendung der allgemeinen Regel gemäß Punkt M unserer AGB.</td>
+            </tr>
+            <tr>
+                <td>(3.)</td>
+                <td>Damit Mjam für den Geschäftsherrn tätig werden kann, füllt der Geschäftsherr das Stammdatenblatt vollständig aus und legt
+                    die notwendigen Dokumente und Unterlagen sowie sein aktuelles Preis- und Dienstleistungssortiment in Kopie bei. </td>
+            </tr>
+            <tr>
+                <td>(4.)</td>
+                <td>Der Geschäftsherr teilt Mjam rechtzeitig mit, wenn er innerhalb seiner Geschäftszeiten keine Bestellungen annehmen/erfül- len kann. Für das überraschende Ablehnen einer vermittelten Bestellung ist eine Vertragsstrafe von EUR 5,- pro abgelehnter Bestellung fällig, siehe auch unter Punkt K der AGB.</td>
+            </tr>
+            <tr>
+                <td>(5.)</td>
+                <td>Der Geschäftsherr gewährleistet zu jeder Zeit die einwandfreie hygienische Qualität der von ihm angebotenen Speisen, Pro- dukte und Getränke. Aus Gründen der Sicherheit vermittelt und schließt Mjam bei Beschwerde eines Nutzers über hygienisch
+                    nicht einwandfreie Lebensmittel für das betroffene Unternehmen des Geschäftsherrn solange keine Geschäfte, bis sich die Be- schwerde als unrichtig erweist oder Mjam die Einhaltung der lebensmittelrechtlichen Bestimmungen glaubhaft gemacht wird. </td>
+            </tr>
+            <tr>
+                <td>(6.)</td>
+                <td>Der Geschäftsherr überlässt Mjam zu Werbezwecken ein unentgeltliches Nutzungsrecht an seinen Immaterialgüterrechten,
+                    wie insbesondere seinem Namen, Firma, Kennzeichen, Logos und Marken. Dieses Recht umfasst unter anderem auch die
+                    Verwendung der Immaterialgüterrechte auf der Plattform, in Drucksorten, als Keywords und für Domain-Registrierungen und
+                    bleibt sechs Wochen über die Beendigung dieses Vertrages hinaus aufrecht. Der Geschäftsherr sichert Mjam zu berechtigt zu
+                    sein, ihr die Rechte im dargestellten Umfang einräumen zu können und hält Mjam bei Inanspruchnahme durch Dritte schadund
+                    klaglos. Der Geschäftsherr ist in Kenntnis und einverstanden, dass Mjam mit seinen Immaterialgüterrechten stets auch
+                    ihre Plattformen und Dienstleistungen bewirbt. </td>
+            </tr>
+            <tr>
+                <td>(7.)</td>
+                <td>Der wechselseitige Informationsaustausch sowie die genaue Ausgestaltung der Zusammenarbeit sind in unseren AGB geregelt.</td>
+            </tr>
+        </table>
+        <br />
+        <apex:outputPanel rendered="{!accountwrapper.deliveryService}">
+        <div>
+            <p id="AT_MQ_StammTextTitle">§ 8 Nutzung der Schnittstelle</p>
+            <table cellspacing="0" id="AT_MQ_StammText">
+            <tr>
+                <td>(1.)</td>
+                <td>Mjam stellt dem Geschäftherrn im Rahmen des Handelsvertretervertrages eine Schnittstelle (API) zur Verfügung, die es ermöglicht Onlinebestellungen von der Mjam Online Plattform direkt und automatisiert in das Logistiksystem des von dem Geschäftsherrn beauftragten Lieferdienstes zu übernehmen. Der Geschäftsherr verspricht die API nur zur Lieferlogistik zu verwenden. Die gesetzlichen Rechnungserstellungspflichten im Zusammenhang mit der Lieferung treffen den Geschäftsherrn. </td>
+            </tr>
+            <tr>
+                <td>(2.)</td>
+                <td>Der Geschäftsherr haftet gegenüber Mjam auch für den Lieferdienst bezüglich der Einhaltung aller Datenschutzbestimmungen. Der Geschäftsherr ist verpflichtet, Mjam jeden Verstoß gegen datenschutzrechtliche Vorschriften unverzüglich mitzuteilen, die im Zuge der Verarbeitung von Daten durch ihn oder andere mit der Verarbeitung beschäftigten Personen erfolgt ist. Ferner wird der Geschäftsherr Mjam unverzüglich darüber informieren, wenn eine Aufsichtsbehörde nach Datenschutzgesetz 2000 tätig wird. </td>
+            </tr>
+            
+        </table>
+
+        </div>
+        </apex:outputPanel>
+        <br /><br />
+        <div style="float:left;width:45%;display:inline-block;">
+            <hr style="border-top: dotted 1px;" />
+            <p style="text-align:center;">Ort, Datum, Stempel, Unterschrift Geschäftsherr</p>
+        </div>
+        <div style="float:right;width:45%;display:inline-block;">
+            <hr style="border-top: dotted 1px;" />
+            <p style="text-align:center;">Ort, Datum, Unterschrift Mjam GmbH</p>
+        </div>
+        <div class="clear" />
+        
+        <p style="text-align: center;font-weight:bold;font-size:6pt;">2/2</p>
+        <p style="text-align: center;font-size:6pt"><b>Mjam GmbH</b> • Siebenbrunnengasse 44 • 1050 Wien • FN 309771 X Handelsgericht Wien • UID-Nummer: ATU64215469</p>
+        <p style="text-align: center;font-size:6pt">Vertragsstand: 16.02.2016</p>
+        <br />
+        <pre />
+        <div style="float:left;display:inline-block;">
+            <h1 class="futuraBold">STAMMDATENBLATT</h1>
+            <h2 id="AT_MQ_Restaurantdaten_Title2">GESCHÄFTSHERR</h2>
+        </div>
+        <div style="float:right;display:inline-block;">
+            <img src="{!URLFOR($Resource.ATResources, 'ATResource/mjam_contact.png')}" style="height:100px"/>
+  
+        </div>
+        <div class="clear"/>
+       <table id="AT_MQ_Geschaftsherr" width="100%" border="1">
+            <tr>
+                <td class="kundTd">
+                    <b class="kund">KUNDENNUMMER:</b>
+                    <span id="backendId" class="kund">{!accountWrapper.backendId}</span>
+                </td>
+                <td colspan="2" valign="top">
+                    <b style="font-family:FuturaBold" class="padL">FIRMA</b> <br />
+                    <span class="padL">{!accountWrapper.companyName}</span><br />
+                    <span class="font5 padL">(Firmenname und Rechtsformzusatz)</span>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <b style="font-family:FuturaBold" class="padL">VORNAME</b> <br />
+                    <span id="ownerFirstName" class="padL">{!accountWrapper.ownerFirstname}</span><br />
+                    <span class="font5 padL">(des Firmeninhabers/pers. haftenden Gesellschafters/Geschäftsführers/Prokurist)</span>
+                </td>
+                <td valign="top">
+                    <b style="font-family:FuturaBold" class="padL">NACHNAME</b> <br />
+                    <span id="ownerLastName" class="padL">{!accountWrapper.ownerLastname}</span><br />
+                    <span class="font5 padL">(des Firmeninhabers/pers. haftenden Gesellschafters/Geschäftsführers/Prokurist)</span>
+                </td>
+                <td valign="top">
+                    <b class="padL">GEBURTSTDATUM</b> <br />
+                    <span id="ownerBirthdate" class="padL"><apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                        <apex:param value="{!accountWrapper.ownerBirthdate}" /> 
+                    </apex:outputText></span><br />
+                    <span>&nbsp;</span>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <b class="padL">VORNAME</b> <br />
+                    <span id="mangerFirstName" class="padL">{!accountWrapper.owner2Firstname}</span><br />
+                    <span class="font5 padL" style="font-size: 5pt !important;">(ausgewiesener Bevollmächtigter)</span>
+                </td>
+                <td valign="top">
+                    <b class="padL">NACHNAME</b> <br />
+                    <span id="managerLastName" class="padL">{!accountWrapper.owner2Lastname}</span><br />
+                    <span class="font5 padL" style="font-size: 5pt !important;">(ausgewiesener Bevollmächtigter)</span>
+                </td>
+                <td valign="top">
+                    <b class="padL">GEBURTSTDATUM</b> <br />
+                    <span id="managerBirthdate" class="padL"><apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                        <apex:param value="{!accountWrapper.owner2Birthdate}" /> 
+                    </apex:outputText></span>
+                    <span>&nbsp;</span>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <b class="padL">STRASSE</b> <br />
+                    <span id="ownerMailStreet" class="padL">{!accountWrapper.ownerMailingStreet}</span><br />
+                </td>
+                <td valign="top">
+                    <b class="padL">ORT</b> <br />
+                    <span id="ownerMailingCity" class="padL">{!accountWrapper.ownerMailingCity}</span><br />
+                </td>
+                <td valign="top">
+                    <b class="padL">PLZ</b> <br />
+                    <span id="ownerMailingPostalCode" class="padL">{!accountWrapper.ownerMailingPostalCode}</span>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <b class="padL">TELEFON</b> <br />
+                    <span id="ownerPhone" class="padL">{!accountWrapper.ownerPhone}</span><br />
+                </td>
+                <td valign="top" colspan="2">
+                    <b class="padL" style="font-family:FuturaBold">E-MAIL</b> <br />
+                    <span id="ownerEmail" class="padL">{!accountWrapper.ownerEmail}</span><br />
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <b class="padL">UID-NUMMER</b> <br />
+                    <span id="taxNumber" class="padL">{!accountWrapper.taxNumber}</span><br />
+                </td>
+                <td valign="top" colspan="2">
+                    <b class="padL">FB NUMMER</b> <br />
+                    <span id="tradeRegNumber" class="padL">{!accountWrapper.tradeRegNumber}</span><br />
+                </td>
+            </tr>
+            <tr>
+                <td class="bankTd">
+                    <b class="bank">BANKVERBINDUNG</b>
+                </td>
+                <td valign="top" colspan="2">
+                    <b class="padL">KONTOINHABER:</b> <br />
+                    <span id="bankAccountOwner" class="padL">{!accountWrapper.bankAccountOwner}</span><br />
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" >
+                    <b class="padL">BIC:</b> <br />
+                    <span id="bankSortCode" class="padL">{!accountWrapper.bankSortCode}</span><br />
+                </td>
+                <td valign="top" colspan="2">
+                    <b class="padL">IBAN:</b> <br />
+                    <span id="bankAccountNumber" class="padL">{!accountWrapper.bankAccountNumber}</span><br />
+                </td>
+            </tr>
+        </table>
+        <br />
+        <h2 id="AT_MQ_Restaurantdaten_Title">RESTAURANTDATEN</h2>
+        <table id="AT_MQ_Restaurantdaten" width="100%" border="1">
+           <tr>
+                <td valign="top" >
+                    <b class="padL">RESTAURANTNAME:</b> <br />
+                    <span id="restaurantName" class="padL">{!accountWrapper.restaurantName}</span><br />
+                </td>
+                <td valign="top">
+                    <b class="padL">GISA-ZAHL:</b> <br />
+                    <span id="companyId" class="padL">{!accountWrapper.companyId}</span><br />
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" >
+                    <b class="padL">STRASSE:</b> <br />
+                    <span class="padL">{!accountWrapper.addressStreet}</span><br />
+                </td>
+                <td valign="top">
+                    <b class="padL">ORT &amp; PLZ:</b> <br />
+                    <span class="padL">{!accountWrapper.addressCity},&nbsp;{!accountWrapper.addressPostal}</span><br />
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" >
+                    <b class="padL">FAX:</b> <br />
+                    <span id="fax" class="padL">{!accountWrapper.fax}</span><br />
+                </td>
+                <td valign="top">
+                    <b class="padL">EMAIL:</b> <br />
+                    <span id="restaurantEmail" class="padL">{!accountWrapper.restaurantEmail}</span><br />
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" >
+                    <b class="padL">TELEFON:</b> <br />
+                    <span id="restaurantPhone" class="padL">{!accountWrapper.restaurantPhoneNumber}</span><br />
+                </td>
+                <td valign="top">
+                    <b class="padL">MOBIL:</b> <br />
+                    <span id="restaurantMobile" class="padL">{!accountWrapper.ownerMobilePhone}</span><br />
+                </td>
+            </tr>
+        </table>
+       <apex:outputPanel rendered="{!comissionsExist}">
+        <table id="AT_MQ_Tarrif" width="100%" border="1">
+            <tr>
+                <th class="width15">Tarif</th>
+                <th class="width15">Provision</th>
+                <th>Startdatum</th>
+                <th class="width15">Enddatum</th>
+            </tr>
+            <apex:repeat value="{!listCommisionItems}" var="item">
+                <tr>               
+                    <td>
+                        <span>{!item.Name}</span>
+                    </td>
+                    <td>
+                        <span>{!item.Commission_In_Percentage__c}</span>
+                    </td>
+                    <td>
+                        <span>
+                            <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                                <apex:param value="{!item.Start_Date__c}" /> 
+                            </apex:outputText>
+                        </span>
+                    </td>
+                    <td>
+                        <span>
+                            <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                                <apex:param value="{!item.End_Date__c}" /> 
+                            </apex:outputText>
+                        </span>
+                   </td>            
+                </tr>
+            </apex:repeat>
+        </table>
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!additionalCostsExist == true}">
+        <table id="AT_MQ_Tarrif" width="100%" border="1">
+            <tr>
+                <th class="width15">Produkt</th>
+                <th class="width15">Listenpreis</th>
+                <th>Rate</th>
+                <th class="width15">Vereinbartes Entgelt</th>
+            </tr>
+           <apex:repeat value="{!listLineItems}" var="item">
+                <tr>               
+                   <td>
+                      <span>{!item.Name}</span>
+                   </td>
+                   <td>
+                      <span>{!item.Listed_Price__c}</span>
+                   </td>
+                   <td>
+                      <span>{!item.Installments__c}</span>
+                   </td>
+                   <td>
+                      <span>{!item.Total_Amount__c}</span>
+                   </td>              
+                </tr>
+            </apex:repeat>
+        </table>
+        <div id="gesamtpreis">
+            <span class="flright"><b>Gesamtpreis:</b> 
+            <apex:outputText value="{0, number, ###,###,###,##0.00}">
+                <apex:param value="{!lineItemsTotalAmount}"/>
+            </apex:outputText></span>
+        </div>
+        </apex:outputPanel>
+        <br /><br />
+        <table id="AT_MQ_StammText" cellspacing="0">
+            <tr>
+                <td><img src="{!URLFOR($Resource.ATResources, 'ATResource/mjam.png')}" style="height:15px"/></td>
+                <td>Ich bestätige die Richtigkeit meiner Angaben und beauftrage die Mjam GmbH das oben genannte Restaurant als Handelsvertreterin für
+                    mehrere Geschäftsherren (Mehrfirmenvertreterin) in Vertretung zu nehmen. Für jede vermittelte Bestellung gebührt Mjam eine Provision vom
+                    Bruttobestellwert, ergänzende Dienstleistungen und zusätzlicher Informationsservice, insbesondere die Mjam-Box, sind durch die Provision
+                    nicht abgegolten.</td>
+            </tr>
+            <tr>
+                <td><img src="{!URLFOR($Resource.ATResources, 'ATResource/mjam.png')}" style="height:15px"/></td>
+                <td>Ich ermächtige die Mjam GmbH in meinem Namen und auf meine Rechnung das Entgelt für die vermittelten Geschäfte vom Kunden zu kassieren.
+                    Mjam ist berechtigt, vom Dritten kassierte Entgelte als Provisionsvorschuss bis zum Ende des Kalendermonats zinsfrei einzubehalten
+                    und anschließend mit ihren Ansprüchen gegenüber dem Geschäftsherrn zu verrechnen. Auszahlungen an den Geschäftsherrn erfolgen
+                    bargeldlos bis zum 15ten des Folgemonats auf das zuletzt bekannt gegebene Konto. Spesen und Gebühren der Zahlungsdienstleister und
+                    Bankinstitute werden weiterverrechnet.</td>
+            </tr>
+            <tr>
+                <td><img src="{!URLFOR($Resource.ATResources, 'ATResource/mjam.png')}" style="height:15px"/></td>
+                <td>Mit der Einrichtungsgebühr sind die Kosten dieser Besorgung eines Gewerbescheins sowie ggf eines Firmenbuchauszuges abgegolten,
+                    andernfalls darf mir Mjam eine Aufwandsentschädigung in Höhe von EUR 10,- pro Auszug verrechnen</td>
+            </tr>
+            <tr>
+                <td><img src="{!URLFOR($Resource.ATResources, 'ATResource/mjam.png')}" style="height:15px"/></td>
+                <td>Mit meinem unterschriebenen Stammdatenblatt stimme ich den Allgemeinen Geschäftsbedingungen der Mjam GmbH (abrufbar unter
+                    http://www.mjam.net/vertragsbedingungen/) zu.</td>
+            </tr>
+        </table>
+        <br /><br /><br /><br />
+        <hr class="AT_MQ_FooterMid" />
+        <p class="AT_MQ_FooterMid8">Ort, Datum, Stempel, Unterschrift des Firmeninhabers</p>
+        <p class="AT_MQ_FooterMid6">(pers. haftenden Gesellschafters/Geschäftsführers/Prokuristen/ausgewiesenen Bevollmächtigten, etc.)</p>
+        <br />
+        <p class="AT_MQ_FooterMid6"><b style="font-family:FuturaBold">Mjam GmbH</b> • Siebenbrunnengasse 44 • 1050 Wien • FN 309771 X Handelsgericht Wien • UID-Nummer: ATU64215469</p>
+        <p class="AT_MQ_FooterMid6">Stand Stammdatenblatt: 16.02.2016</p>
+    </div> -->
+</apex:component>

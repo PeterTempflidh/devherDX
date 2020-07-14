@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>SSC-1929</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>AT Send Email Template</name>
+    <style>none</style>
+    <subject>Vertragsunterlagen &amp; ein Willkommensgruß von mjam</subject>
+    <textOnly>Liebe(r) [Full Name] ,
+
+anbei finden Sie das Angebot zu den besprochenen Konditionen.
+
+Bitte bestätigen Sie den Auftrag, indem Sie auf diese E-Mail mit “okay” antworten.
+
+Bei Rückfragen stehe ich Ihnen jederzeit zur Verfügung.
+
+Viele Grüße,
+[Opportunity Owner First Name] [Opportunity Owner Last Name]</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

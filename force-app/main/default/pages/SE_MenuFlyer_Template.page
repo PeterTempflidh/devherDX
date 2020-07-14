@@ -1,0 +1,3 @@
+<apex:page controller="ctrDH_AU_QuoteVFTemplate" showheader="false" sidebar="false" standardStylesheets="false" renderAs="pdf">
+      <c:SE_MenuFlyer acct="{!theOppQ.Id_Account__c}" />
+</apex:page>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY Partner Portal Como ver otra sucursal</name>
+    <style>freeForm</style>
+    <subject>Gracias por Contactarnos - # {!Case.CaseNumber}</subject>
+    <textOnly>Estimado XXXNombreXXX, 
+
+ 
+
+Nos contactamos en respuesta tu consulta sobre cómo ver otras sucursales en tu usuario de Partner Portal, te comentamos que en la parte superior derecha de la herramienta encontrarás la opción de ‘’Cambiar de sucursal’’ donde puedes escoger el local donde quieres ver datos o realizar cambios. 
+
+ 
+
+ 
+
+Te recordamos que cada sucursal es independiente, por lo que las modificaciones que realices en una sucursal no afectarán a las demás, esto también aplica para los cierres de tus negocios. 
+
+ 
+
+Adicionalmente te hemos adjuntado el manual de la herramienta para futuras consultas. 
+
+ 
+
+Quedamos a las órdenes, 
+
+Saludos 
+
+ 
+
+(NOMBRE DEL AGENTE) - Claims Operator 
+PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

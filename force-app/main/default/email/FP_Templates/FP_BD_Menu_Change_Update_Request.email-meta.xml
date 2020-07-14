@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Your Menu Update request has been received and will be processed ASAP</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP BD Menu Change - Update Request</name>
+    <style>freeForm</style>
+    <subject>Your Menu Update request has been received and will be processed ASAP</subject>
+    <textOnly>Dear Restaurant partner,
+
+Hello,
+
+Thank you for your message!
+
+Your request been received as # {!Case.CaseNumber} and is currently being processed by our Partner Service Team.
+
+We will do our best to answer you within 24 hours and solve your request.
+
+Best regards,
+
+Your foodora team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

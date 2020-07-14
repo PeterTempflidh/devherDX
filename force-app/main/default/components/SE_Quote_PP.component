@@ -1,0 +1,92 @@
+<apex:component controller="CtrCreateQuote" access="global" >
+   <apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+   <apex:attribute name="oppQ" type="String" description="Placeholder" assignTo="{!oppQId}"/>
+  <div style="display:none"> "{!accountWrapper}{!listLineItems}"</div>
+  <div style="font-family: sans-serif;">
+      <div style="display:inline-block;float:left;width:60%">
+         <span style="display:block;font-size:22pt"><b>Beställningsformulär</b></span> <br />
+         <b style="display:inline-block;font-size:14pt;">Restaurangnamn: </b>
+            &nbsp;&nbsp;{!accountWrapper.restaurantName}
+         <hr style="-webkit-margin-before: 0;margin-left: 165px;"/>
+         <b style="display:inline-block;font-size:14pt;padding-top:2px;">Stad: </b>
+            &nbsp;&nbsp;{!accountWrapper.addressCity}
+         <hr style="-webkit-margin-before: 0;margin-left: 55px;"/>
+      </div>
+      <div style="display:inline-block;float:right;">
+         <span style="font-size:16pt;">OnlinePizza Norden AB</span> <br />
+         <span style="font-size:16pt;">Kungsholmstorg 5</span> <br />
+         <span style="font-size:16pt;">112 21 Stockholm</span> <br />
+         <span style="font-size:16pt;">Tel: 08-55 11 72 11</span>
+      </div>
+
+      <div class="clearboth" style="clear:both;"/><br />
+      <span id="PPheader" style="color:white;font-size:15pt;padding:5px;width:100%;background-image:url('{!URLFOR($Resource.SE_Quote_PP_red)}');display:inline-block;"><b>Premiumrestaurang</b></span>
+      <!-- TARRIF -->
+      <br /><br/>
+      <table id="SEPremiumReTable" width="100%" border="1">
+         <tr>
+            <th>Produktnamn</th>
+            <th>Stad/Postnummer</th>
+            
+            <th>Start Datum</th>
+            <!--<th>Rabatt</th>-->
+            <th>Kvantitet</th>
+            <th>Styckpris</th>
+            <!--<th>Omgångar</th>-->
+            <th>Totala Summan</th>
+         </tr>
+         <apex:repeat value="{!listLineItems}" var="item">
+            <tr style="border: 1px solid black;">               
+               <td style="padding: 1px;" align="right" >
+                  <span style="height:15px;font-size:9pt;">{!item.Name} </span>
+               </td>
+               <!-- ** REMOVING ZIP CODE AS PER MANTIS SP-1958
+               <td style="padding: 1px;" align="right">
+                  <span style="height:15px;font-size:9pt;">{!item.City_ZipCode__c} </span>
+               </td>-->
+               <!--<td style="padding: 1px;" align="right">
+                  <span style="height:15px;font-size:9pt;">{!item.Listed_Price__c} </span>
+               </td>-->
+               <td style="padding: 1px;" align="right">
+                  <span style="display:block; height:15px;font-size:9pt;"><apex:outputText value="{0,date,dd.MM.yyyy}"><apex:param value="{!item.Start_Date__c}" /></apex:outputText> </span>
+               </td>
+               <!--<td style="padding: 1px;" align="right">
+                  <span style="height:15px;font-size:9pt;">{!item.Rabbat__c} </span>
+               </td>-->
+               <td style="padding: 1px;" align="right">
+                  <span style="height:15px;font-size:9pt;">{!item.Quantity__c} </span>
+               </td>
+               <td style="padding: 1px;" align="right">
+                  <span style="height:15px;font-size:9pt;">{!item.Listed_Price__c} </span>
+               </td>
+               <!--<td style="padding: 1px;" align="right">
+                  <span style="height:15px;font-size:9pt;">{!item.Installments__c} </span>
+               </td>-->
+               <td style="padding: 1px;" align="right">
+                  <span style="height:15px;font-size:9pt;">{!item.Total_Amount__c}</span>
+               </td>              
+            </tr>
+         </apex:repeat>
+      </table>
+      <p style="font-size:9pt;">Följande avtal har i dag träffats mellan undertecknande parter. I detta dokument kommer ”Onlinepizza Norden AB”, ”Vi” och ”Oss” att referera till Onlinepizza Norden AB. I detta dokument kommer ”Ni” och ”Er” att referera till det företag, utöver Onlinepizza Norden AB, vars namn och organisationsnummer återfinns längst ner i detta dokument.</p>
+      <p style="font-size:9pt;"><b>§ I. Generellt</b><br />
+      § 1.1 Detta är version 2.1 av “Beställningsformulär – Premiumrestaurang”. Denna version ersätter alla tidigare versioner av detta avtal.
+      </p>
+      <p style="font-size:9pt;">§ 1.2 Uppsägning av avtal befriar ej part från att betala skulder som part ådragit sig under avtalstiden.</p>
+      <p style="font-size:9pt;"><b>§ II. Definitioner</b><br />
+      § 2.1 Premiumrestaurang innebär att din restaurang kommer ligga överst på restauranglistan i din stad tillsammans med andra premiumrestauranger på siterna OnlinePizza.se och Mat24.se och i apparna. </p>
+      <p style="font-size:9pt;"><b>§ III. Betalning</b><br/>
+      § 3.1 Betalning sker mot faktura månadsvis och dras av på de pengar som Ni har innestående hos Oss. Om inga innestående medel finns skickas en faktura till Er.
+      </p>
+      <p style="font-size:9pt;"><b>§ IV. Övrigt</b><br />
+      §4.1 Restauranger som har premium måste ha ett snittbetyg över 4,0 på OnlinePizza för att få kvalificera sig till tjänsten. Sjunker ditt beyg under 3,5 under premiumperioden kommer tjänsten tas bort från Er restaurang utan möjlighet till återbetalning.</p>
+      <br /><br />
+      <div style="display:inline-block;width:40%;float:left;">
+         <br /><br /><br /><br /><hr style="-webkit-margin-after: 0"/>Datum<br /><br />{!accountWrapper.companyId}<hr style="-webkit-margin-after: 0; -webkit-margin-before: 0px;"/>Organisationsnummer
+      </div>
+      <div style="display:inline-block;width:55%;float:right;">
+         <hr style="-webkit-margin-after: 0"/>Underskrift restaurangens firmatecknare<br /><br/><br /><hr style="-webkit-margin-after: 0"/>Namnförtydligande restaurangens firmatecknare
+<br /><br /><br/><hr style="-webkit-margin-after: 0"/>Underskrift OnlinePizza Norden AB
+      </div>
+   </div>
+</apex:component>

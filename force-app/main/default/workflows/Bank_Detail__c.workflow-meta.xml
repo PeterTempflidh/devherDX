@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Bank_Detail_Update_Email_Notification</fullName>
+        <description>Bank Detail Update Email Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderAddress>donotreply@foodpanda.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Bank_Detail_Update_Email_Content</template>
+    </alerts>
+    <alerts>
+        <fullName>Bank_Detail_Update_Email_Notification_CZ</fullName>
+        <description>Bank Detail Update Email Notification CZ</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderAddress>noreply.salesforce@deliveryhero.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Bank_Detail_Update_Email_Content</template>
+    </alerts>
+    <alerts>
+        <fullName>Bank_Detail_Update_Email_Notification_CZ_Reject</fullName>
+        <description>Bank Detail Update Email Notification CZ Reject</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderAddress>noreply.salesforce@deliveryhero.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Bank_Detail_Update_Email_Content</template>
+    </alerts>
+    <alerts>
+        <fullName>PY_Bank_Detail_Update_Email_Notification_Approved_ARG</fullName>
+        <description>PY Bank Detail Update Email Notification Approved ARG</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderAddress>sf.noreply@pedidosya.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Bank_Detail_Update_Email_Content</template>
+    </alerts>
+    <alerts>
+        <fullName>PY_Bank_Detail_Update_Email_Notification_Approved_LATAM</fullName>
+        <description>PY Bank Detail Update Email Notification Approved LATAM</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderAddress>sf.noreply@pedidosya.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Bank_Detail_Update_Email_Content</template>
+    </alerts>
+    <alerts>
+        <fullName>PY_Bank_Detail_Update_Email_Notification_Rejected_ARG</fullName>
+        <description>PY Bank Detail Update Email Notification Rejected ARG</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderAddress>sf.noreply@pedidosya.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Bank_Detail_Update_Email_Content</template>
+    </alerts>
+    <alerts>
+        <fullName>PY_Bank_Detail_Update_Email_Notification_Rejected_LATAM</fullName>
+        <description>PY Bank Detail Update Email Notification Rejected LATAM</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderAddress>sf.noreply@pedidosya.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Bank_Detail_Update_Email_Content</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>PY_Update_Status_to_Approved_ARG</fullName>
+        <field>Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>PY Update Status to Approved ARG</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>PY_Update_Status_to_Approved_Latam</fullName>
+        <field>Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>PY Update Status to Approved Latam</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>PY_Update_Status_to_Rejected_ARG</fullName>
+        <field>Status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>PY Update Status to Rejected ARG</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>PY_Update_Status_to_Rejected_Latam</fullName>
+        <field>Status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>PY Update Status to Rejected Latam</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Status_to_Approval_Pending</fullName>
+        <field>Status__c</field>
+        <literalValue>Approval Pending</literalValue>
+        <name>Update Status to Approval Pending</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Status_to_Approved</fullName>
+        <field>Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Update Status to Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Status_to_Approved_CZ</fullName>
+        <field>Status__c</field>
+        <literalValue>Active</literalValue>
+        <name>Update Status to Approved CZ</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Status_to_Rejected</fullName>
+        <field>Status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>Update Status to Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Status_to_Rejected_CZ</fullName>
+        <field>Status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>Update Status to Rejected CZ</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+</Workflow>

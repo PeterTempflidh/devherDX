@@ -1,0 +1,51 @@
+<apex:page standardStylesheets="false" sidebar="false" showHeader="false" >
+
+    <html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <meta property="og:description" content="Welcome to hungryhouse" />
+        </head>
+        <body>
+          <div style="width:100%; display:block; overflow:hidden;">  <div>Sehr geehrte/r {Salutation} {FirstName} {LastName},</div><br/><br/>
+            <div>vielen Dank, dass Sie sich für eine Premium-Platzierung bei uns entschieden haben. <br/>
+            Wie besprochen sende ich Ihnen anbei die Vereinbarung für die Premium-Platzierung. <br/>
+            <b>Bitte bestätigen Sie Ihren Auftrag indem Sie auf diese E-Mail mit „OK“ antworten. Erst dann können wir die Premium-Platzierung aktivieren.</b><br/>
+            Wenn Sie mit Vorkasse bezahlen, kann die Aktivierung erst erfolgen, wenn das Geld auf unserem Konto eingegangen ist.<br/>
+            Weitere Informationen finden Sie im angehängten Dokument.<br/>
+            Bei Fragen können Sie gerne jederzeit auf mich zukommen.<br/><br/><br/>
+         </div>
+ 
+        Viele Grüße
+        <div>
+        {!$user.firstname} {!$user.lastname}<br/>
+        {SalesRole}<br/>
+        <img src="https://deliveryheroholding.secure.force.com/LiveAgent/resource/1470737240000/AT_PP" />
+        </div>
+        <div>
+            im Auftrag der<br/>
+        <div><br/>
+            Mjam GmbH <br/>
+            Delivery Hero Austria GmbH<br/>
+            Axel-Springer-Straße 54 b, 10117 Berlin<br/>
+        </div>
+        <div>
+            Telefon:{!$user.Phone}<br/>
+            Email: {!$user.Email}<br/>
+            <a href="www.mjam.net">Web: www.mjam.net</a><br/>
+        </div>
+        <div style="font-size:8px"><i>
+            JA, ich stimme zu, über neue Produkte und Dienstleistungen der Mjam GmbH informiert zu werden.<br/>
+            Wenn Sie keine weiteren Informationen zu Produkten und Dienstleistungen der Mjam GmbH wünschen teilen Sie uns das bitte umgehend mit. </i><br/>
+        </div><br/>
+        <div style="font-size:9px">FN 309771 X Handelsgericht Wien UID-Nummer: ATU64215469<br/>
+            Geschäftsführer Niklas Oestberg<br/>
+ 
+        VERTRAULICHKEITSHINWEIS: Diese E-Mail samt Anhängen ist vertraulich. Es ist nicht gestattet dieses E-Mail und/oder seine Anhänge unerlaubt zu kopieren, weiterzugeben oder zu veröffentlichen.<br/>
+
+        </div>
+    </div>
+    </div>
+</body>
+</html>
+</apex:page>

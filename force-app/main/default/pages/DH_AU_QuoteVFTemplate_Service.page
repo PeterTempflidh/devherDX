@@ -1,0 +1,142 @@
+<apex:page controller="ctrDH_AU_QuoteVFTemplate" showheader="false" sidebar="false" standardStylesheets="false">
+<html>
+<head>
+<!--<c:DH_AU_Quote_CSS />-->
+</head>
+<body style="font-family: Arial, Helvetica, sans-serif; font-size: 13px;">
+<div class="logo">
+    <img src="{!URLFOR($Resource.DH_AU_Logo)}" />
+</div>
+
+<div class="adress"> 
+    <b>Delivery Hero Pty Ltd</b><br />
+    ABN: 26152250274<br />
+    <br />
+    M302 Broadway Shopping Centre<br />
+    1 Bay Street <br />
+    Ultimo NSW 2007, Australia<br />
+    <br />
+    T&nbsp;&nbsp;1300 696 325<br />
+    F&nbsp;&nbsp;8072 6865<br />
+    W&nbsp;&nbsp;www.deliveryhero.com.au<br />
+</div>
+<div class="content">
+    <c:DH_AU_Quote_Service acct="{!theOppQ.Id_Account__c}" />
+
+    <table border="0" width="100%" style="margin-top:20px;" cellspacing="0" cellpadding="0">
+    <tr>
+      <td style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;">Participant Restaurant Agreement Details</td>
+    </tr>
+    <tr>
+      <td align="top">
+        This communication is known as the Participant Restaurant Agreement Details, and confirms the formation of an agreement between Delivery Hero Pty Ltd (“<b>DH</b>”) and {!theOppQ.Id_Account__r.Name} (“<b>Participant Restaurant</b>”). This agreement comprises the following documents:<br /><br />
+        a) these Participant Restaurant Agreement Details; and<br /><br />
+        b) the Delivery Hero Participant Restaurant Terms and Conditions (“<b>PRT&amp;C</b>”), available online at http://www.deliveryhero.com.au/contractterms/.<br /><br />
+        By using the Services, the Participant Restaurant agrees to be legally bound by the Participant Restaurant Agreement Details and PRT&amp;C.<br /><br />
+      </td>
+    </tr>
+    <tr>
+      <td style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;">Agreement Details</td>
+    </tr>
+    <tr>
+      <td style="padding:5px;">
+        DH and Participant Restaurant agree that the following details apply to the agreement, as referred to in the PRT&amp;C:<br /><br />
+      </td>
+    </tr>
+    </table>
+
+ <table style="border:0px;" width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="50%" style="border-left:1px solid black;border-top:1px solid black;padding:5px;" valign="top">Success Fee (excl. GST):</td>
+      <td width="50%" style="border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;padding:5px;" valign="top">&nbsp;<apex:outputField value="{!theOppQ.Id_Opportunity__r.Main_Commission_Fee__c}" /></td>
+    </tr>
+   <!-- <tr>
+      <td width="50%" style="border-left:1px solid black;border-top:1px solid black;padding:5px;" valign="top">One-time setup fee (excl. GST):</td>
+      <td width="50%" style="border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;padding:5px;" valign="top">&nbsp;<apex:outputField value="{!relatedTo.Set_Up_Fee__c}" /></td>
+    </tr> -->
+   <!-- <tr>
+      <td width="50%" style="border-left:1px solid black;border-top:1px solid black;padding:5px;" valign="top">Success Fee (excl. GST):</td>
+      <td width="50%" style="border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;padding:5px;" valign="top">[Drop down: Email, Post]</td>
+    </tr> -->
+    <tr>
+      <td width="50%" style="border-left:1px solid black;border-top:1px solid black;padding:5px;" valign="top">Invoice transmission method:</td>
+      <td width="50%" style="border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;padding:5px;" valign="top">&nbsp;<apex:outputField value="{!theOppQ.Id_Opportunity__r.Invoice_Transmission_method__c}" /></td>
+    </tr>
+    <!--<tr>
+      <td width="50%" style="border-left:1px solid black;border-top:1px solid black;padding:5px;" valign="top">Express Printer</td>
+      <td width="50%" style="border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;padding:5px;" valign="top">&nbsp;[Drop down: To Be Provided / Not Required] </td>
+    </tr>-->
+    <!-- <tr>
+      <td width="50%" style="border-left:1px solid black;border-top:1px solid black;padding:5px;" valign="top">Deposit for Express Printer (if provided):</td>
+      <td width="50%" style="border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;padding:5px;" valign="top">[Deposit] </td>
+    </tr> -->
+    <!--<tr>
+      <td width="50%" style="border-left:1px solid black;border-top:1px solid black;padding:5px;" valign="top">Order transmission fee (excl. GST):</td>
+      <td width="50%" style="border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;padding:5px;" valign="top"><apex:outputField value="{!relatedTo.Main_Order_Transmission_Fee__c}" /></td>
+    </tr>-->
+    <!--<tr>
+      <td width="50%" style="border-left:1px solid black;border-top:1px solid black;padding:5px;" valign="top">Online payment fee (excl. GST) (does not apply to cash orders):</td>
+      <td width="50%" style="border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;padding:5px;" valign="top">&nbsp;<apex:outputField value="{!relatedTo.Main_Online_Payment_Fee__c}" /></td>
+    </tr>-->
+    <tr>
+      <td class="DHAUBorderBottomLeft" width="50%" style="border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;padding:5px;" valign="top">Online payment fee (excl. GST) (does not apply to cash orders):</td>
+      <td class="DHAUBorderBottomRight" width="50%" style="border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;border-bottom:1px solid black;padding:5px;" valign="top">&nbsp;<apex:outputField value="{!theOppQ.Id_Opportunity__r.Main_Online_Payment_Fee__c}" /></td>
+    </tr>
+    </table>
+    <br />
+    <b>No cancellation fees, no minimum contract period</b>
+
+    <table border="0" width="100%" style="margin-top:20px;" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="20%" valign="top" style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;">Invoicing Period</td>
+      <td width="20%" valign="top" style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;">Processing Time</td>
+      <td width="20%" valign="top" style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;">Payment</td>
+    </tr>
+    <tr>
+      <td class="DHAUInvoicingBorder" width="20%" valign="top" style="padding:5px;border-left:1px solid #c00000;border-bottom:1px solid #c00000;border-right:1px solid #c00000;">1st - 15th</td>
+      <td class="DHAUInvoicingBorderCentre" width="20%" valign="top" style="padding:5px;border-bottom:1px solid #c00000;">Up to 3 business days after the 16th</td>
+      <td class="DHAUInvoicingBorder" width="20%" valign="top" style="padding:5px;border-left:1px solid #c00000;border-bottom:1px solid #c00000;border-right:1px solid #c00000;">Expect by 22nd at latest</td>
+    </tr>
+    <tr>
+      <td class="DHAUInvoicingBorder" width="20%" valign="top" style="padding:5px;border-left:1px solid #c00000;border-bottom:1px solid #c00000;border-right:1px solid #c00000;">16th - last day of month</td>
+      <td class="DHAUInvoicingBorderCentre" width="20%" valign="top" style="padding:5px;border-bottom:1px solid #c00000;">Up to 3 business days after the 1st</td>
+      <td class="DHAUInvoicingBorder" width="20%" valign="top" style="padding:5px;border-left:1px solid #c00000;border-bottom:1px solid #c00000;border-right:1px solid #c00000;">Expect by 7th of the following month at latest</td>
+    </tr>
+    </table>
+
+    <table border="0" width="100%" style="margin-top:20px;" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="20%" valign="top" style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;">Brief summary of commercial PRT&amp;C terms</td>
+    </tr>
+    <tr>
+      <td style="padding:5px;">
+      For the convenience of the Participant Restaurant, below is a brief summary of some of the commercial terms of the PRT&amp;C. <b><u>This summary does not state the terms of the agreement.</u></b> The Participant Restaurant must review the PRT&amp;C in full. The Participant Restaurant acknowledges that it has reviewed the complete PRT&amp;C, and agrees that nothing in the summary below limits or prevails over any term or condition stated in the PRT&amp;C. In the summary below, terms that start with a capital letter (eg “Menu”, “Restaurant Produce”) have the specific meanings given to them in the PRT&amp;C.
+      <br /><br />
+
+      1. There is no minimum term of the agreement. Either party may cancel by giving 14 days’ notice in writing to the other party.<br /><br />
+      2. The Participant Restaurant must provide its Menu to DH, and assumes full responsibility for the accuracy of that Menu. The Menu must list all prices, and those prices must not be any higher than the lowest prices the Participant Restaurant would charge if the same Restaurant Produce was ordered online, in store, by telephone, or by any other means.<br /><br />
+      3. DH will list the Menu on its Service Portals (eg, its website and smartphone apps).<br /><br />
+      4. Customers may place Orders for Restaurant Produce (ie, food and beverages) listed on a Menu using the Service Portals.<br /><br />
+      5. At the time of placing an Order, a Customer may pay the Order Price to DH using online payment facilities provided by DH.<br /><br />
+      6. DH will communicate each Order to the Participant Restaurant, and, using the Services (ie, the DH system) the Participant Restaurant must indicate to the Customer if it accepts the Order.<br /><br />
+      7. When a Participant Restaurant accepts an Order, a separate contract is formed between the Customer and the Participant Restaurant, pursuant to which the Participant Restaurant is obliged to provide the Restaurant Produce to the Customer.<br /><br />
+      8. The Participant Restaurant is solely responsible for the supply of Restaurant Produce to the Customer, including for the accurate fulfilment of the Order, the quality of that Restaurant Produce, and ensuring that Restaurant Produce complies with all laws and regulations, including food safety regulations and guidelines.<br /><br />
+      9. DH does not act as an agent or representative of the Participant Restaurant or Customer. The DH Services provide Menu publication, communication and online payment facilities only, and DH does not produce or have any responsibility for Restaurant Produce.<br /><br />
+      10. The Participant Restaurant grants a licence to DH to use any material in which it owns intellectual property rights, including the Participant Restaurant’s name, logo and Menus, for the purpose of providing the Services and for the general promotion of the Participant Restaurant and the Services.<br /><br />
+      11. Unless otherwise agreed, DH’s licence to use material of the Participant Restaurant includes a right to register domain names, on google maps, google locations or any other third party directory websites or services, and operate websites incorporating the Participant Restaurant’s name, for the purpose of promoting the sale of Restaurant Produce using the Services.<br /><br />
+      12. DH is entitled to payment of the Success Fee for each Order placed using the Services.<br /><br />
+      13. The Participant Restaurant assumes all responsibility for, and will indemnify DH against, any claims made by a Customer (except to the extent the claim is caused by DH), or that relate in any way to the Restaurant Produce or late delivery of the Restaurant Produce.<br /><br />
+      14. DH may vary the terms of the PRT&amp;C at any time by posting the revised terms on the DH website.<br /><br />
+      15. DH may vary the terms of the Participant Restaurant Agreement Details at any time by giving 7 days’ notice in writing. If the Participant Restaurant does not accept the revised terms, it may terminate the agreement immediately by notice in writing.<br /><br />
+
+      </td>
+    </tr>
+    </table>
+
+Sincerely, <br />
+Your Delivery Hero Team
+
+  </div>
+    </body>
+    </html>
+</apex:page>

@@ -1,0 +1,62 @@
+<!--
+	Display or hide an LDS spinner in full page.
+	This component assumes to be in a page where both Vue and
+	LDS stylesheets have been included.
+
+	These are the API:
+		- vueSpinnerHandler.open(): display spinner full screen
+		- vueSpinnerHandler.close(); close spinner
+		- vueSpinnerHandler.toggle(): toggle spinner on the page
+		By default the spinner is closed.
+
+-->
+<apex:component layout="none" >
+
+<div 
+	id="vueSpinner" 
+	class="slds" 
+	xmlns="http://www.w3.org/2000/svg" 
+	xmlns:v-bind="http://vue/fake"
+	xmlns:v-if="http://vue/fake"
+	>
+
+	<div 
+		v-if="open"
+		class="slds-spinner_container" 
+		style="position: fixed; top: 0; width: 100%; height: 100%" >
+		
+		<div class="slds-spinner--brand slds-spinner slds-spinner--large" role="alert">
+			<span class="slds-assistive-text">Loading</span>
+			<div class="slds-spinner__dot-a"></div>
+			<div class="slds-spinner__dot-b"></div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	var vueSpinnerHandler = new Vue({
+		el: "#vueSpinner",
+		data: {
+			open: false,
+			openCount: 0
+		},
+		methods: {
+			toggle: function() {
+				this.open = !this.open;
+			},
+			close: function() {
+				this.open = false;
+			},
+			incrementOpenCount: function() {
+				this.open = (++this.openCount);
+			},
+			decrementOpenCount: function() {
+				if (this.openCount) {
+					this.open = (--this.openCount);
+				}
+			}
+		}
+	});
+</script>
+
+</apex:component>

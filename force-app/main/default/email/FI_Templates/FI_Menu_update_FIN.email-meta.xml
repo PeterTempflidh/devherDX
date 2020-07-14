@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FI_Letterhead</letterhead>
+    <name>FI Menu update FIN</name>
+    <style>freeForm</style>
+    <subject>Ravintolanne ruokalista on nyt päivitetty - foodora.fi</subject>
+    <textOnly>Hyvä ravintoloitsija,
+
+
+Ruokalistanne on nyt päivitetty.
+
+
+Asiakaskokemuksen parantamiseksi, suosittelemme täyttämään päivitettyjen annosten allergeenit osoitteessa https://foodprint.foodora.fi.
+
+
+Käyttäjätunnus:
+
+Salasana:
+
+
+Muistattehan julkaista allergeenit!
+
+
+Jatkossa voitte tehdä menumuutokset myös itse ravintolaportaalissa osoitteessa https://foodora.portal.restaurant/login.
+
+Olettehan yhteydessä asiakaspalveluumme, mikäli teillä on kysymyksiä ruokalistaanne tai ravintolaportaaliin liittyen.
+
+
+Mukavaa päivän jatkoa!
+
+
+
+
+Ystävällisin terveisin,
+
+{!Case.OwnerFirstName}
+
+foodora.fi Partner Care
+
+
+
+Delivery Hero Finland Oy / foodora.fi
+
+Pasilankatu 10, 00240 Helsinki
+
+
+Palvelunumeromme: 02 9300 0472 (pvm)
+
+E-mail : partner@foodora.fi
+
+www.foodora.fi</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

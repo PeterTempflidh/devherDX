@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>DH_AU_Letterhead</letterhead>
+    <name>DH AU-Easter Public Holiday 2014</name>
+    <style>freeForm</style>
+    <subject>AU-Easter Public Holiday 2014</subject>
+    <textOnly>09/04/2014
+
+Dear Restaurant - {!Account.Name},
+
+We would like to know if you will be open and doing delivery during the Easter Holidays between the 18th April and 21st April and if you charge a public holiday surcharge. Please note our website is not able to add any public holiday surcharges, so unfortunately we will have to close your restaurant for that day if you do have a surcharge.
+
+Please ignore this email if you have already advised us of your opening hours during the Easter Holidays.
+
+It would be greatly appreciated if you could please reply to this email to let us know:
+
+a-  If you will be open for delivery between the 18th-21st April 2014
+
+b- If yes, if you will have different operating hours AND
+
+c- If you intend to charge a public holiday surcharge?
+
+Alternatively, you may contact us at any time on our direct contact number 1300 GO HERO (1300 46 4376).
+
+Please note that if we do not receive confirmation that you will be open, we will have to close your restaurant for the Public Holidays.
+
+Yours Truly
+Delivery Hero Customer and Restaurant Care</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

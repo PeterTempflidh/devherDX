@@ -1,0 +1,130 @@
+<apex:component controller="CtrCreateQuote" access="global">
+<apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+
+<table width="100%">
+    <tr>
+        <td class="headelements" ><div style="width: 200px;"><img src="{!URLFOR($Resource.Yogiyo_Logo)}" /></div></td>
+        <td class="headelements" style="font-weight: bold; font-size: 17px;">요기요 서비스 등록 신청서</td>
+        <td class="headelements">
+            <div><span style="width: 10px;">담당자</span> :  {!opportunity.Owner.firstname} {!opportunity.Owner.lastname}</div>
+            <div><span style="width: 10px;">연락처</span> :  {!opportunity.owner.phone}</div>
+        </td>
+    </tr>
+</table>
+<br />
+
+<span style="font-weight: bold; font-size: 10px;">서비스 및 계약 기간</span>
+<hr />
+<div style="width:900px;">
+    &nbsp;&nbsp;① 요기요 단말기는 알지피코리아의 동의없이 임의로 재대여 할 수 없습니다.   <br />
+    &nbsp;&nbsp;② 대여 계약은 계약 당사자 쌍방 모두 언제든지 해지할 수 있는 권리가 있습니다.<br />
+    &nbsp;&nbsp;③ 계약이 해지되거나 알지피코리아의 계약 상대방이 영업을 정지한 경우 2주 내에 단말기를 알지피코리아에 반납하여야 합니다.*1<br />
+    &nbsp;&nbsp;④ 단말기에 사용되는 용지는 별도로 구매하셔야 합니다. (한솔포스 / 02-374-2220 / 010-9205-1222)<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*1. 반납시 발생하는 배송비는 알지피코리아가 부담하며,<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. 주 내에 단말기 반납이 이루어지지 않은 경우 요기요가 계약 상대방에게 단말기 대금인 20만원을 청구합니다.  <br />
+</div>
+<br />
+
+<span style="font-weight: bold; font-size: 10px;">가입비 및 대여료</span>
+<hr />
+<div>
+    &nbsp;&nbsp;- 단말기 보증금 : 없음<br />
+    &nbsp;&nbsp;- 단말기 해지 위약금 : 없음<br />
+    &nbsp;&nbsp;- 단말기 가입비 (개통비 포함) : 무료 체험 기간 종료 후 69,900원 (부가가치세 별도) *<br />
+    &nbsp;&nbsp;- 단말기 대여료 : 무료 체험 기간 종료 후 월 19,900원 (부가가치세 별도) *<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* 단말기 가입비 및 대여료는 알지피코리아가 정산주기에 따라 발송하는 거래상세내역서 금액에 포함되어 청구됩니다. 단, 알지피코리아가 계약 <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;상대방에게 지급해야 할 금액이 있을 경우, 해당 금액에서 단말기 가입비 및 대여료를 우선 제한 후 지급할 수 있습니다.
+</div>
+<br />
+
+<span style="font-weight: bold; font-size: 10px;display:block;float:left;width:800px">결제 정보</span><div style="text-align:right; display:block;">계약정보와 동일 (①~⑥)</div>
+<hr />
+<div>
+<table width="100%">
+    <tr>
+        <td style="background-color: #e5e5e5;" width="25%">① 사업자명 / 회사명</td>
+        <td style="background-color: #e5e5e5;">{!accountWrapper.ownerName} / {!accountWrapper.companyName}</td>
+        <td style="background-color: #e5e5e5;">② 사업자 등록번호</td>
+        <td style="background-color: #e5e5e5;" >{!accountWrapper.companyId}</td>
+    </tr>
+    <tr>
+        <td width="25%">③ 업소 전화번호</td>
+        <td>{!accountWrapper.restaurantPhoneNumber}</td>
+        <td>④ 사업자 휴대전화</td>
+        <td >{!accountWrapper.ownerMobilePhone}</td>
+    </tr>
+    <tr>
+        <td style="background-color: #e5e5e5;" width="25%">⑤ 업소 소재지 (주소)</td>
+        <td style="background-color: #e5e5e5;" colspan="3">{!accountWrapper.restaurantAddress}</td>
+    </tr>
+    <tr>
+        <td width="25%">⑥ 유료 기간 적용 시점</td>
+        <td colspan="3"> {!YEAR(accountWrapper.firstPaymentDate)}   년  {!MONTH(accountWrapper.firstPaymentDate)} 월 {!MONTH(accountWrapper.firstPaymentDate)} 일  ㅣ 단말기 대여료는 유료 기간 적용 시점으로부터 일할 계산되어 청구됩니다.</td>
+    </tr>
+    <tr>
+        <td style="background-color: #e5e5e5;" width="25%">⑦ 최초 결제일</td>
+        <td style="background-color: #e5e5e5;" colspan="3"> {!YEAR(accountWrapper.paidPeriodOfApplictaion)}   년  {!MONTH(accountWrapper.paidPeriodOfApplictaion)} 월 {!MONTH(accountWrapper.paidPeriodOfApplictaion)} 일  ㅣ 매월 결제일(최초 결제일 포함)에 청구되는 금액은 해당 결제일 직전 1개월의 대여료입니다.</td>
+    </tr>
+</table>                                                                                                                                                                    
+</div>
+<br />
+
+<span style="font-weight: bold; font-size: 10px;">결제 방식</span>
+<hr />
+<div>
+    &nbsp;&nbsp;① 요기요 서비스 등록 시 선택하신 결제 방식과 동일합니다.   <br />
+    &nbsp;&nbsp;② 요기요 서비스 수수료 결제 방식 변경 시 단말기 이용료 결제 방식도 동일하게 변경됩니다.<br /><br /><br />
+    &nbsp;&nbsp;• 신용카드 이용 가입비 및 대여료 납입 특별약관 <br />
+    &nbsp;&nbsp;① 가입비 및 대여료의 영수<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1) "을"(유한회사 알지피코리아)은 가입비 및 대여료 납입 특별약관(이하 특별약관)에 따라, "갑"이 가입비 및 대여료를 <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;결제하고 신용카드회사의 승인을 받은 시점을 영수시점으로 한다.<br />
+
+    &nbsp;&nbsp;② 사고카드 계약<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1) 사고카드를 이용하여 계약을 체결하였을 때에는 이 계약은 "갑"의 책임개시일로부터 그 효력을 상실한다.<br />
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2) 위 1)항의 사고카드라 함은 유효기간이 경과한 카드, 위조 변조된 카드, 무효 또는 거래 정지 통보를 받은 카드, <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;카드상에 기재되어 있는 회원과 이용자가 서로 다른 카드 등을 말한다.<br />
+
+    &nbsp;&nbsp;③ 준용 규정<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1) 이 특별약관에 정하지 아니한 사항은 요기요 서비스 이용약관을 따른다.<br /><br /><br />
+    &nbsp;&nbsp;• CMS 출금이체 약관<br />
+    &nbsp;&nbsp;① "갑"(사업자)의 사업주 본인(예금주)이 납부할 요기요 주문 단말기 대여료에 대하여 별도의 통지 없이 "갑"의 사업주 본인의 지정출금계좌에서 <br />
+    &nbsp;&nbsp;"을"(유한회사 알지피코리아)이 정한 지정출금일에 출금대체 납부한다.<br />
+
+    &nbsp;&nbsp;② 출금이체를 위하여 지정출금계좌의 예금을 출금하는 경우, 예금약관이나 약정서 규정에도 불구하고 예금청구서나 <br />
+    &nbsp;&nbsp;수표 없이 출금이체 처리절차에 의하여 출금하여도 이의가 없다.<br />
+
+    &nbsp;&nbsp;③ 출금이체 지정계좌의 예금잔액(자동대출약정이 있는 경우 대출한도 포함)이 지정출금일 현재 "을"의 청구금액보다 부족하거나 예금의 지급제한 또는 약정대출의 연체 등으로 <br />
+    &nbsp;&nbsp;대체납부가 불가능한 경우,손해는 "갑"의 사업주 본인의 책임으로 한다.<br />
+
+    &nbsp;&nbsp;④ 지정출금일에 동일한 수중의 출금이체청구가 있는 경우의 출금 우선 순위는 귀행이 정하는 바에 따른다.<br />
+    &nbsp;&nbsp;⑤ 출금이체 신규신청에 의한 이체개시일은 요기요 주문 단말기 대여 신청 시 합의된 '최초 결제일'로 한다.<br />
+    &nbsp;&nbsp;⑥ 출금이체 신청(신규,해지)은 이체예정일 5일 전까지 신청서를 제출해야 한다.<br />
+    &nbsp;&nbsp;⑦ 출금이체 신청에 의한 지정계좌에서의 출금은 "을"의 청구대로 출금하기로 하며 출금요금에 이의가 있는 경우에는 "갑"의 사업주 본인과 "을"이 협의하여 조정하기로 한다.<br />
+    &nbsp;&nbsp;⑧ 출금이체금액은 해당 지정출금일 은행 영업시간 내에 입금된 예금(지정출금일에 입금된 타점권은 제외)에 한하여 출금처리 된다.<br /><br /><br /><br /><br />
+    &nbsp;&nbsp;• 금융거래정보의 제공 동의<br />
+
+  본 신청과 관련하여 "갑"의 사업주 본인은 전면에 작성한 금융거래정보 (거래은행명, 계좌번호) 를 출금이체를 신규 신청하는 때로부터 해지 신청할 때 까지 "을"에 제공하는 것에 대하여  
+  "금융실명거래 및 비밀보장에 관한 긴급재정경제명령" 의 규정에 따라 동의한다.
+</div>
+<br /><br />
+<hr style="border :none;border-top: 1px solid #ccc;background-color:#FFFFFF;" />
+
+(사업자명: {!accountWrapper.restaurantName}) 은(는) 알지피코리아의 '요기요 주문 단말기 대여' 내용 및 이용약관을 충분히 숙지하였으며   CMS 출금이체 약관 및 신용카드 이용 특별약관 및 금융거래정보의 제공 동의서에 따라 위와 같이 '요기요' 서비스를 신청합니다.<br />
+
+<table width="100%">
+    <tr>
+        <td width="50%">
+            <div style="font-size:9px !important;padding-top:20px;width:400px;">
+             <img src="{!URLFOR($Resource.krFooterSiegel)}" style="width:20px; position:absolute;margin-left:80px;margin-top:-5px;" />
+                RGP Korea Ltd. <br />
+                대표이사: 나제원 / 사업자등록번호: 211-88-68802 / Tel. 02-3447-3612 / Fax. 02-3447-4423 <br />
+                서울특별시 강남구 역삼동 719-33 유니팜타워 5,6,7층 / 통신판매업신고: 제 2011-서울강남-03322호<br />
+                http://www.yogiyo.co.kr  
+            </div>
+        </td>
+        <td style="text-align:right">{!YEAR(TODAY())}   년  {!MONTH(TODAY())} 월 {!DAY(TODAY())} 일<br /><br />사업자 대표 <apex:outputPanel layout="inline" style="width:100px; display:inline-block">{!accountWrapper.ownerName}</apex:outputPanel> (인)</td>
+    </tr>
+</table>
+
+</apex:component>

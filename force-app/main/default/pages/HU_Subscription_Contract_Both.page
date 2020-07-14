@@ -1,0 +1,7 @@
+<apex:page Controller="ctrDH_AU_QuoteVFTemplate" showheader="false" sidebar="false" standardStylesheets="false">
+    <!-- Use Quote 1 if “Opportunity Type”: Contract & Product, Contract Only !-->
+    <c:HUQuote acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!NOT(isQuoteProductOnly)}"/>
+
+    <!-- Use Quote 2 if “Opportunity Type”: Product Only!-->
+    <c:HUQuoteProductOnly acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!isQuoteProductOnly}"/>
+</apex:page>

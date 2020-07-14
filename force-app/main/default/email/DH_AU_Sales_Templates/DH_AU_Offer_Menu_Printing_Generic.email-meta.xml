@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>DH_AU_Menu_Samples/Menu_Printing_Offer_Delivery_Hero.jpg</attachedDocuments>
+    <attachedDocuments>DH_AU_Menu_Samples/Menu_Sample_Generic2.pdf</attachedDocuments>
+    <attachedDocuments>DH_AU_Menu_Samples/Menu_Sample_Indian.pdf</attachedDocuments>
+    <attachedDocuments>DH_AU_Menu_Samples/Menu_Sample_Thai2A.pdf</attachedDocuments>
+    <attachedDocuments>DH_AU_Shared_Documents/Voucher_SAMPLE_ONLY_DO_NOT_PRINT.jpg</attachedDocuments>
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>DH_AU_Letterhead</letterhead>
+    <name>DH AU Offer - Menu Printing Generic</name>
+    <style>freeForm</style>
+    <subject>Delivery Hero Menu Printing Offer</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+Attached are some great menu printing offers we have available.
+
+For every menu printed, Delivery Hero pays for a $10 voucher so that new customers can discover your delicious food. We pay for these vouchers so it doesn’t cost you anything.
+
+Our menu printing offer consists of the following 3 options:
+
+Option 1: Print with Delivery Hero using Delivery Hero’s available designs/template
+Option 2: Print with Delivery Hero using YOUR OWN design/template
+
+Price with $10 Delivery Hero voucher:
+10,000 = $550 (5.5¢/ea)
+25,000 = $950 (3.8¢/ea)
+50,000 = $1,650 (3.3¢/ea)
+100,000 = $3,300 (3.3¢/ea)
+
+Our menus are A4 sized (297 x 210mm) DL 6pp, full color, 150g Gloss Art. Price includes design, shipping, and 2 rounds of amendments. Price excludes GST.
+
+If you are interested in Option 1 or 2, you just need to let us know the quantity you require, and the voucher you prefer, and we will get the printing company to give you a call within 24hours to discuss design requirements. They will also collect a $90 deposit to get everything started.
+
+Option 3: Print with your own printing company. - We will send you a $10 discount voucher for your customers that we pay for (attached is a sample voucher). For this option, just let us know and we can design and send you a voucher. This is completely free of charge.
+
+Thank you!
+
+Kind Regards,
+{!User.Name}
+{!User.Phone}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

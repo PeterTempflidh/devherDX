@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>For AMs to update legal name and bank details on existing account</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>Singapore AM - New Contract (Change in Bank details/Legal Entity)</name>
+    <style>freeForm</style>
+    <subject>Singapore AM - New Contract (Change in Bank details/Legal Entity)</subject>
+    <textOnly>Hi {!Contact.FirstName}{!Contact.LastName}
+
+Thanks for writing in to foodpanda, the World&apos;s largest food delivery eCommerce platform.
+
+Please complete your buiness&apos;s information here. We wil follow up with your request once its completed.
+
+
+Cheers!
+
+The foodpanda Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

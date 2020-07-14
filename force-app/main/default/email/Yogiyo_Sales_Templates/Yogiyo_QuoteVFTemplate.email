@@ -1,0 +1,165 @@
+<messaging:emailTemplate subject="Quote"  recipientType="Contact" relatedToType="Opportunity" >
+<messaging:htmlEmailBody >
+<html>
+
+<body>
+<div style="width:100%;height:250px;clear:bothe;">
+    <div style="width: 300px;position:absolute; left:20px; top:30px;"><img src="{!URLFOR($Resource.Yogiyo_Logo)}" /></div>
+    <span style="Text-decoration: none;color:rgb(131,130,138); margin: 0px; padding:0px; display:block;width: 300px;font-size: 8pt; position:absolute;top:130px">요기요(Yogiyo), RGP Korea Ltd.</span>
+    
+    <div style="color:rgb(131,130,138); text-align: left;font-size: 8pt; border-left: 1px solid rgb(131,130,138);padding: 3px 2px 3px 12px;width:230px; position:absolute; right:10px; top:10px;">
+    <b>요기요(Yogiyo Yogiyo), RGP Korea Ltd.</b><br/> 
+    5F Unipham Tower, 719-33<br/>
+    Yeoksam-dong, Gangnam-Gu<br/> 
+    135-920 Seoul<br/>
+    Republic of Korea<br/>
+    <br/>
+    T 0800 1651662 <br/>
+    F 030 5 44 45 90 33<br/> 
+    <br/>
+    K lieferheld.de/kontakt <br/>
+    <br/>
+    Geschäftsführer: Niklas Östberg <br/>
+    HRB 129202 B Amtsgericht Charlottenburg <br/>
+    UID-Nr: DE815223658 <br/>
+    IBAN: DE64 1007 0124 0114 5762 01 <br/>
+    BIC/SWIFT: DEUTDEDB101<br/>
+    </div>
+</div>
+<div style="font-size: 8pt;">
+<table>
+<tr>
+<td>
+        
+Hi {!recipient.name},
+<br/>
+Please find the quote below:<br/>
+
+<br />
+commentToBeEmbedded
+<br/>
+<hr />
+
+        <table style="font-sitze:12px;"> 
+        <tr class="headerRow" >
+            <th style="text-align: right;" width="200px;font-size: 8pt;">{!$Label.Service_Name}</th>
+            <th style="text-align: right;" width="200px;font-size: 8pt;">{!$ObjectType.List_Service_Price__c.fields.Commission_In_Percentage__c.label}</th>
+            <th style="text-align: right;" width="200px;font-size: 8pt;">{!$ObjectType.List_Service_Price__c.fields.Recurring_Fee__c.label}</th>
+            <th style="text-align: right;" width="300px;font-size: 8pt;">{!$ObjectType.Opportunity_Service_Item__c.fields.Start_Date__c.label}</th>
+            <th style="text-align: right;" width="300px;font-size: 8pt;">{!$ObjectType.Opportunity_Service_Item__c.fields.End_Date__c.label}</th>
+        </tr>
+        <apex:repeat value="{!relatedTo.Opportunity_Service_Items__r}" var="record">
+        <tr>
+        <td style="text-align: right;">
+        <apex:outputField value="{!record.name}" />
+        </td>
+        <td style="text-align: right;">
+        <apex:outputField value="{!record.Commission_In_Percentage__c}" />
+        </td>
+        <td style="text-align: right;">
+        <apex:outputField value="{!record.Recurring_Fee__c}" />
+        </td>
+        <td style="text-align: right;">
+        <apex:outputField value="{!record.Start_Date__c}" />
+        </td>
+        <td style="text-align: right;">
+        <apex:outputField value="{!record.End_Date__c}" />
+        </td>
+        </tr>
+        </apex:repeat>
+        </table> 
+           
+        </td>
+        </tr>       
+        <tr>
+        <td>
+        <br/>
+        </td>
+        </tr>       
+        <tr>
+        <td>
+        <table>
+        <tr class="headerRow">
+            <th style="text-align: right;" width="200px">{!$ObjectType.List_Product_Price__c.fields.Product_Name__c.label}</th>
+            <th style="text-align: right;" width="200px">{!$ObjectType.Opportunity_Product_Item__c.fields.Product_Group__c.label}</th>
+            <th style="text-align: right;" width="200px">{!$ObjectType.List_Product_Price__c.fields.List_Price__c.label}</th>
+            <th style="text-align: right;" width="200px">{!$ObjectType.Opportunity_Product_Item__c.fields.Rabbat__c.label}</th>
+            <th style="text-align: right;" width="200px">{!$ObjectType.Opportunity_Product_Item__c.fields.Quantity__c.label}</th>
+            <th style="text-align: right;" width="200px">{!$ObjectType.Opportunity_Product_Item__c.fields.Installments__c.label}</th>
+            <th style="text-align: right;" width="200px">{!$ObjectType.Opportunity_Product_Item__c.fields.Total_Amount__c.label}</th>
+        </tr>       
+        <apex:repeat value="{!relatedTo.Opportunity_Product_Items__r}" var="record">
+        <tr>
+        <td style="text-align: right;">
+        <apex:outputField value="{!record.name}" />
+        </td>
+        <td style="text-align: right;">
+        <apex:outputField value="{!record.Product_Group__c}" />
+        </td>
+        <td style="text-align: right;">
+        <apex:outputField value="{!record.Listed_Price__c}" />
+        </td>
+        <td style="text-align: right;">
+        <apex:outputField value="{!record.Rabbat__c}" />
+        </td>
+        <td style="text-align: right;">
+        <apex:outputField value="{!record.Quantity__c}" />
+        </td>
+        <td style="text-align: right;">
+        <apex:outputField value="{!record.Installments__c}" />
+        </td>
+        <td style="text-align: right;">
+        <apex:outputField value="{!record.Total_Amount__c}" />
+        </td>   
+        </tr>
+        </apex:repeat>
+        <tr>
+        <td colspan="5">
+        </td>       
+        <td style="text-align: right;">
+        <b>{!$ObjectType.Opportunity.fields.Subtotal__c.label}</b>
+        </td>
+        <td style="text-align: right;">
+        <apex:outputField value="{!relatedTo.Subtotal__c}" />
+        </td>
+        </tr>
+        <tr>
+        <td colspan="5">
+        </td>
+        <td style="text-align: right;">
+        <b> {!$ObjectType.Opportunity.fields.VAT__c.label}</b>
+        </td>
+        <td style="text-align: right;">
+        <apex:outputField value="{!relatedTo.VAT__c}" />
+        </td>
+        </tr>
+        <tr>
+        <td colspan="5">
+        </td>
+        <td style="text-align: right;">
+        <b>{!$Label.OppTotalInclusiveVat}</b>
+        </td>
+        <td style="text-align: right;">
+        <apex:outputField value="{!relatedTo.Total__c}" />
+        </td>
+        </tr>
+        </table>
+   
+        </td>
+        </tr>       
+        <tr>
+        <td>        
+        </td>
+        </tr>
+        </table>
+  </div>    
+<br/>
+Please click the below link for Accepting or Declining the Quote:
+<br/>
+linkToBeEmbedded
+</body>
+</html>
+</messaging:htmlEmailBody>
+<messaging:attachment renderAs="PDF" filename="quote.pdf">       
+</messaging:attachment>
+</messaging:emailTemplate>

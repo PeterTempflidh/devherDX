@@ -1,0 +1,93 @@
+<apex:page controller="ctrDH_AU_QuoteVFTemplate" showheader="false" sidebar="false" standardStylesheets="false">
+ 
+<html>
+
+<body style="font-family: Arial, Helvetica, sans-serif; font-size: 10pt;">
+<table width="100%">
+  <tr>
+    <td>
+      <div class="logo">
+          <img src="{!URLFOR($Resource.DH_AU_Logo)}" style="width:120px;"/>
+      </div>
+    </td>
+    <td valign="middle">
+      <div style="height: 90px;float:right;">
+        <div class="adress" style="width: 151px;height: 7px;border-left:2px solid rgb(131,130,138);color:rgb(131,130,138);text-align: left;font-size: 7pt;padding-left:10px;padding-bottom: 95px;"> 
+          <b style="color:#c00000 !important;">Delivery Hero Pty Ltd</b><br />
+          ABN: 26152250274<br />
+          <br />
+          M302 Broadway Shopping Centre<br />
+          1 Bay Street <br />
+          Ultimo NSW 2007, Australia<br />
+          <br />
+          T&nbsp;&nbsp;1300 696 325<br />
+          F&nbsp;&nbsp;8072 6865<br />
+          W&nbsp;&nbsp;www.deliveryhero.com.au<br />
+        </div>
+      </div>
+    </td>
+  </tr>
+</table><br />
+
+      
+<div class="content" style="color:rgb(131,130,138); text-align: left;width:100%; "> 
+    <c:DH_AU_Quote acct="{!theOppQ.Id_Account__c}" />
+    <br /><br />
+<!-- Product view -->
+    <table border="0" width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+      <td class="toptitle" style="text-align:left;background-color:#c00000;color:#fff;padding:5px;border:0px !important;vertical-align:top;">&nbsp;{!$ObjectType.List_Product_Price__c.fields.Product_Name__c.label}</td>
+      <td class="toptitle" style="text-align:right;background-color:#c00000;color:#fff;padding:5px;border:0px !important;vertical-align:top;">&nbsp;{!$ObjectType.List_Product_Price__c.fields.List_Price__c.label}</td>
+      <td class="toptitle" style="text-align:right;background-color:#c00000;color:#fff;padding:5px;border:0px !important;vertical-align:top;">&nbsp;{!$ObjectType.List_Product_Price__c.fields.List_Price__c.label}</td>
+      <td class="toptitle" style="text-align:right;background-color:#c00000;color:#fff;padding:5px;border:0px !important;vertical-align:top;">&nbsp;{!$ObjectType.Opportunity_Line_Item__c.fields.Quantity__c.label}</td>
+      <td class="toptitle" style="text-align:right;background-color:#c00000;color:#fff;padding:5px;border:0px !important;vertical-align:top;">&nbsp;{!$ObjectType.Opportunity_Line_Item__c.fields.Total_Amount__c.label}</td>
+    </tr>
+ 
+<!-- space -->
+  <tr><td colspan="5">&nbsp;</td></tr>
+<!-- item list -->
+     <apex:repeat value="{!oppProdItems}" var="oppProd">  
+    <tr style="text-align:right;padding:5px;">
+      <td style="text-align:left">&nbsp;<apex:outputField value="{!oppProd.name}" /></td>
+      <td>&nbsp;<apex:outputField value="{!oppProd.Listed_Price__c}" />&nbsp;</td>
+      <td>&nbsp;<apex:outputField value="{!oppProd.Listed_Price__c}" />&nbsp;</td>
+      <td>&nbsp;<apex:outputField value="{!oppProd.Quantity__c}" />&nbsp;</td>
+      <td>&nbsp;<apex:outputField value="{!oppProd.Total_Amount__c}" />&nbsp;</td>
+    </tr>
+   </apex:repeat>
+<!-- space -->
+    <tr><td colspan="5" style="border-bottom:1px solid rgb(131,130,138);">&nbsp;</td></tr>
+    <tr><td colspan="5">&nbsp;</td></tr>
+ <!-- total Price -->   
+    <tr style="text-align:right;padding:5px;">
+      <td>&nbsp;</td>
+      <td style="font-weight:bold;">Total Price</td>
+      <td><apex:outputField value="{!theOppQ.SubTotalRF__c}" />&nbsp;</td>
+      <td colspan="2">&nbsp;</td>
+    </tr>
+    <tr style="text-align:right;padding:5px;">
+      <td>&nbsp;</td>
+      <td style="font-weight:bold;">Tax</td>
+      <td><apex:outputField value="{!theOppQ.VAT_fm__c}" />&nbsp;</td>
+      <td colspan="2">&nbsp;</td>
+    </tr>
+    <tr style="text-align:right;padding:5px;">
+      <td>&nbsp;</td>
+      <td style="font-weight:bold;">Grand Total</td>
+      <td><apex:outputField value="{!theOppQ.Total_fm__c}" />&nbsp;</td>
+      <td colspan="2">&nbsp;</td>
+    </tr>
+    </table>
+<br /><br /><br /><br /><br />
+
+Sincerely,<br />
+Your Delivery Hero Team
+<!-- end -->
+
+
+
+</div>
+</body>
+</html>
+
+</apex:page>

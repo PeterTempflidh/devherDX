@@ -1,0 +1,300 @@
+<apex:component id="VueXalAddressComponents" controller="VueXalAddressComponents_Controller">
+
+    <script type="text/javascript">
+        Vue.component("xal-address-picklist", {
+            props: ['xALAddress', 'country','preselect'],
+            data: function () {
+                return {
+                    addressItems: [],
+                    selectedAddress: {},
+                    inputName: String,
+                    picklistOptions: []
+                }
+            },
+            created: function() {
+                if (!this.picklistOptions.length) {
+                    this.fetchAddresses();
+                }
+            },
+            methods: {
+                onValueSelect: function(value) {
+                    this.selectedAddress = this.addressItems.find(item => item.address.Address_Id__c === value);
+                    this.$emit('mapaddress', this.selectedAddress, this.getValueFieldName(this.addressItems[0]));
+                },
+                mapAddress: function(xalAddress, fieldName) {
+                    this.$emit('mapaddress', xalAddress, fieldName);
+                },
+                getValueFieldName: function(address) {
+                    for (var fieldName in address.address) {
+                        if (address.address[fieldName] === address.addressValue) {
+                            return fieldName;
+                        }
+                    }
+                    return undefined;
+                },
+                setSelectedValue: function() {
+                    let valueField = this.getValueFieldName(this.addressItems[0]);
+                    switch (valueField) {
+                        case 'xAL_AdministrativeAreaName__c':
+                            if (!this.country.adminArea) {
+                                break;
+                            }
+                            var selectedOption = this.picklistOptions.find(option => option.value === this.country.adminArea.developerName);
+                            if (selectedOption) {
+                                this.selectedAddress = this.addressItems.find(item => item.address.Address_Id__c === selectedOption.value);
+                                selectedOption.selected = true;
+                            }
+                            break;
+                        case 'xAL_SubAdministrativeAreaName__c':
+                            if (!this.country.adminArea || !this.country.adminArea.subAdministrativeArea) {
+                                break;
+                            }
+                            var selectedOption = this.picklistOptions.find(option => option.value === this.country.adminArea.subAdministrativeArea.developerName);
+                            if (selectedOption) {
+                                selectedOption.selected = true;
+                                this.selectedAddress = this.addressItems.find(item => item.address.Address_Id__c === selectedOption.value);
+                            }
+                            break;
+                        case 'xAL_LocalityName__c':
+                            if (!this.country.adminArea.subAdministrativeArea || !this.country.adminArea.subAdministrativeArea.locality) {
+                                break;
+                            }
+                            var selectedOption = this.picklistOptions.find(option => option.value === this.country.adminArea.subAdministrativeArea.locality.developerName);
+                            if (selectedOption) {
+                                this.selectedAddress = this.addressItems.find(item => item.address.Address_Id__c === selectedOption.value);
+                                selectedOption.selected = true;
+                            }
+                            break;
+                        case 'xAL_DependentLocalityName__c':
+                            if (!this.country.adminArea.subAdministrativeArea || !this.country.adminArea.subAdministrativeArea.locality || !this.country.adminArea.subAdministrativeArea.locality.dependentLocality) {
+                                break;
+                            }
+                            var selectedOption = this.picklistOptions.find(option => option.value === this.country.adminArea.subAdministrativeArea.locality.dependentLocality.developerName);
+                            if (selectedOption) {
+                                this.selectedAddress = this.addressItems.find(item => item.address.Address_Id__c === selectedOption.value);
+                                selectedOption.selected = true;
+                            }
+                            break;
+                    }
+                },
+                fetchAddresses: function() {
+                    this.picklistOptions = [];
+                    this.selectedAddress = {};
+                    if (!this.xALAddress || !this.xALAddress.address) {
+                        return;
+                    }
+                    var self = this;
+                    // Remote action
+                    Visualforce.remoting.Manager.invokeAction(
+                        '{!$RemoteAction.VueXalAddressComponents_Controller.getAddressLines}',
+                        self.xALAddress.address,
+                        function(result, event) {
+                            // Checks event status
+                            if (!event.status || !result) {
+                                errorHandlerSharedState.setErrorMsg({
+                                    msg: '{!$Label.xALAddress_Load_Error}' + event.message,
+                                    type: "error"
+                                });
+                                return;
+                            }
+                            self.addressItems = result;
+                            if (!result || !result.length || !result[0].address) {
+                                return;
+                            }
+                            if(result[0].address.Type__c && result[0].address.Type__c === "City") {
+                                    self.addressItems.forEach( item=> self.picklistOptions.push({
+                                        value: item.address.Address_Id__c,
+                                        label: item.address.xAL_TranslatedAdministrativeArea__c ? (item.addressValue + "( " + item.address.xAL_TranslatedAdministrativeArea__c + " )") : item.addressValue,
+                                        selected: false,
+                                        translatedCityName: item.address.xAL_TranslatedAdministrativeArea__c
+                                    }));
+                                    if(result && result.length && result.length === 1 && self.preselect) {
+                                        self.onValueSelect(result[0].address.Address_Id__c);
+                                    }
+                            }else if(result[0].address.Type__c && result[0].address.Type__c === "Area"){
+                                    self.addressItems.forEach( item=> self.picklistOptions.push({
+                                        value: item.address.Address_Id__c,
+                                        label: item.address.xAL_TranslatedSubAdministrativeArea__c ? (item.addressValue + "( " + item.address.xAL_TranslatedSubAdministrativeArea__c + " )") : item.addressValue,
+                                        selected: false,
+                                        translatedAreaName: item.address.xAL_TranslatedSubAdministrativeArea__c
+                                    }));
+                                    if(result && result.length && result.length === 1 && self.preselect) {
+                                        self.onValueSelect(result[0].address.Address_Id__c);
+                                    }
+                            }
+                            else {
+                                self.addressItems.forEach( item=> self.picklistOptions.push({
+                                    value: item.address.Address_Id__c,
+                                    label: item.addressValue,
+                                    selected: false
+                                }));
+                            }
+
+                            self.setSelectedValue();
+                            self.inputName = result[0].address.Type__c;
+                        }, {
+                            escape: false
+                        }
+                    );
+                }
+
+            },
+            watch: {
+                xALAddress: {
+                    handler() {
+                        this.fetchAddresses();
+                    },
+                    deep: true
+                }
+            },
+            template: `<div>
+                                    <input-select v-if="picklistOptions.length"
+                                                 :name="inputName"
+                                                 v-bind:options="picklistOptions"
+                                                 :label="inputName"
+                                                 v-on:selected="onValueSelect" />
+                                    <xal-address-picklist
+                                        v-if="selectedAddress && selectedAddress.address"
+                                        v-bind:xALAddress="selectedAddress"
+                                        v-bind:country="country"  
+                                        v-bind:preselect = "preselect"       							
+                                        v-on:mapaddress="mapAddress"/>
+                                </div >`
+        });
+
+        Vue.component("xal-address-form", {
+            props: ["addressDetail", "country"],
+            data: function() {
+                return {
+                    picklistOptions: [],
+                    inputName: {},
+                    xALAddress: {},
+                    addressTypes: addressTypes,
+                    postCodeFieldRequired : false,
+                    translatedStreetNameRequired : false,
+                    preselect : true
+
+                };
+            },
+            created: function () {
+                if (this.addressDetail.id) {
+                    this.country = this.addressDetail.country;
+                    this.preselect = false;
+                    
+                }
+                this.xALAddress  = {addressValue: this.addressDetail.country.label, address: {Address_Id__c: this.addressDetail.country.label, xAL_Country__c: this.addressDetail.country.label, Type__c: 'Country'}};
+                this.picklistOptions.push({
+                    value: this.xALAddress.address.Address_Id__c,
+                    label: this.xALAddress.addressValue,
+                    selected: true
+                });
+                this.inputName = this.xALAddress.address.Type__c;
+                this.setTextfieldsVisibilityValue();
+
+
+            },
+            methods: {
+                mapAddressValue(xalAddress) {
+                    let valueField;
+                    for (var field in xalAddress.address) {
+                        if (xalAddress.address[field] === xalAddress.addressValue) {
+                            valueField = field;
+                            break;
+                        }
+                    }
+                    var xalObject = {
+                        developerName: xalAddress.address.Address_Id__c,
+                        type: xalAddress.address.Type__c,
+                        code: xalAddress.address.Code__c,
+                        label: xalAddress.addressValue
+                    };
+                     switch (valueField) {
+                        case 'xAL_AdministrativeAreaName__c':
+                            this.country.adminArea = xalObject;
+                            this.country.adminArea.translatedCityName = xalAddress.address.xAL_TranslatedAdministrativeArea__c;
+                            this.country.adminArea.subAdministrativeArea = null;
+                            break;
+                        case 'xAL_SubAdministrativeAreaName__c':
+                            this.country.adminArea.subAdministrativeArea = xalObject;
+                            this.country.adminArea.subAdministrativeArea.translatedAreaName = xalAddress.address.xAL_TranslatedSubAdministrativeArea__c;
+                            this.country.adminArea.subAdministrativeArea.locality = null;
+                            break;
+                        case 'xAL_LocalityName__c':
+                            this.country.adminArea.subAdministrativeArea.locality = xalObject;
+                            this.country.adminArea.subAdministrativeArea.locality.dependentLocality = null;
+                            break;
+                        case 'xAL_DependentLocalityName__c':
+                            this.country.adminArea.subAdministrativeArea.locality.dependentLocality = xalObject;
+                            break;
+                    }
+                    this.onCountrySelected(this.country);
+                },
+
+                onCountrySelected: function(value) {
+                    if (value.developerName) {
+                        this.addressDetail.country = value;
+                    } else {
+                        delete this.addressDetail.country;
+                    }
+                    this.setTextfieldsVisibilityValue();
+
+
+                },
+                onAddressTypeSelected: function(value) {
+                    this.addressDetail.type = value;
+                },
+                onAddressLineFilled: function(text) {
+                    this.addressDetail.addressLine = text;
+                },
+                onTranslatedStreetNameFilled: function(text) {
+                    this.addressDetail.translatedStreetName = text;
+                },
+                onPostCodeFilled: function(text) {
+                    this.addressDetail.postCode = text;
+                },
+
+                setTextfieldsVisibilityValue: function() {
+                    var self = this;
+                    Visualforce.remoting.Manager.invokeAction(
+		                '{!$RemoteAction.VueXalAddressComponents_Controller.getAddressLinesText}',
+		                this.country.developerName,
+		                function(result, event) {
+		                    if (!event.status || !result) {
+                                errorHandlerSharedState.setErrorMsg({
+                                    msg: '{!$Label.xALAddress_Load_Error}' + event.message,
+                                    type: "error"
+                                });
+                                return;
+                            }
+                            self.postCodeFieldRequired = result.postCode;
+                            self.translatedStreetNameRequired = result.translatedStreetName;
+		                }, {
+		                    escape: false
+		                }
+		            );
+                }
+            },
+            template: `<div v-if="addressDetail" >
+                    <div class="slds-col">
+                        <div class="slds-form slds-form_stacked">
+                            <checkbox-button-group v-bind:options="addressTypes" v-bind:selected-values="addressDetail.type" label="Address type" name="addressType" v-on:changed="onAddressTypeSelected" />
+                            <input-select v-if="picklistOptions.length"
+                                                 :name="inputName"
+                                                 v-bind:options="picklistOptions"
+                                                 :label="inputName"
+                                                  disabled="1"
+                                                  />
+                            <xal-address-picklist v-if="xALAddress.address"
+                                                            v-bind:xALAddress="xALAddress"
+                                                            v-bind:country="addressDetail.country"
+                                                            v-bind:preselect = "preselect"
+                                                            v-on:mapaddress="mapAddressValue"/>
+                            <input-text v-if="postCodeFieldRequired" name="postCode" single=true label="ZIP/Postal Code" maxlength="255" v-bind:value="addressDetail.postCode" v-on:filled="onPostCodeFilled" v-bind:countryName="addressDetail.country.label" />
+                            <input-text v-if="translatedStreetNameRequired" name="translatedStreetName" label="{!$ObjectType.AddressDetail__c.fields.Translated_Street_Name__c.Label}" maxlength="255" v-bind:value="addressDetail.translatedStreetName" v-on:filled="onTranslatedStreetNameFilled" />
+                            <input-text name="addressLine" label="Address Line" maxlength="255" v-bind:value="addressDetail.addressLine" v-on:filled="onAddressLineFilled" />
+                        </div>
+                    </div>
+            </div>`
+        });
+    </script>
+</apex:component>

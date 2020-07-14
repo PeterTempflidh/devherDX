@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>AT_Letterhead</letterhead>
+    <name>(R) Unterlagen NK</name>
+    <style>freeForm</style>
+    <subject>{!If(ISPICKVAL(Case.Origin,&apos;Email&apos;),&apos;Re: &apos;+Case.Subject,&apos;Ihre Anfrage bei Mjam&apos;)}</subject>
+    <textOnly>Liebes mjam Partnerrestaurant,
+
+versuchen Sie es bitte mit einem anderem E-Mail Programm, falls diese E-Mail nicht korrekt dargestellt wird.
+
+Beste Grüße
+
+mjam Kundenservice</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

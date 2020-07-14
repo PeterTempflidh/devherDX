@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>DH_AU_Letterhead</letterhead>
+    <name>DH AU Confirmation – Restaurant Funded Voucher</name>
+    <style>freeForm</style>
+    <subject>Delivery Hero - First Time Customer Discount Listing Confirmation</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+Great news! As requested, we have created and enabled a new discount campaign for {!Account.Restaurant_Name__c}. We hope this will entice more new customers to order from your restaurant soon.
+Here is the confirmation and a few things to know.
+
+New First-time Customer Discount Campaign:
+% Off For First Time Customers:
+Campaign Voucher Code:
+Campaign Expiry Date: N/A
+
+A few important things to know:
+1) Our system will only start recording customers to this campaign from now onwards. Therefore, you might have a few existing customers who have ordered from you before that use this discount. However, once their details have been recorded to this campaign, they won&apos;t be able to use the discount again. This should happen only rarely.
+2) The discount will apply for the full order amount - including any deals or delivery fees.
+3) It is only valid for online payment orders, and not for cash.
+4) Customer is required to enter Campaign voucher code at checkout to redeem discount.
+5) This campaign is to be funded by {!Account.Restaurant_Name__c}.
+6) Voucher amount will be subtracted after the customer has reached the minimum order value.
+
+Example Scenario:
+
+Minimum order of restaurant is $25.00
+Customer orders for exactly $25.00
+Customer redeems 10% first time customer discount using voucher code
+Final order amount of $22.50 will be transmitted to the restaurant
+
+Do let us know if you have any further questions. Thanks {!Contact.FirstName}!
+
+Kind Regards,
+{!User.Name}
+{!User.Phone}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

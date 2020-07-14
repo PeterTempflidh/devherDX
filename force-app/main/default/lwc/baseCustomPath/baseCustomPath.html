@@ -1,0 +1,51 @@
+<!-- Base Custom Path -->
+<template>
+    <article class="slds-card">
+        <div class="slds-card__body slds-card__body_inner">
+            <div class="slds-path">
+                <div class="slds-grid slds-path__track">
+                    <div class="slds-grid slds-path__scroller-container">
+                        <div class="slds-path__scroller" role="application">
+                            <div class="slds-path__scroller_inner">
+
+                                <!-- Main Path Body-->
+                                <ul class="slds-path__nav" role="listbox" aria-orientation="horizontal">
+                                    <template for:each={pathStages} for:item='stage'>
+                                        <li class={stage.classScheme} role="presentation" key={stage.index}>
+                                            <a aria-selected={stage.status} class="slds-path__link" href="javascript:void(0);"
+                                               role="option" tabindex="-1">
+                                            <span class="slds-path__stage">
+                                            <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                            <use xlink:href="/apexpages/slds/latest/assets/icons/utility-sprite/svg/symbols.svg#check"></use>
+                                            </svg>
+                                            <span class="slds-assistive-text">{stage.statusLabel}</span>
+                                            </span>
+                                                <span class="slds-path__title">{stage.name}</span>
+                                            </a>
+                                        </li>
+                                    </template>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mark as Complete Button-->
+                    <!-- TODO: Build the behaviour of the button.-->
+                    <template if:true={getHasStatusCompleteButton}>
+                        <div class="slds-grid slds-path__action">
+                            <span class="slds-path__stage-name">Stage: Unqualified</span>
+                            <button class="slds-button slds-button_brand" onclick={markAsComplete}>
+                                <svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+                                    <use xlink:href="/apexpages/slds/latest/assets/icons/utility-sprite/svg/symbols.svg#check"></use>
+                                </svg>
+                                Mark Status as Complete!
+                            </button>
+                        </div>
+                    </template>
+
+                </div>
+            </div>
+        </div>
+    </article>
+</template>

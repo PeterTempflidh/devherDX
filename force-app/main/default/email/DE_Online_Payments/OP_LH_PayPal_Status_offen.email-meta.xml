@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Feedback für Endkunden für PayPal Status: offen</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DE_Lieferheld</letterhead>
+    <name>LH - PayPal Status: offen</name>
+    <style>formalLetter</style>
+    <subject>Ihre Anfrage vom {!abc__c.CreatedDate}</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

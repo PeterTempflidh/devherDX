@@ -1,0 +1,12 @@
+Dear Team
+
+A new Quality Check Case has been created for:
+
+Case # : {!Case.CaseNumber}
+
+Name of Restaurant: {!Account.Restaurant_Name__c}
+City & Country: {!Account.BillingCity}, {!Account.BillingCountry}
+Sales Rep: {!Account.OwnerFullName}
+
+Thanks
+Salesforce Team

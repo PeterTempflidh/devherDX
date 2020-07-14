@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Soll dazu dienen, um Kunden zu antworten, die wissen wollen wie wir Daten verarbeiten und wie wir diese speichern.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DE_Delivery_Hero_Germany</letterhead>
+    <name>Informationen zur Verarbeitung der Daten</name>
+    <style>freeForm</style>
+    <subject>Ihre Anfrage zur Verarbeitung und Erhebung von Daten</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

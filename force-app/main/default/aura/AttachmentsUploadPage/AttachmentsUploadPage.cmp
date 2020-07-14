@@ -1,0 +1,120 @@
+<aura:component controller="Attachments_AuraController" implements="flexipage:availableForAllPageTypes,lightning:isUrlAddressable">
+
+    <aura:attribute name="object" type="String" default="{!v.pageReference.state.c__sObjectType}"/>
+    <aura:attribute name="recordId" type="String" default="{!v.pageReference.state.c__recordId}"/>
+    <aura:attribute name="files" type="List"/>
+    <aura:attribute name="attTypes" type="List"/>
+    <aura:attribute name="attTypesValues" type="List" />
+    <aura:attribute name="isOpen" type="boolean" default="false"/>
+    <aura:attribute name="listTypes" type="List"/> 
+    <aura:attribute name="mapOfTypes" type="List" /> 
+    <aura:attribute name="openAtt" type="Boolean" default="{!v.pageReference.state.c__openAtt}"/>
+    <aura:attribute name="inputdate" type="Date" default=""/>
+    <aura:attribute name="tabId" type="String"/>
+    <aura:attribute name="halalHeader" type="Boolean"/>
+
+    <aura:registerEvent name="EventCloseAttachmentsUpload" type="c:EventCloseAttachmentsUpload"/>
+    <aura:registerEvent name="EventUpdateAttachmentsComp" type="c:EventUpdateAttachmentsComp"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:method name="openModal" action="{!c.openModal}"/> 
+    
+    <lightning:navigation aura:id="navigate"/>
+    <lightning:workspaceAPI aura:id="workspace"/>
+
+        <aura:if isTrue="{!v.isOpen}">
+        <div class="slds-is-relative" style="z-index: 200">
+        <lightning:spinner aura:id="spinner" alternativeText="{!$Label.c.CD_GEN_VAL6}" variant="brand" size="medium" class="slds-hide"/>
+        <lightning:card>
+            <header class="slds-m-bottom--large">
+                <h2 class="slds-text-heading_medium slds-align_absolute-center">Upload {!v.object} Attachment</h2>
+            </header>
+            <div class="slds-align_absolute-center">
+
+                <lightning:fileUpload
+                name="fileUploader"
+                multiple="true"
+                recordId="{!v.recordId}"
+                onuploadfinished="{!c.handleFilesChange}" />
+            </div>
+            <div>               
+                <aura:if isTrue="{!v.mapOfTypes.length > 0}">
+                    <div aura:id="filesTable" class="slds-m-top_x-large">
+                        <lightning:layout horizontalAlign="center">
+                                <lightning:layoutItem size="3" padding="around-small">    
+                                        <div class="slds-text-align_center slds-text-heading_label"><b>{!$Label.c.Title}</b></div>
+                                    </lightning:layoutItem>
+                                    <lightning:layoutItem size="5" padding="around-small">
+                                <div class="slds-text-align_center slds-text-heading_label"><b><span style="color: red">* </span><span>{!$Label.c.Attachment_Type}</span></b></div>
+                                </lightning:layoutItem>
+                                <lightning:layoutItem size="3" padding="around-small">
+                                    <aura:if isTrue="{!v.halalHeader}">
+                                        <div class="slds-text-align_center slds-text-heading_label"><b><span style="color: red">* </span><span>{!$Label.c.Halal_Certificate_Expiry}</span></b></div>
+                                    </aura:if>
+                                        </lightning:layoutItem>
+                                        <lightning:layoutItem size="1" padding="around-small">
+                                                <div></div>
+                                                </lightning:layoutItem>
+                        </lightning:layout>
+
+
+                            <aura:iteration items="{!v.mapOfTypes}" var="file" indexVar="index">
+                                <lightning:layout verticalAlign="center">
+                                <lightning:layoutItem size="3" padding="around-small">    
+                                    <div class="slds-m-left_xx-large">{!file.name}</div>
+                                </lightning:layoutItem>
+
+                                <lightning:layoutItem size="5" padding="around-small">
+                                <div>
+                                            <lightning:dualListbox aura:id="dualListbox"
+                                                            name="{!index}"
+                                                            sourceLabel="Available Types"
+                                                            selectedLabel="Selected Types"
+                                                            options="{!v.attTypes}"
+                                                            value=""
+                                                            onchange="{!c.attTypeChange}"
+                                                            disableReordering="true"
+                                                            size="3"
+                                                            />
+                                </div>
+                                </lightning:layoutItem>
+
+                                <lightning:layoutItem size="3" padding="around-small">
+                                <div>
+                                            <aura:if isTrue="{!file.halalBolean}">
+                                                <lightning:input placeholder="Choose the date" autocomplete="false" type="date"  name="{!index}" onchange="{!c.halalDateChange}"/>
+                                            </aura:if>
+                                </div>
+                                </lightning:layoutItem>
+
+                                <lightning:layoutItem size="1" padding="around-small">
+                                <div class="slds-m-right_xx-large" style="text-align: right;">
+                                            <lightning:buttonIcon iconName="utility:delete" variant="container" name="{!index}" onclick="{!c.removeFile}" alternativeText="Remove the file" size="large" />
+                                </div>
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                            </aura:iteration>
+                        
+                    </div>
+                </aura:if>
+            </div>
+            <div class="slds-m-vertical_large slds-align_absolute-center">
+            
+                    <lightning:button variant="neutral" 
+                                    label="Cancel"
+                                    title="Cancel"
+                                    onclick="{!c.closeFileUpload}"
+                                    />
+            
+                    <aura:if isTrue="{!v.files.length > 0}">
+                        <lightning:button variant="brand" 
+                                    label="Save"
+                                    title="Save"
+                                    onclick="{!c.uploadFiles}"/>
+                    </aura:if>
+            </div>
+    
+    </lightning:card>
+    </div>
+    <div aura:id="backdrop" style="z-index: 100" class="slds-backdrop slds-backdrop_open slds-hide"></div>
+    </aura:if>
+</aura:component>

@@ -1,0 +1,108 @@
+<apex:component controller="CtrCreateQuote" access="global">
+<apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+
+<div style="width: 100%;"><img src="{!URLFOR($Resource.SE_MEnuFlyer_Header)}" style="width:100%"/></div>
+<div style="font-size:24px; font-weight:bolder">Beställningsformulär - Egen design</div>
+ <table id="SEMenuFlyerInfo" style="width:100%">
+ <tr style="width:100%">
+    <td style="width:75%">Restaurang:&nbsp;&nbsp;{!accountWrapper.restaurantName}<br/>
+    Org. nr: &nbsp;&nbsp;{!accountWrapper.companyId}<br/>
+    E-postadress:&nbsp;&nbsp;{!if(accountWrapper.owner2Name=null,accountWrapper.ownerEmail,accountWrapper.owner2Email)}
+    </td>
+    <td>
+    OnlinePizza Norden AB<br/>
+    Strandbergsgatan 61 3tr<br/>
+    112 51 Stockholm<br/>
+    Tel: 08-55 11 72 11<br/>
+    meny@onlinepizza.se
+    </td>
+ </tr>
+ </table>
+ 
+ <div style="width:100%;height:25px; background-color:#D51308; color:#FFFFFF; border-radius:10px">
+ 
+ <div style="width:40%; display:inline-block; margin-left: 5px;vertical-align: middle;" >Tryckpriser (exkl. moms)  </div>
+ <div style="width:40%; display:inline-block;vertical-align: middle;">Vikning (välj en)</div>
+ </div >
+ <div style="width: 100%;"><img src="{!URLFOR($Resource.SE_MenuFlyer)}" style="width:100%"/></div>
+ <br/>
+ <div style="font-weight:bold">Övriga kostnader:</div>
+  <div style="color:#D51308;" >En (1) korrektur/ändring ingår i priset. 500:- per extra korrektur.</div>
+ <div style="width:100%;height:25px; background-color:#D51308; color:#FFFFFF;border-radius:10px"><span style="vertical-align: middle; margin-left:5px;">Design</span></div>
+    <table style="width:100%">
+    <tr style="width:100%;background-color:#EDECEC">
+        <td style="width:45%; background-color:#EDECEC">Samma som medsänt exempel</td>
+        <td style="width:30%;background-color:#EDECEC"><img src="/img/checkbox_unchecked.gif"/> ja &nbsp;&nbsp;<img src="/img/checkbox_unchecked.gif"/> Nej</td>
+        <td style="background-color:#EDECEC"></td>
+        </tr>
+    <tr>
+        <td>Önskelmål av färg</td>
+        <td><img src="/img/checkbox_unchecked.gif"/> ja &nbsp;&nbsp;<img src="/img/checkbox_unchecked.gif"/> Nej</td>
+        <td>Färg: ___________</td>
+    </tr>
+    <tr>
+        <td style="background-color:#EDECEC">Grafi ker får fria händer</td>
+        <td style="background-color:#EDECEC"><img src="/img/checkbox_unchecked.gif"/> ja &nbsp;&nbsp;<img src="/img/checkbox_unchecked.gif"/> Nej</td>
+        <td style="background-color:#EDECEC"></td>
+    </tr>
+    <tr>
+        <td>Luncherbjudande</td>
+        <td><img src="/img/checkbox_unchecked.gif"/> ja &nbsp;&nbsp;<img src="/img/checkbox_unchecked.gif"/> Nej</td>
+        
+    </tr>
+    </table>
+ <div style="background-color:#EDECEC; width:100%">Övrigt____________________________________________________________________________________________________________________________________________________________
+ ____________________________________________________________________________________________________________________________________________________________
+<br/></div>
+  <div style="width:100%;height:25px; background-color:#D51308; color:#FFFFFF;border-radius:10px"><span style="vertical-align: middle; margin-left:5px">Villkor</span></div>
+ <table style="width:100%">
+ <tr style="width:100%">
+ <td style="width:50%; font-size:11px">
+ I priset ingår alla omkostnader i förbildelse med produktionen,
+med undantag för korrekturkostnader som faktureras efter er
+korrekturrunda.<br/><br/>
+<span style="font-weight:bold">Korrektur/provexemplar:</span><br/>
+Korrektur skickas till Er maximalt 14 dagar efter mottagandet
+av materialet. Totalt ingår en (1) st korrektur i priset vid fl er
+debiteras 500:-/korrektur.<br/>
+Om korrektur inte besvaras inom 7 dagar kommer Ni debiteras
+50% av beställningens totala summa.<br/><br/>
+<span style="font-weight:bold">Avbruten beställning:</span><br/>
+Om beställningen avbryts innan menyerna gått till tryck kommer
+Ni debiteras 50% av beställningens totala summa.
+ </td>
+ <td style="width:50%; font-size:11px">
+ Vid avbruten beställning efter att menyerna gått till tryck debiteras
+fullt pris.<br/><br/>
+<span style="font-weight:bold">Leveranstid:</span><br/>
+Maximalt 14 dagar efter kundens godkännande av korrekturen.
+Onlinepizza Norden AB kan INTE hållas anvariga för eventuella
+fel som upptäcks efter det att kunden godkänt korrekturen.<br/><br/>
+<span style="font-weight:bold">Övrigt:</span><br/>
+Onlinepizza.se och/eller Mat24.se logga ska fi nnas med på menyn.<br/>
+<span style="color:#D51308" >Rätter och prislista hämtas från Er sida på OnlinePizza.se, Ni
+ansvarar för att se till att dessa är korrekta .Vi kontaktar Er för att
+bekräfta att priserna stämmer innan produktionen startar.</span>
+ 
+ </td>
+ </tr>
+ </table>
+ <br/>
+ <table style="width:100%">
+ <tr style="width:100%">
+    <td style="width:80%">Ägarens underskrift:________________________________</td>
+    <td style="width:20%">Datum:_______________________</td>
+ </tr>
+ <tr>
+    <td style="width:65%;">Namnförtydligande:<span style="text-decoration: underline;">&nbsp;&nbsp;{!if(accountWrapper.owner2Name=null,accountWrapper.ownerName,accountWrapper.owner2Name)}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span></td>
+    
+ </tr>
+ <tr>
+    <td style="width:65%;">Säljare:<span style="text-decoration: underline;">&nbsp;&nbsp;{!$User.FirstName} {!$User.LastName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+ </tr>
+ </table>
+
+</apex:component>

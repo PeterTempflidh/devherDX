@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>UK_Comment_related_List</fullName>
+        <field>Comments__c</field>
+        <formula>IF(LEN(Description)&gt;100,LEFT(Description,100)&amp;&quot; [...] &quot;,Description)</formula>
+        <name>UK - Comment related List</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <outboundMessages>
+        <fullName>James_Trigger</fullName>
+        <apiVersion>28.0</apiVersion>
+        <endpointUrl>https://trigger.natterbox.com/salesforce/120/Cti</endpointUrl>
+        <fields>Description</fields>
+        <fields>Id</fields>
+        <fields>OwnerId</fields>
+        <fields>UUID__c</fields>
+        <fields>WhatId</fields>
+        <fields>WhoId</fields>
+        <includeSessionId>true</includeSessionId>
+        <integrationUser>chetan@deliveryhero.com</integrationUser>
+        <name>CTI NB Trigger</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+    <rules>
+        <fullName>CTI NB Data Merge</fullName>
+        <actions>
+            <name>James_Trigger</name>
+            <type>OutboundMessage</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Task.UUID__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>UK%2C TLB Comments in related list</fullName>
+        <actions>
+            <name>UK_Comment_related_List</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>RecordType.DeveloperName = &quot;UK_Task&quot;  ||   RecordType.DeveloperName = &quot;Talabat_Task&quot; || RecordType.DeveloperName = &quot;DE_Task&quot; || RecordType.DeveloperName = &quot;Default_Record_Type&quot;</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

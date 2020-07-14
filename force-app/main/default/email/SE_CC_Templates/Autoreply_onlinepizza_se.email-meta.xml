@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>onlinepizza_se_New_Logo_Letterhead</letterhead>
+    <name>SE - Autoreply onlinepizza</name>
+    <style>freeForm</style>
+    <subject>Ditt mail har mottagits av OnlinePizza.se</subject>
+    <textOnly>Tack för ditt mail!
+
+
+Detta är ett automatiserat svar från oss på OnlinePizza.se.
+
+
+Ditt mail är mycket viktigt för oss och vi ser fram emot att ge dig den hjälp du behöver för att få en bra kundupplevelse.
+
+
+Vi har agenter på plats från 09-21 på vardagar och 13-21 på helger som kommer besvara ditt mail så snart som möjligt.
+
+
+Har du frågor kring en beställning du precis lagt har du även möjligheten att kontakta restaurangen på det telefonnummer som finns angivet i bekräftelsemailet du fått från oss när du la ordern. Ligger det inte i inkorgen kan du prova att kika i skräppost.
+
+
+Vi hörs snart,
+
+
+Med vänlig hälsning,
+
+Kundtjänst
+
+OnlinePizza.se</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

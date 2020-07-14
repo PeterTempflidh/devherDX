@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>FP CS LA Auto-response - SCC-96</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP CS LA Auto Response Email Template</name>
+    <style>freeForm</style>
+    <subject>Thank you - your request {!Case.CaseNumber} has been received!</subject>
+    <textOnly>Thank you for reaching out and we apologise for any inconvenience caused.
+
+We will review your case and will get back to you within 24 hours.
+
+ຂໍຂອບໃຈທ່ານ ສຳລັບການຕິດຕໍ່ ແລະ ເຮົາຂໍອະໄພກັບຄວາມບໍ່ສະດວກໃນຄັ້ງນີ້.
+
+ພວກເຮົາຂໍກວດດເບີ່ງກໍລະນີ້ຂອງທ່ານກ່ອນ ເປັນແນວໃດນັ້ນພວກເຮົາຈະຕິດຕໍ່ກັບພາຍໃນ 24 ຊົ່ວໂມງ.
+
+-foodpanda team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

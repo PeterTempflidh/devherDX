@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>onlinepizza_se_New_Logo_Letterhead</letterhead>
+    <name>SE - Onlinepizza empty</name>
+    <style>freeForm</style>
+    <subject>{!Case.Subject}</subject>
+    <textOnly>Vänliga hälsningar,
+
+
+{!User.FirstName}
+Customer Care Agent
+www.onlinepizza.se
+
+
+
+
+{!Case.Description}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

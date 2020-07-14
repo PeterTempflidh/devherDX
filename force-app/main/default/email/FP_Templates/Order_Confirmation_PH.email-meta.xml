@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Template for SSC-1305</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Order_Confirmation_PH</name>
+    <style>none</style>
+    <subject>Quote</subject>
+    <textOnly>Foodpanda
+
+Rocket Food Limited
+
+21/F, Guangdong Investment Tower,
+
+148 Connaught Road Central,
+
+Sheung Wan
+
+Business Registration Number: 2123765
+
+
+
+
+Foodpanda Order Confirmation
+
+
+
+
+
+
+
+[Opportunity Owner Name]
+
+[Opportunity Owner email address]
+
+[Created date]
+
+
+
+
+
+Vendor Information
+
+Vendor contact details
+
+Vendor Invoice details
+
+Account Name [Legal name], [Account name]
+Registered Office Address [Restaurant Address]
+
+Business Registration Number [Company Number]
+
+
+
+Representative Name [Salutation] [First Name] [Last name]
+
+Phone [Phone]
+
+Mobile [Mobile]
+
+Email Address [Email]
+
+Name [Salutation] [First Name] [Last name]
+
+Phone [Phone]
+
+Mobile [Mobile]
+
+Email Address [Email]
+
+
+Billing Address [Billing Address]
+
+
+Bank Account Owner [Bank Account Owner]
+Bank Name [Bank Name]
+Bank Account Number [Bank Account Number]
+
+Invoice Frequency [Invoice Frequency]
+
+
+
+
+
+Dear [First Name],
+
+
+
+As per our conversation, please find the details we agreed upon below:
+
+
+
+Value Added Services
+
+Area (If Premium Placement ONLY - Other products do not show this column)
+
+Start Date
+
+End Date
+
+Price
+
+Discount
+
+Total
+
+
+
+
+
+
+
+
+
+
+
+Best regards,
+
+[Opportunity Owner]
+
+[Email Address]</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

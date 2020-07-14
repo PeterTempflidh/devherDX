@@ -1,0 +1,606 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no"/>
+    <!-- <title>Food Recommendations</title> -->
+    <style type="text/css">
+            /* Based on The MailChimp Reset INLINE: Yes. */
+    /* Client-specific Styles */
+
+    #outlook a {
+        padding: 0;
+    }
+    /* Force Outlook to provide a "view in browser" menu link. */
+
+    body {
+        width: 100% !important;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    /* Prevent Webkit and Windows Mobile platforms from changing default font sizes.*/
+
+    .ExternalClass {
+        width: 100%;
+    }
+    /* Force Hotmail to display emails at full width */
+
+    .ExternalClass,
+    .ExternalClass p,
+    .ExternalClass span,
+    .ExternalClass font,
+    .ExternalClass td,
+    .ExternalClass div {
+        line-height: 100%;
+    }
+    /* fix apple blue text (martm) */
+
+    .appleLinks a {
+        color: #000000;
+    }
+
+    .appleLinksWhite a {
+        color: #FFFFFF;
+    }
+    /* Forces Hotmail to display normal line spacing.  More on that: http://www.emailonacid.com/forum/viewthread/43/ */
+
+    #backgroundTable {
+        margin: 0;
+        padding: 0;
+        width: 100% !important;
+        line-height: 100% !important;
+    }
+    /* End reset */
+    /* Some sensible defaults for images
+        Bring inline: Yes. */
+
+    img {
+        outline: none;
+        text-decoration: none;
+        -ms-interpolation-mode: bicubic;
+    }
+
+    a img {
+        border: none;
+    }
+
+    .image_fix {
+        display: block;
+    }
+    /* Yahoo paragraph fix
+        Bring inline: Yes. */
+
+    p {
+        margin: 1em 0;
+    }
+    /* Hotmail header color reset
+        Bring inline: Yes. */
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: black !important;
+    }
+
+    h1 a,
+    h2 a,
+    h3 a,
+    h4 a,
+    h5 a,
+    h6 a {
+        color: blue !important;
+    }
+
+    h1 a:active,
+    h2 a:active,
+    h3 a:active,
+    h4 a:active,
+    h5 a:active,
+    h6 a:active {
+        color: red !important;
+        /* Preferably not the same color as the normal header link color.  There is limited support for psuedo classes in email clients, this was added just for good measure. */
+    }
+
+    h1 a:visited,
+    h2 a:visited,
+    h3 a:visited,
+    h4 a:visited,
+    h5 a:visited,
+    h6 a:visited {
+        color: purple !important;
+        /* Preferably not the same color as the normal header link color. There is limited support for psuedo classes in email clients, this was added just for good measure. */
+    }
+    /* Outlook 07, 10 Padding issue fix
+        Bring inline: No.*/
+
+    table td {
+        border-collapse: collapse;
+    }
+    /* Remove spacing around Outlook 07, 10 tables
+        Bring inline: Yes */
+
+    table {
+        border-collapse: collapse;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+    }
+    /* Styling your links has become much simpler with the new Yahoo.  In fact, it falls in line with the main credo of styling in email and make sure to bring your styles inline.  Your link colors will be uniform across clients when brought inline.
+        Bring inline: Yes. */
+
+    a {
+        color: #666666;
+    }
+    /***************************************************
+        ****************************************************
+        MOBILE TARGETING
+        ****************************************************
+        ***************************************************/
+
+    @media only screen and (max-width: 600px) {
+        /* Part one of controlling phone number linking for mobile. */
+        a[href^="x-apple-data-detectors:"] {
+            color: inherit;
+            text-decoration: inherit;
+        }
+
+        a[href^="tel"],
+        a[href^="sms"] {
+            text-decoration: none;
+            color: #a9a8a8;
+            /* or whatever your want */
+            pointer-events: none;
+            cursor: default;
+        }
+        .mobile_link a[href^="tel"],
+        .mobile_link a[href^="sms"] {
+            text-decoration: default;
+            color: #000000 !important;
+            pointer-events: auto;
+            cursor: default;
+        }
+        *[class=stretch] {
+            width: 100% !important;
+            height: auto !important;
+        }
+
+        img.circleimg {
+            width: 56px !important;
+            height: 56px;
+        }
+
+        .width * {
+            width: 100%;
+        }
+
+        .special * {
+            display: inline-table;
+        }
+
+        *[class=stretch2] {
+            width: 150px !important;
+            height: auto !important;
+        }
+
+
+
+        .appimages,
+        .appimages * {
+            align-content: center;
+        }
+
+        .appfont,
+        .appfont * {
+            text-align: center;
+        }
+
+
+
+
+        *[class=imageresize1] {
+            width: 248px !important;
+            height: auto !important;
+        }
+
+        *[class=stack] {
+            display: block !important;
+            width: 100% !important;
+        }
+        *[class=upper] {
+            display: table-header-group !important;
+            margin: auto !important;
+        }
+        *[class=lower] {
+            display: table-footer-group !important;
+            margin: auto !important;
+        }
+
+        *[class=hide] {
+            display: none !important;
+        }
+
+        *[class~=hide_on_mobile] {
+            display: none !important;
+        }
+        *[class~=show_on_mobile] {
+            display: block !important;
+            width: auto !important;
+            max-height: inherit !important;
+            overflow: visible !important;
+            float: none !important;
+        }
+        *[class~=mobile_expand] {
+            width: 100% !important;
+            padding: 30px !important;
+        }
+        *[class~=mobile_padding_reset] {
+            padding-left: 0px !important;
+            padding-right: 0px !important;
+            text-align: center !important;
+        }
+        *[class~=mobile_padding_reset_top] {
+            padding-left: 0px !important;
+            padding-right: 0px !important;
+            padding-top: 0px !important;
+            text-align: center !important;
+        }
+        *[class~=mobile_padding_reset_bottom] {
+            padding-left: 0px !important;
+            padding-right: 0px !important;
+            padding-bottom: 0px !important;
+            text-align: center !important;
+        }
+        *[class~=mobile_padding_reset_top_icon] {
+            padding-left: 0px !important;
+            padding-right: 10px !important;
+            padding-top: 0px !important;
+            text-align: center !important;
+        }
+        *[class~=headline_size] {
+            font-size: 22px !important;
+        }
+        *[class~=register] {
+            padding-bottom: 20px !important;
+            padding-left: 30px !important;
+            text-align: left;
+        }
+        *[class~=salutation] {
+            padding: 10px 10px 10px 15px !important;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            color: #f2f2f2;
+        }
+        *[class~=text-center] {
+            text-align: center !important;
+        }
+
+        *[class=textcenter] {
+            text-align: center !important;
+        }
+
+
+        *[class=half] {
+            display: block !important;
+            width: 60% !important;
+            height: 60% !important;
+        }
+
+        *[class=width10] {
+            width: 10px !important;
+        }
+
+        *[class=resizeapptxt] {
+            width: 130px !important;
+            height: 20px !important;
+        }
+
+        *[class=resizeapple] {
+            width: 21px !important;
+            height: 30px !important;
+        }
+
+        *[class=resizeandroid] {
+            width: 24px !important;
+            height: 30px !important;
+        }
+
+        *[class=resizescreen] {
+            width: 278px !important;
+            height: 174px !important;
+        }
+
+        *[class=width600] {
+            width: 600px !important;
+        }
+
+        *[class=width40] {
+            width: 40px !important;
+        }
+
+        *[class=width20] {
+            width: 20px !important;
+        }
+
+        *[class=resizeheight] {
+
+            height: 20px !important;
+        }
+
+        *[class=Fontsize16] {
+            font-size: 16px !important;
+            line-height: 20px !important;
+        }
+
+        *[class=Fontsize11] {
+            font-size: 11px !important;
+            line-height: 20px !important;
+        }
+        *[class=bgnone] {
+            background-color: #FFFFFF !important;
+        }
+        *[class=bgimgnone] {
+            background-image: none !important;
+            background-color: #FFFFFF !important;
+        }
+
+
+        /* More Specific Targeting */
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+            /* You guessed it, ipad (tablets, smaller screens, etc) */
+            /* repeating for the ipad */
+            a[href^="tel"],
+            a[href^="sms"] {
+                text-decoration: none;
+                color: #000000;
+                /* or whatever your want */
+                pointer-events: none;
+                cursor: default;
+            }
+            .mobile_link a[href^="tel"],
+            .mobile_link a[href^="sms"] {
+                text-decoration: default;
+                color: #000000 !important;
+                pointer-events: auto;
+                cursor: default;
+            }
+
+            @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+                /* Put your iPhone 4g styles in here */
+            }
+
+            /* Android targeting */
+            @media only screen and (-webkit-device-pixel-ratio:.75) {
+                /* Put CSS for low density (ldpi) Android layouts in here */
+            }
+            @media only screen and (-webkit-device-pixel-ratio:1) {
+                /* Put CSS for medium density (mdpi) Android layouts in here */
+            }
+            @media only screen and (-webkit-device-pixel-ratio:1.5) {
+                /* Put CSS for high density (hdpi) Android layouts in here */
+            }
+            /* end Android targeting */
+    </style>
+    <!-- Targeting Windows Mobile -->
+    <!--[if IEMobile 7]>
+        <style type="text/css">
+        
+        </style>
+        <![endif]-->
+    <!-- ***********************************************
+        ****************************************************
+        END MOBILE TARGETING
+        ****************************************************
+        ************************************************ -->
+    <!--[if gte mso 9]>
+        <style>
+        /* Target Outlook 2007 and 2010 */
+        </style>
+        <![endif]-->
+</head>
+
+<body style="min-width:100%;padding:0; margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:100%;">
+    <!-- PRE-HEADER TEXT -->
+    <span style="display: none !important; visibility: hidden; opacity: 0; color: transparent; height: 0; width: 0; text-align:center; font-family:Arial, Helvetica, sans-serif; mso-hide:all;" class="hidden">Delivery Hero Germany</span>
+    <!-- END_PRE-HEADER TEXT -->
+    <!-- MasterTable -->
+    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#e0e0e0" style="background-color: #e0e0e0;" id="backgroundTable">
+        <tbody>
+            <tr>
+                <td align="center" valign="top" bgcolor="#e0e0e0" style="background-color: #e0e0e0;">
+                    <!-- Templat3table -->
+                    <table width="640" border="0" align="center" cellpadding="0" cellspacing="0" class="stretch">
+                        <tbody>
+                            <tr>
+                                <td bgcolor="#FFFFFF">
+                                    <!-- LOGO -->
+                                    <table width="640" border="0" align="center" cellpadding="0" cellspacing="0" class="stretch" style="background-color: #fff; height: 150px;">
+                                        <tbody>
+                                            <tr>
+                                                <td width="50" bgcolor="#FFFFFF"></td>
+                                                <td width="540" align="center" style="vertical-align: middle; vertical-align: middle;">
+                                                    <a href="http://deliveryhero.com" style="display: inline-block;">
+<img style="display: inline-block; padding: 10px;" border="0" src="https://appboy-images.com/appboy/communication/assets/image_assets/images/59a7caed5c5a681e627772b6/original.?1504168685" width="163" height="109" alt="Delivery Hero Germany"/>
+</a>
+                                                </td>
+                                                <td width="50" bgcolor="#FFFFFF"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- /LOGO -->
+                                    <!-- space 15px -->
+                                    <table width="640" border="0" align="center" cellpadding="0" cellspacing="0" class="stretch" style="background-color: #e0e0e0;">
+                                        <tbody>
+                                            <tr>
+                                                <td><img style="display:block;" border="0" src="http://e.onlinepizza.se/images/6657/I-6657-lqdvuwqmgl-2492_spacer_30.12.15.png" width="15" height="15" alt="" /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- end space 15px -->
+                                    <!-- HERO-->
+                                    <table width="640" border="0" align="center" cellpadding="0" cellspacing="0" class="stretch" style="background-color: #fff;">
+                                        <tbody>
+                                            <tr>
+                                                <td align="center" style="vertical-align: middle;">
+                                                    <img style="display: block; width: 100%;" border="0" src="https://appboy-images.com/appboy/communication/assets/image_assets/images/59a7cb3156ec312ac6b45294/original.?1504168753" alt="Delivery Hero Germany" />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- /HERO -->
+                                    <!-- space 30px -->
+                                    <table width="640" border="0" style="background-color: #FFFFFF" align="center" cellpadding="0" cellspacing="0" class="stretch">
+                                        <tbody>
+                                            <tr>
+                                                <td><img style="display:block;" border="0" src="http://e.onlinepizza.se/images/6657/I-6657-lqdvuwqmgl-2492_spacer_30.12.15.png" width="20" height="30" alt="" /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- end space 30px -->
+                                    <!-- COPY 20pixborder-->
+                                    <table width="640" border="0" style="background-color: #FFFFFF" align="center" cellpadding="0" cellspacing="0" class="stretch">
+                                        <tbody>
+                                            <tr>
+                                                <td width="20"></td>
+                                                <td>
+                                                    <table width="500" border="0" align="center" cellspacing="0" cellpadding="0" class="stretch">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td align="left">
+                                                                    <font style="FONT-SIZE: 15px; line-height: 27px; letter-spacing: 0.3px; display:inline-block; font-family: Helvetica, Verdana, sans-serif; color: #525352;">
+                                                                       <div style = "text-align: justify;">
+                                                                        Sehr geehrte/r {Salutation} {LastName},
+                                                                        <br/>
+                                                                        <br/>
+																		vielen Dank für Zusendung der Unterlagen.
+																		<br/>
+																		<br/>
+																		Anbei sende ich Ihnen Ihre Auftragsbestätigung für die Zusammenarbeit mit der Delivery Hero
+																		Germany GmbH zu, d.h. der Bestell-Plattformen Lieferheld und pizza.de.
+																		<br/>
+																		<br/>
+																		Bitte füllen Sie das angehängte SEPA-Lastschriftmandat aus und schicken dieses unterschrieben per Post an uns zurück, damit wir Ihnen Ihre Einnahmen aus Online Payment und Gutscheinen schnellstmöglich überweisen können.
+																		<br/>
+																		<br/>
+																		Die darauffolgenden Schritte:
+																		<ul>
+																			<li>Das Willkommenspaket inkl. Hardware (Tablet und Drucker) wird an Sie versendet - soweit Sie die Hardware nicht vom Vorbesitzern übernommen haben</li>
+																			<li>Ihr Restaurant wird registriert und Ihre Shops werden eingerichtet</li>
+																			<li>Sie erhalten den Aktivierungscode per SMS, loggen sich in Ihrem Restaurantportal ein, bestätigen Ihre Allergene und Zusatzstoffe</li>
+																			<li>Sie erhalten einen Anruf von unserem Onboarding-Team und führen eine Testbestellung durch</li>
+																			<li>Ihr Restaurant geht online und Sie können voll durchstarten</li>
+																		</ul>
+																		Das sollte insgesamt ca. 12 Tage dauern.
+																		
+																		<br/>
+																		<br/>
+																		Bitte beachten Sie, dass Ihr Restaurant erst online gehen kann, wenn unser Onboarding-Team Sie telefonisch erreicht. Sie werden von einer Hotline Nummer angerufen.
+																		<br/>
+																		<br/>
+																		Ich freue mich auf eine erfolgreiche Zusammenarbeit.
+																		<br/>
+																		<br/>
+																		Heldenhafte Grüße
+																		<br/>
+																		{SalesName}
+																		<br/>
+																		</div>
+																		<br/>
+																		<br/>
+																		Lieferheld &amp; pizza.de
+																		<br/>
+																		Oranienburger Str. 70, 10117 Berlin
+																		<br/>
+																		Web: <a href="lieferheld.de">lieferheld.de</a>
+																		<br/>
+																		Web: <a href="pizza.de">pizza.de</a>
+																		<br/>
+																		Telefon: {!$User.Phone}
+																		<br/>
+																		Email: {!$User.Email} 
+                                                                    </font>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                                <td width="20"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- space 30px -->
+                                    <table width="640" bgcolor="#fff" border="0" align="center" cellpadding="0" cellspacing="0" class="stretch">
+                                        <tbody>
+                                            <tr>
+                                                <td><img style="display:block;" border="0" src="http://e.onlinepizza.se/images/6657/I-6657-ijehzvmvry-2275_spacer.png" width="20" height="30" alt="" /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- end space 30px -->
+                                    <!-- end COPY 20pixborder -->
+                                    <!-- space 10px-->
+                                    <table width="640" border="0" align="center" cellpadding="0" cellspacing="0" class="stretch" style="background-color: #e0e0e0;">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <img style="display:block;" border="0" src="http://e.onlinepizza.se/images/6657/I-6657-lqdvuwqmgl-2492_spacer_30.12.15.png" width="20" height="10" alt="" />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- end space 10px -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- end TemplateTable -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- end MasterTable -->
+    <!-- Last Links -->
+    <table width="100%" border="0" align="center" cellspacing="0" cellpadding="0" class="stretch" style="background-color: #e0e0e0;">
+        <tbody>
+            <tr>
+                <td valign="top">
+                    <table width="640" border="0" align="center" cellspacing="0" cellpadding="0" class="stretch">
+                        <tbody>
+                            <tr>
+                                <td width="20"></td>
+                                <td align="center">
+                                    <table width="600" border="0" cellspacing="0" cellpadding="0" class="stretch">
+                                        <tbody>
+                                            <tr>
+                                                <td height="20"></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center">
+                                                    <img src="https://appboy-images.com/appboy/communication/assets/image_assets/images/59a7cb575c5a6820ae777247/original.?1504168791" style="display: inline-block; padding: 5px;"/>
+                                                    <img src="https://appboy-images.com/appboy/communication/assets/image_assets/images/59a7cef856ec312b9cb45411/original.?1504169720" style="display: inline-block; padding: 5px;"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="20"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td width="20"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- Last Links -->
+</body>
+
+</html>
+</apex:page>

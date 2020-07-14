@@ -1,0 +1,12 @@
+<apex:page Controller="ctrDH_AU_QuoteVFTemplate" showheader="false" sidebar="false" standardStylesheets="false"  renderAs="{!IF(NOT(ISBLANK($CurrentPage.parameters.pdf)), 'advanced_pdf', 'html')}">
+    <c:Pedidosya_NB_Quote acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!isNonARLogisticFee}"/>
+    <c:Pedidosya_AR_Logistics_Quote acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!isARLogisticFee}"/>
+    <c:Pedidosya_AR_Marketplace_Quote acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!isARMarketPlace}"/>
+    <c:Pedidosya_NonAR_Marketplace_Quote acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!isNonARMarketPlace}"/>
+    <c:Pedidosya_UpgradeUpsell_AR_Quote acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!isARUpgradeUpsell}"/>
+    <c:Pedidosya_UpgradeUpsell_Quote acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!isNonARUpgradeUpsell}"/>
+    
+    <c:Pedidosya_DR_Logistics_Quote acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!isDRLogisticFee}"/>
+    <c:Pedidosya_DR_Marketplace_Quote acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!isDRMarketPlace}"/>
+    <c:Pedidosya_UpgradeUpsell_DR_Quote acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!isDRUpgradeUpsell}"/>
+</apex:page>

@@ -1,0 +1,81 @@
+<!--
+    Included in Case layouts refresh, if it's open, the Opportunity sub tab
+    when current Case record is closed.
+
+    This page fixes SP-1315
+
+    @author m.zeuli
+-->
+<apex:page showHeader="false" sidebar="false" standardController="Case" applyBodyTag="false" applyHtmlTag="false" standardStylesheets="false" docType="html-5.0">
+    <html>
+    <head>
+        <script src="/support/console/38.0/integration.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+        function refreshSubTab(tabId) {
+            console.log("refreshSubTabTab: tabId is:", tabId);
+            sforce.console.refreshSubtabById(tabId, false, function (res) {
+                console.log("refreshSubTabTab: tab is: ", tabId, "result is: ", res);
+            });
+        }
+
+        /**
+         * Given a tab id retrieves the page info
+         * @param  {String} tabId Tab id
+         */
+        function getPageInfo(tabId) {
+            console.log("getPageInfo: tab is:", tabId);
+
+            sforce.console.getPageInfo(tabId, function (res) {
+                console.log("getPageInfo: tabId is:", tabId, "pageInfo are: ", res);
+
+                try {
+                    var objId = JSON.parse(res.pageInfo).objectId.substr(0, 15);
+                    var oppId = "{!Case.Opportunity__c}".substr(0, 15);
+                    var accId = "{!Case.AccountId}".substr(0, 15);
+
+                    if (oppId == objId || accId == objId) {
+                        refreshSubTab(tabId);
+                    }
+
+                } catch(e) {
+                    console.log("getPageInfo: error is: ", e);
+                }
+            });
+        }
+
+        /**
+         * Retrieves sub tabs id given a primary tab id
+         * @param  {Object} res property id holds the primary tab id
+         */
+        function getSubTabs(res) {
+            console.log("getSubTabs: res is: ", res);
+
+            sforce.console.getSubtabIds(res.id, function (res) {
+                
+                console.log("getSubTabs: subtabs are: ", res);
+
+                if (!res.success)  {
+                    return;
+                }
+
+                res.ids.map(function (id) {
+                    getPageInfo(id);
+                });
+            });
+        }
+
+        (function() {
+            if (!sforce.console.isInConsole() || "{!Case.Status}" !== "Closed") {
+                return;
+            }
+            console.log("getting primary tab id");
+            // gets primary tab id
+            sforce.console.getFocusedPrimaryTabId(getSubTabs);
+
+        }());
+        </script>
+    </body>
+    </html>
+</apex:page>

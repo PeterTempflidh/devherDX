@@ -1,0 +1,103 @@
+<apex:page showHeader="false" standardStylesheets="true" standardController="Account" extensions="CtrAccountAdditionalInformation">
+<c:SF1_CSS_bootstrap />
+    <apex:includeScript value="{!URLFOR($Resource.jq211)}"/>
+	<head>
+		<style>
+			body, html, .bPageBlock,.apexp .bPageBlock.apexDefaultPageBlock .pbBody,
+			*{margin: 0px; padding: 0px;}
+			.aParent div {
+				float: left;
+				clear: none; 
+			}
+			.accountTab .secondaryPalette, .individualPalette .accountBlock .secondaryPalette {border: 0px; background: transparent;}
+			.bPageBlock{background: transparent !important;
+			}
+			.cc {
+				width: 100px;
+				height: 50px;
+				background:	yellow;
+			}
+			.cb {
+				width: 100px;
+				height: 50px;
+				background:	green;
+			}
+			.progress, .progress-bar{color: black; line-height: 27px; font-size: 12px; font-weight: bold;}
+			
+			.progress {
+				border-radius: 10px;
+				border: 0px;
+				background: none;
+				-webkit-box-shadow: none;
+				box-shadow: none;
+				padding: 0px;
+				margin: 5px; 
+				background: url({!URLFOR($Resource.progressBarBackground)});  
+			
+			}
+			.progress-bar-danger,
+			.progress-bar-warning{
+				background-color: #ee0122;
+				opacity: 0.6;
+				border-left:1px solid #7ba224;
+				color: #fff !important;
+			}
+			.progress-bar-not {
+				background-color: #e0e0e0;
+				opacity: 0.6;
+				border-left:1px solid #c6c6c6;
+			}
+			.progress-bar-check {
+				background-color: #8ab529;
+				opacity: 0.8;
+				border-left:1px solid #7ba224;
+				color: #fff !important;
+			}
+			.progress-bar-inprogress {
+				background-color: #8ab529;
+				opacity: 0.6;
+				border-left:1px solid #7ba224;
+				color: #fff !important;
+			}
+		</style>
+
+	</head>
+	<body>
+	    <apex:form id="myFormAdditionAccount">
+	    	<apex:pageBlock mode="maindetail ">
+	    		<div class="progress " id="progress" style="height:27px;">
+	    			<div id="Research" class="progress-bar progress-bar-not" style="width: 16%"><span class="sr-only"></span>In Research</div>
+	    			<div id="Acquisition" class="progress-bar progress-bar-not" style="width: 14%"><span class="sr-only"></span>In Acquisition</div>
+	    			<div id="Taking" class="progress-bar progress-bar-not" style="width: 14%"><span class="sr-only"></span>Taking Restaurant Online</div>
+	    			<div id="Online" class="progress-bar progress-bar-not" style="width: 14%"><span class="sr-only"></span>Restaurant Online</div>
+	    			<div id="Retention" class="progress-bar progress-bar-not" style="width: 14%"><span class="sr-only"></span>In Retention</div>
+	    			<div id="Offline" class="progress-bar progress-bar-not" style="width: 14%"><span class="sr-only"></span>Restaurant Offline</div>
+	    			<div id="Winback" class="progress-bar progress-bar-not" style="width: 14%"><span class="sr-only"></span>In Winback</div>
+  				</div>
+			</apex:pageBlock> 	
+			
+			<script>
+	    		j$ = jQuery.noConflict();
+	    		var steps = ["New","In Progress", "On Hold", "Quality Check", "Finished"];
+	    		var status = '{!JSENCODE(extraInfo.Restaurant_Status__c)}';
+	    		j$( document ).ready(function() {
+	                if(status == 'In Research'){
+	                    document.getElementById("Research").className = "progress-bar progress-bar-danger";
+	                }else if(status == 'In Acquisition'){
+	                    document.getElementById("Acquisition").className = "progress-bar progress-bar-inprogress";
+	                }else if(status == 'Taking Restaurant Online'){
+	                    document.getElementById("Taking").className = "progress-bar progress-bar-warning";
+	                }else if(status == 'Restaurant Online'){
+	                    document.getElementById("Online").className = "progress-bar progress-bar-check";
+	                }else if(status == 'In Retention'){
+	                    document.getElementById("Retention").className = "progress-bar progress-bar-success";
+	                }else if(status == 'Restaurant  Offline'){
+	                    document.getElementById("Offline").className = "progress-bar progress-bar-success";
+	                }else if(status == 'In Winback'){
+	                    document.getElementById("Winback").className = "progress-bar progress-bar-success";
+	                }
+        		});
+	    	</script>
+	    </apex:form>
+	</body>
+</apex:page>

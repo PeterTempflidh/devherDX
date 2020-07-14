@@ -1,0 +1,413 @@
+<apex:component controller="CtrCreateQuote" access="global">
+    <apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+    
+    <div style="font-size:16px; font-family:serif">
+        <img style="align:center;width: 100%;" src="{!URLFOR($Resource.SE_Quote_Banner)}" />
+        
+        
+            <h1>Formulär</h1>
+            <div style="width:100%; font-weight:bold; font-size:20px">
+                <div style="display:inline-block; width:40%">Restaurangens namn: {!accountWrapper.restaurantName} </div>
+                <div style="display:inline-block; width:40%">Stad: {!accountWrapper.addressCity}</div>
+            </div>
+            <br/>
+            <div style="font-weight:bold; font-size:22px">A. Öppettider</div>
+            <div style="display:inline-block; width:50%">
+                <span style="font-weight:bold">A1.</span> Öppettider - restaurang
+            </div>
+            <div style="display:inline-block"> 
+                <span style="font-weight:bold">A2.</span> Öppettider - utkörning
+            </div>
+            <br/>
+            <div style="width:100%">
+            <br/>
+            <table class="SEPizzaFormular" border="1" style="display:inline-block;border-collapse:collapse;border:2px solid #CF222A">
+                <tr style="width:40%; background-color:#F5F0E4">
+                    <td style="width:20%">Måndag</td>
+                    <td style="width:20%; text-align: center;">-</td>
+                </tr>
+                <tr>
+                    <td>Tisdag</td>
+                    <td style="text-align: center;">-</td>
+                </tr>
+                <tr style="background-color:#F5F0E4">
+                    <td>Onsdag</td>
+                    <td style="text-align: center;">-</td>
+                </tr>
+                <tr>
+                    <td>Torsdag</td>
+                    <td style="text-align: center;">-</td>
+                </tr>
+                <tr style="background-color:#F5F0E4">
+                    <td>Fredag</td>
+                    <td style="text-align: center;">-</td>
+                </tr>
+                <tr>
+                    <td>Lördag</td>
+                    <td style="text-align: center;">-</td>
+                </tr>
+                <tr style="background-color:#F5F0E4">
+                    <td>Söndag</td>
+                    <td style="text-align: center;">-</td>
+                </tr>
+            </table>
+            
+            <div style="width:10%; display:inline-block"></div>
+            <table  class="SEPizzaFormular" border="1"  style="display:inline-block;border-collapse:collapse;border:2px solid #CF222A">
+                <tr style="width:40%;background-color:#F5F0E4">
+                    <td style="width:20%">Måndag</td>
+                    <td  style="width:20%">-</td>
+                </tr>
+                <tr>
+                    <td>Tisdag</td>
+                    <td style="text-align: center;">-</td>
+                </tr>
+                <tr style="background-color:#F5F0E4">
+                    <td >Onsdag</td>
+                    <td style="text-align: center;">-</td>
+                </tr>
+                <tr>
+                    <td>Torsdag</td>
+                    <td style="text-align: center;">-</td>
+                </tr>
+                <tr style="background-color:#F5F0E4">
+                    <td>Fredag</td>
+                    <td style="text-align: center;">-</td>
+                </tr>
+                <tr>
+                    <td  >Lördag</td>
+                    <td style="text-align: center;">-</td>
+                </tr>
+                <tr style="width:100%;background-color:#F5F0E4">
+                    <td >Söndag</td>
+                    <td style="text-align: center;">-</td>
+                </tr>
+            </table>
+            </div>
+            <br/><br/>
+            <div>
+                <div style="font-weight:bold; font-size:22px">B. Erbjudanden &amp; garantier</div>
+                <div>
+                    <span style="font-weight:bold">B1.</span> Inom hur lång tid kan ni garantera leverans till era kunder ?
+                </div>
+                
+                <div>
+                    &nbsp;&nbsp;<img src="/img/checkbox_unchecked.gif"/>&nbsp;Vi kan inte garantera en tid<br/>
+                    &nbsp;&nbsp;<img src="/img/checkbox_unchecked.gif"/>&nbsp;Vi kan garantera en tid. Ange inom vilken tid (t.ex 35 min):________
+                </div>
+                <br/>
+                 &nbsp;&nbsp;<span style="font-style:italic">Om du anger en garanterad leveranstid kommer detta att synas i restauranglistan.<br/>
+                   &nbsp;&nbsp;      Det gör att din restaurang blir mer attraktiv för kunderna.
+                </span><br/><br/>
+                <span style="font-weight:bold">B2.</span> Erbjuder ni studentrabatt till era kunder?<br/>
+                 &nbsp;&nbsp;<img src="/img/checkbox_unchecked.gif"/>Nej<br/>
+                 &nbsp;&nbsp;<img src="/img/checkbox_unchecked.gif"/>Ja: <img src="/img/checkbox_unchecked.gif"/>Gratis dryck <img src="/img/checkbox_unchecked.gif"/>Gratis sås <img src="/img/checkbox_unchecked.gif"/>%-rabatt, hur många %? ____________<br/><br/>
+        
+                <span style="font-weight:bold">B3.</span> Vill ni ansluta er till OnlinePizzas stammisrabattsprogram, där era kunder kan samla bonus
+                på varje köp de gör från er? Exempel:<span style="font-style:italic"> Om ni anger 10%, sparas 10% av beställningsvärdet
+                i bonus vilken kunden sedan kan välja att ta ut i rabatt när de beställer från er nästa gång.</span>
+                <span><br/>
+                   &nbsp;&nbsp; <img src="/img/checkbox_unchecked.gif"/>Nej<br/>
+                    &nbsp;&nbsp; <img src="/img/checkbox_unchecked.gif"/>Ja, hur många %? ________
+                </span>
+            </div>
+            <br/>
+            <div>
+                <span style="font-weight:bold">B4.</span> Lägg in ett erbjudande för större beställningar och glada kunder!<br/>
+                 &nbsp;&nbsp;Köp _____ st maträtter, betala endast för _____ st<br/>
+                 &nbsp;&nbsp;Köp _____ st maträtter, få en stor dricka på köpet<br/>
+                 &nbsp;&nbsp;Köp _____ st maträtter, få _____ kr rabatt<br/>
+                 &nbsp;&nbsp;Köp _____ st maträtter, betala endast _____ kr<br/>
+            </div>
+            <br/>
+            <span style="font-style:italic;page-break-after:always;">Ni kan endast lägga in ett erbjudande, de går ej att kombinera.</span>
+            <br/><br/><br/><br/>
+            <!--2-->
+            <img style="align:center;width: 100%;" src="{!URLFOR($Resource.SE_Quote_Banner)}" />
+            <br/><br/>
+            <div style="font-weight:bold;font-size:22px">C. Drycker</div>
+            <div>
+                <span style="font-weight:bold">C1.</span> Vilka drycker har ni alltid i lager?
+            </div>
+            &nbsp;&nbsp;Pris dryck 33cl _______ avhämtning ________ utkörning<br/>
+            &nbsp;&nbsp;Pris dryck 50cl _______ avhämtning ________ utkörning<br/>
+            &nbsp;&nbsp;Pris dryck 1,5l _______ avhämtning ________ utkörning<br/>
+            &nbsp;&nbsp;Pris dryck 2,0l _______ avhämtning ________ utkörning<br/>
+            <br/><br/>
+            <div style="width:100%">
+                <table  class="SEPizzaFormular" border="1" style="width:40%;  display:inline-block;border-collapse:collapse;border:2px solid #CF222A">
+                    <tr style="width:40%;font-weight:bold">
+                        <td style="width:8%">Namn</td>
+                        <td style="width:8%">33cl</td>
+                        <td style="width:8%">50cl</td>
+                        <td style="width:8%">1,5L</td>
+                        <td style="width:8%">2L</td>
+                    </tr>
+                    <tr style="background-color:#F5F0E4">
+                        <td>Cola</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Cola light</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        
+                    </tr>
+                    <tr style="background-color:#F5F0E4">
+                        <td>Coca-cola</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+        
+                    <tr>
+                        <td>Coca-cola light</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr style="background-color:#F5F0E4">
+                        <td>Coca-cola zero</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Fanta</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr style="background-color:#F5F0E4">
+                        <td>Sprite</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Sprite zero</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr style="background-color:#F5F0E4">
+                        <td>Pepsi</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Pepsi max</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr style="background-color:#F5F0E4">
+                        <td>Fruktsoda</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <div style="width:10%; display:inline-block"></div>
+                <table  class="SEPizzaFormular" border="1" style="width:40%; display:inline-block;border-collapse:collapse;border:2px solid #CF222A">
+                    <tr style="width:40%;font-weight:bold">
+                        <td style="width:8%">Namn</td>
+                        <td style="width:8%">33cl</td>
+                        <td style="width:8%">50cl</td>
+                        <td style="width:8%">1,5L</td>
+                        <td style="width:8%">2L</td>
+                    </tr>
+                    <tr style="background-color:#F5F0E4">
+                        <td>Bonaqua</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Bonaqua citron</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr style="background-color:#F5F0E4">
+                        <td>Loka naturelle</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+        
+                    <tr>
+                        <td>Loka citron</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr style="background-color:#F5F0E4">
+                        <td>Ramlösa</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Ramlösa citrus</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr style="background-color:#F5F0E4">
+                        <td>Sockerdricka</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Trocadero</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr style="background-color:#F5F0E4">
+                        <td>Zingo</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Lättöl</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr style="background-color:#F5F0E4">
+                        <td>Hallonsoda</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <br/>
+            <div style="width:100%">
+                <div style="display:inline-block; width:40%">
+                    <span style="font-weight:bold">C2</span>. Ingår dryck vid <span style="text-decoration:underline">avhämtning</span>?<br/>
+                    &nbsp;&nbsp;<img src="/img/checkbox_unchecked.gif"/>Ja <img src="/img/checkbox_unchecked.gif"/>Nej<br/>
+                </div>
+                <div style="display:inline-block; width:40%">
+                    <span style="font-weight:bold">C3.</span> Ingår dryck vid <span style="text-decoration:underline">utkörning</span>?<br/>
+                    &nbsp;&nbsp;<img src="/img/checkbox_unchecked.gif"/>Ja <img src="/img/checkbox_unchecked.gif"/>Nej 
+                </div>
+            </div>
+            <br/><br/>
+            <div>
+                <span style="font-weight:bold;font-size:22px">D. Utkörningsvillkor</span><br/>
+                    &nbsp;&nbsp;Villkor för utkörning <span style="text-decoration:underline">inom</span> ert normala utkörningsområde.
+            </div>
+            <br/>
+            <div>
+                <span style="font-weight:bold">D1.</span> Hur mycket måste kunden beställa för minst för att ni ska köra ut? (T.ex. 100 kr).<br/><br/>
+                &nbsp;&nbsp;____________________________________________________________________________________________________
+        
+            </div><br/>
+            <div><span style="font-weight:bold">D2.</span> Vad har ni för utkörningsavgift? (Kryssa endast för ett alternativ).</div><br/>
+            &nbsp;&nbsp;<img src="/img/checkbox_unchecked.gif"/>Det är alltid en fast utkörningsavgift. Utkörningsavgiften är __________ kr.<br/>
+            &nbsp;&nbsp;<img src="/img/checkbox_unchecked.gif"/>Utkörningen är gratis vid beställningar över __________ kr. Om beställningen är mindre än denna summa är avgiften __________ kr.<br/>
+            &nbsp;&nbsp;<img src="/img/checkbox_unchecked.gif"/><span style="page-break-after:always;">Utkörningen är alltid gratis.<br/></span>
+            <br/><br/><br/><br/>
+            
+            <!--3-->
+            <img style="align:center;width: 100%;" src="{!URLFOR($Resource.SE_Quote_Banner)}" />
+            <br/><br/>
+            <div><span style="font-weight:bold">D3.</span> Finns det några rätter på menyn som ni inte kan köra ut? (Exempelvis glass som ni tror kan
+                smälta eller någon rätt ni saknar förpackning till att köra ut.)
+            </div>
+            <img src="/img/checkbox_unchecked.gif"/>Nej<br/>
+            <img src="/img/checkbox_unchecked.gif"/>Ja. Vilka?<br/><br/>
+            &nbsp;&nbsp;____________________________________________________________________________________________________
+            <br/><br/>
+            <div><span style="font-weight:bold">D4.</span> Villkor för utkörning utanför ert normala utkörningsområde.</div>
+            <br/>
+            <table  class="SEPizzaFormular" border="1" style="width:80%;border-collapse:collapse;border:2px solid #CF222A">
+                <tr style="font-weight:bold">
+                    <td>Område </td>
+                    <td>Utkörningsvillkor</td>
+                </tr>
+                <tr style="background-color:#F5F0E4">
+                    <td>&nbsp;</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td></td>
+                </tr>
+                <tr style="background-color:#F5F0E4">
+                    <td>&nbsp;</td>
+                    <td></td>
+                </tr>
+            </table>
+            <br/><br/>
+            
+            <div style="font-weight:bold;font-size:22px">E. Övrigt</div>
+            <div><span style="font-weight:bold">E1.</span> Vi behöver er logotyp för att kunna lägga upp den på hemsidan. Har ni en logotype?<br/>
+                &nbsp;&nbsp;<img src="/img/checkbox_unchecked.gif"/>Ja (skicka in er logotype till oss) <img src="/img/checkbox_unchecked.gif"/>Nej (OnlinePizza.se skapar en logotype åt er)
+            </div>
+            <br/>
+            <div><span style="font-weight:bold">E2.</span> Vilka storlekar vill ni ha på pikétröjorna i ert startpaket?<br/>
+                &nbsp;&nbsp;<img src="/img/checkbox_unchecked.gif"/>Små (S-M) <img src="/img/checkbox_unchecked.gif"/>Stora (L-XL) <img src="/img/checkbox_unchecked.gif"/>Blandat
+            </div>
+            <br/>
+            <div><span style="font-weight:bold">E3.</span> Har ni en sida för er restaurang på facebook och instagram? Ange kontonamn eller adress här:</div>
+            &nbsp;&nbsp;Facebook:____________________________________________________________________________________________________<br/>
+            &nbsp;&nbsp;Instagram:____________________________________________________________________________________________________<br/>
+            <br/>
+            <br/>
+            <div style="font-style:italic;">Om ni inte har en facebooksida eller ett instagramkonto för er restaurang, skapa gärna en.
+                Det gör att vi lättare kan marknadsföra er, då vi kan dela vidare bilder på er mat och liknande
+                till våra sidor. OnlinePizza finns tillgängliga på facebook, instagram, twitter och google+.<br/><span style="font-weight:bold">Följ oss gärna!</span>
+            </div>
+        
+      
+  </div>   
+    
+
+
+</apex:component>

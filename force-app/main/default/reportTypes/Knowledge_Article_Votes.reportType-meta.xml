@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <baseObject>KnowledgeVoteEventHistory</baseObject>
+    <category>other</category>
+    <deployed>true</deployed>
+    <description>Info about votes on Articles</description>
+    <label>Knowledge Article Votes</label>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Related</field>
+            <table>KnowledgeVoteEventHistory</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Duration</field>
+            <table>KnowledgeVoteEventHistory</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>AsOfDate</field>
+            <table>KnowledgeVoteEventHistory</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Channel</field>
+            <table>KnowledgeVoteEventHistory</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>DeltaCount</field>
+            <table>KnowledgeVoteEventHistory</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CumulativeCount</field>
+            <table>KnowledgeVoteEventHistory</table>
+        </columns>
+        <masterLabel>Knowledge Article Votes</masterLabel>
+    </sections>
+</ReportType>

@@ -1,0 +1,241 @@
+<apex:page standardStylesheets="false" sidebar="false" showHeader="false" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<meta property="og:description" content="Welcome to hungryhouse" /></head>
+
+<body class="bodyPage" style="color: #000000; font-family: Arial, Helvetica, sans-serif; font-size: 12px; background: #f1f1f1; margin: 0px;" bgcolor="#f1f1f1"><div style="mso-hide:all;display:none;font-size:1px;color:transparent;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;"></div>
+
+
+
+<!--Contenido de la página-->
+
+<table border="0" cellspacing="0" cellpadding="0" align="center" class="generalContent" style="width:600px;min-width:600px;background-color:#f1f1f1; padding:10px;" bgcolor="#f1f1f1"><tr>
+
+<!--Cabecera-->
+
+<td class="header" bgcolor="#f1f1f1" style="position: relative; height: 70px; padding:0px;">
+
+<!--<div style="text-align: center;"><div style="color: rgb(131, 131, 131);">Cannot see this email properly? <a href="http://updates.hungryhouse.co.uk/rsps/m/XKz-c_ba5eTXxGbvKX4nSzCbOSfmF__Sx6xKQyZvGPI" style="color:#838383;text-decoration:underline;" align="center:">View in your browser</a></div><div style="color: rgb(131, 131, 131);"><a href="http://updates.hungryhouse.co.uk/rsps/m/XKz-c_ba5eTXxGbvKX4nSzCbOSfmF__Sx6xKQyZvGPI" style="color:#838383;text-decoration:underline;" align="center:"><br/></a></div></div>--><table width="100%" border="0" cellspacing="0" cellpadding="0" style="width:100%;"><tr></tr>
+
+
+
+<tr>
+
+
+
+<td class="header" bgcolor="#f1f1f1" style="position: relative; height: 70px; padding:0px;">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="width:100%;"><tr>
+
+<td class="Nav" width="222px">
+
+<!--Menú Izq.-->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="width:100%;"><tr>
+
+<td width="74px"><a href="http://updates.hungryhouse.co.uk/rsps/m/_Cdoqg9KhmTWB4E9vo9B5X8trxaT95x7jE2G14Uujyo" class="menu" style="width:100%; color: #3f3f3f; text-transform: uppercase; font-weight: bold; font-size: 9px; text-decoration: none; display: table; text-align:center;"><div style="background:#3f3f3f; width:23px; height:22px; margin:0 auto; margin-bottom:5px;"><img src="http://hungryhouse.co.uk/images/news/162/indian_food.png" style="display: block; clear: both; margin: 0 auto 5px;"/></div>Indian</a></td>
+
+<td width="74px"><a href="http://updates.hungryhouse.co.uk/rsps/m/_Cdoqg9KhmTWB4E9vo9B5TZhaLZtdGJWYBaaEeXx8QY" class="menu" style="width:100%; color: #3f3f3f; text-transform: uppercase; font-weight: bold; font-size: 9px; text-decoration: none; display: table; text-align:center;"><div style="background:#3f3f3f; width:22px; height:22px; margin:0 auto; margin-bottom:5px;"><img src="http://hungryhouse.co.uk/images/news/162/chinese_food.png" style="display: block; clear: both; margin: 0 auto 5px;"/></div>Chinese</a></td>
+
+<td width="74px"><a href="http://updates.hungryhouse.co.uk/rsps/m/_Cdoqg9KhmTWB4E9vo9B5afEcka9x9WhC6uFDoc7jZ8" class="menu" style="width:100%; color: #3f3f3f; text-transform: uppercase; font-weight: bold; font-size: 9px; text-decoration: none; display: table; text-align:center;"><div style="background:#3f3f3f; width:22px; height:22px; margin:0 auto; margin-bottom:5px;"><img src="http://hungryhouse.co.uk/images/news/162/pizza_food.png" style="display: block; clear: both; margin: 0 auto 5px;"/></div>Pizza</a></td>
+
+<td width="0px">&nbsp;&nbsp;</td>
+
+</tr></table>
+
+</td>
+
+<!--Logo-->
+
+<td align="center" class="logo" width="155px" style="position: relative;"><a href="http://updates.hungryhouse.co.uk/rsps/m/_Cdoqg9KhmTWB4E9vo9B5aN1Jg_OdpYOJmvBFkRXs8w" style="color: #fff; text-transform: uppercase; font-weight: bold; font-size: 9px; text-decoration: none; display: table; padding-bottom:5px;"><img src="http://hungryhouse.co.uk/images/news/162/logo_red.png" alt="hungryhouse" style="display: block; clear: both; margin: 0 auto; margin-top:5px;"/></a></td>
+
+<td class="Nav" width="222px">
+
+<!--Menú Dch.-->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="width:100%;"><tr>
+
+<td width="55px"><a href="http://updates.hungryhouse.co.uk/rsps/m/_Cdoqg9KhmTWB4E9vo9B5RC4ijotNnavjWcDuxR1zQ4" class="menu" style="width:100%; color: #3f3f3f; text-transform: uppercase; font-weight: bold; font-size: 9px; text-decoration: none; display: table; text-align:center; float:right;"><div style="background:#3f3f3f; width:20px; height:22px; margin:0 auto; margin-bottom:5px;"><img src="http://hungryhouse.co.uk/images/news/162/sushi_food.png" style="display: block; clear: both; margin: 0 auto 5px;"/></div>Sushi</a></td>
+
+<td width="55px"><a href="http://updates.hungryhouse.co.uk/rsps/m/_Cdoqg9KhmTWB4E9vo9B5f6LbxFik7uQTvRTD5u2e-c" class="menu" style="width:100%; color: #3f3f3f; text-transform: uppercase; font-weight: bold; font-size: 9px; text-decoration: none; display: table; text-align:center; float:right;"><div style="background:#3f3f3f; width:24px; height:22px; margin:0 auto; margin-bottom:5px;"><img src="http://hungryhouse.co.uk/images/news/162/thai_food.png" style="display: block; clear: both; margin: 0 auto 5px;"/></div>Thai</a></td>
+
+<td width="55px"><a href="http://updates.hungryhouse.co.uk/rsps/m/_Cdoqg9KhmTWB4E9vo9B5b3_LamgCoVTMDA_fcCjRUM" class="menu" style="width:100%; color: #3f3f3f; text-transform: uppercase; font-weight: bold; font-size: 9px; text-decoration: none; display: table; text-align:center; float:right;"><div style="background:#3f3f3f; width:24px; height:22px; margin:0 auto; margin-bottom:5px;"><img src="http://hungryhouse.co.uk/images/news/162/harab_food.png" style="display: block; clear: both; margin: 0 auto 5px;"/></div>Halal</a></td>
+
+<td width="55px"><a href="http://updates.hungryhouse.co.uk/rsps/m/_Cdoqg9KhmTWB4E9vo9B5XC_evOivMXxrZCCOIbj5Yo" class="menu" style="width:100%; color: #3f3f3f; text-transform: uppercase; font-weight: bold; font-size: 9px; text-decoration: none; display: table; text-align:center; float:right;"><div style="background:#3f3f3f; width:21px; height:22px; margin:0 auto; margin-bottom:5px;"><img src="http://hungryhouse.co.uk/images/news/162/all_food.png" style="display: block; clear: both; margin: 0 auto 5px;"/></div>All</a></td>
+
+</tr></table>
+
+</td>
+
+</tr></table>
+
+</td>
+
+<!--Cabecera-->
+
+</tr>
+
+<!--iMAGEN principal-->
+
+<tr>
+
+<td class="boxPrincipal">
+
+<img style="display:block;width:100%;max-width:100%;height:auto;" src="http://cdn.maxemail.emailcenteruk.com/c207/1751128ae07237d33039e7165d8a773e.jpeg"/>
+
+</td>
+
+</tr>
+
+<!--Box principal-->
+
+<tr>
+
+<td class="boxPrincipal">
+
+  <div id="Blade Sign" class="boxPrincipalText" style="width:100%; width:600px;min-width:600px;background:rgba(255, 255, 255, .65); height:auto; margin:0 auto; padding:25px;box-sizing:border-box; display:block; overflow:hidden;">
+    
+        <p style="text-align: justify; font-weight: bold;"></p>
+        
+        <p style=" text-align:justify;">Dear {Salutation} {LastName},</p>
+        
+        <p style=" text-align:justify;">Thank you for speaking with me today. Please find attached the contract for the hungryhouse blade sign for your storefront.</p>
+        
+        <p style=" text-align:justify;"><strong>In order to confirm the blade sign, please reply to this email saying YES.</strong></p>
+        
+        <p style=" text-align:justify;">If you have any questions, please don’t hesitate to get in touch.</p>
+        
+        <p style=" text-align:justify;">We look forward to our continued partnership!</p>
+        
+        <p style=" text-align:justify;">Kind Regards,</p>
+        
+        <p>{SalesName}<br/>
+              {SalesRole}<br/>
+              hungryhouse.com Ltd.<br/>
+              78 York Street, London. W1H 1DP<br/></p>
+ 
+         <p style=" text-align:justify;">P: 0800 612 33 33</p>   
+ 
+         <p style=" text-align:justify;">hungryhouse.co.uk</p> 
+        
+    
+    </div>
+
+</td>
+
+
+
+</tr>
+
+
+
+
+
+<!--Espaciadores verticales (CSS)-->
+
+<tr>
+
+<td>
+
+<img class="firstSpace" src="http://hungryhouse.co.uk/images/news/162/space.gif" width="100%" height="5" style="width:100%; height:5px; max-height:5px;"/>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<img class="firstSpace" src="http://hungryhouse.co.uk/images/news/162/space.gif" width="100%" height="5" style="width:100%; height:5px; max-height:5px;"/>
+
+</td>
+
+</tr>
+
+
+
+<tr>
+
+
+
+
+
+</tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0" class="socialAndPay" style="padding: 10px 5px;"><tr>
+
+<td>
+
+<div class="Pay" style="float: left; vertical-align: middle; padding-top: 8px;">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"><tr align="center">
+
+<td><a href="#"><img src="http://hungryhouse.co.uk/images/news/162/pay-option-1.gif" style="margin-right: 15px;"/></a></td>
+
+<td><a href="#"><img src="http://hungryhouse.co.uk/images/news/162/pay-option-2.gif" style="margin-right: 15px;"/></a></td>
+
+<td><a href="#"><img src="http://hungryhouse.co.uk/images/news/162/pay-option-3.gif" style="margin-right: 15px;"/></a></td>
+
+<td><a href="#"><img src="http://hungryhouse.co.uk/images/news/162/pay-option-4.gif" style="margin-right: 15px;"/></a></td>
+
+<td><a href="#"><img src="http://hungryhouse.co.uk/images/news/162/pay-option-5.gif" style="margin-right: 15px;"/></a></td>
+
+<td><a href="#"><img src="http://hungryhouse.co.uk/images/news/162/pay-option-6.gif" style="margin-right: 15px;"/></a></td>
+
+</tr></table>
+
+</div>
+
+<div class="socialNet" style="float: right; vertical-align: middle;">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"><tr align="center">
+
+<td><a href="http://updates.hungryhouse.co.uk/rsps/m/_Cdoqg9KhmTWB4E9vo9B5UWf8Zp9yi72KQucVoJ0R94"><img src="http://hungryhouse.co.uk/images/news/162/facebook.gif" style="border-radius: 50%; margin-left: 8px;"/></a></td>
+
+<td><a href="http://updates.hungryhouse.co.uk/rsps/m/_Cdoqg9KhmTWB4E9vo9B5WtqJx_qkWWIwTyfsrwpL5s"><img src="http://hungryhouse.co.uk/images/news/162/twitter.gif" style="border-radius: 50%; margin-left: 8px;"/></a></td>
+
+<td><a href="http://updates.hungryhouse.co.uk/rsps/m/_Cdoqg9KhmTWB4E9vo9B5bLy2c9DYPzYggjQkMR99Lc"><img src="http://hungryhouse.co.uk/images/news/162/instagram.gif" style="border-radius: 50%; margin-left: 8px;"/></a></td>
+
+</tr></table>
+
+</div>
+
+</td>
+
+</tr></table>
+
+
+
+</td></tr><tr>
+
+<!--Footer-->
+
+<td style="text-align: center; font-size: 10px; color: #fff; padding: 10px 20px;background-color:#f71921" align="center">
+
+<table><tr><td style="display: inline; margin: 0 10px; padding: 0; list-style: none;"><a data-cke-saved-href="http://updates.hungryhouse.co.uk/rsps/m/_Cdoqg9KhmTWB4E9vo9B5bSFqj7MBAjkijRAt_4dDI8" href="http://updates.hungryhouse.co.uk/rsps/m/_Cdoqg9KhmTWB4E9vo9B5bSFqj7MBAjkijRAt_4dDI8" style="color: #fff; text-decoration: none; text-transform: uppercase; font-weight: bold; font-size: 11px;">Contact/help</a></td>
+ <td>|</td>
+<td style="display: inline; margin: 0 10px; padding: 0; list-style: none;"><a data-cke-saved-href="http://updates.hungryhouse.co.uk/rsps/m/_Cdoqg9KhmTWB4E9vo9B5d5T07sQ4dgZYEAM1t_ZJRc" href="http://updates.hungryhouse.co.uk/rsps/m/_Cdoqg9KhmTWB4E9vo9B5d5T07sQ4dgZYEAM1t_ZJRc" style="color: #fff; text-decoration: none; text-transform: uppercase; font-weight: bold; font-size: 11px;">Blog</a></td>
+ <td>|</td>
+
+<td style="display: inline; margin: 0 10px; padding: 0; list-style: none;"><a data-cke-saved-href="http://updates.hungryhouse.co.uk/rsps/m/_Cdoqg9KhmTWB4E9vo9B5TbgpTRs1WjYJaimdR-7cG4" href="http://updates.hungryhouse.co.uk/rsps/m/_Cdoqg9KhmTWB4E9vo9B5TbgpTRs1WjYJaimdR-7cG4" style="color: #fff; text-decoration: none; text-transform: uppercase; font-weight: bold; font-size: 11px;">Recommend Restaurant</a></td>
+ <td>|</td>
+<td style="display: inline; margin: 0 10px; padding: 0; list-style: none;"><a data-cke-saved-href="http://updates.hungryhouse.co.uk/rsps/m/_Cdoqg9KhmTWB4E9vo9B5RFvPGLbX0vXDYOG-K_P9xQ" href="http://updates.hungryhouse.co.uk/rsps/m/_Cdoqg9KhmTWB4E9vo9B5RFvPGLbX0vXDYOG-K_P9xQ" style="color: #fff; text-decoration: none; text-transform: uppercase; font-weight: bold; font-size: 11px;">FAQ</a></td>
+ <td>|</td>
+<td style="display: inline; margin: 0 10px; padding: 0; list-style: none;"><a data-cke-saved-href="http://updates.hungryhouse.co.uk/rsps/m/_Cdoqg9KhmTWB4E9vo9B5TeXOVoGrvlrHyOjiI-zCHg" href="http://updates.hungryhouse.co.uk/rsps/m/_Cdoqg9KhmTWB4E9vo9B5TeXOVoGrvlrHyOjiI-zCHg" style="color: #fff; text-decoration: none; text-transform: uppercase; font-weight: bold; font-size: 11px;">About us</a></td></tr></table>
+
+<p>If you would like to contact hungryhouse, please visit our contact us page. You are also welcome to visit our FAQ page. No longer wish to receive these emails? Use this <a href="http://updates.hungryhouse.co.uk/rsps/m/ZdaQyww_z2M9ynJK17hq7cS1JcrTcSmdFknMz3CwaTI" target="_blank" style="color: #ffffff; text-decoration: underline">link</a> to unsubscribe</p>
+
+</td>
+
+
+</tr></table>
+
+
+
+<img src="https://mxm.mxmfb.com/rsps/m/vbiuHRtZzSnhbtSgTCSH46mY0KnIdNmUt7O0TuZ-gAQ/s.gif" height="1" width="1" /></body></html>
+
+</apex:page>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Clickdelivery</letterhead>
+    <name>Problema Empaque</name>
+    <style>formalLetter</style>
+    <subject>Problema Empaque</subject>
+    <textOnly>Usuario confirma:
+
+Hola (Nombre del usuario), lamentamos lo sucedido con tu orden,  nos comunicamos con el restaurante donde la persona encargada ya está al tanto de lo sucedido, ellos estarán tomando las medidas necesarias para que esto no se vuelva a presentar  y brindarte un mejor servicio en una próxima ocasión. Te queremos confirmar que (Solución del caso problema con el empaque) Gracias por elegirnos,  cualquier nueva inquietud o consulta que nos desees hacer estaremos muy atentos
+
+Se escala queja:
+
+Hola (Nombre del usuario), te queremos informar que ya nos comunicamos con el área encargada para escalar tu queja y nos indican que se comunicarán contigo (preferiblemente poner tiempo). De no ser así quedamos atentos a tu contacto. Que tengas un buen día</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

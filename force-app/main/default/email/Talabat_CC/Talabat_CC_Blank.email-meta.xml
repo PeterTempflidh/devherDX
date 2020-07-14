@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>Talabat_Letterhead</letterhead>
+    <name>Talabat CC Blank</name>
+    <style>freeForm</style>
+    <subject>{!If(ISPICKVAL(Case.Origin,&apos;Email&apos;),&apos;Re: &apos;+Case.Subject,&apos;Your Answer from Talabat Support&apos;)}</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

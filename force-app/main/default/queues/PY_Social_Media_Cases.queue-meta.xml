@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>PY Social Media Cases</name>
+    <queueMembers>
+        <publicGroups>
+            <publicGroup>PY_Social_Media_Cases</publicGroup>
+        </publicGroups>
+    </queueMembers>
+    <queueRoutingConfig>Global_CC_Medium_Priority_Cases</queueRoutingConfig>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

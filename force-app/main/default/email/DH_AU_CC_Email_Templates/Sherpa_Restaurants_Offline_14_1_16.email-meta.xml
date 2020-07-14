@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Delivery Hero</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DH_AU_Letterhead</letterhead>
+    <name>Sherpa Restaurants - Offline 14.1.16</name>
+    <style>freeForm</style>
+    <subject>Delivery Hero</subject>
+    <textOnly>14/01/16
+
+Dear Restaurant - {!Account.Name},
+
+Please be advised due to Sherpa driver availability and a shortage of drivers on the road your restaurant will be temporarily offline on Delivery Hero until Sherpa can get more drivers out on the road.
+
+We will keep you updated via email if you have any questions please give us a call on 1300 464 376
+
+Regards
+
+Yours Truly
+
+
+
+Delivery Hero Customer and Restaurant Care</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

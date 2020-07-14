@@ -1,0 +1,26 @@
+<aura:component implements="force:lightningQuickAction,force:hasRecordId,force:hasSObjectName,flexipage:availableForAllPageTypes"
+                controller="AccountControllerLightning"> 
+    
+    <ltng:require styles="{!$Resource.SLDS274 + '/assets/styles/lightning-design-system-ltng.css'}"/>
+    <aura:attribute name="btnLabel" type="String" default="New Call Case"/>
+    <aura:attribute name="btnDisabled" type="Boolean" default="false"/>
+    <lightning:workspaceAPI aura:id="workspace" />
+    <lightning:notificationsLibrary aura:id="notificationsLibrary"/>
+
+    <force:recordData aura:id="recordLoader" 
+                      mode="VIEW"
+                      recordId="{!v.recordId}"
+                      targetRecord="{!v.record}"
+                      targetFields="{!v.recordFields}"
+                      fields="Name, Status, Description"
+                      recordUpdated="{!c.handleRecordUpdated}"/>
+                      
+    <aura:attribute name="record" type="Object"/>
+
+    <button class="slds-button slds-button_text-destructive widebutton"
+            disabled="{!v.btnDisabled}"
+            onclick = "{!c.newCallCaseJs}">
+        {!v.btnLabel}
+    </button>
+    
+</aura:component>

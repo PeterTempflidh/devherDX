@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Wrong vendor code</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP HK - Supplies (Request Cancell - Wrong code)</name>
+    <style>freeForm</style>
+    <subject>foodpanda Partner Support Case Follow-up - Request Cancelled // Case number: #XXXXXXXXXX	Foodpanda個案跟進 - 申請取消（個案編號：#XXXXXXXXXX）</subject>
+    <textOnly>Dear Partner,
+
+Thank you for submitting the paper bag/ rolls order (Case Number: #XXXXXXXXXX). Your submission has been canceled due to the wrong vendor name/ code. Please fill-in your vendor name and code: XXXX when you resubmit a new request.
+
+Please feel free to let us know if you have further requests by submitting via the Partner Support Request Form. Thank you for your continued support on foodpanda.
+https://foodpandasg.formstack.com/forms/foodpanda_support_hk
+
+Warm regards,
+foodpanda Partner Support Team
+
+親愛的合作夥伴：
+
+感謝您早前提交有關的紙袋/ 紙卷申請。我們發現閣下提供的店舖名稱/編號錯誤，因此此申請（個案編號：#XXXXXXXXXX）已被取消。當你再次提交新申請時，請填寫正確的店鋪名稱及編號: XXXX。
+
+如有更多問題，歡迎透過夥伴支援申請表格提交你的申請。感謝您繼續支持foodpanda。
+https://foodpandasg.formstack.com/forms/foodpanda_support_hk
+
+foodpanda夥伴支援團隊</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

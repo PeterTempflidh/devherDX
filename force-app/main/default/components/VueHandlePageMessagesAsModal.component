@@ -1,0 +1,155 @@
+<!--
+    Display ApexPage messages as modal
+    This component assumes to be included in a page where Vue script and
+    LDS stylesheets are already loaded
+-->
+<apex:component >
+
+<apex:attribute name="instanceName" type="String" required="false" description="Vue instance name" default="vueModalPageMessagesHandler" />
+
+<!-- Vue Element -->
+<div class="slds" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:v-once="http://vue/fake" xmlns:v-html="http://vue/fake" xmlns:v-bind="http://vue/fake" xmlns:v-if="http://vue/fake" xmlns:v-on="http://vue/fake" xmlns:v-model="http://vue/fake"  id="{!instanceName}">
+
+    <!-- this is the modal to display -->
+    <div role="alertdialog" tabindex="-1" aria-labelledby="prompt-heading-id" aria-describedby="prompt-message-wrapper" class="slds-modal slds-modal--prompt" v-bind:class="{'slds-fade-in-open': open}">
+        <div class="slds-modal__container">
+            <div class="slds-modal__header slds-theme--alert-texture" v-bind:class="{'slds-theme--info': isInfo, 'slds-theme--success': isSuccess, 'slds-theme--warning': isWarning, 'slds-theme--error': isError}">
+                <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" v-on:click="close">
+                    <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
+                        <use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/utility-sprite/svg/symbols.svg#close')}"></use>
+                    </svg>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                <h2 class="slds-text-heading--medium" id="prompt-heading-id">{{type}}</h2>
+            </div>
+            <div class="slds-modal__content slds-p-around--medium">
+                <div>
+                    <p>{{message}}</p>
+                </div>
+            </div>
+            <div class="slds-modal__footer slds-theme--default">
+                <button class="slds-button slds-button--neutral" v-on:click="close">Ok</button>
+            </div>
+        </div>
+    </div>
+    <div class="slds-backdrop" v-bind:class="{'slds-backdrop--open': open}"></div>
+</div>
+
+<!-- this is the hidden div that will contain the error message -->
+<div id="{!instanceName}MessageContainer" style="display: none !important">
+    <apex:pageMessages />
+</div>
+
+<script type="text/javascript">
+
+    var {!instanceName} = new Vue({
+        el: "#{!instanceName}",
+        data: {
+            message: "",
+            type: "",
+            open: false
+        },
+        computed: {
+            isInfo: function() {
+                return !this.type;
+            },
+            isSuccess: function() {
+                return /success/i.test(this.type);
+            },
+            isWarning: function() {
+                return /warning/i.test(this.type);
+            },
+            isError: function() {
+                return /error/i.test(this.type);
+            }
+        },
+        methods: {
+            close: function() {
+                this.open = false;
+                this.message = "";
+                this.type = "";
+            },
+            setError: function(error) {
+              this.message = error.msg;
+              this.type = error.type;
+            },
+            isInError: function() {
+              return this.isError || this.isWarning;
+            }
+        },
+        watch: {
+            message: function(val) {
+                this.open = !!val;
+            }
+        }
+    });
+
+    (function() {
+
+        /**
+         * Extract ApexPage message from dom
+         * @return {String} Message string or an empty string
+         */
+        function extractMessage() {
+            var container = document.querySelector("#{!instanceName}MessageContainer .messageText");
+
+            if (!container) {
+                return "";
+            }
+
+            var msg = "";
+
+            msg = getTextContentFromElement(container);
+
+            // checks if was able to get an error message
+            if (msg) {
+                return msg;
+            }
+
+            // in case of more than one error message
+            msg = Array.prototype.slice.call(
+                document.querySelectorAll("#{!instanceName}MessageContainer .message tbody tr li")
+            ).reduce(function(acc, elem) {
+                // get only first message
+                if (!acc) {
+                    acc = getTextContentFromElement(elem);
+                }
+
+                return acc;
+            }, "");
+
+            return msg;
+        }
+
+        function getTextContentFromElement(elem) {
+            return Array.prototype.slice.call(
+                elem.childNodes
+            ).reduce(function(acc, child) {
+                if (child.nodeType === Node.TEXT_NODE) {
+                    acc = child.textContent;
+                }
+                return acc;
+            }, "");
+        }
+
+        /**
+         * Extract message type from dom. Type could be one of the following:
+         *     - empty, there's no message or is an info message
+         *     - Success, confirmation message
+         *     - Error, error message
+         *     - Warning, warning message
+         * @return {String} Message type or empty string.
+         */
+        function extractMessageType() {
+            var container = document.querySelector("#{!instanceName}MessageContainer .messageText :not(span)");
+            return container ? container.textContent.replace(/\W/g, "") : "";
+        }
+
+        {!instanceName}.setError({
+          msg: extractMessage(),
+          type: extractMessageType()
+        })
+
+    }());
+</script>
+</apex:component>

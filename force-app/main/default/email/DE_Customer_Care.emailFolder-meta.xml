@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>DE - CC - Blanko Templates</name>
+    <publicFolderAccess>ReadWrite</publicFolderAccess>
+    <sharedTo>
+        <role>DE_Customer_Care</role>
+        <roleAndSubordinates>DE_Customer_Care_Management</roleAndSubordinates>
+    </sharedTo>
+</EmailFolder>

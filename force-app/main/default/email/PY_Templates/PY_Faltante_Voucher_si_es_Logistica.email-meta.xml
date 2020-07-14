@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY - Faltante Voucher si es Logistica</name>
+    <style>freeForm</style>
+    <subject>Faltante Voucher si es Logistica</subject>
+    <textOnly>Estimada XXX, es un gusto saludarte.
+Estimado XXX, es un gusto saludarte.
+
+Te contactamos en respuesta a tu reclamo por el pedido que hiciste el día XX/XX en XXX. Antes que nada, te pedimos disculpas por las molestias de no haber recibido el pedido tal y como lo ordenaste.
+
+Lamentablemente no es posible volver a enviar el pedido, por lo que desde PedidosYa vamos a generar un cupón por el valor del producto faltante más un plus por las molestias ocasionadas, para que puedas utilizar en cualquiera de los locales adheridos.
+
+El cupón que te estaremos generando tiene validez de 30 días y puedes visualizarlo en la sección del Menú &gt; Mis Cupones. Para poder utilizar el cupón tienes que chequear antes que el restaurante acepta cupones, existe un filtro llamado &quot;cupón&quot; que te ayudará.
+
+Esperamos haber ayudado a resarcir lo sucedido con tu último pedido y quedamos a tu entera disposición.
+
+Saludos,
+(Propietario del Caso)
+Atención al Cliente PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

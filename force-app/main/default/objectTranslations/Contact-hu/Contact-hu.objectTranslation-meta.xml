@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- EventBus --></label>
+        <name>EventBus</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- KR_CustomReport --></label>
+        <name>KR_CustomReport</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- OptTriggerQuery --></label>
+        <name>OptTriggerQuery</name>
+    </fieldSets>
+    <layouts>
+        <layout>DE Contact Layout</layout>
+        <sections>
+            <label><!-- JustOn Connector --></label>
+            <section>JustOn Connector</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Social Contact Layout</layout>
+        <sections>
+            <label><!-- Additional Info --></label>
+            <section>Additional Info</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Yogiyo Contact Layout</layout>
+        <sections>
+            <label>Egyéb információ</label>
+            <section>Additional Info</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Case --></label>
+        <name>Case</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Event --></label>
+        <name>Event</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Log a Call --></label>
+        <name>Log_a_Call</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Log a Call --></label>
+        <name>Log_a_call_Lightning</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NVM Call --></label>
+        <name>NVMContactWorld__Call</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Task --></label>
+        <name>New_Task_Lightning</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Event --></label>
+        <name>New_event_Lightning</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Log A Note --></label>
+        <name>Note</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Task --></label>
+        <name>Task</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- DocuSign --></label>
+        <name>dsfs__ContactDocuSignAction</name>
+    </quickActions>
+    <recordTypes>
+        <label><!-- AT Contact --></label>
+        <name>AT_Contact</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Contact for Click Delivery --></description>
+        <label><!-- CD Contact --></label>
+        <name>CD_Contact</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DE Contact --></label>
+        <name>DE_Contact</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DH AU Contact --></label>
+        <name>DH_AU_Contact</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Finland Contact --></description>
+        <label><!-- FI Contact --></label>
+        <name>FI_Contact</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FP Contact --></label>
+        <name>FP_Contact</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- HU Contact --></label>
+        <name>HU_Contact</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PY Contact --></label>
+        <name>PY_Contact</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Sweden Contact --></description>
+        <label><!-- SE Contact --></label>
+        <name>SE_Contact</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Social Contact --></label>
+        <name>Social_Contact</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Talabat Contact --></label>
+        <name>Talabat_Contact</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- UK Contact --></label>
+        <name>UK_Contact</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Korea Contact Recordtype --></description>
+        <label><!-- Yogiyo Contact --></label>
+        <name>Yogiyo_Contact</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Please Enter a Valid Email Address --></errorMessage>
+        <name>APAC_Contact_Email_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The maximum length of the extension number is 6 digits. --></errorMessage>
+        <name>APAC_Extension_Phone_Number</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add phone in the right format. It should start with +852 and be followed by 8 digits, without space --></errorMessage>
+        <name>APAC_Phone_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please ensure the mobile number starts with 614 and has only 11 characters --></errorMessage>
+        <name>AU_Mobile_Phone_Number</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please ensure the phone number is 11 digits and starts with 61. --></errorMessage>
+        <name>AU_Phone_Number_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add phone in the right format. It should start with +855 and be followed by 8 or 9 digits, without space --></errorMessage>
+        <name>Cambodia_Phone_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a proper Owner Name (no numbers, proper length, no placeholders). --></errorMessage>
+        <name>DE_Validate_Owner_name</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Phone Number should contain country code and not have spaces --></errorMessage>
+        <name>HU_Phone_Format</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add phone in the right format. It should start with +856 and be followed by 8 to 10 digits, without space --></errorMessage>
+        <name>Laos_Phone_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add phone in the right format. It should start with +60 and be followed by 8 to 10 digits, without space --></errorMessage>
+        <name>Malaysia_Phone_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add phone in the right format. It should start with +95 and be followed by 6 - 10 digits, without space --></errorMessage>
+        <name>Myanmar_Phone_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- El valor ingresado no es valido --></errorMessage>
+        <name>PY_Validation_Phone</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Telephone numbers have to be formatted like this: +4955523681234 (+CountryCodeAreaCodeNumber). --></errorMessage>
+        <name>Phone_Number_format</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Phone numbers must start with +46 or +47 followed by 7-9 digits. --></errorMessage>
+        <name>SE_Phone_Format</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add phone in the right format. It should start with +65 and be followed by 8 digits, without space --></errorMessage>
+        <name>Singapore_Phone_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter Email --></errorMessage>
+        <name>TLB_Contact_Email_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add phone in the right format. It should start with +886 and be followed by 8 to 10 digits, without space --></errorMessage>
+        <name>Taiwan_Phone_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter 0044 before the number and Only phone number, no mobile --></errorMessage>
+        <name>UK_Phone_format</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The mobile number has to start with 0044 7 and contain only numbers. --></errorMessage>
+        <name>UK_mobile_format</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter 0044 before the number --></errorMessage>
+        <name>UK_other_phone_format</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- GoogleMaps --></label>
+        <name>GoogleMaps</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- GoogleSearch --></label>
+        <name>GoogleSearch</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- LOOP --></label>
+        <name>Loop__LOOP</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- LOOP_Merge --></label>
+        <name>Loop__LOOP_Merge</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- LOOPlus --></label>
+        <name>Loop__LOOPlus</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_LOOP_Merge --></label>
+        <name>Loop__Mass_LOOP_Merge</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_LOOPlus --></label>
+        <name>Loop__Mass_LOOPlus</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_Edit --></label>
+        <name>Mass_Edit</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_Update --></label>
+        <name>Mass_Update</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_with_DocuSign --></label>
+        <name>dsfs__Send_with_DocuSign</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_Qualtrics_Survey --></label>
+        <name>qualtrics__Send_Qualtrics_Survey</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_Bulk_SMS --></label>
+        <name>smagicinteract__Send_Bulk_SMS</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_SMS --></label>
+        <name>smagicinteract__Send_SMS</name>
+    </webLinks>
+</CustomObjectTranslation>

@@ -1,0 +1,147 @@
+<apex:page id="DH_ElastixSoftphone" controller="DH_ElastixSoftphoneController" action="{!getUserDetails}">
+    <apex:includeScript value="/support/console/48.0/integration.js"/>
+    <apex:includeScript value="/support/api/48.0/lightning/opencti_min.js"/>
+    <apex:includeScript value="{!URLFOR($Resource.DHPhone, 'DHPhone/js/lib/iframe_helper.js')}"/>
+    <iframe src="{!URLFOR($Resource.DHPhone, 'DHPhone/softphone.html')}?wp_sipusername={!username}&wp_password={!password}" width="294px" height="445px" style="margin-left:-3%" id="webphoneframe" frameborder="0" allow="microphone"/>
+    <script type="text/javascript" src="/support/api/46.0/lightning/opencti.js"></script>
+    <script type="text/javascript">
+
+        //@description: Initiate only when softphone is loaded
+        window.onload=function(){
+            startAndRegister();
+            handleCalls();
+        }
+
+        //@description: Start the softphone and check if the agent is registered
+        function startAndRegister(){
+            webphone_api.start();
+            webphone_api.onRegistered(function (event){
+                sforce.opencti.enableClickToDial();
+            });
+        }
+
+        //@description: check if inbound or outbound calls
+        function handleCalls(){
+            webphone_api.onCallStateChange( function (event, direction, peername, peerdisplayname, line, callid){
+                if (event !== 'setup' && event !== 'disconnected'){
+                    return;
+                }
+                if (event === 'setup' && direction == '1'){
+                    handleOutboundCalls(peername);
+                }
+                else if (event === 'setup' && direction == '2'){
+                    handleInboundCalls(peername);
+                }
+                if (event === 'disconnected'){
+                    let callPage = document.getElementById('webphoneframe').contentWindow.document.getElementById('page_call');
+                    callPage.classList.remove('active');
+                    callPage.classList.remove('ui-page-active');
+                    let dialPage = document.getElementById('webphoneframe').contentWindow.document.getElementById('page_dialpad');
+                    dialPage.classList.add('active');
+                    dialPage.classList.add('ui-page-active');
+                }
+            });
+        }
+
+        //@description: Create a new task and open it in the console as a subtab to the case when an outbound call is initiated
+        function handleOutboundCalls(peername){
+            handlePageNavigation();
+            sforce.opencti.setSoftphonePanelVisibility({ visible: true });
+            if(peername === '+') {
+                peername = peername.substring(1);
+            }
+            sforce.opencti.getAppViewInfo({callback:function(response){
+                if (!response.success) {
+                    return;
+                }
+                let recordId = response.returnValue.recordId;
+                let instanceURL = response.returnValue.url.split('/r/')[0];
+                let objectType = response.returnValue.objectType;
+                sforce.opencti.runApex({ apexClass: 'DH_ElastixSoftphoneController', methodName: 'createRecord', methodParams: 'phoneNumber=' +peername+'&recordId='+recordId, callback: function(apexResponse) {
+                    if(apexResponse.success != true) {
+                        return;
+                    }
+                    var taskId = apexResponse.returnValue.runApex;
+                    if(taskId === null) {
+                        return;
+                    }
+                    let taskURL = instanceURL+'/r/Task/'+taskId+'/view?ws=%2Flightning%2Fr%2F'+objectType+'%2F'+recordId+'%2Fview';
+                    sforce.opencti.screenPop({
+                        type: sforce.opencti.SCREENPOP_TYPE.URL,
+                        params: { url: taskURL }
+                    });
+                }});
+            }});
+        }
+
+        //@description: Create a new case and open it in the console as a subtab to the case when an inbound call is received
+        function handleInboundCalls(peername){
+            handlePageNavigation();
+            sforce.opencti.setSoftphonePanelVisibility({ visible: true });
+            if(peername === '+') {
+                peername = peername.substring(1);
+            }
+            let callDate = new Date();
+            let callDateTime = callDate.getFullYear()+','+(callDate.getMonth()+1)+','+callDate.getDate()+','+callDate.getHours() + "," + callDate.getMinutes() + "," + callDate.getSeconds();
+            let interval = setInterval(function(){
+                 sforce.opencti.runApex({ apexClass: 'DH_ElastixSoftphoneController', methodName: 'getRecordId', methodParams: 'phoneNumber=' +peername+'&callDateTime='+callDateTime, callback: function(apexResponse) {
+                    if(apexResponse.success != true) {
+                        return;
+                    }
+                    let caseId = apexResponse.returnValue.runApex;
+                    if(caseId === 'Agent not found') {
+                        return;
+                    }
+                    clearInterval(interval);
+                    sforce.opencti.screenPop({
+                        type: sforce.opencti.SCREENPOP_TYPE.SOBJECT,
+                        params: { recordId: caseId }
+                    });
+                }});
+            },1000);
+        }
+
+        //@description: Listener to initiate call on ClickToDial.
+        var listener = function(payload) {
+            let phoneNumber = payload.number;
+            sforce.opencti.getAppViewInfo({callback:function(response){
+                if (response.success) {
+                    let recordId = response.returnValue.recordId;
+                    sforce.opencti.runApex({ apexClass: 'DH_ElastixSoftphoneController', methodName: 'getPhoneNumberWithPrefix', methodParams: 'phoneNumber='+phoneNumber+'&recordId='+recordId, callback: function(apexResponse) {
+                            if(apexResponse.success == true) {
+                                phoneNumber = apexResponse.returnValue.runApex;
+                            }
+                            webphone_api.call(phoneNumber);
+                    }});
+                }
+                else{
+                    webphone_api.call(phoneNumber);
+                }
+            }});
+        };
+
+        //@description: Event listener to capture ClickToDial
+        window.addEventListener('load', function() {
+            sforce.opencti.onClickToDial({listener: listener});
+        });
+
+        //@description: Callback function to set record id for screen pop up.
+        var callback = function(recordId,response) {
+            if (response.success) {
+                recordId=response.returnValue.recordId;
+            } else {
+                console.error('Something went wrong! Errors:', response.errors);
+            }
+        };
+
+        function handlePageNavigation(){
+            let callPage = document.getElementById('webphoneframe').contentWindow.document.getElementById('page_call');
+            callPage.classList.add('active');
+            callPage.classList.add('ui-page-active');
+            document.getElementById('webphoneframe').contentWindow.document.getElementById('callfunctions_layout').style.display="block";
+            let dialPage = document.getElementById('webphoneframe').contentWindow.document.getElementById('page_dialpad');
+            dialPage.classList.remove('active');
+            dialPage.classList.remove('ui-page-active');
+        }
+    </script>
+</apex:page>

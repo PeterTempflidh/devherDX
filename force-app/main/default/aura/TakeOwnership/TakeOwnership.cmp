@@ -1,0 +1,24 @@
+<aura:component implements="force:lightningQuickAction,force:hasRecordId,force:hasSObjectName,flexipage:availableForAllPageTypes"
+                controller="CaseControllerLightning">
+    <ltng:require styles="{!$Resource.SLDS274 + '/assets/styles/lightning-design-system-ltng.css'}"/>
+    <lightning:notificationsLibrary aura:id="notificationsLibrary"/>
+    <aura:attribute name="buttonLabel" type="String" default="Take Ownership"/>
+    <aura:attribute name="btnDisabled" type="Boolean" default="false"/>
+
+    <force:recordData aura:id="recordLoader" 
+                      mode="VIEW"
+                      recordId="{!v.recordId}"
+                      targetRecord="{!v.record}"
+                      targetFields="{!v.recordFields}"
+                      fields="Status, Type, Owner.Id, OwnerId"
+                      recordUpdated="{!c.handleRecordUpdated}"/>
+                      
+    <aura:attribute name="record" type="Object"/>
+
+    <button class="slds-button slds-button_text-destructive widebutton"
+            disabled="{!v.btnDisabled}"
+            onclick = "{!c.takeOwnershipJs}">
+        {!$Label.c.RQ_Button_Take_Ownership}
+    </button>
+
+</aura:component>

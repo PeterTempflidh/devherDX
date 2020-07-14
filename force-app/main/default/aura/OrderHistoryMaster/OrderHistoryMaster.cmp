@@ -1,0 +1,27 @@
+<aura:component 
+ implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId,lightning:isUrlAddressable" 
+ controller="CaseControllerLightning" access="global">	
+    <aura:attribute name="visibiltySetting" type="Object"/>
+    <aura:attribute name="pageReference" type="Object"/>
+	<aura:attribute name="recId" type="String"/>
+	<aura:attribute name="sObj" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>    
+	
+
+    <div class="slds-grid slds-wrap">
+        <aura:if isTrue="{!and(v.visibiltySetting.HideOrderDetails__c !=null, !v.visibiltySetting.HideOrderDetails__c)}">
+			<div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+				 <c:OrderDetails recordId="{!v.recId}" sObjectName="{!v.sObj}"/>           
+			</div>
+        </aura:if>
+         <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 "> 
+             <aura:if isTrue="{!and(v.visibiltySetting.HideRestaurantDetails__c !=null,!v.visibiltySetting.HideRestaurantDetails__c)}">
+             	<c:RestaurantAndCustomerDetails recordId="{!v.recId}"/>
+             </aura:if><br/>
+			 
+             <aura:if isTrue="{!and(v.visibiltySetting.HidePreviousOrders__c !=null,!v.visibiltySetting.HidePreviousOrders__c)}">
+				<c:PreviousOrders recordId="{!v.recId}" />
+             </aura:if>
+         </div>        
+    </div>
+    </aura:component>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Clickdelivery</letterhead>
+    <name>Conducta Repartidor</name>
+    <style>formalLetter</style>
+    <subject>Conducta Repartidor</subject>
+    <textOnly>Se escala queja:
+
+Hola (Nombre del usuario), lamentamos mucho que esta situación se haya presentado. Siempre queremos brindar el mejor servicio desde que realizas tu orden hasta que la empiezas a disfrutar. Te queremos informar que (solución del caso de conducta del repartidor). Recuerda que nuestros domi héroes están 24/7 para colaborarte con todo lo que necesites</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

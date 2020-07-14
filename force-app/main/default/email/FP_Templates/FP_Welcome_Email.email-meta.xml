@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Template for SSC-562</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>FP Welcome Email</name>
+    <style>none</style>
+    <subject>Welcome to foodpanda!</subject>
+    <textOnly>Hi {!Contact.Salutation} {!Contact.Name},
+
+Welcome to the foodpanda family! You are now part of one of the largest food and grocery ordering and delivery platforms in Asia, and we are happy to have you on board. Our mission is to create an amazing delivery experience &amp; you are now a part of making this mission a reality!
+
+
+How do you get your brand online?
+
+We would love to have your brand live on our platform as soon as possible.
+
+1. Document submission
+
+If you have already shared these documents with us, please ignore this step. If not, we will need:
+
+- All relevant licenses, certifications, permissions and consents (“Licenses”) in relation to your trade  (e.g. business registration, restaurant license, distribution agreement, reseller license, etc.)
+
+- Your current dine-in menu
+
+- A cover photo representing your restaurant’s cuisine (Spec: 4000 x 2080 px)
+
+2. Menu set up and device delivery
+
+We will prepare your menu on our platform, and you will receive your device(s) by post from a member of the Foodpanda team who will take you through the onboarding process.
+
+3. Welcome call
+
+You will also receive a call from us to get you started. We will help you set up your account and provide operational training including the set up of your device(s).
+
+4. You’re online!
+
+Once all of the above is done, your brand will go live on foodpanda!
+
+As a Vendor partner, you are a crucial part of our success. With your help, we hope to build a long-lasting relationship and support you in growing your business.
+
+
+Kind Regards,
+{!Opportunity.OwnerFullName}
+
+
+E   {!Opportunity.OwnerEmail}
+
+W   https://www.foodpanda.com
+
+CONFIDENTIALITY NOTICE: This message (including any attachments) is confidential.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

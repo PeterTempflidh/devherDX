@@ -1,0 +1,2070 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssignmentRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignmentRule>
+        <fullName>Basic Rules</fullName>
+        <active>true</active>
+        <ruleEntry>
+            <assignedTo>Yogiyo_Editorial_TeamQueue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <booleanFilter>(1 AND 2 AND 3) OR (1 AND 4)</booleanFilter>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Inbound</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Data Change</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Delivery Area change / Phone number out of Service,Holiday Set,Price Change,Target District - Polygon,Alcohol Listing Request</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Email - Menu Change</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Yogiyo_Customer_Care_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <booleanFilter>(1 AND 2 ) OR (3 AND 4 AND 5) OR (3 AND 6 )</booleanFilter>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Refund</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>CSC</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Inbound</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Data Change</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Category change,Review Request,SF &amp; BE Restaurant Name Change,Review reply</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Termination</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Yogiyo_Sales_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <booleanFilter>(1 AND 2) OR (3 AND (4 AND (5 OR 6)))</booleanFilter>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Internal Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>CRM Inquiry,Quality Check</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Inbound</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Restaurant Request</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>BPG Violation Report,Claim from Restaurant,Commission Standardization</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>BPG Violation Report,Claim from Restaurant,Commission Standardization</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Yogiyo_Customer_Care_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <booleanFilter>(1 AND 2 AND 3) OR (4 AND 5) OR (1 AND 6 AND 7) OR (4 AND 8 AND 9)</booleanFilter>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Inbound</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Customer Request</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Call Back Request,Claim from Restaurant,Membership Withdraw,Order,Others,Reject SMS/Email,Claim from Customer,Review Request,Voucher request</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Internal Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Other</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>notEqual</operation>
+                <value>Connect request,Error,Return Request</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Terminal</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Sales Task</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Contract Cancelation,Contract Cancellation</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Yogiyo_Editorial_TeamQueue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <booleanFilter>1 AND NOT (2 AND 3)</booleanFilter>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Entry Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>0% Commission Entry</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>Cancel the 0% Commission</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Yogiyo_Customer_Care_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <booleanFilter>1 AND 2 AND (3 OR 4 OR 5 OR 6 OR 7)</booleanFilter>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Inbound</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Restaurant Request</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Children Account offline request,Discount Change,Invoice Address Change,Fee Inquiry (Terminal)</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Long-term holiday request,Online Payment rejection,Order,Owners page ID Request,Re-contract request,SMS Relay requested for Activation,SMS Relay requested for De-activation,Voucher request,RP Change (Need Image agreement)</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Add child account,Business Licensee Change,Company Information Change (Same Owner),Company number change (Same Owner),Contract request - Additional Rest from Non-contract</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Owner Phone number change,0% Commission Cancel / Decrease</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Bank Account Change,&quot;CMS, CC Request&quot;,Deposit Confirmation,Fee Inquiry,Late Payment Inquiry</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>acctteam@yogiyo.co.kr</assignedTo>
+            <assignedToType>User</assignedToType>
+            <booleanFilter>(1 AND 2) OR (3 AND 4 AND 5)</booleanFilter>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Refund</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Accounting</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Inbound</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Restaurant Request</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Acct related Call Back</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Yogiyo_Service_Improvement</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <booleanFilter>(1 AND 2) OR (3 AND 4 AND 5)</booleanFilter>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Internal Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Failure Rate</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Inbound</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Restaurant Request</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Expand target district / Opening time</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>mktteam@deliveryhero.co.kr</assignedTo>
+            <assignedToType>User</assignedToType>
+            <booleanFilter>1 AND ((2 AND 3) OR (4 AND 5) OR (6 AND 7) OR 8)</booleanFilter>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Inbound</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Data Change</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Keyword Change</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Restaurant Request</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Partnership proposal</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Customer Request</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Best Price Guarantee</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Email - BPG</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Yogiyo_Business_Planning</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <booleanFilter>(1 AND 2 AND 3)</booleanFilter>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Internal Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Collection</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Late Payment</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Yogiyo_Customer_Care_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Inbound</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Email,Email - Support,Email - Info,Email - Franchise,Email - Privacy,Email - B2B Franchise,Email - Trust</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Yogiyo_Editorial_TeamQueue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <booleanFilter>1 AND 2 AND 3</booleanFilter>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Internal Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Recommendation</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Restaurant Recommendation,Menu Collected</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Yogiyo_Sales_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Inbound</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Restaurant Request</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Contract request-NEW,Contract request - Registered</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>bae.eunryeong@deliveryhero.co.kr</assignedTo>
+            <assignedToType>User</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Inbound</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Restaurant Request</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Photographer Image Request</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Yogiyo_Customer_Care_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <booleanFilter>1 OR (2 AND 3) OR (4 AND 5 AND 6)</booleanFilter>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Retention</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Internal Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Take Offline</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Inbound</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Data Change</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Restaurant Picture Change (No legal issue)</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Talabat_Logistics</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName= &quot;Talabat_Restaurant_Ops&quot;  &amp;&amp;    ISPICKVAL( Type , &apos;Logistics&apos;)  &amp;&amp;  (ISNEW()  ||  ISCHANGED(RecordTypeId) ||  ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Yogiyo_Sales_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <booleanFilter>(1 AND 2) OR (3 AND 4 AND 5)</booleanFilter>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Inbound</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Email - Contract Request</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Entry Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>0% Commission Entry</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>Cancel the 0% Commission</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Talabat_Restaurant_Ops</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName= &quot;Talabat_Restaurant_Ops&quot;  &amp;&amp;    (ISPICKVAL( Type , &apos;Onboarding&apos;) || ISPICKVAL(Type,&apos;Performance&apos;))  &amp;&amp;  (ISNEW()  ||  ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>SE_Customer_Care</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(RecordType.DeveloperName=&quot;SE_Inbound&quot;  &amp;&amp;  (ISNEW()  ||  ISCHANGED(RecordTypeId))) || (RecordType.DeveloperName=&quot;SE_Internal_Case&quot;  &amp;&amp;  TEXT(Type)=&quot;Take Offline&quot; &amp;&amp; (ISNEW()  ||  ISCHANGED(RecordTypeId) ||  ISCHANGED(Type)))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>SE_Finance_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName=&quot;SE_Internal_Case&quot;  &amp;&amp;  TEXT(Type)=&quot;Accounting&quot; &amp;&amp;  (ISNEW()  ||  ISCHANGED(RecordTypeId) ||  ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FI_Customer_Care</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName=&quot;FI_Inbound&quot;
+&amp;&amp; (ISNEW()   ||   ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FI_Editorial_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName=&quot;FI_Entry_Case&quot;
+&amp;&amp; 
+(ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FI_Restaurant_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName=&quot;FI_Internal_Case&quot; 
+
+&amp;&amp; 
+
+TEXT(Type) = &apos;Owner/Legal Form Change&apos; 
+&amp;&amp; 
+
+( 
+ISNEW() 
+|| 
+ISCHANGED(RecordTypeId) 
+|| 
+ISCHANGED(Type) 
+)</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FI_Sales_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName=&quot;FI_Internal_Case&quot; &amp;&amp; NOT(OR(ISPICKVAL(Type,&apos;Owner/Legal Form Change&apos;),ISPICKVAL(Type,&apos;Retention&apos;),ISPICKVAL(Type,&apos;Accounting&apos;))) &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type) )</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FI_Finance_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName=&quot;FI_Internal_Case&quot; 
+&amp;&amp; 
+TEXT(Type) = &apos;Accounting&apos; 
+&amp;&amp; 
+
+( 
+ISNEW() 
+|| 
+ISCHANGED(RecordTypeId) 
+|| 
+ISCHANGED(Type) 
+)</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>AT_Contract_Management</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(RecordType.DeveloperName=&quot;AT_Internal_Case&quot;  &amp;&amp;  TEXT(Type)=&quot;Quality Check&quot;  &amp;&amp;  (ISNEW()  ||  ISCHANGED(RecordTypeId)  ||  ISCHANGED(Type)))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>restaurantmarketing@deliveryhero.co.kr</assignedTo>
+            <assignedToType>User</assignedToType>
+            <booleanFilter>1 AND 2 AND 3</booleanFilter>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Inbound</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Restaurant Request</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Restaurant Marketing</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>AT_Sales_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(RecordType.DeveloperName=&quot;AT_Inbound_Case&quot;  &amp;&amp;  TEXT(Origin)=&quot;Call Center&quot;  &amp;&amp;  (ISNEW()  ||  ISCHANGED(RecordTypeId)  ||  ISCHANGED(Origin)))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>UK_Sales_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>UK Internal Case,UK Retention</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>notEqual</operation>
+                <value>Accounting,Fraud,Discount Request,Quality Check</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>UK_Customer_Care</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>uk inbound</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>notEqual</operation>
+                <value>Restaurant - Product / Sales</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>UK_Sales_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>uk inbound</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Restaurant - Product / Sales</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>UK_Accounting_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>uk internal case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Fraud</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>csc_supportteam@deliveryhero.co.kr</assignedTo>
+            <assignedToType>User</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Inbound</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Terminal</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Connect request,Error,Return Request</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Yogiyo_Customer_Care_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Restaurant Request</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Bill Request,Invoice Request</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Inbound</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Yogiyo_Sales_AM</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Inbound</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Restaurant Request</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Call Back Request</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>b2b_info@rgpkorea.co.kr</assignedTo>
+            <assignedToType>User</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Inbound</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Partnership Franchise</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>csc_supportteam@deliveryhero.co.kr</assignedTo>
+            <assignedToType>User</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Inbound</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>POS Support</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>SE_Sales_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>AND(   OR(     RecordType.DeveloperName=&quot;SE_Internal_Case&quot;,     RecordType.DeveloperName=&quot;SE_Retention&quot;   ),   OR(     TEXT(Type)= &quot;Sales Task&quot;,     TEXT(Type)=&quot;Retention&quot;,     TEXT(Type) = &apos;Owner/Legal Form Change&apos;,     ISBLANK(TEXT(Type))   ),   OR(     ISNEW(),     ISCHANGED(RecordTypeId),     ISCHANGED(Type)   ) )</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CD_Customer_Request</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(RecordType.DeveloperName=&quot;CD_Inbound_Case&quot; &amp;&amp; TEXT(Type)=&quot;Customer&quot;) &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CD_Restaurant_Request</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(RecordType.DeveloperName=&quot;CD_Inbound_Case&quot; &amp;&amp; TEXT(Type)=&quot;Partner&quot;) &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CD_Data_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(RecordType.DeveloperName=&quot;CD_Entry_Case&quot;  &amp;&amp;  TEXT(Type)=&quot;Restaurant - Data&quot;) || (RecordType.DeveloperName=&quot;CD_Internal_Case&quot;  &amp;&amp;  (TEXT(Type)=&quot;Termination&quot; || TEXT(Type)=&quot;Restaurant - Transmission&quot; || TEXT(Type)=&quot;Take Offline&quot; || TEXT(Type)=&quot;Take Online&quot;)) &amp;&amp;  (ISNEW()  ||  ISCHANGED(RecordTypeId)  ||  ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CD_Sales_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(RecordType.DeveloperName=&quot;CD_Internal_Case&quot;  &amp;&amp;  TEXT(Type)=&quot;Sales Task&quot;) || (RecordType.DeveloperName=&quot;CD_Restaurant_Operations&quot;  &amp;&amp;  TEXT(Type)=&quot;Restaurant Operations&quot;) || RecordType.DeveloperName=&quot;CD_Retention&quot; &amp;&amp;  (ISNEW()  ||  ISCHANGED(RecordTypeId)  ||  ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Yogiyo_Customer_Value_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Yogiyo Inbound,Yogiyo Refund,Yogiyo Entry Case,Yogiyo Internal Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>NPS</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>lcrodriguez@clickdelivery.com</assignedTo>
+            <assignedToType>User</assignedToType>
+            <formula>(RecordType.DeveloperName=&quot;CD_Internal_Case&quot;  &amp;&amp;  TEXT(Type)=&quot;Accounting&quot;  &amp;&amp;  (ISNEW()  ||  ISCHANGED(RecordTypeId)  ||  ISCHANGED(Type)))</formula>
+            <template>CD_Templates/Caso_Assignado</template>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Talabat_Finance_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName=&quot;Talabat_Finance_Case&quot;    &amp;&amp;  (ISNEW()  ||  ISCHANGED(RecordTypeId)  ||  ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Talabat_Content_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName=&quot;Talabat_Entry_Case&quot;   &amp;&amp;  (ISNEW()  ||  ISCHANGED(RecordTypeId) )</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Talabat_Quality_Check_team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName=&quot;Talabat_Internal_Case&quot;  &amp;&amp; ((TEXT( Case_Reason__c )=&quot;Clone Request&quot;) || ISPICKVAL(Type,&apos;Owner/Legal Form Change&apos;))  &amp;&amp; (ISNEW()  ||  ISCHANGED(RecordTypeId)  ||  ISCHANGED(Case_Reason__c ))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Talabat_Sales_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(RecordType.DeveloperName=&quot;Talabat_Internal_Case&quot;
+  &amp;&amp;
+  TEXT(Type)=&quot;Sales Task&quot;)
+&amp;&amp;
+NOT(TEXT( Case_Reason__c )=&quot;Premium Placement&quot;)
+  &amp;&amp;  (ISNEW()  ||  ISCHANGED(RecordTypeId)  ||  ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Talabat_Legal_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName=&quot;Talabat_Internal_Case&quot;  &amp;&amp;  (TEXT(Type)=&quot;Accounting&quot; || TEXT(Type)=&quot;Take Offline&quot;) &amp;&amp;  (ISNEW()  ||  ISCHANGED(RecordTypeId)  ||  ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Talabat_Restaurant_Ops</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(RecordType.DeveloperName=&quot;Talabat_Internal_Case&quot;  &amp;&amp;  TEXT(Type)=&quot;Restaurant - Transmission&quot;)  &amp;&amp;  (ISNEW()  ||  ISCHANGED(RecordTypeId)  ||  ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Talabat_Account_Management</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(   RecordType.DeveloperName=&quot;Talabat_Internal_Case&quot;   &amp;&amp;   (      (       ISPICKVAL(Type,&apos;Account Management&apos;) || ISPICKVAL(Type,&apos;Retention&apos;)     )     ||     (       ISPICKVAL(Type,&apos;Sales Task&apos;) &amp;&amp; ISPICKVAL(Case_Reason__c,&apos;Premium Placement&apos;)     )   )    ) &amp;&amp;   (ISNEW()  ||  ISCHANGED(RecordTypeId)  ||  ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>DE_Key_Account_Request</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(((RecordType.DeveloperName=&quot;DE_Restaurant_Operations&quot; &amp;&amp; TEXT(Type)=&quot;Onboarding&quot;) ||  (RecordType.DeveloperName=&quot;DE_Entry_Case&quot; &amp;&amp; TEXT(Type)=&quot;Menu Processing&quot;) ||  (RecordType.DeveloperName=&quot;DE_Internal_Case&quot; &amp;&amp; (TEXT(Type)=&quot;Owner/Legal Form Change&quot; || TEXT(Type)=&quot;Take Offline&quot; || TEXT(Type)=&quot;Take Online&quot; || TEXT(Type)=&quot;Retention&quot;)))  &amp;&amp;  (ISNEW()  || ISCHANGED(RecordTypeId)  || ISCHANGED(Type)) &amp;&amp; Account.Key_VIP_Account__c=true) || EmailToAddress__c = &apos;vip@lieferheld.de&apos;</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>DE_Restaurant_Request</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(RecordType.DeveloperName=&quot;DE_Inbound_Case&quot;  &amp;&amp;  TEXT(Type)=&quot;Partner&quot;)  &amp;&amp;  (ISNEW()  ||  ISCHANGED(RecordTypeId)  ||  ISCHANGED(Type)) &amp;&amp; TEXT(Origin)&lt;&gt;&quot;Chat&quot;</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>DE_Customer_Request</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(RecordType.DeveloperName=&quot;DE_Inbound_Case&quot;  &amp;&amp;  TEXT(Type)=&quot;Customer&quot;)   &amp;&amp;  (ISNEW()  ||  ISCHANGED(RecordTypeId)  ||  ISCHANGED(Type)) &amp;&amp; TEXT(Origin)&lt;&gt;&quot;Chat&quot;</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>DE_Lost_Found</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(RecordType.DeveloperName=&quot;DE_Inbound_Case&quot;    &amp;&amp;    ISBLANK(TEXT(Type)))    &amp;&amp;  (ISNEW()  ||  ISCHANGED(RecordTypeId)  ||  ISCHANGED(Type))  &amp;&amp; TEXT(Origin)&lt;&gt;&quot;Chat&quot;</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>DE_Special_Cases</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName=&quot;DE_Internal_Case&quot;  &amp;&amp;  TEXT(Type)=&quot;CC Task&quot;  &amp;&amp; TEXT( Case_Reason__c )&lt;&gt;&quot;Rating On website / Reviews&quot;  &amp;&amp;  (ISNEW()  ||  ISCHANGED(RecordTypeId)  ||  ISCHANGED(Type)) &amp;&amp; TEXT(Origin)&lt;&gt;&quot;Chat&quot;</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>DE_Account_Management</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName = &quot;DE_Internal_Case&quot; &amp;&amp; (TEXT(Type)=&quot;Sales Task&quot;  ||  TEXT(Type)=&quot;Account Management&quot;) &amp;&amp; (TEXT(Case_Reason__c)= &quot;Contract Update&quot;  ||  TEXT(Case_Reason__c)= &quot;Delivery Areas&quot;  ||  TEXT(Case_Reason__c)= &quot;Delivery Fees / Minimum Order Value&quot;  ||  TEXT(Case_Reason__c)= &quot;Meal Deals&quot;  ||  TEXT(Case_Reason__c)= &quot;New Hardware&quot;  ||  TEXT(Case_Reason__c)=&quot;Premium Placement&quot;  ||  TEXT(Case_Reason__c)=&quot;Quality Concerns&quot;  ||  TEXT(Case_Reason__c)= &quot;Printer Request&quot;) &amp;&amp; (ISNEW()  ||  ISCHANGED(Type)  ||  ISCHANGED(Case_Reason__c))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>DE_Team_Lead_Escalation</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName=&quot;DE_Internal_Case&quot;  &amp;&amp;  TEXT(Type)=&quot;CC Task&quot;  &amp;&amp;  TEXT( Case_Reason__c )=&quot;Rating On website / Reviews&quot;  &amp;&amp;  (ISNEW()  ||  ISCHANGED(RecordTypeId)  ||  ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>DE_Sales_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName=&quot;DE_Internal_Case&quot; &amp;&amp; (TEXT(Type)=&quot;Retention&quot; || TEXT(Type)=&quot;Sales Task&quot; || TEXT(Type)=&quot;Owner/Legal Form Change&quot;) &amp;&amp; (ISNEW()  ||  ISCHANGED(RecordTypeId)  ||  ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>DE_Finance</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName=&quot;DE_Finance_Case&quot; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId) )</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>DE_Editorial</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName=&quot;DE_Entry_Case&quot;  &amp;&amp;  TEXT(Type)=&quot;Menu Change&quot; &amp;&amp; TEXT(Case_Reason__c )=&quot;Menu Change&quot; &amp;&amp;  (ISNEW()  ||  ISCHANGED(RecordTypeId)  ||  ISCHANGED(Type) ||  ISCHANGED(Case_Reason__c))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>DE_Design_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName=&quot;DE_Entry_Case&quot;  &amp;&amp; TEXT(Type)=&quot;Menu Change&quot;  &amp;&amp;  TEXT(Case_Reason__c )=&quot;Logo&quot;  &amp;&amp;  (ISNEW()  ||  ISCHANGED(RecordTypeId)  ||  ISCHANGED(Type)  ||  ISCHANGED(Case_Reason__c))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>DE_Take_On_Offline</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(RecordType.DeveloperName=&quot;DE_Internal_Case&quot;  &amp;&amp;  (TEXT(Type)=&quot;Take Offline&quot;  ||  TEXT(Type)=&quot;Take Online&quot;)  &amp;&amp;  (ISNEW()  ||  ISCHANGED(RecordTypeId)  ||  ISCHANGED(Type)))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>AT_Online_Payments</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(RecordType.DeveloperName=&quot;DE_Internal_Case&quot;  &amp;&amp;  TEXT(Type)=&quot;Online Payment&quot;)  &amp;&amp;  (ISNEW()  ||  ISCHANGED(RecordTypeId)  ||  ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>DE_Restaurant_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName=&quot;DE_Restaurant_Operations&quot;   &amp;&amp;   (ISNEW()  ||  ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>DE_Refund</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(RecordType.DeveloperName=&quot;DE_Finance_Case&quot;  &amp;&amp; TEXT(Type)!=&quot;Refund&quot;) &amp;&amp;  (ISNEW()  ||  ISCHANGED(RecordTypeId)  ||  ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>SE_Editorial_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName=&quot;SE_Entry_Case&quot;  &amp;&amp;  (ISNEW()  ||  ISCHANGED(RecordTypeId) )</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>The_Salesforce_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>SALESFORCE SUPPORT</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>PY_Editorial</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName =&quot;PY_Entry_Case&quot; 
+&amp;&amp; 
+( 
+TEXT(Type) = &quot;Menu Processing&quot; 
+|| 
+TEXT(Type) = &quot;Restaurant - Data&quot; 
+||
+TEXT(Type) = &quot;Photo Listing&quot;  
+) 
+&amp;&amp; 
+(ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>PY_Finance</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName =&quot;PY_Finance_Case&quot; 
+&amp;&amp; 
+TEXT(Type) = &quot;Finance&quot; 
+&amp;&amp; 
+(ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>PY_Refund</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName =&quot;PY_Finance_Case&quot;
+&amp;&amp;
+TEXT(Type) = &quot;Refund&quot;
+&amp;&amp;
+(ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>PY_VIP_Social_Media_Cases</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>PY Inbound Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Customer</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Is_Verified__c</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Facebook,Instagram,Twitter</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>PY_Social_Media_Cases</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>PY Inbound Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Customer</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Is_Verified__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Facebook,Instagram,Twitter</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>PY_Customer_Request</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName =&quot;PY_Inbound_Case&quot; 
+&amp;&amp;
+(
+Text(Type) = &quot;Customer&quot;
+|| 
+ISBLANK(TEXT(Type))
+)
+&amp;&amp; 
+(ISNEW() || ISCHANGED(RecordTypeId))
+&amp;&amp; 
+( Text(Origin) &lt;&gt; &quot;Facebook&quot; || Text(Origin) &lt;&gt; &quot;Twitter&quot; || Text(Origin) &lt;&gt; &quot;Instagram&quot; )</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>PY_Restaurant_Request</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName =&quot;PY_Inbound_Case&quot;
+&amp;&amp;
+Text(Type) = &quot;Partner&quot;
+&amp;&amp;
+(ISNEW() || ISCHANGED(RecordTypeId))
+&amp;&amp;
+NOT(BEGINS( Subject, &quot;DP_&quot;))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>PY_Dispatch_Escalations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName =&quot;PY_Inbound_Case&quot;
+&amp;&amp;
+Text(Type) = &quot;Partner&quot;
+&amp;&amp;
+(ISNEW() || ISCHANGED(RecordTypeId))
+&amp;&amp;
+BEGINS( Subject, &quot;DP_&quot;)</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>PY_Sales_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName =&quot;PY_Internal_Case&quot; 
+&amp;&amp; 
+( 
+TEXT(Type) = &quot;Sales Task&quot; 
+&amp;&amp;
+(TEXT( Case_Reason__c )=&quot;Clone Request&quot;)) 
+&amp;&amp; 
+(ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>PY_Restaurant_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName =&quot;PY_Restaurant_Operations&quot; 
+&amp;&amp; 
+(TEXT(Type) = &quot;Restaurant Operations&quot; 
+&amp;&amp; 
+(ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type)))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>PY_Transmission</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName =&quot;PY_Restaurant_Operations&quot; 
+&amp;&amp; 
+TEXT(Type) = &quot;Restaurant - Transmission&quot; 
+&amp;&amp; 
+(ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>PY_Account_Management</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName =&quot;PY_Internal_Case&quot; 
+&amp;&amp; 
+( 
+TEXT(Type) = &quot;Sales Task&quot; 
+|| 
+TEXT(Type) = &quot;Account Management&quot; 
+|| 
+TEXT(Type) = &quot;Retention&quot; 
+) 
+&amp;&amp; 
+(ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>PY_Logistics</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName =&quot;PY_Restaurant_Operations_Case&quot; 
+&amp;&amp; 
+TEXT(Type) = &quot;Logistics&quot; 
+&amp;&amp; 
+(ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>PY_Logistics</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName =&quot;PY_Restaurant_Operations&quot;
+&amp;&amp;
+TEXT(Type) = &quot;Onboarding&quot;
+&amp;&amp;
+(ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>PY_Legal</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>PY Internal Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Owner/Legal Form Change</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>AT_Restaurant_Request</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>AND(
+OR(
+ISNEW (),
+ISCHANGED(Type)
+),
+ISPICKVAL(Type, &apos;Partner&apos;),
+RecordType.DeveloperName=&quot;AT_Inbound_Case&quot;
+)</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>AT_Customer_Request</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>AND(
+OR(
+ISNEW (),
+ISCHANGED(Type)
+),
+ISPICKVAL(Type, &apos;Customer&apos;),
+RecordType.DeveloperName=&quot;AT_Inbound_Case&quot;
+)</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>AT_Customer_Request</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>AND(
+OR(
+ISNEW (),
+ISCHANGED(Type)
+),
+OR(
+ISPICKVAL(Type, &apos;Handover&apos;),
+ISPICKVAL(Type, &apos;Other&apos;),
+ISPICKVAL(Type, &apos;&apos;)
+),
+RecordType.DeveloperName=&quot;AT_Inbound_Case&quot;
+)</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>AT_Sales_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>AT Internal Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Sales Task</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Contract Update,New Sign Up,Visit Request</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>AT_AM_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>AT Internal Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Sales Task</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Call Back Request,Meal Deals,Premium Placement</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>AT_Accounting</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>AT Internal Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Finance</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>AT_Restaurant_Request</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>AT Internal Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>CC Task</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Delivery Areas,Transmission Issue</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>AT_Online_Payments</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>AT Internal Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Online Payment</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Partial Refund,Payment Issue,Research</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>AT_Contract_Management</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>AT Internal Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Owner/Legal Form Change</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Legal Form Change,New Owner Known,New Owner Unknown</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>AT_Contract_Management</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>AT Internal Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Retention</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Fraud,Order Cancellation</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>HU_Content_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName = &apos;HU_Entry_Case&apos;</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>HU_Finance_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName = &apos;HU_Finance_Case&apos;</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>HU_Restaurant_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName = &apos;HU_Restaurant_Ops&apos;
+&amp;&amp; (ISPICKVAL(Type, &apos;Onboarding&apos;) || ISPICKVAL(Type, &apos;Restaurant - Transmission&apos;))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>HU_Account_Management</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName = &apos;HU_Restaurant_Ops&apos; &amp;&amp; ISPICKVAL(Type, &apos;Performance&apos;)</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_Restaurant_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName =&quot;FP_Restaurant_Operations&quot;
+&amp;&amp;
+
+(ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_HK_Account_Management</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>Account_Country__c =&apos;Hong Kong&apos; &amp;&amp; RecordType.DeveloperName =&quot;FP_Internal_Case&quot;
+&amp;&amp;
+(TEXT(Type) = &quot;Owner/Legal Form Change&quot;
+ || 
+TEXT(Type) = &quot;Retention&quot;
+ || 
+(TEXT(Type) = &quot;Sales Task&quot;
+ &amp;&amp; 
+TEXT (Case_Reason__c ) &lt;&gt; &apos;Clone Request&apos;))
+&amp;&amp;
+(ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_LA_Account_Management</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>Account_Country__c =&apos;Laos&apos; &amp;&amp; RecordType.DeveloperName =&quot;FP_Internal_Case&quot; &amp;&amp; (TEXT(Type) = &quot;Owner/Legal Form Change&quot; || TEXT(Type) = &quot;Retention&quot; || (TEXT(Type) = &quot;Sales Task&quot; &amp;&amp; TEXT (Case_Reason__c ) &lt;&gt; &apos;Clone Request&apos;)) &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_KH_Account_Management</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>Account_Country__c =&apos;Cambodia&apos; &amp;&amp; RecordType.DeveloperName =&quot;FP_Internal_Case&quot; &amp;&amp; (TEXT(Type) = &quot;Owner/Legal Form Change&quot; || TEXT(Type) = &quot;Retention&quot; || (TEXT(Type) = &quot;Sales Task&quot; &amp;&amp; TEXT (Case_Reason__c ) &lt;&gt; &apos;Clone Request&apos;)) &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_MM_Account_Management</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>Account_Country__c =&apos;Myanmar&apos; &amp;&amp; RecordType.DeveloperName =&quot;FP_Internal_Case&quot; &amp;&amp; (TEXT(Type) = &quot;Owner/Legal Form Change&quot; || TEXT(Type) = &quot;Retention&quot; || (TEXT(Type) = &quot;Sales Task&quot; &amp;&amp; TEXT (Case_Reason__c ) &lt;&gt; &apos;Clone Request&apos;)) &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_HK_Sales_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>Account_Country__c =&apos;Hong Kong&apos; 
+&amp;&amp;
+RecordType.DeveloperName =&quot;FP_Internal_Case&quot;
+&amp;&amp;
+TEXT(Type) = &quot;Sales Task&quot;
+&amp;&amp;
+TEXT (Case_Reason__c ) = &apos;Clone Request&apos;
+&amp;&amp;
+(ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_HK_Finance</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(Account_Country__c = &apos;Hong Kong&apos; || Includes (Country__c,&apos;Hong Kong&apos;)) &amp;&amp; RecordType.DeveloperName =&quot;FP_Finance_Case&quot; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_KH_Finance</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(Account_Country__c = &apos;Cambodia&apos; || Includes (Country__c,&apos;Cambodia&apos;))&amp;&amp; RecordType.DeveloperName =&quot;FP_Finance_Case&quot; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_LA_Finance</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(Account_Country__c = &apos;Laos&apos;|| Includes (Country__c,&apos;Laos&apos;)) &amp;&amp; RecordType.DeveloperName =&quot;FP_Finance_Case&quot; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_MM_Finance</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(Account_Country__c = &apos;Myanmar&apos;|| Includes (Country__c,&apos;Myanmar&apos;)) &amp;&amp; RecordType.DeveloperName =&quot;FP_Finance_Case&quot; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_LA_Sales_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>Account_Country__c =&apos;Laos&apos; &amp;&amp; RecordType.DeveloperName =&quot;FP_Internal_Case&quot; &amp;&amp; TEXT(Type) = &quot;Sales Task&quot; &amp;&amp; TEXT (Case_Reason__c ) = &apos;Clone Request&apos; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_MM_Sales_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>Account_Country__c =&apos;Myanmar&apos; &amp;&amp; RecordType.DeveloperName =&quot;FP_Internal_Case&quot; &amp;&amp; TEXT(Type) = &quot;Sales Task&quot; &amp;&amp; TEXT (Case_Reason__c ) = &apos;Clone Request&apos; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_KH_Sales_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>Account_Country__c =&apos;Cambodia&apos; &amp;&amp; RecordType.DeveloperName =&quot;FP_Internal_Case&quot; &amp;&amp; TEXT(Type) = &quot;Sales Task&quot; &amp;&amp; TEXT (Case_Reason__c ) = &apos;Clone Request&apos; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_Editorial_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>FP Entry Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Menu Update Major,Menu Update Minor,Menu Update Major with Images</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Menu Change</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_Photography</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>FP Entry Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Reason__c</field>
+                <operation>equals</operation>
+                <value>Imagery only update</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Menu Change</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_PS_Wastage_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Platform__c</field>
+                <operation>equals</operation>
+                <value>Foodpanda</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Subject</field>
+                <operation>contains</operation>
+                <value>wastage notification</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>contains</operation>
+                <value>Inbound</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_PS_HK_Cases</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>FP Inbound Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Partner</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.CreatedByAlias</field>
+                <operation>equals</operation>
+                <value>aform</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Country__c</field>
+                <operation>equals</operation>
+                <value>Hong Kong</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_PS_KH_Cases</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>FP Inbound Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Partner</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.CreatedByAlias</field>
+                <operation>equals</operation>
+                <value>aform</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Country__c</field>
+                <operation>equals</operation>
+                <value>Cambodia</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_PS_MM_Cases</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>FP Inbound Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Partner</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.CreatedByAlias</field>
+                <operation>equals</operation>
+                <value>aform</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Country__c</field>
+                <operation>equals</operation>
+                <value>Myanmar</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_PS_LA_Cases</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>FP Inbound Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Partner</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.CreatedByAlias</field>
+                <operation>equals</operation>
+                <value>aform</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Country__c</field>
+                <operation>equals</operation>
+                <value>Laos</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_SG_Account_Management</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>Account_Country__c = &apos;Singapore&apos; &amp;&amp; RecordType.DeveloperName =&quot;FP_Internal_Case&quot; &amp;&amp; (TEXT(Type) = &quot;Owner/Legal Form Change&quot; || TEXT(Type) = &quot;Retention&quot; || (TEXT(Type) = &quot;Sales Task&quot; &amp;&amp; TEXT (Case_Reason__c ) &lt;&gt; &apos;Clone Request&apos;)) &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_SG_Finance</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(Account_Country__c = &apos;Singapore&apos;|| Includes (Country__c,&apos;Singapore&apos;)) &amp;&amp; RecordType.DeveloperName =&quot;FP_Finance_Case&quot; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_SG_Sales_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>Account_Country__c =&apos;Singapore&apos; &amp;&amp; RecordType.DeveloperName =&quot;FP_Internal_Case&quot; &amp;&amp; TEXT(Type) = &quot;Sales Task&quot; &amp;&amp; TEXT (Case_Reason__c ) = &apos;Clone Request&apos; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_TW_Account_Management</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>Account_Country__c = &apos;Taiwan&apos; &amp;&amp; RecordType.DeveloperName =&quot;FP_Internal_Case&quot; &amp;&amp; (TEXT(Type) = &quot;Owner/Legal Form Change&quot; || TEXT(Type) = &quot;Retention&quot; || (TEXT(Type) = &quot;Sales Task&quot; &amp;&amp; TEXT (Case_Reason__c ) &lt;&gt; &apos;Clone Request&apos;)) &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_TW_Finance</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(Account_Country__c = &apos;Taiwan&apos;|| Includes (Country__c,&apos;Taiwan&apos;)) &amp;&amp; RecordType.DeveloperName =&quot;FP_Finance_Case&quot; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_TW_Sales_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>Account_Country__c =&apos;Taiwan&apos; &amp;&amp; RecordType.DeveloperName =&quot;FP_Internal_Case&quot; &amp;&amp; TEXT(Type) = &quot;Sales Task&quot; &amp;&amp; TEXT (Case_Reason__c ) = &apos;Clone Request&apos; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_MY_Account_Management</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>Account_Country__c = &apos;Malaysia&apos; &amp;&amp; RecordType.DeveloperName =&quot;FP_Internal_Case&quot; &amp;&amp; (TEXT(Type) = &quot;Owner/Legal Form Change&quot; || TEXT(Type) = &quot;Retention&quot; || (TEXT(Type) = &quot;Sales Task&quot; &amp;&amp; TEXT (Case_Reason__c ) &lt;&gt; &apos;Clone Request&apos;)) &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_MY_Finance</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(Account_Country__c = &apos;Malaysia&apos;|| Includes (Country__c,&apos;Malaysia&apos;)) &amp;&amp; RecordType.DeveloperName =&quot;FP_Finance_Case&quot; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_MY_Sales_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>Account_Country__c =&apos;Malaysia&apos; &amp;&amp; RecordType.DeveloperName =&quot;FP_Internal_Case&quot; &amp;&amp; TEXT(Type) = &quot;Sales Task&quot; &amp;&amp; TEXT (Case_Reason__c ) = &apos;Clone Request&apos; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_PS_MY_Cases</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>FP Inbound Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Partner</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.CreatedByAlias</field>
+                <operation>equals</operation>
+                <value>aform</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Country__c</field>
+                <operation>equals</operation>
+                <value>Malaysia</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_PS_SG_Cases</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>FP Inbound Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Partner</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.CreatedByAlias</field>
+                <operation>equals</operation>
+                <value>aform</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Country__c</field>
+                <operation>equals</operation>
+                <value>Singapore</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_PS_TW_Cases</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>FP Inbound Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Partner</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.CreatedByAlias</field>
+                <operation>equals</operation>
+                <value>aform</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Country__c</field>
+                <operation>equals</operation>
+                <value>Taiwan</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_PS_TH_Cases</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>FP Inbound Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Partner</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.CreatedByAlias</field>
+                <operation>equals</operation>
+                <value>aform</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Country__c</field>
+                <operation>equals</operation>
+                <value>Thailand</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_PS_PK_Cases</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>FP Inbound Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Partner</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.CreatedByAlias</field>
+                <operation>equals</operation>
+                <value>aform</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Country__c</field>
+                <operation>equals</operation>
+                <value>Pakistan</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_PS_BD_Cases</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>FP Inbound Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Partner</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.CreatedByAlias</field>
+                <operation>equals</operation>
+                <value>aform</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Country__c</field>
+                <operation>equals</operation>
+                <value>Bangladesh</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_PS_PH_Cases</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>FP Inbound Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Partner</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.CreatedByAlias</field>
+                <operation>equals</operation>
+                <value>aform</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Country__c</field>
+                <operation>equals</operation>
+                <value>Philippines</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_MY_Social_Media_Cases</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>FP Inbound Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Facebook,Instagram,Twitter</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Customer</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Country__c</field>
+                <operation>equals</operation>
+                <value>Malaysia</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_TW_Social_Media_Cases</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>FP Inbound Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Facebook,Instagram,Twitter</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Customer</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Country__c</field>
+                <operation>equals</operation>
+                <value>Taiwan</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_HK_Social_Media_Cases</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>FP Inbound Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Facebook,Instagram,Twitter</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Customer</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Country__c</field>
+                <operation>equals</operation>
+                <value>Hong Kong</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_SG_Social_Media_Cases</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>FP Inbound Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Facebook,Instagram,Twitter</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Customer</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Country__c</field>
+                <operation>equals</operation>
+                <value>Singapore</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_TH_Social_Media_Cases_Thai</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>FP Inbound Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Facebook,Instagram,Twitter</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Customer</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Country__c</field>
+                <operation>equals</operation>
+                <value>Thailand</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_PH_Social_Media_Cases</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>FP Inbound Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Facebook,Instagram,Twitter</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Customer</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Country__c</field>
+                <operation>equals</operation>
+                <value>Philippines</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_PH_Account_Management</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>Account_Country__c = &apos;Philippines&apos; &amp;&amp; RecordType.DeveloperName =&quot;FP_Internal_Case&quot; &amp;&amp; (TEXT(Type) = &quot;Owner/Legal Form Change&quot;  ||  TEXT(Type) = &quot;Retention&quot;  ||  (TEXT(Type) = &quot;Sales Task&quot;  &amp;&amp;  TEXT (Case_Reason__c ) &lt;&gt; &apos;Clone Request&apos;)) &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_TH_Account_Management</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>Account_Country__c = &apos;Thailand&apos;&amp;&amp; RecordType.DeveloperName =&quot;FP_Internal_Case&quot; &amp;&amp; (TEXT(Type) = &quot;Owner/Legal Form Change&quot;  ||  TEXT(Type) = &quot;Retention&quot;  ||  (TEXT(Type) = &quot;Sales Task&quot;  &amp;&amp;  TEXT (Case_Reason__c ) &lt;&gt; &apos;Clone Request&apos;)) &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_JP_Account_Management</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>Account_Country__c = &apos;Japan&apos;&amp;&amp; RecordType.DeveloperName =&quot;FP_Internal_Case&quot; &amp;&amp; (TEXT(Type) = &quot;Owner/Legal Form Change&quot;  ||  TEXT(Type) = &quot;Retention&quot;  ||  (TEXT(Type) = &quot;Sales Task&quot;  &amp;&amp;  TEXT (Case_Reason__c ) &lt;&gt; &apos;Clone Request&apos;)) &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_PH_Finance</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(Account_Country__c = &apos;Philippines&apos; || Includes (Country__c,&quot;Philippines&quot;)) &amp;&amp; RecordType.DeveloperName =&quot;FP_Finance_Case&quot; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_TH_Finance</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(Account_Country__c = &apos;Thailand&apos;|| Includes (Country__c,&apos;Thailand&apos;)) &amp;&amp; RecordType.DeveloperName =&quot;FP_Finance_Case&quot; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_JP_Finance</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>(Account_Country__c = &apos;Japan&apos;|| Includes (Country__c,&apos;Japan&apos;)) &amp;&amp; RecordType.DeveloperName =&quot;FP_Finance_Case&quot; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_PH_Sales_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>Account_Country__c =&apos;Philippines&apos; &amp;&amp; RecordType.DeveloperName =&quot;FP_Internal_Case&quot; &amp;&amp; TEXT(Type) = &quot;Sales Task&quot; &amp;&amp; TEXT (Case_Reason__c ) = &apos;Clone Request&apos; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_TH_Sales_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>Account_Country__c =&apos;Thailand&apos; &amp;&amp; RecordType.DeveloperName =&quot;FP_Internal_Case&quot; &amp;&amp; TEXT(Type) = &quot;Sales Task&quot; &amp;&amp; TEXT (Case_Reason__c ) = &apos;Clone Request&apos; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_JP_Sales_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>Account_Country__c =&apos;Japan&apos; &amp;&amp; RecordType.DeveloperName =&quot;FP_Internal_Case&quot; &amp;&amp; TEXT(Type) = &quot;Sales Task&quot; &amp;&amp; TEXT (Case_Reason__c ) = &apos;Clone Request&apos; &amp;&amp; (ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CZ_Account_Management</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName = &quot;CZ_Internal_Case&quot; &amp;&amp;
+(TEXT(Type) = &quot;Owner/Legal Form Change&quot; || TEXT(Type) = &quot;Retention&quot; || (TEXT(Type) = &quot;Sales Task&quot; &amp;&amp; TEXT (Case_Reason__c ) &lt;&gt; &apos;Call Back Request&apos;)) &amp;&amp;
+(ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CZ_Lead_Research_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName = &quot;CZ_Internal_Case&quot; &amp;&amp; TEXT(Type) = &quot;Sales Task&quot; &amp;&amp; TEXT (Case_Reason__c ) = &quot;Call Back Request&quot; &amp;&amp;
+(ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CZ_Content_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName = &quot;CZ_Entry_Case&quot; &amp;&amp; TEXT(Type) = &quot;Restaurant - Data&quot; &amp;&amp;
+(ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CZ_Restaurant_Operations</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName = &quot;CZ_Restaurant_Operations&quot; &amp;&amp; (TEXT(Type) &lt;&gt; &quot;Onboarding&quot; &amp;&amp; TEXT (Case_Reason__c ) &lt;&gt; &quot;Onboarding&quot;) &amp;&amp;
+(ISNEW() || ISCHANGED(RecordTypeId) || ISCHANGED(Type))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>CZ_Finance_Team</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>RecordType.DeveloperName = &quot;CZ_Finance_Case&quot; &amp;&amp;
+(ISNEW() || ISCHANGED(RecordTypeId))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_PK_Social_Media_Cases</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>FP Inbound Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Facebook,Instagram,Twitter</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Customer</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Country__c</field>
+                <operation>equals</operation>
+                <value>Pakistan</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_BD_Social_Media_Cases</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>FP Inbound Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Facebook,Instagram,Twitter</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Customer</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Country__c</field>
+                <operation>equals</operation>
+                <value>Bangladesh</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_LA_Social_Media_Cases</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>FP Inbound Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Facebook,Instagram,Twitter</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Customer</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Country__c</field>
+                <operation>equals</operation>
+                <value>Laos</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_KH_Social_Media_Cases</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>FP Inbound Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Facebook,Instagram,Twitter</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Customer</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Country__c</field>
+                <operation>equals</operation>
+                <value>Cambodia</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>FP_MM_Social_Media_Cases</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>FP Inbound Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Facebook,Instagram,Twitter</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Customer</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Country__c</field>
+                <operation>equals</operation>
+                <value>Myanmar</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <formula>true</formula>
+        </ruleEntry>
+    </assignmentRule>
+</AssignmentRules>

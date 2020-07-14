@@ -1,0 +1,1008 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>APAC_Formstack_Cases</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>SCC-238</description>
+        <label>APAC Formstack Cases</label>
+        <sharedTo>
+            <group>APAC_Formstack_Visibility</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>OwnerId</field>
+            <operation>equals</operation>
+            <value>0051r000009SHqUAAW</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>APAC_Team_Lead_Cases</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>This sharing rule is for all users on apac to have read access on the cases that are escalated to the FP Team leads queue before a user take the case</description>
+        <label>APAC Team Lead Cases</label>
+        <sharedTo>
+            <roleAndSubordinates>FP_Customer_Service_Management</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>OwnerId</field>
+            <operation>equals</operation>
+            <value>00G1r000004HPwv</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>FP Inbound Case</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>CD_Outsource_see_inbound_only</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>CD Outsource see inbound only</label>
+        <sharedTo>
+            <group>CD_Outsourcers</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>CD Inbound Case</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>CD_Read_Only_all_Inhouse</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>CD Read Only all Inhouse</label>
+        <sharedTo>
+            <group>CD_All_Inhouse_Agents</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>CD Retention,CD Inbound Case,CD Restaurant Operations,CD Internal Case,CD Entry Case</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>CD_Restaurant_Operations</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CD Restaurant Operations</label>
+        <sharedTo>
+            <role>CD_Restaurant_Operations</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>CD Retention,CD Restaurant Operations,CD Internal Case,CD Entry Case</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>CSC_Case_Sharing_for_KR</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CSC Case Sharing for KR</label>
+        <sharedTo>
+            <roleAndSubordinates>Yogiyo_Local_Admin</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Yogiyo Inbound,Yogiyo Retention,Yogiyo Internal Case,Yogiyo Refund,Yogiyo Entry Case</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>DE_Customer_Care_Inhouse</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>DE Customer Care Inhouse</label>
+        <sharedTo>
+            <group>DE_CC_Sales_Operations_Inhouse</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>DE Entry Case,DE Internal Case,DE Inbound Case,DE Restaurant Operations</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>DE_Management</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>DE Management</label>
+        <sharedTo>
+            <roleAndSubordinates>DE_Management</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>DE Entry Case,DE Finance Case,DE Internal Case,DE Inbound Case,DE Restaurant Operations</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>DE_NVM</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>DE_NVM</label>
+        <sharedTo>
+            <roleAndSubordinates>DE_Management</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>OwnerId</field>
+            <operation>equals</operation>
+            <value>0051r000008rmvF</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>DE Inbound Case</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Design_team_menu_processing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Design team menu processing</label>
+        <sharedTo>
+            <group>DE_Design_Team</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>DE Entry Case</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Finland</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Finland</label>
+        <sharedTo>
+            <roleAndSubordinates>FI_Management</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>FI Internal Case,FI Entry Case,FI Restaurant Operations,FI Inbound</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Global_Support_Tickets</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Global Support Tickets</label>
+        <sharedTo>
+            <roleAndSubordinates>Global_Management</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Global Support Case</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Global_Support_Tickets_Edit_Access</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Global Support Tickets Edit Access</label>
+        <sharedTo>
+            <role>Global_Management</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Global Support Case</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>HU_General_Rule</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>HU General Rule</label>
+        <sharedTo>
+            <roleAndSubordinates>HU_Management</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>HU Restaurant Operations,HU Entry Case,HU Internal Case,HU Finance Case</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>HelpCenter_Sharring_Rule</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sharing rule for giving read access on inbound and customer refund cases to DH HelpCenter user</description>
+        <label>HelpCenter Sharring Rule</label>
+        <sharedTo>
+            <group>HelpCenter</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Talabat Inbound Case,HU Inbound Case,AT Inbound Case,SE Inbound,Yogiyo Inbound,Global CS Refunds Case,CD Inbound Case,FP Inbound Case,PY Inbound Case,YE Inbound Case,FI Inbound</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>NVMCreated_Cases_with_APAC_Management</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>This sharing rule is to share the NVM created cases directly with Foodpanda users
+SCC-338</description>
+        <label>NVMCreated Cases with APAC Management</label>
+        <sharedTo>
+            <roleAndSubordinates>FP_Management</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>CreatedById</field>
+            <operation>equals</operation>
+            <value>0051r000008rmvF</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>FP Inbound Case</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Entity__c</field>
+            <operation>equals</operation>
+            <value>Foodpanda</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>NVMCreated_Cases_with_AT_Management</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>NVMCreated Cases with AT Management</label>
+        <sharedTo>
+            <roleAndSubordinates>AT_Management</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>CreatedById</field>
+            <operation>equals</operation>
+            <value>0051r000008rmvF</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>AT Inbound Case</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>NVMCreated_Cases_with_CZ_Management</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>SCC-387</description>
+        <label>NVMCreated Cases with CZ Management</label>
+        <sharedTo>
+            <roleAndSubordinates>CZ_Management</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Entity__c</field>
+            <operation>equals</operation>
+            <value>Damejidlo</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>FP Inbound Case</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CreatedById</field>
+            <operation>equals</operation>
+            <value>0051r000008rmvFAAQ</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>NVMCreated_Cases_with_FI_Management</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>This sharing rule is to share the NVM created cases directly with FI users
+SCC-338</description>
+        <label>NVMCreated Cases with FI Management</label>
+        <sharedTo>
+            <roleAndSubordinates>FI_Management</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>CreatedById</field>
+            <operation>equals</operation>
+            <value>0051r000008rmvF</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>FP Inbound Case</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Entity__c</field>
+            <operation>equals</operation>
+            <value>Foodora-FI</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>NVMCreated_Cases_with_HU_Management</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>SCC-534</description>
+        <label>NVMCreated Cases with HU Management</label>
+        <sharedTo>
+            <roleAndSubordinates>HU_Management</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>HU Inbound Case</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CreatedById</field>
+            <operation>equals</operation>
+            <value>0051r000008rmvF</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>NVMCreated_Cases_with_NO_Management</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>This sharing rule is to share the NVM created cases directly with NO users
+SCC-338</description>
+        <label>NVMCreated Cases with NO Management</label>
+        <sharedTo>
+            <roleAndSubordinates>NO_Management</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>CreatedById</field>
+            <operation>equals</operation>
+            <value>0051r000008rmvF</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>FP Inbound Case</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Entity__c</field>
+            <operation>equals</operation>
+            <value>Foodora-NO</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>NVMCreated_Cases_with_RO_Management</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>This sharing rule is to share the NVM created cases directly with RO users</description>
+        <label>NVMCreated Cases with RO Management</label>
+        <sharedTo>
+            <roleAndSubordinates>RO_Management</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>CreatedById</field>
+            <operation>equals</operation>
+            <value>0051r000008rmvF</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>FP Inbound Case</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Entity__c</field>
+            <operation>equals</operation>
+            <value>Foodpanda-RO</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>NVMCreated_Cases_with_SE_Management</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>This sharing rule is to share the NVM created cases directly with SE users
+SCC-338</description>
+        <label>NVMCreated Cases with SE Management</label>
+        <sharedTo>
+            <roleAndSubordinates>SE_Management</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>CreatedById</field>
+            <operation>equals</operation>
+            <value>0051r000008rmvF</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>FP Inbound Case,SE Inbound</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Entity__c</field>
+            <operation>equals</operation>
+            <value>Foodora-SE</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>PY_Users_Access_to_CD</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>SP-4499</description>
+        <label>PY Users Access to CD</label>
+        <sharedTo>
+            <group>PY_CD_Shared_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>CD Retention,CD Inbound Case,CD Restaurant Operations,CD Internal Case,CD Entry Case</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>PY_all_countries</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>PY all countries</label>
+        <sharedTo>
+            <group>PY_Access_to_all_countries</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>PY Restaurant Operations,PY Internal Case,PY Finance Case,PY Entry Case,PY Inbound Case</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Payments_Mjam</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Payments Mjam</label>
+        <sharedTo>
+            <role>AT_Management</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Entity__c</field>
+            <operation>equals</operation>
+            <value>Mjam</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Global Payments Case</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Payments_Online_Pizza</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>SP-3650</description>
+        <label>Payments Online Pizza</label>
+        <sharedTo>
+            <role>SE_Management</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Entity__c</field>
+            <operation>equals</operation>
+            <value>Onlinepizza.se</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Global Payments Case</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Payments_PedidosYa</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Payments PedidosYa</label>
+        <sharedTo>
+            <role>PY_Management</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Entity__c</field>
+            <operation>equals</operation>
+            <value>PedidosYa</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Global Payments Case</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Payments_Pizza_Online</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>SP-3650</description>
+        <label>Payments Pizza Online</label>
+        <sharedTo>
+            <role>FI_Management</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Entity__c</field>
+            <operation>equals</operation>
+            <value>Pizza-online.fi</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Global Payments Case</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Payments_Talabat</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Payments Talabat</label>
+        <sharedTo>
+            <role>Talabat_Management</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Entity__c</field>
+            <operation>equals</operation>
+            <value>Talabat</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Global Payments Case</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Salesforce_Tickets</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Salesforce Tickets</label>
+        <sharedTo>
+            <roleAndSubordinates>Global_Management</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>SALESFORCE SUPPORT</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Company_Code__c</field>
+            <operation>notEqual</operation>
+            <value>UK</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Talabat_general_rule</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Talabat general rule</label>
+        <sharedTo>
+            <group>Talabat_Management_users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Talabat Internal Case,Talabat Entry Case,Talabat Restaurant Ops,Talabat Finance Case,Talabat Inbound Case,Talabat Retention</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingOwnerRules>
+        <fullName>AT_Customer_Care_Management</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>AT Customer Care Management</label>
+        <sharedTo>
+            <roleAndSubordinates>AT_Customer_Care_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>AT_Customer_Care_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>CD_CC_All_Agents</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CD CC All Agents</label>
+        <sharedTo>
+            <group>CD_Customer_Inhouse_Agents</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>CD_Customer_Inhouse_Agents</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>CD_Help_Desk_1_2</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CD Help Desk 1 + 2</label>
+        <sharedTo>
+            <group>CD_Help_Desk_1_2</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>CD_Help_Desk_1_2</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>CD_TLs_Aprentices</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CD TLs + Aprentices</label>
+        <sharedTo>
+            <group>CD_Team_Leads_Apprentices</group>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>CD_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>CZ_Customer_Service_Management</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CZ Customer Service Management</label>
+        <sharedTo>
+            <roleAndSubordinates>CZ_Customer_Service_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>CZ_Customer_Service_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>CZ_Partner_Service_Management</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CZ Partner Service Management</label>
+        <sharedTo>
+            <roleAndSubordinates>CZ_Partner_Service_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>CZ_Partner_Service_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Cases_AT_Mgmt_to_AT_Mgmt</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Cases are shared &apos;Read/Write&apos; across the entire company</description>
+        <label>Cases AT Mgmt to AT Mgmt</label>
+        <sharedTo>
+            <roleAndSubordinates>AT_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>AT_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FI_Case_sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FI Case sharing</label>
+        <sharedTo>
+            <roleAndSubordinates>FI_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>FI_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_APAC_Customer_Refunds</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Sharing rule for giving read and write access on cases owned by users on group FP APAC Customer Refunds and users on the same group</description>
+        <label>FP APAC Customer Refunds</label>
+        <sharedTo>
+            <group>FP_APAC_Customer_Refunds</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_APAC_Customer_Refunds</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_BD_Customer_Refunds</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Sharing rule for giving read and write access on cases owned by users on group FP BD Customer Refunds and users on the same group</description>
+        <label>FP BD Customer Refunds</label>
+        <sharedTo>
+            <group>FP_BD_Customer_Refunds</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_BD_Customer_Refunds</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_Bangladesh_Service_Cases</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Shared cases owned by members of group FP Bangladesh with users on the same group</description>
+        <label>FP Bangladesh Service Cases</label>
+        <sharedTo>
+            <group>FP_Bangladesh_Service_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_Bangladesh_Service_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_Cambodia_Service_Cases</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Shared cases owned by members of group FP Cambodia with users on the same group</description>
+        <label>FP Cambodia Service Cases</label>
+        <sharedTo>
+            <group>FP_Cambodia_Service_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_Cambodia_Service_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_Hong_Kong_Service_Cases</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Shared cases owned by members of group FP Hong Kong with users on the same group</description>
+        <label>FP Hong Kong Service Cases</label>
+        <sharedTo>
+            <group>FP_Hong_Kong_Service_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_Hong_Kong_Service_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_KH_Customer_Refunds</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Sharing rule for giving read and write access on cases owned by users on group FP KH Customer Refunds and users on the same group</description>
+        <label>FP KH Customer Refunds</label>
+        <sharedTo>
+            <group>FP_KH_Customer_Refunds</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_KH_Customer_Refunds</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_LA_Customer_Refunds</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Sharing rule for giving read and write access on cases owned by users on group FP LA Customer Refunds and users on the same group</description>
+        <label>FP LA Customer Refunds</label>
+        <sharedTo>
+            <group>FP_LA_Customer_Refunds</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_LA_Customer_Refunds</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_Laos_Service_Cases</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Shared cases owned by members of group FP Laos with users on the same group</description>
+        <label>FP Laos Service Cases</label>
+        <sharedTo>
+            <group>FP_Laos_Service_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_Laos_Service_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_MM_Customer_Refunds</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Sharing rule for giving read and write access on cases owned by users on group FP MM Customer Refunds and users on the same group</description>
+        <label>FP MM Customer Refunds</label>
+        <sharedTo>
+            <group>FP_MM_Customer_Refunds</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_MM_Customer_Refunds</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_Malaysia_Service_Cases</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Shared cases owned by members of group FP Malaysia with users on the same group.</description>
+        <label>FP Malaysia Service Cases</label>
+        <sharedTo>
+            <group>FP_Malaysia_Service_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_Malaysia_Service_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_Myanmar_Service_Cases</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Shared cases owned by members of group FP Myanmar with users on the same group</description>
+        <label>FP Myanmar Service Cases</label>
+        <sharedTo>
+            <group>FP_Myanmar_Service_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_Myanmar_Service_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_PK_Customer_Refunds</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Sharing rule for giving read and write access on cases owned by users on group FP PK Customer Refunds and users on the same group</description>
+        <label>FP PK Customer Refunds</label>
+        <sharedTo>
+            <group>FP_PK_Customer_Refunds</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_PK_Customer_Refunds</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_Pakistan_Service_Cases</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Shared cases owned by members of group FP Pakistan with users on the same group</description>
+        <label>FP Pakistan Service Cases</label>
+        <sharedTo>
+            <group>FP_Pakistan_Service_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_Pakistan_Service_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_Philippines_Service_Cases</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Shared cases owned by members of group FP Philippines with users on the same group</description>
+        <label>FP Philippines Service Cases</label>
+        <sharedTo>
+            <group>FP_Philippines_Service_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_Philippines_Service_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_Singapore_Service_Cases</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Shared cases owned by members of group FP Singapore with users on the same group</description>
+        <label>FP Singapore Service Cases</label>
+        <sharedTo>
+            <group>FP_Singapore_Service_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_Singapore_Service_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_Taiwan_Service_Cases</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Shared cases owned by members of group FP Taiwan with users on the same group</description>
+        <label>FP Taiwan Service Cases</label>
+        <sharedTo>
+            <group>FP_Taiwan_Service_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_Taiwan_Service_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FP_Thailand_Service_Cases</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Shared cases owned by members of group FP Thailand with users on the same group</description>
+        <label>FP Thailand Service Cases</label>
+        <sharedTo>
+            <group>FP_Thailand_Service_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_Thailand_Service_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>HK_Customer_Experience</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>HK Customer Experience</label>
+        <sharedTo>
+            <group>HK_Customer_Experience</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FP_Hong_Kong_Service_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>HS_Customer_Service_Management</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>HS Customer Service Management</label>
+        <sharedTo>
+            <roleAndSubordinates>HS_Customer_Service_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>HS_Customer_Service_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>HS_Partner_Service_Management</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>HS Partner Service Management</label>
+        <sharedTo>
+            <roleAndSubordinates>HS_Partner_Service_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>HS_Partner_Service_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>HU_CC_Case_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>This is created as part of SP-
+4866</description>
+        <label>HU CC Case Share</label>
+        <sharedTo>
+            <roleAndSubordinates>HU_Customer_Service_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>HU_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>NO_Management</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>NO Management</label>
+        <sharedTo>
+            <roleAndSubordinates>NO_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>NO_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>RO_Customer_Service_Management</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>RO Customer Service Management</label>
+        <sharedTo>
+            <roleAndSubordinates>RO_Customer_Service_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>RO_Customer_Service_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>RO_Partner_Service_Management</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>RO Partner Service Management</label>
+        <sharedTo>
+            <roleAndSubordinates>RO_Partner_Service_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>RO_Partner_Service_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>SEFI_Case_Sharing</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>SEFI Case Sharing</label>
+        <sharedTo>
+            <group>SE_FI_Shared_Group</group>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>FI_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>SE_Case_Mgmt_to_Mgmt</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>SE - Case - Mgmt to Mgmt</label>
+        <sharedTo>
+            <roleAndSubordinates>SE_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>SE_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>SE_FI_Management</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>03858146</description>
+        <label>SE &amp; FI Management</label>
+        <sharedTo>
+            <group>SE_FI_Shared_Group</group>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>SE_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>UK_Fraud_Cases_to_all</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>UK Fraud Cases to all</label>
+        <sharedTo>
+            <group>UK_Inhouse_Team</group>
+        </sharedTo>
+        <sharedFrom>
+            <queue>UK_Accounting_Team</queue>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>UK_General_Case_Sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>UK - General Case Sharing</label>
+        <sharedTo>
+            <roleAndSubordinates>UK_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>UK_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>X10</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>10</label>
+        <sharedTo>
+            <roleAndSubordinates>UK_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <queue>UK_Sales_Team</queue>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>YE_Cases_Sharing</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>All the managers and agent from customer care team on Yemeksepti should have access to read each other cases</description>
+        <label>YE Cases Sharing</label>
+        <sharedTo>
+            <roleAndSubordinates>YE_Customer_Service_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>YE_Customer_Service_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Yogiyo_Case_Sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Yogiyo Case Sharing</label>
+        <sharedTo>
+            <roleAndSubordinates>Yogiyo_Local_Admin</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>Yogiyo_Local_Admin</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

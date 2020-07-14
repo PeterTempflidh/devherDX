@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>SE AfterCaseSurveyGizmo - Customer</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>SE - AfterCaseSurveyGizmo - Customer</name>
+    <style>none</style>
+    <subject>Var du nöjd?</subject>
+    <textOnly>onlinepizza.se
+
+Were you satisfied?
+
+att visa online klicka här
+
+Var du nöjd?
+
+Hej {!LiveChatTranscript.User_Name__c},
+
+Tack för att du kontaktade OnlinePizzas kundsupport!
+
+Från 0 till 10 - hur troligt är det att du rekommenderar OnlinePizza till en vän eller kollega?
+
+Osannolikt        Väldigt troligt
+
+Vi ser fram emot ditt svar!
+
+Ladda ner appen
+
+Du får detta mail eftersom du tackat ja till att prenumerera på OnlinePizzas nyhetsbrev
+UNSUBSCRIBE
+
+Copyright 2016 Online Pizza Norden AB All rights reserved
+Kungsholmstorg 5, 112 21 Stockholm
+kontak@onlinepizza.se</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

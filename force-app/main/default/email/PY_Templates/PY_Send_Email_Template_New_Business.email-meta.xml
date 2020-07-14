@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>PY Send Email Template - New Business</name>
+    <style>none</style>
+    <subject>Bienvenidos!</subject>
+    <textOnly>Hola [Account Name]:
+
+¡Bienvenidos! Estamos muy contentos de que formen parte de nuestro portal.
+
+En adjunto encontrarán las condiciones particulares del contrato según lo conversado, las que junto con las condiciones generales formarán el contrato. Si están de acuerdo, procedemos a la firma.
+
+Para subir el comercio al portal necesitamos que nos compartan lo siguiente:
+
+Copia firmada de las condiciones particulares
+Los productos a ofrecer (sus precios y todos los detalles implicados)
+El logo del comercio
+Horarios de funcionamiento
+
+
+Para enviarnos lo anterior, pueden responder este correo con los documentos adjuntos. En caso de requerir información adicional, nos contactaremos con ustedes.
+
+
+Si tienen dudas o necesitan alguna aclaración, comuníquense con nosotros. :)
+
+
+¡Seguimos en contacto!
+
+
+Saludos,
+
+[Opportunity Owner First Name] [Opportunity Owner Last Name]
+
+[Opportunity URL]</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

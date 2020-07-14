@@ -1,0 +1,7 @@
+<messaging:emailTemplate subject="Subscription Contract"  recipientType="Contact" relatedToType="Opportunity_Quote__c" >
+<messaging:htmlEmailBody >
+<c:TalabatQuoteForQuoteObj acct="{!relatedTo.Id_Account__c}" oppQuote="{!relatedTo.Id}" />
+</messaging:htmlEmailBody>
+<messaging:attachment renderAs="PDF" filename="Subscription contract.pdf">       
+</messaging:attachment>
+</messaging:emailTemplate>

@@ -1,0 +1,71 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName" controller="CaseCloseAction_AuraController" access="global">
+    <lightning:notificationsLibrary aura:id="notificationsLibrary"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="force:refreshView" action="{!c.doInit}"/>
+    <aura:handler event="aura:waiting" action="{!c.waiting}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.doneWaiting}"/>
+
+    <aura:attribute name="recordTypeId" type="Id"/>
+    <aura:attribute name="disabled" type="Boolean" default="false"/>
+    <aura:attribute name="spinner" type="Boolean" default="true"/>
+    <aura:attribute name="myClosedReason" type="String"/>
+    <aura:attribute name="myRootCause" type="String"/>
+    <aura:attribute name="isError" type="Boolean" default="false"/>
+    <aura:attribute name="isQueueError" type="Boolean" default="false"/>
+    
+    <lightning:card>
+        <aura:set attribute="body">
+            <!--loading spinner start onsubmit="{!c.submitted}"-->
+            <aura:if isTrue="{!v.spinner}">
+                <lightning:spinner aura:id="spinner"/>
+            </aura:if>
+            <!-- Loading spinner end-->
+
+            <!-- Start: Display generic error-->
+            <aura:if isTrue="{!v.isError}">
+                <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
+                    {!$Label.c.Generic_Error_Message}
+                </div>
+            </aura:if>
+            <!-- End: Display generic error-->
+
+            <p class="slds-p-horizontal_small">
+                <lightning:recordEditForm aura:id="closeCaseComponent"
+                                          recordId="{!v.recordId}"
+                                          recordTypeId="{!v.recordTypeId}"
+                                          objectApiName="Case"
+                >
+                    <aura:if isTrue="{!v.isQueueError}">
+                        <div style="color:red; font-size:16px; font-weight:bold; text-align:center">
+                            {!$Label.c.Case_Queue_Assignment}
+                            <br/>
+                        </div>
+                        <aura:set attribute="else">
+                            <aura:if isTrue="{!v.disabled}">
+                                <div style="color:red; font-size:16px; font-weight:bold; text-align:center">
+                                    {!$Label.c.Case_Case_Already_Closed}
+                                    <br/>
+                                </div>
+                                <aura:set attribute="else">
+                                    <!-- the messages component is for error messages -->
+                                    <lightning:messages />
+
+                                    <lightning:inputField fieldName="Status" value="Closed" disabled="true"/>
+                                    <lightning:inputField fieldName="Type" disabled="true"/>
+                                    <lightning:inputField id="idClosedReason" fieldName="Closed_Reason__c" disabled="{!v.disabled}" value="{!v.myClosedReason}"/>
+                                    <lightning:inputField id="idRootCause" fieldName="Root_Cause__c" disabled="{!v.disabled}" value="{!v.myRootCause}"/>
+
+                                    <br/>
+                                    <div class="slds-m-left_medium">
+                                        <lightning:button disabled="{!v.disabled}" onclick="{!c.doAction}" variant="brand" label="Save"/>
+                                    </div>
+                                </aura:set>
+                            </aura:if>
+                        </aura:set>
+                    </aura:if>
+                </lightning:recordEditForm>
+            </p>
+        </aura:set>
+    </lightning:card>
+</aura:component>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY Local No Contactado PQP</name>
+    <style>freeForm</style>
+    <subject>Local no Contactado</subject>
+    <textOnly>Estimado XXX,
+
+En esta oportunidad nos ponemos en contacto desde el departamento de Partner Quality de PedidosYa. Intentamos comunicarnos con respecto al desempeño del local (Nombre del local), al teléfono (XXX), pero no logramos contactarlo.
+
+Solicitamos que nos informe algún número telefónico alternativo y horario para poder comunicarnos. Puede escribirnos a soporte@pedidosya.com o contestar este correo. 
+
+Insistiremos en los intentos en los próximos días. En caso de no lograr establecer comunicación el perfil permanecerá cerrado en la plataforma.
+
+Adjuntamos folleto con las vías de contacto y manual de uso del Partner Portal.
+
+Quedamos a la espera de una respuesta.
+
+Saludos,
+Nombre + inicial
+Partner Quality Advisor
+PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

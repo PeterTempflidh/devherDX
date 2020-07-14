@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY - Partner Portal como administro mis usuarios</name>
+    <style>freeForm</style>
+    <subject>Gracias por Contactarnos - # {!Case.CaseNumber}</subject>
+    <textOnly>Estimado XXXNombreXXX, 
+
+ 
+
+Nos contactamos en respuesta a tu consulta sobre cómo administrar usuarios en tu perfil de Partner Portal, para lograrlo te diriges a la sección ‘Usuarios’ en el menú de la izquierda, encontrarás todos los usuarios que tienes actualmente configurados, en esta sección también podrás modificar algunos datos tu perfil en la pestaña ‘Mi Perfil’
+
+ 
+
+Para editar los permisos o datos de los usuarios creados le das click en el usuario y se desplegará un menú con todos los datos y los permisos que puedes modificar, en este menú también encontrarás la opción de ‘Eliminar usuario’.
+
+ 
+
+Para agregar un nuevo usuario encontrarás un botón rojo en la parte inferior derecha, si le das click se desplegará un menú donde podrás ingresar los datos del nuevo usuario y activar los permisos que desees otorgarle. 
+
+ 
+
+Adicionalmente te hemos adjuntado el manual de la herramienta para futuras consultas. 
+
+ 
+
+Quedamos a las órdenes,
+
+Saludos 
+
+ 
+
+(NOMBRE DEL AGENTE) - Claims Operator 
+PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

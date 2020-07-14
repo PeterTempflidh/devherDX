@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>DH_AU_Letterhead</letterhead>
+    <name>DH AU Restaurant Suggestion</name>
+    <style>freeForm</style>
+    <subject>{!Lead.Restaurant_Name__c} Registered</subject>
+    <textOnly>Thank you for registering {!Lead.Restaurant_Name__c} with Delivery Hero. It&apos;s support like this that has allowed us to grow to a network of over 70,000 restaurants. One of our restaurant team will be in contact shortly to begin the onboarding process. We can&apos;t wait to spread the word to {!Lead.City}, until then - have a fantastic day!</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

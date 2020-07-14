@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>FP TH self sign up email template</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP TH Self Sign Up Restaurant</name>
+    <style>freeForm</style>
+    <subject>Partner with foodpanda</subject>
+    <textOnly>Hi {!Contact.FirstName} {!Contact.LastName},
+
+Thanks for writing in to foodpanda, the World’s largest food delivery eCommerce platform.
+Please complete your business&apos;s information here. We will follow up with your request once it&apos;s completed.
+
+Cheers!
+foodpanda team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Cancelled before Shipment</masterLabel>
+        <translation><!-- Cancelled before Shipment --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Installed</masterLabel>
+        <translation>설치완료</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Obsolete</masterLabel>
+        <translation>사용 불가능</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Purchased</masterLabel>
+        <translation>구매 완료</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Registered</masterLabel>
+        <translation>등록 완료</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Shipped</masterLabel>
+        <translation>배송완료</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

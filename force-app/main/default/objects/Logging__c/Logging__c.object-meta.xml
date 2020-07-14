@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>use this custom setting to disable or enable Logging
+1. Disable a particular type to disable the logging for that particular type
+2. Enable ONLY_ERROR_LOGGING to log only errors
+
+NOTE: If you can enable only error logging and still you have not disbaled logging for particular type, it will log for both errors and that particular type. If you just want to log error disbale all the other types and enable logging.</description>
+    <enableFeeds>false</enableFeeds>
+    <label>Logging</label>
+    <visibility>Public</visibility>
+</CustomObject>

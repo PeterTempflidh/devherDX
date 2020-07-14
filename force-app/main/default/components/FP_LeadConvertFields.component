@@ -1,0 +1,351 @@
+<!--
+	Foodpanda(APAC) Lead convert component.
+-->
+<apex:component controller="CtrCreateNewAddress" >
+
+    <apex:attribute name="lead" type="Lead" required="true" description="Lead to be converted" />
+
+    <apex:attribute name="account" type="Account" required="true" description="Temporary account record to hold some information" />
+
+    <style type="text/css">
+		.leadInformationFields .slds-col,
+		.accountInformationFields .slds-col,
+		.contactInformationFields .slds-col {
+			margin-bottom: 0.5rem;
+		}
+
+		.accountInformationFields .slds-col:not(:first-child):nth-child(odd),
+		.contactInformationFields .slds-col:nth-child(even) {
+			padding-left: 0.5rem;
+		}
+
+		@media (min-width: 768px) {
+			.leadInformationFields .slds-col:nth-child(even) {
+				padding-left: 0.5rem;
+			}
+		}
+	</style>
+
+    <!-- main container  -->
+    <div
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlns:v-once="http://vue/fake"
+            xmlns:v-html="http://vue/fake"
+            xmlns:v-bind="http://vue/fake"
+            xmlns:v-if="http://vue/fake"
+            xmlns:v-on="http://vue/fake"
+            xmlns:v-model="http://vue/fake"
+            xmlns:v-cloak="http://vue/fake"
+            class="slds-form-element__group">
+
+        <!-- lead information fields -->
+        <div class="slds-form--compound">
+            <legend class="slds-form-element__label slds-text-title--caps">Lead Information</legend>
+            <div class="slds-p-around--small">
+                <div class="slds-grid slds-wrap slds-box leadInformationFields">
+
+                    <!-- owner id -->
+                    <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.owner}">
+                                {!$ObjectType.Lead.fields.OwnerId.Label}
+                            </label>
+                            <div class="slds-form-element__control">
+                                <input type="text" class="slds-input" disabled="true" value="{!lead.Owner.name}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- user country  -->
+                    <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.country}">
+                                {!$ObjectType.Lead.fields.Country__c.Label}
+                            </label>
+                            <div class="slds-form-element__control">
+                                <input type="text" class="slds-input" disabled="true" value="{!lead.Country__r.name}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- account information fields  -->
+        <div class="slds-form-element">
+            <legend class="slds-form-element__label slds-text-title--caps">Account Information</legend>
+            <div class="slds-p-around--small">
+                <div class="slds-grid slds-wrap slds-box accountInformationFields">
+
+                    <!-- account name  -->
+                    <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.accountName}">
+                                <abbr class="slds-required" title="required">*</abbr>{!$ObjectType.Account.fields.Name.Label}
+                            </label>
+                            <div class="slds-form-element__control">
+                                <apex:inputField id="accountName" styleClass="slds-input" value="{!account.Name}" required="true" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Legal Name  -->
+                    <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.legalName}">
+								{!$ObjectType.Lead.fields.Legal_Name__c.Label}
+							</label>
+                            <div class="slds-form-element__control">
+                                <apex:inputField id="legalName" styleClass="slds-input" value="{!lead.Legal_Name__c}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- address fields  -->
+        <div class="slds-form-element" id="addressForm">
+            <legend class="slds-form-element__label slds-text-title--caps">Address Information</legend>
+            <div class="slds-p-around--small">
+
+                <xal-address-form v-if="countries.length > 0" v-bind:address-detail="addressDetail" v-bind:country="addressDetail.country" />
+
+                <spinner v-bind:open="loaderState.state.isLoading" />
+                <error-handler v-bind:message="errorState.state.message" v-bind:type="errorState.state.type" v-on:closed="errorState.clearErrorMsg()" />
+
+            </div>
+        </div>
+
+        <!-- contact information fields  -->
+        <div class="slds-form-element">
+            <legend class="slds-form-element__label slds-text-title--caps">Contact Information</legend>
+            <div class="slds-p-around--small">
+                <div class="slds-grid slds-wrap slds-box contactInformationFields">
+
+                    <!-- Salutation  -->
+                    <div class="slds-col slds-size--1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.leadSalutation}">
+                                {!$ObjectType.Lead.fields.Salutation.Label}
+                            </label>
+                            <div class="slds-form-element__control">
+                                <apex:inputField id="leadSalutation" styleClass="slds-select" value="{!lead.Salutation}" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-size--1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.role}">
+                                {!$ObjectType.Contact.fields.Contact_Role__c.Label}
+                            </label>
+                            <div class="slds-form-element__control">
+                                <input type="text" class="slds-input" disabled="true" value="Owner" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- first name  -->
+                    <div class="slds-col slds-size--1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.firstname}">
+                                {!$ObjectType.lead.fields.firstName.Label}
+                            </label>
+                            <div class="slds-form-element__control">
+                                <apex:inputField id="firstname" styleClass="slds-input" value="{!lead.firstName}" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- last name  -->
+                    <div class="slds-col slds-size--1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.lastname}">
+                                <abbr class="slds-required" title="required">*</abbr>{!$ObjectType.lead.fields.lastname.Label}
+                            </label>
+                            <div class="slds-form-element__control">
+                                <apex:inputField id="lastname" styleClass="slds-input" value="{!lead.lastname}" required="true" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- mobile  -->
+                    <div class="slds-col slds-size--1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.MobilePhone}">
+                                {!$ObjectType.lead.fields.MobilePhone.Label}
+                            </label>
+                            <div class="slds-form-element__control">
+                                <apex:inputField id="MobilePhone" styleClass="slds-input" value="{!lead.MobilePhone}" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- phone  -->
+                    <div class="slds-col slds-size--1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.Phone}">
+                                <abbr class="slds-required" title="required">*</abbr>{!$ObjectType.lead.fields.Phone.Label}
+                            </label>
+                            <div class="slds-form-element__control">
+                                <apex:inputField id="Phone" styleClass="slds-input" value="{!lead.Phone}" required="true" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Email  -->
+                    <div class="slds-col slds-size--1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.Email}">
+                                {!$ObjectType.lead.fields.Email.Label}
+                            </label>
+                            <div class="slds-form-element__control slds-size--1-of-2">
+                                <apex:inputField id="Email" styleClass="slds-input" value="{!lead.Email}"  />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Other Phone -->
+                    <div class="slds-col slds-size--1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-truncate" for="{!$Component.Phone}">
+                                {!$ObjectType.lead.fields.Other_Phone__c.Label}
+                            </label>
+                            <div class="slds-form-element__control">
+                                <apex:inputField id="OtherPhone" styleClass="slds-input" value="{!lead.Other_Phone__c}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+		if (typeof adjustLookupFields === "function") adjustLookupFields();
+		if (typeof adjustMultiselectPicklist === "function") adjustMultiselectPicklist();
+	</script>
+
+    <c:VueAddressDetailComponents />
+    <c:VueCommonComponents />
+
+    <script type="text/javascript">
+		var vueAddressForm = new Vue({
+			el: "#addressForm",
+			data: {
+	            loaderState: loaderSharedState,
+	            errorState: errorHandlerSharedState,
+	            inputElementsState: inputElementsSharedState,
+	            countries: [],
+				addressDetail: {}
+			},
+			methods: {
+				setAccountId: function(accountId) {
+					this.addressDetail.account = accountId;
+				},
+				validateForm: function() {
+					var isValid = true;
+
+					for (var i = 0; i < this.inputElementsState.state.elements.length; i++) {
+						var el = this.inputElementsState.state.elements[i];
+						if (!el.isFilled ) {
+							el.isInError = true;
+							isValid = false;
+						} else {
+							el.isInError = false; // clear the error message if any
+						}
+					}
+
+					return isValid;
+				},
+				saveAddress: function(cb) { // cb is a callback function
+
+					cb = (typeof cb === "function") ? cb : function(){};
+					// validation of this form is done in componentBeforeConvert function
+
+					this.loaderState.startLoadingSpinner();
+
+					var self = this;
+					// Remote action
+					Visualforce.remoting.Manager.invokeAction(
+						'{!$RemoteAction.CtrCreateNewAddress.saveXALAddress}',
+						this.addressDetail,
+						function (result, event) {
+							self.loaderState.stopLoadingSpinner();
+
+							// Checks event status
+							if (!event.status || !result) {
+								self.errorState.setErrorMsg({
+									msg :"Lead was converted correctly but was not possible to create the specified address. Error details: " + event.message,
+									type: "error"
+								});
+
+								setTimeout(cb, 1500);
+								return;
+							}
+
+							// everything is fine
+							cb();
+						}, {
+							escape: false
+						}
+					);
+				}
+			},
+			mounted: function() {
+				this.loaderState.startLoadingSpinner();
+
+				var self = this;
+
+				// set address line if specified on lead
+				if ("{!lead.Street}") {
+					this.addressDetail.addressLine = "{!lead.Street}";
+				}
+
+				// retrieves country
+				Visualforce.remoting.Manager.invokeAction(
+					'{!$RemoteAction.CtrCreateNewAddress.getCountryByCountryName}',
+					'{!lead.Record_Country__c}',
+					function (result, event) {
+						self.loaderState.stopLoadingSpinner();
+
+						// Checks event status
+			            if (!event.status || !result) {
+			                self.errorState.setErrorMsg({
+			                    msg: "Impossible to load Address, error details are: " + event.message,
+			                    type: "error"
+			                });
+			                return;
+			            }
+						self.countries.push(result);
+
+						// if new address force the country value
+						self.addressDetail.country = result;
+						self.addressDetail.type = ["Billing Address","Shipping Address","Restaurant Address"];
+
+					}, {
+						escape: false
+					}
+				);
+
+
+			}
+		});
+
+		function componentBeforeConvert () {
+			return vueAddressForm.validateForm();
+		}
+
+		function componentAfterConvert (accountId, cb) {
+			// set account on address detail
+			vueAddressForm.setAccountId(accountId);
+			vueAddressForm.saveAddress(cb);
+		}
+	</script>
+
+
+</apex:component>

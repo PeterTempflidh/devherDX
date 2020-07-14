@@ -1,0 +1,120 @@
+<!--
+	Renders the history related list of a given record of any sObject type
+	Assumes to be used inside a page that already included the slds stylesheet.
+-->
+<apex:component controller="CtrLDSHistoryRelatedList">
+
+	<apex:attribute name="historyTable" 
+		type="String" 
+		required="true"
+		assignTo="{!historyObject}" 
+		description="History table to query for" />
+
+	<apex:attribute name="historyParentField" 
+		type="String" 
+		required="true" 
+		assignTo="{!parentField}"
+		description="Lookup field to parent record" />
+
+	<apex:attribute name="parentSObject" 
+		type="String" 
+		required="true" 
+		assignTo="{!parentObject}"
+		description="Parent SObject type" />
+
+	<apex:attribute name="parentId" 
+		type="String" 
+		required="true" 
+		assignTo="{!parentReocrd}"
+		description="Parent record id" />
+
+	<apex:form id="historyForm">
+		<apex:actionRegion >
+			
+			<apex:actionFunction name="loadAf" action="{!loadRecords}" reRender="historyList" oncomplete="loadComplete()"/>
+			<apex:actionFunction name="loadAllAf" action="{!loadAllRecords}" reRender="historyList" oncomplete="loadAllComplete()"/>
+
+			<!-- history related list -->
+			<article class="slds-card slds-box" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+				<div class="slds-card__header slds-grid">
+					<header class="slds-media slds-media--center slds-has-flexi-truncate">
+						<span class="slds-icon_container slds-icon-standard-recent slds-m-right--small">
+							<svg class="slds-icon" aria-hidden="true">
+								<use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/standard-sprite/svg/symbols.svg#recent')}"></use>
+							</svg>
+						</span>
+
+						<div class="slds-media__body slds-truncate">
+							<h2>
+								<a href="javascript:void(0);" class="slds-text-link--reset" style="cursor: default">
+									<span class="slds-text-heading--small">History</span>
+								</a>
+							</h2>
+						</div>
+					</header>
+					<div class="slds-no-flex">
+						<div class="slds-form-element">
+							<div class="slds-form-element__control">
+								<button id="historyLoadBtn" type="button" class="slds-button slds-button--neutral" onclick="loadAf()">
+									<svg class="slds-button__icon slds-button__icon--left" aria-hidden="true">
+										<use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/utility-sprite/svg/symbols.svg#rotate')}"></use>
+									</svg>
+									Load More
+								</button>
+								<a href="#" id="historyViewAll" class="slds-p-left--small slds-hide" onclick="loadAllAf(); return false;">View all list</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="slds-card__body slds-scrollable--x">
+					<apex:dataTable id="historyList" styleClass="slds-table slds-table--bordered slds-no-row-hover slds-table--cell-buffer" value="{!historyRecords}" var="h">
+						
+						<apex:column headerValue="{!$ObjectType[historyTable].fields['CreatedDate'].label}">
+							{!h.createdDate}
+						</apex:column>
+
+						<apex:column headerValue="{!$ObjectType.User.label}">
+							{!h.createdBy}
+						</apex:column>
+
+						<apex:column headerValue="Action">
+							<apex:outputText value="{!$Label.History_Action_Description_Old_to_New}" escape="false" rendered="{!AND(NOT(ISBLANK(h.oldVal)), NOT(ISBLANK(h.newVal)))}">
+								<apex:param value="{!$ObjectType[parentSObject].fields[h.field].label}"/>
+								<apex:param value="{!h.oldVal}" />
+								<apex:param value="{!h.newVal}" />
+							</apex:outputText>
+
+							<apex:outputText value="{!$Label.History_Action_Description_New_Value}" escape="false" rendered="{!AND(ISBLANK(h.oldVal), NOT(ISBLANK(h.newVal)))}">
+								<apex:param value="{!$ObjectType[parentSObject].fields[h.field].label}"/>
+								<apex:param value="{!h.newVal}" />
+							</apex:outputText>
+
+							<apex:outputText value="{!$Label.History_Action_Description_Only_Change}" escape="false" rendered="{!AND(ISBLANK(h.oldVal), ISBLANK(h.newVal))}">
+								<apex:param value="{!$ObjectType[parentSObject].fields[h.field].label}"/>
+							</apex:outputText>
+						</apex:column>
+
+					</apex:dataTable>	
+				</div>
+			</article>
+		</apex:actionRegion>
+	</apex:form>
+
+	<script type="text/javascript">
+		window.addEventListener("load", function() {
+			loadAf();
+		});
+
+		function loadAllComplete() {
+			document.getElementById("historyLoadBtn").setAttribute("disabled", "true");
+			document.getElementById("historyViewAll").className += " slds-hide";
+		}
+
+		function loadComplete () {
+			var viewAllLink = document.getElementById("historyViewAll");
+			viewAllLink.className = viewAllLink.className.replace("slds-hide", "");
+		}
+	</script>
+
+</apex:component>

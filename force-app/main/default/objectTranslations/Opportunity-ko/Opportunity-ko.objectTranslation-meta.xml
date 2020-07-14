@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- KR CustomReport --></label>
+        <name>KR_CustomReport</name>
+    </fieldSets>
+    <layouts>
+        <layout>AT - Opportunity Layout</layout>
+        <sections>
+            <label><!-- Add Opportunity Product Items --></label>
+            <section>Add Opportunity Product Items</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Admin - DE - Opportunity Layout</layout>
+        <sections>
+            <label><!-- Add Opportunity Product Items --></label>
+            <section>Add Opportunity Product Items</section>
+        </sections>
+        <sections>
+            <label><!-- Mobile Add Opportunity Product Items --></label>
+            <section>Mobile Add Opportunity Product Items</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CD - Opportunity Layout</layout>
+        <sections>
+            <label><!-- Add Opportunity Product Items --></label>
+            <section>Add Opportunity Product Items</section>
+        </sections>
+        <sections>
+            <label><!-- Mobile Add Opportunity Product Items --></label>
+            <section>Mobile Add Opportunity Product Items</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CZ - Opportunity Layout</layout>
+        <sections>
+            <label><!-- Add Opportunity Product Items --></label>
+            <section>Add Opportunity Product Items</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Chain - Opportunity Layout</layout>
+        <sections>
+            <label><!-- Add Opportunity Product Items --></label>
+            <section>Add Opportunity Product Items</section>
+        </sections>
+        <sections>
+            <label><!-- Mobile Add Opportunity Product Items --></label>
+            <section>Mobile Add Opportunity Product Items</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>DE - Opportunity Layout</layout>
+        <sections>
+            <label><!-- Add Opportunity Product Items --></label>
+            <section>Add Opportunity Product Items</section>
+        </sections>
+        <sections>
+            <label><!-- Mobile Add Opportunity Product Items --></label>
+            <section>Mobile Add Opportunity Product Items</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>DH AU - Opportunity Layout</layout>
+        <sections>
+            <label><!-- Add Opportunity Product Items --></label>
+            <section>Add Opportunity Product Items</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>FP - Opportunity Layout</layout>
+        <sections>
+            <label><!-- Add Opportunity Product Items --></label>
+            <section>Add Opportunity Product Items</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>HU - Opportunity Layout</layout>
+        <sections>
+            <label><!-- Add Opportunity Product Items --></label>
+            <section>Add Opportunity Product Items</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Opportunity Layout</layout>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SE Opportunity Layout</layout>
+        <sections>
+            <label><!-- Add Opportunity Product Items --></label>
+            <section>Add Opportunity Product Items</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Talabat - Opportunity Layout</layout>
+        <sections>
+            <label><!-- Add Opportunity Product Items --></label>
+            <section>Add Opportunity Product Items</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>UK - Opportunity Layout</layout>
+        <sections>
+            <label><!-- Add Opportunity Product Items --></label>
+            <section>Add Opportunity Product Items</section>
+        </sections>
+        <sections>
+            <label><!-- Mobile Add Opportunity Product Items --></label>
+            <section>Mobile Add Opportunity Product Items</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Yogiyo Opportunity Layout</layout>
+        <sections>
+            <label><!-- Add Opportunity Line Items --></label>
+            <section>Add Opportunity Line Items</section>
+        </sections>
+        <sections>
+            <label>품질 관리</label>
+            <section>Quality Check</section>
+        </sections>
+        <sections>
+            <label>영업 정보</label>
+            <section>Sales Information</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Event --></label>
+        <name>Event</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Log a Call --></label>
+        <name>Log_a_Call</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Log a Call --></label>
+        <name>Log_a_call_Lightning</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Generate Documents --></label>
+        <name>Loop__RunDDP</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NVM Call --></label>
+        <name>NVMContactWorld__Call</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Event --></label>
+        <name>New_Event_Lightning</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Task --></label>
+        <name>New_Task_Lightning</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Task --></label>
+        <name>Task</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- DocuSign --></label>
+        <name>dsfs__OpportunityDocuSignAction</name>
+    </quickActions>
+    <recordTypes>
+        <label><!-- AT Opportunity --></label>
+        <name>AT_Opportunity</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Opportunity for Click Delivery --></description>
+        <label><!-- CD Opportunity --></label>
+        <name>CD_Opportunity</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Czech Republic Opportunity --></description>
+        <label><!-- CZ Opportunity --></label>
+        <name>CZ_Opportunity</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Chain Opportunity --></label>
+        <name>Chain_Opportunity</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DE Opportunity --></label>
+        <name>DE_Opportunity</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Austrialian Sales Process --></description>
+        <label><!-- DH AU Opportunity --></label>
+        <name>DH_AU_Opportunity</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Finland Sales process --></description>
+        <label><!-- FI Opportunity --></label>
+        <name>FI_Opportunity</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FP Opportunity --></label>
+        <name>FP_Opportunity</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Hungary Opportunity --></description>
+        <label><!-- HU Opportunity --></label>
+        <name>HU_Opportunity</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PY Opportunity --></label>
+        <name>PY_Opportunity</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Sweden Opportunity --></description>
+        <label><!-- SE Opportunity --></label>
+        <name>SE_Opportunity</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Talabat Opportunity --></description>
+        <label><!-- Talabat Opportunity --></label>
+        <name>Talabat_Opportunity</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- UK Opportunity --></label>
+        <name>UK_Opportunity</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- KR Opportunity Recordtype --></description>
+        <label><!-- Yogiyo Opportunity --></label>
+        <name>Yogiyo_Opportunity</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Please update the Business Type on the opportunity before moving forward with the Opportunity Stage --></errorMessage>
+        <name>Business_Type_required_on_Opportunity</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Por Favor asegurese  los siguientes campos esten completos en la cuenta: Nombre del restaurante, Cuenta Principal, Marca, Metodo de pago, Valor minimo del Pedido, Entrega a Domicilio, Tarifa y zona de Reparto y horarios de apertura y disponibilidad. --></errorMessage>
+        <name>CD_Mandatory_fields_before_QA</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Headquarter deals cannot be created on branch level --></errorMessage>
+        <name>Chain_Opportunity_to_child_validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- For account type &quot;Child&quot; the contract types available are : 12. Re - Commission (Agency) and 06. New - Franchise --></errorMessage>
+        <name>Contract_type_value_Child_Account</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can not create or edit this Opportunity. --></errorMessage>
+        <name>FI_CC_Only_refund_Opportunity</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can not edit the business type once the quality check is completed --></errorMessage>
+        <name>Global_Business_Type_Locked_After_QA</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can not edit a Closed opportunity --></errorMessage>
+        <name>Global_Cannot_edit_Closed_Opp</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- These two fields can be filled up only when the stage is Closed Lost or Terminal Returned --></errorMessage>
+        <name>Global_Lost_Reason_and_Lost_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select a lost reason --></errorMessage>
+        <name>Global_Lost_Reason_is_required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Opportunity Stage cannot move back after being &apos;Close Won&apos;. --></errorMessage>
+        <name>Global_Stage_cannot_move_after_ClosedWon</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can not edit the owner of accounts, please contact your manager to help you transferring this account --></errorMessage>
+        <name>PY_Sales_team_can_not_edit_opp_owner</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please update the Relay Method on the Account before moving forward with the Opportunity Stage --></errorMessage>
+        <name>Relay_Method_required_on_Account</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please make sure all bookings in this Opportunity are canceled before marking it lost. --></errorMessage>
+        <name>UK_PPValidationForUKForClosedLost</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Telephone numbers IN THE ACCOUNT  have to be formatted like this: +49155523681234 (+CountryCodeAreaCodeNumber). --></errorMessage>
+        <name>Valid_Phone_Number</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- ApplyDealLightning --></label>
+        <name>ApplyDealLightning</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Apply_Deal --></label>
+        <name>Apply_Deal</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Attach_Files --></label>
+        <name>Attach_Files</name>
+    </webLinks>
+    <webLinks>
+        <label>복제</label>
+        <name>Clone</name>
+    </webLinks>
+    <webLinks>
+        <label>복제</label>
+        <name>CustomClone</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Download_Attachments --></label>
+        <name>Download_Attachments</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- LOOP --></label>
+        <name>Loop__LOOP</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- LOOP_Merge --></label>
+        <name>Loop__LOOP_Merge</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- LOOPlus --></label>
+        <name>Loop__LOOPlus</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_LOOP_Merge --></label>
+        <name>Loop__Mass_LOOP_Merge</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_LOOPlus --></label>
+        <name>Loop__Mass_LOOPlus</name>
+    </webLinks>
+    <webLinks>
+        <label>대량 수정</label>
+        <name>Mass_Edit</name>
+    </webLinks>
+    <webLinks>
+        <label>대량 업데이트</label>
+        <name>Mass_Update</name>
+    </webLinks>
+    <webLinks>
+        <label>퀄리티 체크 완료</label>
+        <name>Quality_Checked</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_with_DocuSign --></label>
+        <name>dsfs__Send_with_DocuSign</name>
+    </webLinks>
+</CustomObjectTranslation>

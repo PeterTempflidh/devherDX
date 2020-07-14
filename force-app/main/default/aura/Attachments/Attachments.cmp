@@ -1,0 +1,59 @@
+<aura:component controller="Attachments_AuraController" implements="flexipage:availableForAllPageTypes,force:hasRecordId,lightning:isUrlAddressable,force:hasSObjectName,force:appHostable">
+
+    <aura:attribute name="sObjectType" type="String" default="{!v.sObjectName}"/>
+    <aura:attribute name="numberOfAtt" type="Integer" default="0"/> 
+    <aura:attribute name="attachments" type="List"/>
+    <aura:attribute name="recordId" type="Id"/>
+    <aura:attribute name="name" type="String"/>
+    <aura:attribute name="pageReference" type="Object"/>
+    <aura:attribute name="headerTitle" type="Aura.Component[]">
+        <h2><b>{!$Label.c.Attachments + ' (' + v.numberOfAtt + ')'}</b></h2>
+    </aura:attribute>
+
+    <lightning:navigation aura:id="navigate"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:handler event="c:EventUpdateAttachmentsComp" action="{!c.init}"/>
+    <lightning:workspaceAPI aura:id="workspace"/>
+    
+    <lightning:card aura:id="lightCard" class="slds-card_boundary" title="{!v.headerTitle}" iconName="standard:file">
+        <aura:set attribute="actions">
+            <aura:if isTrue="{!v.sObjectType != 'Opportunity_Quote__c'}">
+            	<lightning:button label="{!$Label.c.Upload_Files}" onclick="{!c.openUploadFiles}"/>
+            </aura:if>
+        </aura:set>
+        <aura:set attribute="footer">
+            <aura:if isTrue="{!v.numberOfAtt > 0}">
+                <div aura:id="footer">
+                    <a onclick="{!c.viewAll}">{!$Label.c.View_All}</a>
+                </div>
+            </aura:if>
+        </aura:set>
+ 
+        <lightning:spinner aura:id="spinner" alternativeText="{!$Label.c.CD_GEN_VAL6}" variant="brand" size="medium" class="slds-hide"/>
+        <div aura:id="attachmentTable">
+            <table class="slds-m-top--large slds-table slds-table_bordered slds-table_striped slds-table_cell-buffer slds-table_fixed-layout">
+                <thead>
+                    <tr class="slds-text-heading_label">
+                        <td scope="col"><div class="slds-text-align_left">{!$Label.c.Title}</div></td>
+                        <td scope="col"><div class="slds-text-align_left">{!$Label.c.Attachment_Type}</div></td>
+                        <td scope="col" style="width: 15%"><div class="slds-text-align_left">{!$Label.c.Type}</div></td>
+                        <td scope="col"><div class="slds-text-align_left">{!$Label.c.SMC_Last_Modified_Date}</div></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.attachments}" var="att">
+                        <tr>
+                            <td><div class="slds-text-align_left slds-text-body_small slds-truncate">
+                                <a onclick="{!c.previewFile}" data-Id="{!att.contentdocumentid}" data-Type="{!att.fielextension}" title="{!att.title}">{!att.title}</a>
+                                </div>
+                            </td>
+                            <td><div class="slds-text-align_left slds-text-body_small slds-truncate" title="{!att.attachmenttype}">{!att.attachmenttype}</div></td>
+                            <td style="width: 15%"><div class="slds-text-align_left slds-text-body_small">{!att.fielextension}</div></td>
+                            <td><div class="slds-text-align_left slds-text-body_small">{!att.formatteddate}</div></td>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+        </div>
+    </lightning:card>
+</aura:component>

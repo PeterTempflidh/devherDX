@@ -1,0 +1,54 @@
+<!--
+ - Created by keerthan.tantry on 03/05/2020.
+ -->
+
+<!-- Link Action Items -->
+<template>
+    <template if:true={data}>
+        <lightning-card>
+            <h3 slot="title" class="slds-p-around_medium lgc-bg">
+                <lightning-icon icon-name="utility:connected_apps" size="small"></lightning-icon>
+                Action Items List
+            </h3>
+
+            <p>
+                <lightning-datatable
+                        key-field="id"
+                        data={data}
+                        show-row-number-column
+                        columns={columns}
+                        onrowselection={getSelectedRows}>
+
+                </lightning-datatable>
+            </p>
+
+            <div slot="footer">
+                <lightning-button label="De-Link" onclick={delinkTask}></lightning-button>
+                <lightning-button label="Link" onclick={linkTask}></lightning-button>
+            </div>
+        </lightning-card>
+    </template>
+    <template if:false={data}>
+        <div class="slds-notify_container">
+            <div class="slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture" role="alert">
+                <button class="slds-button slds-notify__close slds-button--icon-inverse" title="Close">
+                    <svg aria-hidden="true" class="slds-button__icon">
+                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                    </svg>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                <span class="slds-assistive-text">Error</span>
+                <h2>
+                    <svg aria-hidden="true" class="slds-icon slds-icon--small slds-m-right--x-small">
+                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#ban"></use>
+                    </svg>
+                    No Action Items to display.
+                </h2>
+            </div>
+        </div>
+
+    </template>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading" variant="base"></lightning-spinner>
+    </template>
+</template>

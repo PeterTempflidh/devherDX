@@ -1,0 +1,14 @@
+<apex:page standardController="Lead" extensions="CtrOrderConfirmation" showHeader="false" sidebar="false" standardStylesheets="false"  applyHtmlTag="false" docType="html-5.0">
+
+<html>
+ <head>
+ <script src='/canvas/sdk/js/32.0/publisher.js' /> 
+  <script>
+    sforce.one.navigateToURL('/apex/OrderConfirmation?id={!lead.id}',false);
+    Sfdc.canvas.publisher.publish({name:"publisher.close",payload:{refresh:"false"}}); 
+  </script>
+ </head>
+ <body>
+ </body>
+</html>
+</apex:page>

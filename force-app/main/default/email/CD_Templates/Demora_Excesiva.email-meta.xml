@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Clickdelivery</letterhead>
+    <name>Demora Excesiva</name>
+    <style>freeForm</style>
+    <subject>Demora Excesiva</subject>
+    <textOnly>Se escala queja:
+
+Hola (Nombre del usuario), te informamos que según tu queja de la demora en la entrega en tu pedido nos comunicamos con el establecimiento y se encuentran muy apenados por esta situación. Te ofrecemos disculpas por los minutos de más que estuviste que esperar, sabemos que el tiempo vale oro y por esto (solución ofrecida por demora excesiva). Cualquier inquietud no dudes en contactarnos, nuestros domi héroes están 24/7 para colaborarte con todo lo que necesites.Movemos el mundo por ti</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

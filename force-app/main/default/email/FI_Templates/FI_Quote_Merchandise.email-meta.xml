@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>FI Quote - Merchandise</name>
+    <style>none</style>
+    <subject>Tilausvahvistus / Order confirmation - Delivery Hero Finland Oy</subject>
+    <textOnly>Hyvä [Full Name],
+
+Kiitos tilauksestasi foodoran verkkokaupasta.
+Tässä liitteenä vahvistus tilauksestasi.
+
+
+Dear [Full Name],
+Thank you for your order from the foodora webshop.
+Attached to this email you will find the order confirmation of your purchased products.
+
+
+Ystävällisin terveisin / Kind regards,
+
+[Opportunity Owner First Name] [Opportunity Owner Last Name]
+
+Delivery Hero Finland Oy
+Pasilankatu 10, 00240 Helsinki
+Phone: 02 9300 0470
+Website: foodora.fi</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

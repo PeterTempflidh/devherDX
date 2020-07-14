@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Vorlage: Anschreiben Auskunftsersuchen</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DE_Delivery_Hero_Germany</letterhead>
+    <name>DHG - Auth Anschreiben</name>
+    <style>formalLetter</style>
+    <subject>Antwort zu Az.:_______</subject>
+    <textOnly>Sehr geehrte 
+
+vielen Dank für das Zusenden des offiziellen, polizeilichen Auskunftsersuchen. Anbei erhalten Sie die Daten aus unserer Recherche im Anhang. 
+
+Zusätzlich wichtige Informationen oder Details zu Personen und Gegebenheiten, während der Auslieferung, kann ggf. der Lieferdienst (Inhaber / Mitarbeiter) bereitstellen. 
+
+Für Rückfragen stehen wir Ihnen gerneunter anfrage@deliveryhero.com zur Verfügung. 
+
+Mit freundlichen Grüßen 
+
+Payments Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

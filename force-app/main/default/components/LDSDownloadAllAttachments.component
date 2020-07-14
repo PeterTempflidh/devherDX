@@ -1,0 +1,348 @@
+<!--
+	Given a record id retrieves all related Attachment records and allows users to
+	download all of them as a Zip file
+
+	This component assumes to be included inside a page that already imported the
+	SLDS style sheet
+-->
+<apex:component controller="CtrLDSDownloadAllAttachments" layout="none">
+
+<apex:attribute name="parentId" type="String" required="true" description="Attachment parent record id" />
+<apex:attribute name="zipName" type="String" required="false" description="Zip file name, without file extension. Default is Download" default="Download" />
+
+<style type="text/css">
+	.attachmentList thead th {
+		text-transform: uppercase !important;
+		font-weight: 700 !important;
+	}
+</style>
+
+<div id="downloadAllAttachmentContainer"
+xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+xmlns:v-once="http://vue/fake"
+xmlns:v-html="http://vue/fake"
+xmlns:v-bind="http://vue/fake"
+xmlns:v-if="http://vue/fake"
+xmlns:v-on="http://vue/fake"
+xmlns:v-model="http://vue/fake">
+
+<article class="slds-card slds-box">
+	<div class="slds-card__header slds-grid">
+		<header class="slds-media slds-media--center slds-has-flexi-truncate">
+			<div class="slds-media__figure">
+				<svg aria-hidden="true" class="slds-icon slds-icon--small">
+					<use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/doctype-sprite/svg/symbols.svg#attachment')}"></use>
+				</svg>
+			</div>
+			<div class="slds-media__body slds-truncate">
+				<h2>
+					<a href="javascript:void(0);" class="slds-text-link--reset" style="cursor: default">
+						<span class="slds-text-heading--small">{!$ObjectType.Attachment.labelPlural}</span>
+					</a>
+				</h2>
+			</div>
+		</header>
+		<div class="slds-no-flex">
+			<button type="button" class="slds-button slds-button--neutral" style="cursor: pointer;" 
+					v-bind:class="[ selected.length ? 'slds-show' : 'slds-hide' ]" 
+					v-on:click="download" >
+				<svg aria-hidden="true" class="slds-button__icon slds-button__icon--left">
+					<use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/utility-sprite/svg/symbols.svg#download')}"></use>
+				</svg>
+				Download
+			</button>
+		</div>
+	</div>
+	<div class="slds-card__body slds-scrollable--x">
+		<spinner v-bind:open="loading"/>
+		<error-handler v-bind:message="errorState.state.message" v-bind:type="errorState.state.type" v-on:closed="errorState.clearErrorMsg()" />
+		<table class="slds-table slds-table--bordered slds-table--resizable-cols slds-table--fixed-layout attachmentList" role="grid">
+			<thead>
+				<tr class="slds-line-height--reset">
+					<th scope="col" style="width:3.25rem;" class="slds-text-align--right">
+						<div class="slds-th__action slds-th__action--form">
+							<span class="slds-checkbox">
+								<input type="checkbox" name="options" id="checkbox-126" v-on:click="all" v-bind:checked="isAllSelected" />
+								<label class="slds-checkbox__label" for="checkbox-126">
+									<span class="slds-checkbox--faux"></span>
+									<span class="slds-form-element__label slds-assistive-text">Select All</span>
+								</label>
+							</span>
+						</div>
+					</th>
+					<th scope="col">
+						<div class="slds-truncate" title="{!$ObjectType.Attachment.fields.name.Label}">
+							{!$ObjectType.Attachment.fields.name.Label}
+						</div>
+					</th>
+					<th scope="col">
+						<div class="slds-truncate" title="{!$ObjectType.Attachment.fields.ContentType.Label}">
+							{!$ObjectType.Attachment.fields.ContentType.Label}
+						</div>
+					</th>
+					<th scope="col">
+						<div class="slds-truncate" title="{!$ObjectType.Attachment.fields.LastModifiedDate.Label}">
+							{!$ObjectType.Attachment.fields.LastModifiedDate.Label}
+						</div>
+					</th>
+					<th scope="col">
+						<div class="slds-truncate" title="{!$ObjectType.Attachment.fields.LastModifiedById.Label}">
+							{!$ObjectType.Attachment.fields.LastModifiedById.Label}
+						</div>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="att in attachments" class="slds-hint-parent">
+					<td role="gridcell" class="slds-text-align--right" style="width:3.25rem;">
+						<span class="slds-checkbox">
+							<input type="checkbox" name="options" v-bind:id="att.id" v-on:click="att.isSelected = $event.target.checked" v-bind:checked="att.isSelected" />
+							<label class="slds-checkbox__label" v-bind:for="att.id">
+								<span class="slds-checkbox--faux"></span>
+							</label>
+						</span>
+					</td>
+					<th scope="row">
+						<div class="slds-truncate" v-bind:title="att.fileName">
+							<a href="#" v-on:click.prevent="att.isSelected = !att.isSelected">
+								{{att.fileName}}
+							</a>
+						</div>
+					</th>
+					<td role="gridcell">
+						<div class="slds-truncate" v-bind:title="att.contentType">{{att.contentType}}</div>
+					</td>
+					<td role="gridcell">
+						<div class="slds-truncate" v-bind:title="att.lastModDate">{{att.lastModDate}}</div>
+					</td>
+					<td role="gridcell">
+						<div class="slds-truncate" v-bind:title="att.lastModBy">{{att.lastModBy}}</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</article>
+
+</div>
+
+<c:VueCommonComponents />
+<script type="text/javascript">
+	var vueDownloadAllAttachmentManager = new Vue({
+	    el: "#downloadAllAttachmentContainer",
+	    data: {
+	        attachments: [],
+	        loading: false,
+	        optimalLength: 4000000,
+	        maxSize: 19922944,
+	        errorState: {
+				state: {
+					message: "",
+					type: "",
+					timeout: undefined,
+					callback: undefined
+				},
+				setErrorMsg: function(err) {
+					this.state.message = err.msg;
+					this.state.type = err.type;
+					this.state.timeout = err.timeout;
+					this.state.callback = err.callback;
+				},
+				clearErrorMsg: function() {
+					this.state.message = "";
+					this.state.type = "";
+					this.state.timeout = undefined;
+					this.state.callback = undefined;
+				}
+			}
+	    },
+	    methods: {
+	        all: function(evt) {
+	            this.attachments.map(function(elem) {
+	                elem.isSelected = evt.target.checked;
+	            });
+	        },
+	        getAttachmentById: function(id) {
+	            return this.attachments.filter(function(elem) {
+	                return elem.id == id;
+	            })[0];
+	        },
+	        download: function() {
+	            this.errorState.clearErrorMsg();
+	            var self = this;
+	            var bodiesToRetrieve = this.selected.length;
+	            this.loading = true;
+
+	            this.selected.map(function(elem) {
+	                if(elem.bodyLength > self.maxSize) {
+	                    self.errorState.setErrorMsg({
+							msg: "(" + elem.fileName + ") " + "{!$Label.Attachment_Size_Exceeded}",
+							type: "error"
+						});
+						self.loading = false;
+						return;
+                 	}
+	                else if(elem.bodyLength > self.optimalLength) {
+	                    var attachmentBody = '';
+	                    var parts = [];
+	                    var splitSize = Math.ceil(elem.bodyLength/self.optimalLength);
+	                    for(let part = 1; part <= splitSize; part++ ) {
+	                    	Visualforce.remoting.Manager.invokeAction(
+								"{!$RemoteAction.CtrLDSDownloadAllAttachments.getPartialAttachmentBody}",
+								elem.id, splitSize, part,
+								function(result, event) {
+									// Checks event status
+									if (!event.status || !result) {
+										console.error("An error occurred while retrieving attachment body");
+										// TODO: handle better this error - @CreatedBy m.zeuli
+										return;
+									}
+									parts.push({number:part, body:result.Body});
+
+									if(parts.length == splitSize) {
+									    for(var index=1; index <= splitSize; index++) {
+									    	attachmentBody += parts.find(el => el.number == index).body;
+             							}
+             							--bodiesToRetrieve;
+										self.getAttachmentById(elem.id).body = attachmentBody;
+										if (!bodiesToRetrieve) {
+											// we are done, zip files and start download
+											self.createZip();
+										}
+         							}
+								}, {
+									escape: false,
+									buffer: false
+								}
+							);
+                    	}
+                 	} else {
+						Visualforce.remoting.Manager.invokeAction(
+							"{!$RemoteAction.CtrLDSDownloadAllAttachments.getAttachmentBody}",
+							elem.id,
+							function(result, event) {
+								// decrement pending actions
+								--bodiesToRetrieve;
+								// Checks event status
+								if (!event.status || !result) {
+									console.error("An error occurred while retrieving attachment body");
+									// TODO: handle better this error - @CreatedBy m.zeuli
+									return;
+								}
+
+								self.getAttachmentById(result.Id).body = result.Body;
+
+								if (!bodiesToRetrieve) {
+									// we are done, zip files and start download
+									self.createZip();
+								}
+							}, {
+								escape: false,
+								buffer: false
+							}
+						);
+	                }
+	            });
+	        },
+	        createZip: function() {
+	            var self = this;
+	            var zip = new JSZip();
+	            var options = {
+	                base64: true
+	            }
+
+	            this.selected.map(function(elem) {
+	                zip.file(
+	                    elem.fileName,
+	                    elem.body,
+	                    options
+	                );
+	            });
+
+	            zip.generateAsync({
+	                type: "blob"
+	            }).then(function(zipContent) {
+	                var is_safari = /constructor/i.test(window.HTMLElement) || window.safari;
+	                
+	                if (is_safari) {
+	                    var reader = new FileReader();
+	                    reader.onloadend = function() {
+	                        var url = reader.result.replace(/^data:[^;]*;/, 'data:application/zip;');
+	                        var popup = window.open(url, '_blank');
+	                        if (!popup) window.location.href = url;
+	                        url = undefined; // release reference before dispatching
+	                    };
+	                    reader.readAsDataURL(zipContent);
+	                    self.loading = false;
+	                    return;
+	                }
+
+	                // force file download
+	                var objUrl = URL.createObjectURL(zipContent);
+	                var a = document.createElement("a");
+	                a.style = "display: none;";
+	                a.href = objUrl;
+	                a.download = "{!JSENCODE(zipName)}.zip";
+	                document.body.appendChild(a);
+	                a.click();
+	                URL.revokeObjectURL(objUrl);
+	                self.loading = false;
+	            });
+	        }
+	    },
+	    computed: {
+	        selected: function() {
+	            return this.attachments.filter(function(elem) {
+	                return elem.isSelected;
+	            });
+	        },
+	        isAllSelected: function() {
+	            return this.attachments.length == this.selected.length;
+	        }
+	    },
+	    watch: {
+	        loading: function(val) {
+	            // TODO: toggle spinner - @CreatedBy m.zeuli
+	        }
+	    },
+	    created: function() {
+	        var self = this;
+	        // Remote action
+	        Visualforce.remoting.Manager.invokeAction(
+	            "{!$RemoteAction.CtrLDSDownloadAllAttachments.getAttachments}",
+	            "{!JSENCODE(parentId)}",
+	            function(result, event) {
+	                // Checks event status
+	                if (!event.status) {
+	                    console.error("Error is: ", event.message)
+	                    return;
+	                }
+
+	                // Check result list
+	                if (!result || result.length < 1) {
+	                    console.log("Empty result");
+	                    return;
+	                }
+
+	                result.map(function(elem) {
+	                    self.attachments.push({
+	                        isSelected: false,
+	                        id: elem.Id,
+	                        bodyLength: elem.BodyLength,
+	                        fileName: elem.Name,
+	                        contentType: elem.ContentType,
+	                        lastModBy: elem.LastModifiedBy.Name,
+	                        lastModDate: new Date(elem.LastModifiedDate).toLocaleString(),
+	                        body: null
+	                    });
+	                });
+	            }, {
+	                escape: false
+	            }
+	        );
+	    }
+	});
+	</script>
+
+</apex:component>

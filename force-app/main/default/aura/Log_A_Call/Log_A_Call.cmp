@@ -1,0 +1,25 @@
+<aura:component description="Log_A_Call" implements="force:lightningQuickAction,force:hasRecordId,flexipage:availableForAllPageTypes" controller="LogACall_AuraController">
+    <aura:attribute name="task" type="Task" default="{'sobjectType': 'Task'}" description="Capture task data"/>
+    <aura:attribute name="taskTemp" type="Task" default="{'sobjectType': 'Task'}" description="Capture who ids to relate to the task"/>
+    <aura:attribute name="recordId" type="Id" description="Chat record id"/>
+    <aura:attribute name="isSaving" type="Boolean" default="false" description="Check if the record is saving so that the spinner can be rendered"/>
+    <aura:handler action="{!c.doInit}" value="{!this}" name="init"/>
+    <lightning:notificationsLibrary aura:id="notificationsLibrary"/>
+    <aura:if isTrue="{!v.isSaving}">
+        <lightning:spinner aura:id="loadingSpinner" size="medium" />
+    </aura:if>
+    <force:inputField value="{!v.task.Subject}"/>
+    <br/>
+    <div class="slds-form-element__label">Activity Subject</div>
+    <force:inputField value="{!v.task.Activity_Subject__c}"/>
+    <br/>
+    <div class="slds-form-element__label">Comments</div>
+    <force:inputField value="{!v.task.Description}"/>
+    <br/>
+    <div class="slds-form-element__label">Name</div>
+    <force:inputField value="{!v.taskTemp.WhoId}"/>
+    <br/>
+    <div style="margin-left:45%">
+        <button class="slds-button slds-button_brand" onclick="{!c.saveRec}">Save</button>
+    </div>
+</aura:component>

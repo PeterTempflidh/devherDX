@@ -1,0 +1,125 @@
+<apex:component controller="CtrCreateQuote" access="global" >
+    <apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+    <apex:attribute name="oppQ" type="String" description="Placeholder" assignTo="{!oppQId}"/>
+     <div style="display:none">{!oppQuote}</div>
+    <apex:outputpanel rendered="{!If(accountwrapper.accountCountry ='Ecuador','true','false')}" >
+
+        <table style="width:100%">
+            <tr style="width:100%">
+                <td style="width:70%">
+                    <img  src="{!URLFOR($Resource.CD_Adomicilioya)}"  /><br/>
+                </td>
+                <td>
+                    <div style="font-family: serif; font-size:140%"><br/>
+                        <span style=" text-align: right;color:red">Inversiones Delivery Hero CMR S.A</span><br/><br/>
+                        <div style="display:inline-block;width:80%">Av. Mariana de Jesus E6-136 y Av. Amazonas <br/>
+                            Edificio Baez Piso 4 Of 403 
+                        </div>
+                        <div>
+                            Quito, Ecuador<br/>
+                            Teléfono: +593 23530502<br/>
+                            www.adomicilioYa.com 
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div style="height:40px;"></div>
+        <div style="font-weight:bold">adomicilioYa.com – Acuerdo de compra </div><br/>
+    </apex:outputpanel>
+    <apex:outputpanel rendered="{!If(accountwrapper.accountCountry ='Peru','true','false')}">
+        <table style="width:100%">
+            <tr style="width:100%">
+                <td style="width:70%">
+                    <img  src="{!URLFOR($Resource.CD_LimaDelivery)}"  /><br/>
+                </td>
+                <td>
+                    <div style="font-family: serif; font-size:140%"><br/>
+                        <span style=" text-align: right;color:red">Clickdelivery SAC</span><br/><br/>
+                        <div style="display:inline-block;width:80%">Av Camino real 111 Torre B N°801 <br/>
+                            Lima, Perú<br/>
+                            Teléfono: 017480241<br/>
+                            www.limadelivery.com <br/>
+                        <br/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div style="height:40px;"></div>
+        <div style="font-weight:bold">Limadelivery.com – Acuerdo de compra </div><br/>
+    </apex:outputpanel>
+  
+    <apex:outputpanel rendered="{!If(accountwrapper.accountCountry ='Colombia','true','false')}">
+        <table style="width:100%">
+            <tr style="width:100%">
+                <td style="width:70%">
+                    <img  src="{!URLFOR($Resource.CD_Domicilios)}"  /><br/>
+                </td>
+                <td>
+                    <div style="font-family: serif; font-size:140%"><br/>
+                        <span style=" text-align: right;color:red">Inversiones CMR S.A.S</span><br/><br/>
+                        <div style="display:inline-block;width:80%">Calle 94 # 16-60 <br/>
+                            Bogotá, DC Colombia<br/>
+                            Teléfono: 6123297<br/>
+                            www.domicilios.com <br/>
+                            <br/>      
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div style="height:40px;"></div>
+        <div style="font-weight:bold;font-size:18px">Domicilios.com – Acuerdo de compra </div><br/>
+    </apex:outputpanel>
+   
+    <div>Estimado(a) {!accountwrapper.ownerLastname},</div><br/>
+    <div>De acuerdo con nuestra conversación, por favor, verificar los detalles que acordamos a continuación y confirmar éste mail para dar por firmado el acuerdo</div><br/>
+    <div>
+    <table style="border-collapse: collapse; width:100%" >
+        <tr style="background-color:#D9D9D9;width:100%">
+            <td>Producto</td>
+            <td>Precio de Venta</td>
+            <td style="display:{!if(subsidy,'none','')}">Comentarios</td>
+            <td style="display:{!if(subsidy,'','none')}">Subsidio</td>
+            <td>Cantidad</td>
+            <td style="display:{!if(isDiscount,'','none')}">Descuento</td>
+            <td>Importe Total</td>
+            
+        </tr>
+        <apex:repeat value="{!listLineItems}" var="oppProd">  
+        <tr style="padding:5px;width:100%">
+          <td>&nbsp;{!oppProd.Id_List_Product_Price__r.Displayed_Name__c}</td>
+          <td>&nbsp;{!oppProd.Listed_Price__c} &nbsp;</td>
+          <td style="display:{!if(subsidy,'none','')}">&nbsp;{!oppProd.Design_Note__c}&nbsp;</td>
+          <td style="display:{!if(subsidy,'','none')}">&nbsp;{!oppProd.subsidy__c}&nbsp;</td>        
+          <td>&nbsp;{!oppProd.Quantity__c}&nbsp;</td>
+           <td  style="display:{!if(isDiscount,'','none')}">
+                       <span>{!oppProd.discount__c}</span>
+                    </td>
+          <td><apex:outputtext value="{!If(accountwrapper.accountCountry ='Peru','S/.','$')}"/>&nbsp;{!oppProd.Total_Amount__c} &nbsp;</td>
+        </tr>
+       </apex:repeat>
+    </table>
+    <table>
+    <tr>
+         <td colspan="3">&nbsp;</td>
+            <td><span style="font-weight:bold"><b>Total: </b> 
+                 <apex:outputText value="{0, number, ###,##0.00}">
+                       <apex:outputtext value="{!If(accountwrapper.accountCountry ='Peru','S/.','$')}"/><apex:param value="{!lineItemsTotalAmount}" />
+                    </apex:outputText>
+                
+     
+            </span></td>
+       </tr>
+    </table>
+   </div><br/>
+   
+    <div>
+         
+        <div>Saludos Cordiales, </div><br/>
+    
+        <div>{!$User.FirstName} {!$User.LastName}</div>
+    </div>
+   
+</apex:component>

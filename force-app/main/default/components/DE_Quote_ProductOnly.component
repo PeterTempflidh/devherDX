@@ -1,0 +1,362 @@
+<apex:component controller="CtrCreateQuote" access="global" layout="none">
+	<apex:attribute name="oppQ" type="String" description="Placeholder" assignTo="{!oppQId}"/>
+    <apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+
+    <html>
+    <head>
+	    <style type="text/css">
+    
+	    /* A4 size */
+	    @page {
+	    	size: A4;
+		}
+
+		@media print {
+			.pageBreak {
+	    		page-break-before: always;
+	    	}
+		}
+
+	    .flag { 
+		  width: 90%; 
+		  height: 30px; 
+		  background: #D61F26; 
+		  position: relative;
+		  margin: 0 auto;
+		}
+
+		.flagContent {
+			color: white;
+		  	text-align: left;
+		  	padding-left: 10px;
+		  	padding-top: 5px;
+		}
+
+		.flag:before { 
+		  content: ""; 
+		  position: absolute; 
+		  top: 0; 
+		  left: -12px;
+		  width: 0; 
+		  height: 0; 
+		  border-top: 15px solid #D61F26; 
+		  border-bottom: 15px solid #D61F26; 
+		  border-left: 13px solid transparent;
+
+		}
+
+		.flag:after { 
+		  content: ""; 
+		  position: absolute; 
+		  left: 100%;
+		  bottom: 0; 
+		  width: 10px; 
+		  height: 0; 
+		  border-top: 15px solid transparent;
+
+		  border-bottom: 15px solid transparent;
+
+		  border-left: 18px solid #D61F26;
+		}
+
+	    .header {
+	        margin-bottom: 40px;
+	    }
+
+	    #mainContent {
+			padding-bottom: 60px;
+		}
+
+	    .head {
+	        font-size: 25px;
+	        margin-top: 35px;
+	        text-align: center;
+	    }
+
+	    .footerText {
+	    	text-align: center;
+	    	padding-top: 20px;
+	    	color: #a49e9e;
+	    }
+
+	    .logoLH {
+	        float: left;
+	    }
+
+	    .logoPDE {
+	    	float: right;
+	    }
+
+	    .logoDeliveryHeroDe {
+	    	width: 80px;
+	    	margin: 0 auto;
+	    }
+
+	    table {
+	    	border-collapse: collapse;
+	    	width: 100%;
+	    	table-layout: fixed;
+	    }
+
+	    tr.borders td {
+	    	border: 1px solid black;
+	    }
+
+	    thead {
+	    	text-align: left;
+	    }
+
+	    thead th {
+	    	border-bottom: 1px solid black;
+	    }
+
+	    tr.noBorder td {
+	    	border: 0;
+	    }
+
+	    tr.borderBottom td {
+	    	border-bottom: 1px solid black;
+	    }
+
+	    .section {
+	    	margin-bottom: 40px;
+	    }
+
+	    .container {
+	    	margin: 0 auto;
+	    	padding-top: 10px;
+	    	width: 90%;
+	    }
+	    </style>
+    </head>
+    <body>
+    	<div id="main">
+	        <!-- header  -->
+	        <div class="header">
+	            <div class="logoDeliveryHeroDe">
+	                <img src="{!deliveryHeroDeUrl}" width="80" />
+	            </div>    
+	            <div class="head">
+	                Auftragsbestätigung
+	            </div>
+	        </div>
+	        <!-- header end  -->
+
+	        <!-- main content start -->
+	        <div id="mainContent">
+	            
+	            <div class="restaurantData section">
+		        	<div class="flag">
+		        		<div class="flagContent">
+		        			Kontaktdaten Partner
+		    			</div> 
+		        	</div>
+
+		        	<div class="container">
+			        	<table>
+			        		<tbody>
+			        			<tr class="borders">
+			        				<td>Firma</td>
+			        				<td>{!accountWrapper.companyName}</td>
+		        				</tr>
+								<tr class="borders">
+									<td>Rechtsform</td>
+									<td>{!accountWrapper.legalForm}</td>
+								</tr>
+								<tr class="borders">
+									<td>Restaurantname</td>
+									<td>{!accountWrapper.restaurantName}</td>
+								</tr>
+								<tr class="borders">
+									<td>Adresse</td>
+									<td>{!accountWrapper.addressStreet}{!accountWrapper.addressPostal} {!accountWrapper.addressCity}</td>
+								</tr>
+								<tr class="borders">
+									<td>Telefon</td>
+									<td>{!accountWrapper.restaurantPhoneNumber}</td>
+								</tr>
+								<tr class="borders">
+									<td>Vor- und Zuname </td>
+									<td>{!accountWrapper.ownerName}</td>
+								</tr>
+			        		</tbody>
+			        	</table>
+		        	</div>
+	        	</div>
+
+	        	<div class="lineItemsData section">
+	        		<div class="flag">
+		        		<div class="flagContent">
+		        			Nachgefragte Produkte
+		    			</div> 
+		        	</div>
+
+		        	<div class="container">
+
+		        		Sehr geehrte/r Herr/Frau {!accountWrapper.ownerName},<br/>
+						hier mit bestätige ich Ihnen nochmals die Details unserer Unterhaltung: <br/><br/>
+
+
+
+	        		<!-- commissions and recurring fee -->
+		        		<apex:outputPanel layout="none" rendered="{!reccuringFee}">
+			        		<table id="commissionsAndRecurringFee">
+			        			<thead>
+			        				<tr>
+				        				<th colspan="3">
+				        					<b>Monatliche Gebühren</b>
+				        				</th>
+			        				</tr>
+			        				<tr>
+			        					<td></td>
+			        					<td>Gebühr</td>
+			        					<!--  <td>-->
+			        					 <!-- always empty, just for alignment with other tables --> 
+			        					 <!-- </td>  -->
+			        					<td>Start Datum</td>
+			        				</tr>
+			        			</thead>
+			        			<tbody>
+			        				
+			        				<apex:repeat value="{!listLineItems}" var="recFee" >
+			        					<apex:outputPanel layout="none" rendered="{!AND(recFee.Id_List_Product_Price__r.Product_Type__c == 'Recurring Fee',OR(ISBLANK(recFee.Billable_Account__c), recFee.Billable_Account__c = acctId))}">
+				        					<tr class="noBorder">
+			        							<td>
+				        							{!recFee.Id_List_Product_Price__r.Displayed_Name__c}
+				        						</td>
+				        						<td>
+				        							<apex:outputField value="{!recFee.Total_Amount__c}" />
+				        						</td>
+				        						<!--  <td>-->
+				        							<!-- empty, just for alignment -->
+				        						<!-- </td> -->
+				        						<td>
+				        							<apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+		                                        		<apex:param value="{!recFee.Start_Date__c}" /> 
+		                                    		</apex:outputText>
+				        						</td>
+				        					</tr>
+			        					</apex:outputPanel>
+			        				</apex:repeat>
+			        			</tbody>
+			        		</table>
+		        		</apex:outputPanel>
+
+		        		<!-- add. charges -->
+		        		<apex:outputPanel layout="none" rendered="{!AND(listLineItems.size > 0, listLineItems.size != reccuringFeeCount)}">
+			        		<table id="addCharges" style="margin-top: 20px">
+		        				<thead>
+			        				<tr>
+				        				<th colspan="3">
+				        					<b>Einmalige Gebühren</b>
+				        				</th>
+			        				</tr>
+			        				<tr>
+			        					<td></td>
+			        					<td>Gebühr</td>
+			        					<!-- <td>Anzahl Raten</td> -->
+			        					<td>Start Datum</td>
+			        				</tr>
+			        			</thead>
+			        			<tbody>
+			        				<apex:repeat value="{!listLineItems}" var="addCh">
+			        					<apex:outputPanel layout="none" rendered="{!AND(addCh.Id_List_Product_Price__r.Product_Type__c != 'Recurring Fee',OR(ISBLANK(addCh.Billable_Account__c), addCh.Billable_Account__c = acctId))}">
+				        					<tr class="noBorder">
+				        						<td>
+				        							{!addCh.Id_List_Product_Price__r.Displayed_Name__c}
+				        						</td>
+				        						<td>
+				        							<apex:outputField value="{!addCh.Total_Amount__c}" />
+				        						</td>
+				        						<!-- 
+				        						<td>
+				        							{!addCh.Installments__c}
+				        						</td>
+				        						 -->
+				        						<td>
+				        							<apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+		                                        		<apex:param value="{!addCh.Start_Date__c}" /> 
+		                                    		</apex:outputText>
+				        						</td>
+				        					</tr>
+			        					</apex:outputPanel>
+			        				</apex:repeat>
+			        			</tbody>
+			        		</table>
+		        		</apex:outputPanel>
+
+		        		<!-- add ons -->
+		        		<apex:outputPanel layout="none" rendered="{!listAddOnItems.size > 0}">
+			        		<table id="addOns" style="margin-top: 20px">
+		        				<thead>
+			        				<tr>
+				        				<th colspan="4">
+				        					<b>Rabattaktionen*</b>
+				        				</th>
+			        				</tr>
+			        				<tr>
+			        					<td></td>
+			        					<td colspan="2">Details</td>
+			        					<td>Start Datum</td>
+			        				</tr>
+			        			</thead>
+			        			<tbody>
+			        				<apex:repeat value="{!listAddOnItems}" var="addOn">
+			        					<apex:outputPanel layout="none" rendered="{!OR(ISBLANK(addOn.Billable_Account__c), addOn.Billable_Account__c = acctId)}">
+				        					<tr class="borderBottom">
+				        						<td valign="top">
+				        							{!addOn.Name}
+				        						</td>
+				        						<td colspan="2">
+				        							<apex:outputText value="{!addOn.Contract_Addition__c}" escape="false" />
+				        						</td>
+				        						<td valign="top">
+				        							<apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+		                                        		<apex:param value="{!addOn.Start_Date__c}" /> 
+		                                    		</apex:outputText>
+				        						</td>
+				        					</tr>
+			        					</apex:outputPanel>
+			        				</apex:repeat>
+			        			</tbody>
+			        		</table>
+		        		</apex:outputPanel>
+
+		        		<div class="pageBreak" style="margin-top: 30px;">
+		        			<strong>Alle Preise verstehen sich zzgl. der gesetzlichen Umsatzsteuer.</strong><br/>
+
+		        			Bitte beachten Sie, dass diese Auftragsbestätigung keine Rechnung darstellt. Für alle oben genannten Produkte und Serviceleistungen wird eine separate Rechnung erstellt. <br/>
+
+		        			Es wird bestätigt, dass die oben genannten Produkte zu den angegebenen Konditionen, sowie die jeweils aktuellen Vertragsbedingungen Restaurant (derzeit abrufbar unter: https://restaurant.lieferheld.de/vertragsbedingungen und https://pizza.de/info/vertragsbedingungen/) durch den Partner bzw. den vertretungsberechtigten Geschäftsführer akzeptiert wurden. Der Partner bzw. der vertretungsberechtigte Geschäftsführer hat widerruflich in die Zusendung von Werbematerial, auch mittels Telekommunikationsmitteln, durch die Delivery Hero Germany GmbH und die 9cookies GmbH über weitere Angebote eingewilligt. <br/>
+
+		        			Es bestehen keine mündlichen Nebenabreden. Der Gerichtsstand für alle Auseinandersetzungen aus dem Vertrag ist Berlin. <br/>
+
+		        			Diese Auftragsbestätigung wurde am {!DAY(TODAY())}.{!MONTH(TODAY())}.{!YEAR(TODAY())} durch {!$User.FirstName} {!$User.LastName} erstellt.
+		        		</div>
+		        	</div>
+	        	</div>
+
+	        </div>
+	        <!-- main content end -->
+
+	        <!-- footer  -->
+	        <footer>
+	    		<div class="footerContent">
+	    			<div class="logoLH">
+	                	<img src="{!liferheldUrl}" width="80" />
+		            </div>
+		        	<div class="logoPDE">
+		                <img src="{!pizzaDeUrl}" width="60" />
+		            </div>
+		            <div class="footerText">
+		            	Delivery Hero Germany GmbH – Oranienburger Str. 70 – 10117 Berlin 
+		            </div>
+	    		</div>
+	        </footer>
+	        <!-- footer end  -->
+
+
+	    </div>
+    </body>
+    </html>
+</apex:component>

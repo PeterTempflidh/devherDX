@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>Edit</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>Yogiyo Customer Care Management</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Yogiyo Customer Care Management</name>
+    <opportunityAccessLevel>Read</opportunityAccessLevel>
+    <parentRole>Yogiyo_Local_Admin</parentRole>
+</Role>

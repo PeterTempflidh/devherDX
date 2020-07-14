@@ -1,0 +1,143 @@
+<apex:page showHeader="false" standardStylesheets="true" standardController="Account" extensions="CtrAccountAdditionalInformation">
+<c:SF1_CSS_bootstrap />
+    <apex:includeScript value="{!URLFOR($Resource.jq211)}"/>
+	<head>
+		<style>
+
+			body, html, .bPageBlock,.apexp .bPageBlock.apexDefaultPageBlock .pbBody,
+			*{margin: 0px; padding: 0px;}
+			.aParent div {
+				float: left;
+				clear: none; 
+			}
+			.accountTab .secondaryPalette, .individualPalette .accountBlock .secondaryPalette {border: 0px; background: transparent;}
+			.bPageBlock{background: transparent !important;
+			}
+			.cc {
+				width: 100px;
+				height: 50px;
+				background:	yellow;
+			}
+			.cb {
+				width: 100px;
+				height: 50px;
+				background:	green;
+			}
+			.progress, .progress-bar{color: black; line-height: 27px; font-size: 12px; font-weight: bold;}
+			
+			.progress {
+				border-radius: 10px;
+				border: 0px;
+				background: none;
+				-webkit-box-shadow: none;
+				box-shadow: none;
+				padding: 0px;
+				margin: 5px; 
+				background: url({!URLFOR($Resource.progressBarBackground)});  
+			
+			}
+			.progress-bar-danger,
+			.progress-bar-warning{
+				background-color: #ee0122;
+				opacity: 0.6;
+				border-left:1px solid #7ba224;
+				color: #fff !important;
+			}
+			.progress-bar-not {
+				background-color: #e0e0e0;
+				opacity: 0.6;
+				border-left:1px solid #c6c6c6;
+			}
+			.progress-bar-check {
+				background-color: #8ab529;
+				opacity: 0.8;
+				border-left:1px solid #7ba224;
+				color: #fff !important;
+			}
+			.progress-bar-inprogress {
+				background-color: #8ab529;
+				opacity: 0.6;
+				border-left:1px solid #7ba224;
+				color: #fff !important;
+			}
+			.pbHeader .pbTitle h2{display: block;width: 180px;}
+		</style>
+	</head>
+	<body style="background: transparent !important;">
+
+	    <apex:form id="myFormAdditionAccount">
+	    	<apex:pageBlock title="Meny Typing Progress" mode="maindetail ">
+	    		<div  class="progress " id="progress" style="height:27px;">
+				    <div id="NotStarted" class="progress-bar progress-bar-not" style="width: 20%"><span class="sr-only"></span>Not Started</div>
+				    <div id="InProgress" class="progress-bar progress-bar-not" style="width: 20%"><span class="sr-only"></span>In Progress</div>
+				    <div id="OnHold" class="progress-bar progress-bar-not" style="width: 20%"><span class="sr-only"></span>On Hold</div>
+				    <div id="QualityCheck" class="progress-bar progress-bar-not" style="width: 20%"><span class="sr-only"></span>Quality Check</div>
+				    <div id="Finished" class="progress-bar progress-bar-not" style="width: 20%"><span class="sr-only"></span>Finished</div>
+  				</div>
+			</apex:pageBlock> 	
+		<script>
+	    	j$ = jQuery.noConflict();
+	    	var steps = ["New","In Progress", "On Hold", "Quality Check", "Finished"];
+	    	var status = '{!JSENCODE(extraInfo.Menu_Typing_Progress_Status__c)}';
+	    	j$( document ).ready(function() {
+        		
+	                if(status == 'Not Started'){
+	                    document.getElementById("NotStarted").className = "progress-bar progress-bar-danger";
+	                }else if(status == 'In Progress'){
+	                    document.getElementById("InProgress").className = "progress-bar progress-bar-inprogress";
+	                }else if(status == 'On Hold'){
+	                    document.getElementById("OnHold").className = "progress-bar progress-bar-warning";
+	                }else if(status == 'Quality Check'){
+	                    document.getElementById("QualityCheck").className = "progress-bar progress-bar-check";
+	                }else if(status == 'Finished'){
+	                    document.getElementById("Finished").className = "progress-bar progress-bar-success";
+	                }
+/*
+           	j$("#NotStarted").click(function(){
+           		document.getElementById("NotStarted").className = "progress-bar progress-bar-danger";
+           		document.getElementById("InProgress").className = "progress-bar progress-bar-not";
+           		document.getElementById("OnHold").className = "progress-bar progress-bar-not";
+           		document.getElementById("QualityCheck").className = "progress-bar progress-bar-not";
+           		document.getElementById("Finished").className = "progress-bar progress-bar-not";
+           	});
+
+           	j$("#InProgress").click(function(){
+           		document.getElementById("NotStarted").className = "progress-bar progress-bar-not";
+           		document.getElementById("InProgress").className = "progress-bar progress-bar-inprogress";
+           		document.getElementById("OnHold").className = "progress-bar progress-bar-not";
+           		document.getElementById("QualityCheck").className = "progress-bar progress-bar-not";
+           		document.getElementById("Finished").className = "progress-bar progress-bar-not";
+           	});
+
+           	j$("#OnHold").click(function(){
+           		document.getElementById("NotStarted").className = "progress-bar progress-bar-not";
+           		document.getElementById("InProgress").className = "progress-bar progress-bar-not";
+           		document.getElementById("OnHold").className = "progress-bar progress-bar-warning";
+           		document.getElementById("QualityCheck").className = "progress-bar progress-bar-not";
+           		document.getElementById("Finished").className = "progress-bar progress-bar-not";
+           	});
+
+           	j$("#QualityCheck").click(function(){
+           		document.getElementById("NotStarted").className = "progress-bar progress-bar-not";
+           		document.getElementById("InProgress").className = "progress-bar progress-bar-not";
+           		document.getElementById("OnHold").className = "progress-bar progress-bar-not";
+           		document.getElementById("QualityCheck").className = "progress-bar progress-bar-check";
+           		document.getElementById("Finished").className = "progress-bar progress-bar-not";
+           	});
+
+           	j$("#Finished").click(function(){
+           		document.getElementById("NotStarted").className = "progress-bar progress-bar-not";
+           		document.getElementById("InProgress").className = "progress-bar progress-bar-not";
+           		document.getElementById("OnHold").className = "progress-bar progress-bar-not";
+           		document.getElementById("QualityCheck").className = "progress-bar progress-bar-not";
+           		document.getElementById("Finished").className = "progress-bar progress-bar-success";
+           	});
+*/
+
+
+
+        	});
+	    </script>
+	    </apex:form>
+	</body>
+</apex:page>

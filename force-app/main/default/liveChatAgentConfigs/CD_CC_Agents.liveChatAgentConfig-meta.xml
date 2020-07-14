@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LiveChatAgentConfig xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <profiles>
+            <profile>CD Customer Care</profile>
+            <profile>CD Customer Care Management</profile>
+            <profile>CD Outsourcing</profile>
+        </profiles>
+        <users>
+            <user>angelica.celini@deliveryhero.com.phoenix</user>
+        </users>
+    </assignments>
+    <autoGreeting>¡Hola! Bienvenido a Domicilios.com</autoGreeting>
+    <criticalWaitTime>30</criticalWaitTime>
+    <enableAgentFileTransfer>true</enableAgentFileTransfer>
+    <enableAgentSneakPeek>false</enableAgentSneakPeek>
+    <enableAssistanceFlag>false</enableAssistanceFlag>
+    <enableAutoAwayOnDecline>false</enableAutoAwayOnDecline>
+    <enableAutoAwayOnPushTimeout>false</enableAutoAwayOnPushTimeout>
+    <enableChatConferencing>false</enableChatConferencing>
+    <enableChatMonitoring>true</enableChatMonitoring>
+    <enableChatTransferToAgent>false</enableChatTransferToAgent>
+    <enableChatTransferToButton>true</enableChatTransferToButton>
+    <enableChatTransferToSkill>false</enableChatTransferToSkill>
+    <enableLogoutSound>true</enableLogoutSound>
+    <enableNotifications>true</enableNotifications>
+    <enableRequestSound>true</enableRequestSound>
+    <enableSneakPeek>true</enableSneakPeek>
+    <enableVisitorBlocking>false</enableVisitorBlocking>
+    <enableWhisperMessage>true</enableWhisperMessage>
+    <label>CD CC Agents</label>
+    <supervisorDefaultAgentStatusFilter>Online</supervisorDefaultAgentStatusFilter>
+    <supervisorDefaultSkillFilter>CD_Skills</supervisorDefaultSkillFilter>
+    <supervisorSkills>
+        <skill>CD_Skills</skill>
+    </supervisorSkills>
+    <transferableButtons>
+        <button>Chat_Button_for_CD_Customer_Escalation</button>
+        <button>Chat_Button_for_CD_Restaurant_Escalation</button>
+    </transferableButtons>
+    <transferableSkills>
+        <skill>CD_Skills</skill>
+    </transferableSkills>
+</LiveChatAgentConfig>

@@ -1,0 +1,156 @@
+<aura:component controller="Attachments_AuraController" implements="flexipage:availableForAllPageTypes,lightning:isUrlAddressable">
+
+    <aura:attribute name="attachments" type="List"/>
+    <aura:attribute name="recordId" type="String" default="{!v.pageReference.state.c__recordId}"/>
+    <aura:attribute name="sObjectType" type="String" default="{!v.pageReference.state.c__sObjectType}"/>
+    <aura:attribute name="openAtt" type="Boolean" default="{!v.pageReference.state.c__openAtt}"/>
+    <aura:attribute name="pageReference" type="Object"/>
+    <aura:attribute name="name" type="String" default="{!v.pageReference.state.c__name}"/>
+    <aura:attribute name="numberOfAtt" type="Integer"/>
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="fieldMap" type="Map"/>
+    <aura:attribute name="sortDir" type="String" default="desc"/>
+    <aura:attribute name="sortField" type="String" default="formatteddate"/>
+    <aura:attribute name="sortByLabel" type="String" default="Last Modified"/>
+    <aura:attribute name="tabId" type="String"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:handler name="EventCloseAttachmentsUpload" event="c:EventCloseAttachmentsUpload" action="{!c.openViewAllPage}"/>
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.reInit}" />
+    
+    <lightning:workspaceAPI aura:id="workspace"/>
+    <lightning:navigation aura:id="navigate"/>
+
+    <c:AttachmentsUploadPage aura:id="fileUploadPage" object="{!v.sObjectType}" recordId="{!v.recordId}" tabId="{!v.tabId}"/> 
+
+    <lightning:spinner aura:id="spinner" alternativeText="{!$Label.c.CD_GEN_VAL6}" variant="brand" size="medium" class="slds-hide"/>
+
+    <div aura:id="headerdiv" class="slds-page-header slds-page-header_related-list" >
+            <div class="slds-page-header__row">
+                <div class="slds-page-header__col-title">
+                <nav role="navigation" aria-label="Breadcrumbs">
+                    <ol class="slds-breadcrumb slds-list_horizontal slds-wrap">
+                    <li class="slds-breadcrumb__item">
+                        <aura:if isTrue="{!v.sObjectType == 'Opportunity'}">
+                            <a onclick="{!c.viewList}">Opportunities</a>
+                            <aura:set attribute="else">
+                                <a onclick="{!c.viewList}">{!v.sObjectType}s</a>  
+                            </aura:set>
+                        </aura:if>
+                        
+                    </li>
+                    <li class="slds-breadcrumb__item">
+                        <a onclick="{!c.viewRecord}">{!v.name}</a>
+                    </li>
+                    </ol>
+                </nav>
+                <div class="slds-media">
+                    <div class="slds-media__body">
+                    <div class="slds-page-header__name">
+                        <div class="slds-page-header__name-title">
+                        <h1>
+                            <span class="slds-page-header__title slds-truncate" title="Attachments">{!$Label.c.Attachments}</span>
+                        </h1>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="slds-page-header__col-actions">
+                <div class="slds-page-header__controls">
+                    <div class="slds-page-header__control">
+                    <ul class="slds-button-group-list">
+                        <li>
+                            <aura:if isTrue="{!v.sObjectType != 'Opportunity_Quote__c'}">
+                                <lightning:button variant="neutral" label="{!$Label.c.Upload_Files}" onclick="{!c.openModal}" />
+                            </aura:if>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="slds-page-header__row">
+                <div class="slds-page-header__col-meta">
+                <p class="slds-page-header__meta-text">{!v.numberOfAtt} items • sorted by {!v.sortByLabel}</p>
+                </div>
+        </div>
+    </div>
+    <div class="slds-grid" style="height: 100%">
+    <lightning:card aura:id="tablecard">
+    <div aura:id="attachmentTable">
+            <table class="slds-m-top--large slds-table slds-table_bordered slds-table_striped slds-table_cell-buffer slds-table_fixed-layout slds-no-row-hover">
+                <thead>
+                    <tr class="slds-text-heading_label">
+                        <td onclick="{!c.handleSort}" id="title" scope="col"><div class="slds-text-align_left">{!$Label.c.Title}
+                            <aura:if isTrue="{!v.sortField=='title'}">
+                                    <span>
+                                        <aura:if isTrue="{!v.sortDir == 'asc'}">
+                                                <lightning:icon iconName="utility:arrowup" alternativeText="up" size="xx-small"/>
+                                            <aura:set attribute="else">
+                                                    <lightning:icon iconName="utility:arrowdown" alternativeText="down" size="xx-small"/>
+                                            </aura:set>
+                                        </aura:if>
+                                    </span>
+                                </aura:if>    
+                        </div></td>
+                        <td onclick="{!c.handleSort}" id="attachmenttype" scope="col"><div class="slds-text-align_left">{!$Label.c.Attachment_Type}
+                            <aura:if isTrue="{!v.sortField=='attachmenttype'}">
+                                    <span>
+                                        <aura:if isTrue="{!v.sortDir == 'asc'}">
+                                                <lightning:icon iconName="utility:arrowup" alternativeText="up" size="xx-small"/>
+                                            <aura:set attribute="else">
+                                                    <lightning:icon iconName="utility:arrowdown" alternativeText="down" size="xx-small"/>
+                                            </aura:set>
+                                        </aura:if>
+                                    </span>
+                                </aura:if>
+                        </div></td>
+                        <td onclick="{!c.handleSort}" id="fielextension" scope="col"><div class="slds-text-align_left">{!$Label.c.Type}
+                            <aura:if isTrue="{!v.sortField=='fielextension'}">
+                                    <span>
+                                        <aura:if isTrue="{!v.sortDir == 'asc'}">
+                                                <lightning:icon iconName="utility:arrowup" alternativeText="up" size="xx-small"/>
+                                            <aura:set attribute="else">
+                                                    <lightning:icon iconName="utility:arrowdown" alternativeText="down" size="xx-small"/>
+                                            </aura:set>
+                                        </aura:if>
+                                    </span>
+                                </aura:if>
+                        </div></td>
+                        <td onclick="{!c.handleSort}" id="formatteddate" scope="col"><div class="slds-text-align_left">{!$Label.c.SMC_Last_Modified_Date}
+                            <aura:if isTrue="{!v.sortField=='formatteddate'}">
+                                <span>
+                                    <aura:if isTrue="{!v.sortDir == 'asc'}">
+                                            <lightning:icon iconName="utility:arrowup" alternativeText="up" size="xx-small"/>
+                                        <aura:set attribute="else">
+                                                <lightning:icon iconName="utility:arrowdown" alternativeText="down" size="xx-small"/>
+                                        </aura:set>
+                                    </aura:if>
+                                </span>
+                            </aura:if>
+                        </div></td>
+                        <td scope="col"><div class="slds-text-align_left">{!$Label.c.Created_By}</div></td>
+                        <td scope="col"><div class="slds-text-align_left">{!$Label.c.Content_Size}</div></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.attachments}" var="att" indexVar="rowIndex">
+                        <tr>
+                            <td><div class="slds-text-align_left slds-text-body_small slds-truncate">
+                                <a onclick="{!c.previewFile}" data-Id="{!att.contentdocumentid}" data-Type="{!att.fielextension}" title="{!att.title}">{!att.title}</a>
+                                </div>
+                            </td>
+                            <td><div class="slds-text-align_left slds-text-body_small slds-truncate" title="{!att.attachmenttype}">{!att.attachmenttype}</div></td>
+                            <td><div class="slds-text-align_left slds-text-body_small" >{!att.fielextension}</div></td>
+                            <td><div class="slds-text-align_left slds-text-body_small">{!att.formatteddate}</div></td>
+                            <td><div class="slds-text-align_left slds-text-body_small">{!att.createdby}</div></td>
+                            <td><div class="slds-text-align_left slds-text-body_small">{!att.contentsize}</div></td>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+        </div>
+    </lightning:card>
+    </div>
+</aura:component>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>#SSC-1095</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Otlob_Send_Email_Template</name>
+    <style>none</style>
+    <subject>Welcome to Otlob</subject>
+    <textOnly>أعزائنا  [Full Name]،
+
+نرحب بكم في عائلة Otlob! يسعدنا أن نعلمكم بأنكم أصبحتم الآن جزء من أكبر منصة طلب و توصيل الطعام في الشرق الأوسط. هدفنا هو أن نوفر للمستخدم أفضل تجربة طلب طعام ودعمكم يساعدنا على الوصول إلى هذا الهدف.
+
+ستجدون تأكيد عقد الإتفاق مرفق إلى هذا الإيميل.
+
+نود أن يصبح مطعمكم متوفر على منصتنا بأقرب وقت.
+
+Hi  [Full Name],
+
+Welcome to the Otlob family!
+
+You are now part of the largest food ordering and delivery platform in the Middle East, and we are happy to have your restaurant on board. Our mission is to create an amazing takeaway experience &amp; you are now a part of making this mission a reality!
+
+Please find attached to this email a confirmation of our contract agreement.
+
+We are keen to have your restaurant live on our platform as soon as possible. Click below to find out how to get your restaurant online.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

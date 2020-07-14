@@ -1,0 +1,91 @@
+<apex:page showheader="false" sidebar="false" standardStylesheets="false" controller="CtrCreateQuote">
+<html>
+
+<body style="font-family: Arial, Helvetica, sans-serif; font-size: 10pt;width:700px">
+<table width="100%">
+  <tr>
+    <td>
+      <div class="logo">
+          <img src="{!URLFOR($Resource.hungryhouse)}" style="width:145px;"/>
+      </div>
+    </td>
+    <td valign="middle">
+      <div style="height: 58px;float:right;">
+        <div class="adress" style="width: 151px;height: 0px;border-left:2px solid rgb(131,130,138);color:rgb(131,130,138);text-align: left;font-size: 7pt;padding-left:10px;padding-bottom: 95px;"> 
+          <b style="color:#c00000 !important;font-size: 11px;">hungryhouse.com Ltd</b><br /><br />
+          78 York Street<br />
+          London W1H 1DP<br /><br/>
+          P&nbsp;&nbsp;0800 612 3333<br/>
+          C&nbsp;&nbsp;hungryhouse.co.uk/contact<br />
+          W&nbsp;&nbsp;hungryhouse.co.uk<br />
+        </div>
+      </div>
+    </td>
+  </tr>
+</table><br /><br />
+<table width="100%">
+<tr style="width:100%">
+<td style="text-decoration: underline;font-size:12pt">
+<b> hungryhouse.com Ltd Restaurant Blade Sign Agreement:</b>
+</td></tr>
+<tr><td><br /><br />
+Restaurant name: {!accountwrapper.restaurantName}<br /><br />
+</td></tr><tr><td>Address: {!accountwrapper.restaurantAddress}<br /><br />
+</td></tr><tr><td>Telephone: {!accountwrapper.restaurantPhoneNumber}<br /><br />
+</td></tr><tr><td>
+I {!accountWrapper.ownerName} agree to the installation of a hungryhouse restaurant
+
+blade sign for promotional purposes. The blade sign and installation of the
+
+blade sign are free of charge subject to the following conditions:
+</td></tr>
+<tr><td>
+<ul><li>
+The hungryhouse blade sign will be fitted by an employee or service
+
+provider to hungryhouse.com Ltd
+</li><li> 
+The hungryhouse blade sign will be fitted at a height not lower than 6
+
+feet and 5 inches  
+</li><li> 
+ The  hungryhouse blade  sign  will  be  fitted either  inside  or  outside  of
+normal business hours
+</li><li>
+ The hungryhouse blade sign will remain in place for not less than 2
+
+years beginning from the date of installation
+</li><li>
+If the hungryhouse blade sign is removed or sufficiently damaged as to
+
+require removal, the restaurant owner will be liable for a charge of 
+
+100 pounds plus VAT
+</li><li>
+Any damage will be reported to the relevant City Development
+
+Manager without unreasonable delay
+</li><li>
+hungryhouse.com Ltd retain permanent ownership of the restaurant
+
+blade sign
+</li><li>
+hungryhouse will arrange any blade sign to be fitted under the
+
+assumption that you, the restaurant owner, has permission from any
+
+landlord, council or regulatory body.
+</li></ul>
+</td></tr>
+</table>
+
+
+<br/><br/>
+
+<br/><br/>
+Kind regards,<br />
+
+{!$User.FirstName} {!$User.LastName}
+</body>
+</html>
+</apex:page>

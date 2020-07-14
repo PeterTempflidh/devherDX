@@ -1,0 +1,386 @@
+<!--
+ - Created by c.kumari on 15.11.2018.
+ Description - This is used for all other Pedidosya countries except Argentina MarketPlace quote for New Business Opportunities.
+ -->
+
+<apex:component controller="CtrCreateQuote" access="global">
+    <apex:attribute name="oppQ" type="String" description="Placeholder" assignTo="{!oppQId}"/>
+    <apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+    <head>
+        <style type="text/css">
+		    /* A4 size */
+
+		    @page {
+		    	size: A4;
+			}
+
+			@media print {
+				.pageBreak {
+		    		page-break-after: always;
+		    	}
+			}
+
+			.terms {
+				-webkit-column-count: 2; /* Chrome, Safari, Opera */
+			    -moz-column-count: 2; /* Firefox */
+			    column-count: 2;
+			    -webkit-column-gap: 40px; /* Chrome, Safari, Opera */
+			    -moz-column-gap: 40px; /* Firefox */
+			    column-gap: 40px;
+			}
+		</style>
+    </head>
+
+    <div id="FI_QUOTE" style="width:100%; margin: auto;page-break-after:always;">
+        <div style="display:inline-block; width:50%;vertical-align: top;">
+            <apex:image id="theImage" value="{!If(accountWrapper.CountryName=="Panamá",$Resource.Appetito24,$Resource.peya_logo)}" style="width: 90%;"/>
+        </div>
+        <div id="RestDesc" style="display:inline-block; width:44%;vertical-align: top; float:right;" >
+            <c:TalabatLetterHead addressString="{!accountWrapper.letterheadAddress}"/>
+        </div>
+
+        <div id="CQtitle" style="width:700px;margin: auto; !important;text-align:center;font-size: 14pt">
+            <strong>CONDICIONES PARTICULARES </strong>
+        </div>
+        <div style="width:100%">
+            <p>
+                <strong>Información del Cliente</strong>
+            </p>
+            <!-- RESTAURANT DETAILS -->
+            <table border="1" style="width:100%;border-collapse: collapse">
+                <tr>
+                    <td>
+                        <strong>Nombre del comercio (Marca)</strong>
+                    </td>
+                    <td>
+                        {!accountWrapper.companyName}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Nombre o razón social</strong>
+                    </td>
+                    <td>
+                        {!accountWrapper.legalName}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Número de identificación fiscal</strong>
+                    </td>
+                    <td>
+                        {!accountWrapper.taxNumber}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Nombre del representante</strong>
+                    </td>
+                    <td>
+                        {!accountWrapper.ownerFirstname} {!accountWrapper.ownerLastname}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Cargo del representante</strong>
+                    </td>
+                    <td>
+                        {!accountWrapper.contactRoleValue}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Dirección</strong>
+                    </td>
+                    <td>
+                        {!accountWrapper.restaurantAddress}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Teléfono</strong>
+                    </td>
+                    <td>
+                        {!accountWrapper.restaurantPhoneNumber}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Correo electrónico</strong>
+                    </td>
+                    <td>
+                        {!accountWrapper.ownerEmail}
+                    </td>
+                </tr>
+            </table>
+
+            <p>
+                <strong>Servicios Contratados y otras especificaciones</strong>
+            </p>
+            <!-- COMMISSION SECTION -->
+            <apex:outputPanel rendered="{!listCommisionItems.size > 0}" >
+                <table border="1" style="width: 100%;border-collapse: collapse;">
+                    <tr>
+                        <th>
+                            Servicio
+                        </th>
+                        <th>
+                            Precio*
+                        </th>
+                        <th style="text-align:center">
+                            Fecha de inicio
+                        </th>
+                        <th style="text-align:center">
+                            Fecha de terminación
+                        </th>
+                    </tr>
+                    <apex:repeat value="{!listCommisionItems}" var="lineItem">
+                        <tr>
+                            <td>
+                                {!lineItem.Id_List_Service_Price__r.Displayed_Name__c}
+                            </td>
+                            <td style="text-align:center">
+                                <!-- CHECK FOR TIERED COMMISSION -->
+                                <apex:outputPanel rendered="{!lineItem.Scaled__c }" >
+                                    <apex:variable value="1" var="num"/>
+                                    <table style="width: 100%;cellspacing:0">
+                                        <tr>
+                                            <th style="padding:0px;">
+                                                Tier
+                                            </th>
+                                            <th style="padding:0px;">
+                                                From
+                                            </th>
+                                            <th style="padding:0px;">
+                                                To
+                                            </th>
+                                            <th style="padding:0px;">
+                                                Commission
+                                            </th>
+                                        </tr>
+                                        <apex:repeat value="{!lineItem.Tiers__r}" var="tier">
+                                            <tr>
+                                                <td style="padding:0px;">
+                                                    {!num}
+                                                </td>
+                                                <td style="padding:0px;">
+                                                    {!tier.Min__c}
+                                                </td>
+                                                <td style="padding:0px;">
+                                                    <apex:outputPanel rendered="{!tier.Max__c != null}">
+                                                        {!tier.Max__c}
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!tier.Max__c == null}">
+                                                        <span style="font-family: 'Arial Unicode MS';">∞</span>
+                                                    </apex:outputPanel>
+                                                </td>
+                                                <td style="padding:0px;">
+                                                    <apex:outputPanel rendered="{!tier.Commission_in_percentage__c != null}">
+                                                        {!ROUND(tier.Commission_in_percentage__c, 2)} %
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!tier.Commission_per_order__c != null}">
+                                                        {!tier.Commission_per_order__c} {!lineItem.CurrencyIsoCode}
+                                                    </apex:outputPanel>
+                                                </td>
+                                            </tr>
+                                            <apex:variable var="num" value="{!VALUE(num) + 1}"/>
+                                        </apex:repeat>
+                                    </table>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!NOT(lineItem.Scaled__c) }" >
+                                    <apex:outputPanel rendered="{!lineItem.Commission_In_Percentage__c != null}">
+                                        {!lineItem.Commission_In_Percentage__c} %
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!lineItem.Commission_Per_Order__c != null}">
+                                        {!lineItem.Commission_Per_Order__c} {!lineItem.CurrencyIsoCode}
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                            </td>
+                            <td style="text-align:center">
+                                <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                                    <apex:param value="{!lineItem.Start_Date__c}" />
+                                </apex:outputText>
+                            </td>
+                            <td style="text-align:center">
+                                <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                                    <apex:param value="{!lineItem.End_Date__c}" />
+                                </apex:outputText>
+                            </td>
+                        </tr>
+                    </apex:repeat>
+                </table>
+            </apex:outputPanel>
+
+            <!-- PRODUCT SECTION -->
+            <apex:outputPanel rendered="{!listLineItems.size > 0}" >
+                <br/>
+                <table border="1" style="width: 100%;border-collapse: collapse;">
+                    <tr>
+
+                        <th style="text-align:center">
+                            Adicionales
+                        </th>
+                        <th style="text-align:center">
+                            Precio*
+                        </th>
+                        <th style="text-align:center">
+                            Descuento
+                        </th>
+                        <th style="text-align:center">
+                            Total
+                        </th>
+                        <th style="text-align:center">
+                            Fecha de inicio
+                        </th>
+                        <th style="text-align:center">
+                            Fecha de terminación
+                        </th>
+                    </tr>
+                    <apex:repeat value="{!listLineItems}" var="lineItem">
+                        <tr>
+                            <td>
+                                {!lineItem.Id_List_Product_Price__r.Displayed_Name__c}
+                            </td>
+                            <td style="text-align:center">
+                                {!lineItem.Listed_Price__c}
+                            </td>
+                            <td style="text-align:center">
+                                {!lineItem.Discount__c}
+                            </td>
+                            <td style="text-align:center">
+                                {!lineItem.Total_Amount__c}
+                            </td>
+                            <td style="text-align:center">
+                                <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                                    <apex:param value="{!lineItem.Start_Date__c}" />
+                                </apex:outputText>
+                            </td>
+                            <td style="text-align:center">
+                                <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                                    <apex:param value="{!lineItem.End_Date__c}" />
+                                </apex:outputText>
+                            </td>
+                        </tr>
+                    </apex:repeat>
+                </table>
+            </apex:outputPanel>
+
+            <!--  ADD ON SECTION -->
+            <apex:outputPanel rendered = "{!listAddOnItems.size > 0}" >
+                <br/>
+                <table border="1" style="width: 100%;border-collapse: collapse;">
+                    <tr>
+                        <th>
+                            Otras especificaciones
+                        </th>
+                        <th style="text-align:center">
+                            Descripción
+                        </th>
+                        <th style="text-align:center">
+                            Especificaciones
+                        </th>
+                        <th style="text-align:center">
+                            Fecha de inicio
+                        </th>
+                        <th style="text-align:center">
+                            Fecha de terminación
+
+                        </th>
+                    </tr>
+                    <apex:repeat value="{!listAddOnItems}" var="lineItem" >
+                        <tr>
+                            <td>
+                                {!lineItem.Name}
+                            </td>
+                            <td style="text-align:left">
+                                <apex:outputField value="{!lineItem.Contract_Addition__c}" ></apex:outputField>
+                            </td>
+                            <td style="text-align:center">
+                                {!lineItem.Specifications__c}
+                            </td>
+                            <td style="text-align:center">
+                                <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                                    <apex:param value="{!lineItem.Start_Date__c}" />
+                                </apex:outputText>
+                            </td>
+                            <td style="text-align:center">
+                                <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                                    <apex:param value="{!lineItem.End_Date__c}" />
+                                </apex:outputText>
+                            </td>
+                        </tr>
+                    </apex:repeat>
+                </table>
+            </apex:outputPanel>
+
+            <!-- TERMS AND CONDITIONS -->
+
+            <p>
+                <br/>*Los precios indicados en porcentajes se calculan sobre el total de la venta facturada por el Cliente, por pedido
+                confirmado (incluidos los impuestos que apliquen a la venta del Cliente). Siempre que no se indique lo contrario, los demás precios, son indicados en moneda
+                nacional y corresponden a cifras a abonar a la Empresa mensualmente. A todos los precios indicados se le aplicarán los
+                impuestos que correspondan.
+            </p>
+
+            <div style="page-break-after:always"></div>
+            <p style=" text-align: justify;">
+                Las Condiciones Particulares junto con las Condiciones Generales disponibles en <a href="{!accountWrapper.generalConditionsURLMarketing}">{!accountWrapper.generalConditionsURLMarketing}</a>,
+                forman el acuerdo entre las partes (el “Acuerdo”).
+
+                Al firmar las Condiciones Particulares, el Cliente manifiesta que ha leído, acepta y está conforme con las Condiciones Generales,
+                las cuales podrán ser modificadas por la Empresa, previa notificación por correo electrónico al Cliente.
+            </p>
+
+            <table style="page-break-inside:avoid">
+                <tr>
+                    <th style="text-align:left">
+                        Por el Cliente
+                    </th>
+                    <th style="text-align:left">
+                        Por la Empresa
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        <br/>_________________________________________
+                        <br/>Firma
+                    </td>
+                    <td>
+                        <br/>_________________________________________
+                        <br/>Firma
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <br/>_________________________________________
+                        <br/>Aclaración
+                    </td>
+                    <td>
+                        <br/>_________________________________________
+                        <br/>Aclaración
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <br/>
+                        Fecha:
+                        <br/>Lugar:
+                    </td>
+                    <td>
+                        <br/>
+                        Fecha:
+                        <br/>Lugar:
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- TERMS AND CONDITIONS -->
+    <div id="FI_QUOTE" style="width:100%; margin: auto;">
+        <div class="terms">
+            <!-- Page 1 starts -->
+
+        </div>
+    </div>
+</apex:component>

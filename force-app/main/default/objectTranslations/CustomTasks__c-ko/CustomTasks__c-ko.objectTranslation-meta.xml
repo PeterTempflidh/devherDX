@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Internal Task --></value>
+    </caseValues>
+    <layouts>
+        <layout>Task Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Related To --></label>
+            <section>Related To</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Yogiyo Entry  layout</layout>
+        <sections>
+            <label><!-- Additional information --></label>
+            <section>Additional information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Menu Processing --></label>
+            <section>Menu Processing</section>
+        </sections>
+        <sections>
+            <label><!-- Related To --></label>
+            <section>Related To</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Yogiyo Retention layout</layout>
+        <sections>
+            <label><!-- Additional information --></label>
+            <section>Additional information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Related To --></label>
+            <section>Related To</section>
+        </sections>
+        <sections>
+            <label><!-- Retention Information --></label>
+            <section>Retention Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Yogiyo Take Offline Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Related To --></label>
+            <section>Related To</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Yogiyo Task Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Related To --></label>
+            <section>Related To</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- InternalTasks Number --></nameFieldLabel>
+    <recordTypes>
+        <label><!-- DH AU Task --></label>
+        <name>DH_AU_Task</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Yogiyo Entry Task --></label>
+        <name>Yogiyo_Entry_Task</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Yogiyo Internal Task --></label>
+        <name>Yogiyo_Internal_Task</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- This task will be used to inform Sales team that a contracted rest wants to cancel the contract, so they could try to convince them not to cancel the contract. --></description>
+        <label><!-- Yogiyo Retention --></label>
+        <name>Yogiyo_Retention</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- This task will be used for taking Restaurants offline --></description>
+        <label><!-- Yogiyo Take Offline Task --></label>
+        <name>Yogiyo_Take_Offline_Task</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Pleas enter the &apos;Result&apos; of this task --></errorMessage>
+        <name>Mandatory_Entry_Task_Result</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please put the retention result before you complete --></errorMessage>
+        <name>Mandatory_Retention_Result</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter all the mandatory fields --></errorMessage>
+        <name>Mandatory_Take_Offline_Result</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Log_a_call_opp --></label>
+        <name>Log_a_call_opp</name>
+    </webLinks>
+    <webLinks>
+        <label>작업 완료</label>
+        <name>Mark_as_Complete</name>
+    </webLinks>
+</CustomObjectTranslation>

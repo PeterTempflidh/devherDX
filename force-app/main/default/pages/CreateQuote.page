@@ -1,0 +1,8 @@
+<apex:page standardController="Opportunity_Quote__c" extensions="CtrCreateQuote" showHeader="false" sidebar="false" standardStylesheets="false" action="{!redirectToQuote}">
+	<apex:form >
+		<apex:inputHidden value="{!Opportunity_Quote__c.RecordType.DeveloperName}"/>
+		<apex:inputHidden value="{!Opportunity_Quote__c.Id_Account__c}"/>
+		<apex:inputHidden value="{!Opportunity_Quote__c.Id_Opportunity__c}"/>
+		<apex:inputHidden value="{!Opportunity_Quote__c.RecordType.DeveloperName}"/>
+	</apex:form>
+</apex:page>

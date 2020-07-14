@@ -1,0 +1,192 @@
+<!-- <apex:page standardController="Opportunity" standardStylesheets="false" showHeader="false" showChat="false" extensions="CtrOpportunityQuote" renderAs="pdf"> -->
+<apex:page standardController="Opportunity_Quote__c"  extensions="CtrRenderQuotePDF" showHeader="false" sidebar="false" standardStylesheets="false" renderAs="pdf"  action="{!getOnlinePaymentPDF}" applyHtmlTag="false">
+<head>
+<style>
+    @page {
+        margin: 1cm;
+        border: 1px solid black; 
+        @top-right {
+            content: "{!oppQuoteName}";
+        }
+    }
+    .TalabatQuote{
+        font-size:100%;
+    }
+    #carLeaseTable, #details,#optional, #details td,#details th, #carLeaseTable td,#optional td,#optional th {
+        border: 1px solid black !important;
+        border-collapse: collapse;
+    }
+    
+     .DHAUBorderLeft{
+        border-left:1px solid black;border-top:1px solid black;
+    }
+
+    .DHAUBorderRight{
+        border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;
+     }
+     
+    .DHAUBorderBottomLeft{
+        border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;
+    }
+
+    .DHAUBorderBottomRight{
+        border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;border-bottom:1px solid black;
+    }
+    .DHAUInvoicingBorder{
+        border-left:1px solid #c00000;border-bottom:1px solid #c00000;border-right:1px solid #c00000;
+    }
+
+    .DHAUInvoicingBorderCentre{
+        border-bottom:1px solid #c00000;
+    }
+
+    .top{
+        border-color: #c00000; border-style: solid ;border-width: 1px 1px 0px 0px;
+    }
+
+    .bottom{
+        border-color: #c00000;border-style: solid ;border-width: 1px 1px 1px 0px;
+    }
+    
+    /*#SEQuoteBorder{
+        border:2px solid black;
+    }*/
+
+    #CQTable, #CQTable td, #CQTable th {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    #CQTable span {
+        padding-left: 2px;
+    }
+
+    #CQnoborderLeft {
+        border-left : 0px !important;
+    }
+
+    #CQnoborderRight { 
+        border-right: 0px !important;
+    }
+
+    #CQheader { 
+        font-weight: bold;
+    }
+
+    #SEPremiumReTable, #SEPremiumReTable td, #SEPremiumReTable th {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    #CQTable span {
+        padding-left: 2px;
+    }
+
+    #PPheader {
+        color:white;font-size:15pt;padding:5px;width:100%;background-image:url('{!URLFOR($Resource.SE_Quote_PP_red)}');display:inline-block;
+    }
+
+    .clearboth { clear: both; }
+
+        @media print { pre { page-break-before: always;}}
+        @font-face { font-family: FuturaLight; src: url('{!URLFOR($Resource.ATResources, 'ATResource/Futura-Light.ttf')}'); } 
+        @font-face { font-family: FuturaBold; src: url('{!URLFOR($Resource.ATResources, 'ATResource/Futura-Bold.ttf')}'); } 
+        /*body { background-image: url('{!URLFOR($Resource.ATResources, 'ATResource/background.png')}');}*/
+        b.kund { font-family: FuturaBold;font-size: 10px !important;margin-top: 10px !important; }
+        .kundTd { width: 40% !important;padding-top: 10px !important; }
+        span.kund { font-size: 7pt !important;font-size: 8px !important; }
+        b.bank { font-family: FuturaBold;font-size: 10px !important;margin-top: 10px !important; }
+        .bankTd { width: 40% !important;padding-top: 10px !important; }
+        span.bank { font-size: 7pt !important;font-size: 8px !important; }
+        #AT_MQ_Wrapper { font-family:Futura; font-size:8pt;}
+        #AT_MQ_Wrapper p { margin:0;font-stretch: extra-condensed !important;}
+        #AT_MQ_Wrapper p.AT_MQ_Title {margin:8px !important;font-family: FuturaBold;text-align: center;font-weight:bold;}
+        #AT_MQ_Wrapper table { border-collapse: collapse; border-spacing: 0; margin-bottom:0;}
+        #AT_MQ_Wrapper table td { padding: 0px;}
+        #AT_MQ_Page1 {font-size:11pt;font-family:FuturaLight;width:100%;}
+        #AT_MQ_Page1 p {line-height:30px;}
+        .AT_MQ_Page1LeftDiv { display:inline-block;float:left;width:100%; }
+        .AT_MQ_Page1RightDiv { display:inline-block;float:right;  }
+        .AT_MQ_Page1RightDiv2 { display:inline-block;float:right; }
+        #AT_MQ_TopTables td { padding:10px !important; }
+        #AT_MQ_TopTables { border:2px solid; background-image: url('{!URLFOR($Resource.ATResources, 'ATResource/table_background.jpg')}'); }
+        #AT_MQ_TopTables tr { border:1px solid; }
+        #AT_MQ_NoRightBorder {  border-right:0px !important; width:30%;}
+        #AT_MQ_NoLeftBorder { border-left: 0px !important; }
+        #AT_MQ_Geschaftsherr { border:2px solid; background-image: url('{!URLFOR($Resource.ATResources, 'ATResource/table_background.jpg')}'); }
+        #AT_MQ_Geschaftsherr td:nth-child(1) { border:1px solid; padding:10px; width:40%;padding-top:0px !important; padding-bottom:0px !important }
+        #AT_MQ_Geschaftsherr td.kundTd { border:1px solid; padding:10px; width:40%;padding-top:0px !important; padding-bottom:0px !important;width: 40% !important;padding-top: 10px !important }
+           #AT_MQ_Geschaftsherr td.bankTd { border:1px solid; padding:10px; width:40%;padding-top:0px !important; padding-bottom:0px !important;width: 40% !important;padding-top: 6px !important }
+        #AT_MQ_Geschaftsherr td:nth-child(2) { border:1px solid; padding:10px; padding-top:0px !important; padding-bottom:0px !important }
+        #AT_MQ_Geschaftsherr td span.kund { font-size: 7pt !important; }
+        #AT_MQ_Geschaftsherr tr th { border:1px solid; }
+        #AT_MQ_Geschaftsherr b { font-size: 6pt; }
+        #AT_MQ_Geschaftsherr span { font-size: 10pt !important; }
+        #AT_MQ_Geschaftsherr span:nth-child(2n) { font-size: 4pt !important; }
+
+        #AT_MQ_Restaurantdaten td:nth-child(1) { border:1px solid; padding:10px; width:40%;padding-top:0px !important; padding-bottom:0px !important }
+        #AT_MQ_Restaurantdaten td:nth-child(2) { border:1px solid; padding:10px; padding-top:0px !important; padding-bottom:0px !important }
+        #AT_MQ_Restaurantdaten_Title {     font-family: FuturaBold;border-radius: 15px;padding-top: 12px;width: 180px;padding-left: 16px;background-image: url(/resource/1455703515000/ATResources/ATResource/rest_background.png);background-repeat: no-repeat;height: 38px;margin: 0; font-size: 13px; margin-bottom:0;}
+        #AT_MQ_Restaurantdaten_Title2 {     font-family: FuturaBold;border-radius: 15px;padding-top: 12px;width: 160px;padding-left: 16px;background-image: url(/resource/1455703515000/ATResources/ATResource/gesch_background.png);background-repeat: no-repeat;height: 38px;margin: 0; font-size: 13px; margin-bottom:0;}
+        #AT_MQ_Restaurantdaten { border:2px solid; background-image: url('{!URLFOR($Resource.ATResources, 'ATResource/table_background.jpg')}'); }
+        #AT_MQ_Restaurantdaten td:nth-child(1) { border:1px solid; padding:10px; width:50%;padding-top:0px !important; padding-bottom:0px !important }
+        #AT_MQ_Restaurantdaten td:nth-child(2) { border:1px solid; padding:10px; padding-top:0px !important; padding-bottom:0px !important }
+        #AT_MQ_Restaurantdaten tr th { border:1px solid; }
+
+        #AT_MQ_Tarrif { border:1px solid; background-image: url('{!URLFOR($Resource.ATResources, 'ATResource/table_background.jpg')}'); }
+        #AT_MQ_Tarrif td { border:1px solid; padding:10px; height:22px !important;text-align:center; }
+        #AT_MQ_Tarrif tr th { border:1px solid;text-align:center; }
+        #AT_MQ_Tarrif tr th.width15 { width:25%;}
+        #AT_MQ_Tarrif span { display:block; font-size:7pt; }
+        #AT_MQ_StammText { font-family:FuturaLight;line-height:11px }
+        #AT_MQ_StammText td:nth-child(1) { width: 20px; vertical-align: text-top; }
+
+        #AT_MQ_StammTextTitle { font-weight:bold;font-size:9pt;font-family:FuturaBold }
+        hr.AT_MQ_FooterMid { border-top: dotted 1px;margin:0 auto; width: 380px; }
+        p.AT_MQ_FooterMid6 { text-align:center;font-family:FuturaLight;font-size:6pt; }
+        p.AT_MQ_FooterMid8 { text-align:center;font-family:FuturaLight;font-size:8pt; }
+        .clear { clear:both; }
+        .bold { font-weight:bold; }
+        .futuraBold { font-family: FuturaBold; }
+        #AT_MQ_Geschaftsherr tr td span.font5 {font-size: 5pt !important;}
+        #AT_MQ_Geschaftsherr b.padL { padding-left:10px !important; }
+        #AT_MQ_Geschaftsherr span.padL { padding-left:10px !important; }
+        #AT_MQ_Restaurantdaten b.padL { padding-left:10px !important; }
+        #AT_MQ_Restaurantdaten span.padL { padding-left:10px !important; }
+        .color { color: #AECB54}
+        #gesamtpreis {display: inline-block;float: right;width: 89%;padding-right: 10.5%;}
+        .flright {float:right;}
+         #mjamtop { margin:0 auto; width: 280px; }
+         .justify { text-align:justify; }
+         .indent { margin-left: 30px; }
+    
+        #UK_Header {
+            display: inline-block;
+            float:right;
+        }
+        #UK_Font {
+            font-family: Arial Unicode MS; font-size: 11px;
+        }
+        
+        #FI_QUOTE table tr td {font-family: Dialog; font-size:10pt;padding:3px;}
+        #FI_QUOTE table tr th {font-family: Dialog; font-size:10pt;padding:3px;}
+        #FI_QUOTE h2,h4 {font-family: Dialog;}
+        #FI_QUOTE div p,p {font-family: Dialog;font-size:10pt}
+        #FI_QUOTE div {font-family: Dialog;}
+    </style>
+</head>
+    <body style="font-family: Arial Unicode MS;font-size: 10px;"> 
+        <!-- <apex:form > -->
+            <!-- <apex:outputText value="{!Opportunity_Quote__c.Description__c}" escape="false"/> -->
+            <div>
+            <apex:include pageName="{!Opportunity_Quote__c.Template_Name__c}" />
+            </div>
+            
+            <apex:outputPanel rendered="{!If(onlinePdfContent=null,'false','true')}" >
+            <div style="page-break-before:always;">
+            <apex:outputText value="{!onlinePdfContent}" escape="false" />
+            </div>
+            </apex:outputPanel>
+            
+        <!-- </apex:form> -->
+    </body>
+</apex:page>

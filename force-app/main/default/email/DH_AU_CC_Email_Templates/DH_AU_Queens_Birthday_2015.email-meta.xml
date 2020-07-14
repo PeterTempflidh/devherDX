@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Delivery Hero Queens Birthday Public Holiday</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>DH_AU_Letterhead</letterhead>
+    <name>DH AU Queens Birthday 2015</name>
+    <style>freeForm</style>
+    <subject>AU - Queens Birthday Public Holiday - PLEASE REPLY</subject>
+    <textOnly>18/05/2015
+
+Dear Restaurant - {!Account.Name},
+
+We would like to know if you will be open and doing delivery during the upcoming Public Holiday on Monday 8th June. Please note our website is not able to add any public holiday surcharges, so unfortunately we will have to close your restaurant for that day if you do have a surcharge.
+ 
+It would be greatly appreciated if you could please reply to this email to let us know:
+ 
+a-  If you will be open for delivery between on Monday 8th June 
+ 
+b- If yes, if you will have different operating hours 
+
+c - If No, please confirm dates you are closed
+ 
+c- If you intend to charge a public holiday surcharge?
+ 
+Alternatively, you may contact us at any time on our direct contact number 1300 GO HERO (1300 46 4376).  
+
+Please note that if we do not receive confirmation that you will be open, we will have to close your restaurant for the Public Holidays. 
+
+Yours Truly
+Delivery Hero</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

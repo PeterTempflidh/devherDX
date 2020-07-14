@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>Community Member Layout</layout>
+        <layoutType>CommunityMemberLayout</layoutType>
+        <sections>
+            <label><!-- Basic Information --></label>
+            <section>Basic Information</section>
+        </sections>
+        <sections>
+            <label><!-- Chatter Settings --></label>
+            <section>Chatter Settings</section>
+        </sections>
+        <sections>
+            <label><!-- Language And Locale Settings --></label>
+            <section>Language And Locale Settings</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>NVM_Users</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>User Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- You do not have permission to change this information. Please open a ticket to the central team. --></errorMessage>
+        <name>Global_Block_Role_Changes</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Federation Id is mandatory --></errorMessage>
+        <name>Global_FederationIdMandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Federation Id should be blank when the profile is API --></errorMessage>
+        <name>Global_FederationIdblankforAPIOnly</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Change_DS_Cred --></label>
+        <name>Loop__Change_DS_Cred</name>
+    </webLinks>
+</CustomObjectTranslation>

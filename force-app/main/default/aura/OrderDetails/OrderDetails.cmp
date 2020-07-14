@@ -1,0 +1,525 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName"
+                access="global"
+                controller="CtrGlobalChatBot">
+    
+    <aura:registerEvent name="OrderDetailsEvent" type="c:OrderDetailsEvent"/>
+    <aura:handler name="init" value="{!this}" action="{!c.getRecordDetails}"/>
+    <aura:handler event="c:OrderDetailsEvent" action="{!c.setPreviousOrder}"/>
+    <aura:attribute name="rejected" type="String" default="REJECTED"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="orderNumber" type="String"/>
+    <aura:attribute name="errorMessage" type="String"/>
+    <aura:attribute name="isError" type="Boolean" default="false"/>
+    <aura:attribute name="searchedOrderNumber" type="String"/>
+    <aura:attribute name="platformName" type="String"/>
+    <aura:attribute name="country" type="String"/>
+    <aura:attribute name="loading" type="Boolean" default="true"/>
+    <aura:attribute name="orderDetails" type="List"/>
+    <aura:attribute name="orderStatus" type="Object"/>
+    <aura:attribute name="orderDetail" type="Object"/>
+    <aura:attribute name="orderStatuses" type="Object"/>
+    <aura:attribute name="recentOrderStatus" type="String" default=""/>
+    <aura:attribute name="customerDetails" type="Object"/>
+    <aura:attribute name="orderValue" type="String"/>
+    <aura:attribute name="coupons" type="String"/>
+    <aura:attribute name="customerId" type="String"/>
+    <aura:attribute name="platform" type="String"/>
+    <aura:attribute name="address" type="String"/>
+    <aura:attribute name="discount" type="String"/>
+    <aura:attribute name="vendorId" type="String"/>
+    <aura:attribute name="vendorName" type="String"/>
+    <aura:attribute name="paymentMethod" type="String"/>
+	<aura:attribute name="paymentMethodOnCase" type="String"/>
+    <aura:attribute name="paymentProvider" type="String"/>
+    <aura:attribute name="eta" type="String"/>
+    <aura:attribute name="items" type="List"/>
+    <aura:attribute name="hurrierLink" type="String"/>
+    <aura:attribute name="deliveryType" type="String"/>
+    <aura:attribute name="paymentStatus" type="String"/>
+    <aura:attribute name="dataPresent" type="Boolean"/>
+    <aura:attribute name="orderURL" type="String" />
+    <aura:attribute name="isDisabled" type="Boolean" default="true"/>
+    <aura:attribute name="isRecentStatusRejected" type="Boolean" default="false"/>
+    <aura:attribute name="isRecentStatusDelayed" type="Boolean" default="false"/>
+    <aura:attribute name="recordId" type="String" />
+	<aura:attribute name="sObjectName" type="String" />
+    <aura:attribute name="caseRecId" type="String" />
+	<!--SCC-134-->
+	<aura:attribute name="corporateFlag" type="Boolean" default="false"/>
+	<!--SCC-259-->	<aura:attribute name="PandoraPlatformNames" type="List" default="[]"/>
+    <lightning:workspaceAPI aura:id="orderDetWorkspace" />
+    <lightning:card iconName="standard:orders">
+        <aura:set attribute="title">
+            <div style="font-weight:700">{!$Label.c.Order_Details+': '+v.searchedOrderNumber}</div>
+        </aura:set>
+        <aura:set attribute="actions">
+            <lightning:button variant="brand" label="{!$Label.c.Hurrier_Link}" onclick="{!c.openLink}" disabled="{!v.isDisabled}" class="{!v.isDisabled?'disableCursor':''}"/>
+        </aura:set>
+        <aura:if isTrue="{! v.loading }">
+            <lightning:spinner alternativeText="Loading" />
+        </aura:if>
+		<lightning:buttonIcon iconName="utility:refresh" variant="border-filled" 
+                              onclick="{! c.searchOrderDetails }" alternativeText="Settings"   
+                              class="slds-float_left slds-m-left_large"/>
+    
+        <br/>
+        <div class="marginClass">
+            <aura:if isTrue="{!v.isError}">
+                <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">{!v.errorMessage}</div>
+            </aura:if>
+            <lightning:input type="search" name="search" value="{!v.searchedOrderNumber}" onchange="{!c.searchOrderDetails}" placeholder="{!$Label.c.Search_by_Order_Number}"/>
+            <br/>
+            <aura:if isTrue="{!v.dataPresent}">
+
+                <!--Order Summary Section-->
+                <aura:if isTrue="{!v.isError!=true}">
+                    <div class="slds-form slds-form_stacked " role="list">
+                        <div class="slds-grid slds-gutters_small mdp cols-2 forcePageBlockSectionRow">
+                            <div class="slds-col slds-grid slds-has-flexi-truncate  mdp forcePageBlockItem forcePageBlockItemView" role="listbox">
+                                <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element" style="margin-right: 1rem;">
+                                    <div class="test-id__field-label-container slds-form-element__label">
+                                        <span class="test-id__field-label">
+                                            {!$Label.c.Order_Number}
+                                        </span>
+                                    </div>
+                                    <div class="slds-form-element__control slds-grid itemBody">
+                                        <span class="test-id__field-value slds-form-element__static slds-grow ">
+                                            <span class="uiOutputText" style="overflow-wrap: break-word;">
+                                                <aura:if isTrue="{!v.orderURL==null}">
+                                                    {!v.searchedOrderNumber}
+                                                    <aura:set attribute="else">
+                                                        <a onclick="{!c.openLink}" disabled="{!v.orderURL==null}">{!v.searchedOrderNumber}</a>
+                                                    </aura:set>
+                                                </aura:if>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element" style="margin-left: 1rem;">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-gutters_small mdp cols-2 forcePageBlockSectionRow">
+                            <div class="slds-col slds-grid slds-has-flexi-truncate  mdp forcePageBlockItem forcePageBlockItemView" role="listbox">
+                                <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element" style="margin-right: 1rem;">
+                                    <div class="test-id__field-label-container slds-form-element__label">
+                                        <span class="test-id__field-label">
+                                            {!$Label.c.Order_Amount}
+                                        </span>
+                                    </div>
+                                    <div class="slds-form-element__control slds-grid itemBody">
+                                        <span class="test-id__field-value slds-form-element__static slds-grow ">
+                                            <span class="uiOutputText" style="overflow-wrap: break-word;">
+                                                {!v.orderValue}
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element" style="margin-left: 1rem;">
+                                    <div class="test-id__field-label-container slds-form-element__label">
+                                        <span class="test-id__field-label">
+                                            {!$Label.c.Order_Status}
+                                        </span>
+                                    </div>
+                                    <div class="slds-form-element__control slds-grid itemBody">
+                                        <aura:if isTrue="{!v.recentOrderStatus!=''}">
+                                            <div class="{!v.isRecentStatusRejected?'slds-icon_container slds-timeline__icon':'slds-icon_container slds-timeline__icon'}" title="{!v.recentOrderStatus}">
+                                                <aura:if isTrue="{!v.isRecentStatusRejected}">
+                                                    <lightning:icon size="small" iconName="standard:first_non_empty"/>
+                                                    <aura:set attribute="else">
+                                                        <aura:if isTrue="{!v.isRecentStatusDelayed}">
+                                                            <lightning:icon size="small" iconName="standard:past_chat"/>
+                                                            <aura:set attribute="else">
+                                                                <lightning:icon size="small" iconName="standard:task2"/>
+                                                            </aura:set>
+                                                        </aura:if>
+                                                    </aura:set>
+                                                </aura:if>
+                                            </div>
+                                            <span class="uiOutputText test-id__field-value slds-form-element__static slds-grow statusText" style="{!v.isRecentStatusRejected?'background-color:Red':v.isRecentStatusDelayed?'background-color:#f88960':'background-color:Green'}">
+                                                {!v.recentOrderStatus}
+                                            </span>
+                                        </aura:if>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-gutters_small mdp cols-2 forcePageBlockSectionRow">
+                            <div class="slds-col slds-grid slds-has-flexi-truncate  mdp forcePageBlockItem forcePageBlockItemView" role="listitem">
+                                <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element" style="margin-right: 1rem;">
+                                    <div class="test-id__field-label-container slds-form-element__label">
+                                        <span class="test-id__field-label">
+                                            {!$Label.c.Coupon}
+                                        </span>
+                                    </div>
+                                    <div class="slds-form-element__control slds-grid itemBody">
+                                        <span class="test-id__field-value slds-form-element__static slds-grow ">
+                                            <span class="uiOutputText" style="overflow-wrap: break-word;">
+                                                {!v.coupons}
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element" style="margin-left: 1rem;">
+                                    <div class="test-id__field-label-container slds-form-element__label">
+                                        <span class="test-id__field-label">
+                                            {!$Label.c.Discount}
+                                        </span>
+                                    </div>
+                                    <div class="slds-form-element__control slds-grid itemBody">
+                                        <span class="test-id__field-value slds-form-element__static slds-grow ">
+                                            <span class="uiOutputText" style="overflow-wrap: break-word;">
+                                                {!v.discount}
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-gutters_small mdp cols-2 forcePageBlockSectionRow">
+                            <div class="slds-col slds-grid slds-has-flexi-truncate  mdp forcePageBlockItem forcePageBlockItemView" role="listitem">
+                                <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element" style="margin-right: 1rem;">
+                                    <div class="test-id__field-label-container slds-form-element__label">
+                                        <span class="test-id__field-label">
+                                            {!$Label.c.Customer_Id}
+                                        </span>
+                                    </div>
+                                    <div class="slds-form-element__control slds-grid itemBody">
+                                        <span class="test-id__field-value slds-form-element__static slds-grow ">
+                                            <span class="uiOutputText" style="overflow-wrap: break-word;">
+                                                {!v.customerId}
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element" style="margin-left: 1rem;">
+                                    <div class="test-id__field-label-container slds-form-element__label">
+                                        <span class="test-id__field-label">
+                                            {!$Label.c.Vendor_Id}
+                                        </span>
+                                    </div>
+                                    <div class="slds-form-element__control slds-grid itemBody">
+                                        <span class="test-id__field-value slds-form-element__static slds-grow ">
+                                            <span class="uiOutputText" style="overflow-wrap: break-word;">
+                                                {!v.vendorId}
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-gutters_small mdp cols-2 forcePageBlockSectionRow">
+                            <div class="slds-col slds-grid slds-has-flexi-truncate  mdp forcePageBlockItem forcePageBlockItemView" role="listitem">
+                                <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element" style="margin-right: 1rem;">
+                                    <div class="test-id__field-label-container slds-form-element__label">
+                                        <span class="test-id__field-label">
+                                            {!$Label.c.ETA}
+                                        </span>
+                                    </div>
+                                    <div class="slds-form-element__control slds-grid itemBody">
+                                        <span class="test-id__field-value slds-form-element__static slds-grow ">
+                                            <span class="uiOutputText" style="overflow-wrap: break-word;">
+                                                {!v.eta}
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element" style="margin-left: 1rem;">
+                                    <div class="test-id__field-label-container slds-form-element__label">
+                                        <span class="test-id__field-label">
+                                            {!$Label.c.Vendor_Name}
+                                        </span>
+                                    </div>
+                                    <div class="slds-form-element__control slds-grid itemBody">
+                                        <span class="test-id__field-value slds-form-element__static slds-grow ">
+                                            <span class="uiOutputText" style="overflow-wrap: break-word;">
+                                                {!v.vendorName}
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-gutters_small mdp cols-2 forcePageBlockSectionRow">
+                            <div class="slds-col slds-grid slds-has-flexi-truncate  mdp forcePageBlockItem forcePageBlockItemView" role="listitem">
+                                <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element" style="margin-right: 1rem;">
+                                    <div class="test-id__field-label-container slds-form-element__label">
+                                        <span class="test-id__field-label">
+                                            {!$Label.c.Platform}
+                                        </span>
+                                    </div>
+                                    <div class="slds-form-element__control slds-grid itemBody">
+                                        <span class="test-id__field-value slds-form-element__static slds-grow ">
+                                            <span class="uiOutputText" style="overflow-wrap: break-word;">
+                                                {!v.platform}
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element" style="margin-left: 1rem;">
+                                    <div class="test-id__field-label-container slds-form-element__label">
+                                        <span class="test-id__field-label">
+                                            {!$Label.c.Payment_Method}
+                                        </span>
+                                    </div>
+                                    <div class="slds-form-element__control slds-grid itemBody">
+                                        <span class="test-id__field-value slds-form-element__static slds-grow ">
+                                            <span class="uiOutputText" style="overflow-wrap: break-word;">
+                                                {!v.paymentMethod}
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-gutters_small mdp cols-2 forcePageBlockSectionRow">
+                            <div class="slds-col slds-grid slds-has-flexi-truncate  mdp forcePageBlockItem forcePageBlockItemView" role="listitem">
+                                <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element" style="margin-right: 1rem;">
+                                    <div class="test-id__field-label-container slds-form-element__label">
+                                        <span class="test-id__field-label">
+                                            {!$Label.c.Delivery_Type}
+                                        </span>
+                                    </div>
+                                    <div class="slds-form-element__control slds-grid itemBody">
+                                        <span class="test-id__field-value slds-form-element__static slds-grow ">
+                                            <span class="uiOutputText" style="overflow-wrap: break-word;">
+                                                {!v.deliveryType}
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <aura:if isTrue="{!v.paymentStatus=='Accepted' || v.paymentProvider!=null}">
+                                    <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element" style="margin-left: 1rem;">
+                                        <div class="test-id__field-label-container slds-form-element__label">
+                                            <span class="test-id__field-label">
+                                                {!$Label.c.Payment_Status}
+                                            </span>
+                                        </div>
+                                        <div class="slds-form-element__control slds-grid itemBody">
+                                            <span class="test-id__field-value slds-form-element__static slds-grow ">
+                                                <span class="uiOutputText" style="overflow-wrap: break-word;">
+                                                    {!v.paymentStatus}
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </aura:if>
+                            </div>
+                        </div>
+						 <div class="slds-grid slds-gutters_small mdp cols-2 forcePageBlockSectionRow">
+                            <div class="slds-col slds-grid slds-has-flexi-truncate  mdp forcePageBlockItem forcePageBlockItemView" role="listitem">
+                                <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element" style="margin-right: 1rem;">
+                                    <div class="test-id__field-label-container slds-form-element__label">
+                                        <span class="test-id__field-label">
+                                           {!$Label.c.Corporate}
+                                        </span>
+                                    </div>
+                                    <div class="slds-form-element__control slds-grid itemBody">
+                                        <span class="test-id__field-value slds-form-element__static slds-grow ">
+                                            <span class="uiOutputText" style="overflow-wrap: break-word;">
+                                                <ui:outputCheckbox aura:id="output" value="{!v.corporateFlag}"/> 
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element  slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element" style="margin-left: 1rem;">
+                                    <!--Leaving empty to create empty column as there is nothing to show here-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-gutters_small mdp cols-2 forcePageBlockSectionRow">
+                            <div class="slds-col slds-grid slds-has-flexi-truncate  mdp forcePageBlockItem forcePageBlockItemView" role="listitem">
+                                <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element" style="margin-right: 1rem;">
+                                    <div class="test-id__field-label-container slds-form-element__label">
+                                        <span class="test-id__field-label">
+                                            {!$Label.c.Delivery_Address}
+                                        </span>
+                                    </div>
+                                    <div class="slds-form-element__control slds-grid itemBody">
+                                        <span class="test-id__field-value slds-form-element__static slds-grow ">
+                                            <span class="uiOutputText" style="overflow-wrap: break-word;">
+                                                {!v.address}
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Items Table Section-->
+                    <lightning:accordion activeSectionName="{!$Label.c.Items}" allowMultipleSectionsOpen="true">
+                        <lightning:accordionSection label="{!$Label.c.Items}" name="{!$Label.c.Items}">
+                            <lightning:treeGrid aura:id="itemsTable" columns="{! v.columns }" data="{! v.data }" keyField="name" hideCheckboxColumn="true" class="slds-cell-wrap"/>
+                        </lightning:accordionSection>
+
+                        <!--Order Status History Section-->
+                        <lightning:accordionSection label="{!$Label.c.Order_Status_History}" name="{!$Label.c.Order_Status_History}">
+                            <ul class="slds-timeline">
+                                <aura:iteration items="{!v.orderStatus}" var="stat" indexVar="i">
+                                    <li>
+                                        <div class="slds-timeline__item_expandable slds-timeline__item_task slds-is-open">
+                                            <span class="slds-assistive-text">task</span>
+                                            <div class="slds-media">
+                                                <div class="slds-media__figure">
+                                                    <button id="{!i}" class="slds-button slds-button_icon rotateClass" aria-expanded="true" onclick="{!c.openArticle}">
+                                                        <div class="slds-icon_container slds-button__icon slds-timeline__details-action-icon">
+                                                            <lightning:icon size="xx-small" iconName="utility:switch"/>
+                                                        </div>
+                                                        <span class="slds-assistive-text">{!stat.status}</span>
+                                                    </button>
+                                                    <div class="{!stat.isRejected?'slds-icon_container slds-timeline__icon':'slds-icon_container slds-timeline__icon'}" title="{!stat.status}">
+                                                        <aura:if isTrue="{!stat.isRejected}">
+                                                            <lightning:icon size="small" iconName="standard:first_non_empty"/>
+                                                            <aura:set attribute="else">
+                                                                <aura:if isTrue="{!stat.isDelayed}">
+                                                                    <lightning:icon size="small" iconName="standard:past_chat"/>
+                                                                    <aura:set attribute="else">
+                                                                        <lightning:icon size="small" iconName="standard:task2"/>
+                                                                    </aura:set>
+                                                                </aura:if>
+                                                            </aura:set>
+                                                        </aura:if>
+                                                    </div>
+                                                </div>
+                                                <div class="slds-media__body">
+                                                    <div class="slds-grid slds-grid_align-spread slds-timeline__trigger">
+                                                        <div class="slds-grid slds-grid_vertical-align-center slds-truncate_container_75 slds-no-space">
+                                                            <h3 class="slds-truncate" title="{!stat.status}">
+                                                                <strong>{!stat.status}</strong>
+                                                            </h3>
+                                                        </div>
+                                                        <div class="slds-timeline__actions slds-timeline__actions_inline">
+                                                            <p class="slds-timeline__date">{!stat.timestamp}</p>
+                                                        </div>
+                                                    </div>
+                                                    <aura:if isTrue="{!stat.showArticle}">
+                                                        <article class="slds-box slds-timeline__item_details slds-theme_shade slds-m-top_x-small slds-m-horizontal_xx-small slds-p-around_medium" id="task-item-expanded" aria-hidden="false">
+                                                            <aura:if isTrue="{!stat.transmitted!=null}">
+                                                                <ul class="slds-list_horizontal slds-wrap">
+                                                                    <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+                                                                        <span class="slds-text-title slds-p-bottom_x-small">{!$Label.c.Type}</span>
+                                                                        <span class="slds-text-body_medium slds-truncate" >
+                                                                    {!stat.transmitted.type}</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </aura:if>
+                                                            <aura:if isTrue="{!stat.accepted!=null}">
+                                                                <ul class="slds-list_horizontal slds-wrap">
+                                                                    <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+                                                                        <span class="slds-text-title slds-p-bottom_x-small">{!$Label.c.Estimated_Delivery_Time}</span>
+                                                                        <span class="slds-text-body_medium slds-truncate" >
+                                                                    {!stat.accepted.estimated_delivery_time}</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </aura:if>
+                                                            <aura:if isTrue="{!stat.picked_up!=null}">
+                                                                <ul class="slds-list_horizontal slds-wrap">
+                                                                    <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+                                                                        <span class="slds-text-title slds-p-bottom_x-small">{!$Label.c.Timestamp}</span>
+                                                                        <span class="slds-text-body_medium slds-truncate" >
+                                                                    {!stat.picked_up.timestamp}</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </aura:if>
+                                                            <aura:if isTrue="{!stat.delivered!=null}">
+                                                                <ul class="slds-list_horizontal slds-wrap">
+                                                                    <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+                                                                        <span class="slds-text-title slds-p-bottom_x-small">{!$Label.c.Timestamp}</span>
+                                                                        <span class="slds-text-body_medium slds-truncate" >
+                                                                    {!stat.delivered.timestamp}</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </aura:if>
+                                                            <aura:if isTrue="{!stat.expired!=null}">
+                                                                <ul class="slds-list_horizontal slds-wrap">
+                                                                    <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+                                                                        <span class="slds-text-title slds-p-bottom_x-small">{!$Label.c.Reason}</span>
+                                                                        <span class="slds-text-body_medium slds-truncate" >
+                                                                {!stat.expired.reason}</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </aura:if>
+                                                            <aura:if isTrue="{!stat.cancelled!=null}">
+                                                                <ul class="slds-list_horizontal slds-wrap">
+                                                                    <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+                                                                        <span class="slds-text-title slds-p-bottom_x-small">{!$Label.c.Reason}</span>
+                                                                        <span class="slds-text-body_medium slds-truncate" >
+                                                                {!stat.cancelled.reason}</span>
+                                                                    </li>
+                                                                    <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+                                                                        <span class="slds-text-title slds-p-bottom_x-small">{!$Label.c.comment}</span>
+                                                                        <span class="slds-text-body_medium slds-truncate" >
+                                                                {!stat.cancelled.comment}</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </aura:if>
+                                                            <aura:if isTrue="{!stat.rejected!=null}">
+                                                                <ul class="slds-list_horizontal slds-wrap">
+                                                                    <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+                                                                        <span class="slds-text-title slds-p-bottom_x-small">{!$Label.c.Reason}</span>
+                                                                        <span class="slds-text-body_medium slds-truncate" >
+                                                                {!stat.rejected.reason}</span>
+                                                                    </li>
+                                                                    <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+                                                                        <span class="slds-text-title slds-p-bottom_x-small">{!$Label.c.comment}</span>
+                                                                        <span class="slds-text-body_medium slds-truncate" >
+                                                                {!stat.rejected.comment}</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </aura:if>
+                                                            <aura:if isTrue="{!stat.failed!=null}">
+                                                                <ul class="slds-list_horizontal slds-wrap">
+                                                                    <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+                                                                        <span class="slds-text-title slds-p-bottom_x-small">{!$Label.c.Global_Transmission_Method}</span>
+                                                                        <span class="slds-text-body_medium slds-truncate" >
+                                                                    {!stat.failed.global_transmission_method_id}</span>
+                                                                    </li>
+                                                                    <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+                                                                        <span class="slds-text-title slds-p-bottom_x-small">{!$Label.c.Type}</span>
+                                                                        <span class="slds-text-body_medium slds-truncate" >
+                                                                    {!stat.failed.type}</span>
+                                                                    </li>
+                                                                    <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+                                                                        <span class="slds-text-title slds-p-bottom_x-small">{!$Label.c.Reason}</span>
+                                                                        <span class="slds-text-body_medium slds-truncate" >
+                                                                    {!stat.failed.reason}</span>
+                                                                    </li>
+                                                                    <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+                                                                        <span class="slds-text-title slds-p-bottom_x-small">{!$Label.c.comment}</span>
+                                                                        <span class="slds-text-body_medium slds-truncate" >
+                                                                    {!stat.failed.comment}</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </aura:if>
+                                                            <aura:if isTrue="{!stat.delayed!=null}">
+                                                                <ul class="slds-list_horizontal slds-wrap">
+                                                                    <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+                                                                        <span class="slds-text-title slds-p-bottom_x-small">{!$Label.c.Delay}</span>
+                                                                        <span class="slds-text-body_medium slds-truncate" >
+                                                                    {!stat.delayed.delay}</span>
+                                                                    </li>
+                                                                    <li class="slds-grid slds-grid--vertical slds-size_1-of-2 slds-p-bottom_small">
+                                                                        <span class="slds-text-title slds-p-bottom_x-small">{!$Label.c.Estimated_Time}</span>
+                                                                        <span class="slds-text-body_medium slds-truncate" >
+                                                                    {!stat.delayed.estimated_time}</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </aura:if>
+                                                        </article>
+                                                    </aura:if>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </aura:iteration>
+                            </ul>
+                        </lightning:accordionSection>
+                    </lightning:accordion>
+                </aura:if>
+            </aura:if>
+        </div>
+    </lightning:card>
+</aura:component>

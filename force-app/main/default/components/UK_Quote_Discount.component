@@ -1,0 +1,231 @@
+<apex:component controller="CtrCreateQuote" access="global" >
+    <apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+    <apex:attribute name="oppQ" type="String" description="Placeholder" assignTo="{!oppQId}"/>
+     <div id="UK_Font">
+        <div id="UK_Header">
+            <img src="{!URLFOR($Resource.UK_Header)}" style="width:100%"/>
+        </div>
+        <div class="clearboth" />
+        <h2 class="bold">{!$Label.UK_Quote_Partnership_Agreement}</h2>
+        <table width="100%">
+            <tr>
+                <td>{!accountWrapper.restaurantName} - {!accountWrapper.addressStreet}, {!accountWrapper.addressPostal} {!accountWrapper.addressCity}</td>
+                <td style="text-align:right;">
+                    <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                        <apex:param value="{!TODAY()}" /> 
+                    </apex:outputText></td>
+            </tr>
+            <tr>
+                <td>{!accountWrapper.ownerName}</td>
+                <td style="text-align:right;">{!opportunity.Owner.Name}</td>
+            </tr>
+            <tr>
+                <td>{!accountWrapper.ownerPhone}</td>
+                <td style="text-align:right;">{!opportunity.Owner.Email}</td>
+            </tr>
+            <tr>
+                <td>{!accountWrapper.ownerMobilePhone}</td>
+            </tr>
+            <tr>
+            <td >{!accountWrapper.ownerEmail}</td>
+            </tr>
+        </table>
+        <br />
+        <table>
+            <tr>
+                <td>{!$Label.UK_Quote_Dear} {!accountWrapper.ownerSalutation} {!accountWrapper.ownerFirstName} {!accountWrapper.ownerLastName},</td>
+            </tr>
+            <tr>
+                <td>{!$Label.UK_Quote_As_per_out_conversation}</td>
+            </tr>
+        </table>
+        <br />
+        <apex:outputPanel rendered="{!comissionsExist}">
+        <table id="CQTable" border="1" width="100%">
+            <tr>
+                <th><span class="bold">Product</span></th>
+                <th><span class="bold">Start Date</span></th>
+                <th><span class="bold">End Date</span></th>
+                <th><span class="bold">Fee</span></th>
+            </tr>
+            <apex:repeat value="{!listCommisionItems}" var="item">
+                <tr>               
+                    <td>
+                        <span>{!item.Id_List_Service_Price__r.Displayed_Name__c}</span>
+                    </td>
+                    <td>
+                        <span>
+                            <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                                <apex:param value="{!item.Start_Date__c}" /> 
+                            </apex:outputText>
+                        </span>
+                    </td>
+                    <td>
+                        <span>
+                            <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                                <apex:param value="{!item.End_Date__c}" /> 
+                            </apex:outputText>
+                        </span>
+                   </td>    
+                   <td>
+                         <span style="display:{!if(item.Commission_In_Percentage__c!=null,'block','none')}">{!item.Commission_In_Percentage__c}%</span>
+                       <span style="display:{!if(item.Commission_Per_Order__c!=null,'block','none')}">£{!item.Commission_Per_Order__c} per order</span>
+                    </td>     
+                </tr>
+            </apex:repeat>
+        </table>
+        </apex:outputPanel>
+        <br />
+        <apex:outputPanel rendered="{!additionalCostsExist}">
+        <table id="CQTable" border="1" width="100%">
+            <tr>
+                <th><span class="bold">Product</span></th>
+                <th><span class="bold">List Price</span></th>
+                <th><span class="bold">Discount</span></th>
+                <th><span class="bold">Final Price</span></th>
+                <th><span class="bold">Installments</span></th>
+                <th><span class="bold">Installment Amount</span></th>
+            </tr>
+            <apex:repeat value="{!listLineItems}" var="item">
+                <tr>               
+                    <td>
+                        <span>{!item.Id_List_Product_Price__r.Displayed_Name__c}</span>
+                    </td>
+                    <td>
+                       <span>£{!item.Listed_Price__c}</span>
+                    </td>
+                    <td>
+                       <span>{!item.Discount__c}</span>
+                    </td>
+                    <td>
+                       <span>£{!item.Total_Amount__c}</span>
+                    </td>            
+                    <td>
+                       <span>{!item.Installments__c}</span>
+                    </td> 
+                    <td>
+                       <span>£{!if(item.Installments__c != null && item.Installments__c > 0, Round(item.Total_Amount__c / item.Installments__c,2), item.Total_Amount__c)}</span>
+                    </td>       
+                </tr>
+            </apex:repeat>
+        </table>
+        </apex:outputPanel>
+        <br />
+        <div stlye="display:inline-blocz">
+        <table style="float:right;">
+            <tr>
+                <td>Subtotal:</td>
+                <td>
+                    <apex:outputText value="{0, number, ###,##0.00}">
+                        £<apex:param value="{!oppQuote.SubTotalRF__c}" />
+                    </apex:outputText>
+                </td>
+            </tr>
+            <tr>
+                <td>VAT:</td>
+                <td>
+                    <apex:outputText value="{0, number, ###,##0.00}">
+                       £<apex:param value="{!oppQuote.VAT_fm__c}" />
+                    </apex:outputText>
+                </td>
+            </tr>
+            <tr>
+                <td>Total:</td>
+                <td>
+                    <apex:outputText value="{0, number, ###,##0.00}">
+                       £<apex:param value="{!oppQuote.Total_fm__c}" />
+                    </apex:outputText>
+                </td>
+            </tr>
+        </table>
+        </div>
+        <div style="clear:both;"/>
+        <br />
+        <table>
+            <tr style="display:{!if(reccuringFee, 'block', 'none')}">
+                <td>{!$Label.UK_Quote_Administration_Fee}</td>
+            </tr>
+            <tr>
+                <td>{!$Label.UK_Quote_NOTE}</td>
+            </tr>
+            <tr style="display:{!if(menuPrinting,'block','none')}">
+                <td>{!$Label.UK_Quote_Menu_Printing_1}</td>
+            </tr>
+            <tr style="display:{!if(menuPrinting,'block','none')}">
+                <td>{!$Label.UK_Quote_Menu_Printing_2}</td>
+            </tr>
+            <tr style="display:{!if(menuPrinting,'block','none')}">
+                <td>{!$Label.UK_Quote_Menu_Printing_3}</td>
+            </tr>
+            <apex:outputPanel rendered="{!comissionsExist}">
+            <tr>
+                <td>{!$Label.UK_Quote_Service}
+                    <ul>
+                        <li>{!$Label.UK_Quote_Service_li_1}</li>
+                        <li>{!$Label.UK_Quote_Service_li_2}</li>
+                        <li>{!$Label.UK_Quote_Service_li_3}</li>
+                        <li>{!$Label.UK_Quote_Service_li_4}</li>
+                        <li>{!$Label.UK_Quote_Service_li_5}</li>
+                    </ul>
+                </td>
+            </tr>
+            </apex:outputPanel>
+            <tr style="display:{!if(marketingMaterial,'block','none')}">
+                <td>{!$Label.UK_Quote_I} {!accountWrapper.ownerName} {!$Label.UK_Quote_blade_sign}
+                    <ul>
+                        <li>{!$Label.UK_Quote_blade_li_1}</li>
+                        <li>{!$Label.UK_Quote_blade_li_2}</li>
+                        <li>{!$Label.UK_Quote_blade_li_3}</li>
+                        <!--<li>{!$Label.UK_Quote_blade_li_4}</li>-->
+                        <li>{!$Label.UK_Quote_blade_li_5}</li>
+                        <li>{!$Label.UK_Quote_blade_li_6}</li>
+                        <li>{!$Label.UK_Quote_blade_li_7}</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr style="display:{!if(marketingMaterial,'block','none')}">
+                <td>{!$Label.UK_Quote_Expect_Blade_Sign}</td>
+            </tr>
+            <tr style="display:{!if(nineCookies,'block','none')}">
+                <td>{!$Label.UK_Quote_nine_cookies}
+                    <ul>
+                        <li>{!$Label.UK_Quote_9cookies_li_1}</li>
+                        <li>{!$Label.UK_Quote_9cookies_li_2}</li>
+                        <li>{!$Label.UK_Quote_9cookies_li_3}</li>
+                        <li>{!$Label.UK_Quote_9cookies_li_7}</li>
+                        <li>{!$Label.UK_Quote_9cookies_li_4}</li>
+                        <li>{!$Label.UK_Quote_9cookies_li_5}</li>
+                        <li>{!$Label.UK_Quote_9cookies_li_6}</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr style="display:{!if(nineCookies,'block','none')}">
+                <td>I hereby accept the product(s) described above and agree hungryhouse.com ltd’s terms and conditions, which can be found at <a href="http://hungryhouse.co.uk/termsandconditions">http://hungryhouse.co.uk/termsandconditions</a>. I consent to receive advertising material about hungryhouse's offers from hungryhouse.com ltd, including by telephone.</td>
+            </tr>
+            <tr style="display:{!if(nineCookies,'block','none')}">
+                <td>{!$Label.UK_Quote_Expect_Call}</td>
+            </tr>
+            <tr style="display:{!if(nineCookies,'none','block')}">
+                <td>I hereby accept the product(s) described above and agree hungryhouse.com ltd’s terms and conditions, which can be found at http://hungryhouse.co.uk/termsandconditions and <a href="http://www.9cookies.com/en/terms.html">http://www.9cookies.com/en/terms.html</a>. I consent to receive advertising material about hungryhouse's offers from hungryhouse.com ltd, including by telephone.
+                </td>
+            </tr>
+            <tr style="display:{!if(menuPrinting,'block','none')}">
+                <td>{!$Label.UK_Quote_Menu_Printing_4}</td>
+            </tr>
+            <tr>
+                <td>{!$Label.UK_Quote_Looking_forward}</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>{!$Label.UK_Quote_Kind_Regards}</td>
+            </tr>
+            <tr>
+                <td>{!$User.FirstName} {!$User.LastName}</td>
+            </tr>
+        </table>
+        <br/>
+        <div><apex:outputText value="{!$Label.UK_Quote_Packaging}" escape="false"/></div>
+    </div>
+</apex:component>

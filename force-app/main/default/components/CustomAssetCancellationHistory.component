@@ -1,0 +1,92 @@
+<apex:component id="CustomAssetCancellationHistory"  
+    controller="CtrCustomAssetCancellationHistory">
+
+    <apex:attribute type="Asset_Cancellation__c[]"
+        name="subject"
+        assignTo="{!SomeObjectIdsList}"
+        description="The SomeObject id to display SomeObject history information" />
+        
+    <apex:attribute type="Id"
+        name="someObjectParent"
+        assignTo="{!SomeObjectId}"
+        description="The SomeObjectparent to get parent id " />
+        
+    <apex:attribute type="boolean"
+        name="gotoList"
+        assignTo="{!AllowGotoList}"
+        description="To display go to list link" />
+
+    <apex:outputPanel id="RelatedEntityHistoryList"
+        layout="block"
+        styleclass="bRelatedList">
+
+        <apex:pageBlock id="blockRelatedList"
+            title="Asset Cancellation History">
+
+            <apex:form id="formRelatedList">
+                <apex:outputPanel layout="block"
+                    rendered="{!SomeObjectHistories.size == 0}"
+                    style="border: 1px solid #D4DADC; padding: 5px 2px 4px 5px;">
+
+                    <span>No records to display</span>
+                </apex:outputPanel>
+
+                <apex:pageBlockTable id="tableRelatedList"
+                    value="{!SomeObjectHistories}"
+                    var="item"
+                    rendered="{!SomeObjectHistories.size != 0}">
+
+                    <apex:column headerValue="Date">
+                        <apex:outputField id="fieldCreatedDate"
+                            value="{!item.History.CreatedDate}"
+                            rendered="{!item.showDateAndUser}" />
+                    </apex:column>
+                    
+                    <apex:column headerValue="User">
+                        <apex:outputLink id="linkCreatedBy"
+                            value="/{!item.History.CreatedById}"
+                            rendered="{!item.showDateAndUser}">{!HTMLENCODE(item.History.CreatedBy.Name)}</apex:outputLink>
+                    </apex:column>
+                    
+                    <apex:column headerValue="Returning Stock Item Serial No">
+                        <apex:outputField id="returningStockItemSerialNo"
+                            value="{!mapAssetCancellation[item.History.ParentId].Returning_Stock_Item_Serial_No__c}"
+                             rendered="{!mapAssetCancellation[item.History.ParentId].Returning_Stock_Item_Serial_No__c!=null}"/>
+                    </apex:column>
+
+                    <apex:column headerValue="Action">
+                        <apex:outputText id="textActionFormat"
+                            value="{!item.ActionFormat}"
+                            escape="false">
+
+                            <apex:param value="{!item.History.Field}" />
+                            <apex:param value="{!item.FieldLabel}" />
+                            <apex:param value="{!item.History.OldValue}" />
+                            <apex:param value="{!item.History.NewValue}" />
+                        </apex:outputText>
+                    </apex:column>
+                </apex:pageBlockTable>
+
+                <apex:outputPanel id="panelShowMore"
+                    layout="block"
+                    styleClass="pShowMore"
+                    rendered="{!AllowShowMore}">
+
+                    <apex:commandLink id="linkShowMore"
+                        action="{!showMore}"
+                        rerender="formRelatedList">Show more »</apex:commandLink>
+
+                       <apex:outputLabel rendered="{!AllowGotoList}"> <span> | </span></apex:outputLabel>
+
+                    <apex:outputLink id="linkGotoList" rendered="{!AllowGotoList}"
+                        value="/apex/CustomAssetCancellationHistoryList?id={!someObjectParent}">Go to list »</apex:outputLink>
+                </apex:outputPanel>
+            </apex:form>
+
+            <!-- The following script removes unwanted style class names so that the page block resembles a native related list block -->
+            <script type="text/javascript">
+                document.getElementById('{!$Component.blockRelatedList}').className='bPageBlock secondaryPalette';}
+            </script> 
+        </apex:pageBlock>
+    </apex:outputPanel>
+</apex:component>

@@ -1,0 +1,21 @@
+<apex:page standardController="Opportunity_Quote__c" showHeader="false" applyHtmlTag="false">
+    <apex:includeScript value="/support/console/47.0/integration.js"/>
+    <apex:includeLightning />
+    <apex:includeScript value="/lightning/lightning.out.js"/>
+    <div id="LightningComponentid" />
+    <script>
+        var oppQuoteId = "{!$CurrentPage.parameters.Id}"
+
+        $Lightning.use("c:QuoteScreen_App", function() {
+            $Lightning.createComponent("c:pdfViewer",
+                                       { "recordId"	: oppQuoteId,
+                                         "uiTheme" : "{!$User.UIThemeDisplayed}"
+                                       },
+                                       "LightningComponentid",
+                                       function(cmp) {
+
+                                       });
+
+        });
+ 	</script>
+</apex:page>

@@ -1,0 +1,264 @@
+<!--
+ - Created by m.jurkunas on 09.12.19.
+ -->
+
+<apex:component controller="CtrCreateQuote" access="global" id="Talabat_CPC_Quote">
+        <apex:attribute name="oppQ" type="String" description="Placeholder" assignTo="{!oppQId}"/>
+        <apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+        <head>
+            <style type="text/css">
+		    /* A4 size */
+
+		    @page {
+		    	size: A4;
+			}
+
+			@media print {
+				.pageBreak {
+		    		page-break-after: always;
+		    	}
+			}
+		</style>
+        </head>
+
+        <div id="FI_QUOTE" style="width:700px; margin: auto">
+            <div style="display:inline-block; width:50%;vertical-align: top;">
+                <img src="{!URLFOR($Resource.Talabat_logo_new)}" style="width: 90%;" />
+            </div>
+            <div id="RestDesc" style="display:inline-block; width:44%;vertical-align: top; float:right;" >
+                <c:TalabatLetterHead addressString="{!accountWrapper.letterheadAddress}"/>
+            </div>
+
+            <div id="CQtitle" style="width:700px;margin: auto;margin-top:40px !important;text-align:left;font-size: 14pt">
+                <strong>Proforma Invoice </strong>
+            </div><br/>
+            <div style="margin: auto;text-align:right;width:100%">
+                <table style="width:100%">
+                    <tr>
+                        <td style="padding:0px;text-align:right">{!opportunity.owner.name}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:0px;text-align:right">
+                            <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                                <apex:param value="{!opportunity.closeDate}" />
+                            </apex:outputText>
+                        </td>
+                    </tr>
+                    <apex:repeat value="{!accountwrapper.entityname}" var="addLine">
+                        <tr>
+                            <td style="padding:0px;text-align:right">
+                                {!addLine}
+                            </td>
+                        </tr>
+                    </apex:repeat>
+                    <tr>
+                        <td style="padding:0px;text-align:right">
+                            (“Talabat”)
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br/>
+            <div style="width:100%">
+                <!-- RESTAURANT DETAILS -->
+                <table border="1" style="width:100%;border-collapse: collapse">
+                    <tr>
+                        <th style="text-align:left">
+                            Restaurant contact details
+                        </th>
+                        <th style="text-align:left">
+                            Restaurant Invoice details
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            Restaurant Name: {!accountWrapper.companyName}
+                        </td>
+                        <td>
+                            Bank Account Owner: {!accountWrapper.bankAccountOwner}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Legal Name: {!accountWrapper.legalName}
+                        </td>
+                        <td>
+                            IBAN: {!accountWrapper.IBAN}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            City: {!accountWrapper.addressCity}
+                        </td>
+                        <td>
+                            Bank Account Number: {!accountWrapper.bankAccountNumber}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Area: {!accountWrapper.addressStreet}
+                        </td>
+                        <td>
+                            Bank Name: {!accountWrapper.bankName}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Contact Name: {!accountWrapper.ownerName}
+                        </td>
+                        <td>
+                            Bank Code: {!accountWrapper.swiftCode}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Contact Email: {!accountWrapper.ownerEmail}
+                        </td>
+                        <td>
+                            Invoice Email: {!accountWrapper.billingContactEmail}
+                        </td>
+                    </tr>
+                </table>
+
+                <p>
+                    NOW THEREFORE, in consideration of the mutual agreements contained hereunder,
+                    the Parties agree as follows:
+                </p>
+                <br/>
+
+                <!-- PRODUCT SECTION -->
+                <apex:outputPanel rendered="{!listLineItems.size > 0}" >
+                    <table border="1" style="width: 100%;border-collapse: collapse;">
+                        <tr>
+                            <th style="text-align:center">
+                                Country
+                            </th>
+                            <th style="text-align:center">
+                                Product Name
+                            </th>
+                            <th style="text-align:center">
+                                Start Date
+                            </th>
+                            <th style="text-align:center">
+                                End Date
+                            </th>
+                            <th style="text-align:center">
+                                Number of Maximum<br/>Units
+                            </th>
+                            <th style="text-align:center">
+                                Price per Unit
+                            </th>
+                            <th style="text-align:center">
+                                Maximum Budget
+                            </th>
+                        </tr>
+                        <apex:repeat value="{!listLineItems}" var="lineItem">
+                            <tr>
+                                <td>
+                                    {!lineItem.Id_Opportunity__r.Record_Country__c}
+                                </td>
+                                <td>
+                                    {!lineItem.Id_List_Product_Price__r.Displayed_Name__c}
+                                </td>
+                                <td style="text-align:center">
+                                    <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                                        <apex:param value="{!lineItem.Start_Date__c}" />
+                                    </apex:outputText>
+                                </td>
+                                <td style="text-align:center">
+                                    <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                                        <apex:param value="{!lineItem.End_Date__c}" />
+                                    </apex:outputText>
+                                </td>
+                                <td style="text-align:center">
+                                    {!lineItem.Budget__c / lineItem.Unit_Cost__c}
+                                </td>
+                                <td style="text-align:center">
+                                    {!lineItem.Unit_Cost__c}
+                                </td>
+                                <td style="text-align:center">
+                                    {!lineItem.Budget__c}
+                                </td>
+                            </tr>
+                        </apex:repeat>
+                    </table><br/>
+                </apex:outputPanel>
+
+                <table border="1" style="width: 100%;border-collapse: collapse;">
+                    <tr>
+                        <td style="width:23%; font-weight:bold">
+                            Invoice Calculation Method
+                        </td>
+                        <td>
+                            Invoice will be charged based on actual number of units at the end of the period mentioned above.
+                        </td>
+                    </tr>
+                </table>
+                <table border="1" style="width: 100%;border-collapse: collapse;">
+                    <tr>
+                        <td style="width:23%; font-weight:bold">
+                            Payment Method
+                        </td>
+                        <td>
+                            {!opportunity.Payment_Method__c}
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+
+                    <table>
+                        <tr>
+                            <th style="text-align:center">
+                                FOR AND OF BEHALF OF
+                                <apex:outputPanel rendered="{!accountWrapper.countryName == 'United Arab Emirates'}" layout="none">
+                                    <apex:repeat value="{!accountwrapper.entityname}" var="addLine">
+                                        <br/>
+                                        {!addLine}
+                                    </apex:repeat>
+                                </apex:outputPanel>
+                                {!IF(accountWrapper.countryName == 'United Arab Emirates','','Talabat')}<br/>&nbsp;
+                            </th>
+                            <th>
+                                &#9;
+                            </th>
+                            <th style="text-align:center">
+                                FOR AND ON BEHALF OF Subscriber<br/>&nbsp;
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br/>_________________________________________
+                            </td>
+                            <td>
+                                &#9;
+                            </td>
+                            <td>
+                                <br/>_________________________________________
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Name:
+                            </td>
+                            <td>
+                                &#9;
+                            </td>
+                            <td>
+                                Name:
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Position:
+                            </td>
+                            <td>
+                                &#9;
+                            </td>
+                            <td>
+                                Position:
+                            </td>
+                        </tr>
+                    </table>
+            </div>
+        </div>
+</apex:component>

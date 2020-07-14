@@ -1,0 +1,156 @@
+<!--
+	Account clone component for UK_Account record type.
+	Display a list of fields that users are allowed to enter when cloning an
+	account.
+
+	This component assumes to be included inside an apex:form and that LDS
+	stylesheets is already available.
+-->
+<apex:component >
+	<apex:attribute name="clone" type="Account" required="true" description="Account to clone" />
+
+	<apex:attribute name="mode" type="String"  required="true" description="Account clone mode, based on this value some account fields could be displayed or not" />
+
+		<!-- MODE = Account Clone Owner Change
+
+			Available fields are:
+				Name
+				Restaurant_Name__c
+				BillingStreet
+				BillingPostalCode
+				BillingCity
+				BillingState
+				ShippingStreet
+				ShippingPostalCode
+				ShippingCity
+				ShippingState
+				Cuisine__c -->
+
+
+	<!-- main grid -->
+	<div class="slds-form-element__group">
+		<fieldset class="slds-form--compound">
+			<legend class="slds-form-element__label slds-text-title--caps">Information</legend>
+			<div class="slds-form-element__group slds-p-around--small">
+				<div class="slds-form-element__row">
+					<div class="slds-form-element slds-size--1-of-2">
+						<label class="slds-form-element__label" for="{!$Component.input01}">
+							<abbr class="slds-required" title="required">*</abbr>
+							{!$ObjectType.Account.fields.name.label}
+						</label>
+						<apex:inputField id="input01" styleClass="slds-input" value="{!clone.Name}" />
+					</div>
+
+					<div class="slds-form-element slds-size--1-of-2">
+						<label class="slds-form-element__label" for="{!$Component.input02}">
+							{!$ObjectType.Account.fields.Restaurant_Name__c.label}
+						</label>
+						<apex:inputField id="input02" styleClass="slds-input" value="{!clone.Restaurant_Name__c}" />
+					</div>
+				</div>
+			</div>
+		</fieldset>
+
+		<fieldset class="slds-form--compound slds-m-top--small">
+			<legend class="slds-form-element__label slds-text-title--caps">Address</legend>
+			<div class="slds-p-around--small">
+				<div class="slds-grid slds-wrap slds-size--1-of-1">
+
+					<!-- billing address  -->
+					<div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2">
+						<div class="slds-grid slds-wrap slds-box">
+
+							<!-- street -->
+							<div class="slds-col slds-size--1-of-1 slds-m-bottom--small">
+								<div class="slds-form-element">
+									<label class="slds-form-element__label slds-truncate" for="{!$Component.input03b}">
+										{!$ObjectType.Account.fields.BillingStreet.Label}
+									</label>
+									<apex:inputText id="input03b" styleClass="slds-input" value="{!clone.BillingStreet}" />
+								</div>
+							</div>
+
+							<!-- city -->
+							<div class="slds-col slds-size--1-of-2 slds-m-bottom--small">
+								<div class="slds-form-element">
+									<label class="slds-form-element__label slds-truncate" for="{!$Component.input04b}">
+										{!$ObjectType.Account.fields.BillingCity.Label}
+									</label>
+									<apex:inputField id="input04b" styleClass="slds-input" value="{!clone.BillingCity}" />
+								</div>
+							</div>
+
+							<!-- postal code -->
+							<div class="slds-col slds-size--1-of-2 slds-p-left--small slds-m-bottom--small">								
+								<div class="slds-form-element">
+									<label class="slds-form-element__label slds-truncate" for="{!$Component.input05b}">
+										{!$ObjectType.Account.fields.BillingPostalCode.Label}
+									</label>
+									<apex:inputField id="input05b" styleClass="slds-input" value="{!clone.BillingPostalCode}" />
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- shipping address  -->
+					<div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2">
+						<div class="slds-grid slds-wrap slds-box">
+
+							<!-- street -->
+							<div class="slds-col slds-size--1-of-1 slds-m-bottom--small">
+								<div class="slds-form-element">
+									<label class="slds-form-element__label slds-truncate" for="{!$Component.input03s}">
+										{!$ObjectType.Account.fields.ShippingStreet.Label}
+									</label>
+									<apex:inputText id="input03s" styleClass="slds-input" value="{!clone.ShippingStreet}" />
+								</div>
+							</div>
+
+							<!-- city -->
+							<div class="slds-col slds-size--1-of-2 slds-m-bottom--small">
+								<div class="slds-form-element">
+									<label class="slds-form-element__label slds-truncate" for="{!$Component.input04s}">
+										{!$ObjectType.Account.fields.ShippingCity.Label}
+									</label>
+									<apex:inputField id="input04s" styleClass="slds-input" value="{!clone.ShippingCity}" />
+								</div>
+							</div>
+
+							<!-- postal code -->
+							<div class="slds-col slds-size--1-of-2 slds-p-left--small slds-m-bottom--small">								
+								<div class="slds-form-element">
+									<label class="slds-form-element__label slds-truncate" for="{!$Component.input05s}">
+										{!$ObjectType.Account.fields.ShippingPostalCode.Label}
+									</label>
+									<apex:inputField id="input05s" styleClass="slds-input" value="{!clone.ShippingPostalCode}" />
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</fieldset>
+
+		<fieldset class="slds-form--compound slds-m-top--small">
+			<legend class="slds-form-element__label slds-text-title--caps">Details</legend>
+			<div class="slds-form-element__group slds-p-around--small">
+				<div class="slds-form-element__row slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2">
+					<div class="slds-form-element">
+						<label class="slds-form-element__label" for="{!$Component.input09}">
+							{!$ObjectType.Account.fields.Cuisine__c.Label}
+						</label>
+						<div class="slds-form-element__control multiselectContainer">
+							<apex:inputField id="input09" value="{!clone.Cuisine__c}" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</fieldset>
+		<script type="text/javascript">
+			if (typeof adjustMultiselectPicklist === "function") adjustMultiselectPicklist();
+		</script>
+	</div>
+
+</apex:component>

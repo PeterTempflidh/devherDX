@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FI_Letterhead</letterhead>
+    <name>FI Opening email FIN</name>
+    <style>freeForm</style>
+    <subject>Ravintolanne on nyt luotu järjestelmäämme - foodora.fi</subject>
+    <textOnly>Hyvä ravintoloitsija,
+
+
+Ravintolanne on nyt luotu järjestelmäämme ja seuraavaksi lähetämme teille foodoran avauspaketin, joka sisältää mm. tabletin jolla voitte vastaanottaa tilauksia.
+
+
+Alla olevasta linkistä voitte tarkistaa ravintolanne verkkokaupan ruokalistan:
+
+
+https://www.foodora.fi/restaurant/
+
+
+Huomioittehan, että ravintola ei näy vielä asiakkaille ja se on nähtävissä vain tämän suoran linkin kautta.
+
+
+Jos muutoksia tarvitaan, lähettäkää meille sähköpostitse tarvittavat muutokset seuraavassa muodossa:
+
+ANNOKSEN NIMI - TOIMINTA - KORJATUT TIEDOT
+
+Esimerkiksi: Mexican Wings - Vaihda nimi - Fiery Wings
+
+
+Asiakaskokemuksen parantamiseksi suosittelemme täyttämään tuotteidenne allergeenitiedot portaaliimme. Täytettyänne ja julkaistuanne allergeenit ne ovat helposti asiakkaiden saatavilla ravintolanne verkkokaupassa.
+
+
+Linkki allergeeniportaaliin sekä kirjautumistiedot löytyvät alta:
+
+
+https://fi.foodprint.restaurant-partners.com/
+
+
+Käyttäjätunnus:
+
+Salasana: foodora2020
+
+
+Ohjeet allergiatietojen muokkaamiseen:
+
+
+1. Valitse alasvetovalikosta annosta kuvaavat kohdat. Voitte valita useita vaihtoehtoja. Mikäli mikään kohta ei kuvaa ateriaa täysin, voitte valita lähimpänä olevan vaihtoehdon tai N/A.
+
+2. Annoksien tiedoista ei tarvitse täyttää muuta kuin allergeenit ja lisäaineet
+
+3. Olettehan erityisen tarkkana allergeenien täyttämisessä
+
+4. Muistattehan painaa ’TALLENNA’ tuotteen oikeasta yläreunasta!
+
+
+Tallennettuanne muutokset tulee painaa ‘JULKAISE’ sivun oikeasta yläkulmasta, jotta tiedot tulevat näkyviin.
+
+
+Olemme teihin yhteydessä ravintolanne avaamisesta kun olemme lähettäneet avauspaketin, mutta mikäli teillä on jotain kysyttävää asiaan liittyen tavoitatte meidät vastaamalla tähän sähköpostiin tai soittamalla asiakaspalveluumme. Vastaamme mielellämme!
+
+
+Kuullaan pian!
+
+
+
+
+Ystävällisin terveisin,
+
+{!Case.OwnerFirstName}
+
+foodora.fi asiakaspalvelu
+
+
+
+Delivery Hero Finland Oy / foodora.fi
+
+Pasilankatu 10, 00240 Helsinki
+
+
+Palvelunumeromme: 02 9300 0472 (pvm)
+
+E-mail : partner@foodora.fi
+
+www.foodora.fi</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

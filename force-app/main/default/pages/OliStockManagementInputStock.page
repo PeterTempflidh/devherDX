@@ -1,0 +1,107 @@
+<apex:page showHeader="true" sidebar="true">
+	<apex:includeScript value="{!URLFOR($Resource.jq211)}"/>
+	<style>
+	    .mlist{
+		    background: grey;
+		    padding: 1px;
+		    list-style-type: none;
+		}
+		.listItem{
+		    background: ivory;
+		    margin-bottom: 1px;
+		    padding: 1px;
+		    margin-left: 0px;
+		}
+		.input2{
+	        visibility: collapse;
+		}
+    </style>
+    <script>
+               j$ = jQuery.noConflict();
+               var counter = 0;
+               j$( document ).ready(function() {
+                j$(".input").keypress(function(event){
+                        counter++;
+                        console.log(String.fromCharCode(event.which) +'       '+ counter);
+                               
+                            
+                        if (event.keyCode == 13) {
+                                console.log('found the enter the code');
+                                var valueX = j$(this).val();
+                                j$(this).val('');
+        
+
+         var detecedString = valueX.substring(0, 1);
+                            console.log(detecedString);
+                            if(detecedString == 'S'){
+                                valueX = 'Serial No. :' + valueX;
+                            }
+
+                            
+                            var detecedString = valueX.substring(0, 2);
+                            console.log(detecedString);
+                            if(detecedString == '1P'){
+                                valueX = 'Part No. :' + valueX;
+                            }
+                            
+                            
+                            
+                            if(valueX.length == 15){
+                                valueX = 'IMEI/MEID : ' + valueX;
+                            }
+                            
+                            if(valueX.length == 12){
+                                valueX = 'UPC : ' + valueX;
+                            }
+
+
+                                j$("<input/>", {
+                                    id:'test' +counter,
+                                    class: 'input2',
+                                    type: 'text',
+                                    val: valueX
+                                }).appendTo("#collection");
+
+                                 j$("<li/>", {
+                                    id:'test' +counter,
+                                    class: 'listItem',
+                                    type: 'text',
+                                 html:  valueX
+                                }).appendTo("#myList");
+
+
+                        }
+                });
+
+                });
+        </script>
+
+    <body>
+		<apex:sectionHeader title="Add New Item to the Stock" subtitle="Insert New Stock" />
+		<form id="myForm">
+			<apex:pageBlock title="Add Terminal(s) to my Stock Inventary">
+				<apex:pageBlockButtons location="top">
+					<div id="collection">  
+                        <input id="ipd" type="text" class="input" />
+                </div>
+           
+
+                <ul id="myList" class="mlist">
+                </ul>
+				</apex:pageBlockButtons>
+				<apex:pageBlockSection title="MyPageBlockSectionTitle">
+
+				</apex:pageBlockSection>
+			</apex:pageBlock>
+
+			<apex:pageBlock title="Add Ipad(s) to my Stock Inventary">
+				<apex:pageBlockButtons location="top">
+					
+				</apex:pageBlockButtons>
+				<apex:pageBlockSection title="MyPageBlockSectionTitle">
+
+				</apex:pageBlockSection>
+			</apex:pageBlock>
+		</form>
+	</body>
+</apex:page>

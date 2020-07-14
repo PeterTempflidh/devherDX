@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>NO RECIBÍ LA FACTURA - REPÚBLICA DOMINICANA</name>
+    <style>freeForm</style>
+    <subject>NO RECIBÍ LA FACTURA - REPÚBLICA DOMINICANA</subject>
+    <textOnly>Estimada {!Case.Customer_Name__c}, es un gusto saludarte.
+
+Estimado {!Case.Customer_Name__c}, es un gusto saludarte.
+
+
+Te contactamos en respuesta a tu reclamo por el pedido que hiciste el día {!Case.Order_Date__c}. Te pedimos disculpas por los inconvenientes.
+
+
+Hemos establecido contacto con el local y tu factura será enviada a tu mail asociado.
+
+
+Quedamos a las órdenes ante cualquier consulta.
+
+
+
+
+Saludos,
+
+{!Case.OwnerFullName}
+
+Atención al Cliente - PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

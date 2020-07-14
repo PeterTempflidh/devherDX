@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>NO APTO PARA SER REFERIDO (YA TIENE PEDIDOS)</name>
+    <style>freeForm</style>
+    <subject>NO APTO PARA SER REFERIDO (YA TIENE PEDIDOS)</subject>
+    <textOnly>Estimada {!Case.Customer_Name__c}, es un gusto saludarte.
+
+Estimado {!Case.Customer_Name__c},  es un gusto saludarte.
+
+
+Te contactamos en respuesta a tu consulta por el programa de referidos.
+
+
+Al verificar tu cuenta vemos que ya tienes pedidos asociados y es por esto que no se cumplen las condiciones para usar el código ya que son para usuarios nuevos.
+
+
+Por otro lado, puedes invitar a amigos que no sean usuarios de PedidosYa y una vez que ellos realicen su primer pedido automáticamente te otorgamos el cupón. Para ésto, tienes que entrar en la app &gt; ir al menú de la app &gt; Clic en sección  &quot;Invita amigos. Gana $&quot;
+
+
+¿Cómo funciona?
+
+
+Compartiendo el código con tus amigos a través de las redes sociales, correo electrónico o mensaje. Cuando tu amigo cree su cuenta y use tu código para su primera compra, recibirás un código de descuento aplicable únicamente a la vertical Restaurantes.
+
+
+Para cada amigo que se cree su cuenta y realice su primer pedido con el código que compartiste recibirás un cupón de descuento que será aplicable únicamente a la vertical restaurantes. Cada usuario puede referir a 10 amigos únicamente.
+
+
+Quedamos a las órdenes ante cualquier consulta.
+
+
+
+Saludos,
+{!Case.OwnerFullName}
+Atención al Cliente PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

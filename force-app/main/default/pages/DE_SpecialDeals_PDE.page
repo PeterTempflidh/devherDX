@@ -1,0 +1,256 @@
+<apex:page sidebar="false" showHeader="false" controller="CtrDE_SpecialDeals" language="de">
+
+   <style>
+		/* Styling for the standard button */
+		.ChooseFileContainer {
+		    position: relative;
+		    display: inline;
+		}
+
+		/*Styling for the custom button that would overlay on top of the standard choose file button */
+		.OverlayButton {
+		    position: absolute;
+		    left: 5px;
+		    right: 0;
+		}
+
+		.menuHeader {
+		    font-weight: bold;
+		    font-size: 18px;
+		}
+
+		#maindiv {
+		    width: 990px;
+		    margin-left: auto;
+		    margin-right: auto;
+		    position: relative;
+		    height: 939px;
+		    moz-height: 964px;
+		    top: 133px;
+		    font-size: 1.2em;
+		}
+
+		#formdiv {
+		    background-color: white;
+
+		    position: relative;
+		}
+
+		#tablediv {
+		    width: 940px;
+
+		    margin-left: auto;
+		    margin-right: auto;
+		}
+
+		span:hover.submitLink {
+		    color: white;
+		}
+
+		span:hover.submitLink {
+		    height: 35px;
+		    background: #ffaa00;
+		}
+
+		.submitLink {
+		    height: 35px;
+		    width: 150px;
+		    background: #ffc713;
+		}
+
+		.requiredFields {
+		    color: red;
+		    font-size: 20px;
+		    vertical-align: sub;
+		}
+
+		.requiredText {
+		    font-size: 0.8em;
+		    color: red;
+		}
+
+		table.requiredFieldsTable td:not(:first-child) {
+		    padding-left: 10px;
+		}
+
+		.lmivText {
+		    color: red;
+		}
+	</style>
+    <div id="maindiv">
+        <div id="formdiv">
+            <div id="tablediv" >
+                <div id="LHHeaderBar">
+                    <table>
+                        <tr>
+                            <td>
+                            <a style="position: relative; top:-76px;" href="https://www.pizza.de">
+                                    <span>
+                                    <apex:image url="{!$Resource.PdeMenuchange}" style=" width:91x;height:87px;" ></apex:image>
+                                    </span>
+                            
+                                </a>
+                                
+                            </td>
+                            <td>
+                              
+                            </td>
+                        </tr>
+                    </table>
+                </div> <!-- LHHeaderBar --> 
+                <div class="menuHeader ">Rabatte und Deals beantragen:</div>
+                <br></br>
+                <apex:outputPanel rendered="{!AND(showForm)}">
+                    <div class="requiredText"><b>Bitte beachten Sie: Es kann pro Deal nur eine Änderung im Monat beauftragt werden. </b></div>
+                    <br></br>
+                   
+                    <apex:form >
+                    <apex:pageBlock >
+                        <apex:pageMessages ></apex:pageMessages>
+                        <table class="requiredFieldsTable">
+                            <tr>
+                                <td>Kundennummer Pizza.de<span class="requiredFields">*</span></td>
+                                <td>Name des Restaurants<span class="requiredFields">*</span></td>
+                                <td>Rückrufnummer<span class="requiredFields">*</span></td>
+                                <td>E-Mail Adresse<span class="requiredFields">*</span></td>
+                                
+                            </tr>
+                           <tr>
+                                
+                                <td>
+                                	<div class="requiredInput"> <div class="requiredBlock"></div>
+                                    	<apex:inputtext value="{!customerId}" required="true" label="Kundennummer Pizza.de" />
+                                	</div>
+                            	</td>
+                                <td>
+                                	<div class="requiredInput"> <div class="requiredBlock"></div>
+                                    	<apex:inputtext value="{!RestaurantName}"  required="true" label="Name des Restaurants" />
+                                	</div>
+                            	</td>
+                                <td>
+                                	<div class="requiredInput"> <div class="requiredBlock"></div>
+                                    	<apex:inputtext value="{!phone}"  required="true" label="Rückrufnummer"/>
+                                	</div>
+                            	</td>
+                                <td>
+                                	<div class="requiredInput"> <div class="requiredBlock"></div>
+                                		<apex:inputtext value="{!EmailAdd}" required="true" label="E-mail address"/>
+                            		</div>
+                        		</td>
+                            </tr>
+                            <tr >
+                                <td><span class="requiredText">* Pflichtfeld</span></td>
+                                <td><span class="requiredText">* Pflichtfeld</span></td>
+                                <td><span class="requiredText">* Pflichtfeld</span></td>
+                                <td><span class="requiredText">* Pflichtfeld</span></td>
+                            </tr>
+                            <tr><br></br></tr>
+                        </table>
+                       
+                        <br></br>
+            
+                        <table>
+                        
+                        <tr>
+                            <td  colspan="2">Wahl des Deals &nbsp;&nbsp;&nbsp;
+                           		<span class="requiredInput"> 
+                           			<div class="requiredBlock"></div>
+                           			<apex:selectList size="1" value="{!selectedSplDeal}"  required="true" Label="Wahl des Deals">
+	                                  <apex:selectOption itemvalue=""  itemLabel="--Deal--"/>
+	                                  <apex:selectOption itemvalue="Happy Hour"  itemLabel="Happy Hour"/>
+	                                  <apex:selectOption itemvalue="Tick Tack"  itemLabel="Tick Tack"/>
+	                                  <apex:selectOption itemvalue="Pizza-Montag"  itemLabel="Pizza-Montag"/>
+	                                  <apex:selectOption itemvalue="Sushi-Dienstag"  itemLabel="Sushi-Dienstag"/>
+	                                  <apex:selectOption itemvalue="Burger-Mittwoch"  itemLabel="Burger-Mittwoch"/>
+	                                  <apex:selectOption itemvalue="Coca Cola"  itemLabel="Coca Cola"/>
+                              		</apex:selectList>
+                          		</span>
+                          		<span class="requiredText">* Pflichtfeld</span>  
+                            </td>
+                        </tr>
+                         <tr>
+                             
+                            <td><apex:selectRadio value="{!splDealType}"  required="true" label="Bitte eintragen Interesse an dem Deal oder Änderungswunsch">
+                                  <div class="requiredInput"> <div class="requiredBlock"></div>
+                                    <apex:selectOption itemValue="Interesse an dem Deal" itemLabel="Interesse an dem Deal"></apex:selectOption></div>
+                                    <div class="requiredInput"> <div class="requiredBlock"></div>
+                                    <apex:selectOption itemValue="Änderungswunsch" itemLabel="Änderungswunsch"></apex:selectOption>
+                                    </div>
+                                </apex:selectRadio>
+                                <span class="requiredText">* Pflichtfeld</span>
+                            </td>
+                            
+                        </tr>
+                        
+                      <tr>
+                      
+                      <td colspan="2">
+                      <br/>
+                          <div style="font-size:11px"><b>Dealbeschreibungen (Deals Description):</b> <br/><br/>
+                 <div>
+                     <b>Happy Hour Deal:</b> Kurzzeitige Rabatte helfen Ihrem Restaurant mehr Kunden anzulocken und mehr Bestellungen zu generieren. Gilt für die gesamte Speisekarte.<br/>
+                     <b>Happy Hour Deal:</b> Short time deductibles helps you acquire more customers and more orders. Applies to the whole menu.<br/>
+                 </div><br/>
+                 <div>
+                     <b>Tick Tack Deal:</b> Deal um Neukunden zu gewinnen und Bestandskunden zu belohnen. Sprechen Sie gezielt Kunden an die noch nie oder sehr lange nicht mehr bei Ihnen bestellt haben. Der Tick Tack Deal wird grafisch aufwendig auf Pizza.de angezeigt<br/>
+                     <b>Tick Tack Deal:</b> Deal to acquire new customers and reward existing customers. Talk to new and long-time-no-see customers directly through graphically enhanced positioning on pizza.de.<br/>
+                 </div><br/>
+                 <div>
+                     <b>Coca Cola Menu:</b> Gestalten Sie Ihr Menü interessant mit Coca Cola Menüs. Sie dürfen Rabatte gewähren. Man kann nach Coca Cola Deals filtern.<br/>
+                     <b>Coca Cola Menu:</b> Make your menu interesting with Coca Cola menus. Deductibles are possible. Filter for Coca Cola Deals for more visibility.<br/>
+                 </div><br/>
+                 <div>
+                     <b>Pizza Montag:</b> Wählen Sie mindestens drei und maximal fünf Pizzen aus. Diese Pizzen werden Montags 30% günstiger angeboten. Der Deal wird im Fehrnsehen beworben. Kunden können nach diesem Deal filtern.<br/>
+                     <b>Pizza Montag:</b> Choose at least 3 up to 5 Pizzas. Those Pizzas will be displayed 30% off on Mondays. TV spots are on national television. Customers can filter for this deal.<br/>
+                 </div><br/>
+                 <div>
+                     <b>Sushi Dienstag:</b> Wählen Sie mindestens drei und maximal fünf Sushi Speisen aus. Diese Speisen werden Dienstags 30% günstiger angeboten. Der Deal wird im Fehrnsehen beworben. Kunden können nach diesem Deal filtern.<br/>
+                     <b>Sushi Tuesday:</b> Choose at least 3 up to 5 Sushi dishes. These dishes will be displayed 30% off on tuesdays. TV spots are on national television. Customers can filter for this deal.<br/>
+                 </div><br/>
+                 <div>
+                     <b>Burger Mittwoch:</b> Wählen Sie mindestens drei und maximal fünf Burger aus. Diese Burger werden Mittwochs 30% günstiger angeboten. Der Deal wird im Fehrnsehen beworben. Kunden können nach diesem Deal filtern.<br/>
+                     <b>Burger Wednesday:</b> Choose at least 3 Burgers of your Menu. These Burgers will be displayed 30% off on Wednesdays. TV spots are on national television. Customers can filter for this deal.<br/>
+                 </div><br/>
+                 </div></td>
+                      </tr>
+                       
+                        
+                       
+                       
+                          <tr>
+                            <td>Beschreibungsfeld &nbsp;&nbsp;&nbsp;
+                            <apex:inputtextarea value="{!dealDescription}" style="width: 360px; height: 40px"/></td>
+                        </tr>
+                        
+                        
+                    </table>
+                   
+               
+                    <br></br>
+                    <div>
+                        <div class = "ChooseFileContainer">
+                             <apex:inputFile value="{!newAttachments[0].body}" filename="{!newAttachments[0].name}"  id="CFile1" lang="de"  /><br></br>
+                            </div>
+                         <br></br>
+                         <div class = "ChooseFileContainer">
+                             <apex:inputFile value="{!newAttachments[1].body}" filename="{!newAttachments[1].name}"  id="CFile2" lang="de"/><br></br>
+                            </div>
+                         <br></br>
+                         <div class = "ChooseFileContainer">
+                             <apex:inputFile value="{!newAttachments[2].body}" filename="{!newAttachments[2].name}"  id="CFile3" lang="de" /><br></br>
+                            </div>
+                         <br></br>
+                    </div>
+                    <br></br>
+                    <apex:commandButton value="Absenden" action="{!save}" styleClass="submitLink" style="background: #ffc713;color: #343b46;font-family: corpidHeavy;font-size: 11pt " />
+                 </apex:pageBlock>
+           </apex:form>
+         </apex:outputpanel>
+         <apex:outputpanel rendered="{!NOT(showForm)}">
+             <apex:pageMessages />
+             <br></br>
+         </apex:outputpanel>
+         </div>
+     </div>
+  </div>
+</apex:page>

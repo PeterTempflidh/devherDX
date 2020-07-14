@@ -1,0 +1,113 @@
+<apex:component controller="CtrCreateBladeSign">
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <body>
+      <div id="additionalCharges" class="slds" >
+         <div class="slds-page-header" role="banner">
+            <div class="slds-media">
+               <div class="slds-media__figure">
+                  <img src="{!URLFOR($Resource.hungryhouse)}" style="width:64px;float:right;"/>
+               </div>
+               <div class="slds-media__body">
+                  <p class="slds-page-header__title slds-truncate slds-align-middle" title="Rohde Corp - 80,000 Widgets">Upgrade</p>
+                  <p class="slds-text-body--small slds-page-header__info"><font color="red">Hungryhouse Ltd</font> 78 York Street, London W1H 1DP hungryhouse.co.uk 0800 612 33 33</p>
+               </div>
+            </div>
+         </div>
+         <div style="slds-form--inline">
+         <fieldset class="slds-form--compound">
+          <div class="form-element__group">
+            <div class="slds-form-element__row">
+             <div class="slds-form-element slds-size--1-of-3" style="float:left;" id="productGroupTD">
+                <label class="slds-form-element__label" for="input-01" style="width:100%">{!$ObjectType.Opportunity_Line_Item__c.fields.Product_Group__c.label}</label>
+                <select id="productGroup" class="slds-select" style="width:90%">
+                    <option value=" ">-- Select Additional Charge --</option>
+                </select>
+              </div>
+              <div class="slds-form-element slds-size--1-of-3" style="float:left;" id="productNameTD">
+                <label class="slds-form-element__label" for="input-01" style="width:100%">{!$ObjectType.List_Product_Price__c.fields.Product_Name__c.label}</label>
+                <select id="productName" class="slds-select" style="width:90%">
+                    <option value=" ">-- Select Additional Charge --</option>
+                </select>
+              </div>
+                <div class="slds-form-element slds-size--1-of-3" style="float:left;" id="listPriceTD">
+                <label class="slds-form-element__label" for="input-02" style="width:94%;margin-left:5%">{!$ObjectType.List_Product_Price__c.fields.List_Price__c.label}</label>
+                 <div class="slds-form-element__control" style="width:90%;margin-left:5%">
+                    <input id="listPrice" class="slds-input" type="number" value="0" style="width: 100%" />
+                  </div>
+              </div>
+             
+            </div>
+          </div>
+        </fieldset>
+        <fieldset class="slds-form--compound">
+          <div class="form-element__group">
+            <div class="slds-form-element__row">
+             <div class="slds-form-element slds-size--1-of-4" style="float:left;" id="discountTD">
+                <label class="slds-form-element__label" for="input-02" style="width:94%;%">{!$ObjectType.Opportunity_Line_Item__c.fields.Discount__c.label}</label>
+                 <div class="slds-form-element__control" style="width:90%;">
+                    <input id="discount" class="slds-input" type="number" value="0" style="width: 100%" />
+                  </div>
+              </div>
+              <div class="slds-form-element slds-size--1-of-4" style="float:left;" id="quantityTD">
+                <label class="slds-form-element__label" for="input-01" style="width:100%;margin-left:5%">{!$ObjectType.Opportunity_Line_Item__c.fields.Quantity__c.label}</label>
+                 <div class="slds-form-element__control" style="width:90%;margin-left:5%">
+                    <input id="quantity" class="slds-input" type="number" value="0" style="width: 100%" />
+                  </div>
+                 </div>
+                <div class="slds-form-element slds-size--1-of-4" style="float:left;" id="installmentsTD">
+                <label class="slds-form-element__label" for="input-02" style="width:94%;margin-left:5%">{!$ObjectType.Opportunity_Line_Item__c.fields.Installments__c.label}</label>
+                 <div class="slds-form-element__control" style="width:90%;margin-left:5%">
+                    <input id="installments" class="slds-input" type="number" value="0" style="width: 100%" />
+                  </div>
+              </div>
+              <div class="slds-form-element slds-size--1-of-4" style="float:left;" id="dtotalAmountTD">
+                <label class="slds-form-element__label" for="input-02" style="width:94%;margin-left:5%">{!$ObjectType.Opportunity_Line_Item__c.fields.Total_Amount__c.label}</label>
+                 <div class="slds-form-element__control" style="width:90%;margin-left:5%">
+                    <input id="totalAmount" class="slds-input" type="number" value="0" style="width: 100%" readonly="true" />
+                  </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <br />
+        <div style="width:100%">
+            <a class="slds-button slds-button--neutral slds-not-selected" onclick="addAdditionalChargeAndAsset(this)" style="width:100%">
+             <span class="slds-text-not-selected">
+                <svg aria-hidden="true" class="slds-button__icon--stateful slds-button__icon">
+                   <use xlink:href="{!URLFOR($Resource.slds, 'assets/icons/utility-sprite/svg/symbols.svg#add')}"></use>
+                </svg>
+             </span>
+          </a>
+         </div>
+        
+        </div>
+        <br />
+        <br />
+            <div class="slds-p-vertical--medium" style="width:100%">{!$Label.OppProducts}
+               <div class="slds-scrollable--x .slds-form-element is-required" id="productsTable">
+                  <table class="slds-table slds-table--bordered" id="productsTable2" > 
+                     <thead>
+                        <tr>
+                           <th scope="col">{!$ObjectType.Opportunity_Line_Item__c.fields.Product_Group__c.label}</th>
+                           <th scope="col">{!$ObjectType.List_Product_Price__c.fields.Product_Name__c.label}</th>
+                           <th scope="col">{!$ObjectType.List_Product_Price__c.fields.List_Price__c.label}</th>
+                           <th scope="col">{!$ObjectType.Opportunity_Line_Item__c.fields.Discount__c.label}</th>
+                           <th scope="col">{!$ObjectType.Opportunity_Line_Item__c.fields.Quantity__c.label}</th>
+                           <th scope="col">{!$ObjectType.Opportunity_Line_Item__c.fields.Installments__c.label}</th>
+                              <th scope="col">{!$ObjectType.Opportunity_Line_Item__c.fields.Total_Amount__c.label}</th>
+                           <th></th>
+                        </tr>
+                     </thead>
+                     <tbody id="products">
+
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <br />
+            <button id="confirmOrder" class="slds-button slds-button--brand slds-size--1-of-1" onclick="save()">Create Quote</button>
+         
+      </div>
+   </body>
+        </html>
+</apex:component>

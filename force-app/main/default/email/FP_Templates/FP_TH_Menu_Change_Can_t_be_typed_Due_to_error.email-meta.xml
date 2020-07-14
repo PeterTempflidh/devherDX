@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Menu can’t be typed (due to error, no markup)</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP TH Menu Change - Can’t be typed - Due to error</name>
+    <style>freeForm</style>
+    <subject>เราต้องการข้อมูลเพิ่มเติมเกี่ยวกับเมนูของท่าน *We need more information to proceed with your menu update</subject>
+    <textOnly>เรียน พาร์ทเนอร์ฟู้ดแพนด้า
+
+
+ขอบคุณสำหรับอีเมลการเปลี่ยนแปลงแก้ไขเมนู เรากำลังประสบปัญหาเกี่ยวกับการแก้ไข ดังนี้
+
+ท่านไม่ได้แนบเมนู
+คุณภาพของรูปต่ำเกินไป (เบลอ, สว่างไป, อ่านไม่ชัด)
+
+ภาพเมนูต้องเป็นรูปที่ชัดเจนหรือเป็นไฟล์ PDF
+หากร้านของท่านมีหลายสาขา กรุณาระบุสาขาที่ต้องการแก้ไข
+
+กรุณาส่งคำขออีกครั้ง เมื่อได้รับคำขอตามข้อกำหนดแล้ว เราจะดำเนินการแก้ไขให้ทันที
+หากมีคำถามเพิ่มเติม กรุณาติดต่อ partner@foodpanda.co.th หรือ โทร +66 2 329 5771.
+
+ด้วยความเคารพ
+
+ฝ่ายดูแลพาร์ทเนอร์ฟู้ดแพนด้า
+
+
+Dear Restaurant Partner,
+
+Thank you for your recent email # {!Case.CaseNumber} regarding the update to your menu, we are currently unable to process the menu for one of the reasons outlined below:
+
+1. There was no copy of the menu attached to the request.
+2. The quality of the image is too low (blurry, flash, sections not readable)
+
+The menu image sent needs to be a clear photo or PDF of your menu.
+
+In case your restaurant has various locations listed on our platform, please specify which one(s) require changes.
+
+Please submit again your menu update request so we can proceed. Once we have received this again in one of the required formats, we will happily complete this request for you.
+
+Any questions? Feel free to contact us per E-Mail partner@foodpanda.co.th or via phone under +66 2 329 5771.
+
+Best regards,
+
+Your foodpanda team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

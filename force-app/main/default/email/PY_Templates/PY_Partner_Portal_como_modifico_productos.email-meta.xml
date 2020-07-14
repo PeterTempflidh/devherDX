@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY Partner Portal como modifico productos</name>
+    <style>freeForm</style>
+    <subject>Gracias por Contactarnos - # {!Case.CaseNumber}</subject>
+    <textOnly>Estimado XXXNombreXXX, 
+
+ 
+
+Nos contactamos en respuesta a tu consulta sobre cómo realizar las modificaciones de tus productos desde tu usuario de Partner Portal, te comentamos que en el menú a la izquierda encontrarás la sección ‘’Productos’’ donde puedes ver los que ofreces al público y realizar este cambio. 
+
+ 
+
+Dentro de este apartado encontrarás las distintas secciones donde se agrupan los mismos y podrás activar o desactivarlos en función de tus necesidades, impactando los cambios de forma instantánea. 
+
+ 
+
+Para desactivar un producto primero lo seleccionas haciendo click sobre el mismo y luego marcas el switch verde de la derecha. A continuación, te aparecerá el tiempo que deseas que permanezca inactivo en la plataforma y puedes seleccionar el que te resulte más adecuado según tus necesidades. Una vez que hayas seleccionado una opción, das click en el tick (✓) que aparece del lado derecho. Finalmente, el producto lo verás desactivado, en color rojo y te dirá en cuánto tiempo quedará nuevamente activo. 
+
+ 
+
+Si te quedaste sin un ingrediente que utilizas para la preparación de varios de tus productos, encontrarás una barra de búsqueda donde puedes escribir el ingrediente que te falte, y la plataforma te desplegará todos los productos que ofreces y lo contienen; de esa manera, los puedes desactivar sin la necesidad de buscar cada uno de ellos ni navegar por las diferentes secciones buscándolos. 
+
+ 
+
+Si el producto lo tienes disponible antes del tiempo esperado, no tienes por qué esperar por su activación automática pues puedes cambiar el estado haciendo click en el switch rojo que figura a la derecha, e instantáneamente quedará nuevamente de color verde, señalando que está activo. 
+
+ 
+
+Adicionalmente te hemos adjuntado el manual de la herramienta para futuras consultas. 
+
+ 
+
+Quedamos a las órdenes, 
+
+Saludos 
+
+ 
+
+(NOMBRE DEL AGENTE) - Claims Operator 
+PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataCategoryGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <dataCategory>
+        <dataCategory>
+            <label>APAC - Bengali</label>
+            <name>APAC_Bengali</name>
+        </dataCategory>
+        <dataCategory>
+            <label>APAC - Burmese</label>
+            <name>APAC_Burmese</name>
+        </dataCategory>
+        <dataCategory>
+            <label>APAC - Cantonese</label>
+            <name>APAC_Cantonese</name>
+        </dataCategory>
+        <dataCategory>
+            <label>APAC - English</label>
+            <name>APAC_English</name>
+        </dataCategory>
+        <dataCategory>
+            <label>APAC - Khmer</label>
+            <name>APAC_Khmer</name>
+        </dataCategory>
+        <dataCategory>
+            <label>APAC - Lao</label>
+            <name>APAC_Lao</name>
+        </dataCategory>
+        <dataCategory>
+            <label>APAC - Mandarin</label>
+            <name>APAC_Mandarin</name>
+        </dataCategory>
+        <dataCategory>
+            <label>APAC - Thai</label>
+            <name>APAC_Thai</name>
+        </dataCategory>
+        <dataCategory>
+            <label>APAC - Urdu</label>
+            <name>APAC_Urdu</name>
+        </dataCategory>
+        <dataCategory>
+            <label>PedidosYa - Spanish</label>
+            <name>PedidosYa_Spanish</name>
+        </dataCategory>
+        <dataCategory>
+            <label>Talabat - Back office</label>
+            <name>Talabat_Back_office</name>
+        </dataCategory>
+        <dataCategory>
+            <label>Talabat - Live chat</label>
+            <name>Talabat_Live_chat</name>
+        </dataCategory>
+        <dataCategory>
+            <label>Talabat - Partner service</label>
+            <name>Talabat_Partner_service</name>
+        </dataCategory>
+        <label>All</label>
+        <name>All</name>
+    </dataCategory>
+    <label>Department</label>
+    <objectUsage>
+        <object>KnowledgeArticleVersion</object>
+    </objectUsage>
+</DataCategoryGroup>

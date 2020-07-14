@@ -1,0 +1,6 @@
+<apex:page controller="CtrYogiyo_QuoteVFTemplate_Service" showheader="false" sidebar="false">
+
+    <c:KoreanQuoteWithoutAsset acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}"/>
+    <c:KoreanQuoteWithAsset acct="{!theOppQ.Id_Account__c}"  />
+
+</apex:page>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY - Dirección o teléfono incorrecto</name>
+    <style>freeForm</style>
+    <subject>Gracias por Contactarnos - # {!Case.CaseNumber}</subject>
+    <textOnly>Estimado xxx Nombre xxx, es un gusto saludarte. 
+
+Nos comunicamos para informarte que tu pedido al local XXXX, fue cancelado debido a que no pudimos comunicarnos contigo al número XXXX asociado a tu pedido, te pedimos disculpas por los inconvenientes.
+
+Si es PO: respecto al pago realizado no te preocupes ya que la devolución del mismo quedó gestionada automáticamente desde PedidosYa, sin embargo la visualización de la devolución dependerá de tu entidad financiera.
+
+Quedamos a las órdenes ante cualquier consulta. 
+
+Saludos, 
+Nombre + Inicial del apellido - Claims Operator 
+PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

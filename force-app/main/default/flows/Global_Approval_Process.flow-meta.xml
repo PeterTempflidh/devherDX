@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <processMetadataValues>
+            <name>ActionCallType</name>
+            <value>
+                <stringValue>flow</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>flowSelection</name>
+            <value>
+                <stringValue>Global - Quote Approval</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_1_A1</name>
+        <label>Fire Flow for Approval</label>
+        <locationX>100</locationX>
+        <locationY>200</locationY>
+        <actionName>Global_Quote_Approval</actionName>
+        <actionType>flow</actionType>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>var_quote_quoteid</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>1.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>var_quote_quoteid</name>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision</name>
+        <label>myDecision</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_1</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_1_pmetdec</targetReference>
+            </connector>
+            <label>All child records inserted</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_1_pmetdec</name>
+        <label>Previously Met Decision</label>
+        <locationX>100</locationX>
+        <locationY>100</locationY>
+        <defaultConnector>
+            <targetReference>myRule_1_A1</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Previously Met</defaultConnectorLabel>
+        <rules>
+            <name>myRule_1_pmetnullrule</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>myVariable_old</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_1_A1</targetReference>
+            </connector>
+            <label>Previously Met - Null</label>
+        </rules>
+        <rules>
+            <name>myRule_1_pmetrule</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_1_pmetrule</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Previously Met - Prev</label>
+        </rules>
+    </decisions>
+    <description>SP-2415,SSC-516,SSC-1712,SSC-1692,SSC-1240,SSC-1751</description>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>$Permission.SkipApprovalProcessFlow = false &amp;&amp;
+[Opportunity_Quote__c].All_Records_Inserted__c = true &amp;&amp;
+(
+[Opportunity_Quote__c].RecordType.DeveloperName  = &apos;HU_Opportunity_Quote&apos; ||
+[Opportunity_Quote__c].RecordType.DeveloperName  = &apos;FI_Opportunity_Quote&apos; ||
+[Opportunity_Quote__c].RecordType.DeveloperName  = &apos;SE_Opportunity_Quote&apos; 
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_1</name>
+        <dataType>Boolean</dataType>
+        <expression>{!$Permission.SkipApprovalProcessFlow} = false &amp;&amp;
+{!myVariable_current.All_Records_Inserted__c} = true &amp;&amp;
+(
+{!myVariable_current.RecordType.DeveloperName}  = &apos;HU_Opportunity_Quote&apos; ||
+{!myVariable_current.RecordType.DeveloperName}  = &apos;FI_Opportunity_Quote&apos; ||
+{!myVariable_current.RecordType.DeveloperName}  = &apos;SE_Opportunity_Quote&apos; 
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>$Permission.SkipApprovalProcessFlow = false &amp;&amp;
+[Opportunity_Quote__c].All_Records_Inserted__c = true &amp;&amp;
+(
+[Opportunity_Quote__c].RecordType.DeveloperName  = &apos;HU_Opportunity_Quote&apos; ||
+[Opportunity_Quote__c].RecordType.DeveloperName  = &apos;FI_Opportunity_Quote&apos; ||
+[Opportunity_Quote__c].RecordType.DeveloperName  = &apos;SE_Opportunity_Quote&apos; 
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_1_pmetrule</name>
+        <dataType>Boolean</dataType>
+        <expression>{!$Permission.SkipApprovalProcessFlow} = false &amp;&amp;
+{!myVariable_old.All_Records_Inserted__c} = true &amp;&amp;
+(
+{!myVariable_old.RecordType.DeveloperName}  = &apos;HU_Opportunity_Quote&apos; ||
+{!myVariable_old.RecordType.DeveloperName}  = &apos;FI_Opportunity_Quote&apos; ||
+{!myVariable_old.RecordType.DeveloperName}  = &apos;SE_Opportunity_Quote&apos; 
+)</expression>
+    </formulas>
+    <interviewLabel>Global_Approval_Process-10_InterviewLabel</interviewLabel>
+    <label>Global - Approval Process</label>
+    <processMetadataValues>
+        <name>ObjectType</name>
+        <value>
+            <stringValue>Opportunity_Quote__c</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>ObjectVariable</name>
+        <value>
+            <elementReference>myVariable_current</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OldObjectVariable</name>
+        <value>
+            <elementReference>myVariable_old</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>TriggerType</name>
+        <value>
+            <stringValue>onAllChanges</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Workflow</processType>
+    <startElementReference>myDecision</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>myVariable_current</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Opportunity_Quote__c</objectType>
+    </variables>
+    <variables>
+        <name>myVariable_old</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity_Quote__c</objectType>
+    </variables>
+</Flow>

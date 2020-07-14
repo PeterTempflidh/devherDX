@@ -1,0 +1,323 @@
+<!-- NOTE: most probably this is deprecated, check after de migration - @CreatedBy m.zeuli -->
+<apex:page showHeader="false" controller="CtrPreChatForm" language="{!lang}" applyBodyTag="false"> 
+<apex:includescript value="{!$Resource.jQuery}"/>
+<apex:includeScript value="{!URLFOR($Resource.webshim, 'js-webshim/dev/polyfiller.js')}" /> 
+<!-- This script takes the endpoint URL parameter passed from the deployment 
+  page and makes it the action for the form -->
+ <style>
+  form
+  {
+      padding: 0 10px;
+   
+  
+  }
+  input, select{
+      width:80%;
+      padding:1%;
+      border: black 1px solid;
+  }
+ 
+  @media only screen 
+  and (min-device-width: 300px) 
+  and (max-device-width: 800px) 
+  
+  and (orientation: portrait) { 
+
+  html, div {
+    font-size: 125%;
+    
+  }
+  body{
+      font-size:140%;
+  }
+  input, select  {
+    font-size: 1.5em; /* Fine tune unbehaved elements */
+   
+  }
+  img{
+      height:110px;
+      
+  }
+  .ws-popover{
+      font-size:110%;
+  }
+  input{
+      width:85%;
+      padding:2%;
+      line-height: 1;   
+      border-radius: 5px;
+    
+  
+  }
+  select{
+    width: 90%;
+    padding: 2%;    
+    line-height: 1;   
+    border-radius: 5px;
+    
+    background: url({!$Resource.selectListArrow}) no-repeat right #fff;
+    -webkit-appearance: none;
+    background-position-x: 98%;
+  
+}
+}
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+   
+   
+    }
+  
+  div{
+      
+      display:inline-block;
+      width:100%;
+  }
+  body{
+     
+  }
+  input, select  {
+   
+    width:50%;
+  }
+  
+  input{
+      width:90%;
+      
+  
+  }
+ 
+
+
+
+
+
+
+
+
+
+
+  </style>
+<script type="text/javascript">
+(function() { 
+    function handlePageLoad() {
+        jQuery.webshim.polyfill(); 
+        var endpointMatcher = new RegExp("[\\?\\&]endpoint=([^&#]*)");
+        document.getElementById('prechatForm').setAttribute('action',
+        decodeURIComponent(endpointMatcher.exec(document.location.search)[1]));
+        
+       
+        
+        //Load problem options
+        var problemList={!problems};
+        for(i=0; i<problemList.length; i++){
+            var problemOptions = document.getElementById("selectOpt");         
+            var option = document.createElement("option");
+            option.text = problemList[i];
+            problemOptions.add(option);
+        }
+        
+        var brand="{!Brand}";
+        
+       /* if(brand=='Yogiyo'){
+            document.getElementById('phone').style.display = '';
+        }*/
+        
+        if(brand=='Yogiyo'){
+        
+            document.getElementById('survey').style.visibility = 'hidden';
+            document.getElementById('selectSurvey').required = false;
+            document.getElementById('surveyKR').style.display='';
+            document.getElementById('orderNumber').style.display='none';
+            
+        
+        }
+        if(brand=='DHAU'){
+            document.getElementById('selectSurvey').value='Yes';
+        }
+        
+        
+        document.getElementById('ResName').style.display='none';
+        document.getElementById('ResID').style.display='none';
+        document.getElementById('ResCode').style.display='none';
+        document.getElementById('ResAddr').style.display='none';
+        document.getElementById('ResCity').style.display='none';
+    }
+    if (window.addEventListener) {
+        window.addEventListener('load', handlePageLoad, false);
+    } else {
+        window.attachEvent('onload', handlePageLoad, false);
+        
+    }
+    
+    
+})(); 
+
+    function validateDisplayRestaurant(){
+        var brand='{!Brand}';
+        if(document.getElementById('selectOpt').value=='{!$Label.LiveAgent_RestaurantPartner}'){
+            document.getElementById('ResName').style.display='';  
+            if(brand=='Yogiyo'){
+                document.getElementById('ResCode').style.display='';
+                document.getElementById('resPostCode').required = true;
+                document.getElementById('ResID').style.display='none';
+
+                
+               
+                
+            }
+            else
+                document.getElementById('ResID').style.display='';
+
+            
+            
+            if(brand=='PL_PizzaPortal'){
+               
+               
+               document.getElementById('ResAddr').style.display='';
+               document.getElementById('ResCity').style.display='';
+               document.getElementById('ResCode').style.display=''; 
+                           
+               document.getElementById('resPostCode').required = true;
+               document.getElementById('resAddress').required = true;
+ 
+            
+            }
+        }
+        
+        else{
+            document.getElementById('ResName').style.display='none';
+            document.getElementById('ResID').style.display='none';
+            document.getElementById('resNameInput').required = false;
+            document.getElementById('ResCode').style.display='none';
+            document.getElementById('ResAddr').style.display='none';
+            document.getElementById('ResCity').style.display='none';
+            document.getElementById('resPostCode').required = false;
+            document.getElementById('resAddress').required = false;
+            
+            
+        }
+        
+        
+    
+    }
+    
+    function CheckboxChange(){
+       var chk=document.getElementById('chkBox');
+       if(chkBox.checked){
+           document.getElementById('selectSurvey').value='Yes';
+           
+       }
+       else{
+          document.getElementById('selectSurvey').value='No';
+      }
+      
+    }
+     function clickhere(){
+        document.getElementById('clickhere').style.display='';
+   }
+     
+</script>
+<!--<img src="{!$Resource.Chat_image_lieferheld_logo}"/>-->
+<body >
+<div style="width:100%; background-color:#D61F26">
+<img src="{!brandImg}" />
+</div>
+<form method='post' id='prechatForm'> 
+<br/>
+      <div>
+        <div>
+            <div> {!$Label.LiveAgent_Username}:</div>
+            <div><input type='text' name='liveagent.prechat:UserName' /></div> 
+            <br/>
+        </div>
+    <div>
+        <div>{!$Label.LiveAgent_Email}:</div>
+        <div><input type='email' name='liveagent.prechat:EmailDetail' required="true"/><span style="color:red">&nbsp;*</span></div><br/>
+    </div>
+    <div id="orderNumber">
+      <div>{!$Label.LiveAgent_OrderNumber}:</div>
+      <div><input type='text' name='liveagent.prechat:OrderNumber' /></div><br/>
+    </div>
+    <div>
+    <div>{!$Label.LiveAgent_Problem}: </div>
+    <div><select name="liveagent.prechat:Problem" id="selectOpt" required="required" onchange="validateDisplayRestaurant()">
+      <option></option>
+      </select><span style="color:red">&nbsp;*</span>
+    </div>
+    </div>
+    <br/>
+    <div id="ResName">
+      <div>{!$Label.LiveAgent_RestaurantName}:</div>
+      <div><input type="text" name='liveagent.prechat:RestaurantName' id="resNameInput"/></div><br/>
+    </div> 
+    
+    <div id="ResCode">
+      <div>{!$Label.LiveAgent_RestaurantPostcode}</div>
+      <div><input type="text" name='liveagent.prechat:RestaurantPostcode' id="resPostCode"/></div><br/>
+    </div>
+    
+    <div id="ResID">
+      <div>{!$Label.LiveAgent_RestaurantID}:</div>
+      <div><input type="text" name='liveagent.prechat:RestaurantID'/></div>
+    </div> 
+    
+    <div id="ResCity">
+      <div>{!$Label.LiveAgent_City}</div>
+      <div><input type="text" name='liveagent.prechat:RestaurantCity'/></div><br/>
+    </div> 
+    
+    <div id="ResAddr">
+      <div>{!$Label.LiveAgent_RestaurantAddress}</div>
+      <div><textarea rows="4" column="40" name='liveagent.prechat:RestaurantAddress' id="resAddress"/></div><br/>
+    </div>
+    
+    <div id="survey">
+      <div>{!$Label.LiveAgent_Survey}</div>
+      <div><select name="liveagent.prechat:Survey" id="selectSurvey" required="required" > 
+          <option></option>            
+          <option value="Yes">{!$Label.LiveAgent_Yes}</option>
+          <option value="No">{!$Label.LiveAgent_No}</option>
+          </select><span style="color:red">&nbsp;*</span><br />
+      </div><br/>
+    </div>
+    <div id="surveyKR" style="display:none">
+      <div>{!$Label.LiveAgent_Survey}&nbsp;<span onclick="clickhere()"><a href="" ><b>전문보기</b></a></span></div>
+      <div><input type="checkbox"  onclick="CheckboxChange()" id="chkBox"/> </div>
+    </div>         
+  </div>
+    <div id="clickhere" style="display:none">   1. 개인정보 이용 목적<br/>
+   고객 상담 시 이용자의 식별<br/>
+   고객 상담 시 답변 서비스 제공 및 원활한 의사소통 확보<br/>
+  상담 시 문의 내용 파악을 위한 데이터 확인<br/>
+  상담 종료 후 상담 서비스 향상을 위한 설문 진행<br/>
+   2. 수집하는 개인정보 항목<br/>
+   필수 항목: 휴대폰번호, 상담 내용 분류, 이메일 주소<br/>
+  선택 항목: 이름<br/>
+  3. 보유 및 이용 기간<br/>
+   전자상거래 등에서의 소비자보호에 관한 법률에 의거 상담 접수일로부터 3년 또는 5년 간 보관
+</div>
+    <input type="hidden" name="liveagent.prechat.save:UserName" value="User_Name__c" />
+    <input type="hidden" name="liveagent.prechat.save:EmailDetail" value="Email__c" />
+    <input type="hidden" name="liveagent.prechat.save:Problem" value="My_Problem__c" />
+    <input type="hidden" name="liveagent.prechat.save:OrderNumber" value="Order_Number__c" />
+    <input type="hidden" name="liveagent.prechat.save:Survey" value="Survey__c"/>
+    <input type="hidden" name="liveagent.prechat:Brand" value="{!Brand}"/>
+    <input type="hidden" name="liveagent.prechat.save:Brand" value="Brand__c"/>
+    <input type="hidden" name="liveagent.prechat.save:RestaurantName" value="Restaurant_Name__c"/>
+    <input type="hidden" name="liveagent.prechat.save:RestaurantID" value="Restaurant_ID__c"/>
+    <input type="hidden" name="liveagent.prechat.save:RestaurantPostcode" value="Restaurant_Postcode__c"/>
+    <input type="hidden" name="liveagent.prechat.save:RestaurantAddress" value="Restaurant_Address__c"/>
+    <input type="hidden" name="liveagent.prechat.save:RestaurantCity" value="City__c"/>
+   <!-- <input type="hidden" name="liveagent.prechat.save:Phone" value="Phone__c"/>-->
+    
+    <br/>
+    <br/>
+    <input type='submit' value='{!$Label.RequestChat}' id='prechat_submit'/> 
+<style type="text/css"> 
+p {font-weight: bolder } 
+</style> 
+</form> 
+</body>
+</apex:page>

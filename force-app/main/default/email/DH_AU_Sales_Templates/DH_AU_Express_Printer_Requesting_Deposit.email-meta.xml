@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DH_AU_Letterhead</letterhead>
+    <name>DH AU Express Printer Requesting Deposit</name>
+    <style>freeForm</style>
+    <subject>Delivery Hero Express Printer Deposit Details</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+Thanks for your interest in getting the Delivery Hero Express Printer!
+For us to send the Express Printer to your restaurant, we just need a $100 deposit for it. This deposit is fully refundable and used only as security for the device.
+
+You can call us and pay this via credit card over the phone,
+or can make a bank transfer to the following account:
+
+Bank Account Name: Delivery Hero Pty Ltd
+BSB Number: 082401
+Account Number: 842656065
+Amount: $100.00
+Reference (VERY IMPORTANT): &quot;Express Printer CASE ID&quot; Express Printer Deposit
+Once you&apos;ve made the transfer, please send us the receipt, and let us know as well so we can check the payment and send the printer out as soon as possible.
+
+Kind Regards,
+{!User.Name}
+{!User.Phone}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

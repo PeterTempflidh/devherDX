@@ -1,0 +1,170 @@
+<aura:component controller="SendEmail_AuraController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,forceCommunity:availableForAllPageTypes,lightning:isUrlAddressable,force:lightningQuickAction,force:appHostable,flexipage:availableForAllPageTypes" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}" />
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}" />
+    <aura:handler event="aura:locationChange" action="{!c.doInit}" />
+
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="config" type="Object" />
+    <aura:attribute name="Spinner" type="Boolean" default="false" />
+    <aura:attribute name="myMessage" type="String" default="" />
+    <aura:attribute name="messageLogo" type="String" default="" />
+    <aura:attribute name="messageIcons" type="String" default="" />
+    <aura:attribute name="isMainRecipientDisabled" type="Boolean" default="true" />
+    <aura:attribute name="isFileUploadDisabled" type="Boolean" default="false" />
+    <aura:attribute name="isFileUploadVisible" type="Boolean" default="false" />
+    <aura:attribute name="emailsFromContactRecords" type="List" access="PRIVATE" default="['test1@test1.com', 'test2@test2.com', 'test2@test2.com']" />
+    <aura:attribute name="validFromEmails" type="List" access="PRIVATE" default="['test1@test1.com', 'test2@test2.com', 'test2@test2.com']" />
+    <aura:attribute name="mandatoryAttachments" type="List" access="PRIVATE" default="[]" />
+    <aura:attribute name="contactEmailsPresented" type="Boolean" default="true" />
+    <aura:attribute name="selectedValueAdd" type="String" access="PRIVATE" />
+    <aura:attribute name="selectedValueCC" type="String" access="PRIVATE" />
+    <aura:attribute name="selectedValueBCC" type="String" access="PRIVATE" />
+    <aura:attribute name="selectedValueFrom" type="String" access="PRIVATE" />
+    <aura:attribute name="subject" type="String" default="" />
+    <aura:attribute name="primaryContactEmail" type="String" default="" />
+    <aura:attribute name="recordName" type="String" default="" />
+    <aura:attribute name="tabId" type="String" />
+
+    <aura:attribute name = "theme" type = "String" />
+    <aura:attribute name = "alertMessage" type = "String" />
+    <aura:attribute name = "isSendEmail" type = "Boolean" />
+    <aura:attribute name = "isInClassicConsole" type = "Boolean" />
+
+    <lightning:workspaceAPI aura:id="workspace" />
+    <aura:if isTrue="{!not(empty(v.alertMessage))}">
+        <c:displayError recordError="{!v.alertMessage}" theme="{!v.theme}" />
+    </aura:if>
+    <div class="slds-form-element" style="margin-left:10%;margin-right:10%">
+        <h1>
+            <center style="font-size:26px;margin-top:10px;"><u>{!$Label.c.Quote_Email_Send_Email}</u></center>
+        </h1>
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-form-element__control slds-medium-size_4-of-12">
+                <lightning:select name="fromEmails" label="{!$Label.c.Quote_Email_From}" aura:id="fromEmails" value="{!v.selectedValueFrom}">
+                    <aura:iteration items="{!v.validFromEmails}" var="option">
+                        <option text="{!option}" value="{!option}" />
+                    </aura:iteration>
+                </lightning:select>
+            </div>
+            <div class="slds-col slds-form-element__control slds-medium-size_4-of-12">
+                <label class="slds-form-element__label" for="form-element-01">{!$Label.c.Quote_Email_To}</label>
+                <input type="text" id="txtEmailTo" class="slds-input" value="{!v.primaryContactEmail}" disabled="{!v.isMainRecipientDisabled}" />
+            </div>
+        </div>
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-form-element__control slds-medium-size_4-of-12">
+                <label class="slds-form-element__label" for="form-element-01">{!$Label.c.Quote_Email_Related_To}</label>
+                <input type="text" id="relatedTo" value="{!v.recordName}" class="slds-input" disabled="true" />
+            </div>
+        </div>
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-form-element__control slds-medium-size_8-of-12">
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-medium-size_8-of-12">
+                        <label class="slds-form-element__label" for="form-element-01">{!$Label.c.Quote_Email_Additional_To}</label>
+                        <input type="text" id="emailAdd" class="slds-input" />
+                    </div>
+                    <aura:if isTrue="{!v.contactEmailsPresented}">
+                        <div class="slds-col slds-medium-size_4-of-12">
+                            <lightning:select name="contactEmailPicklistAdd" label="{!$Label.c.Send_Email_Add_Recipients}" aura:id="contactEmailPicklistAdd" value="{!v.selectedValueAdd}" onchange="{!c.addRecipient}">
+                                <option text="{!$Label.c.Send_Email_Default_Picklist_Value}" value="None" />
+                                <aura:iteration items="{!v.emailsFromContactRecords}" var="option">
+                                    <option text="{!option}" value="{!option}" />
+                                </aura:iteration>
+                            </lightning:select>
+                        </div>
+                    </aura:if>
+                </div>
+            </div>
+        </div>
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-form-element__control slds-medium-size_8-of-12">
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-medium-size_8-of-12">
+                        <label class="slds-form-element__label" for="form-element-01">{!$Label.c.Quote_Email_CC}</label>
+                        <input type="text" id="emailCC" class="slds-input" />
+                    </div>
+                    <aura:if isTrue="{!v.contactEmailsPresented}">
+                        <div class="slds-col slds-medium-size_4-of-12">
+                            <lightning:select name="contactEmailPicklistCC" label="{!$Label.c.Send_Email_Add_Recipients}" aura:id="contactEmailPicklistCC" value="{!v.selectedValueCC}" onchange="{!c.addRecipient}">
+                                <option text="{!$Label.c.Send_Email_Default_Picklist_Value}" value="None" />
+                                <aura:iteration items="{!v.emailsFromContactRecords}" var="option">
+                                    <option text="{!option}" value="{!option}" />
+                                </aura:iteration>
+                            </lightning:select>
+                        </div>
+                    </aura:if>
+                </div>
+            </div>
+        </div>
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-form-element__control slds-medium-size_8-of-12">
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-medium-size_8-of-12">
+                        <label class="slds-form-element__label" for="form-element-01">{!$Label.c.Quote_Email_BCC}</label>
+                        <input type="text" id="emailBCC" class="slds-input" />
+                    </div>
+                    <aura:if isTrue="{!v.contactEmailsPresented}">
+                        <div class="slds-col slds-medium-size_4-of-12">
+                            <lightning:select name="contactEmailPicklistBCC" label="{!$Label.c.Send_Email_Add_Recipients}" aura:id="contactEmailPicklistBCC" value="{!v.selectedValueBCC}" onchange="{!c.addRecipient}">
+                                <option text="{!$Label.c.Send_Email_Default_Picklist_Value}" value="None" />
+                                <aura:iteration items="{!v.emailsFromContactRecords}" var="option">
+                                    <option text="{!option}" value="{!option}" />
+                                </aura:iteration>
+                            </lightning:select>
+                        </div>
+                    </aura:if>
+                </div>
+            </div>
+        </div>
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-form-element__control slds-medium-size_4-of-12">
+                <label class="slds-form-element__label" for="form-element-01">{!$Label.c.Quote_Email_Subject}</label>
+                <input type="text" id="txtSubject" class="slds-input" value="{!v.subject}" />
+            </div>
+        </div>
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-form-element__control slds-medium-size_9-of-12">
+                <label class="slds-form-element__label" for="form-element-01">{!$Label.c.Quote_Email_Content}</label>
+                <lightning:inputRichText class="contentSection" value="{!v.myMessage}" />
+            </div>
+        </div>
+
+        <aura:if isTrue="{!v.mandatoryAttachments}">
+            <label class="slds-form-element__label" for="form-element-01">{!$Label.c.Send_Email_Mandatory_Attachments}</label>
+            <div>
+                <aura:iteration var="att" items="{!v.mandatoryAttachments}">
+                    <div>
+                        <lightning:formattedUrl value="{!att.Url}" label="{!att.Name}" />
+                    </div>
+                </aura:iteration>
+            </div>
+        </aura:if>
+
+        <div class="slds-grid slds-grid_align-left slds-grid_vertical-align-center slds-p-bottom_large">
+            <aura:if isTrue="{!v.isFileUploadVisible}">
+                <div class="slds-col slds-form-element__control slds-medium-size_2-of-12 slds-small-size_6-of-12 slds-m-top_medium">
+                    <lightning:input name="Upload Files" type="file" multiple="true" aura:id="fileUpload" variant="label-hidden" label="{!$Label.c.Send_Email_Upload_Button_Label}" disabled="{!v.isFileUploadDisabled}" accept=".pdf, .png, .txt, .jpg" onchange="{! c.handleUploadFinished}" />
+                </div>
+            </aura:if>
+            <div class="slds-col slds-form-element__control slds-medium-size_2-of-12 slds-small-size_6-of-12">
+                <div class="slds-button-group" role="group">
+                    <lightning:button class="slds-m-top_medium slds-float_left" variant="brand" label="{!$Label.c.Send_Email_Button_Label}" title="Send Email" onclick="{!c.send}" />
+                    <lightning:button class="slds-m-top_medium slds-float_left" label="{!$Label.c.Send_Email_Cancel}" onclick="{!c.cancel}" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <br />
+    <aura:if isTrue="{!v.Spinner}">
+        <div aura:id="spinnerId" class="slds-spinner_container">
+            <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+                <span class="slds-assistive-text">Loading</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </aura:if>
+</aura:component>

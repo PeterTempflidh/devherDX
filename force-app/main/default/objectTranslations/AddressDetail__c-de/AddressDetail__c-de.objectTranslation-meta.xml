@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value><!-- Address --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value><!-- Address --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value><!-- Address --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value><!-- Address --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value><!-- Address --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value><!-- Address --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value><!-- Address --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value><!-- Address --></value>
+    </caseValues>
+    <fieldSets>
+        <label><!-- EventBus --></label>
+        <name>EventBus</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- KR_BillingReport --></label>
+        <name>KR_BillingReport</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- KR_BillingReport1 --></label>
+        <name>KR_BillingReport1</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- KR CustomReport --></label>
+        <name>KR_CustomReport</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- OptTriggerQuery --></label>
+        <name>OptTriggerQuery</name>
+    </fieldSets>
+    <gender><!-- Neuter --></gender>
+    <layouts>
+        <layout>AddressDetail Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Map --></label>
+            <section>Map</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>AddressDetail with History</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Map --></label>
+            <section>Map</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Address Id --></nameFieldLabel>
+</CustomObjectTranslation>

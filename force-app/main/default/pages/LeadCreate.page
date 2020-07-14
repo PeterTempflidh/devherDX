@@ -1,0 +1,45 @@
+<apex:page showHeader="true" standardController="Lead" extensions="CtrLeadCreate">
+<apex:form >
+<apex:pageBlock >
+<apex:pageBlockSection title="Lead Information">
+<apex:inputField value="{!leadObj.Company}" />
+<apex:outputField value="{!leadObj.OwnerId}" />
+<apex:inputField value="{!leadObj.Restaurant_Name__c}" />
+<apex:inputField value="{!leadObj.LeadSource}" />
+<apex:inputField value="{!leadObj.Status}" />
+<apex:inputField value="{!leadObj.FirstName}" />
+<apex:inputField value="{!leadObj.Title}" />
+<apex:inputField value="{!leadObj.MiddleName}" />
+<apex:inputField value="{!leadObj.Email}" />
+<apex:inputField value="{!leadObj.LastName}" />
+<apex:inputField value="{!leadObj.Phone}" />
+<apex:inputField value="{!leadObj.MobilePhone}" />
+<apex:inputField value="{!leadObj.CurrencyIsoCode}" />
+</apex:pageBlockSection>
+<apex:pageBlockSection title="Address Information">
+<apex:inputField value="{!leadObj.Street}" />
+<apex:inputField value="{!leadObj.PostalCode}" />
+<apex:inputField value="{!leadObj.City}" />
+<apex:inputField value="{!leadObj.State}" />
+<apex:inputField value="{!leadObj.District__c}" />
+</apex:pageBlockSection>
+<apex:detail inlineEdit="true" relatedList="true" relatedListHover="true"  rendered="false" />
+<apex:pageBlockSection title="Upload Menu">
+<apex:outputField value="{!leadObj.Menu_Typing_Menu_Link__c}"  />
+<a href="javascript:void(0)" onclick="return popup('http://85.214.66.75/MenuProcessing/?kim={!leadObj.Generated_Menu_Number__c}');" class="btn" >Upload</a>
+</apex:pageBlockSection>
+<apex:pageBlockButtons >
+<apex:commandButton action="{!save}" value="Save"/>
+<apex:commandButton action="{!saveAndNew}" value="Save & New"/>
+<apex:commandButton action="{!cancel}" value="Cancel"/>
+</apex:pageBlockButtons>
+</apex:pageBlock>
+</apex:form>
+<script type="text/javascript">
+function popup (url) {
+ uploadfile = window.open(url, "UploadFile", "width=400,height=100,resizable=no");
+ uploadfile.focus();
+ return false;
+}
+</script>
+</apex:page>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Clickdelivery</letterhead>
+    <name>Instrucciones</name>
+    <style>formalLetter</style>
+    <subject>Instrucciones</subject>
+    <textOnly>Se escala queja:
+
+Hola (Nombre del usuario), te queremos ofrecer disculpas porque el establecimiento no tuvo en cuenta tus especificaciones, te queremos confirmar que (solución respecto a las instrucciones de preparación)
+
+Usuario confirma
+
+Hola (Nombre del usuario), agradecemos tu confirmación. Te queremos indicar que ya nos comunicamos con el establecimiento y realizamos las recomendaciones para que este tipo de situación no se presente. Te confirmamos que (solución de instrucciones de preparación)</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

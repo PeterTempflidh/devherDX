@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>DEMORA EN CARGARSE CUPÓN REFERIDOS</name>
+    <style>freeForm</style>
+    <subject>DEMORA EN CARGARSE CUPÓN REFERIDOS</subject>
+    <textOnly>Estimada {!Case.Customer_Name__c}, es un gusto saludarte.
+
+Estimado {!Case.Customer_Name__c}, es un gusto saludarte.
+
+
+Te contactamos en respuesta a tu consulta por tus cupones del programa de referidos.
+
+
+Verificamos que ya seguiste los pasos correctos para invitar amigos. Ten en cuenta que el cupón queda cargado en tu cuenta 24 horas después que tu amigo realiza el pedido y sólo si el mismo se encuentra confirmado, por lo que podrás visualizar el tuyo el día XXX a las XXX hrs.
+
+
+Una vez quede cargado el cupón tendrá validez de 30 días y puedes verificarlo desde la aplicación.  Para poder utilizarlo tienes que ingresar Menú &gt; Mis Cupones &gt; Seleccionas el cupón otorgado y luego ingresas a la opción “Ver locales para este cupón”.
+
+
+Quedamos a las órdenes ante cualquier consulta.
+
+
+Saludos,
+{!Case.OwnerFullName}
+Atención al Cliente PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

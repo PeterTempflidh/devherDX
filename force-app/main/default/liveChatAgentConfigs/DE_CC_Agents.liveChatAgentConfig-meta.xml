@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LiveChatAgentConfig xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <profiles>
+            <profile>DE Customer Care</profile>
+            <profile>DE Customer Care Management</profile>
+            <profile>DE Outsourcing Partner</profile>
+        </profiles>
+    </assignments>
+    <autoGreeting>Hallo, mein Name ist {!User_FirstName}. Wie kann ich helfen?</autoGreeting>
+    <criticalWaitTime>30</criticalWaitTime>
+    <enableAgentFileTransfer>true</enableAgentFileTransfer>
+    <enableAgentSneakPeek>true</enableAgentSneakPeek>
+    <enableAssistanceFlag>false</enableAssistanceFlag>
+    <enableAutoAwayOnDecline>false</enableAutoAwayOnDecline>
+    <enableAutoAwayOnPushTimeout>false</enableAutoAwayOnPushTimeout>
+    <enableChatConferencing>true</enableChatConferencing>
+    <enableChatMonitoring>true</enableChatMonitoring>
+    <enableChatTransferToAgent>false</enableChatTransferToAgent>
+    <enableChatTransferToButton>true</enableChatTransferToButton>
+    <enableChatTransferToSkill>false</enableChatTransferToSkill>
+    <enableLogoutSound>true</enableLogoutSound>
+    <enableNotifications>true</enableNotifications>
+    <enableRequestSound>true</enableRequestSound>
+    <enableSneakPeek>true</enableSneakPeek>
+    <enableVisitorBlocking>false</enableVisitorBlocking>
+    <enableWhisperMessage>true</enableWhisperMessage>
+    <label>DE CC Agents</label>
+    <supervisorDefaultAgentStatusFilter>Online</supervisorDefaultAgentStatusFilter>
+    <supervisorDefaultSkillFilter>DE_Skills</supervisorDefaultSkillFilter>
+    <supervisorSkills>
+        <skill>DE_Skills</skill>
+    </supervisorSkills>
+    <transferableButtons>
+        <button>Chat_Button_for_DE_Hurrier_Escalation</button>
+        <button>Chat_Button_for_DE_LH_CC_Skill_2nd_Level</button>
+        <button>Chat_Button_for_DE_PDE_CC_Skill_2nd_Level</button>
+    </transferableButtons>
+    <transferableSkills>
+        <skill>DE_Skills</skill>
+    </transferableSkills>
+</LiveChatAgentConfig>

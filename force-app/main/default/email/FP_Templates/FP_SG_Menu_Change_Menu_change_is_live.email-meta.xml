@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>change is live</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP SG Menu Change - Menu change is live</name>
+    <style>freeForm</style>
+    <subject>Your menu change has been completed</subject>
+    <textOnly>Dear Partner,
+
+Your menu has now been completed by our content team and is now online (# {!Case.CaseNumber}). To have a look at your menu online, please find the preview link of your menu here and let us know your feedback:
+{!Case.Menu_URL__c}
+
+If amendments are needed, please send us an email and write the requested changes in the following format:
+
+ITEM NAME - ACTION - INFORMATION
+Example: Mexican Wings - Change name - Fiery Wings
+
+Any questions? Feel free to contact by submitting the request through form https://foodpandasg.formstack.com/forms/foodpanda_support or via phone at +65 3158 3673.
+
+We are happy to help you!
+
+See you soon,
+Your foodpanda Partner Care Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

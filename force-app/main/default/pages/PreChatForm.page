@@ -1,0 +1,196 @@
+<!-- NOTE: maybe is deprecated, check after de migration - @CreatedBy m.zeuli -->
+<apex:page showHeader="false" controller="CtrPreChatForm" language="{!lang}"> 
+<apex:includescript value="{!$Resource.jQuery}"/>
+<apex:includeScript value="{!URLFOR($Resource.webshim, 'js-webshim/minified/polyfiller.js')}" /> 
+<!-- This script takes the endpoint URL parameter passed from the deployment 
+  page and makes it the action for the form -->
+<script type="text/javascript">
+(function() { 
+    function handlePageLoad() {
+        jQuery.webshim.polyfill(); 
+        var endpointMatcher = new RegExp("[\\?\\&]endpoint=([^&#]*)");
+        document.getElementById('prechatForm').setAttribute('action',
+        decodeURIComponent(endpointMatcher.exec(document.location.search)[1]));
+        
+        //Load problem options
+        var problemList={!problems};
+        for(i=0; i<problemList.length; i++){
+            var problemOptions = document.getElementById("selectOpt");         
+            var option = document.createElement("option");
+            option.text = problemList[i];
+            problemOptions.add(option);
+        }
+        
+        var brand="{!Brand}";
+        
+       /* if(brand=='Yogiyo'){
+            document.getElementById('phone').style.display = '';
+        }*/
+        alert(brand);
+        if(brand=='Yogiyo'){
+        alert('yo');
+            document.getElementById('survey').style.visibility = 'hidden';
+            document.getElementById('survey').required = false;
+        
+        }
+        
+        document.getElementById('ResName').style.display='none';
+        document.getElementById('ResID').style.display='none';
+        document.getElementById('ResCode').style.display='none';
+        document.getElementById('ResAddr').style.display='none';
+        document.getElementById('ResCity').style.display='none';
+    }
+    if (window.addEventListener) {
+        window.addEventListener('load', handlePageLoad, false);
+    } else {
+        window.attachEvent('onload', handlePageLoad, false);
+        
+    }
+    
+    
+})(); 
+
+    function validateDisplayRestaurant(){
+        var brand='{!Brand}';
+        if(document.getElementById('selectOpt').value=='{!$Label.LiveAgent_RestaurantPartner}'){
+            document.getElementById('ResName').style.display='';  
+            if(brand!='Yogiyo'){
+                document.getElementById('ResID').style.display='';
+                document.getElementById('selectSurvey').required = false;
+                document.getElementById('surveyKR').style.display='';
+                
+            }
+            
+            
+            if(brand=='PL_PizzaPortal'){
+               
+               
+               document.getElementById('ResAddr').style.display='';
+               document.getElementById('ResCity').style.display='';
+               document.getElementById('ResCode').style.display=''; 
+                           
+               document.getElementById('resPostCode').required = true;
+               document.getElementById('resAddress').required = true;
+ 
+            
+            }
+        }
+        
+        else{
+            document.getElementById('ResName').style.display='none';
+            document.getElementById('ResID').style.display='none';
+            document.getElementById('resNameInput').required = false;
+            document.getElementById('ResCode').style.display='none';
+            document.getElementById('ResAddr').style.display='none';
+            document.getElementById('ResCity').style.display='none';
+            document.getElementById('resPostCode').required = false;
+            document.getElementById('resAddress').required = false;
+            
+            
+        }
+        
+        
+    
+    }
+    
+    function CheckboxChange(){
+       var chk=document.getElementById('chkBox');
+       if(chkBox.checked){
+           document.getElementById('selectSurvey').value='Yes';
+       }
+       else{
+          document.getElementById('selectSurvey').value='No';
+      }
+   }
+    
+</script>
+<!--<img src="{!$Resource.Chat_image_lieferheld_logo}"/>-->
+<img src="{!brandImg}"/>
+<form method='post' id='prechatForm'> 
+<br></br>
+      <table>
+          <tr>
+              <td>{!$Label.LiveAgent_Username}:</td> 
+              <td><input type='text' name='liveagent.prechat:UserName' /><br /></td>
+          </tr>
+         
+          
+          <tr>
+              <td>{!$Label.LiveAgent_Email}:</td>
+              <td><input type='email' name='liveagent.prechat:EmailDetail' required="true"/><br /><span style="color:red">&nbsp;*</span></td>
+          </tr>
+          <tr>
+              <td>{!$Label.LiveAgent_OrderNumber}:</td>
+              <td><input type='text' name='liveagent.prechat:OrderNumber' /></td>
+          </tr>
+          <!--<tr id="phone" style="display:none">
+              <td>{!$Label.LiveAgent_Phone}:</td>
+              <td><input type='phone' name='liveagent.prechat:Phone' required="true" /></td>
+          
+          </tr>-->
+          <tr>
+              <td>{!$Label.LiveAgent_Problem}: </td>
+                  <td><select name="liveagent.prechat:Problem" id="selectOpt" required="required" onchange="validateDisplayRestaurant()">
+                  
+                  <option></option>
+                  </select><br />
+               </td>
+           </tr>  
+           <tr id="ResName">
+               <td>{!$Label.LiveAgent_RestaurantName}:</td>
+               <td><input type="text" name='liveagent.prechat:RestaurantName' id="resNameInput"/></td>
+           </tr> 
+           <tr id="ResCode">
+               <td>{!$Label.LiveAgent_RestaurantPostcode}</td>
+               <td><input type="text" name='liveagent.prechat:RestaurantPostcode' id="resPostCode"/></td>
+           </tr>
+           <tr id="ResID">
+               <td>{!$Label.LiveAgent_RestaurantID}:</td>
+               <td><input type="text" name='liveagent.prechat:RestaurantID'/></td>
+           </tr> 
+           <tr id="ResCity">
+               <td>{!$Label.LiveAgent_City}</td>
+               <td><input type="text" name='liveagent.prechat:RestaurantCity'/></td>
+           </tr> 
+           <tr id="ResAddr">
+               <td>{!$Label.LiveAgent_RestaurantAddress}</td>
+               <td><textarea rows="4" column="40" name='liveagent.prechat:RestaurantAddress' id="resAddress"/></td>
+           </tr>
+           <tr id="survey">
+               <td>{!$Label.LiveAgent_Survey}</td>
+               <td><select name="liveagent.prechat:Survey" id="selectSurvey" required="required" > 
+                  <option></option>            
+                  <option value="Yes">{!$Label.LiveAgent_Yes}</option>
+                  <option value="No">{!$Label.LiveAgent_No}</option>
+                  </select><span style="color:red">&nbsp;*</span><br />
+               </td>
+           </tr>
+           <tr id="surveyKR" style="display:none">
+               <td>{!$Label.LiveAgent_Survey}</td>
+               <td><input type="checkbox"  onclick="CheckboxChange()" id="chkBox"/>
+               </td>
+           </tr>
+            
+             
+    </table>
+    <input type="hidden" name="liveagent.prechat.save:UserName" value="User_Name__c" />
+    <input type="hidden" name="liveagent.prechat.save:EmailDetail" value="Email__c" />
+    <input type="hidden" name="liveagent.prechat.save:Problem" value="My_Problem__c" />
+    <input type="hidden" name="liveagent.prechat.save:OrderNumber" value="Order_Number__c" />
+    <input type="hidden" name="liveagent.prechat.save:Survey" value="Survey__c"/>
+    <input type="hidden" name="liveagent.prechat:Brand" value="{!Brand}"/>
+    <input type="hidden" name="liveagent.prechat.save:Brand" value="Brand__c"/>
+    <input type="hidden" name="liveagent.prechat.save:RestaurantName" value="Restaurant_Name__c"/>
+    <input type="hidden" name="liveagent.prechat.save:RestaurantID" value="Restaurant_ID__c"/>
+    <input type="hidden" name="liveagent.prechat.save:RestaurantPostcode" value="Restaurant_Postcode__c"/>
+    <input type="hidden" name="liveagent.prechat.save:RestaurantAddress" value="Restaurant_Address__c"/>
+    <input type="hidden" name="liveagent.prechat.save:RestaurantCity" value="City__c"/>
+   <!-- <input type="hidden" name="liveagent.prechat.save:Phone" value="Phone__c"/>-->
+    
+    <br></br>
+    <input type='submit' value='Request Chat' id='prechat_submit'/> 
+<style type="text/css"> 
+p {font-weight: bolder } 
+</style> 
+</form> 
+</apex:page>

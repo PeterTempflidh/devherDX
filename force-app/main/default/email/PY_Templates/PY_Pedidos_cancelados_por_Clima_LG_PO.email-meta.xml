@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY - Pedidos cancelados por Clima LG PO</name>
+    <style>freeForm</style>
+    <subject>Pedidos cancelados por Clima LG PO</subject>
+    <textOnly>Estimada XXX, es un gusto saludarte.
+
+Estimado XXX, es un gusto saludarte.
+
+ 
+
+En esta oportunidad nos comunicamos para informarte que tu pedido a XXX ha sido cancelado debido a las inclemencias climáticas.
+
+ 
+
+Respecto al pago realizado no te preocupes, ya que en este momento procedimos a realizar la anulación del mismo, sin embargo, ten en cuenta, que el ​reintegro puede demorar en visualizarse entre 10 días hábiles aproximadamente dependiendo del banco que esté asociada tu tarjeta.
+
+Lamentamos la situación y entendemos los inconvenientes que esto pueda generarte. Por tal motivo, con el fin de resarcir este mal momento, desde PedidosYa vamos a brindarte un cupón con dinero a tu favor para que puedas disfrutar en un futuro pedido, en cualquiera de los locales adheridos.
+
+ 
+
+El cupón que te estaremos generando tiene una validez de 30 días y quedará cargado en tu cuenta en las próximas 24 horas. Para poder utilizar el cupón tienes que chequear antes que el restaurante acepte cupones, existe un filtro llamado &quot;cupón&quot; que te ayudará.
+
+ 
+
+Nuevamente, te pedimos disculpas por las molestias ocasionadas y quedamos a las órdenes ante cualquier consulta.
+ 
+
+Saludos,                   
+(Propietario del Caso)
+Atención al Cliente PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY Partner Portal Como veo mis datos y pedidos</name>
+    <style>freeForm</style>
+    <subject>Gracias por Contactarnos - # {!Case.CaseNumber}</subject>
+    <textOnly>Estimado XXXNombreXXX, 
+
+ 
+
+Nos contactamos en respuesta a tu consulta sobre cómo ver datos sobre tu actividad en PedidosYa, te comentamos que esta información la encontrarás en la pantalla principal del Partner Portal, que es la sección “Reportes”. Este apartado tiene dos sub - secciones: “tus datos” y “pedidos”.
+
+ 
+
+La sección “tus datos” te mostrará datos comparados entre la semana actual y la anterior que incluirán la cantidad de pedidos, la facturación, el ticket promedio, los pedidos rechazados y tus tiempos de respuesta de su confirmación. 
+
+ 
+
+En la sección “pedidos”, podrás ver la información de los pedidos que has recibido y tendrás la posibilidad de filtrarlos según distintos períodos de tiempo; también cuentas con una barra de búsqueda donde podrás buscar tus pedidos uno por uno y la posibilidad de descargar estos datos en una hoja de cálculo. 
+
+ 
+
+Adicionalmente te hemos adjuntado el manual de la herramienta para futuras consultas. 
+
+ 
+
+Quedamos a las órdenes, 
+
+Saludos 
+
+ 
+
+(NOMBRE DEL AGENTE) - Claims Operator 
+PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,532 @@
+<apex:page controller="CtrTarifManager"  showHeader="false" sidebar="false" standardStylesheets="false">
+	<!-- go on top -->
+	<script>
+	    function SFDCJumpTo(destination) {
+	        window.location.hash='#'+destination;
+	    }
+	    function scrollToTop(){
+	        document.body.scrollTop = document.documentElement.scrollTop = 0;
+	    }
+	    function showTarifPopup(){
+	        j$('#customPopupTarif').modal('show');
+	    }
+	    
+	    function hideTarifPopup(){
+	        j$('#customPopupTarif').modal('hide');
+	    }
+
+	    function refreshProduchGroupDropdownTariff(){
+	        var countryDropdownTariff = j$('[id$=countryDropdownTariff]');
+	        
+	        if(countryDropdownTariff.val() !== 'null'){
+	            initiateTariffAdd();
+	        }
+	    }
+	</script>
+	
+	<style type="text/css">
+	    @media (max-width: 1200px) {
+		    .margintop {
+		    	margin-top:50%
+		    }
+		}
+		
+		@media (min-width: 1200px) and (max-width:1500px) {
+		    .margintop {
+		    	margin-top:35%
+		    }
+		}
+		
+		@media (min-width: 1500px) {
+		    .margintop {
+		    	margin-top:20%
+		    }
+		}
+	    
+	    body {
+	        counter-reset: section;
+	    }
+	
+	    span.s1utility span:after{
+	        counter-increment: section;
+	        content: counter(section) "";
+	    }
+	
+	</style>
+	<!-- go on top end -->
+	
+	<apex:form id="TarifManagerForm">
+		<apex:actionFunction name="initiateTariffAdd" action="{!initiateTariffAdd}" status="LoadingSpinner" 
+			reRender="TarifManagerForm" oncomplete="rerenderDataTable('tariffs');renderCommissionSection();"/>
+		<apex:actionFunction name="loadCategories" action="{!initiateTariffAdd}" status="LoadingSpinner" 
+			reRender="TarifManagerForm" oncomplete="rerenderDataTable('tariffs');renderCommissionSection();"/>
+		<apex:pageMessages id="tariffMessages"/>
+		<br style="clear:both;" />  
+		<apex:actionStatus onstart="startSplash();" onStop="endSplash();" id="tarifStatus"/>
+		<!-- <apex:actionStatus onstart="startSplashTarifManager();" onStop="endSplashTarifManager();" id="tarifStatus"/>-->
+		<apex:actionFunction name="myTestTest" action="{!editTarif}" status="tarifStatus" onComplete="reInitTarifManager();"/>
+		<apex:actionFunction name="activeFlag" reRender="active_flag" immediate="true"/>
+		<a name="editSection" />
+		
+		<table width="100%" border="0" cellspacing="6" cellpadding="6" style="margin-top:20px !important;">
+			<tr>
+		    	<td>
+		    		<span class="s1icon s1icon-c-desk s1icon-sm pageIconPosition" style="margin-top:-70px !important;"></span>
+					<span class="pageIconPositionLabel" style="margin-top:-65px !important;">{!$Label.Overview_Tariffs}</span>
+				</td>
+				<td>
+					<span class="s1icon s1icon-c-desk s1icon-sm pageIconPosition" style="margin-top:-70px !important;" ></span>
+					<span class="pageIconPositionLabel" style="margin-top:-65px !important;">{!$Label.Tarif_data}</span>
+				</td>
+	        </tr>
+	        <tr>
+	        	<td></td>
+	        	<td>
+	        		<!-- info -->
+					<div class="info" style="float:right; margin-top:-25px;">
+		    			<div class="tool-tip bottom" style="top:160px; width: 270px;height: 160px; margin-right:40px">
+		        			<apex:outputText value="{!$Label.Your_Tarif_Information}" escape="false" />
+		    			</div>
+					</div>
+				</td>
+	        </tr>
+		    <tr>
+		        <td style="padding-right:10px" valign="top"> 
+			        <div  class="ui-autocomplete" >
+			
+					<!--
+					###############################
+					TarifOverview
+					###############################
+					-->
+					<apex:pageBlock id="TarifOverview" tabStyle="Sales_Management__tab">
+
+					    <!-- <apex:dataTable value="{!listExistingTarifs}" var="tarif" id="theTarifTable" rowClasses="odd,even" styleClass="tableClass" > -->
+					
+					    <table id="tariffs" class="displayDataTable display">
+					            <thead>
+					                <tr>
+					                    <th></th>
+					                    <th>{!$Label.Is_Active}</th>
+					                    <th>{!$Label.Name}</th>
+					                    <th>{!$Label.SMC_Country}</th>
+					                    <th>{!$Label.SMC_Last_Modified_By}</th>
+					                    <th>{!$Label.SMC_Last_Modified_Date}</th>
+					                    
+					                </tr>
+					            </thead>
+					            <tbody>
+					                <apex:repeat value="{!tariffs}" var="tarif">
+					                    <tr>
+					                        <td>
+					                            <apex:commandButton action="{!chooseTarifToDelete}" Styleclass="btn1 btn-warning1 s1utility-close"
+													id="commandlinkDelete" value="" title="{!IF(tarif.Is_Active__c, $Label.SMC_Tariff_Delete_Not_Possible, $Label.Delete)}"
+													rerender="deletePopupTarif" oncomplete="showTarifPopup(); rerenderDataTable('tariffs');"
+													status="LoadingSpinner" disabled="{!IF(tarif.Is_Active__c, 'true', 'false')}">
+					                            <apex:param name="tarifIdToDelete" assignTo="{!selectedTarif}" value="{!tarif.Id}" />
+					                            </apex:commandButton>
+					                        </td>
+					                        <td data-sort="{!tarif.Is_Active__c}">
+					                            <span class="Active{!tarif.Is_Active__c} s1utility"></span>
+					                        </td>
+					                        <td>
+					                            <apex:commandLink id="commandlinkEditTarif" value="" title="{!$Label.Edit}" action="{!editTarif}" reRender="TarifManagerForm"
+														  oncomplete="scrollToTop(); rerenderDataTable('tariffs');renderCommissionSectionOnEdit();" status="LoadingSpinner">
+					                                <apex:param name="tarifId" assignTo="{!selectedTarif}" value="{!tarif.Id}" />
+					                                <apex:outputText value="{!tarif.Name}"/>
+					                            </apex:commandLink>
+					                        </td>
+					                        <td>{!tarif.Id_Country__r.name}</td>
+					                        <td>{!tarif.LastModifiedBy.Name}</td>
+					                        <td>
+					                            <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+					                                <apex:param value="{!tarif.LastModifiedDate}" /> 
+					                            </apex:outputText>
+					                        </td>
+					                        
+					                    </tr>
+					                </apex:repeat>
+					            </tbody>
+					        </table>
+					</apex:pageBlock>		
+					</div>
+				</td>
+				<td width="30%" valign="top">
+					<!--
+					###############################
+					tarif data
+					###############################
+					-->
+					<apex:pageBlock mode="maindetail " tabStyle="Sales_Management__tab">
+					    <table width="100%">
+					    <tr>
+					        <td></td>
+					        <td align="right"><apex:commandButton value="New" action="{!cancel}" Styleclass="btnFloatLeft3New" oncomplete="scrollToTop(); rerenderDataTable('tariffs');" reRender="TarifManagerForm" status="LoadingSpinner" /></td>
+					    </tr>
+					    </table>
+					    <table width="100%" style="margin-top:20px; " Class="tableStandard ">
+					        <tr>
+					            <td  style="width: 200px; text-align:left"><b>{!$ObjectType.Tarif__c.fields.Name.Label}</b></td>
+					            <td>
+					                <apex:outputPanel >
+					                    <apex:inputField Style="width:205px;" value="{!myTarif.Name}" html-placeholder="{!$Label.Your_tarif_name_here}" />  <span class="requiredRed"></span>
+					                </apex:outputPanel>
+					            </td>
+					        </tr>
+					        <tr>
+					            <td><b>{!$Label.Country}</b></td>
+					            <td>
+					            <apex:outputPanel rendered="{!showCountryDropdown}">
+					            <!-- <apex:outputPanel> -->
+					                <span class="btnFloatLeft custom-dropdown custom-dropdown--red custom-dropdown--disabled">
+					                    <apex:selectList style="width:205px;" value="{!selectedCountry}" size="1"
+												 Styleclass="custom-dropdown__select custom-dropdown__select--red"
+												 multiselect="false" id="countryDropdownTariff"
+														 onchange="refreshProduchGroupDropdownTariff();">
+					                        <apex:selectOptions value="{!countries}"/>
+					                    </apex:selectList>
+					                </span>
+					                <span class="requiredRed"></span>
+					            </apex:outputPanel>
+					            <apex:outputPanel styleClass="hideDropdown" rendered="{!hideCountryDropdown}">
+					                <apex:outputText value="{!defaultCountry}" />
+					            </apex:outputPanel>
+					            </td>
+					        </tr>
+					        <tr>
+						        <td><b>{!$Label.Is_Active}</b></td>
+						        <td >
+						            <apex:outputPanel >
+						                <label class="switch">
+						                  <apex:inputCheckbox styleClass="switch-input" value="{!myTarif.Is_Active__c}" />
+						                  <span class="switch-label" data-on="{!$Label.On}" data-off="{!$Label.Off}"></span>
+						                  <span class="switch-handle"></span>
+						
+						                </label>
+						            </apex:outputPanel>
+						        </td>
+					        </tr>
+					        <tr>
+						        <td><b>{!$Label.Locked}</b></td>
+						        <td >
+						            <apex:outputPanel >
+						                <label class="switch">
+						                  <apex:inputCheckbox styleClass="switch-input" value="{!myTarif.Is_Locked__c}" 
+						                  		id="lockedCheckbox" onchange="loadCategories();"/>
+						                  <span class="switch-label" data-on="{!$Label.On}" data-off="{!$Label.Off}"></span>
+						                  <span class="switch-handle"></span>					
+						                </label>
+						            </apex:outputPanel>
+						        </td>
+					        </tr>
+					        <tr>
+						        <td>
+						        	<apex:outputPanel rendered="{!!myTarif.Is_Locked__c}">
+						        		<b>{!$Label.Product_Only}</b>
+						        	</apex:outputPanel>
+						        </td>
+						        <td >
+						            <apex:outputPanel rendered="{!!myTarif.Is_Locked__c}">
+						                <label class="switch">
+						                  <apex:inputCheckbox styleClass="switch-input" value="{!myTarif.Product_Only__c}"
+										  		id="productOnlyCheckbox" onChange="renderCommissionSection()"/>
+						                  <span class="switch-label" data-on="{!$Label.On}" data-off="{!$Label.Off}"></span>
+						                  <span class="switch-handle"></span>					
+						                </label>
+						            </apex:outputPanel>
+						        </td>
+					        </tr>
+					        <tr>
+						        <td style="text-align:left">
+						        	<apex:outputPanel rendered="{!!myTarif.Is_Locked__c}">
+						        		<div class = "margintop">
+						        			<b>{!$Label.Select_Categories}</b>
+						        		</div>
+						        	</apex:outputPanel>
+						        </td>
+						        <td>
+						            <apex:outputPanel rendered="{!!myTarif.Is_Locked__c}">
+						            	<div style = "margin-top:-30px;margin-right:-50px;">
+						                   	<c:MultiselectPicklist leftOptions="{!availableCategories}" 
+						                   			rightOptions="{!selectedCategories}"
+						                   			leftLabel="Available" rightLabel="Chosen"
+						                   			size="4" width="100px" />
+					                   	</div> 
+					                   	<span class="requiredRed" style="margin-top:-66px;height:58px;"></span>
+					                </apex:outputPanel>
+						        </td>
+					        </tr>
+					    </table>
+					</apex:pageBlock> 
+					<!--
+					#####################################
+					select Add product / service / Add-On
+					#####################################
+					-->
+					<div style="padding-top:80px;"></div>
+					<span class="s1icon s1icon-c-desk s1icon-sm pageIconPosition" style="margin-top:-45px !important; margin-left:10px !important"></span>
+					<span class="pageIconPositionLabel" style="margin-top:-45px !important; margin-left:50px !important; margin-bottom:10px !important">{!$Label.Add_Service} / {!$Label.Add_Product} / <br/>{!$Label.Add_Add_On}</span>
+					<apex:pageBlock mode="maindetail " tabStyle="Sales_Management__tab">
+					    <table width="100%" class="tableStandard commissionSection">
+							<tr>
+								<td style="width: 200px; text-align:left"><b>{!$Label.Add_Service}</b></td>
+								<td>
+									<apex:outputPanel >
+									<span class="btnFloatLeft custom-dropdown custom-dropdown--red custom-dropdown--disabled">
+									<apex:selectList style="width:205px;" value="{!selectedService}" size="1" Styleclass="custom-dropdown__select custom-dropdown__select--red">
+									<apex:selectOptions value="{!services}"/>
+									</apex:selectList>
+									</span>
+									<span class="requiredRed"></span><br/><br/>
+									<apex:commandButton Styleclass="btnFloatLeft2" value="{!$Label.Add_Service}" action="{!addService}" reRender="TarifManagerForm" status="LoadingSpinner" oncomplete="rerenderDataTable('tariffs');"/>
+									</apex:outputPanel>
+
+								</td>
+							</tr>
+					    </table>
+						<br />
+						<hr />
+						<br />
+					    <table width="100%" class="tableStandard">
+					        <tr>
+					        	<td style="width: 200px; text-align:left"><b>{!$Label.Add_Product}</b></td>
+					            <td>
+									<apex:outputPanel >
+									<span class="btnFloatLeft custom-dropdown custom-dropdown--red custom-dropdown--disabled">
+									<apex:selectList value="{!selectedProduct}" style="width:205px;" size="1" Styleclass="custom-dropdown__select custom-dropdown__select--red">
+									<!-- <apex:selectOptions value="{!productOptions}"/> -->
+									<apex:selectOptions value="{!products}"/>
+									</apex:selectList>
+									</span><span class="requiredRed"></span><br/><br/>
+									<apex:commandButton Styleclass="btnFloatLeft2" value="{!$Label.Add_Product}" action="{!addProduct}"
+														reRender="TarifManagerForm" status="LoadingSpinner"
+														oncomplete="rerenderDataTable('tariffs');renderCommissionSection();"/>
+									</apex:outputPanel>
+					            </td>
+					        </tr>
+					    </table>
+					    <br />
+						<hr />
+						<br />
+						<table width="100%" class="tableStandard">
+					        <tr>
+					        	<td style="width: 200px; text-align:left"><b>{!$Label.Add_Add_on}</b></td>
+					            <td>
+						            <apex:outputPanel >
+							            <span class="btnFloatLeft custom-dropdown custom-dropdown--red custom-dropdown--disabled">
+							            <apex:selectList value="{!selectedAddOn}" style="width:205px;" size="1" 
+							            	Styleclass="custom-dropdown__select custom-dropdown__select--red"> 
+							            		<apex:selectOptions value="{!addOns}"/>
+							            </apex:selectList>
+							            </span><span class="requiredRed"></span><br/><br/>
+							            <apex:commandButton Styleclass="btnFloatLeft2" value="{!$Label.Add_Add_On}" 
+							            	action="{!addAddOn}" reRender="TarifManagerForm" status="LoadingSpinner" 
+							            	oncomplete="rerenderDataTable('tariffs');renderCommissionSection();"/>
+						            </apex:outputPanel>
+					            </td>
+					        </tr>
+					    </table>
+					    <div style="padding-top:30px;"></div>
+					    <table width="100%" style="margin-top:10px;">
+					    <tr>
+					        <td></td>
+					        <td align="right"><apex:commandButton Styleclass="btnFloatLeft2" action="{!save}" value="{!$Label.save}"
+														  rerender="TarifManagerForm" oncomplete="rerenderDataTable('tariffs');scrollToTop();renderCommissionSection();" status="LoadingSpinner" /> &nbsp; &nbsp;
+					        <apex:commandButton value="{!$Label.Cancel}" action="{!cancel}" Styleclass="btnFloatLeft3" oncomplete="scrollToTop(); rerenderDataTable('tariffs');" reRender="TarifManagerForm" status="LoadingSpinner"/></td>
+					    </tr>
+					    </table>
+					</apex:pageBlock>
+				</td>
+			</tr>
+		</table>
+		<!--
+		###############################
+		list of add service
+		###############################
+		-->
+		<div style="padding-top:80px;"></div>
+		<div class = "commissionSection">
+			<span class="s1icon s1icon-c-desk s1icon-sm pageIconPosition"></span>
+			<span style="margin-left:40px; margin-top:-25px !important; margin-bottom:25px !important" class="pageIconPositionLabel">{!$Label.Add_Service}</span>
+			<apex:pageBlock mode="maindetail " tabStyle="Sales_Management__tab">
+				<apex:dataTable value="{!mapSelectedServices}" var="service" id="theServiceTable" rowClasses="odd,even"
+							styleClass="tableClass" rendered="{!selectedServicesSize != 0 }">
+					<apex:column style="width:30px;">
+						<apex:commandLink id="commandlinkDeleteService" Styleclass="btn1 btn-warning1"
+										  value="" action="{!deleteServiceItem}" rerender="TarifManagerForm"
+										  immediate="true" onComplete="renderCommissionSection();">
+						<apex:param name="serviceId" assignTo="{!selectedServiceToDelete}" value="{!mapSelectedServices[service].Id}" />
+						</apex:commandLink>
+					</apex:column>
+					<apex:column style="width:30px;">
+						<apex:facet name="header">{!$Label.Active}</apex:facet>
+						<apex:outputText styleClass="Active{!mapSelectedServices[service].Is_Active__c} s1utility "/>
+					</apex:column>
+					<apex:column >
+						<apex:facet name="header">{!$Label.Name}</apex:facet>
+						<apex:outputText value="{!mapSelectedServices[service].Name}"/>
+					</apex:column>
+					<apex:column style="text-align:left">
+						<apex:facet name="header">{!$Label.Commission_in_percentage}</apex:facet>
+						<apex:outputText value="{!mapSelectedServices[service].Commission_In_Percentage__c}"/>
+					</apex:column>
+
+					<apex:column >
+						<apex:facet name="header">{!$Label.Max_Commision_in_percentage}</apex:facet>
+						<apex:outputText value="{!mapSelectedServices[service].Maximum_Commission_In_Percentage__c}"/>
+					</apex:column>
+					<apex:column >
+						<apex:facet name="header">{!$Label.Min_Commision_in_percentage}</apex:facet>
+						<apex:outputText value="{!mapSelectedServices[service].Minimum_Commission_in_Percentage__c}"/>
+					</apex:column>
+					<apex:column style="text-align:left">
+						<apex:facet name="header">{!$Label.Commission_per_Order}</apex:facet>
+						<apex:outputText value="{!mapSelectedServices[service].Commission_Per_Order__c}"/>
+					</apex:column>
+				</apex:dataTable>
+			</apex:pageBlock>
+       	</div>
+		
+		<!--
+		###############################
+		list of add product
+		###############################
+		-->
+		<div style="padding-top:80px;"></div>
+		<span class="s1icon s1icon-c-desk s1icon-sm pageIconPosition"></span>
+		<span style="margin-left:40px; margin-top:-25px !important; margin-bottom:25px !important" class="pageIconPositionLabel">{!$Label.Add_Product}</span>
+		 <apex:pageBlock mode="maindetail " tabStyle="Sales_Management__tab">
+		    <apex:dataTable value="{!mapSelectedProducts}" var="product" id="theProductTable" rowClasses="odd,even" styleClass="tableClass" rendered="{!selectedProductsSize != 0 }">
+		        <apex:column style="width:30px;">
+		            <apex:commandLink id="commandlinkDeleteProduct" value="" Styleclass="btn1 btn-warning1 "
+									  action="{!deleteProductItem}" rerender="TarifManagerForm" immediate="true"
+                                      onComplete="renderCommissionSection();">
+		            <apex:param name="productId" assignTo="{!selectedProductToDelete}" value="{!mapSelectedProducts[product].Id}" />
+		        </apex:commandLink>
+		        </apex:column>
+		        <apex:column style="width:80px;">
+		            <apex:facet name="header">{!$Label.Is_Active}</apex:facet>
+		            <apex:outputText styleClass="Active{!mapSelectedProducts[product].Is_Active__c} s1utility "/>
+		        </apex:column>
+		        <apex:column style="text-align:left">
+		            <apex:facet name="header">{!$Label.Name}</apex:facet>
+		            <apex:outputText value="{!mapSelectedProducts[product].Product_Name__c}"/>
+		        </apex:column>
+		       <!-- not used <apex:column >
+		            <apex:facet name="header">{!$Label.Asset}</apex:facet>
+		            <apex:outputText value="{!mapSelectedProducts[product].Id_Asset__c}"/>
+		        </apex:column>-->
+		        <apex:column >
+		            <apex:facet name="header">{!$Label.Default_Quantity}</apex:facet>
+		            <apex:outputText value="{!mapSelectedProducts[product].Default_Quantity__c}"/>
+		        </apex:column>
+		        <apex:column >
+		            <apex:facet name="header">{!$Label.Installments}</apex:facet>
+		            <apex:outputText value="{!mapSelectedProducts[product].Installments__c}"/>
+		        </apex:column>
+		        <apex:column >
+		            <apex:facet name="header">{!$Label.List_Price}</apex:facet>
+		            <apex:outputText value="{!mapSelectedProducts[product].List_Price__c}"/>
+		        </apex:column>
+		        <apex:column >
+		            <apex:facet name="header">{!$Label.Product_Groups}</apex:facet>
+		            <apex:outputText value="{!mapSelectedProducts[product].Id_List_Product_Group__r.Name}"/>
+		        </apex:column>
+		    </apex:dataTable>
+		</apex:pageBlock>
+		
+		<!--
+		###############################
+		list of added Add-Ons
+		###############################
+		-->
+		<div style="padding-top:80px;"></div>
+		<span class="s1icon s1icon-c-redcross1 s1icon-sm pageIconPosition"></span>
+		<span style="margin-left:40px; margin-top:-25px !important; margin-bottom:25px !important" class="pageIconPositionLabel">{!$Label.Add_Add_On}</span>
+		 <apex:pageBlock mode="maindetail " tabStyle="Sales_Management__tab">
+		    <apex:dataTable value="{!mapSelectedAddOns}" var="addOn" id="theProductTable" rowClasses="odd,even" 
+		    				styleClass="tableClass" rendered="{!selectedAddOnsSize != 0 }">
+		        <apex:column style="width:30px;">
+		            <apex:commandLink id="commandlinkDeleteAddOn" value="" Styleclass="btn1 btn-warning1 "  
+		            				action="{!deleteAddOnItem}" rerender="TarifManagerForm" immediate="true"
+									onComplete="renderCommissionSection();">
+		            <apex:param name="addOnId" assignTo="{!selectedAddOnToDelete}" value="{!mapSelectedAddOns[addOn].Id}" />
+		        </apex:commandLink>
+		        </apex:column>
+		        <apex:column style="width:80px;">
+		            <apex:facet name="header">{!$Label.Is_Active}</apex:facet>
+		            <apex:outputText styleClass="Active{!mapSelectedAddOns[addOn].Is_Active__c} s1utility "/>
+		        </apex:column>
+		        <apex:column style="text-align:left">
+		            <apex:facet name="header">{!$Label.Name}</apex:facet>
+		            <apex:outputText value="{!mapSelectedAddOns[addOn].Name}"/>
+		        </apex:column>
+		        <apex:column style="text-align:left">
+		            <apex:facet name="header">{!$Label.Type}</apex:facet>
+		            <apex:outputText value="{!mapSelectedAddOns[addOn].Type__c}"/>
+		        </apex:column>
+		        <apex:column style="text-align:left">
+		            <apex:facet name="header">{!$Label.Contract_Addition}</apex:facet>
+		            <apex:outputText value="{!mapSelectedAddOns[addOn].Contract_Addition__c}"/>
+		        </apex:column>
+		    </apex:dataTable>
+		</apex:pageBlock>
+		
+		<!--
+		###############################
+		spinner / popup
+		###############################
+		-->
+		<!--<c:Spinner message="{!$Label.Please_Wait}" />-->
+		<apex:outputPanel id="deletePopupTarif">
+		<div class="modal fade" id="customPopupTarif" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+		     <div class="modal-content">
+		        <div class="modal-header">
+		            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		            <span class="s1icon s1icon-s-question-feed s1icon-sm "></span>
+		            <span class="pageIconPositionLabelpopup">{!$Label.SMC_Tariff_Deleting}</span>
+		            
+		            <h2><apex:outputText value="{!$Label.SMC_Tariff_Deleting} : {!myTarif.Name}" /></h2>
+		             <apex:outputText value="Are you sure you want to delete:  <b>{!myTarif.Name}</b> ?" escape="false"/>
+		
+		            <table width="100%" style="margin-top:50px;">
+		                <tr>
+		                <td><apex:commandButton html-data-dismiss="modal" Styleclass="btnFloatLeft2"  value="Cancel" onclick="return false;" /></td>
+		                <td align="right"><apex:commandButton value="Delete" action="{!deleteTarif}" Styleclass="btnFloatLeft3" status="LoadingSpinner" rerender="TarifOverview, tariffMessages" oncomplete="hideTarifPopup(); scrollToTop(); rerenderDataTable('tariffs');" immediate="true"/>
+		                </td>
+		                </tr>
+		            </table>
+		        </div>
+		           
+		      </div>
+		    </div>
+		</div>
+		
+		</apex:outputPanel>
+
+		<script>
+			function renderCommissionSection(){
+				if(j$('[id$=lockedCheckbox]').is(':checked')){
+					j$(".commissionSection").css("display","");
+				}else if(j$('[id$=productOnlyCheckbox]').is(':checked')){
+					j$(".commissionSection").css("display","none");
+				}else{
+					j$(".commissionSection").css("display","");
+				}
+			}
+
+			function renderCommissionSectionOnEdit(){
+				console.log({!myTarif.Is_locked__c});
+				if({!myTarif.Is_Locked__c}){
+					j$(".commissionSection").css("display","");
+				}else if({!myTarif.Product_only__c}){
+					j$(".commissionSection").css("display","none");
+				}else{
+				   j$(".commissionSection").css("display","");
+				}
+			}
+		</script>
+	
+	</apex:form>
+</apex:page>

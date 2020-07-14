@@ -1,0 +1,184 @@
+<apex:page id="globalChatBot"  Controller="CtrGlobalChatBot" sideBar="false" showHeader="false" standardStylesheets="false" 
+			applyBodyTag="false" applyHtmlTag="false" docType="html-5.0">
+    
+    <apex:includeScript value="/support/console/39.0/integration.js"/>
+          
+    <html xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:v-once="http://vue/fake" 
+          xmlns:v-html="http://vue/fake"
+          xmlns:v-bind="http://vue/fake" 
+          xmlns:v-if="http://vue/fake"
+          xmlns:v-on="http://vue/fake"
+          xmlns:v-model="http://vue/fake"
+          xmlns:v-cloak="http://vue/fake">
+
+
+        <head> 
+        	<title>Chat Bot</title>
+            <apex:slds />
+            <style>
+                #datepicker-app {
+                    font-family: Salesforce Sans, Arial, sans-serif;
+                },
+                [v-cloak] {
+                    display: none !important;
+                } 
+            </style>
+        </head>
+
+	    <body>
+	    	<div id="app" class="slds-scope" v-cloak="">
+	    		<div class="slds-grid slds-wrap">
+				  <div class="slds-col slds-size_7-of-12">
+				    <div>
+				    	<order-detail v-bind:orderid = 'orderId' 
+				    		v-bind:platform = "platform"
+							v-bind:country = "country"
+				    		v-on:populatecustomerid = "populateCustomerId"
+				    		v-on:populateVendorId = "populateVendorId"
+				    		v-on:populatecustomer = "populateCustomer"/>
+				    </div>
+				    <div>	
+				    	<order-history v-bind:customerid = "customerId"  v-bind:platform="platform" v-bind:country="country"
+				    		v-on:updateorderid = "updateOrderId"
+				    		v-on:updatecustomerid ="updateCustomerId"/>
+				    </div>
+				  </div>
+				  <div class="slds-col slds-size_5-of-12">
+				    <div>
+						<restaurant-details v-bind:vendorid="vendorId" v-bind:platform="platform"/>
+				    </div>
+				    <div>
+						<customer-details v-bind:customer="customer"/>
+				    </div>
+				    <div>
+				    	<voucher-details v-bind:platform = "platform"
+										 v-bind:orderid = "orderId"
+										 />
+				    </div>
+				  </div>
+				</div>
+	    	</div>
+	    	
+	    	<script src="/support/console/35.0/integration.js"></script>
+	        <script src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>
+	        
+	        <c:VueCommonComponents />
+	        <c:VueGlobalchatBotComponents />
+
+	        <script>	     
+	        	function initVue(result) {
+	        		console.log("Vue initializaiton called");
+		        	var app = new Vue({
+			            el: "#app",
+			            data: function(){
+			            	return {
+			            		orderId: '',
+			            		customerId: '',
+			            		vendorId:'',
+			            		platform:'',
+								country:'',
+			            		customer: undefined,
+			            		loaderState	: loaderSharedState,
+                        		errorState	: errorHandlerSharedState,
+                        		primaryTabId:''
+			            	}
+			            },
+			            created: function(){
+			            	this.getOrderId();
+			            },
+			            methods:{
+			            	getOrderId: function(){
+			            		//this.platform = 'LieferheldDE';
+			            		this.fetchOrderIdByParam();
+			            	},
+			            	fetchOrderIdByParam: function(){
+							    url 	= window.location.href; 
+							   	result 	= url.split('?');
+							   	if(result[1]){
+							   		params = result[1].split("&");
+							   		for(i=0;i<params.length;i++){
+							   			param = params[i].split("=");
+							   			if(param[0] == 'ordernumber'){
+							   				this.orderId = param[1];
+							   			}else if(param[0] == 'platform'){
+							   				this.platform = param[1].replace("%20"," ").replace("+"," ");
+							   			}else if(param[0] == 'country'){
+                                            this.country = param[1].split("%20").join(' ').split("+").join(' ').trim();
+                                        }
+							   		}
+							   		
+							   		if(!this.orderId || this.orderId == ''){
+							   			this.fetchOrderIdFromChat();
+							   		}
+							   	}else{
+							   		this.fetchOrderIdFromChat();
+							   	} 
+							},
+							fetchOrderIdFromChat: function(){
+								if (sforce.console.isInConsole()){
+				        			sforce.console.getEnclosingPrimaryTabId(this.populateTabId);
+				        		}
+							},
+			            	populateTabId: function(result){
+	        					this.fetchChatDetails(result.id);
+	        					sforce.console.getFocusedSubtabId(this.updateTabName);
+	        					sforce.console.getSubtabIds(result.id,this.showTabId);
+			            	},
+			            	showTabId: function showTabId(result) {
+								//Display the subtab IDs
+								sforce.console.focusSubtabById(result.ids[0],this.focusSuccess);
+							},
+							focusSuccess: function focusSuccess(result){
+							//Report whether going to the open primary tab was successful
+								if (result.success == true) {
+									console.log('Going to the primary tab was successful');
+								} else {
+									console.log('Going to the primary tab was not successful');
+								}
+							},
+			            	updateTabName: function(result){
+			            	    sforce.console.setTabTitle("Order Details",result.id);
+			            	},
+			            	fetchChatDetails: function(value){
+			            		sforce.console.chat.getDetailsByPrimaryTabId(value,this.populateChatDetails);
+			            	},
+			            	populateChatDetails: function(result){
+			            		for(i=0;i<result.details.customDetails.length;i++){
+									if(result.details.customDetails[i].label == 'OrderNumber'){
+										this.orderId = result.details.customDetails[i].value;
+									}else if(result.details.customDetails[i].label == 'Platform'){
+										this.platform = result.details.customDetails[i].value;
+									}else if(result.details.customDetails[i].label == 'Country'){
+										this.country = result.details.customDetails[i].value;
+									}
+			            		}
+			            	},
+			            	populateCustomerId: function(value){
+			            		this.customerId = value;
+			            	},
+			            	populateVendorId: function(value){
+			            		this.vendorId	= value;
+			            	},
+			            	populateCustomer: function(value){
+			            		this.customer = value;
+			            	},
+			            	updateOrderId: function(value){
+			            		this.orderId = value;
+			            	},
+			            	updateCustomerId: function(value){
+			            		this.customerId = value;
+			            	}
+			            }
+			        });
+		        }
+		        
+		        window.addEventListener("load", function() {
+		            initVue();
+		        });
+	        </script>
+	    </body>
+    </html>
+	
+</apex:page>

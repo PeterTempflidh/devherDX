@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>DIFERENCIA DE PRECIOS FALTANTES - PAGO ONLINE UY</name>
+    <style>freeForm</style>
+    <subject>DIFERENCIA DE PRECIOS FALTANTES - PAGO ONLINE UY</subject>
+    <textOnly>Estimada {!Case.Customer_Name__c}, es un gusto saludarte.
+
+Estimado {!Case.Customer_Name__c}, es un gusto saludarte.
+
+
+Nos comunicamos en respuesta a tu consulta sobre el pedido a {!Case.Account} del dia {!Case.Order_Date__c}, te pedimos disculpas por el inconveniente.
+
+
+En esta oportunidad el local no contaba con el stock necesario de productos para completar el pedido.
+
+
+Dado que ya se ha abonado la totalidad del pedido, te reintegramos por medio de un cupón el monto correspondiente a la diferencia (Partial_Refund_Amount__c), podrás verlo reflejado en la sección “Mis cupones” y usar en los próximos 30 días en los locales adheridos al filtro de búsqueda “Cupón”.
+
+
+
+
+Quedamos a las órdenes ante cualquier consulta.
+
+
+
+Saludos Cordiales
+
+{!Case.OwnerFullName}
+
+Atención al Cliente - PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,20 @@
+<messaging:emailTemplate subject="Menu Change Approval Process" recipientType="User" relatedToType="Case">
+<Messaging:htmlEmailBody >
+
+Dear, <br></br>
+<br></br>
+{!relatedTo.Owner.Name} has requested your approval for the following mark-up.<br></br><br></br>
+
+Case Number:       <a href="https://deliveryhero--pandoramvp.cs85.my.salesforce.com/{!relatedTo.Id}">{!relatedTo.CaseNumber}</a><br></br>
+Case Subject:      <a href="https://deliveryhero--pandoramvp.cs85.my.salesforce.com/{!relatedTo.Id}">{!relatedTo.Subject}</a><br></br>
+Related Account:   <a href="https://deliveryhero--pandoramvp.cs85.my.salesforce.com/{!relatedTo.AccountID}">{!relatedTo.Account.Name}</a><br></br>
+<br></br>
+Thank you,<br></br>
+Salesforce
+
+</Messaging:htmlEmailBody>
+
+<messaging:plainTextEmailBody >
+</messaging:plainTextEmailBody>
+
+</messaging:emailTemplate>

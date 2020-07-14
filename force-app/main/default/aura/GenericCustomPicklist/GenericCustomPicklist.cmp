@@ -1,0 +1,46 @@
+<aura:component controller="GenericCustomPicklist_AuraController" implements="force:hasRecordId,force:hasSObjectName,flexipage:availableForAllPageTypes">
+
+    <aura:attribute name="recordId" type="String" description="Id of current record" />
+    <aura:attribute name="sObjectName" type="String" description="API name of current object" />
+    <aura:attribute name="businessRuleProcessName" type="String" description="Business rule name where necessary rule is located" />
+    <aura:attribute name="fieldToDisplay" type="String" description="API name of field we want to display in a picklist" />
+    <aura:attribute name="fieldToUpdate" type="String" description="field which will be updated based on current record" />
+    <aura:attribute name="picklistData" type="List" description="List with picklist options" default="[]" />
+    <aura:attribute name="picklistCustomLabel" type="String" description="Label of picklist" />
+    <aura:attribute name="picklistValue" type="String" description="current value of picklist" />
+    <aura:attribute name="isPleaseSelectOptionDisplayed" type="Boolean" default="true" description="We display ---please select--- only if current value of related record equals to null, but we have we options which can be choosed" />
+    <aura:attribute name="isNoneOptionDisplayed" type="Boolean" default="false" description="We display None only if current value of related record equals to null, but we have we options which can be choosed" />
+    <aura:attribute name="isMessageDisplayed" type="Boolean" default='false' description="True if error/warning/success messages displayed" />
+    <aura:attribute name="messageTitleCustomLabel" type="String" description="Title of error/warning/success message" />
+    <aura:attribute name="messageBodyCustomLabel" type="String" description="Body of error/warning/success message" />
+    <aura:attribute name="messageSeverity" default="error" type="String" description="Body of error/warning/success message" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <lightning:notificationsLibrary aura:id="notificationsLibrary" />
+    <aura:if isTrue="{!v.isMessageDisplayed}">
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-3">
+                <ui:message title="{!v.messageTitleCustomLabel}" severity="{!v.messageSeverity}" closable="false">
+                    {!v.messageBodyCustomLabel}
+                </ui:message>
+            </div>
+        </div>
+    </aura:if>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--1-of-3">
+            <lightning:select aura:id="picklist" label="{!v.picklistCustomLabel}" value="{!v.picklistValue}">
+                <aura:if isTrue="{!v.isPleaseSelectOptionDisplayed}">
+                    <!--This option is unselectable and will be displayed in only case - current value of field is blank, but picklist have more than 1 option to select-->
+                    <option value="pleaseSelect">{!$Label.c.Custom_Picklist_Please_Select_Option}</option>
+                </aura:if>
+                <!--None option represents blank value in database-->
+                <aura:if isTrue="{!v.isNoneOptionDisplayed}">
+                    <option value="">{!$Label.c.Custom_Picklist_None_Option}</option>
+                </aura:if>
+                <aura:iteration items="{!v.picklistData}" var="option">
+                    <option value="{!option}" selected="{!option==v.picklistValue}">{!option}</option>
+                </aura:iteration>
+            </lightning:select>
+            <lightning:button label="Save" onclick="{!c.saveValue}" name="save" class="btn-light slds-m-top_xx-small" />
+        </div>
+    </div>
+</aura:component>

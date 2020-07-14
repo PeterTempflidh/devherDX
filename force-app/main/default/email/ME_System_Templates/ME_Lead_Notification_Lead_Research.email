@@ -1,0 +1,14 @@
+Hello!
+
+A new Lead has been created by a User.
+
+Name of the Company: {!Lead.Restaurant_Name__c}
+City: {!Lead.City}
+Cuisine: {!Lead.Cuisine__c}
+Delivery Area: {!Lead.Area__c}
+
+Click here to view the lead: https://eu3.salesforce.com/{!Lead.Id}
+
+Best,
+
+your Salesforce Team

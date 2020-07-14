@@ -1,0 +1,315 @@
+<!-- 
+    UK fields set for Branding Content 
+    This component assumes to be included inside an apex:form and that
+    slds styleshhets has been already included by parent page
+-->
+<apex:component >
+
+    <apex:attribute name="record" type="Branding_Content__c" required="true" description="Current Branding Content record" />
+
+            <!-- information section  -->
+            <div class="slds-grid slds-wrap slds-box slds-box-small">
+                <div class="slds-col slds-size--1-of-1">
+                    <h3 class="slds-section-title--divider">Information</h3>
+                </div>
+
+                <!-- fields table -->
+                <div class="slds-col slds-size--1-of-1 slds-scrollable--x">
+                    <table id="fieldsTable" class="slds-table slds-table--bordered slds-table--cell-buffer">
+                        <tbody>
+                            <tr>
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.Name.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.Name.Label}">
+                                    <div class="slds-truncate" title="{!record.Name}">
+                                        {!record.Name}
+                                    </div>
+                                </td>
+
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.OwnerId.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.OwnerId.Label}">
+                                    <div class="slds-truncate" title="{!record.Owner.Name}">
+                                        <a href="/{!record.OwnerId}" class="primaryTabLink" onclick="tryToOpenInConsole(event)">
+                                            {!record.Owner.Name}
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.Restaurant_Name__c.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.Restaurant_Name__c.Label}">
+                                    <div class="slds-truncate" title="{!record.Restaurant_Name__r.Restaurant_Name__c}">
+                                        {!record.Restaurant_Name__r.Restaurant_Name__c}
+                                    </div>
+                                </td>
+
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.Type__c.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.Type__c.Label}">
+                                    <div class="slds-truncate" title="{!record.Type__c}">
+                                        {!record.Type__c}
+                                    </div>
+                                </td>
+                                
+                            </tr>
+
+                            <tr>
+
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.Opportunity__c.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.Opportunity__c.Label}">
+                                    <div class="slds-truncate" title="{!record.Opportunity__r.Name}">
+                                        <a href="/{!record.Opportunity__c}" class="subTabLink" onclick="tryToOpenInConsole(event)">{!record.Opportunity__r.Name}</a>
+                                    </div>
+                                </td>
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.Product__c.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.Product__c.Label}">
+                                    <div class="slds-truncate" title="{!record.Product__c}">
+                                         <a href="/{!record.product__c}" class="subTabLink" onclick="tryToOpenInConsole(event)">{!record.product__r.Product_Name__c}</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="slds-field-label slds-cell-shrink"></td>
+                                <td class="slds-field-value"/>
+
+
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.Location__c.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.Location__c.Label}">
+                                    <div class="slds-truncate" title="{!record.Location__c}">
+                                        {!record.Location__c}
+                                    </div>
+                                </td>
+                                
+                            </tr>
+
+                            <tr>
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate" title="{!$ObjectType.Branding_Content__c.fields.Status__c.Label}">
+                                        {!$ObjectType.Branding_Content__c.fields.Status__c.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.Status__c.Label}">
+                                    <div class="slds-truncate" title="{!record.Status__c}">
+                                        {!record.Status__c}
+                                    </div>
+                                </td>
+
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate" title="{!$ObjectType.Branding_Content__c.fields.Description__c.Label}">
+                                        {!$ObjectType.Branding_Content__c.fields.Description__c.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value slds-cell-wrap" data-label="{!$ObjectType.Branding_Content__c.fields.Description__c.Label}">
+                                    <div >
+                                        {!record.Description__c}
+                                    </div>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate" title="{!$ObjectType.Branding_Content__c.fields.Quantity__c.Label}">
+                                        {!$ObjectType.Branding_Content__c.fields.Quantity__c.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.Quantity__c.Label}">
+                                    <div class="slds-truncate" title="{!record.Quantity__c}">
+                                        {!record.Quantity__c}
+                                    </div>
+                                </td>
+
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate" title="{!$ObjectType.Branding_Content__c.fields.Installation_Date__c.Label}">
+                                        {!$ObjectType.Branding_Content__c.fields.Installation_Date__c.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.Installation_Date__c.Label}">
+                                    <div class="slds-truncate" title="{!record.Installation_Date__c}">
+                                        <apex:outputField value="{!record.Installation_Date__c}"/>
+                                    </div>
+                                </td>
+
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- additional details  -->
+            <div class="slds-grid slds-wrap slds-box slds-box-small">
+                <div class="slds-col slds-size--1-of-1">
+                    <h3 class="slds-section-title--divider">Additional Details</h3>
+                </div>
+
+                <!-- fields table -->
+                <div class="slds-col slds-size--1-of-1 slds-scrollable--x">
+                    <table id="fieldsTable" class="slds-table slds-table--bordered slds-table--cell-buffer">
+                        <tbody>
+                            <tr>
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.Size__c.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.Size__c.Label}">
+                                    <div class="slds-truncate" title="{!record.Size__c}">
+                                        {!record.Size__c}
+                                    </div>
+                                </td>
+
+                                 <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.Deposit_Method__c.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.Deposit_Method__c.Label}">
+                                    <div class="slds-truncate" title="{!record.Deposit_Method__c}">
+                                        {!record.Deposit_Method__c}
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.Weight__c.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.Weight__c.Label}">
+                                    <div class="slds-truncate" title="{!record.Weight__c}">
+                                        {!record.Weight__c}
+                                    </div>
+                                </td>
+
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.Number_Of_Copies__c.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.Number_Of_Copies__c.Label}">
+                                    <div class="slds-truncate" title="{!record.Number_Of_Copies__c}">
+                                        {!record.Number_Of_Copies__c}
+                                    </div>
+                                </td>
+
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.Template_Type__c.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.Template_Type__c.Label}">
+                                    <div class="slds-truncate" title="{!record.Template_Type__c}">
+                                        {!record.Template_Type__c}
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.Termination_Reason__c.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value slds-cell-wrap" data-label="{!$ObjectType.Branding_Content__c.fields.Termination_Reason__c.Label}">
+                                    <div>
+                                        {!record.Termination_Reason__c}
+                                    </div>
+                                </td>
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.End_date__c.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.End_date__c.Label}">
+                                    <div class="slds-truncate" title="{!$ObjectType.Branding_Content__c.fields.End_date__c.Label}">
+                                        <apex:outputField value="{!record.End_date__c}" />
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- system information  -->
+            <div class="slds-grid slds-wrap slds-box slds-box-small">
+                <div class="slds-col slds-size--1-of-1">
+                    <h3 class="slds-section-title--divider">System Information</h3>
+                </div>
+
+                <!-- fields table -->
+                <div class="slds-col slds-size--1-of-1 slds-scrollable--x">
+                    <table id="fieldsTable" class="slds-table slds-table--bordered slds-table--cell-buffer">
+                        <tbody>
+                            <tr>
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.CreatedById.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.CreatedById.Label}">
+                                    <div class="slds-truncate" title="{!record.CreatedBy.Name}">
+                                        <a href="/{!record.CreatedById}" class="primaryTabLink" onclick="tryToOpenInConsole(event)">{!record.CreatedBy.name}</a>
+                                    </div>
+                                </td>
+
+                                <td class="slds-field-label slds-cell-shrink">
+                                    <div class="slds-truncate">
+                                        {!$ObjectType.Branding_Content__c.fields.LastModifiedById.Label}
+                                    </div>
+                                </td>
+                                <td class="slds-field-value" data-label="{!$ObjectType.Branding_Content__c.fields.LastModifiedById.Label}">
+                                    <div class="slds-truncate" title="{!record.LastModifiedBy.Name}">
+                                        <a href="/{!record.LastModifiedById}" class="primaryTabLink" onclick="tryToOpenInConsole(event)">{!record.LastModifiedBy.name}</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+</apex:component>

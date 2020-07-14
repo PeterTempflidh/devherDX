@@ -1,0 +1,9 @@
+<apex:page showHeader="false" standardController="Opportunity_Quote__c" sidebar="false" standardStylesheets="false">
+
+Hello,<br></br>
+Unfortunatly your Quote has been rejected.
+
+Comments from the approver: {!Opportunity_Quote__c.Approver_Action_Comments__c}
+
+Please follow the link for further information: <apex:outputlink value="{!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)+'ui/support/servicedesk/ServiceDeskPage#/'+Opportunity_Quote__c.Id_Opportunity__c}">{!Opportunity_Quote__c.Id_Opportunity__r.Name}</apex:outputlink><br></br>
+</apex:page>

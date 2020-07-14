@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>추가 발생 요금</value>
+    </caseValues>
+    <layouts>
+        <layout>AT Additional Charges Layout</layout>
+        <sections>
+            <label><!-- Additional Info --></label>
+            <section>Additional Info</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CD Additional Charges Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Detailed Info --></label>
+            <section>Detailed Info</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CZ Additional Charges Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Detailed Info --></label>
+            <section>Detailed Info</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>DE Additional Charges Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Detailed Info --></label>
+            <section>Detailed Info</section>
+        </sections>
+        <sections>
+            <label><!-- JustOn Connector --></label>
+            <section>JustOn Connector</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>DH AU - Additional Charges Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>FP Additional Charges Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Detailed Info --></label>
+            <section>Detailed Info</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>HU Additional Charges Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Detailed Info --></label>
+            <section>Detailed Info</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PY Additional Charges Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Detailed Info --></label>
+            <section>Detailed Info</section>
+        </sections>
+        <sections>
+            <label><!-- JustOn Connector --></label>
+            <section>JustOn Connector</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SE Additional Charges Layout</layout>
+        <sections>
+            <label><!-- Additional Info --></label>
+            <section>Additional Info</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Talabat Additional Charges Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Detailed Info --></label>
+            <section>Detailed Info</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>UK Additional Charges Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Detailed Info --></label>
+            <section>Detailed Info</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Yogiyo Additional Charges Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>기회 정보</label>
+            <section>Opportunity Information</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>추가 발생 요금 이름</nameFieldLabel>
+    <recordTypes>
+        <label><!-- AT Additional Charges --></label>
+        <name>AT_Additional_Charges</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- CD Additional Charges --></label>
+        <name>CD_Additional_Charges</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Czech Republic Additional Charges --></description>
+        <label><!-- CZ Additional Charges --></label>
+        <name>CZ_Additional_Charges</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DE Additional Charges --></label>
+        <name>DE_Additional_Charges</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DH AU Additional Charges --></label>
+        <name>DH_AU_Additional_Charges</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FI Additional Charges --></label>
+        <name>FI_Additional_Charges</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FP Additional Charges --></label>
+        <name>FP_Additional_Charges</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Hungary Additional Charges --></description>
+        <label><!-- HU Additional Charges --></label>
+        <name>HU_Additional_Charges</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Record type for Pedidos Ya and in future to be global for all countries --></description>
+        <label><!-- PY Additional Charges --></label>
+        <name>PY_Additional_Charges</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SE Additional Charges --></label>
+        <name>SE_Additional_Charges</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Talabat Additional Charges --></label>
+        <name>Talabat_Additional_Charges</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- UK Additional Charges --></label>
+        <name>UK_Additional_Charges</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Yogiyo Additional Charges --></label>
+        <name>Yogiyo_Additional_Charges</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- You can&apos;t edit Additional Charges record of &quot;Refund or &apos;Adjustment&apos; type after approval. --></errorMessage>
+        <name>FP_AdjustRefund_No_Edit_After_Approval</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please fill the fields Total Amount, Effective Start Date, Specifications to be able to continue. --></errorMessage>
+        <name>FP_Check_Required_Fields</name>
+    </validationRules>
+</CustomObjectTranslation>

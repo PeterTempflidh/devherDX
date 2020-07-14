@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>FP Inbound</label>
+    <protected>false</protected>
+    <values>
+        <field>Entity_Name__c</field>
+        <value xsi:type="xsd:string">FP_Inbound</value>
+    </values>
+    <values>
+        <field>Value_Assignment__c</field>
+        <value xsi:type="xsd:string">{
+&quot;101:=Country__c&quot;:&quot;EmailToAddress__c==support@foodpanda.my,Malaysia&quot;,
+&quot;102:=Country__c&quot;:&quot;EmailToAddress__c==support@foodpanda.sg,Singapore&quot;,
+&quot;103:=Country__c&quot;:&quot;EmailToAddress__c==support@foodpanda.hk,Hong Kong&quot;,
+&quot;104:=Country__c&quot;:&quot;EmailToAddress__c==support@foodpanda.tw,Taiwan&quot;,
+&quot;105:=Country__c&quot;:&quot;EmailToAddress__c==support@foodpanda.ph,Philippines&quot;,
+&quot;106:=Country__c&quot;:&quot;EmailToAddress__c==support@foodpanda.co.th,Thailand&quot;,
+&quot;107:=Country__c&quot;:&quot;EmailToAddress__c==support@foodpanda.com.bd,Bangladesh&quot;,
+&quot;108:=Country__c&quot;:&quot;EmailToAddress__c==support@foodpanda.pk,Pakistan&quot;,
+&quot;109:=Country__c&quot;:&quot;EmailToAddress__c==support@foodpanda.com.kh,Cambodia&quot;,
+&quot;110:=Country__c&quot;:&quot;EmailToAddress__c==support@foodpanda.com.mm,Myanmar&quot;,
+&quot;111:=Country__c&quot;:&quot;EmailToAddress__c==support@foodpanda.la,Laos&quot;,
+&quot;112:=Country__c&quot;:&quot;EmailToAddress__c==restaurace@damejidlo.cz||zakaznici@damejidlo.cz||ffzakaznici@damejidlo.cz||ffrestaurace@damejidlo.cz,Czech Republic&quot;,
+&quot;113:=Country__c&quot;:&quot;EmailToAddress__c==info@foodora.fi||corporate@foodora.fi||partner@foodora.fi, Finland&quot;,
+&quot;114:=Country__c&quot;:&quot;EmailToAddress__c==support@foodora.se||corporate@foodora.se||partner@foodora.se, Sweden&quot;,
+&quot;115:=Country__c&quot;:&quot;EmailToAddress__c==wecare@hungerstation.com||g@hungerstation.com||dh_sf_hungerstation_escalations@deliveryhero.com,Kingdom of Saudi Arabia&quot;,
+&quot;116:=AND&quot;:&quot;&quot;,
+&quot;201:=OwnerId&quot;:&quot;EmailToAddress__c==support@foodpanda.my,FP_CS_MY_Email&quot;,
+&quot;202:=OwnerId&quot;:&quot;EmailToAddress__c==support@foodpanda.sg,FP_CS_SG_Email&quot;,
+&quot;203:=OwnerId&quot;:&quot;EmailToAddress__c==support@foodpanda.hk,FP_CS_HK_Email&quot;,
+&quot;204:=OwnerId&quot;:&quot;EmailToAddress__c==support@foodpanda.tw,FP_CS_TW_Email&quot;,
+&quot;205:=OwnerId&quot;:&quot;EmailToAddress__c==support@foodpanda.ph,FP_CS_PH_Email&quot;,
+&quot;206:=OwnerId&quot;:&quot;EmailToAddress__c==support@foodpanda.co.th,FP_CS_TH_Email&quot;,
+&quot;207:=OwnerId&quot;:&quot;EmailToAddress__c==support@foodpanda.com.bd,FP_CS_BD_Email&quot;,
+&quot;208:=OwnerId&quot;:&quot;EmailToAddress__c==support@foodpanda.pk,FP_CS_PK_Email&quot;,
+&quot;209:=OwnerId&quot;:&quot;EmailToAddress__c==support@foodpanda.com.kh,FP_CS_KH_Email&quot;,
+&quot;210:=OwnerId&quot;:&quot;EmailToAddress__c==support@foodpanda.com.mm,FP_CS_MM_Email&quot;,
+&quot;211:=OwnerId&quot;:&quot;EmailToAddress__c==support@foodpanda.la,FP_CS_LA_Email&quot;,
+&quot;212:=OwnerId&quot;:&quot;EmailToAddress__c==restaurace@damejidlo.cz||ffrestaurace@damejidlo.cz,CZ_PS_Cases&quot;,
+&quot;213:=OwnerId&quot;:&quot;EmailToAddress__c==zakaznici@damejidlo.cz||ffzakaznici@damejidlo.cz,CZ_CS_Cases&quot;,
+&quot;214:=OwnerId&quot;:&quot;EmailToAddress__c==info@foodora.fi,FI_Customer_Request&quot;,
+&quot;215:=OwnerId&quot;:&quot;EmailToAddress__c==corporate@foodora.fi,FI_Corporate_Customer_Request&quot;,
+&quot;216:=OwnerId&quot;:&quot;EmailToAddress__c==partner@foodora.fi,FI_Restaurant_Inbound&quot;,
+&quot;217:=OwnerId&quot;:&quot;EmailToAddress__c==support@foodora.se,SE_Customer_Request&quot;,
+&quot;218:=OwnerId&quot;:&quot;EmailToAddress__c==corporate@foodora.se,SE_Corporate_Customer_Request&quot;,
+&quot;219:=OwnerId&quot;:&quot;EmailToAddress__c==partner@foodora.se,SE_Restaurant_Inbound&quot;,
+&quot;220:=OwnerId&quot;:&quot;EmailToAddress__c==wecare@hungerstation.com,HS_CS_Case_Food_English&quot;,
+&quot;221:=OwnerId&quot;:&quot;EmailToAddress__c==g@hungerstation.com,HS_CS_Case_Picker&quot;,
+&quot;222:=OwnerId&quot;:&quot;EmailToAddress__c==dh_sf_hungerstation_escalations@deliveryhero.com,HS_CS_Case_Fraud&quot;,
+&quot;223:=AND&quot;:&quot;&quot;,
+&quot;301:=Type&quot;:&quot;Type==ISBLANK&amp;&amp;EmailToAddress__c==restaurace@damejidlo.cz||ffrestaurace@damejidlo.cz,Partner&quot;,
+&quot;302:=Type&quot;:&quot;Type==ISBLANK&amp;&amp;EmailToAddress__c==zakaznici@damejidlo.cz||ffzakaznici@damejidlo.cz,Customer&quot;,
+&quot;303:=Type&quot;:&quot;Type==ISBLANK&amp;&amp;EmailToAddress__c==srt_english@foodpanda.my||srt_mandarin@foodpanda.com||srt_cantonese@foodpanda.com||srt_thai@foodpanda.com||srt_lao@foodpanda.com||srt_khmer@foodpanda.com||srt_burmese@foodpanda.com||srt_urdu@foodpanda.com||srt_bengali@foodpanda.my,Customer&quot;,
+&quot;304:=Type&quot;:&quot;Type==ISBLANK&amp;&amp;EmailToAddress__c==info@foodora.fi||corporate@foodora.fi||support@foodora.se||corporate@foodora.se,Customer&quot;,
+&quot;305:=Type&quot;:&quot;Type==ISBLANK&amp;&amp;EmailToAddress__c==partner@foodora.fi||partner@foodora.se,Partner&quot;,
+&quot;306:=Type&quot;:&quot;Type==ISBLANK&amp;&amp;EmailToAddress__c==wecare@hungerstation.com||g@hungerstation.com||dh_sf_hungerstation_escalations@deliveryhero.com,Customer&quot;,
+&quot;307:=Type&quot;:&quot;Type==ISBLANK,Customer&quot;,
+&quot;308:=AND&quot;:&quot;&quot;,
+&quot;401:=Platform__c&quot;:&quot;EmailToAddress__c==restaurace@damejidlo.cz||zakaznici@damejidlo.cz||ffzakaznici@damejidlo.cz||ffrestaurace@damejidlo.cz,Damejidlo&quot;,
+&quot;402:=Platform__c&quot;:&quot;EmailToAddress__c==info@foodora.fi||corporate@foodora.fi||partner@foodora.fi||support@foodora.se||corporate@foodora.se||partner@foodora.se,Foodora&quot;,
+&quot;403:=Platform__c&quot;:&quot;EmailToAddress__c==wecare@hungerstation.com||g@hungerstation.com||dh_sf_hungerstation_escalations@deliveryhero.com,Hungerstation&quot;,
+&quot;404:=Platform__c&quot;:&quot;EmailToAddress__c==ISNOTBLANK,Foodpanda&quot;
+}</value>
+    </values>
+</CustomMetadata>

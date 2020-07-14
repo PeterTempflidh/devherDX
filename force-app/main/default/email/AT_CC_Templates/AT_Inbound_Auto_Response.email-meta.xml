@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>AT_Letterhead</letterhead>
+    <name>AT Inbound Auto-Response</name>
+    <style>freeForm</style>
+    <subject>{!If(ISPICKVAL(Case.Origin,&apos;Email&apos;),&apos;Re: &apos;+Case.Subject,&apos;Deine Anfrage bei mjam&apos;)}</subject>
+    <textOnly>Sehr geehrter Kunde, sehr geehrter Partner,
+
+derzeit erreichen uns sehr viele Anfragen. Die Bearbeitung Ihrer Anfrage kann daher aktuell etwas mehr Zeit in Anspruch nehmen. Wir bitten um Ihr Verständnis.
+
+Mit freundlichen Grüßen,
+Ihr Mjam Team
+
+
+Hinweis: Dies ist eine automatisch generierte Email. Antworten hierauf können leider nicht bearbeitet werden. Bei Fragen besuchen Sie gerne unser Helpcenter auf www.mjam.net.
+
+
+Nutze gern auch unseren Chat und erhalte live Support.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>FP-TH onboarding email for Menu review</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP TH Send ONB Email</name>
+    <style>freeForm</style>
+    <subject>{!Case.Account} - Your foodpanda menu preview link</subject>
+    <textOnly>Dear Partner,  
+
+Welcome to foodpanda! 
+
+We are excited to have you on board with us!  
+
+Your menu has now been completed by our content team.  You can view your menu via your Restaurant Portal account here. Your Restaurant Portal login credentials are provided in a separate email titled &quot;Welcome to Restaurant Portal&quot; that has already been sent to you.  
+
+If you have not received the email, please submit a request ticket over here by selecting the &quot;Device, Software, Restaurant Portal Access&quot; option.  
+
+Alternatively, you may have a look at your online menu in the preview link here: {!Case.Menu_URL__c}  
+
+If you would like further assistance for the completed menu, please click the following link: https://FoodpandaSG.formstack.com/forms/welcomemenudh_th?OID={!Case.OpportunityId__c}&amp;OStg=&amp;OName=&amp;OWID=&amp;Cdate=
+
+Any questions? Feel free to contact us via phone at +66 2 329 5771 We are happy to help you!  
+
+Sincerely, 
+Your foodpanda Partner Care Team
+
+
+ถึงพาร์ทเนอร์,  ยินดีต้อนรับสู่ Foodpanda! เรามีความยินดีเป็นอย่างมากที่ได้ร่วมงานกับคุณ!  ทางทีมคอนเทนท์ของเราได้สร้างเมนูของคุณเสร็จสมบูรณ์แล้ว  คุณสามารถดูหน้าเมนูของคุณผ่านบัญชี Restaurant Portal ของคุณได้ที่นี่ &lt;https://foodpanda.portal.restaurant/login&gt; ชื่อบัญชีและรหัสล็อคอิน Restaurant Portal ของคุณได้ถูกส่งไปยังอีเมลของคุณโดยใช้ชื่ออีเมล &quot;ยินดีต้อนรับสู่ Restaurant Portal&quot;  หากคุณยังไม่ได้รับอีเมลดังกล่าว กรุณายื่นคำขอรับอีเมลอีกครั้งโดยเข้าไปที่ &lt;https://foodpandasg.formstack.com/forms/foodpanda_support_th&gt; เลือกตัวเลือก &quot;อุปกรณ์, ซอฟท์แวร์, การเข้าถึง Restaurant Portal&quot;  เมื่อคุณล็คอินสำเร็จแล้ว คุณสามารถดูตัวอย่างเมนูออนไลน์ของคุณได้ผ่านลิ้งค์: {!Case.Menu_URL__c}  หากคุณต้องการความช่วยเหลือเกี่ยวกับเมนูดังกล่าว กรุณาคลิ๊กที่ลิ้งค์: https://FoodpandaSG.formstack.com/forms/welcomemenudh_th_qa?OID={!Case.OpportunityId__c}&amp;OStg=&amp;OName=&amp;OWID=&amp;Cdate= หากมีคำถามเพิ่มเติม คุณสามารถติดต่อเรามาที่ +66 2 329 5771 เราพร้อมช่วยเหลือคุณเสมอ!  ด้วยความเคารพเป็นอย่างสูง  ศูนย์ช่วยเหลือพาร์ทเนอร์ Foodpanda</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

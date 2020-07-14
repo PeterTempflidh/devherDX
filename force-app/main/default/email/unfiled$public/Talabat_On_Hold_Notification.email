@@ -1,0 +1,9 @@
+Hi, {!Account.OwnerFullName}!
+
+The Menu Typing of one of your Accounts ({!Account.Name}) has been put on hold and could not be continued. The Person in Charge has left this comment: 
+"{!Case.Description}"
+
+Click the link to access the Case:
+{!Case.Link}
+
+Your Content Team

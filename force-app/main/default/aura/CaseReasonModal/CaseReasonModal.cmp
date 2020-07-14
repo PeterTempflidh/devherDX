@@ -1,0 +1,26 @@
+<aura:component access="global" implements="force:lightningQuickAction,force:hasRecordId,force:hasSObjectName,flexipage:availableForRecordHome"
+                controller="CaseControllerLightning"> 
+    <ltng:require styles="{!$Resource.SLDS274 + '/assets/styles/lightning-design-system-ltng.css'}"/>
+    <lightning:notificationsLibrary aura:id="notificationsLibrary"/>
+
+   
+    <aura:attribute name="ModalBoxCmp" type="boolean" default="false"/>
+    <aura:attribute name="modalTitle" type="String" default="Modal Title"/>
+    <aura:attribute name="buttonText" type="String" default="Button text"/>
+    <aura:attribute name="showFooter" type="boolean" default="Show footer buttons"/>
+    <aura:attribute name="lookupFieldName" type="String" default="CaseId"/>
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    <aura:attribute name="lookupRecordId" type="Id" />    
+
+
+		<!--lookuprecord id loaded before init, hence this is added to load the 
+                    case reason component after  lookuprecordid is availabel-->
+            <aura:if isTrue="{!v.lookupRecordId}">
+                <lightning:card>
+                    <c:CaseReason aura:id="caseReasonComponent" recordId="{!v.lookupRecordId}" 
+                    lookupFieldName="{!v.lookupFieldName}" 
+					showFooter="{!v.showFooter}" />
+                </lightning:card>
+            </aura:if>
+      
+</aura:component>

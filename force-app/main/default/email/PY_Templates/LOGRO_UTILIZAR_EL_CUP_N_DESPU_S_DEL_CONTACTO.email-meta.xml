@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>LOGRO UTILIZAR EL CUPÓN DESPUÉS DEL CONTACTO</name>
+    <style>freeForm</style>
+    <subject>LOGRO UTILIZAR EL CUPÓN DESPUÉS DEL CONTACTO</subject>
+    <textOnly>Estimada {!Case.Customer_Name__c},   es un gusto saludarte,
+
+Estimado {!Case.Customer_Name__c},   es un gusto saludarte,
+
+
+Te contactamos en respuesta a tu consulta sobre el cupón, notamos que has logrado utilizarlo correctamente.
+
+
+Para futuras situaciones te comentamos que para ver si cuentas con cupones, puedes ingresar en Menú &gt; Mis cupones y se desplegaran los cupones otorgados en caso de contar con ellos.
+
+
+En caso de presentar algún inconveniente con éstas indicaciones, puedes responder este email, y de ser posible, enviar una captura de pantalla adjunta, tanto sobre lo que visualizas en tus cupones como en la parte de seleccionarlo al finalizar el pedido.
+
+
+Quedamos a las órdenes ante cualquier consulta.
+
+
+Saludos,
+{!Case.OwnerFullName}
+Atención al Cliente PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,4 @@
+<apex:page controller="CtrYogiyo_QuoteVFTemplate_Service" showheader="false" sidebar="false" standardStylesheets="false">
+<c:SE_Quote_PP acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}"/>
+
+</apex:page>

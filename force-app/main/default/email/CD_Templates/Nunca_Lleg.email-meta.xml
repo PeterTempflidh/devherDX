@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Clickdelivery</letterhead>
+    <name>Nunca Llegó</name>
+    <style>formalLetter</style>
+    <subject>Nunca Llegó</subject>
+    <textOnly>Usuario confirma que sí fue entregada
+
+Hola (Nombre del usuario), agradecemos tu confirmación en la entrega del pedido y te ofrecemos disculpas por la demora en la entrega. Trabajaremos día a día junto a los restaurantes para mejorar nuestro servicio. Que tengas feliz día
+
+Restaurante confirma entrega
+
+Hola (Nombre del usuario), gracias por contactarnos. Te queremos informar que nos comunicamos con el establecimiento y nos indican que la orden fue entregada correctamente. Por favor nos podrías confirmar esta información. Quedamos atentos a tu respuesta
+
+Usuario no contesta para validar si fue entregada
+
+Hola (Nombre del usuario), queremos hablar contigo pero no ha sido posible encontrarte en el número que nos brindas  (1234567890). Nos gustaría saber en qué momento nos podemos contactar contigo o si tienes otro número de contacto para verificar la entrega de tu pedido.  Que tengas buen día
+
+No se llama por la hora
+
+Hola (Nombre del usuario), te queremos pedir disculpas por no haberte dado una respuesta de inmediato a tu solicitud. Queremos informarte que (brindar respuesta según tu solicitud  pedido no entregado )
+Nuestros domi héroes están 24/7 para colaborarte con todo lo que necesites</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

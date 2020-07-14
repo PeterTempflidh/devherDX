@@ -1,0 +1,13 @@
+Dear {!User.Name},
+
+{!User.Name} has requested your approval for the following opportunity quote item: 
+
+Quote:https://deliveryhero.my.salesforce.com/console#%2F{!Opportunity_Quote__c.Id}
+
+Related Account: {!Opportunity_Quote__c.Id_Account__c}
+
+Related Opportunity: {!Opportunity_Quote__c.Id_Opportunity__c}
+
+
+Thank you,
+Salesforce

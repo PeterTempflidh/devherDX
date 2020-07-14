@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>DH AU Customer Chat SurveyGizmo</name>
+    <style>none</style>
+    <subject>Were you satisfied ?</subject>
+    <textOnly>DeliveryHero
+
+This survey will just take a second
+
+Were you satisfied?
+
+Hi {!LiveChatTranscript.User_Name__c},
+
+Thanks for contacting Delivery Hero Customer Care!
+
+On a scale of 0 to 10 - how likely are you to recommend Delivery Hero to a friend or colleague?
+
+We look forward to receiving your answer!
+Your Delivery Heroes
+
+Not Likely            Extremely Likely
+
+LOGIN | ORDERS | CONTACT
+
+GET THE APP:
+
+VISIT US HERE:
+
+To unsubscribe from receiving customer service surveys in the future please click Unsubscribe.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>DE - CC - DHG Restaurant KEY Account</name>
+    <publicFolderAccess>ReadOnly</publicFolderAccess>
+    <sharedTo>
+        <group>DE_Restaurant_Operations</group>
+        <group>Global_International_Team</group>
+        <role>DE_Customer_Care</role>
+        <role>DE_Customer_Care_Management</role>
+    </sharedTo>
+</EmailFolder>

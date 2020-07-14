@@ -1,0 +1,314 @@
+<!-- SP-495 / SP-501 --> 
+<apex:page id="thePage" standardController="Asset__c" extensions="CtrAssetScreen" standardStylesheets="true" showHeader="true" sidebar="true">
+    <apex:includeScript value="/support/console/35.0/integration.js"/>
+    <apex:includeScript value="/soap/ajax/35.0/connection.js"/>
+
+    <apex:includeScript value="{!URLFOR($Resource.jq211)}"/>
+    <apex:includeScript value="/resource/bootbox/bootstrap.min.js"/>
+    <apex:includeScript value="/resource/bootbox/bootbox.min.js"/>
+    <apex:includeScript value="/resource/MultiSelect/js/jquery.multi-select.js"/>
+    <link rel='stylesheet' type='text/css' href='/resource/bootbox/bootstrapV1.css' />
+    <link rel='stylesheet' type='text/css' href='/resource/MultiSelect/css/multi-select.css'/>
+    <style type="text/css">
+        .message {
+            -moz-border-radius: 4px;
+            -webkit-border-radius: 4px;
+            border-radius: 4px;
+        }
+        .errorM6, .errorM4, .errorM3, .errorM2, .errorS1 {
+            border-color: #c00;
+        }
+        .message {
+            background-color: #ffc;
+            border-style: solid;
+            border-width: 1px;
+            color: #000;
+            padding: 6px 8px 6px 6px;
+            margin: 4px 20px;
+        }
+    </style> 
+    <script>
+    var jqs = $.noConflict();
+    sforce.connection.sessionId='{!GETSESSIONID()}';
+        function setTabTitle() {
+            //Set the current tab's title
+            sforce.console.setTabTitle('Asset: {!theAsset.Name}');
+        }
+        var pageLoad = window.onload;
+        window.onload = function() {
+            jqs('input[name=new00N8E000000nicM]').css('display','none');
+              if(pageLoad){
+                pageLoad();
+              }
+              setTabTitle();
+        }
+        
+        function setFocusOnLoad() {}
+        var primaryTabId;
+        var subTabId;
+        function testGetFocusedPrimaryTabId() {
+                sforce.console.getEnclosingPrimaryTabId(showTabId);
+            }
+    
+            var showTabId = function showTabId(result) {
+                console.log('result: '+result.id);
+                primaryTabId = result.id;
+                sforce.console.refreshPrimaryTabById(primaryTabId, true,sforce.console.getEnclosingTabId(closeSubtab));
+            };
+    
+            var closeSubtab = function closeSubtab(result) {
+                subTabId = result.id;
+                console.log('subtab: '+subTabId);
+                sforce.console.openSubtab(primaryTabId,'/{!Asset__c.id}',true,'{!Asset__c.Name}',subTabId);
+                console.log('subtab2: '+subTabId);
+            };
+    
+            function reloadParent(){
+                    console.log('hello1');
+    
+                   if (sforce.console.isInConsole()) {
+                        console.log('hello');
+                        testGetFocusedPrimaryTabId();
+                    }else{
+                        window.parent.location.href="/{!Asset__c.id}";
+                    }
+                return true;
+            }
+        function tracking() {
+            var trackingUrl = '{!$Label.Tracking_Package_Link}'.replace('##trackingNumber##', '{!theAsset.Tracking_Number__c}');
+            window.open(trackingUrl,'_blank');
+        }
+
+var result = sforce.connection.describeSObject("Replacement_Order__c");
+var reasonSelect = jqs('<select id="reasonSelect" name="reasonSelect"></select>');
+var opt1 = jqs('<option value="--">--</option>');
+opt1.appendTo(reasonSelect);
+for (var i=0; i<result.fields.length; i++) {
+  var field = result.fields[i];
+  if(field.name == 'Reason__c'){
+      var oPicklistVals = field.picklistValues;
+       for (var b=0; b<oPicklistVals.length; b++) 
+       {
+            var opt = jqs('<option value="'+oPicklistVals[b].value+'">'+oPicklistVals[b].value+'</option>');
+            opt.appendTo(reasonSelect); 
+       }
+    }
+}
+var replacementNotes = jqs('<div><textarea id="rNotes" rows="4" cols="20" /></div>');
+var options = {!productItems};
+
+options.sort(function (a, b) {
+   var aVal = a.Product_Name__c + ' - ' + a.List_Price__c;
+   var bVal = b.Product_Name__c + ' - ' + b.List_Price__c;
+   return aVal.localeCompare(bVal);
+});
+
+console.log(options);
+var multiDivCh = jqs('<div />');
+var selectDiv = jqs('<div />');
+var errorDiv = jqs('<div ><div id="errorddd" class="message errorM3" role="alert" style="display:none"><div class="messageText" id="errorText"></div></div></div>');
+
+
+var multiSelectCh = jqs('<select multiple="multiple" id="my-selectCH" name="my-selectCH"></select>');
+/*var multiDiv = jqs('<div />');
+var multiSelect = jqs('<select multiple="multiple" id="my-select" name="my-select"></select>');*/
+jqs.each(options,function(i,val){
+    var opt = jqs('<option value="'+val.Id+'">'+val.Product_Name__c+' - '+val.List_Price__c+'</option>');
+    opt.appendTo(multiSelectCh); 
+    /*if(val.Requires_Additional_Charge__c==true){
+        var opt = jqs('<option value="'+val.Id+'">'+val.Product_Name__c+' - '+val.List_Price__c+'</option>');
+        opt.appendTo(multiSelectCh); 
+    }else{
+       var opt = jqs('<option value="'+val.Id+'">'+val.Product_Name__c+' - '+val.List_Price__c+'</option>');
+        opt.appendTo(multiSelect); 
+    }*/
+    
+});
+multiSelectCh.appendTo(multiDivCh);
+reasonSelect.appendTo(selectDiv);
+  
+
+    function replacement(){
+       bootbox.dialog({
+                title: "",
+                message: ''+jqs(errorDiv).html()+'<div class="row">  ' +
+                    '<div class="col-md-12"> ' +
+                    '<div class="form-group"> ' +
+                    '<label class="col-md-1 control-label" for="name">Select Products</label> ' +
+                    '<div class="col-md-1"> ' +jqs(multiDivCh).html()+
+                    '</div> </div><br/>' +
+                    '<div class="form-group"> ' +
+                    '<label class="col-md-1 control-label" for="name">Select Reason</label> ' +
+                    '<div class="col-md-1"> ' +jqs(selectDiv).html()+
+                    '</div> </div><br/>' +
+                    '<div class="form-group"> ' +
+                    '<label class="col-md-1 control-label" for="name">Replacement Notes</label> ' +
+                    '<div class="col-md-1"> ' +jqs(replacementNotes).html()+
+                    '</div> </div>' +
+                    '</div>' +
+                    '</div>',
+                buttons: {
+                    success: {
+                        label: "Save",
+                        className: "btn-success",
+                        callback: function () {
+                            var charge = jqs('#my-selectCH').val();
+                            var res = jqs('#reasonSelect').val();
+                            var messagetext = jqs("#errorText");
+                            var notesData = jqs("#rNotes").val();
+                            console.log('notesData: '+notesData);
+                            console.log(messagetext);
+                            messagetext.html("");
+                            if(res!=null && res!='--'){
+                                if(charge!=null){
+                                    if(notesData!=null){
+                                        callAssetReplacement('\''+charge+'#::#'+res+'#::#'+notesData+'\'');
+                                    }else{
+                                        callAssetReplacement('\''+charge+'#::#'+res+'\'');
+                                    }
+                                }else{
+                                    var err = jqs('<div>Select Product before saving.</div>');
+                                    err.appendTo(messagetext);
+                                    jqs("#errorddd").css('display','block');
+                                    console.log('err: '+messagetext);
+                                    return false;
+                                }
+                            }else{
+                                var err = jqs('<div>Select Reason before saving.</div>');
+                                err.appendTo(messagetext);
+                                jqs("#errorddd").css('display','block');
+                                console.log('err: '+messagetext);
+                                return false;
+                            }
+                            
+                            console.log('res: '+res);
+                            
+                            //var noCharge = jqs('#my-select').val();
+                            console.log("Hello " + charge);
+                        }
+                    }
+                }
+            }
+        ).find('.modal-content').addClass( "success" ); 
+    }
+        
+    </script>
+
+    <apex:form id="theForm">
+        <apex:actionFunction action="{!assetReplacement}" name="callAssetReplacement" reRender="theForm,Replacements" status="LoadingSpinner">
+        <apex:param id="aname" name="products" value="{!products}" />
+        </apex:actionFunction>
+        <apex:outputPanel id="theOutput">
+        <apex:sectionHeader id="sectionHeader" title="Asset" subtitle="{!theAsset.Name}"/>
+        <apex:pageBlock title="{!$Label.Asset_Detail}" mode="mainDetail" id="pblkDetail">
+            <apex:pageMessages escape="false"/>
+            <apex:pageBlockButtons location="both">
+                <apex:commandButton id="editBtn" action="{!switchToEditMode}" value="Edit" rendered="{!viewMode}" />
+                <apex:commandButton id="cloneBtn" action="{!cloneAsset}" value="Clone" rendered="{!displayCloneButton}" rerender="theForm,functionSection" 
+                					oncomplete="openAssetInNewTab()"/> 
+                
+                <!-- <apex:commandButton id="replacementBtn" value="Replace Asset" onclick="replacement()" rendered="{!if(viewMode,if(theAsset.Opportunity__r.Company_Code__c='UK','true','false'),'false')}" reRender=""/> -->
+                <apex:commandButton id="saveBtn" action="{!saveDetails}" style="display:none" value="Save" />
+                <apex:commandButton id="cancelBtn" action="{!switchToViewMode}" style="display:none" value="Cancel"/>
+                <!-- extra save/cancel button. InlineEditSupport needs to have the buttons as style="display:none" -->
+                <apex:commandButton id="saveBtnRender" action="{!saveDetails}" rendered="{!editMode}" value="Save" />
+                <apex:commandButton id="cancelBtnRender" action="{!switchToViewMode}" rendered="{!editMode}" value="Cancel" />
+                <apex:commandButton id="dhlButton" onClick="tracking()" rendered="{!seAsset}" value="Track Package" />
+                <input id="replacementBtn" type="button" name="replacementBtn" value="Replace Asset" onclick="replacement()" class="btn" style="display:{!if(viewMode,if(showReplacementBtn=true,'inline','none'),'none')}" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection >
+                <!--<apex:inputField value="{!theAsset.Name}" />
+                <apex:inputField value="{!theAsset.Shipping_Address__c}" /> -->
+                <apex:repeat value="{!fields_detail}" var="f">
+                    <apex:inputField value="{!theAsset[f.fieldPath]}" rendered="{!if(AND(f.fieldPath='Initiate_Return__c',theAsset.Stock_Item__c=null),false,editMode)}"/>
+                    <apex:outputField value="{!theAsset[f.fieldPath]}" rendered="{!if(AND(f.fieldPath='Initiate_Return__c',theAsset.Stock_Item__c=null),false,viewMode)}">
+                        <apex:inlineEditSupport showOnEdit="saveBtn,cancelBtn" hideOnEdit="editBtn,replacementBtn" event="ondblclick" resetFunction="resetInlineEdit"/>
+                    </apex:outputField>
+                </apex:repeat>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="{!$Label.Deposit_Info}" rendered="{!if(fields_deposit=null,false,true)}">
+                <apex:repeat value="{!fields_deposit}" var="f">
+                    <apex:inputField value="{!theAsset[f.fieldPath]}" rendered="{!editMode}" />
+                    <apex:outputField value="{!theAsset[f.fieldPath]}" rendered="{!viewMode}">
+                        <apex:inlineEditSupport showOnEdit="saveBtn,cancelBtn" hideOnEdit="editBtn,replacementBtn" event="ondblclick" resetFunction="resetInlineEdit"/>
+                    </apex:outputField>
+                </apex:repeat>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="{!$Label.Stock_Item_Information}">
+                <apex:repeat value="{!fields_stockItemInfo}" var="f">
+                    <apex:inputField value="{!theAsset[f.fieldPath]}" rendered="{!editMode}"/>
+                    <apex:outputField value="{!theAsset[f.fieldPath]}" rendered="{!viewMode}">
+                        <apex:inlineEditSupport showOnEdit="saveBtn,cancelBtn" hideOnEdit="editBtn,replacementBtn" event="ondblclick" resetFunction="resetInlineEdit"/>
+                    </apex:outputField>
+                </apex:repeat>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="{!$Label.Failed_Delivery_Stock_Items}" rendered="false">
+                <apex:repeat value="{!fields_deliveryStockItem}" var="f">
+                    <apex:inputField value="{!theAsset[f.fieldPath]}" rendered="{!editMode}"/>
+                    <apex:outputField value="{!theAsset[f.fieldPath]}" rendered="{!viewMode}">
+                        <apex:inlineEditSupport showOnEdit="saveBtn,cancelBtn" hideOnEdit="editBtn,replacementBtn" event="ondblclick" resetFunction="resetInlineEdit"/>
+                    </apex:outputField>
+                </apex:repeat>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="{!$Label.Other_information}">
+                <apex:repeat value="{!fields_other}" var="f">
+                    <apex:inputField value="{!theAsset[f.fieldPath]}" rendered="{!editMode}"/>
+                    <apex:outputField value="{!theAsset[f.fieldPath]}" rendered="{!viewMode}">
+                        <apex:inlineEditSupport showOnEdit="saveBtn,cancelBtn" hideOnEdit="editBtn,replacementBtn" event="ondblclick" resetFunction="resetInlineEdit"/>
+                    </apex:outputField>
+                </apex:repeat>
+            </apex:pageBlockSection>
+            
+            
+            <apex:pageBlockSection columns="1" rendered="{!showRelatedSection}">
+                <apex:repeat value="{!listAssetCanceled}" var="astCan" >
+                    <apex:pageBlockSection columns="2" showHeader="true" title="Returned Stock : {!astCan.Returning_Stock_Item__r.name}">
+                        <apex:repeat value="{!fields_Asset_Can}" var="f">
+                            <apex:inputField value="{!astCan[f.fieldPath]}" rendered="{!editMode}"/>
+                            <apex:outputField value="{!astCan[f.fieldPath]}" rendered="{!viewMode}">
+                            <apex:inlineEditSupport showOnEdit="saveBtn,cancelBtn" hideOnEdit="editBtn,replacementBtn" event="ondblclick" resetFunction="resetInlineEdit"/>
+                            </apex:outputField>
+                        </apex:repeat>
+                    </apex:pageBlockSection>
+                </apex:repeat>
+            </apex:pageBlockSection>
+            <c:Spinner message="{!$Label.Please_Wait}" />
+            <apex:pageBlockSection title="{!$Label.System_information}">
+                <apex:repeat value="{!fields_system}" var="f">
+                    <apex:inputField value="{!theAsset[f.fieldPath]}" rendered="{!editMode}"/>
+                    <apex:outputField value="{!theAsset[f.fieldPath]}" rendered="{!viewMode}">
+                        <apex:inlineEditSupport showOnEdit="saveBtn,cancelBtn" hideOnEdit="editBtn,replacementBtn" event="ondblclick" resetFunction="resetInlineEdit"/>
+                    </apex:outputField>
+                </apex:repeat>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        
+        </apex:outputPanel>
+    </apex:form>
+    <apex:relatedList list="Replacement_Orders__r"   rendered="{!if((theAsset.Opportunity__r.Company_Code__c='UK' || theAsset.Opportunity__r.Company_Code__c='SE'),'true','false')}" id="Replacements"/>
+    <apex:relatedList list="CombinedAttachments"   rendered="{!if((theAsset.Opportunity__r.Company_Code__c='DE' ),'true','false')}" id="comments"/>
+
+    <c:CustomAssetHistory subject="{!theAsset.Id}"/>
+    <c:CustomAssetCancellationHistory subject="{!listAssetCanceled}" someObjectParent="{!theAsset.Id}" gotoList="true"/>
+    <c:Spinner message="{!$Label.Please_Wait}" />
+    
+     <script src="{!URLFOR($Resource.DHHConsoleToolkit, 'js/ConsoleToolkit.js')}" type="text/javascript"></script>
+     <apex:outputPanel id="functionSection">
+     	<script>
+     		var DHH = new DHHConsoleToolkit();
+     		
+     		function openAssetInNewTab(){
+     			var clonedAssetId = "{!clonedAssetId}";
+     			console.log("Cloned Asset id " + clonedAssetId);
+     			
+     			 if (sforce.console.isInConsole()) {
+                   	 DHH.openSubTabInCurrentTab("/"+clonedAssetId,"");
+                 }else if((typeof sforce != 'undefined') && sforce && (!!sforce.one)){
+                     sforce.one.navigateToSObject(clonedAssetId);
+                 }else if(!sforce.one){
+						window.parent.location.href="/"+clonedAssetId;
+                 }
+     		}
+     	</script>
+     </apex:outputPanel>
+</apex:page>

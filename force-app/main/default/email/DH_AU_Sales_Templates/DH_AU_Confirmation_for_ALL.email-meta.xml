@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DH_AU_Letterhead</letterhead>
+    <name>DH AU Confirmation - for ALL</name>
+    <style>products</style>
+    <subject>Welcome to Delivery Hero! Participant Restaurant Agreement Details</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+Thank you for choosing Delivery Hero! We are delighted to start working with you and help you grow your business. Please check your details below, and let us know if there are any other updates. Don&apos;t forget to also inform your staff to start expecting orders from Delivery Hero. We will soon start sending orders to your restaurant via SMS / Express Printer / Software / Email / Fax.
+
+
+
+As confirmed below, your agreement with Delivery Hero will include:
+
+- No cancellation fees
+
+- No minimum contract period
+
+
+
+PLEASE SEND BACK:
+
+1. BANK ACCOUNT DETAILS:
+
+- BSB Number
+
+- Account Name
+
+- Account Number
+
+
+
+2. DELIVERY MENU either via:
+
+1. Reply to this Email {!User.Email}
+
+2. Take a picture of your menu with your phone and Text 0450 469 424
+
+3. Fax it to 02 8072 6865
+
+4. Post it back to us - address below.
+
+
+
+Once we have your menu, it will take ~5 business days to get you online. You will also receive a notification via e-mail once you are online. Please check your link once you receive it, and let us know if there is anything you would like to change.
+
+
+Here are some videos of satisfied restaurant owners we work with:
+
+1) Erskineville Turkish Pide &amp; Kebabs (NSW)
+
+2) Thai Style (VIC)
+
+3) Grace of India (NSW)
+
+We also advertise nationally on TV &amp; Foxtel. Watch our ad here.
+
+
+Thank you very much {!Contact.FirstName}, and welcome to Delivery Hero!
+
+
+Kind Regards,
+
+{!User.Name}
+
+{!User.Phone}
+
+{!User.Email}
+
+Participant Restaurant
+
+{!Account.Restaurant_Name__c}
+
+{!Account.BillingAddress}
+
+Bank Account Name
+
+{!Account.Bank_Account_Owner__c}
+
+Owner/Director
+
+{!Contact.FirstName} {!Contact.LastName}
+
+BSB Number
+
+{!Account.Bank_Sort_Code__c}
+
+Landline
+
+{!Account.Phone}
+
+Bank Account Number
+
+{!Account.Bank_Account_Number__c}
+
+Mobile
+
+{!Contact.MobilePhone}
+
+
+Participant Restaurant Agreement Details
+
+This communication is known as the Participant Restaurant Agreement Details, and confirms the formation of an agreement between Delivery Hero Pty Ltd (“DH”) and {!Account.Restaurant_Name__c} (“Participant Restaurant”). This agreement comprises the following documents:
+
+a) these Participant Restaurant Agreement Details; and
+
+b) the Delivery Hero Participant Restaurant Terms and Conditions (“PRT&amp;C”), available online at http://www.deliveryhero.com.au/contractterms/.
+
+By using the Services, the Participant Restaurant agrees to be legally bound by the Participant Restaurant Agreement Details and PRT&amp;C.
+
+
+Agreement Details
+
+DH and Participant Restaurant agree that the following details apply to the agreement, as referred to in the PRT&amp;C:
+
+Success Fee (excl. GST):
+
+X%
+
+One-time setup fee (excl. GST):
+
+AUD0.00
+
+Invoice transmission method:
+
+Email
+
+Express Printer
+
+To Be Provided / Not Required
+
+Deposit for Express Printer (if provided):
+
+AUD XXX.XX /  N/A
+
+Order transmission fee (excl. GST):
+
+X%
+
+Online payment fee (excl. GST) (does not apply to cash orders):
+
+2%
+
+Other Conditions:
+
+Deferred Success Fee and Order transmission fee start date to DD/MM/YYYY
+
+No cancellation fees, no minimum contract period.
+
+Invoicing Period
+
+Processing Time
+
+Payment
+
+1st - 15th
+
+Up to 3 business days
+after the 16th
+
+Expect by 22nd at latest
+
+16th - last day
+of month
+
+Up to 3 business days
+after the 1st
+
+Expect by 7th of the
+following month at latest
+
+
+Brief summary of commercial PRT&amp;C terms
+
+
+For the convenience of the Participant Restaurant, below is a brief summary of some of the commercial terms of the PRT&amp;C. This summary does not state the terms of the agreement. The Participant Restaurant must review the PRT&amp;C in full. The Participant Restaurant acknowledges that it has reviewed the complete PRT&amp;C, and agrees that nothing in the summary below limits or prevails over any term or condition stated in the PRT&amp;C.
+
+In the summary below, terms that start with a capital letter (eg “Menu”, “Restaurant Produce”) have the specific meanings given to them in the PRT&amp;C.
+
+
+1. There is no minimum term of the agreement. Either party may cancel by giving 14 days’ notice in writing to the other party.
+
+2. The Participant Restaurant must provide its Menu to DH, and assumes full responsibility for the accuracy of that Menu. The Menu must list all prices, and those prices must not be any higher than the lowest prices the Participant Restaurant would charge if the same Restaurant Produce was ordered online, in store, by telephone, or by any other means.
+
+3. DH will list the Menu on its Service Portals (eg, its website and smartphone apps).
+
+4. Customers may place Orders for Restaurant Produce (ie, food and beverages) listed on a Menu using the Service Portals.
+
+5. At the time of placing an Order, a Customer may pay the Order Price to DH using online payment facilities provided by DH.
+
+6. DH will communicate each Order to the Participant Restaurant, and, using the Services (ie, the DH system) the Participant Restaurant must indicate to the Customer if it accepts the Order.
+
+7. When a Participant Restaurant accepts an Order, a separate contract is formed between the Customer and the Participant Restaurant, pursuant to which the Participant Restaurant is obliged to provide the Restaurant Produce to the Customer.
+
+8. The Participant Restaurant is solely responsible for the supply of Restaurant Produce to the Customer, including for the accurate fulfilment of the Order, the quality of that Restaurant Produce, and ensuring that Restaurant Produce complies with all laws and regulations, including food safety regulations and guidelines.
+
+9. DH does not act as an agent or representative of the Participant Restaurant or Customer. The DH Services provide Menu publication, communication and online payment facilities only, and DH does not produce or have any responsibility for Restaurant Produce.
+
+10. The Participant Restaurant grants a licence to DH to use any material in which it owns intellectual property rights, including the Participant Restaurant’s name, logo and Menus, for the purpose of providing the Services and for the general promotion of the Participant Restaurant and the Services.
+
+11. Unless otherwise agreed, DH’s licence to use material of the Participant Restaurant includes a right to register domain names, on google maps, google locations or any other third party directory websites or services, and operate websites incorporating the Participant Restaurant’s name, for the purpose of promoting the sale of Restaurant Produce using the Services.
+
+12. DH is entitled to payment of the Success Fee for each Order placed using the Services.
+
+13. The Participant Restaurant assumes all responsibility for, and will indemnify DH against, any claims made by a Customer (except to the extent the claim is caused by DH), or that relate in any way to the Restaurant Produce or late delivery of the Restaurant Produce.
+
+14. DH may vary the terms of the PRT&amp;C at any time by posting the revised terms on the DH website.
+
+15. DH may vary the terms of the Participant Restaurant Agreement Details at any time by giving 7 days’ notice in writing. If the Participant Restaurant does not accept the revised terms, it may terminate the agreement immediately by notice in writing.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>DE Contract Layout</layout>
+        <sections>
+            <label><!-- JustOn Connector --></label>
+            <section>JustOn Connector</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Talabat Contract Layout</layout>
+        <sections>
+            <label><!-- Renewal Info --></label>
+            <section>Renewal Info</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- AT Contract --></label>
+        <name>AT_Contract</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Contract for Click Delivery --></description>
+        <label><!-- CD Contract --></label>
+        <name>CD_Contract</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DE Contract --></label>
+        <name>DE_Contract</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DH AU Contract --></label>
+        <name>DH_AU_Contract</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FI Contract --></label>
+        <name>FI_Contract</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FP Contract --></label>
+        <name>FP_Contract</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- HU Contract --></label>
+        <name>HU_Contract</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PY Contract --></label>
+        <name>PY_Contract</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Sweden Contract --></description>
+        <label><!-- SE Contract --></label>
+        <name>SE_Contract</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Talabat Contract --></label>
+        <name>Talabat_Contract</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- UK Contract --></label>
+        <name>UK_Contract</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Yogiyo Contract --></label>
+        <name>Yogiyo_Contract</name>
+    </recordTypes>
+    <webLinks>
+        <label><!-- LOOP --></label>
+        <name>Loop__LOOP</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- LOOP_Merge --></label>
+        <name>Loop__LOOP_Merge</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- LOOPlus --></label>
+        <name>Loop__LOOPlus</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_LOOP_Merge --></label>
+        <name>Loop__Mass_LOOP_Merge</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_LOOPlus --></label>
+        <name>Loop__Mass_LOOPlus</name>
+    </webLinks>
+    <webLinks>
+        <label>대량 수정</label>
+        <name>Mass_Edit</name>
+    </webLinks>
+    <webLinks>
+        <label>대량 업데이트</label>
+        <name>Mass_Update</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_with_DocuSign --></label>
+        <name>dsfs__Send_with_DocuSign</name>
+    </webLinks>
+</CustomObjectTranslation>

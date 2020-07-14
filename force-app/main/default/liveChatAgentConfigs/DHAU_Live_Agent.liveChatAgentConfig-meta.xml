@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LiveChatAgentConfig xmlns="http://soap.sforce.com/2006/04/metadata">
+    <autoGreeting>Hello, Welcome to Delivery Hero. How can I help you today?</autoGreeting>
+    <customAgentName>Delivery Hero Support</customAgentName>
+    <enableAgentFileTransfer>false</enableAgentFileTransfer>
+    <enableAgentSneakPeek>false</enableAgentSneakPeek>
+    <enableAssistanceFlag>false</enableAssistanceFlag>
+    <enableAutoAwayOnDecline>false</enableAutoAwayOnDecline>
+    <enableAutoAwayOnPushTimeout>false</enableAutoAwayOnPushTimeout>
+    <enableChatConferencing>false</enableChatConferencing>
+    <enableChatMonitoring>true</enableChatMonitoring>
+    <enableChatTransferToAgent>false</enableChatTransferToAgent>
+    <enableChatTransferToButton>false</enableChatTransferToButton>
+    <enableChatTransferToSkill>true</enableChatTransferToSkill>
+    <enableLogoutSound>true</enableLogoutSound>
+    <enableNotifications>true</enableNotifications>
+    <enableRequestSound>true</enableRequestSound>
+    <enableSneakPeek>true</enableSneakPeek>
+    <enableVisitorBlocking>true</enableVisitorBlocking>
+    <enableWhisperMessage>true</enableWhisperMessage>
+    <label>DHAU Live Agent</label>
+    <supervisorSkills>
+        <skill>AU_Skills</skill>
+    </supervisorSkills>
+    <transferableSkills>
+        <skill>AU_Skills</skill>
+    </transferableSkills>
+</LiveChatAgentConfig>

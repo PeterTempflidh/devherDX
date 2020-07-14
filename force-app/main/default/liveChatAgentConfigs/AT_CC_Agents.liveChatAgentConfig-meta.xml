@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LiveChatAgentConfig xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <profiles>
+            <profile>AT Customer Care Management</profile>
+            <profile>AT Customer Care Team</profile>
+        </profiles>
+    </assignments>
+    <autoGreeting>Hello, my name is {!User_FirstName}. How can I help you?</autoGreeting>
+    <criticalWaitTime>30</criticalWaitTime>
+    <enableAgentFileTransfer>true</enableAgentFileTransfer>
+    <enableAgentSneakPeek>true</enableAgentSneakPeek>
+    <enableAssistanceFlag>false</enableAssistanceFlag>
+    <enableAutoAwayOnDecline>false</enableAutoAwayOnDecline>
+    <enableAutoAwayOnPushTimeout>false</enableAutoAwayOnPushTimeout>
+    <enableChatConferencing>true</enableChatConferencing>
+    <enableChatMonitoring>true</enableChatMonitoring>
+    <enableChatTransferToAgent>false</enableChatTransferToAgent>
+    <enableChatTransferToButton>true</enableChatTransferToButton>
+    <enableChatTransferToSkill>false</enableChatTransferToSkill>
+    <enableLogoutSound>true</enableLogoutSound>
+    <enableNotifications>true</enableNotifications>
+    <enableRequestSound>true</enableRequestSound>
+    <enableSneakPeek>true</enableSneakPeek>
+    <enableVisitorBlocking>true</enableVisitorBlocking>
+    <enableWhisperMessage>true</enableWhisperMessage>
+    <label>AT CC Agents</label>
+    <supervisorDefaultAgentStatusFilter>Online</supervisorDefaultAgentStatusFilter>
+    <supervisorDefaultSkillFilter>AT_Skills</supervisorDefaultSkillFilter>
+    <supervisorSkills>
+        <skill>AT_Skills</skill>
+    </supervisorSkills>
+    <transferableButtons>
+        <button>CS_GER_Mjam_Austria_Escalation</button>
+    </transferableButtons>
+    <transferableSkills>
+        <skill>AT_Skills</skill>
+    </transferableSkills>
+</LiveChatAgentConfig>

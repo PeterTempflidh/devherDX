@@ -1,0 +1,564 @@
+<apex:component controller="CtrCreateQuote" access="global">
+    <apex:attribute name="oppQ" type="String" description="Placeholder" assignTo="{!oppQId}"/>
+    <apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+    <head>
+	    <style type="text/css">
+		    /* A4 size */
+		    
+		    @page {
+		    	size: A4;
+			}
+	
+			@media print {
+				.pageBreak {
+		    		page-break-after: always;
+		    	}
+			}
+		</style>
+	</head>
+    
+            <div id="FI_QUOTE" style="width:700px; margin: auto;page-break-after:always;">
+                <div style="display:inline-block; width:50%;vertical-align: top;margin-left:5%;">
+                    <img src="{!URLFOR($Resource.FI_PizzaOnline_logo)}" style="width: 90%;" />
+                </div>
+                <div id="RestDesc" style="display:inline-block; width:44%;vertical-align: top; float:right;" >
+                    <table style="float:right;">
+                    	<tr>
+                    		<td style="padding:0px;text-align:right"><Strong>Delivery Hero Finland Oy</Strong></td>
+                    	</tr>
+                    	<tr>
+                    		<td style="padding:0px;text-align:right;">Pasilankatu 10, 00240 Helsinki</td>
+                    	</tr>
+                    	<tr>
+                    		<td style="padding:0px;text-align:right">Phone: 02 9300 0470</td>
+                    	</tr>
+                    	<tr>
+                    		<td style="padding:0px;text-align:right">Email: ravintolat@pizza-online.fi</td>
+                    	</tr>
+                    	<tr>
+                    		<td style="padding:0px;text-align:right">1936684-6</td>
+                    	</tr>
+                    </table>
+                </div>
+                
+                <div id="CQtitle" style="width:700px;margin: auto;margin-top:40px !important;text-align:center;font-size: 14pt">
+                    <strong>Palvelusopimus </strong><span style="font-size:12pt">(Service Agreement)</span>
+                </div><br/>
+                <div style="margin: auto;text-align:right;float:right;">
+                    <table style="float:right;">
+                    	<tr>
+                    		<td style="padding:0px;text-align:right">{!opportunity.owner.name}</td>
+                    	</tr>
+                    	<tr>
+                    		<td style="padding:0px;text-align:right">
+                    			<apex:outputText value="{0,date,dd'/'MM'/'yyyy}">
+								    <apex:param value="{!opportunity.closeDate}" /> 
+								</apex:outputText>
+                    		</td>
+                    	</tr>
+                    </table>
+                </div>
+                <br />
+                
+                <h4 style="text-align:left"><Strong>Ravintola-kumppanitiedot </Strong><span style="font-size:10pt">(Restaurant Partner Information)</span></h4>
+                <!-- RESTAURANT DESCRIPTION SECTION -->
+                <table border="1" style="width: 100%;border-collapse: collapse;">
+                	<tr>
+                		<td>
+                			Yrityksen virallinen nimi
+							<span style="font-size:8pt">(Official Business Name)</span>
+                		</td>
+                		<td>
+                			{!accountWrapper.companyName}
+                		</td>
+                	</tr>
+                	<tr>
+                		<td>
+                			Y-tunnus <span style="font-size:8pt">(Business ID)</span>
+                		</td>
+                		<td>
+                			{!accountWrapper.companyId}
+                		</td>
+                	</tr>
+                	<tr>
+                		<td>
+                			Ravintolan nimi <span style="font-size:8pt">(Restaurant Name)</span>
+                		</td>
+                		<td>
+                			{!accountWrapper.RestaurantName}
+                		</td>
+                	</tr>
+                	<tr>
+                		<td>
+                			Puhelinnumero <span style="font-size:8pt">(ravintolan)(Restaurant Phone No.)</span>
+                		</td>
+                		<td>
+                			{!accountWrapper.ownerPhone}
+                		</td>
+                	</tr>
+                	<tr>
+                		<td>
+                			Ravintolan osoite
+							<span style="font-size:8pt">(Restaurant Address)</span>
+                		</td>
+                		<td>
+                			{!accountWrapper.restaurantAddress}
+                		</td>
+                	</tr>
+                	<tr>
+                		<td>
+                			Omistajan täydellinen nimi <span style="font-size:8pt">(Owner Full Name)</span>
+                		</td>
+                		<td>
+                			{!accountWrapper.ownerSalutation} {!accountWrapper.ownerName}
+                		</td>
+                	</tr>
+                	<tr>
+                		<td>
+                			Sähköpostiosoite <span style="font-size:8pt">(E-mail Address)</span>
+                		</td>
+                		<td>
+                			{!accountWrapper.ownerEmail}
+                		</td>
+                	</tr>
+                	<tr>
+                		<td>
+                			Matkapuhelinnumero <span style="font-size:8pt">(yrityksen vastuuhenkilön) (Mobile Number)</span>
+                		</td>
+                		<td>
+                			{!accountWrapper.ownerMobilePhone}
+                		</td>
+                	</tr>
+                </table>
+                
+                <h4 style="text-align:left"><Strong>Palvelupaketti </Strong><span style="font-size:10pt">(Service Package)</span> </h4>
+                <!--  COMMISSION SECTION -->
+                <apex:outputPanel rendered="{!listCommisionItems.size > 0}" >
+	                <table border="1" style="width: 100%;border-collapse: collapse;">
+	                	<tr>
+	                		<th>
+	                			Komissio 
+								<span style="font-size:8pt">(Commission Name)</span>
+	                		</th>
+	                		<th style="text-align:center">
+	                			%
+	                		</th>
+	                		<th style="text-align:center">
+	                			Aloituspäivä
+								<span style="font-size:8pt">(Start Date)</span>
+	                		</th>
+	                		<th style="text-align:center">
+	                			Lopetuspäivä 
+								<span style="font-size:8pt">(End Date)</span>
+	                			
+	                		</th>
+	                	</tr>
+	                	<apex:repeat value="{!listCommisionItems}" var="lineItem">
+	                		<tr>
+		                		<td>
+		                			{!lineItem.Id_List_Service_Price__r.Displayed_Name__c}
+		                		</td>
+		                		<td style="text-align:center">
+		                			{!lineItem.Commission_In_Percentage__c}
+		                		</td>
+		                		<td style="text-align:center">
+		                			<apex:outputText value="{0,date,dd'/'MM'/'yyyy}">
+									    <apex:param value="{!lineItem.Start_Date__c}" /> 
+									</apex:outputText>
+		                		</td>
+		                		<td style="text-align:center">
+		                			<apex:outputText value="{0,date,dd'/'MM'/'yyyy}">
+									    <apex:param value="{!lineItem.End_Date__c}" /> 
+									</apex:outputText>
+		                		</td>
+		                	</tr>
+	                	</apex:repeat>
+	                </table><br/>
+                </apex:outputPanel>
+                
+                <!--  PRODUCT SECTION -->
+                <apex:outputPanel rendered="{!listLineItems.size > 0}" >
+	                <table border="1" style="width: 100%;border-collapse: collapse;">
+	                	<tr>
+	                		<th>
+	                			Palvelu ja tuote
+								<span style="font-size:8pt">(Service and Product)</span>
+	                		</th>
+	                		<th style="text-align:center">
+	                			Hinta 
+								<span style="font-size:8pt">(Price)</span>	
+	                		</th>
+	                		<th style="text-align:center">
+	                			Aloituspäivä
+								<span style="font-size:8pt">(Start Date)</span>
+	                		</th>
+	                		<th style="text-align:center">
+	                			Lopetuspäivä 
+								<span style="font-size:8pt">(End Date)</span>
+	                			
+	                		</th>
+	                	</tr>
+	               		<apex:repeat value="{!listLineItems}" var="lineItem">
+	               			<tr>
+		               			<td>
+		                			{!lineItem.Id_List_Product_Price__r.Displayed_Name__c}
+		                		</td>
+		                		<td style="text-align:center">
+		                			{!lineItem.Total_Amount__c}
+		                		</td>
+		                		<td style="text-align:center">
+		                			<apex:outputText value="{0,date,dd'/'MM'/'yyyy}">
+									    <apex:param value="{!lineItem.Start_Date__c}" /> 
+									</apex:outputText>
+		                		</td>
+		                		<td style="text-align:center">
+		                			<apex:outputText value="{0,date,dd'/'MM'/'yyyy}">
+									    <apex:param value="{!lineItem.End_Date__c}" /> 
+									</apex:outputText>
+		                		</td>
+	                		</tr>
+	               		</apex:repeat>
+	                </table><br/>
+                </apex:outputPanel>
+                
+                <!--  ADD ON SECTION -->
+                <apex:outputPanel rendered = "{!listAddOnItems.size > 0}" >
+	                <table border="1" style="width: 100%;border-collapse: collapse;">
+	                	<tr>
+	                		<th>
+	                			Bonus
+								<span style="font-size:8pt">(Add-On)</span>
+	                		</th>
+	                		<th style="text-align:center">
+								Yksityiskohdat
+								<span style="font-size:8pt">(Details)</span>		
+	                		</th>
+	                		<th style="text-align:center">
+	                			Aloituspäivä
+								<span style="font-size:8pt">(Start Date)</span>
+	                		</th>
+	                		<th style="text-align:center">
+	                			Lopetuspäivä 
+								<span style="font-size:8pt">(End Date)</span>
+	                			
+	                		</th>
+	                	</tr>
+	                	<apex:repeat value="{!listAddOnItems}" var="lineItem" >
+		                	<tr>
+		                		<td>
+		                			{!lineItem.Name}
+		                		</td>
+		                		<td style="text-align:center">
+		                			{!lineItem.Contract_Addition__c}
+		                		</td>
+		                		<td style="text-align:center">
+		                			<apex:outputText value="{0,date,dd'/'MM'/'yyyy}">
+									    <apex:param value="{!lineItem.Start_Date__c}" /> 
+									</apex:outputText>
+		                		</td>
+		                		<td style="text-align:center">
+		                			<apex:outputText value="{0,date,dd'/'MM'/'yyyy}">
+									    <apex:param value="{!lineItem.End_Date__c}" /> 
+									</apex:outputText>
+		                		</td>
+		                	</tr>
+	                	</apex:repeat>
+	                </table><br/>
+                </apex:outputPanel>
+                
+                <!-- DECLARATION SECTION -->
+                <p style="text-align:left">Allekirjoittamalla tämän palvelusopimuksen hyväksytte palvelumme voimassa olevat sopimusehdot osoitteessa
+                    <a href="https://pizza-online.fi/sivut/sopimusehdot" target="_blank"> https://pizza-online.fi/sivut/sopimusehdot </a>
+                	<span style="font-size:8pt">(By signing this Service Agreement you accept our terms and conditions agreement on</span>
+                    <a href="https://pizza-online.fi/sivut/sopimusehdot" style="font-size: 8pt;" target="_blank"> https://pizza-online.fi/sivut/sopimusehdot </a>
+                	<span style="font-size:8pt">)</span>
+                </p><br/><br/>
+                
+                <!-- SIGNATURE SECTION -->
+                <div>
+	                <div style="display:inline-block; width:50%;float:left;">
+	                    <table style="float:left;">
+	                    	<tr>
+	                    		<td style="padding:0px;text-align:left"><Strong>Paikka ja aika</Strong><br/>
+	                    			<span style="font-size:8pt">(Time and Place)</span> </td>
+	                    	</tr>
+	                    	<tr>
+	                    		<td style="padding:0px;text-align:left">
+	                    			<br/><br/><br/><Strong>______________________________</Strong>
+	                    		</td>
+	                    	</tr>
+	                    </table>
+	                </div>
+	                <div style="display:inline-block; width:50%;float:right" >
+	                    <table style="float:right;">
+	                    	<tr>
+	                    		<td style="padding:0px;text-align:left">
+	                    			<Strong>Allekirjoitus ja nimenselvennys </Strong><br/>
+	                    			<span style="font-size:8pt">(Signature and name in capital letters)</span> 
+	                    		</td>
+	                    	</tr>
+	                    	<tr>
+	                    		<td style="padding:0px;text-align:left">
+	                    			<br/><br/><br/><strong>_____________________________________________</strong>
+	                    		</td>
+	                    	</tr>
+	                    </table>
+	                </div><br/>
+                </div>
+            </div>
+            
+            <!-- ACCOUNT SETUP FORM -->
+            <div id="FI_QUOTE" style="width:700px; margin: auto;">
+            	<div style="display:inline-block; width:50%;left:30%;vertical-align:top;position:relative;margin-top:5%">
+                    <img src="{!URLFOR($Resource.FI_PizzaOnline_logo)}" style="width: 90%;"/>
+                </div>
+                <div style="width:700px;margin: auto;margin-top:40px !important;text-align:center;font-size: 14pt">
+                    <strong>Ravintolatilin asennus- lomake</strong> <span style="font-size:10pt">(Restaurant Account Setup Form)</span>
+                </div><br/>
+                <div style="display:block">
+	                <table style="width: 100%;" >
+	                	<tr>
+	                		<td><Strong>GRID: </Strong>{!accountWrapper.GRID}</td>
+	                	</tr>
+	                	<tr>
+	                		<td><Strong>Ravintolan nimi <span style="font-size:8pt">(Restaurant Name): </span> </Strong>{!accountWrapper.restaurantName}</td>
+	                	</tr>
+	                	<tr>
+	                		<td><Strong>Ravintolan osoite <span style="font-size:8pt">(Restaurant Address): </span></Strong>{!accountWrapper.restaurantAddress}</td>
+	                	</tr>
+	                	<tr>
+	                		<td><Strong>Ruokalaji <span style="font-size:8pt">(Cuisine)</span>: </Strong>{!accountWrapper.cuisine}</td>
+	                	</tr>
+	                	<tr>
+	                		<td><Strong>Kotiinkuljetus <span style="font-size:8pt">(Home Delivery): </span></Strong>{!accountWrapper.deliveryServiceValue}</td>
+	                	</tr>
+	                	<tr>
+	                		<td><Strong>IBAN-muotoinen tilinumero <span style="font-size:8pt">(IBAN Number): </span></Strong> _____________________________________</td>
+	                	</tr>
+	                	<tr>
+	                		<td><Strong>Pankki <span style="font-size:8pt">(Bank Name):</span></Strong> _________________________________________</td>
+	                	</tr>
+	                	<tr>
+	                		<td><Strong>Kotiinkuljetussäde kilometreissä <span style="font-size:8pt">(Home delivery Radius): </span></Strong>___________________ Kilometers</td>
+	                	</tr>
+	                	<tr>
+	                		<td><Strong>Kuljetusmaksu <span style="font-size:8pt">(Delivery Fee): </span></Strong>_____________________ €</td>
+	                	</tr>
+	                	<tr>
+	                		<td><Strong>Kuljetus ilmainen, kun tilauksen summa yli <span style="font-size:8pt">(Free delivery, if the order is over)</span></Strong> ________________ €</td>
+	                	</tr>
+	                	<tr>
+	                		<td><Strong>Yökuljetuslisä <span style="font-size:8pt">(Night Delivery Fee): </span></Strong>____________ € kello  
+	                					<span style="font-size:8pt">(after)</span> _____________  jälkeen <span style="font-size:8pt">(o’clock)</span></td>
+	                	</tr>
+	                </table>
+                </div><br/>
+                
+                <div style="display:block">
+                <table border="1" style="width: 100%;border-collapse: collapse;">
+                	<tr>
+                		<td>
+                		</td>
+                		<td colspan="2">
+                			Aukioloajat 
+							<span style="font-size:8pt">(Opening Hours)</span>
+                		</td>
+                		<td colspan="2">
+                			Lounasajat 
+							<span style="font-size:8pt">(Lunch hours)</span>
+                		</td>
+                		<td colspan="2">
+                			Kotiinkuljetus
+							<span style="font-size:8pt">(Home delivery hours)</span>
+                		</td>
+                	</tr>
+                	<tr>
+                		<td>
+                			
+                		</td>
+                		<td>
+                			Alkaa <span style="font-size:8pt">(From)</span>
+                		</td>
+                		<td>
+                			Loppuu <span style="font-size:8pt">(To)</span>
+                		</td>
+                		<td>
+                			Alkaa <span style="font-size:8pt">(From)</span>
+                		</td>
+                		<td>
+                			Loppuu <span style="font-size:8pt">(To)</span>
+                		</td>
+                		<td>
+                			Alkaa <span style="font-size:8pt">(From)</span>
+                		</td>
+                		<td>
+                			Loppuu <span style="font-size:8pt">(To)</span>
+                		</td>
+                	</tr>
+                	<tr>
+                		<td>
+                			Ma <span style="font-size:8pt">(Mon)</span>
+                		</td>
+                		<td>
+                			
+                		</td>
+                		<td>
+                			
+                		</td>
+                		<td>
+                			
+                		</td>
+                		<td>
+                			
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                	</tr>
+                	<tr>
+                		<td>
+                			Ti <span style="font-size:8pt">(Tue)</span>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                	</tr>
+                	<tr>
+                		<td>
+                			Ke <span style="font-size:8pt">(Wed)</span>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                	</tr>
+                	<tr>
+                		<td>
+                			To <span style="font-size:8pt">(Thu)</span>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                	</tr>
+                	<tr>
+                		<td>
+                			Pe <span style="font-size:8pt">(Fri)</span>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                	</tr>
+                	<tr>
+                		<td>
+                			La <span style="font-size:8pt">(Sat)</span>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                	</tr>
+                	<tr>
+                		<td>
+                			Su <span style="font-size:8pt">(Sun)</span>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                		<td>
+                		</td>
+                	</tr>
+                </table>
+                </div><br/>
+                
+                <div>
+	                <table>
+	                	<tr>
+	                		<td colspan="2">
+	                			<Strong>Onko yrityksellä toista ravintolaa palvelussamme? </Strong><br/>
+	                			<span style="font-size:8pt">(Does the owner have any other restaurant online with us?)</span>
+	                		</td>
+	                	</tr>
+	                	<tr>
+	                		<td>
+	                			<div class="boxed" style="width:5px;height:5px;border-style:solid;display:inline">&nbsp;&nbsp;&nbsp;
+								</div>
+	                			<span><Strong>&nbsp;Kyllä </Strong><span style="font-size:8pt">(Yes)</span></span>
+	                		</td>
+	                		<td style="text-align:left">
+	                			<br/><br/>
+								<Strong>Ravintolan nimi </Strong>
+	                				<span style="font-size:8pt">(Restaurant Name): </span>________________________________________________<br/><br/>
+	                			<Strong>Ravintolan osoite </Strong>
+	                			<span style="font-size:8pt">(Restaurant Address):</span> _____________________________________________
+	                		</td>
+	                	</tr>
+	                	<tr>
+	                		<td style="text-align:left">
+	                			<div class="boxed" style="width:5px;height:5px;border-style:solid;display:inline">&nbsp;&nbsp;&nbsp;
+								</div>
+	                			<span><Strong>&nbsp;Ei </Strong><span style="font-size:8pt">(No).</span></span><br/><br/>
+	                		</td>
+	                		<td>
+	                		</td>
+	                	</tr>
+	                	<tr>
+	                		<td colspan="2">
+	                			<strong>Lisätiedot </strong><span style="font-size:8pt">(Additional Notes): </span><br/><br/>_______________________________________________________________________________________
+	                		</td>
+	                	</tr>
+	                </table>
+                </div>
+                
+            </div>
+</apex:component>

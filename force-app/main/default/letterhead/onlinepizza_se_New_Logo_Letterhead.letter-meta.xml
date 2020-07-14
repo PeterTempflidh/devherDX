@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Letterhead xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <backgroundColor>#CCCCCC</backgroundColor>
+    <bodyColor>#FFFFFF</bodyColor>
+    <bottomLine>
+        <color>#FF0000</color>
+        <height>5</height>
+    </bottomLine>
+    <footer>
+        <backgroundColor>#FFFFFF</backgroundColor>
+        <height>50</height>
+        <horizontalAlignment>Left</horizontalAlignment>
+        <logo>SE_Documents/salesforce_footer_template_png.png</logo>
+        <verticalAlignment>Top</verticalAlignment>
+    </footer>
+    <header>
+        <backgroundColor>#FFFFFF</backgroundColor>
+        <height>100</height>
+        <horizontalAlignment>Center</horizontalAlignment>
+        <logo>SE_Documents/Top_banner_RED_png.png</logo>
+        <verticalAlignment>Top</verticalAlignment>
+    </header>
+    <middleLine>
+        <color>#FF0000</color>
+        <height>1</height>
+    </middleLine>
+    <name>onlinepizza.se New Logo Letterhead</name>
+    <topLine>
+        <color>#FF0000</color>
+        <height>5</height>
+    </topLine>
+</Letterhead>

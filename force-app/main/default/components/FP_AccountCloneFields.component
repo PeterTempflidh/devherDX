@@ -1,0 +1,179 @@
+<!--
+    Account clone component for Talabat_Account record type.
+    Display a list of fields that users are allowed to enter when cloning an
+    account.
+
+    This component assumes to be included inside an apex:form and that LDS
+    stylesheets is already available.
+-->
+<apex:component >
+
+<apex:attribute name="clone" type="Account" required="true" description="Account to clone" />
+
+<apex:attribute name="mode" type="String"  required="true" description="Account clone mode, based on this value some account fields could be displayed or not" />
+
+<apex:attribute name="products" type="SelectOption[]" required="true" description="Products list, in case user wants to create Assets instead of Opportunity" />
+
+<apex:attribute name="product" type="String" required="true" description="Selected product id" />
+
+
+                 <style type="text/css">
+                    @media(max-width: 768px) {
+                        .shippingAddress .slds-col:nth-child(3) {
+                            padding-left: 0.5rem;
+                        }
+                    }
+                    @media(min-width: 769px) {
+                        .shippingAddress .slds-col:nth-child(even) {
+                            padding-left: 0.5rem;
+                        }
+                    }
+                 </style>
+
+
+                <!-- main grid -->
+                <div class="slds-form-element__group">
+
+                    <fieldset class="slds-form--compound">
+                        <legend class="slds-form-element__label slds-text-title--caps">Information</legend>
+                        <div class="slds-form-element__group slds-p-around--small">
+                            
+                            <div class="slds-form-element__row">
+                                <!-- name -->
+                                <div class="slds-form-element slds-size--1-of-2">
+                                    <label class="slds-form-element__label" for="{!$Component.input01}">
+                                        <abbr class="slds-required" title="required">*</abbr>
+                                        {!$ObjectType.Account.fields.name.label}
+                                    </label>
+                                    <apex:inputField id="input01" styleClass="slds-input" value="{!clone.Name}" />
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                        <div class="slds-form-element__group slds-p-around--small">
+
+                            <div class="slds-form-element__row">
+                                <!-- name -->
+                                <div class="slds-form-element slds-size--1-of-2">
+                                    <label class="slds-form-element__label" for="{!$Component.input02}">
+                                        {!$ObjectType.Account.fields.Legal_Name__c.label}
+                                    </label>
+                                    <apex:inputField id="input02" styleClass="slds-input" value="{!clone.Legal_Name__c}" />
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="slds-form-element__group slds-p-around--small">
+
+                            <div class="slds-form-element__row">
+                                <!-- name -->
+                                <div class="slds-form-element slds-size--1-of-2">
+                                    <label class="slds-form-element__label" for="{!$Component.input03}">
+                                        <abbr class="slds-required" title="required">*</abbr>
+                                        {!$ObjectType.Account.fields.type.label}
+                                    </label>
+                                    <apex:outputField id="input03" styleClass="slds-input" value="{!clone.type}" />
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+                    <apex:outputPanel layout="none" rendered="{!OR( mode = 'Account Clone Branch to Branch')}">
+                        <!-- add here the asset screen  -->
+                        <fieldset class="slds-form--compound slds-m-top--small">
+
+                            <legend class="slds-form-element__label slds-text-title--caps">Assets</legend>
+                            <div class="slds-p-around--small">
+                                <div class="slds-grid slds-wrap slds-box slds-size--1-of-1">
+
+                                    <!-- create asset flag -->
+                                    <div class="slds-col slds-size--1-of-2 slds-p-around--small">
+                                        <label class="slds-checkbox--toggle slds-grid">
+                                            <span class="slds-form-element__label slds-m-bottom--none">Create Asset without Opportunity</span>
+                                            <input type="checkbox" name="assetFlag" class="slds-input" id="assetFlag" checked="true" onchange="assetFlagOnChange(this)" />
+                                            <span id="toggle-desc" class="slds-checkbox--faux_container" aria-live="assertive">
+                                                    <span class="slds-checkbox--faux"></span>
+                                                    <span class="slds-checkbox--on"></span>
+                                                    <span class="slds-checkbox--off"></span>
+                                                </span>
+                                        </label>
+                                    </div>
+
+                                    <!-- list of products -->
+                                    <div class="slds-col slds-medium-size--1-of-2 slds-p-around--small">
+                                        <label class="slds-form-element__label slds-truncate" for="{!$Component.freeProds}">
+                                            Products
+                                        </label>
+                                        <apex:selectList id="freeProds" html-data-required="true" styleClass="slds-select" multiselect="false" size="1" value="{!product}">
+                                            <apex:selectOption itemLabel="--- None ---" itemValue=""/>
+                                            <apex:selectOptions value="{!products}" />
+                                        </apex:selectList>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </fieldset>
+
+                    </apex:outputPanel>
+
+                    <script type="text/javascript">
+                        if (typeof adjustMultiselectPicklist === "function") adjustMultiselectPicklist();
+                        if (typeof checkRequiredFields === "function") checkRequiredFields();
+
+                        /**
+                         * Called when user press on Asset create flag, set to false the
+                         * opportunity create flag
+                         * @param  {[type]} elem [description]
+                         * @return {[type]}      [description]
+                         */
+                        function assetFlagOnChange(elem) {
+                            if (elem.checked) {
+                                setOpportunityFlag(false);
+                            }
+
+                            toggleProductList(elem.checked);
+                        }
+
+                        function toggleProductList(show) {
+                            var products = document.querySelector("[id$=freeProds]");
+                            products["data-required"] = !!show;
+                            
+                            if (show) {
+                                products.parentNode.className = products.parentNode.className.replace(/slds-hide/ig, "");
+                            } else {
+                                products.parentNode.className += " slds-hide";
+                            }
+                        }
+                            
+                        /**
+                         * Called when user change the opportunity flag value.
+                         * Opportunity flag is included in main page not in this component
+                         * @param  {[type]} elem [description]
+                         * @return {[type]}      [description]
+                         */
+                        function oppFlagOnChange (elem) {
+                            if (elem.checked) {
+                                document.querySelector("#assetFlag").checked = false;
+                                toggleProductList(false);
+                            } 
+                        }
+
+                        document.querySelector("[id$=oppFlag]").addEventListener("change", function(evt) {
+                            oppFlagOnChange(evt.target);
+                        });
+                    </script>
+
+                    
+                </div>
+
+
+
+
+
+            </apex:component>

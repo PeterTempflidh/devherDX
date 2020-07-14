@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- EventBus --></label>
+        <name>EventBus</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- KR_BillingReport --></label>
+        <name>KR_BillingReport</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- KR CustomReport --></label>
+        <name>KR_CustomReport</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- NintexAPACQuotesFieldset --></label>
+        <name>NintexAPACQuotesFieldset</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- OptTriggerQuery --></label>
+        <name>OptTriggerQuery</name>
+    </fieldSets>
+    <layouts>
+        <layout>AT Layout - Account</layout>
+        <sections>
+            <label><!-- Account Summary --></label>
+            <section>Account Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Billing Information --></label>
+            <section>Billing Information</section>
+        </sections>
+        <sections>
+            <label><!-- Branding Info --></label>
+            <section>Branding Info</section>
+        </sections>
+        <sections>
+            <label><!-- Sales Information --></label>
+            <section>Sales Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Account Layout</layout>
+        <sections>
+            <label><!-- Account Summary --></label>
+            <section>Account Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Bank Information --></label>
+            <section>Bank Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CD Layout - Account</layout>
+        <sections>
+            <label><!-- Account Summary --></label>
+            <section>Account Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Backend Information --></label>
+            <section>Backend Information</section>
+        </sections>
+        <sections>
+            <label><!-- Bank Details --></label>
+            <section>Bank Details</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Score &amp; Grade --></label>
+            <section>Lead Score &amp; Grade</section>
+        </sections>
+        <sections>
+            <label><!-- Sales Information --></label>
+            <section>Sales Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>DE Account</layout>
+        <sections>
+            <label><!-- Account Summary --></label>
+            <section>Account Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Alternative Bank Account --></label>
+            <section>Alternative Bank Account</section>
+        </sections>
+        <sections>
+            <label><!-- Bank Information --></label>
+            <section>Bank Information</section>
+        </sections>
+        <sections>
+            <label><!-- Branding Info --></label>
+            <section>Branding Info</section>
+        </sections>
+        <sections>
+            <label><!-- Dunning Info --></label>
+            <section>Dunning Info</section>
+        </sections>
+        <sections>
+            <label><!-- JustOn Connector --></label>
+            <section>JustOn Connector</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Score &amp; Grade --></label>
+            <section>Lead Score &amp; Grade</section>
+        </sections>
+        <sections>
+            <label><!-- NUR ZUM VERGLEICH MIT DEN ADRESSEN UNTEN - ALTE DATEN! --></label>
+            <section>NUR ZUM VERGLEICH MIT DEN ADRESSEN UNTEN - ALTE DATEN!</section>
+        </sections>
+        <sections>
+            <label><!-- Performance --></label>
+            <section>Performance</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>DH AU Layout - Account</layout>
+        <sections>
+            <label><!-- Account Summary --></label>
+            <section>Account Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Additional Info --></label>
+            <section>Additional Info</section>
+        </sections>
+        <sections>
+            <label><!-- Backend Information --></label>
+            <section>Backend Information</section>
+        </sections>
+        <sections>
+            <label><!-- Branding Info --></label>
+            <section>Branding Info</section>
+        </sections>
+        <sections>
+            <label><!-- Information --></label>
+            <section>Information</section>
+        </sections>
+        <sections>
+            <label><!-- Sales Information --></label>
+            <section>Sales Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>FP Layout - Account</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Billing Information --></label>
+            <section>Billing Information</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Score &amp; Grade --></label>
+            <section>Lead Score &amp; Grade</section>
+        </sections>
+        <sections>
+            <label><!-- Vendor Information --></label>
+            <section>Vendor Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>HU Layout - Account</layout>
+        <sections>
+            <label><!-- Billing Information --></label>
+            <section>Billing Information</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Score &amp; Grade --></label>
+            <section>Lead Score &amp; Grade</section>
+        </sections>
+        <sections>
+            <label><!-- Vendor Information --></label>
+            <section>Vendor Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PY Account Layout</layout>
+        <sections>
+            <label><!-- Account Summary --></label>
+            <section>Account Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Bank Information --></label>
+            <section>Bank Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SE/FI Layout - Account</layout>
+        <sections>
+            <label><!-- Account Summary --></label>
+            <section>Account Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Backend Information --></label>
+            <section>Backend Information</section>
+        </sections>
+        <sections>
+            <label><!-- Bank Information --></label>
+            <section>Bank Information</section>
+        </sections>
+        <sections>
+            <label><!-- Branding Info --></label>
+            <section>Branding Info</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Score &amp; Grade --></label>
+            <section>Lead Score &amp; Grade</section>
+        </sections>
+        <sections>
+            <label><!-- OLD ADDRESS, USE NEW ADDRESS FEATURE ON THE TOP RIGHT --></label>
+            <section>OLD ADDRESS, USE NEW ADDRESS FEATURE ON THE TOP RIGHT</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Talabat Layout - Account</layout>
+        <sections>
+            <label><!-- Account Summary --></label>
+            <section>Account Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Backend Information --></label>
+            <section>Backend Information</section>
+        </sections>
+        <sections>
+            <label><!-- Bank Information --></label>
+            <section>Bank Information</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Score &amp; Grade --></label>
+            <section>Lead Score &amp; Grade</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>UK Layout - Account</layout>
+        <sections>
+            <label><!-- Account Summary --></label>
+            <section>Account Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Backend Information --></label>
+            <section>Backend Information</section>
+        </sections>
+        <sections>
+            <label><!-- Branding Info --></label>
+            <section>Branding Info</section>
+        </sections>
+        <sections>
+            <label><!-- Sales Information --></label>
+            <section>Sales Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Yogiyo Layout - Account</layout>
+        <sections>
+            <label>계정 요약</label>
+            <section>Account Summary</section>
+        </sections>
+        <sections>
+            <label>백엔드 정보</label>
+            <section>Backend Information</section>
+        </sections>
+        <sections>
+            <label>계좌 정보</label>
+            <section>Bank Information</section>
+        </sections>
+        <sections>
+            <label>프랜차이즈 영업 정보</label>
+            <section>Franchise Sales Information</section>
+        </sections>
+        <sections>
+            <label>영업 정보</label>
+            <section>Sales Information</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Account Details --></label>
+        <name>Account_Details</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Case --></label>
+        <name>Case</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Child Account --></label>
+        <name>Child_Account</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Clone --></label>
+        <name>Clone</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Contact --></label>
+        <name>Contact</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Log a Call --></label>
+        <name>Log_a_Call</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Log a Call --></label>
+        <name>Log_a_call_Lightning</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Menu Printing --></label>
+        <name>Menu_Printing</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NVM Call --></label>
+        <name>NVMContactWorld__Call</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Event --></label>
+        <name>New_Event_Lightning</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Task --></label>
+        <name>New_Task_Lightning</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Log A Note --></label>
+        <name>Note</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Opportunity --></label>
+        <name>Opportunity</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Task --></label>
+        <name>Task</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Upgrade --></label>
+        <name>Upgrade</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- DocuSign --></label>
+        <name>dsfs__AccountDocuSignAction</name>
+    </quickActions>
+    <recordTypes>
+        <label><!-- AT Account --></label>
+        <name>AT_Account</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Account for Click Delivery --></description>
+        <label><!-- CD Account --></label>
+        <name>CD_Account</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DE Account --></label>
+        <name>DE_Account</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Australian Accounts --></description>
+        <label><!-- DH AU Account --></label>
+        <name>DH_AU_Account</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Finland Account --></description>
+        <label><!-- FI Account --></label>
+        <name>FI_Account</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FP Account --></label>
+        <name>FP_Account</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Hungary Account --></description>
+        <label><!-- HU Account --></label>
+        <name>HU_Account</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PY Account --></label>
+        <name>PY_Account</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Sweden Account --></description>
+        <label><!-- SE Account --></label>
+        <name>SE_Account</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- To be used for Global Pick lists not to break Triggers. --></description>
+        <label><!-- Salesforce Default --></label>
+        <name>Salesforce_Default</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Social Account --></label>
+        <name>Social_Account</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Talabat Account --></label>
+        <name>Talabat_Account</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- UK Account --></label>
+        <name>UK_Account</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- KR Account Recordtype --></description>
+        <label><!-- Yogiyo Account --></label>
+        <name>Yogiyo_Account</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Please Enter a Valid Email Address --></errorMessage>
+        <name>APAC_Account_Email_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The maximum length of the extension number is 6 digits. --></errorMessage>
+        <name>APAC_Extension_Phone_Number</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add phone in the right format. It should start with +852 and be followed by 8 digits, without space --></errorMessage>
+        <name>APAC_Phone_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please ensure the Bank Sort Code (BSB) has six digits (numbers only). --></errorMessage>
+        <name>AU_6_Digit_Bank_Sort_Code</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please ensure the phone number is 11 digits and starts with 61. --></errorMessage>
+        <name>AU_Phone_Format</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please fill in restaurant email address --></errorMessage>
+        <name>AU_Restaurant_email_field_cant_be_blank</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a correct time format. --></errorMessage>
+        <name>Available_Delivery_Time_Weekday_Begin</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a correct time format. --></errorMessage>
+        <name>Available_Delivery_Time_Weekday_End</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a correct time format. --></errorMessage>
+        <name>Available_Delivery_Time_Weekend_Begin</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a correct time format. --></errorMessage>
+        <name>Available_Delivery_Time_Weekend_End</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add phone in the right format. It should start with +855 and be followed by 8 or 9 digits, without space --></errorMessage>
+        <name>Cambodia_Phone_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This Category or Vertical Segment is not allowed in your country. --></errorMessage>
+        <name>FP_Category_Selection</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This Category or Vertical Segment is not allowed in your country. --></errorMessage>
+        <name>FP_Category_Selection_Wave1</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select the Category of the Restaurant --></errorMessage>
+        <name>FP_Category_is_Mandatory_for_Restaurants</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The value &quot;Weekly&quot; is permitted for users in Singapore, Taiwan and Malaysia only. --></errorMessage>
+        <name>FP_Invoice_Frequency_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Categories for shops are not available for APAC --></errorMessage>
+        <name>FP_No_categories_for_shops</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Franchise connection was set up. Franchise Type cannot be Directly managed --></errorMessage>
+        <name>Franchise_Connection</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Restaurant cannot be Directly managed when Parent Account is not populated. --></errorMessage>
+        <name>Franchise_Type</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Franchise connection is set up. Franchise Type cannot be empty --></errorMessage>
+        <name>Franchise_Type_Empty</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This account has already a parent account assigned to it and is not possible to reassign as it will not be updated in the backend, for reassignment contact your backend team and the salesforce team. --></errorMessage>
+        <name>Glo_NoChange_ParentAccount_WithBackendID</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can not edit the Bank Details at this stage anymore.Please contact your management of finance team to help with changing the bank details. --></errorMessage>
+        <name>Global_Limit_sales_access_bank_fields</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Phone Number should contain country code and not have spaces --></errorMessage>
+        <name>HU_Phone_Format</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add phone in the right format. It should start with +856 and be followed by 8 to 10 digits, without space --></errorMessage>
+        <name>Laos_Phone_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Shared Menu should be filled on Branch level --></errorMessage>
+        <name>ME_No_Shared_Menu_on_Brand_Group</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add phone in the right format. It should start with +60 and be followed by 8 to 10 digits, without space --></errorMessage>
+        <name>Malaysia_Phone_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select the Mark up type if Markup Value is filled --></errorMessage>
+        <name>Mark_up_Value_validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The mark up value can&apos;t be blank or 0 --></errorMessage>
+        <name>Mark_up_validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add phone in the right format. It should start with +95 and be followed by 6 - 10 digits, without space --></errorMessage>
+        <name>Myanmar_Phone_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The field &quot;No paper bag reason&quot; can only have a value if the vendor is excluded from &quot;Automatic paper bag supply&quot;. Please deselect the reason. --></errorMessage>
+        <name>No_Automatic_paper_bag</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please specify the reason why the vendor should be excluded from automatic paper bag supply. --></errorMessage>
+        <name>No_paper_bag</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Only one Bank Account (Owner / Alternative) can be active at any given time. --></errorMessage>
+        <name>Only_one_active_bank_account</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can not edit the owner of accounts, please contact your manager to help you transferring this account --></errorMessage>
+        <name>PY_Sales_team_can_not_edit_account_owner</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Bank Account Number does not fit the format. Example 84806 - 9212311236 --></errorMessage>
+        <name>SE_BankAccountNumberFormat</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Phone number must start with +46 or +47 followed by 7-9 digits. --></errorMessage>
+        <name>SE_Phone_Format</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add phone in the right format. It should start with +65 and be followed by 8 digits, without space --></errorMessage>
+        <name>Singapore_Phone_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add phone in the right format. It should start with +886 and be followed by 8 to 10 digits, without space --></errorMessage>
+        <name>Taiwan_Phone_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can not edit the Bank Details at this stage anymore.Please contact your management of finance team to help with changing the bank details. --></errorMessage>
+        <name>Talabat_Limit_sales_access_bank_fields</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Telephone numbers have to be formatted like this: +49155523681234 (+CountryCodeAreaCodeNumber). --></errorMessage>
+        <name>Valid_Phone_Number</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- AT_Backend --></label>
+        <name>AT_Backend</name>
+    </webLinks>
+    <webLinks>
+        <label>파일 첨부</label>
+        <name>AttachFiles</name>
+    </webLinks>
+    <webLinks>
+        <label>백엔드</label>
+        <name>Australia_Backend</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Backend_AT --></label>
+        <name>Backend_AT</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Backend_CD --></label>
+        <name>Backend_CD</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Backend_SE --></label>
+        <name>Backend_SE</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Backend_UK --></label>
+        <name>Backend_UK</name>
+    </webLinks>
+    <webLinks>
+        <label>복제</label>
+        <name>CustomClone</name>
+    </webLinks>
+    <webLinks>
+        <label>구글 지도</label>
+        <name>GoogleMaps</name>
+    </webLinks>
+    <webLinks>
+        <label>구글 뉴스</label>
+        <name>GoogleNews</name>
+    </webLinks>
+    <webLinks>
+        <label>구글 검색</label>
+        <name>GoogleSearch</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- LightningClone --></label>
+        <name>LightningClone</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- LOOP --></label>
+        <name>Loop__LOOP</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- LOOP_Merge --></label>
+        <name>Loop__LOOP_Merge</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- LOOPlus --></label>
+        <name>Loop__LOOPlus</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_LOOP_Merge --></label>
+        <name>Loop__Mass_LOOP_Merge</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_LOOPlus --></label>
+        <name>Loop__Mass_LOOPlus</name>
+    </webLinks>
+    <webLinks>
+        <label>대량 수정</label>
+        <name>Mass_Edit</name>
+    </webLinks>
+    <webLinks>
+        <label>대량 이메일</label>
+        <name>Mass_Email</name>
+    </webLinks>
+    <webLinks>
+        <label>대량 업데이트</label>
+        <name>Mass_Update</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- New_Call_Case --></label>
+        <name>New_Call_Case</name>
+    </webLinks>
+    <webLinks>
+        <label>사장님 페이지</label>
+        <name>Owners_Page</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- RMS --></label>
+        <name>RMS</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_Bulk_SMS --></label>
+        <name>Send_Bulk_SMS</name>
+    </webLinks>
+    <webLinks>
+        <label>요기요 BE 생성</label>
+        <name>Send_to_backend_yogiyo</name>
+    </webLinks>
+    <webLinks>
+        <label>계약 해지</label>
+        <name>Terminate_Restaurant</name>
+    </webLinks>
+    <webLinks>
+        <label>계약 해지</label>
+        <name>Termination_page_Vue</name>
+    </webLinks>
+    <webLinks>
+        <label>계층 보기</label>
+        <name>View_Hierarchy</name>
+    </webLinks>
+    <webLinks>
+        <label>요기요 백엔드</label>
+        <name>YogiYo_Backend</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_with_DocuSign --></label>
+        <name>dsfs__Send_with_DocuSign</name>
+    </webLinks>
+</CustomObjectTranslation>

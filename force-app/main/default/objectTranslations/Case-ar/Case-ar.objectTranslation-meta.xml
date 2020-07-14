@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <validationRules>
+        <errorMessage>لا يمكنك حل التذكرة وهي بقائمة الإنتظار، يجب عليك تعيينها لك لحلها</errorMessage>
+        <name>Cannot_resolved_if_owner_is_queue</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>يرجى تعبئة كل الحقول (العنوان، الوصف، النوع، سبب التذكرة، الدولة، رقم الطلب)، والتأكد من صحة البريد الإلكتروني للعميل، و من جهة الإتصال والحساب بالنسبة للمتجر.</errorMessage>
+        <name>GLBL_CC_Missing_Fields_Before_Update_Sts</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>يرجى تعبئة كل الحقول (العنوان، الوصف، النوع، سبب التذكرة، الدولة، البريد الإلكتروني للعميل )</errorMessage>
+        <name>GLBL_CC_Missing_Fields_New_Rest_Interest</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>فضلًا أدخل رقم الطلب قبل تغيير حالة التذكرة لـ&quot;تم الحل&quot;</errorMessage>
+        <name>GLBL_CC_Order_Number_Mandayory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>رقم الطلب المدخل غير صحيح</errorMessage>
+        <name>GLOBAL_Incorrect_Order_Number_Spelling</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>لا تستطيع تعديل تذكرة مغلقة</errorMessage>
+        <name>Global_CC_Cannot_Reopen_When_Closed</name>
+    </validationRules>
+    <webLinks>
+        <label>إرسال بريد إلكتروني</label>
+        <name>Send_Email</name>
+    </webLinks>
+</CustomObjectTranslation>

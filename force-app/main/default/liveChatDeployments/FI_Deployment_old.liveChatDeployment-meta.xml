@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LiveChatDeployment xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brandingImage>FI_PizzaOnlineChatWindow</brandingImage>
+    <connectionTimeoutDuration>0</connectionTimeoutDuration>
+    <connectionWarningDuration>0</connectionWarningDuration>
+    <displayQueuePosition>false</displayQueuePosition>
+    <enablePrechatApi>true</enablePrechatApi>
+    <enableTranscriptSave>true</enableTranscriptSave>
+    <label>FI Deployment old</label>
+    <mobileBrandingImage>FI_PizzaOnlineChatWindow</mobileBrandingImage>
+    <site>Live_Agent</site>
+    <windowTitle>PizzaOnline Support</windowTitle>
+</LiveChatDeployment>

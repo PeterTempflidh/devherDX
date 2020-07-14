@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>TH Wrong Target Group</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>TH Wrong Target Group</name>
+    <style>freeForm</style>
+    <subject>ไม่สามารถจัดส่งได้ หรือ กรอกข้อมูลไม่ครบถ้วน Wrong Target Group or missing some information</subject>
+    <textOnly>เรียน {!Lead.Salutation} {!Lead.Name}
+
+ทางเราขอพระขอบคุณที่ท่านให้ความสนใจในการเข้าร่วมเป็นพาร์ทเนอร์
+ร้านอาหารกับ foodpanda
+
+หลังจากที่ทางเราทำการตรวจสอบใบสมัครของท่านอย่างละเอียดแล้ว 
+ทางเราขอแจ้งให้ทราบว่า foodpanda ไม่สามารถที่จะดำเนินการจัดส่ง
+อาหารของท่านได้เนื่องจากเหตุผลบางประการทางเราจะติดต่อกลับไป
+หากมีการเปลี่ยนแปลงในอนาคตที่ทำให้เราสามารถร่วมเป็นพาร์ทเนอร์
+กันได้
+
+
+ด้วยความเคารพ,
+
+ทีมงาน foodpanda
+
+
+Dear {!Lead.Salutation} {!Lead.Name},
+
+Thank you for writing to foodpanda, and for your interest in 
+partnering with us.
+
+After having analyzed your application carefully, we regret to 
+inform you that we would not be able to proceed with a Delivery 
+partnership with your business currently due to various reasons.
+If it becomes possible in the future, for us to work together, we 
+will certainly get in touch with you.
+
+
+Thanks and regards,
+
+foodpanda team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

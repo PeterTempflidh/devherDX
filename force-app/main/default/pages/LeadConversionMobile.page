@@ -1,0 +1,127 @@
+<apex:page standardController="Lead" showheader="false" id="ConvertLeadToAccount" extensions="CtrLeadConversion" action="{!mobileActionConvert}" standardStylesheets="true">
+    <head>
+        <apex:includeScript value="/xdomain/xdomain.js"/>
+        <apex:includeScript value="/support/console/30.0/integration.js"/>
+        <apex:includeScript value="{!URLFOR($Resource.jq211)}"/>
+        <script>
+        var pageInConsole = false;
+             $(document).ready(function() {
+                   pageInConsole = sforce.console.isInConsole();
+                   if(pageInConsole){
+                      sforce.console.setTabTitle('{!leadTobeConverted.FirstName} {!leadTobeConverted.LastName}');
+                   }
+             });
+
+            function checkResult(result) { 
+                        if (result.success) {
+                           console.log('Tab style set successfully!');
+                        } else {
+                           console.log('Tab style cannot be set!');
+                        }
+            }
+
+            function checkTabId(result){
+                console.log('the tab id' +result.id);
+
+                if(result.success){
+                    sforce.console.setTabStyle('padding-left:20px; line-height10px; background: url(/img/sprites/master.png) top -195px left no-repeat', result.id, checkResult);
+                }
+            }
+
+            function renameTitle(){
+                console.log('HALLO HALLO');
+                sforce.console.getFocusedPrimaryTabId(checkTabId);
+             }
+
+        </script> 
+
+            <style>
+            .removeButton {
+                margin-top:20px; 
+                margin-bottom:10px; 
+                margin-left:45%;
+            }
+            table{width: 100% !important}
+            select#leadFieldCuisine__c_unselected,
+            select#leadFieldCuisine__c_selected,
+            select#leadFieldPayment_Method__c_selected,
+            select#leadFieldPayment_Method__c_unselected{width: 250px !important;}
+        </style>
+    </head>
+    <body >
+        <apex:form id="thisForm">
+        <apex:outputPanel id="javascriptPanel">
+        <script type="text/javascript">
+        var accountId = '{!convertedAccountId}';
+        </script>
+        </apex:outputPanel>
+            <script type="text/javascript">
+                function showTabId(result) {
+                    
+                    if(accountId.length>1){
+                        sforce.console.openPrimaryTab(result.id,'/'+accountId,true);
+                    }
+                };
+
+                function reloadParent(){
+                    var errorMsg = $("[id$=messages]").html();
+                    
+                    if(errorMsg=='' || errorMsg.equals('undefined')){  
+                        if(pageInConsole) {   
+                            sforce.console.getEnclosingPrimaryTabId(showTabId);
+                        }else if(sforce.one){
+                            sforce.one.navigateToSObject(accountId);
+                        }else{
+                            window.top.location.href = '{!redirectURL}/'+accountId;
+                        }
+                    }
+                    return true;            
+                }
+
+                function reloadParentAlways(){
+                     if (sforce.console.isInConsole()) {   
+                                sforce.console.getEnclosingPrimaryTabId(showTabId);
+                    }else if(sforce.one){
+                       sforce.one.navigateToSObject(accountId);
+                    }else{
+                        window.top.location.href = '{!redirectURL}/'+accountId;
+                    }
+                     return true;
+                }
+
+                function scrollToTop(){
+                    var errorMsg = $("[id$=messages]").html();
+                    if(errorMsg != '' || !errorMsg.equals('undefined')){  
+                        document.body.scrollTop = document.documentElement.scrollTop = 0;
+                    }
+                }
+            </script>
+            
+            <apex:pageMessages id="messages" escape="false"/>
+            <apex:actionFunction name="removeAdditionalContact" action="{!removeContactFromList}" rerender="messages, theAdditionalContacts" status="LoadingSpinner" oncomplete="scrollToTop(); return false;">
+                <apex:param name="contactToRemove" value="" assignTo="{!contactToRemove}" />
+            </apex:actionFunction>
+            <apex:actionFunction name="addAdditionalContact" action="{!addNewContact}"  rerender="messages, theAdditionalContacts" status="LoadingSpinner" oncomplete="scrollToTop(); return false;" />
+
+            <apex:pageBlock rendered="{!AND(Lead.Owner.Type != 'User', showOnlyErrorMessage == false)}">
+
+                <br />
+                <br />
+                <apex:outputPanel layout="block" style="text-align: center;">
+                    <apex:outputText value="{!$Label.Lead_Conversion_Change_Lead_Owner_To_User}" />
+                    <a href="/console?tsid={!Lead.Id}" target="_parent" style="float: right;">{!$Label.Lead_Conversion_Back_To_Lead}</a>
+                </apex:outputPanel>
+            </apex:pageBlock>
+            <apex:outputPanel rendered="{!AND(Lead.Owner.Type == 'User', showOnlyErrorMessage == false)}">
+            <div style="width:100%; text-align:center;">
+            <apex:commandButton styleClass="green" value="{!$Label.Convert}" action="{!convertLead}" oncomplete="reloadParent();"
+                reRender="messages, javascriptPanel" status="LoadingSpinner" style="margin-top: 15px; margin-bottom: 15px;" />
+                <apex:commandButton styleClass="red" value="{!$Label.Cancel}" action="{!cancel}" onClick="renameTitle();" immediate="true" status="LoadingSpinner"/>
+            </div>  
+            <div style="width: 100% !important;">          
+            <apex:dynamicComponent componentValue="{!dynamicPanelPage}"/></div>
+            </apex:outputPanel>
+            <c:Spinner message="{!$Label.Please_Wait}" />
+        </apex:form>
+    </body> 
+</apex:page>

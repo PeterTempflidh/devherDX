@@ -1,0 +1,29 @@
+<aura:component implements="force:lightningQuickAction,force:hasRecordId,force:hasSObjectName,flexipage:availableForAllPageTypes,force:hasSObjectName" 
+                access="global" controller="CaseControllerLightning"> 
+    <ltng:require styles="{!$Resource.SLDS274 + '/assets/styles/lightning-design-system-ltng.css'}"/>
+    <aura:handler name="onUpdated" event="force:recordUpdated" action="{!c.events}" />
+    <aura:attribute name="AutoRedirect" type="Boolean"/>
+    <aura:attribute name="relevantRecordId" type="Id" />
+    
+    <lightning:navigationItemAPI aura:id="navigationItem" />
+    <lightning:workspaceAPI aura:id="workspace" />
+    <lightning:utilityBarAPI aura:id="utilityBar" />
+    <force:recordData aura:id="recordLoader" 
+                      mode="VIEW"
+                      recordId="{!v.relevantRecordId}"
+                      targetRecord="{!v.record}"
+                      fields="Order_Number__c, Platform__c, Country__c"
+                      recordUpdated="{!c.handleRecordUpdated}"/>
+
+    <aura:attribute name="Order_Number__c" type="String"/>
+    <aura:attribute name="Platform__c" type="String"/>
+    <aura:attribute name="Country__c" type="String"/>
+    
+    
+    <lightning:button class="slds-button slds-button_text-destructive widebutton" 
+                      aura:id="orderHistoryButton" label="{!$Label.c.Case_Show_Order_History}" 
+                      onclick="{!c.openTab }" />
+
+    <aura:attribute name="record" type="Object"/>
+
+</aura:component>

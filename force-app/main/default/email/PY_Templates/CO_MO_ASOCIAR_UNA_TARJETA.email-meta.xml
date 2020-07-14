@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>¿CÓMO ASOCIAR UNA TARJETA?</name>
+    <style>freeForm</style>
+    <subject>¿CÓMO ASOCIAR UNA TARJETA?</subject>
+    <textOnly>Estimada {!Case.Customer_Name__c}, es un gusto saludarte.
+
+Estimado {!Case.Customer_Name__c}, es un gusto saludarte.
+
+
+Te contactamos en respuesta a tu consulta sobre cómo asociar una tarjeta de crédito o débito a tu usuario de PedidosYa.
+
+
+Para asociar una nueva tarjeta primero seleccionas un local que acepte la tarjeta que deseas utilizar, te puedes ayudar con los filtros disponibles en la aplicación o si estás utilizando la página web encontrarás el filtro ‘Tarjeta’, una vez que seleccionaste el local y armas el pedido, el próximo paso es la selección de medios de pago donde podrás colocar todos los detalles de tu tarjeta.
+
+
+Quedamos a las órdenes ante cualquier consulta.
+
+
+
+Saludos,
+
+{!Case.OwnerFullName}
+
+Atención al Cliente PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

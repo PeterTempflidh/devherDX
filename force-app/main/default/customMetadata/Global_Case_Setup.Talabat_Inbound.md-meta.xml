@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Talabat Inbound</label>
+    <protected>false</protected>
+    <values>
+        <field>Entity_Name__c</field>
+        <value xsi:type="xsd:string">Talabat_Inbound</value>
+    </values>
+    <values>
+        <field>Value_Assignment__c</field>
+        <value xsi:type="xsd:string">{
+&quot;101:=Country__c&quot;:&quot;EmailToAddress__c==customercare@talabat.com,Kuwait&quot;,
+&quot;102:=Country__c&quot;:&quot;EmailToAddress__c==customercare.uae@talabat.com,United Arab Emirates&quot;,
+&quot;103:=Country__c&quot;:&quot;EmailToAddress__c==customercare.qatar@talabat.com,Qatar&quot;,
+&quot;104:=Country__c&quot;:&quot;EmailToAddress__c==customercare.bahrain@talabat.com,Bahrain&quot;,
+&quot;105:=Country__c&quot;:&quot;EmailToAddress__c==customercare.jordan@talabat.com,Jordan&quot;,
+&quot;106:=Country__c&quot;:&quot;EmailToAddress__c==customercare.oman@talabat.com,Oman&quot;,
+&quot;107:=Country__c&quot;:&quot;EmailToAddress__c==customercare.ksa@talabat.com,Kingdom of Saudi Arabia&quot;,
+&quot;108:=Country__c&quot;:&quot;EmailToAddress__c==customercare@otlob.com,Egypt&quot;,
+&quot;109:=Country__c&quot;:&quot;EmailToAddress__c==vst@otlob.com||restaurantcare@otlob.com,Egypt&quot;,
+&quot;110:=AND&quot;:&quot;&quot;,
+&quot;201:=Platform__c&quot;:&quot;EmailToAddress__c==customercare@otlob.com,Otlob&quot;,
+&quot;202:=Platform__c&quot;:&quot;EmailToAddress__c==vst@otlob.com||restaurantcare@otlob.com,Otlob&quot;,
+&quot;203:=Platform__c&quot;:&quot;EmailToAddress__c==ISNOTBLANK,Talabat&quot;,
+&quot;301:=Platform__c&quot;:&quot;Country__c==Egypt,Otlob&quot;,
+&quot;302:=Platform__c&quot;:&quot;Country__c!=Egypt&amp;&amp;Platform__c==Otlob,Talabat&quot;,
+&quot;303:=Platform__c&quot;:&quot;Platform__c==ISBLANK,Talabat&quot;,
+&quot;304:=AND&quot;:&quot;&quot;,
+&quot;401:=Type&quot;:&quot;EmailToAddress__c==restaurantcare@otlob.com,Partner&quot;
+}</value>
+    </values>
+</CustomMetadata>

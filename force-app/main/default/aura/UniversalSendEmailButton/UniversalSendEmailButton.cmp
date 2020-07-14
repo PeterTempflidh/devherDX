@@ -1,0 +1,10 @@
+<aura:component implements="force:lightningQuickAction,flexipage:availableForAllPageTypes,force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId" access="global" controller="UniversalSendEmailButton_AuraController">
+  <lightning:navigation aura:id="navService" />
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+  <aura:attribute name="recordId" type="String" />
+  <aura:attribute name="buttonTitle" type="String" />
+  <aura:attribute name="destination" type="Object" />
+  <aura:attribute name="displayButton" type="Boolean" default="true" />
+  <aura:attribute name="parent" type="Aura.Component"/>
+  <ui:button label="{!$Label.c.Send_Email_Button_Label}" buttonTitle="{!v.buttonTitle}" press="{!c.navigateToDestination}" disabled="{!v.displayButton}" />
+</aura:component>

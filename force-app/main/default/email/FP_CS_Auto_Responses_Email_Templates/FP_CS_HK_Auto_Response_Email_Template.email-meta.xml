@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP CS HK Auto Response Email Template</name>
+    <style>freeForm</style>
+    <subject>Thank you - your request {!Case.CaseNumber} has been received!</subject>
+    <textOnly>您好：
+
+謝謝你聯絡 foodpanda 客戶服務部。
+
+我們已收到你的查問 ({!Case.CaseNumber})，並會於 24 小時內回覆問題。如你有其他意見，歡迎回覆至此電郵。
+
+發問前，請前往 「客服中心」 ，你或於該處找到你所需要的答案。一般查詢包括︰
+
+foodpanda 客服團隊
+
+
+Hi,
+
+Thanks for contacting foodpanda Customer Support! 
+
+Your request ({!Case.CaseNumber}) has been received and we&apos;ll get back to you within 24 hours. If you’d like to add additional comments, please reply to this email.
+
+In the meantime, here are a few articles from our Help Center that might help solve your problem while you wait:
+
+Thanks and have a great day!
+
+
+foodpanda Customer Support Team
+
+{!Case.Thread_Id__c}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

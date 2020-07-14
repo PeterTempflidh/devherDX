@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>DH AU autoReply</name>
+    <style>none</style>
+    <subject>Your request to Delivery Hero</subject>
+    <textOnly>Thank you for your Email.
+We have received your request and will do our best to process it as soon as possible.
+Please give us one working day for processing.
+
+For urgent inquiries please contact us via phone: 1300 MY MEAL
+
+Please do not reply to this message. Thank you for your understanding.
+
+Your Delivery Hero Team
+
+
+{!User.Company}
+{!User.Street}
+{!User.City} {!User.PostalCode}
+contact@deliveryhero.com.au
+www.deliveryhero.com.au
+Director: Scott Fletcher
+ABN: 26 152 250 274</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

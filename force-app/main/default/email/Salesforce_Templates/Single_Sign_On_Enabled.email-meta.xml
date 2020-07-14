@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email to be mass sent to new users using SSO</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>Salesforce_Letterhead</letterhead>
+    <name>Single Sign On Enabled</name>
+    <style>freeForm</style>
+    <subject>Single sign on login instructions</subject>
+    <textOnly>Dear Employee,
+
+
+We would like to share with you Single Sign On credentials which you need to use to access DH Salesforce.
+
+Your SSO username is: primary email address
+
+One time Password: SSO password
+
+With initial SSO setup please follow the instructions on the screen, in case of doubt check this FAQ
+
+After setting up SSO Authentication Methods, please already try to sign in to Salesforce:
+
+1. Go to  deliveryhero.my.salesforce.com 
+2. Click on SSO Button
+3. Use your primary email and SSO password to login.
+
+Should you be facing any issues with signing in to SSO please contact application.manager@deliveryhero.com.
+
+
+Warm regards,
+Application Manager and Salesforce Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

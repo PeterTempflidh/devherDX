@@ -1,0 +1,14 @@
+<apex:page controller="CtrUpdateQuoteStatus" showHeader="false" sidebar="false" cache="false">
+<apex:form >
+<apex:pageBlock id="thePageBlock">
+<apex:pageMessages />
+	<apex:pageBlockSection >
+		<apex:outputPanel rendered="{!if(showPanel=true,true,false)}">
+			Press the below Button to Accept or Decline.
+			<apex:commandButton action="{!acceptQuote}" value="Accept" reRender="thePageBlock"/>
+			<apex:commandButton action="{!declineQuote}"  value="Decline" reRender="thePageBlock"/>
+		</apex:outputPanel>
+	</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:form>	
+</apex:page>

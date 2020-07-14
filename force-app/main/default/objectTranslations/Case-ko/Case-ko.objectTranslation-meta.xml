@@ -1,0 +1,1957 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- EmailTemplatePrepopulateCriteriaFields --></label>
+        <name>EmailTemplatePrepopulateCriteriaFields</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- HistoricalCasesColumnsFull --></label>
+        <name>HistoricalCasesColumnsFull</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- HistoricalCasesColumnsRelatedList --></label>
+        <name>HistoricalCasesColumnsRelatedList</name>
+    </fieldSets>
+    <layouts>
+        <layout>AT Entry Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Web Information --></label>
+            <section>Web Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>AT Restaurants Operations</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CD Entry Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Menu Type Section --></label>
+            <section>Menu Type Section</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Web Information --></label>
+            <section>Web Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CD Inbound Feed Layout</layout>
+        <sections>
+            <label><!-- Chat Information --></label>
+            <section>Chat Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CD Restaurant Ops Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Web Information --></label>
+            <section>Web Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CD Retention Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Web Information --></label>
+            <section>Web Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CZ Entry Case Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Menu Typing Team --></label>
+            <section>Menu Typing Team</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Web Information --></label>
+            <section>Web Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CZ Finance Case Layout</layout>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+        <sections>
+            <label><!-- Refund Information --></label>
+            <section>Refund Information</section>
+        </sections>
+        <sections>
+            <label><!-- Restaurant Information --></label>
+            <section>Restaurant Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CZ Intenal Case Layout</layout>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CZ Restaurant Ops Case Layout</layout>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>DE Entry Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Editorial Assessment --></label>
+            <section>Editorial Assessment</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Menu Type Section --></label>
+            <section>Menu Type Section</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Web Information --></label>
+            <section>Web Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>DE Finance Case Layout</layout>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+        <sections>
+            <label><!-- Refund Information --></label>
+            <section>Refund Information</section>
+        </sections>
+        <sections>
+            <label><!-- Restaurant Information --></label>
+            <section>Restaurant Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>DE Inbound Layout</layout>
+        <sections>
+            <label><!-- Chat Information --></label>
+            <section>Chat Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>DE Internal Case Layout</layout>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+        <sections>
+            <label><!-- Refund Information --></label>
+            <section>Refund Information</section>
+        </sections>
+        <sections>
+            <label><!-- Restaurant Information --></label>
+            <section>Restaurant Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>DE Restaurant Ops</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>DH AU Entry Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Editorial Assessment --></label>
+            <section>Editorial Assessment</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Menu Type Section --></label>
+            <section>Menu Type Section</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Web Information --></label>
+            <section>Web Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>DH AU Retention Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Web Information --></label>
+            <section>Web Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>FI Entry Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Menu Processing --></label>
+            <section>Menu Processing</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Web Information --></label>
+            <section>Web Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>FI Restaurant Ops</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>FP Entry Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Menu Typing Team --></label>
+            <section>Menu Typing Team</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Web Information --></label>
+            <section>Web Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>FP Finance Case layout</layout>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+        <sections>
+            <label><!-- Refund Information --></label>
+            <section>Refund Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>FP Restaurants Operations</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Case Information --></label>
+            <section>Case Information</section>
+        </sections>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Global CS Refunds Case</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Refund Information --></label>
+            <section>Refund Information</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Web Information --></label>
+            <section>Web Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Global Inbound Feed Layout</layout>
+        <sections>
+            <label><!-- Chat Information --></label>
+            <section>Chat Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Global Payments Case</layout>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+        <sections>
+            <label><!-- Refund Information --></label>
+            <section>Refund Information</section>
+        </sections>
+        <sections>
+            <label><!-- Restaurant Information --></label>
+            <section>Restaurant Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>HU Entry Case Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Menu Typing Team --></label>
+            <section>Menu Typing Team</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Web Information --></label>
+            <section>Web Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>HU Finance Case Layout</layout>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+        <sections>
+            <label><!-- Refund Information --></label>
+            <section>Refund Information</section>
+        </sections>
+        <sections>
+            <label><!-- Restaurant Information --></label>
+            <section>Restaurant Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>HU Internal Case Layout</layout>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>HU Restaurant Ops Case Layout</layout>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PY Entry Case Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Menu Typed --></label>
+            <section>Menu Typed</section>
+        </sections>
+        <sections>
+            <label><!-- Menu Typing Feedback --></label>
+            <section>Menu Typing Feedback</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Web Information --></label>
+            <section>Web Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PY Finance Case Layout</layout>
+        <sections>
+            <label><!-- Case Resolutiion --></label>
+            <section>Case Resolutiion</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Web Information --></label>
+            <section>Web Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PY Inbound Case Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Chat Information --></label>
+            <section>Chat Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Web Information --></label>
+            <section>Web Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PY Internal Case Layout</layout>
+        <sections>
+            <label><!-- Case Information --></label>
+            <section>Case Information</section>
+        </sections>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Restaurant Information --></label>
+            <section>Restaurant Information</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Web Information --></label>
+            <section>Web Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PY Restaurants Operations Case Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SE Entry Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Menu Processing --></label>
+            <section>Menu Processing</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Web Information --></label>
+            <section>Web Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SE Restaurant Ops</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Restaurant Care Case --></label>
+            <section>Restaurant Care Case</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SE Retention Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Web Information --></label>
+            <section>Web Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SF Support Layout</layout>
+        <sections>
+            <label><!-- Feature Ticket --></label>
+            <section>Feature Ticket</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Talabat Entry Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Menu Typing Team --></label>
+            <section>Menu Typing Team</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Web Information --></label>
+            <section>Web Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Talabat Finance Case Layout</layout>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+        <sections>
+            <label><!-- Refund Information --></label>
+            <section>Refund Information</section>
+        </sections>
+        <sections>
+            <label><!-- Restaurant Information --></label>
+            <section>Restaurant Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Talabat Internal case Layout</layout>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Talabat Restaurant Ops - Layout</layout>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Talabat Retention Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Web Information --></label>
+            <section>Web Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>UK Entry Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Editorial Assessment --></label>
+            <section>Editorial Assessment</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Menu Type Section --></label>
+            <section>Menu Type Section</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Web Information --></label>
+            <section>Web Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>UK Internal Case Layout</layout>
+        <sections>
+            <label><!-- Change Of Ownership --></label>
+            <section>Change Of Ownership</section>
+        </sections>
+        <sections>
+            <label><!-- Refund Information --></label>
+            <section>Refund Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>UK Restaurant Ops</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Restaurant Care Case --></label>
+            <section>Restaurant Care Case</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>UK Retention Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Web Information --></label>
+            <section>Web Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Yogiyo Entry Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Editorial Assessment --></label>
+            <section>Editorial Assessment</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label>메뉴 작업 정보</label>
+            <section>Menu Type Section</section>
+        </sections>
+        <sections>
+            <label>시스템 정보</label>
+            <section>System Info</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Yogiyo Restaurant Ops</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Case Resolution --></label>
+            <section>Case Resolution</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Add Comment --></label>
+        <name>Add_Comment</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Cases Reasons for FP Internal Case --></label>
+        <name>Cases_Reasons_for_FP_Internal_Case</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Change Case Owner --></label>
+        <name>Change_Case_Owner</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Change Country --></label>
+        <name>Change_Country</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Change Order ID --></label>
+        <name>Change_Order_ID</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Change Status --></label>
+        <name>Change_Status_Custom</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Child Case --></label>
+        <name>Child_Case</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Close Case --></label>
+        <name>Close_Case_Lightning</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Description --></label>
+        <name>Description</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Event --></label>
+        <name>Event</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Global Inbound Case Details --></label>
+        <name>Global_Inbound_Case_Details</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Global Inbound Chat Case Details --></label>
+        <name>Global_Inbound_Chat_Case_Details</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Global Inbound Chat Case Details One View --></label>
+        <name>Global_Inbound_Chat_Case_Details_One_View</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Handover2 --></label>
+        <name>Handover2</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Log a Call --></label>
+        <name>Log_a_Call</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Log a Call --></label>
+        <name>Log_a_Call_CD</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Log a Call --></label>
+        <name>Log_a_Call_Default</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Log a Call --></label>
+        <name>Log_a_Call_PY</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Log a Call --></label>
+        <name>Log_a_Call_TLB</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Log a Call --></label>
+        <name>Log_a_Call_c</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Log a Call --></label>
+        <name>Log_a_call_Lightning</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Event --></label>
+        <name>New_Event_Lightning</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Task --></label>
+        <name>New_Talabat_Task</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Task --></label>
+        <name>New_Task_Lightning</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Resolve Case --></label>
+        <name>Resolve_Case</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Select a Reason --></label>
+        <name>Select_a_Reason</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- SendEmail --></label>
+        <name>SendEmail</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Send Email --></label>
+        <name>Send_Email_LE</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- SocialPublisher --></label>
+        <name>SocialPublisher</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Task --></label>
+        <name>Task</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Update Case --></label>
+        <name>Voucher_Details</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- DocuSign --></label>
+        <name>dsfs__CaseDocuSignAction</name>
+    </quickActions>
+    <recordTypes>
+        <label><!-- AT Entry Case --></label>
+        <name>AT_Entry_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- AT Inbound Case --></label>
+        <name>AT_Inbound_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- AT Internal Case --></label>
+        <name>AT_Internal_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- AT Restaurant Operations --></label>
+        <name>AT_Restaurant_Operations</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Menu Processing Case for Click Delivery --></description>
+        <label><!-- CD Entry Case --></label>
+        <name>CD_Entry_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- CD Inbound Case --></label>
+        <name>CD_Inbound_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- CD Internal Case --></label>
+        <name>CD_Internal_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Restaurant Operations Cases for Click Delivery --></description>
+        <label><!-- CD Restaurant Operations --></label>
+        <name>CD_Restaurant_Operations</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- CD Retention --></label>
+        <name>CD_Retention</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Czech Republic Entry Process --></description>
+        <label><!-- CZ Entry Case --></label>
+        <name>CZ_Entry_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- CZ Finance Case --></label>
+        <name>CZ_Finance_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Czech Republic Internal Case --></description>
+        <label><!-- CZ Internal Case --></label>
+        <name>CZ_Internal_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Czech Republic Inbound Process --></description>
+        <label><!-- CZ Restaurant Operations --></label>
+        <name>CZ_Restaurant_Operations</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DE Entry Case --></label>
+        <name>DE_Entry_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DE Finance Case --></label>
+        <name>DE_Finance_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DE Inbound Case --></label>
+        <name>DE_Inbound_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DE Internal Case --></label>
+        <name>DE_Internal_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DE Restaurant Operations --></label>
+        <name>DE_Restaurant_Operations</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DH AU Entry Case --></label>
+        <name>DH_AU_Entry_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DH AU Inbound --></label>
+        <name>DH_AU_Inbound</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DH AU Internal Case --></label>
+        <name>DH_AU_Internal_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DH AU Retention --></label>
+        <name>DH_AU_Retention</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Entry Case process for Finland --></description>
+        <label><!-- FI Entry Case --></label>
+        <name>FI_Entry_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Inbound Case for Finland(Email, Chat, Phone etc. ) --></description>
+        <label><!-- FI Inbound --></label>
+        <name>FI_Inbound</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FI Internal Case --></label>
+        <name>FI_Internal_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FI Restaurant Operations --></label>
+        <name>FI_Restaurant_Operations</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FP Entry Case --></label>
+        <name>FP_Entry_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FP Finance Case --></label>
+        <name>FP_Finance_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FP Inbound Case --></label>
+        <name>FP_Inbound_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FP Internal Case --></label>
+        <name>FP_Internal_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FP Restaurant Operations --></label>
+        <name>FP_Restaurant_Operations</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Record type for Refunds cases from CS --></description>
+        <label><!-- Global CS Refunds Case --></label>
+        <name>Global_CS_Refunds_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- This record type is used for Global Payments --></description>
+        <label><!-- Global Payments Case --></label>
+        <name>Global_Payments_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Support tickets for global tools [excl. Salesforce] --></description>
+        <label><!-- Global Support Case --></label>
+        <name>Global_Support_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Hungary Entry Process --></description>
+        <label><!-- HU Entry Case --></label>
+        <name>HU_Entry_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- HU Finance Case --></label>
+        <name>HU_Finance_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- HU Inbound Case --></label>
+        <name>HU_Inbound_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Hungary Internal Process --></description>
+        <label><!-- HU Internal Case --></label>
+        <name>HU_Internal_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Hungary Inbound Process --></description>
+        <label><!-- HU Restaurant Operations --></label>
+        <name>HU_Restaurant_Ops</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PY Entry Case --></label>
+        <name>PY_Entry_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PY Finance Case --></label>
+        <name>PY_Finance_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PY Inbound Case --></label>
+        <name>PY_Inbound_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PY Internal Case --></label>
+        <name>PY_Internal_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PY Restaurant Operations --></label>
+        <name>PY_Restaurant_Operations</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SALESFORCE SUPPORT --></label>
+        <name>SALESFORCE_SUPPORT</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Sweden Entry Case process (Menu Processing, Menu Change etc.) --></description>
+        <label><!-- SE Entry Case --></label>
+        <name>SE_Entry_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Inbound Cases for Sweden (Email, Inbound Calls, Chats, complaints, refund etc. ) --></description>
+        <label><!-- SE Inbound --></label>
+        <name>SE_Inbound</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Internal Cases for Sweden(Quality Check etc.) --></description>
+        <label><!-- SE Internal Case --></label>
+        <name>SE_Internal_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SE Restaurant Operations --></label>
+        <name>SE_Restaurant_Operations</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- SE Retention Case --></description>
+        <label><!-- SE Retention --></label>
+        <name>SE_Retention</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Talabat Entry Case --></label>
+        <name>Talabat_Entry_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Talabat Finance Case --></label>
+        <name>Talabat_Finance_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Talabat Inbound Case --></label>
+        <name>Talabat_Inbound_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Talabat Internal Case --></label>
+        <name>Talabat_Internal_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Talabat Restaurant Ops --></label>
+        <name>Talabat_Restaurant_Ops</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Talabat Retention --></label>
+        <name>Talabat_Retention</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- UK Entry Case --></label>
+        <name>UK_Entry_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- UK Inbound --></label>
+        <name>UK_Inbound</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- UK Internal Case --></label>
+        <name>UK_Internal_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- UK Restaurant Operations --></label>
+        <name>UK_Restaurant_Operations</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- UK Retention --></label>
+        <name>UK_Retention</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- YE Inbound Case --></label>
+        <name>YE_Inbound_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Yogiyo Entry Case --></label>
+        <name>Yogiyo_Entry_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Case for every external communucation in Korea --></description>
+        <label><!-- Yogiyo Inbound --></label>
+        <name>Yogiyo_Inbound</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Yogiyo Internal Case --></label>
+        <name>Yogiyo_Internal_Case</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Yogiyo Refund --></label>
+        <name>Yogiyo_Refund</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Yogiyo Restaurant Operations --></label>
+        <name>Yogiyo_Restaurant_Operations</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Yogiyo Retention --></label>
+        <name>Yogiyo_Retention</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- No es posible cambiar la Persona a Cargo cuando ya ha sido asignada una persona. --></errorMessage>
+        <name>CD_Cannot_Edit_PersonInCharge</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- No es posible Editar el Caso cuando esta asignado a Data Team --></errorMessage>
+        <name>CD_Case_Locked_for_sale_When_OwnedbyData</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a root cause with the unsuccessful reason and comments --></errorMessage>
+        <name>CD_Root_Cause_Mandatory_Negative_Closure</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a Due Date before closing the case --></errorMessage>
+        <name>CZ_Due_Date_Mandatory_Retention_COO</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The case cannot be resolved if the owner is a queue, you should take ownership of the case. --></errorMessage>
+        <name>Cannot_resolved_if_owner_is_queue</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please choose a Closed Reason --></errorMessage>
+        <name>Closed_Reason_mandatory_to_close_case</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You do not have permissions to close a case outside of DE Inbound record type. --></errorMessage>
+        <name>DE_CC_Error_On_Inbound_Closure</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please check that the following fields are complete: Subject, Description, Type, Case Reason Level 3, Platform. Additionally for Customer make sure Customer Email and Order Number are complete, and for Restaurant contact and account --></errorMessage>
+        <name>DE_CC_Missing_Fields_Before_Update_Sts</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can not close a Retention Case with Case Reason &apos;Unknown&apos; --></errorMessage>
+        <name>DE_Case_Reason_Not_Unknown_Retention</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a Due Date before closing the case --></errorMessage>
+        <name>DE_Due_Date_Mandatory_Retention_and_COO</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter Account Email and Phone before closing Quality Check --></errorMessage>
+        <name>DE_EmailPhone_required_successfull_QC</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Mandatory fields are missing. Make sure the following fields are entered: Refund Amount, Order Number (For Order Accepted/Rejected), Invoice Number (For PP or Product) --></errorMessage>
+        <name>DE_Finance_Mandatory_Fields</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- In order to close a case please Take Ownership --></errorMessage>
+        <name>DE_IB_Just_Owner_can_Close_Case</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot close onboarding case because there are still open child cases. --></errorMessage>
+        <name>DE_Onboarding_With_Child_Cases</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Mandatory fields are missing. Make sure the following fields are entered: Platform, Order Number --></errorMessage>
+        <name>DE_OnlinePayment_Mandatory_Fields</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter the platform that this case refers to before closing it --></errorMessage>
+        <name>DE_Platform_Mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add a Root Cause before closing this case as Not Successful. --></errorMessage>
+        <name>DE_Root_Cause_Mandatory_Not_Successful</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a Due Date before closing the case --></errorMessage>
+        <name>FP_Due_Date_Mandatory_Retention_COO</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter information in the &apos;Menu Tax Information&apos; field in order to save this record --></errorMessage>
+        <name>FP_Menu_Tax_Information</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Menu URL is mandatory to close the case. Please fill it. --></errorMessage>
+        <name>FP_Menu_URL_Mandtory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please populate &apos;Google Drive photo URL&apos; field before move from &apos;In Photoshooting&apos; status. --></errorMessage>
+        <name>FP_NoMove_From_Photoshooting_Without_URL</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select an &quot;On Hold&quot; reason before putting the case On Hold. --></errorMessage>
+        <name>FP_Onhold_Reason_Mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- In order to change the status of a case please Take Ownership. --></errorMessage>
+        <name>FP_TakeOwnership_To_Change_Case_Status</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please fill out the following fields before closing the case:
+Person_In_Charge__c,Menu_Typed_Date__c,Person_in_Charge_Final_Check__c,Final_Check_Date__c,Person_In_Charge_Take_Online__c,Take_Online_Date__c --></errorMessage>
+        <name>Fields_Mandatory_for_Successful_MP</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot change status of a case if there are open child cases --></errorMessage>
+        <name>GLBL_CC_Cannot_Close_On_Open_Child</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please check that the following fields are complete: Subject, Description, Type, Case Reason Level 3, Country. Additionally for Customer make sure Customer Email is complete, and for Restaurant contact and account --></errorMessage>
+        <name>GLBL_CC_Missing_Fields_Before_Update_Sts</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please check that the following fields are complete: Subject, Description, Type, Case Reason Level 3, Country and Customer Email --></errorMessage>
+        <name>GLBL_CC_Missing_Fields_New_Rest_Interest</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a Order Number before resolving the case --></errorMessage>
+        <name>GLBL_CC_Order_Number_Mandayory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add a Root Cause before closing this case as Not Successful. --></errorMessage>
+        <name>GLB_Root_Cause_Mandatory_Not_Successful</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You are not allowed to change the owner of the resolved cases --></errorMessage>
+        <name>GLB_cannot_change_ownerof_resolved_cases</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter the Backend ID in the Account before closing the case. --></errorMessage>
+        <name>GLOBAL_Backend_ID_required_QC_successful</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can not close a Retention Case with Case Reason &apos;Unknown&apos; --></errorMessage>
+        <name>GLOBAL_Case_Reason_Not_Unknown_Retention</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- In order to close the case please Take Ownership. --></errorMessage>
+        <name>GLOBAL_CloseCase_Owner</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Order Number is not in a valid format. --></errorMessage>
+        <name>GLOBAL_Incorrect_Order_Number_Spelling</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please fill the Effort Estimate Jira Link before closing this case successfully. --></errorMessage>
+        <name>GLOBAL_Mandatory_Effort_Estimate_Jira</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter an Impact Estimate before approving this request. --></errorMessage>
+        <name>GLOBAL_Mandatory_Impact_Estimate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add a Root Cause --></errorMessage>
+        <name>GLOBAL_Mandatory_Root_Cause_SF_Support</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select the &quot;Menu Typing Errors&quot; reason before closing the case --></errorMessage>
+        <name>GLOBAL_mandatory_Menu_Typing_Error_field</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a country before closing this case. --></errorMessage>
+        <name>Gl_Country_Mandatory_when_resolving_cas</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You are not allowed to edit a closed case. --></errorMessage>
+        <name>Global_CC_Cannot_Reopen_When_Closed</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot close the case using &apos;Archive&apos; as a root cause. Please choose another Root Cause --></errorMessage>
+        <name>Global_Cannot_Select_Archive_Root_Cause</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please specify an Account for the Case --></errorMessage>
+        <name>Global_Case_Account_mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a Due Date before closing the case --></errorMessage>
+        <name>Global_Due_Date_Mandatory_Retention_COO</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can only assign cases to queues that belong to your Entity. --></errorMessage>
+        <name>Global_Escalate_cases_to_right_queue</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- In order to close a case please Take Ownership --></errorMessage>
+        <name>Global_Just_Owner_can_close_a_case</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You are not allowed to change the record type of the case. --></errorMessage>
+        <name>Global_Lock_edit_of_record_type</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Mandatory fields are missing. Make sure the following fields are entered: Refund Amount, Invoice Number --></errorMessage>
+        <name>Global_Mandatory_Finance_Fields</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add a Root Cause before closing the case --></errorMessage>
+        <name>Global_Root_Cause_mandatory_Online_Payme</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot set the Status of the case to Closed. --></errorMessage>
+        <name>Global_cannot_select_Case_Status_Close</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add a root cause --></errorMessage>
+        <name>HU_CZ_RootCause_Mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter Subject and Description --></errorMessage>
+        <name>HU_Restaurant_Data_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add a root cause --></errorMessage>
+        <name>HU_RootCause_Mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter the Root Cause before closing the case as not successful --></errorMessage>
+        <name>KR_Root_Cause_Mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select the Offline Reason --></errorMessage>
+        <name>Offline_Reason_required_for_Termination</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter the Person In Charge field --></errorMessage>
+        <name>PIC_mandatory_for_successful_Recommend</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot change Country between Panama and PY countries --></errorMessage>
+        <name>PY_Cannot_change_country_appetito_PY</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select a different Country, as this case is coming from a PedidosYa Customer/Partner. --></errorMessage>
+        <name>PY_Country_related_to_EmailToAddress</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please fill the Subject, Description, Customer Email and Case Reason Level 3 before resolving the case --></errorMessage>
+        <name>PY_Mandatory_fields_resolve_Inbound</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Retention case can only be created if the Account Status is &quot;Active&quot; --></errorMessage>
+        <name>PY_RetentionCaseOnActiveAccountStatus</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot modify this field value. --></errorMessage>
+        <name>PY_RetentionISTO_NotUpdateble</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select a value for Is the restaurant going to take orders --></errorMessage>
+        <name>PY_Retention_Mandatory_RestaurantOrder</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add a Root Cause before closing this case as Not Successful. --></errorMessage>
+        <name>PY_Root_Cause_Mandatory_Not_Successful</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You do not have the permission to change status of Quality Check Cases --></errorMessage>
+        <name>PreventSalesTeamFromEditingQC</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add a Root Cause --></errorMessage>
+        <name>SE_FI_Root_Cause_for_negative_closure</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The case cannot be closed directly, continue with the normal flow. --></errorMessage>
+        <name>SE_Prevent_Close_Case_Manually</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please check that the following fields are complete: Subject, Description, Country. Additionally for Customer make sure Customer Email is complete, and for Restaurant contact and account --></errorMessage>
+        <name>TLB_CC_Missing_Fields_Before_Update_Sts</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please check that the following fields are complete: Subject, Description, Country and Customer Email --></errorMessage>
+        <name>TLB_CC_Missing_Fields_New_Rest_Interest</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select the &quot;Menu Typing Errors&quot; reason before closing the case --></errorMessage>
+        <name>TLB_mandatory_Menu_Typing_Error_field</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter the &apos;Take Offline Date&apos; before closing the case --></errorMessage>
+        <name>Take_Offline_date_Mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot change the Customer Email. --></errorMessage>
+        <name>Talabat_Cannot_Change_Customer_Email</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot change the Country --></errorMessage>
+        <name>Talabat_Otlob_Cannot_change_country</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add a root cause --></errorMessage>
+        <name>Talabat_Root_Cause_for_negative_closure</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add a due date for you call back --></errorMessage>
+        <name>UK_Add_Due_date_for_Reason_Call_Back</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter the Refund Amount and if there is an invoice number add it correctly --></errorMessage>
+        <name>UK_Mandatry_refund_fields</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a root cause with the unsuccessful reason --></errorMessage>
+        <name>UK_Root_Cause_Mandatory_Negative_Closure</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Both refund fields are required to request refund. --></errorMessage>
+        <name>Voucher_Request_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Voucher cannot be updated once the Case is resolved. --></errorMessage>
+        <name>Voucher_change_not_allowed_on_Reslv_case</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter subject --></errorMessage>
+        <name>Yogiyo_Inbound_Subject_Mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Missing fields --></errorMessage>
+        <name>Yogiyo_Refund_Mandatory_Fields</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Attach_Files --></label>
+        <name>Attach_Files</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Back_To_Queue --></label>
+        <name>Back_To_Queue</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Case_Reason --></label>
+        <name>Case_Reason</name>
+    </webLinks>
+    <webLinks>
+        <label>사례 마감</label>
+        <name>Close_Case</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Escalate_case_AU --></label>
+        <name>Escalate_case_AU</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Escalate_case_talabat --></label>
+        <name>Escalate_case_talabat</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- LOOP --></label>
+        <name>Loop__LOOP</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- LOOP_Merge --></label>
+        <name>Loop__LOOP_Merge</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- LOOPlus --></label>
+        <name>Loop__LOOPlus</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_LOOP_Merge --></label>
+        <name>Loop__Mass_LOOP_Merge</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_LOOPlus --></label>
+        <name>Loop__Mass_LOOPlus</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mark_Complete --></label>
+        <name>Mark_Complete</name>
+    </webLinks>
+    <webLinks>
+        <label>대량 수정</label>
+        <name>Mass_Edit</name>
+    </webLinks>
+    <webLinks>
+        <label>대량 업데이트</label>
+        <name>Mass_Update</name>
+    </webLinks>
+    <webLinks>
+        <label>이메일 전송</label>
+        <name>Send_Email</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_Email_Customer_FI --></label>
+        <name>Send_Email_Customer_FI</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_Email_Restaurant --></label>
+        <name>Send_Email_Restaurant</name>
+    </webLinks>
+    <webLinks>
+        <label>본인으로 소유자 변경</label>
+        <name>Take_Ownership</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Undo_Complete --></label>
+        <name>Undo_Complete</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_with_DocuSign --></label>
+        <name>dsfs__Send_with_DocuSign</name>
+    </webLinks>
+</CustomObjectTranslation>

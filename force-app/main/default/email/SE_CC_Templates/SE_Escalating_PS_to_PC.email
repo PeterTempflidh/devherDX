@@ -1,0 +1,14 @@
+<messaging:emailTemplate subject="{! $Label.SE_Escalating_PS_to_PC_Subject}" recipientType="Contact" relatedToType="Account" language="{! CASE(relatedTo.Record_Country__c,'Sweden','sv','en_US')}">
+<messaging:htmlEmailBody >
+<pre style = "font-family: sans-serif; font-size: 10pt;">
+{! $Label.SE_Email_Salutation} {! recipient.FirstName},
+
+{! $Label.SE_Escalating_PS_to_PC_1}
+{! $User.FirstName}
+foodora
+</pre>
+
+<apex:image id="Logo" value="{! $Label.SE_Foodora_Logo_URL}" />
+
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

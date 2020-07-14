@@ -1,0 +1,11 @@
+<messaging:emailTemplate subject="Approve Quote Discount" recipientType="User" relatedToType="Opportunity_Quote__c">
+<messaging:htmlEmailBody >
+<html>
+<apex:includeScript value="/support/console/30.0/integration.js"/>
+<apex:includeScript value="{!URLFOR($Resource.jq211)}"/>
+<body>
+<c:QuoteDiscount relatedToId="{!relatedTo.id}" quote="{!relatedTo.Name}" acct="{!relatedTo.Id_account__r.Name}" opp="{!relatedTo.Id_Opportunity__r.Name}"/>
+</body>
+</html>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

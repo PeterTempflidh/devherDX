@@ -1,0 +1,218 @@
+<apex:page standardController="Case" standardStylesheets="true" applyHtmlTag="true" docType="html-5.0" showHeader="true" extensions="CtrRestaurantCare" >
+    <apex:stylesheet value="{!URLFOR($Resource.slds, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+    <apex:includeScript value="/support/console/26.0/integration.js"/>
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <head>
+            <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+            <script type='text/javascript' src='/canvas/sdk/js/29.0/publisher.js'></script>
+            
+            <script type='text/javascript' src='/soap/ajax/13.0/connection.js'/>
+            <script type='text/javascript' src='/soap/ajax/13.0/apex.js'/>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+            <style type="text/css">
+            </style>  
+            <script>
+                j$ = jQuery.noConflict();
+                j$(document).ready(function() {
+                var caseLst=[]; 
+                    if (sforce.console.isInConsole()) {
+                    testGetFocusedPrimaryTabId();
+                }
+                    
+                   
+                    var createddate =new Date('{!case.createddate}').toUTCString();
+                
+                    Visualforce.remoting.Manager.invokeAction(
+                            '{!$RemoteAction.CtrRestaurantCare.getCaseLst}','{!Case.AccountId}','{!Case.Id}','{!case.recordtype.developername}',createddate,
+                  
+                      
+                            function(result, event) {
+                                //alert({!case.recordtype.developername});
+                                if (event.status) {    
+                                    var i = 0;  
+                                    var div = j$('#resCases');
+                                    j$.each(result, function() {
+                                       //alert(result[i].Id);
+                                       caseLst.push(result[i].Id);
+                                        div .append('<div style="width:30%; border:1px solid grey;vertical-align:top; margin-bottom:5px;border-radius:5px;display:inline-block"><div style="display:inline-block;width:100%;vertical-align:top;  margin:15px;" ><div style="font-weight:bold" >{!$ObjectType.Case.fields.Createddate.label}:&nbsp;' + parseJsonDate(result[i].CreatedDate,false) +  '</div>'+
+                                                    '<div >{!$ObjectType.Case.fields.caseNumber.label}:&nbsp;<a href="#" onclick="testOpenSubtab(\''+result[i].Id+'\',\'Case\')">' + result[i].CaseNumber +  '</a></div>' +
+                                                    '<div >Type:&nbsp;' + parseString(result[i].Type) +  '</div>' +
+                                                    '<div >{!$ObjectType.Case.fields.status.label}:&nbsp;' + parseString(result[i].Status) +  '</div>' +
+                                                    '<div >{!$ObjectType.Case.fields.Subject.label}:&nbsp;' + parseString(result[i].Subject) +  '</div>' +
+                                                    '<div >{!$ObjectType.Case.fields.ClosedDate.label}:&nbsp;' + parseJsonDate(result[i].ClosedDate,false) +  '</div>' +
+                                                    '<div >{!$ObjectType.Case.fields.Closed_Reason__c.label}:&nbsp;' + parseString(result[i].Closed_Reason__c) +  '</div>' +
+                                                    
+                                                    '</div>' +
+                                                      '</div><div style="display:inline-block;width:65%;margin-left:15px;border:1px solid grey; margin-bottom:5px;border-radius:5px" class="slds-scrollable--y">'+
+                                                      '<table style="display:inline-block;width:100%;height:143px;margin:15px" id="'+ result[i].Id +'">'+
+                                                      '<thead style="width:100%">'+
+                                                      '<tr style="width:100%">'+
+                                                      '<th style="width:100px;">Subject</th>'+
+                                                      '<th style="width:100px;margin-left:5px">Assigned To</th>'+
+                                                      '<th style="width:100px;">Created Date</th>'+
+                                                      '<th style="width:100px;">Comments</th>'+
+                                                      '</thead>'+
+                                                      '</table>'+
+                                                      '</div>'
+                                            );
+                                        i++;
+                                        
+                                    });                            
+                                    //alert(caseLst);
+                                 SeeTasks(caseLst);
+                                } 
+                                else if (event.type === 'exception') {
+                                    document.getElementById("responseErrors").innerHTML =
+                                    event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                                }else {
+                                    document.getElementById("responseErrors").innerHTML = event.message;
+                                }
+                            },
+                            {escape: true}
+                    );
+                    //alert({!$User.ID});
+                    //alert({!Case.OwnerID});
+                    
+
+
+
+
+                   
+                    
+                });
+
+                function SeeTasks(caseLst){
+                      // alert('task'+caseLst);
+                       j$("#taskTable tbody tr").remove();
+                       //document.body.scrollTop = document.documentElement.scrollTop = 100;
+                       //document.getElementById("taskHeader").scrollTop = 100;
+                       //window.location.hash = '#taskHeader';
+                       //document.getElementById('taskHeader').scrollIntoView();
+                        Visualforce.remoting.Manager.invokeAction(
+                                '{!$RemoteAction.CtrRestaurantCare.getTaskLst}',caseLst,                        
+                                function(result, event) {
+                                    //alert('ujhkh.hkljll');
+                                    if (event.status) {    
+                                        var i = 0;  
+                                        //var tr = j$('#tasks');
+                                        j$.each(result, function() {
+                                        var tr = j$('#'+result[i].WhatId);
+                                           //alert(result[i].Owner.Name);
+                                            tr.append('<tr style="width:90%" id="' + result[i].Id + '"><td style="width:10%"><a href="#" onclick="testOpenSubtab(\''+result[i].Id+'\',\'task\')">' + result[i].Activity_Subject__c+  '</a></td>' +
+                                               
+                                                '<td style="width:15%">'+ result[i].Owner.Name +  '</td>' +
+                                                '<td style="width:15%">'+ parseJsonDate(result[i].CreatedDate,false) +  '</td>' +  
+                                                '<td style="width:60%">'+ result[i].Description +  '</td>' + 
+                                                      
+                                                '</tr>'
+                                                );
+                                            i++;
+                                            
+                                        });                            
+                                        
+                                    }
+                                    else if (event.type === 'exception') {
+                                        document.getElementById("responseErrors").innerHTML =
+                                        event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                                    }else {
+                                        document.getElementById("responseErrors").innerHTML = event.message;
+                                    }
+                                },
+                                {escape: true}
+                        );
+                    }
+
+
+                
+                
+                
+                  function parseJsonDate(dateString, json) {
+                    if(typeof dateString === "undefined")
+                        return "";
+                    if(json)
+                        var currentTime = new Date(parseInt(dateString ));
+                    else 
+                        var currentTime = new Date(dateString);
+                    var month = currentTime.getMonth() + 1;
+                    var day = currentTime.getDate();
+                    var year = currentTime.getFullYear();
+                    var date = day + "/" + month + "/" + year;
+                    return date;
+                }
+                function parseString(rowVal) {
+                    if(typeof rowVal === "undefined")
+                        return "";
+                     else 
+                         return rowVal;
+                  }
+                  
+                  var preRecordId;
+        
+        function testOpenSubtab(caseid, sobj) 
+        {
+            if (sforce.console.isInConsole()) {
+                sforce.console.openSubtab(primarytabId , '/'+caseid, true,sobj, null);
+                sforce.console.refreshPrimaryTabById(primarytabId, true);
+                //sforce.console.getFocusedSubtabId(currentSubtab);
+            }else if((typeof sforce != 'undefined') && sforce && (!!sforce.one)){
+                sforce.one.navigateToSObject(caseid);
+            }else if(!sforce.one){
+                //navigateToUrl(oppQuoteId);
+                window.parent.location.href="/"+caseid;
+            }
+        
+        }
+
+        var showTabId = function showTabId(result) {
+                primarytabId = result.id;
+            };
+
+            function testGetFocusedPrimaryTabId() {
+                console.log('getFocusedPrimaryTabId...');
+                //sforce.console.getEnclosingPrimaryTabId(showTabId);
+                sforce.console.getFocusedPrimaryTabId(showTabId);
+            }
+                
+                
+            </script>
+        </head>
+        
+        <body > 
+       
+            <div class="slds">
+                <div class="slds-card__header slds-grid">
+                    <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                        <div class="slds-media__figure">
+                            <svg aria-hidden="true" class="slds-icon slds-icon-standard-contact slds-icon--small">
+                                <use xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#contact"></use>
+                            </svg>
+                        </div>
+                        <div class="slds-media__body">
+                            <h2 class="slds-text-heading--small slds-truncate">Restaurant Care Cases</h2>
+                        </div>        
+                    </div>       
+                </div>
+                    
+                <div style="witdh:100%" >
+                  
+                        <div style="display:inline-block;width:100%">
+                            <div style="display:inline-block;width:40%">Case</div>
+                            <div style="display:inline-block;width:50%">Tasks</div>
+                        </div>
+                
+                 <div  id= "resCases" >
+                 </div>
+                        
+                    
+               
+                <br/><br/>
+            
+
+               </div>
+              
+            </div>
+          
+        </body>
+    </html>
+ </apex:page>

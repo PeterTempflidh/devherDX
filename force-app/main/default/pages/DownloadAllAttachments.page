@@ -1,0 +1,31 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0">    
+
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">    
+
+<head>
+  <title>Download Attachments</title>
+  <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.slds, 'assets/styles/salesforce-lightning-design-system-vf.css')}"/>
+  <script src="{!URLFOR($Resource.Vue)}"></script>
+  <script src="{!URLFOR($Resource.JSZip)}"></script>
+</head>    
+
+<body>    
+
+  <!-- REQUIRED SLDS WRAPPER -->
+  <div class="slds">  
+
+    <!-- PRIMARY CONTENT WRAPPER -->
+    <div class="slds-grid">    
+
+      <c:LDSDownloadAllAttachments parentId="{!$CurrentPage.parameters.id}" zipName="{!$CurrentPage.parameters.name}" />
+
+
+    </div>
+    <!-- / PRIMARY CONTENT WRAPPER -->    
+
+  </div>
+  <!-- / REQUIRED SLDS WRAPPER -->    
+
+</body>
+</html>
+</apex:page>

@@ -1,0 +1,278 @@
+<!--
+	Renders Note related list using LDS stylesheets. 
+	This component assumes that SLDS and Vue have been already included by main page
+-->
+<apex:component controller="CtrLDSNotesRelatedList">
+		
+
+	<apex:attribute name="recordId" required="true" type="String" description="Notes parent record id" />
+
+		<div xmlns="http://www.w3.org/2000/svg"
+		xmlns:xlink="http://www.w3.org/1999/xlink"
+		xmlns:v-once="http://vue/fake"
+		xmlns:v-html="http://vue/fake"
+		xmlns:v-bind="http://vue/fake"
+		xmlns:v-if="http://vue/fake"
+		xmlns:v-on="http://vue/fake"
+		xmlns:v-model="http://vue/fake"
+		id="notesContainer">
+			
+			<!-- notes related list -->
+			<article class="slds-card slds-box">
+				<div class="slds-card__header slds-grid">
+					<header class="slds-media slds-media--center slds-has-flexi-truncate">
+						<span class="slds-icon_container slds-icon-standard-note slds-m-right--small" title="description of icon when needed">
+							<svg class="slds-icon" aria-hidden="true">
+							<use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/standard-sprite/svg/symbols.svg#note')}"></use>
+							</svg>
+						</span>
+
+						<div class="slds-media__body slds-truncate">
+							<h2>
+								<a href="javascript:void(0);" class="slds-text-link--reset" style="cursor: default">
+									<span class="slds-text-heading--small">Notes</span>
+								</a>
+							</h2>
+						</div>
+					</header>
+					<div class="slds-no-flex">
+						<div class="slds-form-element">
+							<div class="slds-form-element__control">
+								<button class="slds-button slds-button--neutral" v-on:click="initCurrentNote()">
+									<svg class="slds-button__icon slds-button__icon--left" aria-hidden="true">
+										<use xlink:href="{!URLFOR($Resource.slds, '/assets/icons/action-sprite/svg/symbols.svg#new')}"></use>
+									</svg>
+									New Note
+								</button>		
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="slds-card__body slds-scrollable--x">
+					<table class="slds-table slds-table--bordered slds-no-row-hover slds-table--cell-buffer">
+						<thead>
+							<tr class="slds-text-title--caps">
+								<th scope="col">
+									<div class="slds-truncate" title="Action">Action</div>
+								</th>
+								<th scope="col">
+									<div class="slds-truncate" title="{!$ObjectType.Note.fields.Title.Label}">
+										{!$ObjectType.Note.fields.Title.Label}
+									</div>
+								</th>
+								<th scope="col">
+									<div class="slds-truncate" title="{!$ObjectType.Note.fields.Body.Label}">
+										{!$ObjectType.Note.fields.Body.Label}
+									</div>
+								</th>
+								<th scope="col">
+									<div class="slds-truncate" title="{!$ObjectType.Note.fields.LastModifiedById.Label}">
+										{!$ObjectType.Note.fields.LastModifiedById.Label}
+									</div>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="slds-hint-parent" v-for="note in notes">
+								<th scope="row">
+									<div class="slds-truncate">
+										<a href="#" v-on:click.prevent="initCurrentNote(note)">Edit</a>
+										&nbsp; | &nbsp;
+										<a href="#" v-on:click.prevent="deleteNote(note)">Delete</a>
+									</div>
+								</th>
+								<td>
+									<div class="slds-truncate" v-bind:title="note.Title">
+										<a href="#" v-on:click.prevent="currentNote = note">{{note.Title}}</a>
+									</div>
+								</td>
+								<td>
+									<div class="slds-truncate">
+										{{note.Body}}
+									</div>
+								</td>
+								<td>
+									<div class="slds-truncate" v-bind:title="note.LastModifiedBy.Name">
+										{{note.LastModifiedBy.Name}}
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</article>
+
+			<!-- note modal form -->
+			<div v-if="openModal" aria-hidden="true">
+				<div role="dialog" tabindex="-1" aria-labelledby="noteModalTitle" class="slds-modal" v-bind:class="{'slds-fade-in-open': openModal}">
+					<div class="slds-modal__container">
+						<div class="slds-modal__header">
+							<h2 id="noteModalTitle" class="slds-text-heading--medium">Enter Note</h2>
+						</div>
+						<div class="slds-modal__content slds-p-around--medium">
+							<!-- modal main content -->
+							<div>
+								<!-- modal main grid -->
+								<div class="slds-grid slds-wrap slds-grid--pull-padded">
+									<div class="slds-col slds-size--1-of-1 slds-container--fluid slds-p-around--medium">
+										<div class="slds-p-horizontal--small">
+
+											<!-- note form grid -->
+											<div class="slds-grid slds-wrap">
+												<!-- Title -->
+												<div class="slds-form-element slds-size--1-of-1 slds-p-around--small">
+													<label class="slds-form-element__label" for="noteTitle">
+														<abbr class="slds-required" title="required">*</abbr>
+														{!$ObjectType.Note.fields.Title.Label}
+													</label>
+													<div class="slds-form-element__control">
+														<input type="text" class="slds-input" id="noteTitle" v-model="currentNote.Title"/> 
+													</div>
+												</div>
+
+												<!-- Body -->
+												<div class="slds-form-element slds-size--1-of-1 slds-p-around--small">
+													<label class="slds-form-element__label" for="noteBody">
+														<abbr class="slds-required" title="required">*</abbr>
+														{!$ObjectType.Note.fields.Body.Label}
+													</label>
+													<div class="slds-form-element__control">
+														<textarea id="noteBody" class="slds-textarea" v-model="currentNote.Body"></textarea>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="slds-modal__footer">
+							<button type="button" v-on:click="cancel()" class="slds-button slds-button--neutral">Cancel</button>
+							<button type="button" v-on:click="upsertNote()" class="slds-button slds-button--brand">Save</button>
+						</div>
+					</div>
+				</div>
+				<div class="slds-backdrop" v-bind:class="{'slds-backdrop--open': openModal}"></div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+
+			Visualforce.remoting.timeout = 120000;
+
+			var notesContainer = new Vue({
+			    el: "#notesContainer",
+			    data: {
+			        notes: [],
+			        currentNote: null // note to be created or updated
+			    },
+			    methods: {
+			    	// init currentNote data
+			    	initCurrentNote: function(note) {
+			    		this.currentNote = note ? {Id: note.Id, Title: note.Title, Body: note.Body} : {};
+			    	},
+
+			    	// upsert currentNote
+			        upsertNote: function() {
+			        	var self = this;
+
+			        	if (!this.currentNote.Title || !this.currentNote.Body) {
+			        		return;
+			        	}
+
+			        	// Remote action
+			        	Visualforce.remoting.Manager.invokeAction(
+			        		"{!$RemoteAction.CtrLDSNotesRelatedList.upsertNote}",
+			        		this.currentNote.Id || "",
+			        		this.currentNote.Title,
+			        		this.currentNote.Body,
+			        		"{!JSENCODE(recordId)}",
+			        		function (result, event) {
+			        			// Checks event status
+			        			if (!event.status) {
+			        				console.error("Error is: ", event.message)
+			        				return;
+			        			}
+			        	
+			        			// Check result list
+			        			if (!result || result.length < 1) {
+			        				console.log("Empty result");
+			        				return;
+			        			}
+			        			
+			        			self.retrieveNotes();
+			        			self.cancel();
+			        			
+			        		}, {
+			        			escape: false
+			        		} 
+			        	);
+			        },
+
+			        // close edit popup setting currentNote to null
+			        cancel: function() { 
+			            this.currentNote = null;
+			        },
+
+			        // delete specified note
+			        deleteNote: function(note) { 
+			        	var self = this;
+
+			        	// Remote action
+			        	Visualforce.remoting.Manager.invokeAction(
+			        		'{!$RemoteAction.CtrLDSNotesRelatedList.deleteNote}',
+			        		note.Id,
+			        		function (result, event) {
+			        			// Checks event status
+			        			if (!event.status) {
+			        				console.error('Error is: ', event.message)
+			        				return;
+			        			}
+			        	
+			        			self.retrieveNotes();
+			        		}, {
+			        			escape: false
+			        		} 
+			        	);
+			        },
+
+			        // retrieves notes
+			        retrieveNotes: function() { 
+			        	var self = this;
+
+			        	// Remote action
+			        	Visualforce.remoting.Manager.invokeAction(
+			        		"{!$RemoteAction.CtrLDSNotesRelatedList.retrieve}",
+			        		"{!JSENCODE(recordId)}",
+			        		function (result, event) {
+			        			// Checks event status
+			        			if (!event.status) {
+			        				console.error("Error is: ", event.message)
+			        				return;
+			        			}
+			        	
+			        			// Check result list
+			        			if (!result || result.length < 1) {
+			        				console.log("Empty result");
+			        				return;
+			        			}
+			        	
+			        			self.notes = result;
+			        		}, {
+			        			escape: false
+			        		} 
+			        	);
+			        }
+			    },
+			    computed: {
+			    	openModal: function() {
+			    		return !!this.currentNote;
+			    	}
+			    },
+			    created: function() {
+			    	this.retrieveNotes();
+			    }
+			});
+		</script>
+
+</apex:component>

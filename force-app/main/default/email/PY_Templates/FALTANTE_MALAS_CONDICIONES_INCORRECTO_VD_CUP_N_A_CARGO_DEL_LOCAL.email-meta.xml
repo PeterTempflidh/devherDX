@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>FALTANTE/MALAS CONDICIONES/INCORRECTO - VD - CUPÓN A CARGO DEL LOCAL</name>
+    <style>freeForm</style>
+    <subject>FALTANTE/MALAS CONDICIONES/INCORRECTO - VD - CUPÓN A CARGO DEL LOCAL</subject>
+    <textOnly>Estimada {!Case.Customer_Name__c}, es un gusto saludarte.
+
+Estimado {!Case.Customer_Name__c}, es un gusto saludarte.
+
+
+Te contactamos en respuesta a tu reclamo por el pedido que hiciste el día XX/XX en XXX; te pedimos disculpas por las molestias de no haber recibido el pedido tal y como lo ordenaste.
+
+
+Nos hemos comunicado con el local, en esta oportunidad no es posible volver a enviar el pedido, por lo que vamos a generar un cupón por el valor del producto faltante para que lo puedas utilizar en XXX.
+
+
+El cupón que te estaremos generando tiene validez de 30 días y puedes verificarlo desde la aplicación.  Para poder utilizarlo tienes que ingresar Menú &gt; Mis Cupones &gt; Seleccionas el cupón otorgado y luego ingresas a la opción “Ver locales para este cupón”.
+
+
+Esperamos haber ayudado a resarcir lo sucedido con tu último pedido y quedamos a las órdenes ante cualquier consulta.
+
+
+Saludos,
+{!Case.OwnerFullName}
+Atención al Cliente PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

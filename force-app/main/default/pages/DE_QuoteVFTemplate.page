@@ -1,0 +1,12 @@
+<apex:page controller="ctrDH_AU_QuoteVFTemplate" showheader="false" sidebar="false" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false" docType="html-5.0" renderAs="{!IF(NOT(ISBLANK($CurrentPage.parameters.pdf)), 'advanced_pdf', 'html')}">
+	
+	<!-- contract and products -->
+	<c:DE_Quote_NewAcquisition acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!AND(NOT(prodOnly), NOT(premiumPlacement))}" />
+
+	<!-- products only -->
+	<c:DE_Quote_ProductOnly acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!AND(prodOnly, NOT(premiumPlacement))}" />
+
+	<!-- PP -->
+	<c:DE_Quote_PP acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!AND(premiumPlacement)}" />
+
+</apex:page>

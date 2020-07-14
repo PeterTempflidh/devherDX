@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_Empty</letterhead>
+    <name>PY - Request Receive Email PedidosYa</name>
+    <style>freeForm</style>
+    <subject>Gracias por Contactarnos</subject>
+    <textOnly>Estimado,
+
+ 
+
+¡Gracias por contactarnos!
+
+ 
+
+Hemos recibido tu solicitud y la misma será gestionada en un plazo de 18 horas aproximadamente. Referencia Nº {!Case.CaseNumber}
+
+ 
+
+Te recordamos que si cuentas con usuario de Partner Portal puedes gestionar la actualización de precios, alta y baja de productos de forma más inmediata.
+
+ 
+
+Nos mantenemos a disposición.
+
+ 
+
+Atentamente,
+
+ 
+
+Equipo de Contenido</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

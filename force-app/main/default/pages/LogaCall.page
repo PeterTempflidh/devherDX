@@ -1,0 +1,76 @@
+<apex:page > Kept for internal Case log</apex:page>
+<!--<apex:page tabStyle="CustomTasks__c" showHeader="false" sidebar="false" standardController="CustomTasks__c" extensions="01pw0000003l4Xo">
+<apex:includeScript value="/support/console/30.0/integration.js"/>
+<link href="{!URLFOR($Resource.Phoenix, '/css/jquery-ui.min.css')}" rel="stylesheet" />
+<apex:includeScript value="{!URLFOR($Resource.jq211)}"/>
+<script type="text/javascript">
+    var jq = $.noConflict();
+        jq(document).ready();
+        sforce.console.setTabTitle('Log a Call');
+</script>
+<apex:form id="theForm">
+<script>
+
+
+        function setFocusOnLoad() {}
+
+
+        function testGetFocusedPrimaryTabId() {
+            sforce.console.getEnclosingPrimaryTabId(showTabId);
+        }
+        var showTabId = function showTabId(result) {
+            sforce.console.refreshPrimaryTabById(result.id, true);
+            closeSubTabConsole();
+        };
+
+        function closeSubTabConsole(){
+            sforce.console.getEnclosingTabId(closeSubtab);
+        }
+
+        var closeSubtab = function closeSubtab(result) {
+            //Now that we have the tab ID, we can close it
+            var tabId = result.id;
+            sforce.console.closeTab(tabId);
+        };
+
+        function reloadParent(){
+            var errorMsg = jq("[id$=errorMessages]").html();
+            if(errorMsg==''){
+                if (sforce.console.isInConsole()) {
+                    testGetFocusedPrimaryTabId();
+                }else{
+                    window.parent.location.href="/{!finalRedirect}";
+                }
+
+            }
+            return true;            
+        }
+    </script>
+    
+    <apex:pageBlock tabStyle="CustomTasks__c" >
+    <apex:pageMessages id="errorMessages" />
+        <apex:pageBlockSection title="Log a Call" collapsible="false">
+            <apex:outputField value="{!logcall.recordtypeid}"/>
+            <apex:inputField value="{!logCall.RelatedAccount__c}" rendered="{!if(logCall.RelatedAccount__c=null,'false','true')}"/>
+            <apex:inputField value="{!logCall.RelatedOpportunity__c}" rendered="{!if(logCall.RelatedOpportunity__c=null,'false','true')}"/>
+            <apex:inputField value="{!logCall.Related_Contact__c}" rendered="{!if(logCall.Related_Contact__c=null,'false','true')}"/>
+            <apex:inputField value="{!logCall.Related_Lead__c}" rendered="{!if(logCall.Related_Lead__c=null,'false','true')}"/>
+            <apex:inputField value="{!logCall.Related_Case__c}" rendered="{!if(logCall.Related_Case__c=null,'false','true')}"/>
+            <apex:outputField value="{!logCall.OwnerId}"/>
+            <apex:inputField value="{!logCall.Request_Reason__c}" />
+            <apex:inputField value="{!logCall.Request_Source__c}" />
+            <apex:inputField value="{!logCall.Closed_Date__c}" />
+            <apex:inputField value="{!logCall.Next_Call_Date__c}" />
+            <apex:outputField value="{!logCall.Type__c}"/>
+            <apex:outputField value="{!logCall.Status__c}"/>
+            <apex:inputField value="{!logCall.Priority__c}" />
+            <apex:inputField value="{!logCall.Subject__c}" />
+            <apex:inputField value="{!logCall.Call_Comments__c}" />
+        </apex:pageBlockSection>
+        <apex:pageBlockButtons >
+        <apex:commandButton value="Save" action="{!saveCall}" oncomplete="reloadParent();" reRender="theForm"/>
+        <apex:commandButton value="Cancel" onclick="closeSubTabConsole();" />
+        </apex:pageBlockButtons>
+    </apex:pageBlock>
+</apex:form>
+</apex:page>-->

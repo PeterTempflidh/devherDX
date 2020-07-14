@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Your menu change contains Price Mark-up</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP PH Menu Change - Can’t be typed - Due to markup</name>
+    <style>freeForm</style>
+    <subject>Your menu change contains Price Mark-up</subject>
+    <textOnly>Dear Restaurant Partner,
+
+You have recently requested a menu update for your online menu (# {!Case.CaseNumber}).
+We have noticed however that the prices in the menu you sent us do not match the dine-in prices of your menu.
+We would like to kindly request you that check again the online menu and send us the updated prices so that we can proceed with the changes you have requested.
+
+Any questions? Feel free to contact us per E-Mail *partner@foodpanda.ph* or via phone under +63 2 555 5205.
+
+We are happy to help you!
+
+
+Regards,
+Your foodpanda Partner Care Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

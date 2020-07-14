@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>DH_AU_Sales_Documents/Delivery_Hero_Ranking.pdf</attachedDocuments>
+    <available>false</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>DH_AU_Letterhead</letterhead>
+    <name>DH AU Offer - Upgrade Free Trial To Contract</name>
+    <style>freeForm</style>
+    <subject>Delivery Hero – Next Step Forward</subject>
+    <textOnly>Hi {!Contact.FirstName}, 
+
+Hope you’ve been well. 
+We’ve noticed you have received {!Account.Order_Anzahl__c} orders with a revenue of {!Account.00N20000003PAsN} from us on the free trial. However, as the free trial is in no way designed to get you many orders, you have done okay but there is actually huge room for improvement. It’s time we take the next step forward! 
+
+We want to start promoting you a lot more on the website by bringing you into a partnership, here are some of the benefits: 
+1. Enable online payment orders (via PayPal and all major credit cards) 
+2. Super-efficient order transmission through SMS/Software/Printer 
+3. Placing you on a VIP ranking for maximum exposure 
+4. Enable and establish new promotional campaigns for your restaurant (free $10 vouchers, first time customer discounts, special targeted marketing campaigns, order growth packages, etc.) 
+
+Essentially, we want to start sending you even more orders. 
+
+There are a few options to do so, and we take a commission from the orders that come through as follows (please also refer to the tariffs attached): 
+1. Hero: 10% [+2% for Fax/Email Orders] 
+2. Super Hero: 10% [+1% for SMS/Software/Express Printer* Orders] 
+· Best listing option for top ranking and more orders 
+· Lowest commission 
+· Fast and accurate orders 
+· Save time from taking phone orders: one button to confirm the order 
+
+The best thing is that we don&apos;t lock you into any fixed term; you are free to switch tariffs or leave the website at any time. The commission is charged only if we have a successful order. 
+
+All we need is your reply and okay to proceed, and choice of tariff, and we&apos;ll enable all the benefits on our end to start getting your restaurant more orders. 
+
+Here are some videos of satisfied restaurant owners we work with: 
+1) Erskineville Turkish Pide &amp; Kebabs (NSW): 
+https://www.youtube.com/watch?v=Rhrqauloisc 
+2) Thai Style (VIC): https://www.youtube.com/watch?v=YxKvHJbupTw 
+3) Grace of India (NSW):https://www.youtube.com/watch?v=euEZKfocZqI 
+
+We also advertise nationally on TV &amp; Foxtel: 
+www.youtube.com/watch?v=TU_Cw15KMD8 
+
+Please reply to this email or call us back on 02 8076 0600. 
+
+Thank you very much {!Contact.FirstName}! 
+
+Kind regards, 
+{!User.Name} 
+{!User.Phone} 
+{!User.Email} 
+
+*Express Printer [$100 fully refundable deposit applies] – The Express Printer is a nifty device that runs on a mobile SIM card, so you don’t need any phone or internet connection. It only needs to be plugged into a power socket. The orders are printed automatically onto thermal paper, and you confirm the order by pressing just one button.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

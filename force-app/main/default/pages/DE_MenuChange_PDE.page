@@ -1,0 +1,252 @@
+<apex:page showHeader="false" sidebar="false" language="de" controller="CtrDE_MenuChange">
+	
+    <script type="text/javascript">
+       function diplayRequiredText(){
+           
+           if(document.querySelector('[id$="changeOnLh:0"]').checked){        
+               document.getElementById('mandatory').style.display = '';
+               
+           }
+           if(document.querySelector('[id$="changeOnLh:1"]').checked){
+               
+               document.getElementById('mandatory').style.display ='none';
+           
+           }
+       
+       }
+    </script>
+   
+   <style>
+		/* Styling for the standard button */
+
+		.ChooseFileContainer {
+		    position: relative;
+		    display: inline;
+		}
+
+
+		/*Styling for the custom button that would overlay on top of the standard choose file button */
+
+		.OverlayButton {
+		    position: absolute;
+		    left: 5px;
+		    right: 0;
+		}
+
+
+
+		.menuHeader {
+		    font-weight: bold;
+		    font-size: 18px;
+		}
+
+		#maindiv {
+		    width: 990px;
+		    margin-left: auto;
+		    margin-right: auto;
+		    position: relative;
+		    height: 939px;
+		    moz-height: 964px;
+		    top: 133px;
+		    font-size: 1.2em;
+		}
+
+		#formdiv {
+		    background-color: white;
+
+		    position: relative;
+		}
+
+		#tablediv {
+		    width: 940px;
+
+		    margin-left: auto;
+		    margin-right: auto;
+		}
+
+		span:hover.submitLink {
+		    color: white;
+		}
+
+		span:hover.submitLink {
+		    height: 35px;
+		    background: #ffaa00;
+		}
+
+		.submitLink {
+		    height: 35px;
+		    width: 150px;
+		    background: #ffc713;
+		}
+
+		.requiredFields {
+		    color: red;
+		    font-size: 20px;
+		    vertical-align: sub;
+		}
+
+		.requiredText {
+		    font-size: 0.8em;
+		    color: red;
+		}
+
+		table.requiredFieldsTable td:not(:first-child) {
+		    padding-left: 15px;
+		}
+
+		.lmivText {
+		    color: red;
+		}
+	</style> 
+    
+    <div id="maindiv">
+        <div id="formdiv">
+            <div id="tablediv" >
+                <div id="LHHeaderBar">
+                    <table>
+                        <tr>
+                            <td>
+	                            <a style="position: relative; top:-76px;" href="https://www.pizza.de" >
+	                                <span>
+	                               		 <apex:image url="{!$Resource.PdeMenuchange}"  style=" width:91x;height:87px;" ></apex:image>
+	                                </span>
+	                            </a>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                </div> <!-- LHHeaderBar --> 
+                <div class="menuHeader ">Menü-Änderung beantragen</div>
+                <br></br>
+                <apex:outputPanel rendered="{!AND(showForm)}">
+                    <div><b>Bitte beachten Sie: Wenn Sie uns einen Flyer schicken, muss dieser gut lesbar und die Änderungen markiert sein. Sonst werden die Änderungsanfragen nicht übernommen. </b></div>
+                    <br></br>
+                    <div>Wir bearbeiten Menü-Änderungsanfragen nur noch, wenn dieses Formular vorher ausgefüllt wurde.</div>
+                    <apex:form >
+                    <apex:pageBlock >
+                        <apex:pageMessages ></apex:pageMessages>
+                        <table class="requiredFieldsTable">
+                            <tr>
+                                <td>Kundennummer Pizza.de<span class="requiredFields">*</span></td>
+                                <td>Name des Restaurants<span class="requiredFields">*</span></td>
+                                <td>PLZ<span class="requiredFields">*</span></td>
+                                <td>E-Mail Adresse<span class="requiredFields">*</span></td>
+                            </tr>
+                            <tr>
+                                
+                                <td>
+                                	<div class="requiredInput"> <div class="requiredBlock"></div>
+                                    	<apex:inputtext value="{!pizzadeId}" required="true" label="Kundennummer Pizza.de"/>
+                                    </div>
+                                </td>
+                                <td>
+                                	<div class="requiredInput"> <div class="requiredBlock"></div>
+                                    	<apex:inputtext value="{!RestaurantName}" required="true"  label="Name des Restaurants"/>
+                                    </div>
+                                </td>
+                                <td>
+                                	<div class="requiredInput"> <div class="requiredBlock"></div>
+                                		<apex:inputtext value="{!PostalCode}" required="true" label="PLZ" />
+                            		</div>
+                        		</td>
+                                <td>
+                                	<div class="requiredInput"> <div class="requiredBlock"></div>
+                                		<apex:inputtext value="{!EmailAdd}" required="true"  label="E-Mail Adresse" />
+                            		</div>
+                        		</td>
+                            </tr>
+                            <tr >
+                                <td><span class="requiredText">* Pflichtfeld</span></td>
+                                <td><span class="requiredText">* Pflichtfeld</span></td>
+                                <td><span class="requiredText">* Pflichtfeld</span></td>
+                                <td><span class="requiredText">* Pflichtfeld</span></td>
+                            </tr>
+                            <tr><br></br></tr>
+                        </table>
+                        <table>
+                            <tr>
+                                <td>Ich möchte nur die Kennzeichnung von Allergenen und/oder Grundpreisangaben üermitteln (s. unten oder Anhang)</td>
+                                <td><apex:inputcheckbox value="{!Allergens}"/></td>
+                            </tr>
+                            
+                        </table>
+                        <br></br>
+            
+                        <table>
+                        <th>Bitte beschreiben Sie, welche Gerichte, Kategorien oder Preise sich ändern</th>
+                        <tr>
+                            <td>Preisänderung</td>
+                            <td><apex:inputtextarea value="{!ChangeInPrice}" style="width: 360px; height: 40px"/></td>
+                        </tr>
+                        <tr>
+                            <td>Hinzufügen oder Löschen von Gerichten<br/><span class="lmivText">(Wir können nur noch Menü-Änderungen mit Angabe von<br/> Allergenen und Zusatzstoffen akzeptieren.)</span></td>
+                            <td><apex:inputtextarea value="{!addDeleteDish}" style="width: 360px; height: 40px"/></td>
+                        </tr>
+                        <tr>
+                            <td>Hinzufügen oder Löschen von Kategorien</td>
+                            <td><apex:inputtextarea value="{!addDeleteCategory}" style="width: 360px; height: 40px"/></td>
+                        </tr>
+                        <tr>
+                            <td>Vollständige Menü-Änderung<br/><span class="lmivText">(Wir können nur noch Menü-Änderungen mit Angabe von<br/> Allergenen und Zusatzstoffen akzeptieren.)</span></td>
+                            <td><apex:inputtextarea value="{!menuChangeDetails}" style="width: 360px; height: 40px"/></td>
+                        </tr>
+                        <tr>
+                            <td>Besondere Menüs (Mittagsmenü, Sommerangebot,…)</td>
+                            <td><apex:inputtextarea value="{!menuSpecials}" style="width: 360px; height: 40px"/></td>
+                        </tr>
+                        <tr>
+                            <td>Ändert sich das Menü auch auf Lieferheld?</td> 
+                            <td><apex:selectRadio value="{!changeOnLh}" onchange="diplayRequiredText()" id="changeOnLh">
+                                    <apex:selectOption itemValue="Yes" itemLabel="Ja"></apex:selectOption>
+                                    <apex:selectOption itemValue="No" itemLabel="Nein"></apex:selectOption>
+                                </apex:selectRadio>
+                            </td>
+                            
+                        </tr>
+                        <tr>
+                            <td>
+                                Wenn ja, hinterlassen Sie Ihre Lieferheld Kundennummer
+                
+                            </td>
+                            <td>
+                                <apex:inputText value="{!lieferheldId}" />
+                            </td>
+                        </tr>
+                         <tr>
+                        <td></td>
+                        <td> <span id="mandatory" class="requiredText" style="display:none">* Pflichtfeld</span></td>
+                        </tr>
+                        
+                    </table>
+                    <div>Sie brauchen uns nun nicht mehr die Änderungen auch bei Lieferheld zu schicken.</div>
+                    <br></br>
+                    <div>Bei größeren Änderungen hängen Sie bitte immer Ihren markierten Flyer in guter Qualität an.</div>
+                    <br></br>
+                    <div>
+                        <div class = "ChooseFileContainer">
+                             <apex:inputFile value="{!newAttachments[0].body}" filename="{!newAttachments[0].name}"  id="CFile1" lang="de"  /><br></br>
+                            </div>
+                         <br></br>
+                         <div class = "ChooseFileContainer">
+                             <apex:inputFile value="{!newAttachments[1].body}" filename="{!newAttachments[1].name}"  id="CFile2" lang="de"/><br></br>
+                            </div>
+                         <br></br>
+                         <div class = "ChooseFileContainer">
+                             <apex:inputFile value="{!newAttachments[2].body}" filename="{!newAttachments[2].name}"  id="CFile3" lang="de" /><br></br>
+                            </div>
+                         <br></br>
+                    </div>
+                    <br></br>
+                    <apex:commandButton value="Absenden" action="{!save}" styleClass="submitLink" style="background: #ffc713;color: #343b46;font-family: corpidHeavy;font-size: 11pt " />
+                 </apex:pageBlock>
+           </apex:form>
+         </apex:outputpanel>
+         <apex:outputpanel rendered="{!NOT(showForm)}">
+             <apex:pageMessages />
+             <br></br>
+         </apex:outputpanel>
+         </div>
+     </div>
+  </div>
+</apex:page>

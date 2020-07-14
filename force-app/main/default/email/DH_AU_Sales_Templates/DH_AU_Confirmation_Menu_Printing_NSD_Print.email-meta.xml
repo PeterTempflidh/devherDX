@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>DH_AU_Menu_Samples/Menu_Sample_Generic2.pdf</attachedDocuments>
+    <attachedDocuments>DH_AU_Menu_Samples/Menu_Sample_Indian.pdf</attachedDocuments>
+    <attachedDocuments>DH_AU_Menu_Samples/Menu_Sample_Thai2A.pdf</attachedDocuments>
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>DH_AU_Letterhead</letterhead>
+    <name>DH AU Confirmation – Menu Printing (NSD Print)</name>
+    <style>freeForm</style>
+    <subject>Menu Printing Confirmation {!Account.Restaurant_Name__c}</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+Please find attached a letter confirming your interest to order menus with Delivery Hero. The next steps required to finalise your menu printing are as follows:
+
+1. Choose a design for your new menu and advise us of your selection. You can choose to use:
+1) your existing menu*; or
+2) one of the available templates from NSD Print.
+*If you would like to use your existing menu design, please note that small layout changes may be required to make space for the Delivery Hero voucher and banners.
+
+2. Please email the following information to us within 48 hours:
+- your current menu (in high resolution PDF where possible)
+- your logo in high resolution
+- all required changes for your new menu
+
+3. Our printing partner NSD Print will contact you within 24 hours to take your payment details and process the order. Payment can be made via bank transfer or VISA/Mastercard and is processed in two stages:
+1) a non‐refundable $90 (excl. GST) deposit will be charged by NSD Print on initial order confirmation; and
+2) the balance of payment, being the Invoice Total per the attached letter less the deposit paid, will be charged by NSD Print upon approval of final artwork for printing
+
+If you have any questions please do not hesitate to contact either NSD Print or ourselves. We’ve also included a menu distribution contact below as an optional recommendation.
+
+Thank you!
+
+Sincerely,
+Your Delivery Hero Team.
+{!User.Name}
+{!User.Phone}
+{!User.Email}
+
+Menu Printing Contact:
+Sales Team NSD Print Management
+Postal Address: PO Box 940 St Ives, NSW 2075
+Office Address: Suite 1.28, Level 2, 802-808 Pacific Highway, Gordon 2072
+Phone: (02) 9440 1577
+Fax: (02) 9440 1688
+Email: dh@nsdprint.com.au
+
+(Optional) Menu Distribution Contact:
+LetterboxPush
+Craig Morris
+Phone: 1300 436 806
+Email: letterboxpush@parcelpush.com.au
+Website: www.letterboxpush.com.au
+10,000:  $495 (plus GST) = $49.50/1,000 (plus GST)
+20,000:  $990 (plus GST) = $49.50/1,000 (plus GST)
+40,000:  $1,780 (plus GST) = $44.50/1,000 (plus GST)
+Note: For all areas outside the Capital City 20km radius, a separate competitive quote will be provided.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

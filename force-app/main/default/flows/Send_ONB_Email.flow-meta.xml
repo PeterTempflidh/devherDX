@@ -1,0 +1,870 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <processMetadataValues>
+            <name>emailAlertSelection</name>
+            <value>
+                <stringValue>FP_TH_Send_ONB_Email</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_11_A1</name>
+        <label>FP TH Send ONB Email</label>
+        <locationX>1100</locationX>
+        <locationY>200</locationY>
+        <actionName>Case.FP_TH_Send_ONB_Email</actionName>
+        <actionType>emailAlert</actionType>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>emailAlertSelection</name>
+            <value>
+                <stringValue>FP_Send_ONB_Email_HK</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_1_A1</name>
+        <label>FP HK Send ONB Email</label>
+        <locationX>100</locationX>
+        <locationY>200</locationY>
+        <actionName>Case.FP_Send_ONB_Email_HK</actionName>
+        <actionType>emailAlert</actionType>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>emailAlertSelection</name>
+            <value>
+                <stringValue>FP_SG_Send_ONB_Email</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_3_A1</name>
+        <label>FP SG Send ONB Email</label>
+        <locationX>300</locationX>
+        <locationY>200</locationY>
+        <actionName>Case.FP_SG_Send_ONB_Email</actionName>
+        <actionType>emailAlert</actionType>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>emailAlertSelection</name>
+            <value>
+                <stringValue>FP_MY_Send_ONB_Email</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_5_A1</name>
+        <label>FP MY Send ONB Email</label>
+        <locationX>500</locationX>
+        <locationY>200</locationY>
+        <actionName>Case.FP_MY_Send_ONB_Email</actionName>
+        <actionType>emailAlert</actionType>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>emailAlertSelection</name>
+            <value>
+                <stringValue>FP_TW_Send_ONB_Email</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_7_A1</name>
+        <label>FP TW Send ONB Email</label>
+        <locationX>700</locationX>
+        <locationY>200</locationY>
+        <actionName>Case.FP_TW_Send_ONB_Email</actionName>
+        <actionType>emailAlert</actionType>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>emailAlertSelection</name>
+            <value>
+                <stringValue>FP_PH_Send_ONB_Email</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_9_A1</name>
+        <label>FP PH Send ONB Email</label>
+        <locationX>900</locationX>
+        <locationY>200</locationY>
+        <actionName>Case.FP_PH_Send_ONB_Email</actionName>
+        <actionType>emailAlert</actionType>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision</name>
+        <label>myDecision</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision2</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_1</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_1_pmetdec</targetReference>
+            </connector>
+            <label>HK Onboarding Email</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>5.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision10</name>
+        <label>myDecision10</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_11</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_11</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_11_A1</targetReference>
+            </connector>
+            <label>TH Onboarding Email</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision2</name>
+        <label>myDecision2</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision4</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_3</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_3</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_3_pmetdec</targetReference>
+            </connector>
+            <label>SG Onboarding Email</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>2.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision4</name>
+        <label>myDecision4</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision6</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_5</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_5</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_5_pmetdec</targetReference>
+            </connector>
+            <label>MY Onboarding Email</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>3.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision6</name>
+        <label>myDecision6</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision8</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_7</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_7</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_7_pmetdec</targetReference>
+            </connector>
+            <label>TW Onboarding Email</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>4.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision8</name>
+        <label>myDecision8</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision10</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_9</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_9</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_9_A1</targetReference>
+            </connector>
+            <label>PH Onboarding Email</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_1_pmetdec</name>
+        <label>Previously Met Decision</label>
+        <locationX>100</locationX>
+        <locationY>100</locationY>
+        <defaultConnector>
+            <targetReference>myRule_1_A1</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Previously Met</defaultConnectorLabel>
+        <rules>
+            <name>myRule_1_pmetnullrule</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>myVariable_old</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_1_A1</targetReference>
+            </connector>
+            <label>Previously Met - Null</label>
+        </rules>
+        <rules>
+            <name>myRule_1_pmetrule</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_1_pmetrule</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Previously Met - Prev</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_3_pmetdec</name>
+        <label>Previously Met Decision</label>
+        <locationX>300</locationX>
+        <locationY>100</locationY>
+        <defaultConnector>
+            <targetReference>myRule_3_A1</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Previously Met</defaultConnectorLabel>
+        <rules>
+            <name>myRule_3_pmetnullrule</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>myVariable_old</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_3_A1</targetReference>
+            </connector>
+            <label>Previously Met - Null</label>
+        </rules>
+        <rules>
+            <name>myRule_3_pmetrule</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_3_pmetrule</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Previously Met - Prev</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_5_pmetdec</name>
+        <label>Previously Met Decision</label>
+        <locationX>500</locationX>
+        <locationY>100</locationY>
+        <defaultConnector>
+            <targetReference>myRule_5_A1</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Previously Met</defaultConnectorLabel>
+        <rules>
+            <name>myRule_5_pmetnullrule</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>myVariable_old</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_5_A1</targetReference>
+            </connector>
+            <label>Previously Met - Null</label>
+        </rules>
+        <rules>
+            <name>myRule_5_pmetrule</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_5_pmetrule</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Previously Met - Prev</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_7_pmetdec</name>
+        <label>Previously Met Decision</label>
+        <locationX>700</locationX>
+        <locationY>100</locationY>
+        <defaultConnector>
+            <targetReference>myRule_7_A1</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Previously Met</defaultConnectorLabel>
+        <rules>
+            <name>myRule_7_pmetnullrule</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>myVariable_old</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_7_A1</targetReference>
+            </connector>
+            <label>Previously Met - Null</label>
+        </rules>
+        <rules>
+            <name>myRule_7_pmetrule</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_7_pmetrule</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Previously Met - Prev</label>
+        </rules>
+    </decisions>
+    <description>Process to send the ONB Email after Menu Processing is closed</description>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+[Case].RecordType.Name = &quot;FP Entry Case&quot; ,
+ISPICKVAL([Case].Type , &quot;Menu Processing&quot;), 
+ISPICKVAL([Case].Status , &quot;Closed&quot;),
+ISPICKVAL([Case].Closed_Reason__c , &apos;Take Online&apos;),
+OR(
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;New Business&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Owner Change&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Win Back&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Legal Form Change&apos;)
+), 
+[Case].Account_Country__c = &quot;Hong Kong&quot;,
+NOT(ISBLANK([Case].ContactId ))
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_1</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+{!myVariable_current.RecordType.Name} = &quot;FP Entry Case&quot; ,
+ISPICKVAL({!myVariable_current.Type} , &quot;Menu Processing&quot;), 
+ISPICKVAL({!myVariable_current.Status} , &quot;Closed&quot;),
+ISPICKVAL({!myVariable_current.Closed_Reason__c} , &apos;Take Online&apos;),
+OR(
+ISPICKVAL({!myVariable_current.Opportunity__r.Business_Type__c}, &apos;New Business&apos;),
+ISPICKVAL({!myVariable_current.Opportunity__r.Business_Type__c}, &apos;Owner Change&apos;),
+ISPICKVAL({!myVariable_current.Opportunity__r.Business_Type__c}, &apos;Win Back&apos;),
+ISPICKVAL({!myVariable_current.Opportunity__r.Business_Type__c}, &apos;Legal Form Change&apos;)
+), 
+{!myVariable_current.Account_Country__c} = &quot;Hong Kong&quot;,
+NOT(ISBLANK({!myVariable_current.ContactId} ))
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+[Case].RecordType.Name = &quot;FP Entry Case&quot; ,
+ISPICKVAL([Case].Type , &quot;Menu Processing&quot;), 
+ISPICKVAL([Case].Status , &quot;Closed&quot;),
+ISPICKVAL([Case].Closed_Reason__c , &apos;Take Online&apos;),
+OR(
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;New Business&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Owner Change&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Win Back&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Legal Form Change&apos;)
+), 
+[Case].Account_Country__c = &quot;Thailand&quot;,
+NOT(ISBLANK([Case].ContactId ))
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_11</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+{!myVariable_current.RecordType.Name} = &quot;FP Entry Case&quot; ,
+ISPICKVAL({!myVariable_current.Type} , &quot;Menu Processing&quot;), 
+ISPICKVAL({!myVariable_current.Status} , &quot;Closed&quot;),
+ISPICKVAL({!myVariable_current.Closed_Reason__c} , &apos;Take Online&apos;),
+OR(
+ISPICKVAL({!myVariable_current.Opportunity__r.Business_Type__c}, &apos;New Business&apos;),
+ISPICKVAL({!myVariable_current.Opportunity__r.Business_Type__c}, &apos;Owner Change&apos;),
+ISPICKVAL({!myVariable_current.Opportunity__r.Business_Type__c}, &apos;Win Back&apos;),
+ISPICKVAL({!myVariable_current.Opportunity__r.Business_Type__c}, &apos;Legal Form Change&apos;)
+), 
+{!myVariable_current.Account_Country__c} = &quot;Thailand&quot;,
+NOT(ISBLANK({!myVariable_current.ContactId} ))
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+[Case].RecordType.Name = &quot;FP Entry Case&quot; ,
+ISPICKVAL([Case].Type , &quot;Menu Processing&quot;), 
+ISPICKVAL([Case].Status , &quot;Closed&quot;),
+ISPICKVAL([Case].Closed_Reason__c , &apos;Take Online&apos;),
+OR(
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;New Business&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Owner Change&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Win Back&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Legal Form Change&apos;)
+), 
+[Case].Account_Country__c = &quot;Hong Kong&quot;,
+NOT(ISBLANK([Case].ContactId ))
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_1_pmetrule</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+{!myVariable_old.RecordType.Name} = &quot;FP Entry Case&quot; ,
+ISPICKVAL({!myVariable_old.Type} , &quot;Menu Processing&quot;), 
+ISPICKVAL({!myVariable_old.Status} , &quot;Closed&quot;),
+ISPICKVAL({!myVariable_old.Closed_Reason__c} , &apos;Take Online&apos;),
+OR(
+ISPICKVAL({!myVariable_old.Opportunity__r.Business_Type__c}, &apos;New Business&apos;),
+ISPICKVAL({!myVariable_old.Opportunity__r.Business_Type__c}, &apos;Owner Change&apos;),
+ISPICKVAL({!myVariable_old.Opportunity__r.Business_Type__c}, &apos;Win Back&apos;),
+ISPICKVAL({!myVariable_old.Opportunity__r.Business_Type__c}, &apos;Legal Form Change&apos;)
+), 
+{!myVariable_old.Account_Country__c} = &quot;Hong Kong&quot;,
+NOT(ISBLANK({!myVariable_old.ContactId} ))
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+[Case].RecordType.Name = &quot;FP Entry Case&quot; ,
+ISPICKVAL([Case].Type , &quot;Menu Processing&quot;), 
+ISPICKVAL([Case].Status , &quot;Closed&quot;),
+ISPICKVAL([Case].Closed_Reason__c , &apos;Take Online&apos;),
+OR(
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;New Business&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Owner Change&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Win Back&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Legal Form Change&apos;)
+), 
+[Case].Account_Country__c = &quot;Singapore&quot;,
+NOT(ISBLANK([Case].ContactId ))
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_3</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+{!myVariable_current.RecordType.Name} = &quot;FP Entry Case&quot; ,
+ISPICKVAL({!myVariable_current.Type} , &quot;Menu Processing&quot;), 
+ISPICKVAL({!myVariable_current.Status} , &quot;Closed&quot;),
+ISPICKVAL({!myVariable_current.Closed_Reason__c} , &apos;Take Online&apos;),
+OR(
+ISPICKVAL({!myVariable_current.Opportunity__r.Business_Type__c}, &apos;New Business&apos;),
+ISPICKVAL({!myVariable_current.Opportunity__r.Business_Type__c}, &apos;Owner Change&apos;),
+ISPICKVAL({!myVariable_current.Opportunity__r.Business_Type__c}, &apos;Win Back&apos;),
+ISPICKVAL({!myVariable_current.Opportunity__r.Business_Type__c}, &apos;Legal Form Change&apos;)
+), 
+{!myVariable_current.Account_Country__c} = &quot;Singapore&quot;,
+NOT(ISBLANK({!myVariable_current.ContactId} ))
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+[Case].RecordType.Name = &quot;FP Entry Case&quot; ,
+ISPICKVAL([Case].Type , &quot;Menu Processing&quot;), 
+ISPICKVAL([Case].Status , &quot;Closed&quot;),
+ISPICKVAL([Case].Closed_Reason__c , &apos;Take Online&apos;),
+OR(
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;New Business&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Owner Change&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Win Back&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Legal Form Change&apos;)
+), 
+[Case].Account_Country__c = &quot;Singapore&quot;,
+NOT(ISBLANK([Case].ContactId ))
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_3_pmetrule</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+{!myVariable_old.RecordType.Name} = &quot;FP Entry Case&quot; ,
+ISPICKVAL({!myVariable_old.Type} , &quot;Menu Processing&quot;), 
+ISPICKVAL({!myVariable_old.Status} , &quot;Closed&quot;),
+ISPICKVAL({!myVariable_old.Closed_Reason__c} , &apos;Take Online&apos;),
+OR(
+ISPICKVAL({!myVariable_old.Opportunity__r.Business_Type__c}, &apos;New Business&apos;),
+ISPICKVAL({!myVariable_old.Opportunity__r.Business_Type__c}, &apos;Owner Change&apos;),
+ISPICKVAL({!myVariable_old.Opportunity__r.Business_Type__c}, &apos;Win Back&apos;),
+ISPICKVAL({!myVariable_old.Opportunity__r.Business_Type__c}, &apos;Legal Form Change&apos;)
+), 
+{!myVariable_old.Account_Country__c} = &quot;Singapore&quot;,
+NOT(ISBLANK({!myVariable_old.ContactId} ))
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+[Case].RecordType.Name = &quot;FP Entry Case&quot; ,
+ISPICKVAL([Case].Type , &quot;Menu Processing&quot;), 
+ISPICKVAL([Case].Status , &quot;Closed&quot;),
+ISPICKVAL([Case].Closed_Reason__c , &apos;Take Online&apos;),
+OR(
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;New Business&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Owner Change&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Win Back&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Legal Form Change&apos;)
+), 
+[Case].Account_Country__c = &quot;Malaysia&quot;,
+NOT(ISBLANK([Case].ContactId ))
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_5</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+{!myVariable_current.RecordType.Name} = &quot;FP Entry Case&quot; ,
+ISPICKVAL({!myVariable_current.Type} , &quot;Menu Processing&quot;), 
+ISPICKVAL({!myVariable_current.Status} , &quot;Closed&quot;),
+ISPICKVAL({!myVariable_current.Closed_Reason__c} , &apos;Take Online&apos;),
+OR(
+ISPICKVAL({!myVariable_current.Opportunity__r.Business_Type__c}, &apos;New Business&apos;),
+ISPICKVAL({!myVariable_current.Opportunity__r.Business_Type__c}, &apos;Owner Change&apos;),
+ISPICKVAL({!myVariable_current.Opportunity__r.Business_Type__c}, &apos;Win Back&apos;),
+ISPICKVAL({!myVariable_current.Opportunity__r.Business_Type__c}, &apos;Legal Form Change&apos;)
+), 
+{!myVariable_current.Account_Country__c} = &quot;Malaysia&quot;,
+NOT(ISBLANK({!myVariable_current.ContactId} ))
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+[Case].RecordType.Name = &quot;FP Entry Case&quot; ,
+ISPICKVAL([Case].Type , &quot;Menu Processing&quot;), 
+ISPICKVAL([Case].Status , &quot;Closed&quot;),
+ISPICKVAL([Case].Closed_Reason__c , &apos;Take Online&apos;),
+OR(
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;New Business&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Owner Change&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Win Back&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Legal Form Change&apos;)
+), 
+[Case].Account_Country__c = &quot;Malaysia&quot;,
+NOT(ISBLANK([Case].ContactId ))
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_5_pmetrule</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+{!myVariable_old.RecordType.Name} = &quot;FP Entry Case&quot; ,
+ISPICKVAL({!myVariable_old.Type} , &quot;Menu Processing&quot;), 
+ISPICKVAL({!myVariable_old.Status} , &quot;Closed&quot;),
+ISPICKVAL({!myVariable_old.Closed_Reason__c} , &apos;Take Online&apos;),
+OR(
+ISPICKVAL({!myVariable_old.Opportunity__r.Business_Type__c}, &apos;New Business&apos;),
+ISPICKVAL({!myVariable_old.Opportunity__r.Business_Type__c}, &apos;Owner Change&apos;),
+ISPICKVAL({!myVariable_old.Opportunity__r.Business_Type__c}, &apos;Win Back&apos;),
+ISPICKVAL({!myVariable_old.Opportunity__r.Business_Type__c}, &apos;Legal Form Change&apos;)
+), 
+{!myVariable_old.Account_Country__c} = &quot;Malaysia&quot;,
+NOT(ISBLANK({!myVariable_old.ContactId} ))
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+[Case].RecordType.Name = &quot;FP Entry Case&quot; ,
+ISPICKVAL([Case].Type , &quot;Menu Processing&quot;), 
+ISPICKVAL([Case].Status , &quot;Closed&quot;),
+ISPICKVAL([Case].Closed_Reason__c , &apos;Take Online&apos;),
+OR(
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;New Business&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Owner Change&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Win Back&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Legal Form Change&apos;)
+), 
+[Case].Account_Country__c = &quot;Taiwan&quot;,
+NOT(ISBLANK([Case].ContactId ))
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_7</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+{!myVariable_current.RecordType.Name} = &quot;FP Entry Case&quot; ,
+ISPICKVAL({!myVariable_current.Type} , &quot;Menu Processing&quot;), 
+ISPICKVAL({!myVariable_current.Status} , &quot;Closed&quot;),
+ISPICKVAL({!myVariable_current.Closed_Reason__c} , &apos;Take Online&apos;),
+OR(
+ISPICKVAL({!myVariable_current.Opportunity__r.Business_Type__c}, &apos;New Business&apos;),
+ISPICKVAL({!myVariable_current.Opportunity__r.Business_Type__c}, &apos;Owner Change&apos;),
+ISPICKVAL({!myVariable_current.Opportunity__r.Business_Type__c}, &apos;Win Back&apos;),
+ISPICKVAL({!myVariable_current.Opportunity__r.Business_Type__c}, &apos;Legal Form Change&apos;)
+), 
+{!myVariable_current.Account_Country__c} = &quot;Taiwan&quot;,
+NOT(ISBLANK({!myVariable_current.ContactId} ))
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+[Case].RecordType.Name = &quot;FP Entry Case&quot; ,
+ISPICKVAL([Case].Type , &quot;Menu Processing&quot;), 
+ISPICKVAL([Case].Status , &quot;Closed&quot;),
+ISPICKVAL([Case].Closed_Reason__c , &apos;Take Online&apos;),
+OR(
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;New Business&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Owner Change&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Win Back&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Legal Form Change&apos;)
+), 
+[Case].Account_Country__c = &quot;Taiwan&quot;,
+NOT(ISBLANK([Case].ContactId ))
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_7_pmetrule</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+{!myVariable_old.RecordType.Name} = &quot;FP Entry Case&quot; ,
+ISPICKVAL({!myVariable_old.Type} , &quot;Menu Processing&quot;), 
+ISPICKVAL({!myVariable_old.Status} , &quot;Closed&quot;),
+ISPICKVAL({!myVariable_old.Closed_Reason__c} , &apos;Take Online&apos;),
+OR(
+ISPICKVAL({!myVariable_old.Opportunity__r.Business_Type__c}, &apos;New Business&apos;),
+ISPICKVAL({!myVariable_old.Opportunity__r.Business_Type__c}, &apos;Owner Change&apos;),
+ISPICKVAL({!myVariable_old.Opportunity__r.Business_Type__c}, &apos;Win Back&apos;),
+ISPICKVAL({!myVariable_old.Opportunity__r.Business_Type__c}, &apos;Legal Form Change&apos;)
+), 
+{!myVariable_old.Account_Country__c} = &quot;Taiwan&quot;,
+NOT(ISBLANK({!myVariable_old.ContactId} ))
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+[Case].RecordType.Name = &quot;FP Entry Case&quot; ,
+ISPICKVAL([Case].Type , &quot;Menu Processing&quot;), 
+ISPICKVAL([Case].Status , &quot;Closed&quot;),
+ISPICKVAL([Case].Closed_Reason__c , &apos;Take Online&apos;),
+OR(
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;New Business&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Owner Change&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Win Back&apos;),
+ISPICKVAL([Case].Opportunity__c.Business_Type__c, &apos;Legal Form Change&apos;)
+), 
+[Case].Account_Country__c = &quot;Philippines&quot;,
+NOT(ISBLANK([Case].ContactId ))
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_9</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+{!myVariable_current.RecordType.Name} = &quot;FP Entry Case&quot; ,
+ISPICKVAL({!myVariable_current.Type} , &quot;Menu Processing&quot;), 
+ISPICKVAL({!myVariable_current.Status} , &quot;Closed&quot;),
+ISPICKVAL({!myVariable_current.Closed_Reason__c} , &apos;Take Online&apos;),
+OR(
+ISPICKVAL({!myVariable_current.Opportunity__r.Business_Type__c}, &apos;New Business&apos;),
+ISPICKVAL({!myVariable_current.Opportunity__r.Business_Type__c}, &apos;Owner Change&apos;),
+ISPICKVAL({!myVariable_current.Opportunity__r.Business_Type__c}, &apos;Win Back&apos;),
+ISPICKVAL({!myVariable_current.Opportunity__r.Business_Type__c}, &apos;Legal Form Change&apos;)
+), 
+{!myVariable_current.Account_Country__c} = &quot;Philippines&quot;,
+NOT(ISBLANK({!myVariable_current.ContactId} ))
+)</expression>
+    </formulas>
+    <interviewLabel>Send_ONB_Email-6_InterviewLabel</interviewLabel>
+    <label>Send ONB Email</label>
+    <processMetadataValues>
+        <name>ObjectType</name>
+        <value>
+            <stringValue>Case</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>ObjectVariable</name>
+        <value>
+            <elementReference>myVariable_current</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OldObjectVariable</name>
+        <value>
+            <elementReference>myVariable_old</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>TriggerType</name>
+        <value>
+            <stringValue>onAllChanges</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Workflow</processType>
+    <startElementReference>myDecision</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>myVariable_current</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Case</objectType>
+    </variables>
+    <variables>
+        <name>myVariable_old</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Case</objectType>
+    </variables>
+</Flow>

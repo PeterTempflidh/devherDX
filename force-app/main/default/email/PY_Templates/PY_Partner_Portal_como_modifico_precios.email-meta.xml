@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY - Partner Portal como modifico precios</name>
+    <style>freeForm</style>
+    <subject>Gracias por Contactarnos - # {!Case.CaseNumber}</subject>
+    <textOnly>Estimado XXXNombreXXX, 
+
+ 
+
+Nos contactamos en respuesta a tu consulta sobre cómo realizar las modificaciones de los precios en tu usuario de Partner Portal, te comentamos que en el menú de la izquierda encontrarás la sección ‘’Productos’’ donde puedes ver los productos que ofreces al público y realizar este cambio. 
+
+ 
+
+Dentro de este apartado encontrarás las distintas secciones donde se agrupan los mismos. Si le das click sobre el producto que deseas modificar y nuevamente click sobre el lápiz a la derecha, te aparecerá un recuadro donde sólo se visualice este producto, y dentro del mismo, un cuadro titulado “precio” con el que figura actualmente; haciendo click dentro de éste, podrás borrar el antiguo precio y escribir el nuevo. Cuando termines, sólo debes darle click al tick (✓) y los cambios quedarán efectivos al instante.   
+
+ 
+
+Adicionalmente te hemos adjuntado el manual de la herramienta para futuras consultas. 
+
+ 
+
+Quedamos a las órdenes, 
+
+Saludos 
+
+ 
+
+(NOMBRE DEL AGENTE) - Claims Operator 
+PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,144 @@
+<!--
+ - Created by marco.zeuli on 17/5/2018.
+ -->
+
+<apex:page id="ViewInvoicePDF" standardController="Invoice__c" extensions="CtrViewInvoicePDF" standardStylesheets="false" showHeader="false" sideBar="false" applyBodyTag="false" applyHtmlTag="false" docType="html-5.0">
+
+    <html>
+        <head>
+            <title>{!Invoice__c.Invoice_Number__c} PDF</title>
+            <apex:slds />
+        </head>
+        <body class="slds-scope">
+            <div id="app">
+
+            </div>
+            <script src="{!URLFOR($Resource.Vue)}"></script>
+            <c:VueCommonComponents />
+            <script>
+                // Vue components
+                var loaderSharedState = {
+                    state: {
+                        isLoading: 0
+                    },
+                    startLoadingSpinner: function() {
+                        this.state.isLoading++;
+                    },
+                    stopLoadingSpinner: function() {
+                        if (this.state.isLoading > 0) {
+                            this.state.isLoading--;
+                        }
+                    }
+                };
+
+                var errorHandlerSharedState = {
+                    state: {
+                        message: "",
+                        type: "",
+                        timeout: undefined,
+                        callback: undefined
+                    },
+                    setErrorMsg: function(err) {
+                        this.state.message = err.msg;
+                        this.state.type = err.type;
+                        this.state.timeout = err.timeout;
+                        this.state.callback = err.callback;
+                    },
+                    clearErrorMsg: function() {
+                        this.state.message = "";
+                        this.state.type = "";
+                        this.state.timeout = undefined;
+                        this.state.callback = undefined;
+                    }
+                };
+
+                var vueApp = new Vue({
+                    el: "#app",
+                    data: {
+                        errorState: errorHandlerSharedState,
+                        loaderState: loaderSharedState,
+                        pdfBase64: undefined
+                    },
+                    created: function() {
+                        var self = this;
+                        this.loaderState.startLoadingSpinner();
+
+                        Visualforce.remoting.Manager.invokeAction(
+                            "{!$RemoteAction.CtrViewInvoicePDF.getInvoicePDF}",
+                            "{!Invoice__c.Id}",
+                            function(result, event) {
+                                self.loaderState.stopLoadingSpinner();
+
+                                if (!event.status) {
+                                    self.errorState.setErrorMsg({
+                                        msg: "Unexpected error occurred, please contact system administrator",
+                                        type: "error"
+                                    });
+                                    return;
+                                }
+
+                                if (!result.success) {
+                                    self.errorState.setErrorMsg({
+                                        msg: result.data,
+                                        type: "error"
+                                    });
+                                    return;
+                                }
+
+                                self.pdfBase64 = result.data;
+
+                                saveAs(self.pdfUrl, "{!Invoice__c.Invoice_Number__c}.pdf");
+                            }, {
+                                escape: false
+                            }
+                        );
+                    },
+                    computed: {
+                        pdfLoaded: function() {
+                            return !!this.pdfBase64;
+                        },
+                        pdfUrl: function() {
+                            return "data:application/pdf;base64,".concat(this.pdfBase64);
+                        },
+                        windowHeight: function() {
+                            return window.innerHeight;
+                        }
+                    },
+                    template: `
+                        <div>
+                            <iframe v-if="pdfLoaded" :src="pdfUrl" style="width: 100%" :height="windowHeight" name="test"></iframe>
+                            <spinner v-bind:open="loaderState.state.isLoading"></spinner>
+                            <error-handler
+                                    v-bind:message="errorState.state.message"
+                                    v-bind:type="errorState.state.type"
+                                    v-bind:timeout="errorState.state.timeout"
+                                    v-bind:callback="errorState.state.callback"
+                                    v-on:closed="errorState.clearErrorMsg()">
+                            </error-handler>
+                        </div>
+                    `
+                });
+
+                // prompt the user if to save or not the document
+                function saveAs(uri, filename) {
+                  var link = document.createElement('a');
+                  if (typeof link.download === 'string') {
+                    link.href = uri;
+                    link.download = filename;
+
+                    //Firefox requires the link to be in the body
+                    document.body.appendChild(link);
+
+                    //simulate click
+                    link.click();
+
+                    //remove the link when done
+                    document.body.removeChild(link);
+                  }
+                }
+
+            </script>
+        </body>
+    </html>
+
+</apex:page>

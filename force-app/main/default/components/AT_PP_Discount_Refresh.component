@@ -1,0 +1,73 @@
+<apex:component controller="CtrCreateQuote" access="global" >
+
+
+<!-- deprecated to be deleted -->
+
+
+<!--   <apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+  <apex:attribute name="oppQuote" type="String" description="Placeholder" assignTo="{!oppQuoteId}"/>
+  <img src="{!URLFOR($Resource.AT_Header)}"  /><br/>
+  <div style="font-family: serif; font-size:140%"><br/>
+  <span style="font-size:10px;">Mjam GmbH/ Siebenbrunnengasse 44/ AT-1050 Wien</span><br/><br/>
+    <div style="display:inline-block;width:80%"><span id="companyName">{!accountwrapper.companyName}</span></div>
+    <div style="display:inline; align:right;width:20%">
+        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+            <apex:param value="{!TODAY()}" /> 
+        </apex:outputText>
+    </div>
+    <div>Kundenummer: <span id="backendId">{!accountwrapper.backendId}</span><br/>
+         <span id="ownerName">{!accountwrapper.ownerName}</span><br/>
+         <span id="addressStreet">{!accountwrapper.addressStreet}</span> <br/>
+          <span id="addressPostal">{!accountwrapper.addressPostal}</span> <span id="addressPostal">{!accountwrapper.addressCity }</span><br/>
+    
+    </div><br/>
+    <div style="font-weight:bold">Auftragsbestätigung</div><br/>
+    <div>Sehr geehrte(r) <span id="ownerSalutation">{!accountwrapper.ownerSalutation}</span> <span id="ownerLastName">{!accountwrapper.ownerLastname}</span>,</div><br/>
+    <div>wir bestätigen Ihren Auftrag wie folgt:</div><br/>
+    <div>
+    <table id="atTable" style="border-collapse: collapse; width:100%" >
+        <tr style="background-color:#D9D9D9;width:100%">
+            <td>Produkt</td>
+            <td>Plattform/Bezirk/Monat</td>
+            <td>Listenpreis</td>
+            <td>Start Date</td>
+            <td>Rabatt</td>
+            <td>Menge</td>
+            <td>Vereinbartes Entgelt</td>
+            
+        </tr>
+        <apex:repeat value="{!listLineItems}" var="oppProd">  
+        <tr style="padding:5px;width:100%">
+          <td>&nbsp;<apex:outputField value="{!oppProd.name}" /></td>
+          <td >&nbsp;<apex:outputField value="{!oppProd.City_ZipCode__c}"/>&nbsp;</td>               
+          <td>&nbsp;<apex:outputField value="{!oppProd.Listed_Price__c}" />&nbsp;</td>
+          <td>&nbsp;<apex:outputText value="{0,date,dd.MM.yyyy}"><apex:param value="{!oppProd.Start_Date__c}" /></apex:outputText></td>
+          <td>&nbsp;<apex:outputField value="{!oppProd.Rabbat__c}" />&nbsp;</td>                  
+          <td>&nbsp;<apex:outputField value="{!oppProd.Quantity__c}" />&nbsp;</td>
+          <td>&nbsp;<apex:outputField value="{!oppProd.Total_Amount__c}" />&nbsp;</td>
+        </tr>
+       </apex:repeat>
+       <tr>
+         <td colspan="6">&nbsp;</td>
+         <td><span style="font-weight:bold">Gesamtpreis : {!lineItemsTotalAmount}</span></td>
+       </tr>
+    </table>
+    
+    
+   
+    
+   </div><br/>
+   <apex:outputPanel rendered="{!If(quoteNonstandardText=null,'false','true')}">
+                -   {!quoteNonstandardText}<br/>
+                    </apex:outputPanel>
+    <div>
+        <div>Alle genannten Preise sind Nettopreise zuzüglich der gesetzlich geltenden Umsatzsteuer. 
+        Es gelten ausschließlich die Allgemeinen Geschäftsbedingungen der Mjam GmbH, die Sie gesondert erhalten oder bereits erhalten haben. </div><br/>
+        <div>Diese Auftragsbestätigung ist keine Rechnung im Sinne des Umsatzsteuergesetzes UStG. Die oben aufgeführten Leistungen werden gesondert abgerechnet.</div><br/>
+        <div>Wenn wir mit Ihnen Sondervereinbarungen getroffen haben oder wenn  zusätzliche Anmerkungen erforderlich sind, so erhalten sie diese in einem gesonderten Schreiben.</div><br/>
+        <div>Wir danken Ihnen für Ihren Auftrag und freuen uns auf eine erfolgreiche Zusammenarbeit.</div><br/>
+    
+        <div>{!$User.FirstName} {!$User.LastName}</div>
+    </div>
+    </div>
+ --></apex:component>

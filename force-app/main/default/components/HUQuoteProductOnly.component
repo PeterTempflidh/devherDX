@@ -1,0 +1,407 @@
+<apex:component controller="CtrCreateQuote" access="global">
+    <apex:attribute name="oppQ" type="String" description="Placeholder" assignTo="{!oppQId}"/>
+    <apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+
+    <html>
+    <head>
+        <style type="text/css">
+		    /* A4 size */
+
+		    @page {
+		    	size: A4;
+			}
+
+			@media print {
+				.pageBreak {
+		    		page-break-after: always;
+		    	}
+			}
+
+            div.footer {
+	            display: block;
+            	padding: 5px;
+            	position: running(footer);
+            }
+
+            .tableFormat {
+           		border: 1px solid black;
+            }
+
+            .tableFormat tr{
+           		border: 1px solid black;
+            }
+
+            .tableFormat td{
+           		border: 1px solid black;
+            }
+		</style>
+    </head>
+
+    <body style="font-family: Arial Unicode MS;font-size: 11px;">
+    <div id="HU_QUOTEHEADER" style="width:700px;">
+        <div style="width:50%;float:left;">
+            <img src="{!URLFOR($Resource.Netpincer_Logo2)}" style="width: 50%;" />
+            <div>
+                <b>{!$Label.HU_QuoteHeader1}</b>
+            </div>
+            <apex:outputPanel id="outputPanelHeader" rendered="{!isLogisticsFee}">
+                <div>
+                    <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{!$Label.HU_QuoteHeader2}</b>
+                </div>
+            </apex:outputPanel>
+        </div>
+        <div id="RestDesc" style="width:50%;vertical-align: top; float:right;" >
+            <c:HULetterHead addressString="{!accountWrapper.letterheadAddress}"/>
+        </div>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <div style="display:block;text-align:right;width:100%">
+            <table style="width:100%">
+                <tr>
+                    <td style="padding:0px;text-align:right">{!opportunity.Owner.LastName} {!opportunity.Owner.FirstName}</td>
+                </tr>
+                <tr>
+                    <td style="padding:0px;text-align:right">
+                        <apex:outputText value="{0,date,yyyy'.'MM'.'dd}">
+                            <apex:param value="{!oppQuote.CreatedDate}" />
+                        </apex:outputText>
+                    </td>
+                </tr>
+                <apex:repeat value="{!accountwrapper.entityname}" var="addLine">
+                    <tr>
+                        <td style="padding:0px;text-align:right">
+                            {!addLine}
+                        </td>
+                    </tr>
+                </apex:repeat>
+            </table>
+        </div>
+        <br/>
+        <div style="width:100%">
+            <div style="text-align: justify;">
+                {!$Label.HU_Quote1}
+            </div>
+            <br/>
+            <!-- RESTAURANT DETAILS -->
+            <table class="tableFormat" border="1" style="width:100%;border-collapse: collapse;">
+                <tr>
+                    <td>
+                        {!$Label.HU_Quote_LegalName} {!accountWrapper.legalName}
+                    </td>
+                    <td>
+                        {!$Label.HU_Quote_CompanyName} {!accountWrapper.companyName}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {!$Label.HU_Quote_TaxNumber} {!accountWrapper.taxNumber}
+                    </td>
+                    <td>
+                        {!$Label.HU_Quote_PhoneNumber} {!accountWrapper.restaurantPhoneNumber}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {!$Label.HU_Quote_RestaurantAddress} {!accountWrapper.restaurantAddress}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {!$Label.HU_Quote_BillingAddress} {!accountWrapper.billingAddress}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {!$Label.HU_Quote_ShippingAddress}  {!accountWrapper.shippingAddress}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {!$Label.HU_Quote_OwnerName} {!accountWrapper.ownerLastname} {!accountWrapper.ownerFirstname}
+                    </td>
+                    <td>
+                        {!$Label.HU_Quote_PhoneNumber} {!accountWrapper.ownerMobilePhone}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {!$Label.HU_Quote_OwnerEmail} {!accountWrapper.ownerEmail}
+                    </td>
+                </tr>
+            </table>
+            <br/>
+            <div style="text-align: justify;">
+                {!$Label.HU_QuoteProductOnly1}
+            </div>
+
+            <!--[show below if there is additional charges,asset added in the opp] !-->
+            <br/>
+            <apex:outputPanel rendered="{!listLineItems.size > 0}" >
+                <table class="tableFormat" border="1" style="width: 100%;border-collapse: collapse;">
+                    <tr>
+
+                        <th style="text-align:center">
+                            {!$Label.HU_Quote_AssetName}
+                        </th>
+                        <th style="text-align:center">
+                            {!$Label.HU_Quote_Quantity}
+                        </th>
+                        <th style="text-align:center">
+                            {!$Label.HU_QuoteProductOnly_Specification}
+                        </th>
+                        <th style="text-align:center">
+                            {!$Label.HU_Quote_StartDate}
+                        </th>
+                        <th style="text-align:center">
+                            {!$Label.HU_Quote_EndDate}
+                        </th>
+                        <th style="text-align:center">
+                            {!$Label.HU_Quote_TotalAmount}
+                        </th>
+                    </tr>
+                    <apex:repeat value="{!listLineItems}" var="lineItem1">
+                        <tr>
+                            <td style="text-align:center">
+                                {!lineItem1.Name}
+                            </td>
+                            <td style="text-align:center">
+                                {!lineItem1.Quantity__c}
+                            </td>
+                            <td style="text-align:center">
+                                {!lineItem1.Specifications__c}
+                            </td>
+                            <td style="text-align:center">
+                                <apex:outputText value="{0,date,yyyy'.'MM'.'dd}">
+                                    <apex:param value="{!lineItem1.Start_Date__c}" />
+                                </apex:outputText>
+                            </td>
+                            <td style="text-align:center">
+                                <apex:outputText value="{0,date,yyyy'.'MM'.'dd}">
+                                    <apex:param value="{!lineItem1.End_Date__c}" />
+                                </apex:outputText>
+                            </td>
+                            <td style="text-align:center">
+                                {!lineItem1.Total_Amount__c}
+                            </td>
+                        </tr>
+                    </apex:repeat>
+                </table><br/>
+            </apex:outputPanel>
+
+            <!--[show below if there is add-on added in the opp] !-->
+            <apex:outputPanel rendered="{!listAddOnItems.size > 0}" >
+                <table class="tableFormat" border="1" style="width: 100%;border-collapse: collapse;">
+                    <tr>
+                        <th style="text-align:center">
+                            {!$Label.HU_Quote_AddOnName}
+                        </th>
+                        <th style="text-align:center">
+                            {!$Label.HU_Quote_ContractAddition}
+                        </th>
+                        <th style="text-align:center">
+                            {!$Label.HU_QuoteProductOnly_Specification}
+                        </th>
+                        <th style="text-align:center">
+                            {!$Label.HU_Quote_StartDate}
+                        </th>
+                        <th style="text-align:center">
+                            {!$Label.HU_Quote_EndDate}
+
+                        </th>
+                    </tr>
+                    <apex:repeat value="{!listAddOnItems}" var="lineItem2" >
+                        <tr>
+                            <td style="text-align:center">
+                                {!lineItem2.Name}
+                            </td>
+                            <td style="text-align:center">
+                                <apex:outputField value="{!lineItem2.Contract_Addition__c}" ></apex:outputField>
+                            </td>
+                            <td style="text-align:center">
+                                {!lineItem2.Specifications__c}
+                            </td>
+                            <td style="text-align:center">
+                                <apex:outputText value="{0,date,yyyy'.'MM'.'dd}">
+                                    <apex:param value="{!lineItem2.Start_Date__c}" />
+                                </apex:outputText>
+                            </td>
+                            <td style="text-align:center">
+                                <apex:outputText value="{0,date,yyyy'.'MM'.'dd}">
+                                    <apex:param value="{!lineItem2.End_Date__c}" />
+                                </apex:outputText>
+                            </td>
+                        </tr>
+                    </apex:repeat>
+                </table>
+                <br/>
+            </apex:outputPanel>
+
+            <!-- TERMS AND CONDITIONS -->
+            <!--[show PP terms & conditions below only if the opp has PP line item/ the tariff is PP !-->
+            <apex:outputPanel id="outputPanel5">
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC1}
+                </div>
+                <div style="text-align: justify;">
+                    <b>{!$Label.HU_QuoteProductOnly_TC2}</b>
+                </div>
+                <div style="text-align: justify;">
+                    <b>{!$Label.HU_QuoteProductOnly_TC3}</b>
+                </div>
+                <div style="text-align: justify;">
+                    <b>{!$Label.HU_QuoteProductOnly_TC31a}</b> {!$Label.HU_QuoteProductOnly_TC31b}
+                </div>
+                <div style="text-align: justify;">
+                    <b>{!$Label.HU_QuoteProductOnly_TC32a}</b> {!$Label.HU_QuoteProductOnly_TC32b}
+                </div>
+                <div style="text-align: justify;">
+                    <b>{!$Label.HU_QuoteProductOnly_TC33a}</b> {!$Label.HU_QuoteProductOnly_TC33b}
+                </div>
+                <div style="text-align: justify;">
+                    <b>{!$Label.HU_QuoteProductOnly_TC4}</b>
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC41}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC42}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC43}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC44}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC45}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC46}
+                </div>
+                <div style="text-align: justify;">
+                    <b>{!$Label.HU_QuoteProductOnly_TC5}</b>
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC51}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC52}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC53}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC54}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC55}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC56}
+                </div>
+                <div style="text-align: justify;">
+                    <b>{!$Label.HU_QuoteProductOnly_TC6}</b>
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC61}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC62}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC63}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC64}
+                </div>
+                <div style="text-align: justify;">
+                    <br/>{!$Label.HU_QuoteProductOnly_TC641}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC642}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC643}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC644}
+                </div>
+                <div style="text-align: justify;">
+                    <br/>{!$Label.HU_QuoteProductOnly_TC65}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC66}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC661}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC6621}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC6622}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC663}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC664}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC665}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC67}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC68}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC69}
+                </div>
+                <div style="text-align: justify;">
+                    {!$Label.HU_QuoteProductOnly_TC7}
+                </div>
+                <div style="text-align: justify;">
+                    <br/>{!$Label.HU_QuoteProductOnly_TCX}
+                </div><br/>
+            </apex:outputPanel>
+        </div>
+        <table style="page-break-inside:avoid; width: 90%;">
+            <tr>
+                <th style="text-align:left; width: 100%;">
+                    {!$Label.HU_Quote_Signature1}<br/><br/>
+                </th>
+            </tr>
+            <tr  style="text-align:center;">
+                <td>
+                    <br/>____________________________________________
+                </td>
+                <td>
+                    <br/>____________________________________________
+                </td>
+            </tr>
+            <tr  style="text-align:center;">
+                <td>
+                    <b>{!$Label.HU_Quote_Signature2}</b>
+                </td>
+                <td>
+                    {!accountWrapper.legalName}
+                </td>
+            </tr>
+            <tr  style="text-align:center;">
+                <td>
+                    {!$Label.HU_Quote_Signature3}
+                </td>
+                <td>
+                    {!$Label.HU_Quote_Signature4}
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="footer">
+        <div>{!$Label.HU_Quote_Version}</div>
+    </div>
+    </body>
+    </html>
+</apex:component>

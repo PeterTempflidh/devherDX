@@ -1,0 +1,784 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="format-detection" content="telephone=no">
+        <title>onlinepizza.se</title>
+        <style type="text/css">
+        /* Based on The MailChimp Reset INLINE: Yes. */  
+        /* Client-specific Styles */
+        #outlook a {
+        padding: 0;
+        } /* Force Outlook to provide a "view in browser" menu link. */
+        body {
+        width: 100% !important;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        margin: 0;
+        padding: 0;
+        }
+        /* Prevent Webkit and Windows Mobile platforms from changing default font sizes.*/ 
+        .ExternalClass {
+        width: 100%;
+        } /* Force Hotmail to display emails at full width */
+        .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {
+        line-height: 100%;
+        }
+        
+        
+        /* fix apple blue text (martm) */ 
+        .appleLinks a {color:#000000;}
+        .appleLinksWhite a {color:#FFFFFF;}
+        
+        
+        
+        /* Forces Hotmail to display normal line spacing.  More on that: http://www.emailonacid.com/forum/viewthread/43/ */ 
+        #backgroundTable {
+        margin: 0;
+        padding: 0;
+        width: 100% !important;
+        line-height: 100% !important;
+        }
+        /* End reset */
+        
+        /* Some sensible defaults for images
+        Bring inline: Yes. */
+        img {
+        outline: none;
+        text-decoration: none;
+        -ms-interpolation-mode: bicubic;
+        }
+        a img {
+        border: none;
+        }
+        .image_fix {
+        display: block;
+        }
+        /* Yahoo paragraph fix
+        Bring inline: Yes. */
+        p {
+        margin: 1em 0;
+        }
+        /* Hotmail header color reset
+        Bring inline: Yes. */
+        h1, h2, h3, h4, h5, h6 {
+        color: black !important;
+        }
+        h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+        color: blue !important;
+        }
+        h1 a:active, h2 a:active, h3 a:active, h4 a:active, h5 a:active, h6 a:active {
+        color: red !important; /* Preferably not the same color as the normal header link color.  There is limited support for pseudo classes in email clients, this was added just for good measure. */
+        }
+        h1 a:visited, h2 a:visited, h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited {
+        color: purple !important; /* Preferably not the same color as the normal header link color. There is limited support for pseudo classes in email clients, this was added just for good measure. */
+        }
+        /* Outlook 07, 10 Padding issue fix
+        Bring inline: No.*/
+        table td {
+        border-collapse: collapse;
+        }
+        /* Remove spacing around Outlook 07, 10 tables
+        Bring inline: Yes */
+        table {
+        border-collapse: collapse;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+        }
+        /* Styling your links has become much simpler with the new Yahoo.  In fact, it falls in line with the main credo of styling in email and make sure to bring your styles inline.  Your link colors will be uniform across clients when brought inline.
+        Bring inline: Yes. */
+        a {
+        color: #666666;
+        }
+        
+        /***************************************************
+        ****************************************************
+        MOBILE TARGETING
+        ****************************************************
+        ***************************************************/
+        @media only screen and (max-width: 600px) {
+        /* Part one of controlling phone number linking for mobile. */
+        a[href^="x-apple-data-detectors:"] {
+        color: inherit;
+        text-decoration: inherit;
+        }
+        
+        a[href^="tel"], a[href^="sms"] {
+        text-decoration: none;
+        color: #a9a8a8; /* or whatever your want */
+        pointer-events: none;
+        cursor: default;
+        }
+        .mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
+        text-decoration: default;
+        color: #000000 !important;
+        pointer-events: auto;
+        cursor: default;
+        }
+        *[class=stretch]{width:100% !important; 
+        height:auto !important;}
+        
+        *[class=imageresize1]{width:248px !important; 
+        height:auto !important;}
+        
+        *[class=stack]{display:block !important;
+        width:100% !important;}
+        *[class=upper]{display:table-header-group !important;
+        margin:auto !important;}
+        *[class=lower]{display:table-footer-group !important;
+        margin:auto !important;}
+        
+        *[class=hide]{display:none !important;}		
+        
+        *[class~=hide_on_mobile] {
+        display: none !important;
+        }
+        *[class~=show_on_mobile] {
+        display : block !important;
+        width : auto !important;
+        max-height: inherit !important;
+        overflow : visible !important;
+        float : none !important;
+        }
+        *[class~=mobile_expand] {
+        width: 100% !important;
+        padding: 30px !important;
+        }
+        *[class~=mobile_padding_reset] {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        text-align: center !important;
+        }
+        *[class~=mobile_padding_reset_top] {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        padding-top: 0px !important;
+        text-align: center !important;
+        }
+        *[class~=mobile_padding_reset_bottom] {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        padding-bottom: 0px !important;
+        text-align: center !important;
+        }
+        *[class~=mobile_padding_reset_top_icon] {
+        padding-left: 0px !important;
+        padding-right: 10px !important;
+        padding-top: 0px !important;
+        text-align: center !important;
+        }
+        *[class~=headline_size] {
+        font-size: 22px !important;
+        }
+        *[class~=register] {
+        padding-bottom: 20px !important;
+        padding-left: 30px !important;
+        text-align: left;
+        }
+        *[class~=salutation] {
+        padding: 10px 10px 10px 15px !important;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 11px;
+        color: #f2f2f2;
+        }
+        *[class~=text-center] {
+        text-align: center !important;
+        }
+        
+        *[class=textcenter] {
+        text-align: center !important;
+        }
+		
+        
+        *[class=half]{display:block !important;
+        width:60% !important;
+        height:60% !important;}
+        
+        *[class=width10]{
+        width:10px !important;
+        }
+        
+        *[class=resizeapptxt]{
+        width:130px !important;
+        height:20px !important;
+        }
+        
+        *[class=resizeapple]{
+        width:21px !important;
+        height:30px !important;
+        }
+        
+        *[class=resizeandroid]{
+        width:24px !important;
+        height:30px !important;
+        }
+        
+        *[class=resizescreen]{
+        width:278px !important;
+        height:174px !important;
+        }
+		
+		*[class=arrow]{
+        width:180px !important;
+        height:30px !important;
+        }
+	
+        *[class=width600]{
+        width:600px !important;
+        
+        }
+		
+		*[class=width40]{
+        width:40px !important;
+        
+        }
+		
+		*[class=width20]{
+        width:20px !important;
+        
+        }
+        
+        *[class=resizeheight]{
+        
+        height:20px !important;
+        
+        }
+        
+        *[class=Fontsize16] {
+        font-size: 16px !important;
+        line-height: 20px !important;
+        }
+        
+        *[class=Fontsize11] {
+        font-size: 11px !important;
+        line-height: 20px !important;
+        }
+        *[class=bgnone]{
+        background-color: #FFFFFF !important;
+        }
+        *[class=bgimgnone]{
+        background-image: none !important;
+        background-color: #FFFFFF !important;
+        }
+        
+        
+        /* More Specific Targeting */
+        
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+        /* You guessed it, ipad (tablets, smaller screens, etc) */
+        /* repeating for the ipad */
+        a[href^="tel"], a[href^="sms"] {
+        text-decoration: none;
+        color: #000000; /* or whatever your want */
+        pointer-events: none;
+        cursor: default;
+        }
+        .mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
+        text-decoration: default;
+        color: #000000 !important;
+        pointer-events: auto;
+        cursor: default;
+        }
+        
+        @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+        /* Put your iPhone 4g styles in here */ 
+        }
+        
+        /* Android targeting */
+        @media only screen and (-webkit-device-pixel-ratio:.75) {
+        /* Put CSS for low density (ldpi) Android layouts in here */
+        }
+        @media only screen and (-webkit-device-pixel-ratio:1) {
+        /* Put CSS for medium density (mdpi) Android layouts in here */
+        }
+        @media only screen and (-webkit-device-pixel-ratio:1.5) {
+        /* Put CSS for high density (hdpi) Android layouts in here */
+        }
+        /* end Android targeting */
+        </style>
+        
+        <!-- Targeting Windows Mobile -->
+        <!--[if IEMobile 7]>
+        <style type="text/css">
+        
+        </style>
+        <![endif]-->
+        
+        <!-- ***********************************************
+        ****************************************************
+        END MOBILE TARGETING
+        ****************************************************
+        ************************************************ -->
+        
+        <!--[if gte mso 9]>
+        <style>
+        /* Target Outlook 2007 and 2010 */
+        </style>
+        <![endif]-->
+</head>
+<body style="min-width:100%;padding:0; margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:100%;">
+
+
+
+
+
+
+
+
+<!-- PRE-HEADER TEXT -->
+<span style="display: none !important; visibility: hidden; opacity: 0; color: transparent; height: 0; width: 0; text-align:center; font-family:Arial, Helvetica, sans-serif; mso-hide:all;" class="hidden">Were you satisfied?</span>
+<!-- END_PRE-HEADER TEXT -->
+
+
+	<!-- MasterTable -->
+	<table  width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" id="backgroundTable">
+  	<tbody>
+    <tr>
+    <td align="center" valign="top" bgcolor="#FFFFFF"  >
+      
+      
+      
+	<!-- TemplateTable -->
+	<table width="640" border="0" align="center" cellpadding="0" cellspacing="0" class="stretch">
+	<tbody>
+    <tr>
+	<td bgcolor="#FFFFFF">
+      
+      
+      
+      
+      
+<!-- space 20px -->
+<table width="20" border="0" align="center" cellpadding="0" cellspacing="0" class="stretch"><tbody><tr><td><img style="display:block;" border="0" src="http://e.onlinepizza.se/images/6657/I-6657-ijehzvmvry-2275_spacer.png" width="20" height="20" alt=""/></td></tr></tbody></table>
+<!-- end space 20px -->
+      
+      
+      
+      
+      
+<!-- VIEWONLINE -->
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0" class="stretch"><tbody><tr><td width="20"></td><td align="center"><font style="FONT-SIZE: 11px; line-height:14px; letter-spacing:0px; display:inline-block;" face="Arial, Helvetica, sans-serif" color="#666666" ><a href="#" style="COLOR: #666666; text-decoration: none">att visa online klicka h&auml;r</a></font></td><td width="20"></td></tr></tbody></table>
+<!-- end VIEWONLINE -->
+      
+      
+      
+     
+      
+<!-- space 20px -->
+<table width="20" border="0" align="center" cellpadding="0" cellspacing="0" class="stretch"><tbody><tr><td><img style="display:block;" border="0" src="http://e.onlinepizza.se/images/6657/I-6657-ijehzvmvry-2275_spacer.png" width="20" height="20" alt=""/></td></tr></tbody></table>
+<!-- end space 20px -->
+
+
+
+
+      
+<!-- LOGOBANNER -->
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0" class="stretch"><tbody><tr><td width="50" bgcolor="#D71309"></td><td width="540" height="100" align="center" valign="middle" bgcolor="#d71309"><a href="http://onlinepizza.se"><img  class="stretch" style="display:block;" border="0" src="http://e.onlinepizza.se/images/6657/I-6657-ozwvoqlyjr-2275_logo.jpg" width="364" height="51" alt="onlinepizza.se"/></a></td><td width="50" bgcolor="#D71309"></td></tr></tbody></table>
+<!-- end LOGOBANNER -->
+      
+      
+
+      
+      
+	<!-- HERO3 USES BACKGROUND IMAGE -->
+<table width="640" border="0" align="center" cellspacing="0" cellpadding="0" class="stretch" bgcolor="#FFFFFF">
+<tbody>
+<tr>
+<td width="640" height="400" bgcolor="#E7E7E7">
+
+
+<table height="400" width="640" cellpadding="0" cellspacing="0" border="0" class="stretch" >
+<tbody>
+<tr>
+<td align="center" valign="top" bgcolor="#392216" background="http://e.onlinepizza.se/images/6657/I-6657-uyeoseeqnp-2275_herobackground.jpg" style="background-position:center top; background-repeat:no-repeat;">
+
+
+
+            <!--[if gte mso 9]>
+            <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:640px; height:400px;">
+            <v:fill type="tile" src="http://e.onlinepizza.se/images/6657/I-6657-uyeoseeqnp-2275_herobackground.jpg" color="#392216" />
+            <v:textbox inset="0,0,0,0">
+            <![endif]-->
+            
+            
+            <table width="640" border="0" align="center" cellpadding="0" cellspacing="0" class="stretch">
+            <tbody>
+            <tr>
+            <td height="160">&nbsp;</td>
+            </tr>
+            
+            
+            <tr>
+              <td height="80" valign="middle" align="center" style="font-family: Arial, Helvetica, sans-serif; font-size:30px; line-height:34px; color:#ffffff; border-radius:4px;" ><a href="https://www.onlinepizza.se/" target="_blank" style="display:block; border-radius:5px; color:#ffffff; text-decoration:none; line-height:34px;"><strong>Var du nöjd?</strong></a></td>
+            </tr>
+            <tr>
+            <td height="160" ></td>
+            </tr>
+            </tbody>
+            </table>
+            
+            
+            
+            <!--[if gte mso 9]>
+            </v:textbox>
+            </v:rect>
+            <![endif]-->
+
+
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+<!-- end HERO3 USES BACKGROUND IMAGE -->
+    
+     
+    
+  
+      
+      
+      
+      
+<!-- space 20px -->
+<table width="20" border="0" align="center" cellpadding="0" cellspacing="0" class="stretch"><tbody><tr><td><img style="display:block;" border="0" src="http://e.onlinepizza.se/images/6657/I-6657-ijehzvmvry-2275_spacer.png" width="20" height="20" alt=""/></td></tr></tbody></table>
+<!-- end space 20px -->   
+
+
+
+
+
+
+
+<!-- COPY 20pixborder-->
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0" class="stretch"><tbody>
+  <tr>
+  <td width="20"></td>
+  <td><table width="600" border="0" cellspacing="0" cellpadding="0" class="stretch">
+    <tbody>
+      <tr>
+        <td align="left"><font style="FONT-SIZE: 16px; line-height:20px; letter-spacing:0px; display:inline-block;" face="Arial, Helvetica, sans-serif" color="#666666" >Hej {!LiveChatTranscript.User_Name__c},<br /><br />
+
+Tack för att du kontaktade OnlinePizzas kundsupport!<br /><br />
+
+Från 0 till 10 - hur troligt är det att du rekommenderar OnlinePizza till en vän eller kollega?</font></td>
+      </tr>
+    </tbody>
+  </table></td>
+  <td width="20"></td>
+</tr>
+</tbody></table>
+<!-- end COPY 20pixborder -->   
+
+
+
+
+
+
+<!-- space 20px -->
+<table width="20" border="0" align="center" cellpadding="0" cellspacing="0" class="stretch"><tbody><tr><td><img style="display:block;" border="0" src="http://e.onlinepizza.se/images/6657/I-6657-ijehzvmvry-2275_spacer.png" width="20" height="20" alt=""/></td></tr></tbody></table>
+<!-- end space 20px -->  
+
+
+
+<!-- Scale -->
+<table width="640" border="0" cellspacing="0" cellpadding="0" class="stretch">
+  <tbody>
+    <tr>
+      <td align="center"><table width="640" border="0" cellspacing="0" cellpadding="0" class="stretch">
+  <tbody>
+    <tr>
+      <td width="75" class="width20"></td>
+      <td><table width="490" border="0" cellspacing="0" cellpadding="0" class="stretch">
+        <tbody>
+          <tr>
+          
+            <td width="123" align="left"><font style="FONT-SIZE: 12px; line-height:16px; letter-spacing:0px; display:inline-block;" face="Arial, Helvetica, sans-serif" color="#666666" ><strong>Osannolikt</strong></font></td>
+            <td width="10"></td>
+            <td height="37" align="center"><img class="arrow" style="display:block;" border="0" src="http://e.onlinepizza.se/images/6657/I-6657-bobexhbgcs-2275_stararrows.jpg" width="224" height="37" alt=""/></td>
+            <td width="10"></td>
+            <td width="123" align="right"><font style="FONT-SIZE: 12px; line-height:16px; letter-spacing:0px; display:inline-block;" face="Arial, Helvetica, sans-serif" color="#666666" ><strong>Väldigt troligt</strong></font></td>
+           
+          </tr>
+        </tbody>
+      </table></td>
+      <td width="75" class="width20"></td>
+    </tr>
+  </tbody>
+</table>
+</td>
+    </tr>
+    <tr>
+      <td height="20"></td>
+    </tr>
+    <tr>
+      <td><table width="530" border="0" align="center" cellpadding="0" cellspacing="0" class="stretch">
+        <tbody>
+          <tr>
+          <td width="20"></td>
+            <td width="40" height="40" bgcolor="#FFFFFF"><a href="http://www.surveygizmo.com/s3/2436814/5d6e326bebaf?surveyop=0&email={!LiveChatTranscript.Email__c}&order_no={!LiveChatTranscript.Order_Number__c}&agent_name={!LiveChatTranscript.OwnerFullName}&chat_id={!LiveChatTranscript.Id}"><img style="display:block;" border="0" class="stretch" src="http://e.onlinepizza.se/images/6657/I-6657-fobjhgcpju-2275_0.jpg" width="40" height="40" alt="0"/></a></td>
+            <td width="5"></td>
+            <td width="40" height="40" bgcolor="#FFFFFF"><a href="http://www.surveygizmo.com/s3/2436814/5d6e326bebaf?surveyop=1&email={!LiveChatTranscript.Email__c}&order_no={!LiveChatTranscript.Order_Number__c}&agent_name={!LiveChatTranscript.OwnerFullName}&chat_id={!LiveChatTranscript.Id}"><img style="display:block;" border="0" class="stretch" src="http://e.onlinepizza.se/images/6657/I-6657-mrnstuzqei-2275_1.jpg" width="40" height="40" alt="1"/></a></td>
+            <td width="5"></td>
+            <td width="40" height="40" bgcolor="#FFFFFF"><a href="http://www.surveygizmo.com/s3/2436814/5d6e326bebaf?surveyop=2&email={!LiveChatTranscript.Email__c}&order_no={!LiveChatTranscript.Order_Number__c}&agent_name={!LiveChatTranscript.OwnerFullName}&chat_id={!LiveChatTranscript.Id}"><img style="display:block;" border="0" class="stretch" src="http://e.onlinepizza.se/images/6657/I-6657-tiahddipod-2275_2.jpg" width="40" height="40" alt="2"/></a></td>
+            <td width="5"></td>
+            <td width="40" height="40" bgcolor="#FFFFFF"><a href="http://www.surveygizmo.com/s3/2436814/5d6e326bebaf?surveyop=3&email={!LiveChatTranscript.Email__c}&order_no={!LiveChatTranscript.Order_Number__c}&agent_name={!LiveChatTranscript.OwnerFullName}&chat_id={!LiveChatTranscript.Id}"><img style="display:block;" border="0" class="stretch" src="http://e.onlinepizza.se/images/6657/I-6657-chftfnvexx-2275_3.jpg" width="40" height="40" alt="3"/></a></td>
+            <td width="5"></td>
+            <td width="40" height="40" bgcolor="#FFFFFF"><a href="http://www.surveygizmo.com/s3/2436814/5d6e326bebaf?surveyop=4&email={!LiveChatTranscript.Email__c}&order_no={!LiveChatTranscript.Order_Number__c}&agent_name={!LiveChatTranscript.OwnerFullName}&chat_id={!LiveChatTranscript.Id}"><img style="display:block;" border="0" class="stretch" src="http://e.onlinepizza.se/images/6657/I-6657-igktokdtgr-2275_4.jpg" width="40" height="40" alt="4"/></a></td>
+            <td width="5"></td>
+            <td width="40" height="40" bgcolor="#FFFFFF"><a href="http://www.surveygizmo.com/s3/2436814/5d6e326bebaf?surveyop=5&email={!LiveChatTranscript.Email__c}&order_no={!LiveChatTranscript.Order_Number__c}&agent_name={!LiveChatTranscript.OwnerFullName}&chat_id={!LiveChatTranscript.Id}"><img style="display:block;" border="0" class="stretch" src="http://e.onlinepizza.se/images/6657/I-6657-zuusqvfjgx-2275_5.jpg" width="40" height="40" alt="5"/></a></td>
+            <td width="5"></td>
+            <td width="40" height="40" bgcolor="#FFFFFF"><a href="http://www.surveygizmo.com/s3/2436814/5d6e326bebaf?surveyop=6&email={!LiveChatTranscript.Email__c}&order_no={!LiveChatTranscript.Order_Number__c}&agent_name={!LiveChatTranscript.OwnerFullName}&chat_id={!LiveChatTranscript.Id}"><img style="display:block;" border="0" class="stretch" src="http://e.onlinepizza.se/images/6657/I-6657-dyrgicozgc-2275_6.jpg" width="40" height="40" alt="6"/></a></td>
+            <td width="5"></td>
+            <td width="40" height="40" bgcolor="#FFFFFF"><a href="http://www.surveygizmo.com/s3/2436814/5d6e326bebaf?surveyop=7&email={!LiveChatTranscript.Email__c}&order_no={!LiveChatTranscript.Order_Number__c}&agent_name={!LiveChatTranscript.OwnerFullName}&chat_id={!LiveChatTranscript.Id}"><img style="display:block;" border="0" class="stretch" src="http://e.onlinepizza.se/images/6657/I-6657-kokbmevnum-2275_7.jpg" width="40" height="40" alt="7"/></a></td>
+            <td width="5"></td>
+            <td width="40" height="40" bgcolor="#FFFFFF"><a href="http://www.surveygizmo.com/s3/2436814/5d6e326bebaf?surveyop=8&email={!LiveChatTranscript.Email__c}&order_no={!LiveChatTranscript.Order_Number__c}&agent_name={!LiveChatTranscript.OwnerFullName}&chat_id={!LiveChatTranscript.Id}"><img style="display:block;" border="0" class="stretch" src="http://e.onlinepizza.se/images/6657/I-6657-fcpskwemnv-2275_8.jpg" width="40" height="40" alt="8"/></a></td>
+            <td width="5"></td>
+            <td width="40" height="40" bgcolor="#FFFFFF"><a href="http://www.surveygizmo.com/s3/2436814/5d6e326bebaf?surveyop=9&email={!LiveChatTranscript.Email__c}&order_no={!LiveChatTranscript.Order_Number__c}&agent_name={!LiveChatTranscript.OwnerFullName}&chat_id={!LiveChatTranscript.Id}"><img style="display:block;" border="0" class="stretch" src="http://e.onlinepizza.se/images/6657/I-6657-mahoyaqeca-2275_9.jpg" width="40" height="40" alt="9"/></a></td>
+            <td width="5"></td>
+            <td width="40" height="40" bgcolor="#FFFFFF"><a href="http://www.surveygizmo.com/s3/2436814/5d6e326bebaf?surveyop=10&email={!LiveChatTranscript.Email__c}&order_no={!LiveChatTranscript.Order_Number__c}&agent_name={!LiveChatTranscript.OwnerFullName}&chat_id={!LiveChatTranscript.Id}"><img style="display:block;" border="0" class="stretch" src="http://e.onlinepizza.se/images/6657/I-6657-ftjwazniwj-2275_10.jpg" width="40" height="40" alt="10"/></a></td>
+            <td width="20"></td>
+          </tr>
+        </tbody>
+      </table></td>
+    </tr>
+  </tbody>
+</table>
+<!-- end Scale -->  
+
+
+
+<!-- space 20px -->
+<table width="20" border="0" align="center" cellpadding="0" cellspacing="0" class="stretch"><tbody><tr><td><img style="display:block;" border="0" src="http://e.onlinepizza.se/images/6657/I-6657-ijehzvmvry-2275_spacer.png" width="20" height="20" alt=""/></td></tr></tbody></table>
+<!-- end space 20px -->  
+
+
+
+
+
+
+<!-- COPY 20pixborder-->
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0" class="stretch"><tbody>
+  <tr>
+  <td width="20"></td>
+  <td><table width="600" border="0" cellspacing="0" cellpadding="0" class="stretch">
+    <tbody>
+      <tr>
+        <td align="left"><font style="FONT-SIZE: 16px; line-height:20px; letter-spacing:0px; display:inline-block;" face="Arial, Helvetica, sans-serif" color="#666666" >Vi ser fram emot ditt svar!<br />
+             <br /> 
+             </font></td>
+      </tr>
+    </tbody>
+  </table></td>
+  <td width="20" class="width20"></td>
+</tr>
+</tbody></table>
+<!-- end COPY 20pixborder -->  
+
+
+
+
+
+
+
+
+<!-- space 20px -->
+<table width="20" border="0" align="center" cellpadding="0" cellspacing="0" class="stretch"><tbody><tr><td><img style="display:block;" border="0" src="http://e.onlinepizza.se/images/6657/I-6657-ijehzvmvry-2275_spacer.png" width="20" height="20" alt=""/></td></tr></tbody></table>
+<!-- end space 20px-->  
+
+
+
+
+
+<!-- mobiletop -->
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0" class="hide"><tbody><tr><td valign="bottom"><img style="display:block;" border="0" src="http://e.onlinepizza.se/images/6657/I-6657-tbzccttkxu-2275_phonestop.jpg" width="640" height="25" alt=""/></td></tr></tbody></table>
+<!-- end mobiletop -->   
+
+
+
+
+
+<!-- APP1 -->
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0" class="stretch"><tbody>
+  <tr>
+    <td><table width="640" border="0" align="center" cellpadding="0" cellspacing="0" class="stretch"><tbody>
+      <tr>
+        <td width="10" ></td>
+        <td width="310" height="180" align="center" valign="top" bgcolor="#d71309" class="hide"><a href="#"><img border="0" style="display:block;" src="http://e.onlinepizza.se/images/6657/I-6657-bowukzptin-2275_phones.jpg" width="310" height="180" alt=""/></a></td>
+         <td width="310" align="center" valign="middle" bgcolor="#d71309" class="stack"><table width="310" border="0" cellspacing="0" cellpadding="0" class="stretch">
+           <tbody>
+             <tr align="center">
+               <td height="20" align="center"><a href="#"><img class="stretch" border="0" style="display:block;" src="http://e.onlinepizza.se/images/6657/I-6657-pfbnljttvc-2275_phonesmobile.jpg" width="1" height="0" alt=""/></a></td>
+               </tr>
+             <tr>
+               <td height="20" class="hide"></td>
+               </tr>
+             <tr>
+               <td height="20" align="center"><font style="FONT-SIZE: 24px; line-height:34px; letter-spacing:0px; display:inline-block;" face="Arial, Helvetica, sans-serif" color="#FFFFFF" >Ladda ner appen</font></td>
+               </tr>
+             <tr>
+               <td height="20"></td>
+               </tr>
+             <tr>
+               <td></td>
+               </tr>
+             <tr>
+               <td height="20"><table width="310" border="0" align="center" cellpadding="0" cellspacing="0">
+                 <tbody>
+                   <tr>
+                     <td width="150" height="36" align="right"><a href="https://itunes.apple.com/se/app/onlinepizza/id421369701"><img border="0" style="display:block;" src="http://e.onlinepizza.se/images/6657/I-6657-hztppputtm-2275_appiconapple.png" width="132" height="40" alt=""/></a></td>
+                     <td width="10"></td>
+                     <td width="150" height="36" align="left"><a href="https://play.google.com/store/apps/details?id=se.onlinepizza"><img border="0" style="display:block;" src="http://e.onlinepizza.se/images/6657/I-6657-hxidlgsucl-2275_appiconandroid.png" width="132" height="40" alt=""/></a></td>
+                     </tr>
+                   </tbody>
+                 </table></td>
+               </tr>
+             <tr>
+               <td height="20"></td>
+               </tr>
+             </tbody>
+         </table></td>
+        <td width="10" ></td>
+        </tr>
+      </tbody></table></td>
+  </tr>
+</tbody>
+</table>
+<!-- end APP1 -->   
+
+
+
+
+<!-- space 2px-->
+<table width="20" border="0" align="center" cellpadding="0" cellspacing="0" class="stretch"><tbody><tr><td><img style="display:block;" border="0" src="http://e.onlinepizza.se/images/6657/I-6657-ijehzvmvry-2275_spacer.png" width="20" height="2" alt=""/></td></tr></tbody></table>
+<!-- end space 2px -->   
+
+
+
+      
+      
+      <!-- Footer -->
+      <table width="640" border="0" align="center" cellspacing="0" cellpadding="0" class="stretch">
+        <tbody>
+          <tr>
+          <td width="640" height="10" bgcolor="#d71309"></td>
+            </tr>
+          <tr>
+            <td valign="top"><table width="640" border="0" align="center" cellspacing="0" cellpadding="0" class="stretch">
+        <tbody>
+          <tr>
+          <td width="20"></td>
+            <td align="center"><table width="600" border="0" cellspacing="0" cellpadding="0" class="stretch">
+              <tbody>
+                <tr>
+                  <td height="20"></td>
+                </tr>
+                <tr>
+                  <td align="center"><font style="FONT-SIZE: 11px; line-height:18px; letter-spacing:0px; display:inline-block;" face="Arial, Helvetica, sans-serif" color="#666666" >Du f&aring;r detta mail eftersom du tackat ja till att prenumerera p&aring; OnlinePizzas nyhetsbrev<br />
+                      <a href="#" style="COLOR: #666666; text-decoration: none">UNSUBSCRIBE</a></font></td>
+                </tr>
+                <tr>
+                  <td height="20"></td>
+                </tr>
+                <tr>
+                  <td width="600" height="1" bgcolor="#C2C2C2"></td>
+                </tr>
+                <tr>
+                  <td height="20"></td>
+                </tr>
+                <tr>
+                  <td align="center"><table width="140" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                      <tr>
+                        <td width="40" height="40" bgcolor="#C2C2C2"><a href="https://www.facebook.com/onlinepizza/"><img border="0" style="display:block;" src="http://e.onlinepizza.se/images/6657/I-6657-owccvoryaa-2275_facebook.jpg" width="40" height="40" alt=""/></a></td>
+                        <td width="10"></td>
+                        <td width="40" bgcolor="#C2C2C2"><a href="https://www.instagram.com/onlinepizza/"><img border="0" style="display:block;" src="http://e.onlinepizza.se/images/6657/I-6657-eoblrcffhq-2275_twitter.jpg" width="40" height="40" alt=""/></a></td>
+                        <td width="10"></td>
+                        <td width="40" bgcolor="#C2C2C2"><a href="https://www.instagram.com/onlinepizza/"><img border="0" style="display:block;" src="http://e.onlinepizza.se/images/6657/I-6657-qxmkluuljq-2275_instagram.jpg" width="40" height="40" alt=""/></a></td>
+                      </tr>
+                    </tbody>
+                  </table></td>
+                </tr>
+                <tr>
+                  <td height="20"></td>
+                </tr>
+                <tr>
+                  <td width="600" height="1" bgcolor="#C2C2C2"></td>
+                </tr>
+                <tr>
+                  <td height="20"></td>
+                </tr>
+                <tr>
+
+                <tr>
+                  <td height="20"></td>
+                </tr>
+                <tr>
+                  <td width="600" height="1" bgcolor="#C2C2C2"></td>
+                </tr>
+                <tr>
+                  <td height="20"></td>
+                </tr>
+                <tr>
+                  <td align="center"><font style="FONT-SIZE: 11px; line-height:18px; letter-spacing:0px; display:inline-block;" face="Arial, Helvetica, sans-serif" color="#666666" ><strong>Copyright 2016 Online Pizza Norden AB All rights reserved</strong><br />Kungsholmstorg 5, 112 21 Stockholm<br />
+kontak@onlinepizza.se</font></td>
+                </tr>
+              </tbody>
+            </table></td>
+              <td width="20"></td>
+          </tr>
+        </tbody>
+      </table></td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- end Footer -->
+      
+      
+      
+       <!-- space -->
+      <table width="20" border="0" align="center" cellspacing="0" cellpadding="0" class="stretch">
+        <tbody>
+          <tr>
+            <td><img style="display:block;" border="0" src="http://e.onlinepizza.se/images/6657/I-6657-ijehzvmvry-2275_spacer.png" width="20" height="20" alt=""/></td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- end space -->
+      
+      
+      
+      
+      </td>
+    </tr>
+  </tbody>
+</table>
+      
+      
+      </td>
+    </tr>
+  </tbody>
+</table>  
+<!-- end MasterTable -->
+
+
+
+<div style="display:none; white-space:nowrap; font:15px courier; line-height:0;">
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+</div>
+
+
+
+</body>
+</html>

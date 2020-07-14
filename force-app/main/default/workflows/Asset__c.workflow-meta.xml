@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Asset_Return_Status_Delivered_To_WH</fullName>
+        <field>Return_Status__c</field>
+        <literalValue>Delivered to Warehouse</literalValue>
+        <name>Asset Return Status Delivered To WH</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Asset_Status_Update_Returned_Shipment</fullName>
+        <field>Status__c</field>
+        <literalValue>Returned Shipment</literalValue>
+        <name>Asset Status Update Returned Shipment</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>Delivered To Returned to WH</fullName>
+        <actions>
+            <name>Asset_Return_Status_Delivered_To_WH</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Asset_Status_Update_Returned_Shipment</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>ISPICKVAL(Shipment_Order__r.Status__c, &apos;Delivered&apos;)  &amp;&amp; ISPICKVAL(Shipment_Order__r.Type__c, &apos;Vendor to DH&apos;) &amp;&amp; ISPICKVAL(Status__c, &apos;Delivered&apos;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

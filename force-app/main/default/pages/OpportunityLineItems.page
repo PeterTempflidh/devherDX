@@ -1,0 +1,642 @@
+<!--
+ - Created by t.holawala on 26.09.2017.
+ -->
+
+<apex:page id="OpportunityLineItems" standardController="Opportunity" extensions="CtrOpportunityLineItems"
+           sideBar="false" showHeader="false" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false"
+           docType="html-5.0">
+
+    <html xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:v-once="http://vue/fake"
+          xmlns:v-html="http://vue/fake"
+          xmlns:v-bind="http://vue/fake"
+          xmlns:v-if="http://vue/fake"
+          xmlns:v-on="http://vue/fake"
+          xmlns:v-model="http://vue/fake"
+          xmlns:v-cloak="http://vue/fake">
+
+
+        <head>
+
+            <apex:slds />
+            <style>
+                #datepicker-app {
+                    font-family: Salesforce Sans, Arial, sans-serif;
+                },
+                [v-cloak] {
+                    display: none !important;
+                }
+            </style>
+        </head>
+
+    <body>
+        <div id="app" class="slds-scope" v-cloak="">
+        	<!-- MESSAGE SECTION START -->
+        	<message-section v-if = "TarifWrapper.isOpportunityLocked"/>
+        	<!-- MESSAGE SECTION END -->
+
+
+
+            <!-- TARIFF SELECTION PANEL START -->
+            <tarif-section v-bind:tarifoptions="TarifWrapper.tarifOptions"
+                           v-on:settarifid = "setTarifId" v-bind:selectedvalue = "tarifid"
+                           v-on:setmonthyear = "setMonthYear" v-bind:selectedmonthyear = "TarifWrapper.tarif.monthYear"
+                           v-bind:disable = "TarifWrapper.isOpportunityLocked"
+                           v-bind:ispremiumplacement = "isPremiumPlacementMidasOpportunity"
+                           v-bind:ispremiumplacementwithlineitems = "isPremiumPlacementWithLineItems || TarifWrapper.isPremiumPlacementOpportunity"
+                           v-bind:monthyearoptions = "TarifWrapper.monthYearOptions"></tarif-section>
+            <!-- TARIFF SELECTION PANEL END -->
+
+			<!-- Do not render commissions, additional charges and add-ons for premium placement opportunities -->
+			<div v-if = "TarifWrapper.tarif.name != 'Premium Placement' && TarifWrapper.tarif.name != '{!flatCommissionName}' && renderSections" >
+	            <!-- COMMISSION SELECTION PANEL START -->
+	            <commission-section v-bind:commissions = "TarifWrapper.tarif.commissions" v-bind:commissionoptions ="TarifWrapper.commissionOptions"
+	                                v-bind:emptycommission = "TarifWrapper.emptyCommission"
+	                                v-bind:locked = "TarifWrapper.tarif.locked" v-if = "tarifid != '' && !TarifWrapper.tarif.productOnly"
+	                                v-bind:iso = "TarifWrapper.opportunityCountry.Iso__c"
+	                                v-bind:disable = "TarifWrapper.isOpportunityLocked"
+									v-bind:billableaccountoptions = "TarifWrapper.billableAccountOptions"
+									v-bind:timebasetieroptions = "TarifWrapper.timeBaseTierOptions"
+									v-bind:opportunity="TarifWrapper.opp"
+									v-bind:blntimebaseenable = "{!blnTimeBaseEnable}"
+									v-on:mandatorytimebaseevent = "setMandatoryTimeBaseEvent">
+	            </commission-section>
+	            <!-- COMMISSION SELECTION PANEL END -->
+
+	            <!-- ADDITIONAL CHARGES SELECTION PANEL START -->
+	            <additional-charges-section v-bind:products = "TarifWrapper.tarif.products" v-bind:categoryoptions = "TarifWrapper.categoryOptions"
+	                                        v-bind:emptyproduct = "TarifWrapper.emptyProduct"
+	                                        v-bind:iso = "TarifWrapper.opportunityCountry.Iso__c"
+	                                        v-if = "tarifid != undefined && tarifid != '' && currentView == 'basicAdditionalCharges'"
+	                                        v-bind:locked = "TarifWrapper.tarif.locked"
+	                                        v-bind:billableaccountoptions = "TarifWrapper.billableAccountOptions"
+	                                        v-bind:disable = "TarifWrapper.isOpportunityLocked">
+	            </additional-charges-section>
+	            <!-- ADDITIONAL CHARGES SELECTION PANEL END -->
+				<!-- ASSETS AND BRANDING SELECTION PANEL START -->
+				<assets-section v-bind:assets = "TarifWrapper.tarif.assets" v-bind:categoryoptions = "TarifWrapper.categoryOptions"
+											v-bind:emptyassetbranding = "TarifWrapper.emptyAssetBranding"
+											v-bind:iso = "TarifWrapper.opportunityCountry.Iso__c"
+											v-if = "tarifid != undefined && tarifid != '' && currentView == 'basicAdditionalCharges'"
+											v-bind:locked = "TarifWrapper.tarif.locked"
+											v-bind:billableaccountoptions = "TarifWrapper.billableAccountOptions"
+											v-bind:deliveryoptions = "TarifWrapper.deliveryOptions"
+											v-bind:disable = "TarifWrapper.isOpportunityLocked"
+											v-bind:showdeliveryoptions = "TarifWrapper.blnShowDeliveryField">
+				</assets-section>
+				<!-- ASSETS AND BRANDING SELECTION PANEL END -->
+
+				<!-- ADD ON SELECTION PANEL START -->
+	             <add-on-section v-bind:addons = "TarifWrapper.tarif.addOns" v-bind:addonoptions = "TarifWrapper.addOnOptions"
+	                                        v-bind:emptyaddon = "TarifWrapper.emptyAddOn" v-if = "tarifid != undefined && tarifid != ''"
+	                                        v-bind:locked = "TarifWrapper.lockingAddon"
+	                                        v-bind:disable = "TarifWrapper.isOpportunityLocked">
+	             </add-on-section>
+	            <!-- ADD ON SELECTION PANEL END -->
+			</div>
+			
+			<!-- ********************************* PREMIUM PLACEMENT SECTION START********************************** -->
+			<!-- SSC-1932: Changes -->
+			<div v-if = "TarifWrapper.tarif.name == 'Premium Placement' && renderSections && {!isATPremimumPlacement}==false">
+				<premium-placement-component v-bind:bookings = "TarifWrapper.tarif.bookings"
+												v-bind:availablebookings = "TarifWrapper.tarif.availableBookings" 
+												v-bind:billableaccountoptions = "TarifWrapper.billableAccountOptions"
+												v-bind:disable = "TarifWrapper.isOpportunityLocked" />
+			</div>
+			<!-- ********************************* PREMIUM PLACEMENT SECTION END********************************** -->
+			<!-- ********************************* FLAT COMMISSION SECTION START********************************** -->
+			<div v-if = "TarifWrapper.tarif.name == '{!flatCommissionName}' && renderSections">
+				<flat-commission-component
+						v-bind:acc-backend-id = "backendId"
+						v-bind:empty-product = "TarifWrapper.emptyProduct"
+						v-bind:products = "TarifWrapper.tarif.products"
+						v-bind:disable = "TarifWrapper.isOpportunityLocked"
+						v-bind:locked = "TarifWrapper.tarif.locked"
+						v-bind:billableaccountoptions = "TarifWrapper.billableAccountOptions"
+						v-bind:iso = "TarifWrapper.opportunityCountry.Iso__c"
+						>
+				</flat-commission-component>
+			</div>
+			<!-- ********************************* FLAT COMMISSION SECTION END********************************** -->
+			<div v-if = "TarifWrapper.tarif.name == 'Premium Placement' && TarifWrapper.tarif.name != '{!flatCommissionName}'  && renderSections && {!isATPremimumPlacement}==true" >
+				<!-- ADDITIONAL CHARGES SELECTION PANEL START -->
+				<additional-charges-section-at v-bind:products = "TarifWrapper.tarif.products" v-bind:categoryoptions = "TarifWrapper.categoryOptions"
+											   v-bind:emptyproduct = "TarifWrapper.emptyProduct"
+											   v-bind:iso = "TarifWrapper.opportunityCountry.Iso__c"
+											   v-bind:showPostal = "{!isATPremimumPlacement}"
+											   v-if = "tarifid != undefined && tarifid != '' && currentView == 'basicAdditionalCharges'"
+											   v-bind:locked = "TarifWrapper.tarif.locked"
+											   v-bind:billableaccountoptions = "TarifWrapper.billableAccountOptions"
+											   v-bind:disable = "TarifWrapper.isOpportunityLocked">
+				</additional-charges-section-at>
+			</div>
+			<!-- ********************************* AT Preimum Placement COMMISSION SECTION START********************************** -->
+			<!-- SSC-1932: Changes Ends Here -->
+            <!-- BUTTON SECTION START -->
+
+            
+			<div v-if = "TarifWrapper.blnShowUnlock">
+       			<button-section-unlock v-on:unlock="unlock">
+       			</button-section-unlock>
+       		 </div>
+       		          
+            <button-section v-on:save="save" v-on:createquote="saveAndCreateQuote"  v-bind:disable = "TarifWrapper.isOpportunityLocked || TarifWrapper.tarif.errorMsg != ''">
+            </button-section>
+            <!-- BUTTON SECTION END -->
+
+            <spinner v-bind:open="loaderState.state.isLoading"></spinner>
+            <error-handler
+                    v-bind:message="errorState.state.message"
+                    v-bind:type="errorState.state.type"
+                    v-bind:timeout="errorState.state.timeout"
+                    v-bind:callback="errorState.state.callback"
+                    v-on:closed="errorState.clearErrorMsg()">
+            </error-handler>
+        </div>
+
+        <div id="datepicker-app">
+            <div v-if="open">
+                  <input type="text" style="display: none" id="regular-date" v-model="currentValue"/>
+
+                  <transition name="calendar-fade">
+                    <date-picker color="#54698d"
+                                 v-on:close="closed"
+                                 v-on:input="selected"
+                                 v-model="currentValue"></date-picker>
+                  </transition>
+              </div>
+        </div>
+
+        <script src="/support/console/47.0/integration.js"></script>
+        <script src="{!URLFOR($Resource.moment,'')}"></script>
+        <script src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>
+        <c:VueCommonComponents />
+        <c:VueOpportunityLineItemComponents />
+        <script src="{!URLFOR($Resource.vueDatePicker, '/vue-date-picker/vue-date-picker.min.js')}"></script>
+		<script src="{!URLFOR($Resource.DHHConsoleToolkit, 'js/ConsoleToolkit.js')}" type="text/javascript"></script>
+     
+        <script>
+     	
+     	var DHH = new DHHConsoleToolkit();
+        Visualforce.remoting.timeout = 120000;
+
+        // Initializes the Vue
+        function initVue() {
+            Vue.use(DatePicker);
+            var app = new Vue({
+                el: "#app",
+                data: function() {
+                    return {
+                        backendId: "{!opp.Account.Backend_ID__c}",
+                        tarifid: "{!opp.Id_Tarif__c}",
+                        monthYear: undefined,
+                        TarifWrapper: {},
+                        loaderState: loaderSharedState,
+                        errorState: errorHandlerSharedState,
+                        primaryTabId: undefined,
+                        renderSections: true,   		// This variable is used to rerender all the sections once the data is recieved on save
+                    }
+                },
+                watch: {
+                    tarifid: function() {
+                        var self = this;
+                        this.loaderState.startLoadingSpinner();
+                        this.errorState.clearErrorMsg();
+                        this.TarifWrapper.tarifId = this.tarifid;
+                        this.renderSections = false;
+                        Visualforce.remoting.Manager.invokeAction(
+                            '{!$RemoteAction.CtrOpportunityLineItems.popuateTarifDetails}',
+                            JSON.stringify(self.TarifWrapper),
+                            function(result, event) {
+                            	self.renderSections = true;
+                            	self.loaderState.stopLoadingSpinner();
+                                // Checks event status
+                                if (!event.status) {
+                                    self.errorState.setErrorMsg({
+			                            msg: "Error on Tarif Change " + event.message,
+			                            type: "error"
+			                        });
+                                    return;
+                                }
+
+                                self.TarifWrapper = result;
+                                
+                                if(self.TarifWrapper.tarif.errorMsg){
+	                            	self.errorState.setErrorMsg({
+			                            msg:  self.TarifWrapper.tarif.errorMsg,
+			                            type: "error"
+			                        });
+	                            }
+
+                            }, {
+                                escape: false,
+                                buffer: false
+                            }
+                        );
+                    },
+                    monthYear: function(){
+                    	this.TarifWrapper.tarif.monthYear = this.monthYear;
+
+                        // reset bookings array
+                        this.TarifWrapper.tarif.availableBookings = [];
+
+                    	var self = this;
+                        this.loaderState.startLoadingSpinner();
+                        this.errorState.clearErrorMsg();
+
+                        Visualforce.remoting.Manager.invokeAction(
+                            '{!$RemoteAction.CtrOpportunityLineItems.fetchBookings}',
+                            JSON.stringify(self.TarifWrapper),
+                            function(result, event) {
+                            	self.loaderState.stopLoadingSpinner();
+                                // Checks event status
+                                if (!event.status) {
+                                    self.errorState.setErrorMsg({
+			                            msg: "Error on Month Year Change " + event.message,
+			                            type: "error"
+			                        });
+                                    return;
+                                }
+
+                                // Check result list
+                                if (!result || result.length < 1) {
+                                    console.log('Empty result on tarif change');
+                                    return;
+                                }
+
+                                self.TarifWrapper = result;
+                                console.log("Month Year changed successfully ");
+                            }, {
+                                escape: false,
+                                buffer: false
+                            }
+                        );
+                    }
+                },
+                created: function() {
+                    var self = this;
+                    this.loaderState.startLoadingSpinner();
+                    this.errorState.clearErrorMsg();
+                    // populate the data
+                    Visualforce.remoting.Manager.invokeAction(
+                        '{!$RemoteAction.CtrOpportunityLineItems.populateData}',
+                        "{!oppId}",
+                        function(result, event) {
+                        	self.loaderState.stopLoadingSpinner();
+                        	
+                            // Checks event status
+                            if (!event.status) {
+                                console.error('Error is: ', event.message)
+                                self.errorState.setErrorMsg({
+		                            msg: "Error on Data load " + event.message,
+		                            type: "error"
+		                        });
+                                return;
+                            }
+							
+							
+							
+                            // Check result list
+                            if (!result || result.length < 1) {
+                                console.log('Empty result');
+                                return;
+                            }
+
+                            self.TarifWrapper = result;
+                            
+                            if(self.TarifWrapper.tarif.errorMsg){
+                            	self.errorState.setErrorMsg({
+		                            msg:  self.TarifWrapper.tarif.errorMsg,
+		                            type: "error"
+		                        });
+                            }
+                        }, {
+                            escape: false,
+                            buffer: false
+                        }
+                    );
+                    
+                    // Set the primary Id of the tab
+                    this.setPrimaryTabId();
+                },
+                computed: {
+                	currentView: function(){
+                		var view = 'basicAdditionalCharges';
+                		if(this.TarifWrapper.tarif.name && this.TarifWrapper.opportunityCountry.Iso__c){
+                			// Check if the Tarif is Menu Printing Tarif
+                			if(this.TarifWrapper.tarif.name.includes("Menu Printing") && 
+	                			this.TarifWrapper.opportunityCountry.Iso__c == 'UK'){
+	                				view = "MenuPrinting";
+	                		}
+                		}
+                		
+                		return view;
+                	},
+                	isPremiumPlacementWithLineItems: function() {   // Lock the tarif if the tarif is premium placement and there are booked postcodes
+                		if(this.TarifWrapper.tarif.name == 'Premium Placement' && this.TarifWrapper.tarif.bookings.length > 0){
+                			return true;
+                		}
+                		
+                		return false;
+                	},
+                	isPremiumPlacementMidasOpportunity: function() {// load the premium placement opportunity page just for KSA. Rest Talabat countries uses Midas UI
+                		if(this.TarifWrapper.tarif.name == 'Premium Placement' && this.TarifWrapper.opportunityCountry.Name == 'Kingdom of Saudi Arabia'){
+
+                			return true;
+                		}
+
+                		return false;
+                	}
+                },
+                methods: {
+                    setMandatoryTimeBaseEvent:function(value){
+                       this.TarifWrapper.isMandatoryTimebase = value;
+                    },
+
+                    setTarifId: function(value) {
+                        this.tarifid = value;
+                    },
+                    setMonthYear: function(value){
+                    	this.monthYear = value;
+                    },
+                    setPrimaryTabId: function(){
+                    	sforce.console.getFocusedPrimaryTabId(this.populateTabId);
+			sforce.console.getFocusedSubtabId(this.populateSubTabId);
+                    },
+                    setMandatoryTimeBase: function(value){
+                    	this.TarifWrapper.isMandatoryTimebase= value;
+                    },
+                    populateTabId: function(result){
+                    	this.primaryTabId = result.id;
+                    },
+		    populateSubTabId: function(result){
+                    	this.subTabId = result.id;
+                    },
+                    save: function(createQuoteFunction) {
+                        this.loaderState.startLoadingSpinner();
+                        this.errorState.clearErrorMsg();
+			//this.renderSections = false;
+                        var self = this;
+
+                        if (this.TarifWrapper.isMandatoryTimebase && (this.TarifWrapper.opp.Time_Based_Tier_Type__c == null || this.TarifWrapper.opp.Time_Based_Tier_Type__c == '')){
+
+                            self.loaderState.stopLoadingSpinner();
+                            self.renderSections = true;
+							self.errorState.setErrorMsg({
+								msg: "{!$Label.Error_Mandatory_Time_Base}",
+								type: "error"
+							});
+							return;
+						}
+
+                        Visualforce.remoting.Manager.invokeAction(
+                            '{!$RemoteAction.CtrOpportunityLineItems.save}',
+                            JSON.stringify(self.TarifWrapper),
+                            function(result, event) {
+                            	self.loaderState.stopLoadingSpinner();
+                            	//self.renderSections = true;
+
+                            	
+                                // Checks event status
+                                if (!event.status) {
+
+                                    self.errorState.setErrorMsg({
+	                                    msg: "{!$Label.Create_Quote_Validation_Error}" + event.message,
+	                                    type: "error"
+	                                });
+                                    return;
+                                }
+                                
+                                if(result.tarif.errorMsg){
+	                            	self.errorState.setErrorMsg({
+			                            msg:  result.tarif.errorMsg,
+			                            type: "error"
+			                        });
+			                        return;
+	                            }
+
+                                if(createQuoteFunction){
+                                	createQuoteFunction();
+                                }else{
+                                	//self.TarifWrapper = result;
+					sforce.console.refreshSubtabById(self.subTabId, true);
+	                                self.errorState.setErrorMsg({
+	                                    msg: "Saved successfully",
+	                                    type: "success"
+	                                });
+                                }
+                            }, {
+                                escape: false,
+                            }
+                        );
+                    },
+                    saveAndCreateQuote: function () {
+                    
+                        this.loaderState.startLoadingSpinner();
+                        this.errorState.clearErrorMsg();
+                        this.validate();
+
+                    },
+
+
+					validate: function () {
+						var self = this;
+						Visualforce.remoting.Manager.invokeAction(
+							'{!$RemoteAction.CtrOpportunityLineItems.validate}', self.TarifWrapper.opp,
+							function (result, event) {
+
+								if (result != 'No Error') {
+									self.errorState.setErrorMsg({
+										msg: result,
+										type: "error"
+									});
+									self.loaderState.stopLoadingSpinner();
+									return;
+								}
+								else {
+									self.checkTarif();
+								}
+
+
+							}, {
+								escape: false,
+							}
+						);
+					},
+					checkTarif: function () {
+						/**
+						* 1. If the tarif is a Premium Placement tarif then make 2 calls one for saving and other for creating the quote in order to avoid
+							 "Uncommitted work pending error"
+						  2. Otherwise just make a single call for saving and creating quote
+						  */
+
+						if (this.TarifWrapper.tarif.name == 'Premium Placement') {
+							this.save(this.createquote);
+						} else {
+							this.createquote();
+						}
+
+					},
+
+                    createquote: function() {
+                        this.errorState.clearErrorMsg();
+                        var self = this;
+
+                        if (this.TarifWrapper.isMandatoryTimebase && (this.TarifWrapper.opp.Time_Based_Tier_Type__c == null || this.TarifWrapper.opp.Time_Based_Tier_Type__c == '') ){
+                            self.loaderState.stopLoadingSpinner();
+                            self.renderSections = true;
+                            self.errorState.setErrorMsg({
+                              msg: "{!$Label.Error_Mandatory_Time_Base}",
+                              type: "error"
+                            });
+                            return;
+                          }
+
+                        Visualforce.remoting.Manager.invokeAction(
+                            '{!$RemoteAction.CtrOpportunityLineItems.createQuote}',
+                            JSON.stringify(self.TarifWrapper),
+                            function(result, event) {
+                            	self.loaderState.stopLoadingSpinner();
+                            	
+                                // Checks event status
+                                if (!event.status) {
+                                    var errorMsg = event.message;	           
+				    console.error('Error in saving the record: ', event.message)
+                                    if(errorMsg.includes('FIELD_CUSTOM_VALIDATION_EXCEPTION')){	
+                                        var msgSplit = errorMsg.split('FIELD_CUSTOM_VALIDATION_EXCEPTION, ', 2);	
+                                        errorMsg = msgSplit[1].replace(/(&quot\;)/g,"\"");	
+                                        errorMsg = errorMsg.replace(': []',"");	
+                                    }
+                                    self.errorState.setErrorMsg({
+	                                    msg: "{!$Label.Create_Quote_Validation_Error}" + errorMsg,
+	                                    type: "error"
+	                                });
+                                    return;
+                                }
+                                
+                                if(self.TarifWrapper.tarif.errorMsg){
+	                            	self.errorState.setErrorMsg({
+			                            msg:  self.TarifWrapper.tarif.errorMsg,
+			                            type: "error"
+			                        });
+			                        return;
+	                            }
+
+                                // Invoking NIntex directly as soon as the quote is created. 
+			                          oppQuoteId = result;
+                                 Visualforce.remoting.Manager.invokeAction(
+                            '{!$RemoteAction.CtrOpportunityLineItems.getPackageDetails}',
+                            oppQuoteId,self.TarifWrapper.opp.RecordTypeId,self.TarifWrapper.opp.Record_Country__c,
+                            function(result, event) {
+			    //Result consisting 'loop__looplus' indicates nintex invoke is necessary
+                                 if (sforce.console.isInConsole()) {
+                                     if(result.includes('loop__looplus')){
+                                       sforce.console.openSubtab(self.primaryTabId , result, true,'Drawloop', null);
+                                     }
+	                                sforce.console.openSubtab(self.primaryTabId , '/'+oppQuoteId, true,'quote', null);
+                                    sforce.console.refreshPrimaryTabById(self.primaryTabId, true);
+		                        }else if((typeof sforce != 'undefined') && sforce && (!!sforce.one)){
+                                    if(result.includes('loop__looplus')){
+                                    	sforce.one.navigateToURL(result);
+                                    }
+                                    sforce.one.navigateToSObject(oppQuoteId);
+                                    
+		                        }else if(!sforce.one){
+									window.parent.location.href="/"+oppQuoteId;
+                                    if(result.includes('loop__looplus')){
+                                        window.parent.location.href=result;
+                                    }
+		                        }
+                            }, {
+                                escape: false,
+                            });
+                               
+		                        
+                            }, {
+                                escape: false,
+                            }
+                        ); 
+                    },
+
+                    unlock: function(){
+                    	
+                    	this.loaderState.startLoadingSpinner();
+                        this.errorState.clearErrorMsg();
+                        var self = this;
+                        
+						Visualforce.remoting.Manager.invokeAction(
+                            '{!$RemoteAction.CtrOpportunityLineItems.OpenTariff}',
+                            JSON.stringify(self.TarifWrapper),
+                            function(result, event) {
+                            	self.loaderState.stopLoadingSpinner();
+                            	
+                                // Checks event status
+                                if (!event.status) {
+                                    self.errorState.setErrorMsg({
+	                                    msg: "{!$Label.Create_Quote_Validation_Error}" + event.message,
+	                                    type: "error"
+	                                });
+                                    return;
+                                }
+                                                            
+								self.TarifWrapper = result;
+
+		                        
+                            }, {
+                                escape: false,
+                            }
+                        ); 
+                          
+                    }
+                }
+            });
+        }
+
+        var vueBus = new Vue({
+            data: {
+                datePickerCallback: undefined
+            }
+        });
+
+        var vueDatePicker = new Vue({
+            el: "#datepicker-app",
+            data: {
+                open: false,
+                currentValue: ""
+            },
+            methods: {
+                closed: function() {
+                    this.open = false;
+                },
+                selected: function() {
+                    vueBus.$emit("bus-date-selected", this.format());
+                    this.open = false;
+                },
+                format: function() {
+                    return moment.utc(this.currentValue).format('DD-MM-YYYY');
+                }
+            }
+        });
+
+        vueBus.$on("bus-open-datepicker", function(value, cb) {
+            vueDatePicker.currentValue = value || "";
+            vueDatePicker.open = true;
+            this.datePickerCallback = cb;
+        });
+
+        vueBus.$on("bus-date-selected", function(value) {
+            if (typeof this.datePickerCallback === "function") {
+                this.datePickerCallback.call(null, value);
+            }
+        });
+
+        window.addEventListener("load", function() {
+            initVue();
+        });
+
+    </script>
+
+    </body>
+    </html>
+</apex:page>

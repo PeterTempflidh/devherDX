@@ -1,0 +1,27 @@
+<apex:component >
+
+<apex:attribute name="clone" type="Account" required="true" description="Account to clone" />
+<apex:attribute name="sourceAcc" type="Account" required="true" description="Account to clone" />
+
+	<div class="slds-form-element__group">
+	    <fieldset class="slds-form--compound slds-m-top--small">
+	        <legend class="slds-form-element__label slds-text-title--caps">Franchise Information</legend>
+	        <div class="slds-form-element__group slds-p-around--small">
+	            <div class="slds-form-element__row slds-size--1-of-2">
+	                <div class="slds-form-element slds-m-right--x-large">
+	                    <label class="slds-form-element__label slds-truncate" for="{!$Component.input10}">
+	                        {!$ObjectType.Account.fields.Franchise_Type__c.label} Source Account
+	                    </label>
+	                    <apex:inputField id="input10" styleClass="slds-input" value="{!sourceAcc.Franchise_Type__c}" />
+	                </div>
+	                <div class="slds-form-element">
+	                    <label class="slds-form-element__label slds-truncate" for="{!$Component.input11}">
+	                        {!$ObjectType.Account.fields.Franchise_Type__c.label} Target Account
+	                    </label>
+	                    <apex:inputField id="input11" styleClass="slds-input" value="{!clone.Franchise_Type__c}" />
+	                </div>
+	            </div>
+	        </div>
+	    </fieldset>
+	</div>
+</apex:component>

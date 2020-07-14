@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY - Faltante sin informacion</name>
+    <style>freeForm</style>
+    <subject>Faltante sin información</subject>
+    <textOnly>Estimada XXX, es un gusto saludarte.
+
+Estimado XXX, es un gusto saludarte.
+
+ 
+
+Te contactamos en respuesta a tu reclamo por el pedido que hiciste el día XX/XX en XXX. Te pedimos disculpas por las molestias de no haber recibido el pedido tal y como lo ordenaste.
+
+ 
+
+No obstante, necesitamos que nos especifiques el producto faltante. De esta manera podremos verificar lo sucedido y ayudarte a resolver el inconveniente presentado.
+
+ 
+
+Aguardamos tu respuesta y quedamos a tu disposición.
+
+ 
+
+Saludos,
+
+Nombre + Inicial apellido
+
+Atención al Cliente - PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

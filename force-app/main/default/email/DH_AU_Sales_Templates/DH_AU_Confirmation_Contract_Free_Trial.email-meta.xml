@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>DH_AU_Menu_Samples/Menu_Printing_Offer_Delivery_Hero.jpg</attachedDocuments>
+    <attachedDocuments>DH_AU_Shared_Documents/Voucher_SAMPLE_ONLY_DO_NOT_PRINT.jpg</attachedDocuments>
+    <available>false</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>DH_AU_Letterhead</letterhead>
+    <name>DH AU Confirmation – Contract + Free Trial</name>
+    <style>freeForm</style>
+    <subject>Delivery Hero – Partnership Confirmation</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+Further to our phone call today we are delighted that {!Account.Restaurant_Name__c} will be joining the Delivery Hero team!
+
+Please find attached the confirmation of the free trial and success fee that kicks in after. Please check your details and inform us of any updates.
+
+PLEASE SEND BACK:
+1) DELIVERY MENU
+2) BANK ACCOUNT DETAILS – BSB Number, Account Name, Account Number – Online payment orders are paid out twice a month. Cash orders will be collected by you directly from the customer.
+
+Also, make sure you inform your staff that we will start accepting online payments at www.DeliveryHero.com.au on your behalf.
+
+We will set up your account with the following conditions:
+Tariff Name:
+Success fee for each order transmitted (excl. GST):
+Success fee start date:
+One-time setup fee (excl. GST):
+No cancellation Fee, No minimum contract period
+2% merchant fee for credit card orders and online payment orders.
+
+Our invoicing cycle runs from the 1st -15th and 16th - end of the month and payments will be processed within 3 business days depending on your bank.
+
+We also have great menu printing offers available (attached in this email). If you print your own menus, we can also send you a $10 Delivery Hero voucher that you can integrate into your menus. It gives your customers a huge $10 discount. It also won&apos;t cost you anything, because we pay for these vouchers.
+
+Here are some videos of satisfied restaurant owners we work with:
+1) Erskineville Turkish Pide &amp; Kebabs (NSW):
+https://www.youtube.com/watch?v=Rhrqauloisc
+2) Thai Style (VIC): https://www.youtube.com/watch?v=YxKvHJbupTw
+3) Grace of India (NSW):https://www.youtube.com/watch?v=euEZKfocZqI
+ 
+We also advertise nationally on TV &amp; Foxtel: 
+www.youtube.com/watch?v=TU_Cw15KMD8.
+
+If you have any questions, please feel free to contact us at any time using the contact details below.
+
+Thank you very much {!Contact.FirstName}!
+
+Kind Regards,
+{!User.Name}
+{!User.Phone}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

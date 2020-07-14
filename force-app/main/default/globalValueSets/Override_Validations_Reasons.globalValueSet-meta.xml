@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Missed/Spam Chat</fullName>
+        <default>false</default>
+        <label>Missed/Spam Chat</label>
+    </customValue>
+    <customValue>
+        <fullName>Case Escalated To Sales Admin</fullName>
+        <default>false</default>
+        <label>Case Escalated To Sales Admin</label>
+    </customValue>
+    <description>Reasons for bypassing validations. Please add new reasons based on use case.</description>
+    <masterLabel>Override Validations Reasons</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

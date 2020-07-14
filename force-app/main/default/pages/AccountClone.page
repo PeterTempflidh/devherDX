@@ -1,0 +1,1196 @@
+<apex:page showHeader="false" standardStylesheets="true" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" standardcontroller="Account" extensions="CtrAccountClone,CtrCreateNewAddress,FacilityUtilityController">
+
+<html
+xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+xmlns:v-once="http://vue/fake"
+xmlns:v-html="http://vue/fake"
+xmlns:v-bind="http://vue/fake"
+xmlns:v-if="http://vue/fake"
+xmlns:v-on="http://vue/fake"
+xmlns:v-model="http://vue/fake"
+xmlns:v-cloak="http://vue/fake">
+
+    <head>
+        <title>Account Clone</title>
+        <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.slds231, 'assets/styles/salesforce-lightning-design-system-vf.css')}"/>
+        <style type="text/css">
+      .slds-form-element__label {
+        font-weight: 700;
+    }
+
+    /* prevents multiselect element to change their width */
+    .slds-custom-multiselect {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    pre {
+        font-family: "Salesforce Sans", Arial, sans-serif !important;
+    }
+
+    .pac-container {
+        z-index: 9999 !important;
+    }
+  </style>
+    </head>
+
+    <body>
+    <apex:form id="mainForm">
+
+        <apex:actionStatus id="loading" onstart="vueSpinnerHandler.toggle()" onstop="vueSpinnerHandler.toggle()" />
+        <apex:actionFunction name="drawPanelAf" action="{!drawPanel}" status="loading" reRender="fieldsPanel, msgs" immediate="true" oncomplete="tryToMountVueAddressForm()">
+            <apex:param name="firstParam" value="" assignTo="{!selectedCloneOption}"/>
+        </apex:actionFunction>
+        <apex:actionFunction name="cloneAf" action="{!doClone}" status="loading" reRender="fieldsPanel, msgs, scriptWrapper" oncomplete="cloneOnComplete()" />
+        <apex:actionFunction name="cancelAf" action="{!cancel}" />
+
+        <!-- REQUIRED SLDS WRAPPER -->
+        <div class="slds">
+
+            <!-- main grid -->
+            <div class="slds-grid slds-grid--align-center slds-box">
+
+                <!-- clone options and buttons -->
+                <div class="slds-form--inline">
+
+                    <!-- clone option -->
+                    <div class="slds-form-element slds-p-around--small">
+                        <label class="slds-form-element__label" for="{!$Component.select01}">Please select the clone type:</label>
+                        <div class="slds-form-element__control">
+                            <div class="slds-select_container">
+                                <apex:selectList id="select01" styleClass="slds-select" required="true" multiselect="false" size="1" value="{!selectedCloneOption}" label="Clone Options" onchange="cloneOptionOnChange(this.value)">
+                                    <apex:selectOptions value="{!cloneOptions}" />
+                                </apex:selectList>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- create opps -->
+                    <div class="slds-form-element slds-p-around--small">
+                        <label class="slds-checkbox--toggle slds-grid">
+                            <span class="slds-form-element__label slds-m-bottom--none">Create Opportunity</span>
+                            <apex:inputCheckbox styleClass="slds-input" id="oppFlag" value="{!createOpportunityFlag}"  />
+                            <span id="toggle-desc" class="slds-checkbox--faux_container" aria-live="assertive">
+                      <span class="slds-checkbox--faux"></span>
+                      <span class="slds-checkbox--on"></span>
+                      <span class="slds-checkbox--off"></span>
+                    </span>
+                        </label>
+                    </div>
+
+                    <!-- buttons -->
+                    <div class="slds-form-element slds-p-around--small">
+                        <button id="cloneBtn" type="button" class="slds-button slds-button--brand" disabled="true" onclick="cloneButtonOnClick()">Clone</button>
+                        <button type="button" class="slds-button slds-button--destructive" onclick="cancelButtonOnClick()">Cancel</button>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- fields grid and dynamic panel -->
+            <div class="slds-grid slds-box slds-wrap slds-theme--shade">
+                <apex:outputPanel id="fieldsPanel" layout="block" styleClass="slds-col slds-size--1-of-1">
+                    <apex:outputPanel layout="none" rendered="{!LEN(selectedCloneOption) > 0}">
+
+			<!-- CZ Account fields -->
+                        <c:CZ_AccountCloneFields clone="{!theClonedAccount}" mode="{!selectedCloneOption}" rendered="{!theAccount.RecordType.DeveloperName == 'CZ_Account'}" />
+
+                        <!-- HU Account fields -->
+                        <c:HU_AccountCloneFields clone="{!theClonedAccount}" mode="{!selectedCloneOption}" rendered="{!theAccount.RecordType.DeveloperName == 'HU_Account'}" />
+
+                        <!-- AT Account fields -->
+                        <c:AT_AccountCloneFields clone="{!theClonedAccount}" mode="{!selectedCloneOption}" rendered="{!theAccount.RecordType.DeveloperName == 'AT_Account'}" />
+
+                        <!-- CD Account fields -->
+                        <c:CD_AccountCloneFields clone="{!theClonedAccount}" mode="{!selectedCloneOption}" cities="{!citiesPerCountry}" originalAccountType="{!theAccount.Type}" rendered="{!theAccount.RecordType.DeveloperName == 'CD_Account'}" />
+
+                        <!-- DH AU Account fields -->
+                        <c:DH_AU_AccountCloneFields clone="{!theClonedAccount}" mode="{!selectedCloneOption}" rendered="{!theAccount.RecordType.DeveloperName == 'DH_AU_Account'}" />
+
+                        <!-- FI Account fields -->
+                        <c:FI_AccountCloneFields clone="{!theClonedAccount}" mode="{!selectedCloneOption}" rendered="{!theAccount.RecordType.DeveloperName == 'FI_Account'}" />
+
+                        <!-- SE Account fields -->
+                        <c:SE_AccountCloneFields clone="{!theClonedAccount}" mode="{!selectedCloneOption}" rendered="{!theAccount.RecordType.DeveloperName == 'SE_Account'}" />
+
+                        <!-- Talabat Account fields -->
+                        <c:Talabat_AccountCloneFields clone="{!theClonedAccount}" mode="{!selectedCloneOption}" products="{!freeProducts}" product="{!productToCreate}" rendered="{!theAccount.RecordType.DeveloperName == 'Talabat_Account'}" wrpForFacility="{!wrpForFacilityValidation}"/>
+
+                        <!-- FoodPanda fields-->
+                        <c:FP_AccountCloneFields clone="{!theClonedAccount}" mode="{!selectedCloneOption}" products="{!freeProducts}" product="{!productToCreate}" rendered="{!theAccount.RecordType.DeveloperName == 'FP_Account'}" />
+
+                        <!-- UK Account fields -->
+                        <c:UK_AccountCloneFields clone="{!theClonedAccount}" mode="{!selectedCloneOption}" rendered="{!theAccount.RecordType.DeveloperName == 'UK_Account'}" />
+
+                        <!-- Yogiyo Account fields -->
+                        <c:Yogiyo_AccountCloneFields clone="{!theClonedAccount}" mode="{!selectedCloneOption}" rendered="{!theAccount.RecordType.DeveloperName == 'Yogiyo_Account'}" />
+
+                        <!-- DE Account fields -->
+                        <c:DE_AccountCloneFields clone="{!theClonedAccount}" mode="{!selectedCloneOption}" rendered="{!theAccount.RecordType.DeveloperName == 'DE_Account'}" />
+
+                        <!-- PY Account fields -->
+                        <c:PY_AccountCloneFields clone="{!theClonedAccount}" mode="{!selectedCloneOption}" products="{!freeProducts}" product="{!productToCreate}" rendered="{!theAccount.RecordType.DeveloperName == 'PY_Account'}"  wrpForFacility="{!wrpForFacilityValidation}"/>
+
+                        <!-- Facility Account fields SSC-335-->
+                        <c:Facility_AccountCloneFields clone="{!theClonedAccount}" mode="{!selectedCloneOption}" rendered="{!theAccount.RecordType.DeveloperName == 'Facility_Account'}" />
+
+                    </apex:outputPanel>
+
+                    <!-- address from  -->
+                    <apex:outputPanel layout="none"
+                                      rendered="{!AND(
+                                                    LEN(selectedCloneOption) > 0,
+                                                    OR(
+                                                        theAccount.RecordType.DeveloperName == 'Talabat_Account',
+                                                        theAccount.RecordType.DeveloperName == 'AT_Account',
+                                                        theAccount.RecordType.DeveloperName == 'HU_Account',
+                                                        theAccount.RecordType.DeveloperName == 'DE_Account',
+                                                        theAccount.RecordType.DeveloperName == 'SE_Account',
+                                                        theAccount.RecordType.DeveloperName == 'FI_Account',
+                                                        theAccount.RecordType.DeveloperName == 'FP_Account',
+                                                        theAccount.RecordType.DeveloperName == 'Yogiyo_Account',
+                                                        theAccount.RecordType.DeveloperName == 'Facility_Account',
+                                                        theAccount.RecordType.DeveloperName == 'CZ_Account'
+                                                    )
+                                                )}">
+
+                        <fieldset class="slds-form--compound">
+                            <legend class="slds-form-element__label slds-text-title--caps">Address</legend>
+                            <div id="addressFormXal">
+
+                                <!-- do not add code here, DOM is created by vueAddressForm -->
+
+                            </div>
+                        </fieldset>
+                    </apex:outputPanel>
+
+                    <!-- Franchise form -->
+                    <apex:outputPanel layout="none" rendered="{!LEN(selectedCloneOption) > 0}">
+                        <c:Global_Franchise clone="{!theClonedAccount}" sourceAcc="{!theAccount}" />
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </div>
+
+        </div>
+
+    </apex:form>
+    <!-- / REQUIRED SLDS WRAPPER -->
+
+
+    <script src="{!URLFOR($Resource.Vue)}"></script>
+    <!--<script src="https://unpkg.com/vue/dist/vue.js"></script>-->
+    <script src="/support/console/38.0/integration.js" type="text/javascript"></script>
+    <script src="{!URLFOR($Resource.DHHConsoleToolkit, 'js/ConsoleToolkit.js')}" type="text/javascript"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?client=gme-deliveryheroholding&channel=salesforcephoenix&libraries=places"></script>
+    <c:VueAddressDetailComponents />
+    <c:VueCommonComponents />
+    <script type="text/javascript">
+    var vueAddressForm = undefined; // vue address form
+    var DHH = new DHHConsoleToolkit();
+    var selectedCloneOptionVar = ''; //SSC-335
+
+    /** vue mixin based on address model */
+    var xalModelMixin = {
+        data: function() {
+            return {
+                accountCountry: {},
+                addressFormModel: "xal"
+            };
+        },
+        mounted: function() {
+            var self = this;
+
+            this.loaderState.startLoadingSpinner();
+
+            // retrieves the addresses
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.CtrCreateNewAddress.getAddressDetailsPerAccount}',
+                '{!theAccount.Id}',
+                function(result, event) {
+
+                    self.loaderState.stopLoadingSpinner();
+
+                    // Checks event status
+                    if (!event.status || !result) {
+                        self.errorState.setErrorMsg({
+                            msg: "{!$Label.AddressDetail_Loading_Error}" + event.message,
+                            type: "warning"
+                        });
+                        return;
+                    }
+
+                    self.addresses = result.map(function(addr) {
+                        // clear id and account field
+                        addr.id = "";
+                        addr.account = "";
+                        return addr;
+                    });
+                }, {
+                    escape: false
+                }
+            );
+
+            this.loaderState.startLoadingSpinner();
+
+            // retrieve account country
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.CtrCreateNewAddress.getCountryByLabel}',
+                '{!theAccount.Record_Country__c}',
+                function(result, event) {
+
+                    self.loaderState.stopLoadingSpinner();
+
+                    // Checks event status
+                    if (!event.status) {
+                        self.errorState.setErrorMsg({
+                            msg: "{!$Label.Account_Country_Loading_Error}",
+                            type: "error"
+                        });
+                        return;
+                    }
+
+                    self.accountCountry = result;
+                }, {
+                    escape: false
+                }
+            );
+        },
+        methods: {
+            formatAddress: function(addr) {
+                var res = "";
+                if (addr.country.adminArea) {
+                    var adminArea = addr.country.adminArea;
+                    res += adminArea.type + ": " + adminArea.label + "\n";
+
+                    if (adminArea.subAdministrativeArea) {
+                        res += adminArea.subAdministrativeArea.type + ": " + adminArea.subAdministrativeArea.label + "\n";
+                    } else if (adminArea.locality) {
+                        res += adminArea.locality.type + ": " + adminArea.locality.label + "\n";
+                    }
+                }
+                return res.concat(addr.addressLine);
+            },
+            addAddress: function() {
+                var newAddr = {
+                    country: JSON.parse(JSON.stringify(this.accountCountry)), // clone country
+                    type: []
+                };
+
+                this.addressDetailToEdit = newAddr;
+                this.displayForm = true;
+            },
+            validateForm: function() {
+                var validationResult = 'Success';
+                var cb = this.inputElementsState.state.elements[0].values;
+                 //SSC-335 Start
+                 if(cb.includes('{!JSENCODE(wrpForFacilityValidation.condLabels.restaurantAddressType)}')
+                 && selectedCloneOptionVar.includes('{!JSENCODE(wrpForFacilityValidation.condLabels.branchKitchenRestaurantAccountType)}')){
+                        validationResult = '{!JSENCODE(wrpForFacilityValidation.errMessages.errorAddressMessageForKitchen)}';
+                        return validationResult;
+                 }
+                 //SSC-335 End
+
+                // checks input fields
+                for (var i = 0; i < this.inputElementsState.state.elements.length; i++) {
+                    var el = this.inputElementsState.state.elements[i];
+                    if (!el.isFilled) {
+                        el.isInError = true;
+                        validationResult = 'Please fill all required fields'; // SSC-335
+                    } else {
+                        el.isInError = false; // clear the error message if any
+                    }
+                }
+
+                return validationResult; //SSC-335
+            },
+            addressValidationForBranchKitchen: function() {
+                for (var i = 0; i < this.addresses.length; i++) {
+                    if(this.addresses[i].type.length > 1){
+                        for (var y = 0; y < this.addresses[i].type.length; y++) {
+                            if(this.addresses[i].type[y].includes('{!JSENCODE(wrpForFacilityValidation.condLabels.restaurantAddressType)}')){
+                                this.addresses[i].type.splice(y, 1);
+                            }
+                        }
+
+                    }
+                    else{
+                        if(this.addresses[i].type.includes('{!JSENCODE(wrpForFacilityValidation.condLabels.restaurantAddressType)}')){
+                            this.addresses.splice(i, 1);
+                        }
+                    }
+                }
+            },
+            saveAllAddress: function(cb) { // cb is a callback function
+
+                cb = (typeof cb === "function") ? cb : function() {};
+
+                this.loaderState.startLoadingSpinner();
+                if("{!theAccount.RecordType.DeveloperName == 'Talabat_Account'}" &&
+                selectedCloneOptionVar.includes('{!JSENCODE(wrpForFacilityValidation.condLabels.branchKitchenRestaurantAccountType)}')){
+                    this.addressValidationForBranchKitchen();
+                }
+
+                var self = this;
+                // Remote action
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.CtrCreateNewAddress.saveAddresses}',
+                    this.addresses,
+                    function(result, event) {
+                        self.loaderState.stopLoadingSpinner();
+
+                        // Checks event status
+                        if (!event.status || !result) {
+                            self.errorState.setErrorMsg({
+                                msg: "{!$Label.Account_Clone_Address_Error}" + event.message,
+                                type: "error"
+                            });
+
+                            setTimeout(cb, 1500);
+                            return;
+                        }
+
+                        // everything is fine
+                        cb();
+                    }, {
+                        escape: false
+                    }
+                );
+            }
+        }
+    };
+
+    var gpaModelMixin = {
+        data: function() {
+            return {
+                addressFormModel: "gpa",
+                prefilledAddress: "",
+                newAddressComponents: undefined
+            };
+        },
+        mounted: function() {
+            var self = this;
+
+            this.loaderState.startLoadingSpinner();
+
+            // load account addresses
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.CtrCreateNewAddress.gpa_getAddressDetailsPerAccount}',
+                "{!theAccount.Id}",
+                function (result, event) {
+                    self.loaderState.stopLoadingSpinner();
+
+                    // Checks event status
+                    if (!event.status || !result) {
+                        self.errorState.setErrorMsg({
+                            msg: "{!$Label.AddressDetail_Loading_Error}" + event.message,
+                            type: "warning"
+                        });
+                        return;
+                    }
+
+                    self.addresses = result.map(function(addr) {
+                        // clear id and account field
+                        addr.id = "";
+                        addr.account = "";
+                        return addr;
+                    });
+                }, {
+                    escape: false,
+                    buffer: false
+                }
+            );
+
+            // load empty address
+            this.loaderState.startLoadingSpinner();
+
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.CtrCreateNewAddress.gpa_getNewAddressPerCountry}',
+                '{!theAccount.Record_Country__c}',
+                function (result, event) {
+                     self.loaderState.stopLoadingSpinner();
+
+                    // Checks event status
+                    if (!event.status) {
+                        self.errorState.setErrorMsg({
+                            msg: "{!$Label.Account_Country_Loading_Error}",
+                            type: "error"
+                        });
+                        return;
+                    }
+
+                    self.newAddressComponents = result;
+                }, {
+                    escape: false,
+                    buffer: false
+                }
+            );
+        },
+        methods: {
+            formatAddress: function(addr) {
+                return addr.formattedAddress;
+            },
+            addAddress: function() {
+                var newAddr = JSON.parse(JSON.stringify(this.newAddressComponents)); // clone components
+                this.addressDetailToEdit = newAddr;
+                this.displayForm = true;
+            },
+            validateForm: function() {
+                var validationResult = true;
+
+                // checks input fields
+                for (var i = 0; i < this.inputElementsState.state.elements.length; i++) {
+                    var el = this.inputElementsState.state.elements[i];
+                    if (!el.isFilled) {
+                        el.isInError = true;
+                        validationResult = false;
+                    } else {
+                        el.isInError = false; // clear the error message if any
+                    }
+                }
+
+                return this.addressDetailToEdit.components.reduce(function(acc, cmp) {
+                    return (acc && (!cmp.settings.Required__c || cmp.longValue)) ? 'Success' : 'Please fill all required fields';
+                }, validationResult);
+            },
+            saveAllAddress: function(cb) { // cb is a function
+                cb = (typeof cb === "function") ? cb : function() {};
+
+                this.loaderState.startLoadingSpinner();
+                var self = this;
+
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.CtrCreateNewAddress.gpa_saveAddresses}',
+                    this.addresses,
+                    function (result, event) {
+                       self.loaderState.stopLoadingSpinner();
+
+                        // Checks event status
+                        if (!event.status || !result) {
+                            self.errorState.setErrorMsg({
+                                msg: "{!$Label.Account_Clone_Address_Error}" + event.message,
+                                type: "error"
+                            });
+
+                            setTimeout(cb, 1500);
+                            return;
+                        }
+
+                        // everything is fine
+                        cb();
+                    }, {
+                        escape: false
+                    }
+                );
+
+            }
+        }
+    };
+
+ /** vue mixin based on new xal address model */
+    var xalNewModelMixin = {
+        data: function() {
+            return {
+                accountCountry: {},
+                addressFormModel: "xalnew"
+            };
+        },
+        mounted: function() {
+            var self = this;
+            this.loaderState.startLoadingSpinner();
+
+            // retrieves the addresses
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.CtrCreateNewAddress.getXALAddressDetailsPerAccount}',
+                '{!theAccount.Id}',
+                function(result, event) {
+
+                    self.loaderState.stopLoadingSpinner();
+
+                    // Checks event status
+                    if (!event.status || !result) {
+                        self.errorState.setErrorMsg({
+                            msg: '{!$Label.xALAddress_Load_Error}' + event.message,
+                            type: "warning"
+                        });
+                        return;
+                    }
+
+                    self.addresses = result.map(function(addr) {
+                        // clear id and account field
+                        addr.id = "";
+                        addr.account = "";
+                        return addr;
+                    });
+                }, {
+                    escape: false
+                }
+            );
+
+            this.loaderState.startLoadingSpinner();
+
+            // retrieve account country
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.CtrCreateNewAddress.getCountryByCountryName}',
+                '{!theAccount.Record_Country__c}',
+                function(result, event) {
+
+                    self.loaderState.stopLoadingSpinner();
+
+                    // Checks event status
+                    if (!event.status) {
+                        self.errorState.setErrorMsg({
+                            msg: '{!$Label.AdSalesKRException}',
+                            type: "error"
+                        });
+                        return;
+                    }
+
+                    self.accountCountry = result;
+                }, {
+                    escape: false
+                }
+            );
+        },
+        methods: {
+            formatAddress: function(addr) {
+                var res = "";
+                if (addr.country.adminArea) {
+                    var adminArea = addr.country.adminArea;
+                    res += adminArea.type + ": " + adminArea.label + "\n";
+
+                    if (adminArea.subAdministrativeArea) {
+                        res += adminArea.subAdministrativeArea.type + ": " + adminArea.subAdministrativeArea.label + "\n";
+                    } else if (adminArea.locality) {
+                        res += adminArea.locality.type + ": " + adminArea.locality.label + "\n";
+                    }
+                }
+                return res.concat(addr.addressLine);
+            },
+            addAddress: function() {
+                var newAddr = {
+                    country: JSON.parse(JSON.stringify(this.accountCountry)), // clone country
+                    type: []
+                };
+
+                this.addressDetailToEdit = newAddr;
+                this.displayForm = true;
+            },
+            validateForm: function() {
+                var validationResult = 'Success';
+
+                // checks input fields
+                for (var i = 0; i < this.inputElementsState.state.elements.length; i++) {
+                    var el = this.inputElementsState.state.elements[i];
+                    if (!el.isFilled) {
+                        el.isInError = true;
+                        validationResult = 'Please fill all required fields';
+                    } else {
+                        el.isInError = false; // clear the error message if any
+                    }
+                }
+
+                return validationResult;
+            },
+            saveAllAddress: function(cb) { // cb is a callback function
+
+                cb = (typeof cb === "function") ? cb : function() {};
+
+                this.loaderState.startLoadingSpinner();
+
+                var self = this;
+                // Remote action
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.CtrCreateNewAddress.saveXALAddresses}',
+                    this.addresses,
+                    function(result, event) {
+                        self.loaderState.stopLoadingSpinner();
+
+                        // Checks event status
+                        if (!event.status || !result) {
+                            self.errorState.setErrorMsg({
+                                msg: '{!$Label.Clone_Address_Error}' + event.message,
+                                type: "error"
+                            });
+
+                            setTimeout(cb, 1500);
+                            return;
+                        }
+
+                        // everything is fine
+                        cb();
+                    }, {
+                        escape: false
+                    }
+                );
+            }
+        }
+    };
+
+    /** vue mixin based on daum address model */
+    var daumModelMixin = {
+        data: function() {
+            return {
+                addressFormModel: "daum",
+                prefilledAddress: "",
+                newAddressComponents: undefined
+            };
+        },
+        mounted: function() {
+            var self = this;
+            this.loaderState.startLoadingSpinner();
+
+            // load account addresses
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.CtrCreateNewAddress.daum_getAddressDetailsPerAccount}',
+                "{!theAccount.Id}",
+                function (result, event) {
+                    self.loaderState.stopLoadingSpinner();
+
+                    // Checks event status
+                    if (!event.status || !result) {
+                        self.errorState.setErrorMsg({
+                            msg: "{!$Label.AddressDetail_Loading_Error}" + event.message,
+                            type: "warning"
+                        });
+                        return;
+                    }
+
+                    self.addresses = result.map(function(addr) {
+                        // clear id and account field
+                        addr.id = "";
+                        addr.account = "";
+                        return addr;
+                    });
+                }, {
+                    escape: false,
+                    buffer: false
+                }
+            );
+
+            // load empty address
+            this.loaderState.startLoadingSpinner();
+
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.CtrCreateNewAddress.gpa_getNewAddressPerCountry}',
+                '{!theAccount.Record_Country__c}',
+                function (result, event) {
+                     self.loaderState.stopLoadingSpinner();
+
+                    // Checks event status
+                    if (!event.status) {
+                        self.errorState.setErrorMsg({
+                            msg: "{!$Label.Account_Country_Loading_Error}",
+                            type: "error"
+                        });
+                        return;
+                    }
+
+                    self.newAddressComponents = result;
+                }, {
+                    escape: false,
+                    buffer: false
+                }
+            );
+        },
+        methods: {
+            splitAddressDetail: function(detail) {
+                    var oldAddressDetail = {
+                        ...detail,
+                        id: undefined,
+                        components: detail.components.filter(comp => comp.settings.Name.endsWith("{!$Label.KR_OLD_SUFFIX}") && comp.settings.AddressFieldPrefix__c != "{!$Label.GPA_AddressLine_Prefix}"),
+                        formattedAddress: detail.components.find(
+                            comp => comp.settings.AddressFieldPrefix__c == "{!$Label.GPA_AddressLine_Prefix}" && comp.settings.Name.endsWith("{!$Label.KR_OLD_SUFFIX}")
+                        ).longValue,
+                        addressModel: "{!$Label.KR_Old_Address}"
+                    };
+                    var newAddressDetail = {
+                        ...detail,
+                        id: undefined,
+                        components: detail.components.filter(comp => comp.settings.Name.endsWith("{!$Label.KR_NEW_SUFFIX}") && comp.settings.AddressFieldPrefix__c != "{!$Label.GPA_AddressLine_Prefix}"),
+                        formattedAddress: detail.components.find(
+                            comp => comp.settings.AddressFieldPrefix__c == "{!$Label.GPA_AddressLine_Prefix}" && comp.settings.Name.endsWith("{!$Label.KR_NEW_SUFFIX}")
+                        ).longValue,
+                        addressModel: "{!$Label.KR_New_Address}"
+                    };
+                    var addressDetailArray = [];
+                    if(oldAddressDetail.formattedAddress) {
+                        addressDetailArray.push(oldAddressDetail);
+                    }
+                    if(newAddressDetail.formattedAddress) {
+                        addressDetailArray.push(newAddressDetail);
+                    }
+                    return addressDetailArray;
+            },
+            formatAddress: function(addr) {
+                return addr.formattedAddress;
+            },
+            addAddress: function() {
+                var newAddr = JSON.parse(JSON.stringify(this.newAddressComponents)); // clone components
+                this.addressDetailToEdit = newAddr;
+                this.displayForm = true;
+            },
+            validateForm: function() {
+                var validationResult = true;
+
+                // checks input fields
+                for (var i = 0; i < this.inputElementsState.state.elements.length; i++) {
+                    var el = this.inputElementsState.state.elements[i];
+                    if (!el.isFilled) {
+                        el.isInError = true;
+                        validationResult = false;
+                    } else {
+                        el.isInError = false; // clear the error message if any
+                    }
+                }
+
+                return this.addressDetailToEdit.components.reduce(function(acc, cmp) {
+                    return (acc && (!cmp.settings.Required__c || cmp.longValue)) ? 'Success' : 'Please fill all required fields';
+                }, validationResult);
+            },
+            saveAllAddress: function(cb) { // cb is a function
+                cb = (typeof cb === "function") ? cb : function() {};
+
+                this.loaderState.startLoadingSpinner();
+                var self = this;
+                var addressesToSave = [];
+                this.addresses.forEach( address => addressesToSave = addressesToSave.concat(self.splitAddressDetail(address)));
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.CtrCreateNewAddress.gpa_saveAddresses}',
+                    addressesToSave,
+                    function (result, event) {
+                       self.loaderState.stopLoadingSpinner();
+
+                        // Checks event status
+                        if (!event.status || !result) {
+                            self.errorState.setErrorMsg({
+                                msg: "{!$Label.Account_Clone_Address_Error}" + event.message,
+                                type: "error"
+                            });
+
+                            setTimeout(cb, 1500);
+                            return;
+                        }
+
+                        // everything is fine
+                        cb();
+                    }, {
+                        escape: false
+                    }
+                );
+            }
+        }
+    };
+
+    /**
+     * Called when user change option, destroy vueAddressForm if exist
+     * and update the account fields to display
+     */
+    function cloneOptionOnChange(val) {
+        // destroy vue instance if any
+ //       debugger;
+        selectedCloneOptionVar =  val; //SSC-335
+        if (vueAddressForm) {
+            vueAddressForm.$destroy();
+        }
+
+        drawPanelAf(val);
+
+        if (!val) {
+            // disable clone button
+            document.querySelector('#cloneBtn').setAttribute("disabled", "");
+        } else {
+            // enable clone button
+            document.querySelector('#cloneBtn').removeAttribute("disabled");
+
+            // set the createOpportunityFlag
+            if ("Talabat_Account" == "{!theAccount.recordtype.developername}") {
+                setOpportunityFlag( false );
+            }
+
+        }
+    }
+
+    /**
+     * Set the create opportunity flag based on input val. If val is true then
+     * create opportunity flag is ticked otherwise not
+     * @param {Boolean} val Whether the opportunity flag should be ticked or not
+     */
+    function setOpportunityFlag(val) {
+        document.querySelector("[id$=oppFlag]").checked = !!val;
+    }
+
+    function tryToSetTabTitle (title) {
+        if (sforce.console.isInConsole()) {
+            sforce.console.setTabTitle(title);
+        }
+    }
+
+    function cancelButtonOnClick () {
+        tryToSetTabTitle("{!theAccount.name}");
+        cancelAf();
+    }
+
+    function cloneButtonOnClick () {
+        var requiredFiledsHaveValue = checkRequiredFields();
+        var beforeCloneIsOk = true;
+
+        //SSC-334  (SSC - 2796 added OR condition for PY)
+        //check before cloning function for Account type Branch - Kitchen Restaurant
+        if("{!theAccount.RecordType.DeveloperName == '{!JSENCODE(wrpForFacilityValidation.recTypes.accRecordType)}'}"){
+            if (typeof beforeCloneValidateBranchKitchenType === "function") {
+                if (beforeCloneValidateBranchKitchenType() !=  'Success') {
+                    if (vueModalPageMessagesHandler) {
+                        vueModalPageMessagesHandler.type = "Error";
+                        vueModalPageMessagesHandler.message = beforeCloneValidateBranchKitchenType();
+                    } else {
+                        alert('{!JSENCODE(wrpForFacilityValidation.errMessages.errorValidationOnAddressForm)}');
+                    }
+
+                    return; // prevent clone to happen
+                }
+            }
+        }
+        //SSC-334 ends here
+
+		document.querySelector('#cloneBtn').setAttribute("disabled", "");
+
+        // checks if any component defines the beforeClone function
+        if (typeof beforeClone === "function") {
+            beforeCloneIsOk = beforeClone();
+        }
+
+        // call beforeClone
+        if (!beforeCloneIsOk || !requiredFiledsHaveValue) {
+             document.querySelector('#cloneBtn').removeAttribute("disabled");
+            // Errors!
+            if (vueModalPageMessagesHandler) {
+                vueModalPageMessagesHandler.type = "Error";
+                vueModalPageMessagesHandler.message = "Please review errors in the form";
+            } else {
+                alert("Please review errors in the form");
+            }
+
+            return; // prevent clone to happen
+        }
+
+        cloneAf();
+    }
+
+    function adjustMultiselectPicklist() {
+        Array.prototype.slice.call(
+            document.querySelectorAll(".multiselectContainer tbody tr:nth-child(2) td")
+        ).map(function(elem) {
+            elem.className += /multiselectpicklistcell/i.test(elem.className) ? " slds-size--2-of-12" : " slds-size--5-of-12";
+        });
+
+        Array.prototype.slice.call(
+            document.querySelectorAll(".multiselectContainer tbody select")
+        ).map(function(elem) {
+            elem.className += " slds-select slds-custom-multiselect";
+            elem.style["overflow-y"] = "auto";
+            elem.size = "4";
+        });
+
+        Array.prototype.slice.call(
+            document.querySelectorAll(".multiselectContainer tbody img")
+        ).map(function(elem) {
+            elem.style["margin-left"] = "33.3%";
+            elem.style["margin-right"] = "50px";
+            elem.style.height = "20px";
+        });
+    }
+
+    // add red margin to required input elements that have no value
+    function checkRequiredFields() {
+        return Array.prototype.slice.call(
+            document.querySelectorAll("[data-required='true']")
+        ).reduce(function(acc, elem) {
+
+            // skips not visible elements
+            if (!isVisible(elem)) {
+                return acc;
+            }
+
+            acc = (acc && !!elem.value);
+
+            if (!elem.value) {
+                // add the red margin to parent element
+                var pNode = elem.parentNode;
+                pNode.className += " slds-has-error";
+            }
+
+            // add the event listener to remove the red margin once user insert a value
+            elem.addEventListener("blur", function(evt) {
+                if (evt.target.value) {
+                    // input field has a value now, remove the red margin
+                    evt.target.parentNode.className = evt.target.parentNode.className.replace(/slds-has-error/g, "");
+                } else {
+                    evt.target.parentNode.className += " slds-has-error";
+                }
+            });
+
+            return acc;
+        }, true);
+    }
+
+    function isVisible(elem) {
+        return !!( elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length );
+    }
+
+    /**
+     * Called after user change the clone options, checks if the address form element
+     * is there. If address form is there create the vue instance to handle it
+     */
+    function tryToMountVueAddressForm() {
+        if (document.getElementById("addressFormXal")) {
+            switch("{!theAccount.RecordType.DeveloperName}") {
+                case "Talabat_Account":
+                    switch("{!theAccount.Record_Country__c}") {
+                            case "Egypt":
+                                initAddressForm(xalNewModelMixin);
+                                break;
+                            default:
+                                initAddressForm(xalModelMixin);
+                                break;
+                        }break;
+                case "Yogiyo_Account":
+                    initAddressForm(daumModelMixin);
+                    break;
+                case "AT_Account":
+                case "HU_Account":
+                case "DE_Account":
+                case "SE_Account":
+                case "FI_Account":
+                    // init gpa model
+                    initAddressForm(gpaModelMixin);
+                    break;
+                case "FP_Account":
+                case "CZ_Account":
+                    initAddressForm(xalNewModelMixin);
+                    break;
+                case "Facility_Account":
+                    initAddressForm(xalModelMixin);
+                    break;
+            }
+        }
+    }
+
+    function initAddressForm(mixin) {
+        vueAddressForm = new Vue({
+            mixins: [mixin],
+            data: {
+                loaderState: loaderSharedState,
+                errorState: errorHandlerSharedState,
+                inputElementsState: inputElementsSharedState,
+                addresses: [],
+                addressDetailToEdit: undefined,
+                editIndex: -1,
+                displayForm: false
+            },
+            methods: {
+                editAddress: function(index) {
+                    // clone address detail to edit
+                    this.addressDetailToEdit = JSON.parse(JSON.stringify(this.addresses[index]));
+                    this.editIndex = index;
+
+                    this.displayForm = true;
+                },
+                deleteAddress: function(index) {
+                    this.addresses.splice(index, 1);
+                },
+                saveAddress: function() {
+                    // check address correctness but do not persist the address to db
+                    //SSC-335
+                    var validationResult = this.validateForm();
+                    if (validationResult != 'Success') {
+                        this.errorState.setErrorMsg({
+                            msg: validationResult,
+                            type: "error"
+                        });
+                        return;
+                    }
+
+                    // checks duplicate address type
+                    var indexToSkip = this.editIndex;
+                    var types = this.addresses.reduce(function(acc, addr, idx) {
+                        return indexToSkip != idx ? acc.concat(addr.type) : acc;
+                    }, []);
+
+                    for (var i = 0; i < this.addressDetailToEdit.type.length; i++) {
+                        if (types.indexOf(this.addressDetailToEdit.type[i]) > -1) {
+                            this.errorState.setErrorMsg({
+                                msg: "{!$Label.AddressDetail_DuplicateAddressType}" + this.addressDetailToEdit.type[i],
+                                type: "warning"
+                            });
+                            return;
+                        }
+                    }
+
+                    if (this.editIndex > -1) {
+                        // override address
+                        this.addresses[this.editIndex] = this.addressDetailToEdit;
+                        this.editIndex = -1;
+                    } else {
+                        this.addresses.push(this.addressDetailToEdit);
+                    }
+
+                    this.displayForm = false;
+                },
+                closeAddressForm: function() {
+                    this.displayForm = false;
+                },
+                setAccountId: function(accountId) {
+                    this.addresses.map(function(address) {
+                        address.account = accountId;
+                    });
+                }
+            },
+            computed: {
+                showAddButton: function() {
+                    return this.addresses.length < 3; // shipping, billing and restaurant
+                }
+            },
+            template: `<div class="slds-form-element__group slds-p-around--small">
+                        <button v-if="showAddButton" type="button" class="slds-button slds-button--stateful slds-button--neutral slds-not-selected" v-on:click="addAddress">
+                          <span class="slds-text-not-selected">
+                            <svg class="slds-button__icon--left slds-button__icon--stateful">
+                              <use xlink:href="{!URLFOR($Resource.slds231, '/assets/icons/utility-sprite/svg/symbols.svg#add')}"></use>
+                            </svg>
+                            Create New Address
+                          </span>
+                        </button>
+                        <table class="slds-table slds-table--bordered slds-table--cell-buffer slds-m-top--small">
+                              <thead>
+                                <tr class="slds-text-title--caps">
+                                  <th scope="col">
+                                    <div class="slds-truncate" title="Action">Action</div>
+                                  </th>
+                                  <th scope="col">
+                                    <div class="slds-truncate" title="{!$ObjectType.AddressDetail__c.fields.Type__c.label}">
+                                        {!$ObjectType.AddressDetail__c.fields.Type__c.label}
+                                    </div>
+                                  </th>
+                                  <th scope="col">
+                                    <div class="slds-truncate" title="{!$ObjectType.AddressDetail__c.fields.FormattedAddress__c.label}">
+                                        {!$ObjectType.AddressDetail__c.fields.FormattedAddress__c.label}
+                                    </div>
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr v-for="(address, index) in addresses">
+                                  <th scope="row">
+                                    <div class="slds-truncate">
+                                      <a href="#" v-on:click.prevent="editAddress(index)">Edit</a>
+                                      &nbsp;|&nbsp;
+                                      <a href="#" v-on:click.prevent="deleteAddress(index)">Delete</a>
+                                    </div>
+                                  </th>
+                                  <td>
+                                    <div class="slds-truncate">{{ address.type.join() }}</div>
+                                  </td>
+                                  <td>
+                                    <div class="slds-truncate"> <pre>{{ formatAddress(address) }} </pre></div>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+
+                            <section v-if="displayForm" role="dialog" tabindex="-1" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open" v-bind:class="{'slds-modal--large': addressFormModel == 'gpa' || addressFormModel == 'daum'}">
+                              <div class="slds-modal__container">
+                                <div class="slds-modal__content slds-p-around--medium" id="modal-content-id-1">
+
+                                    <address-form v-if="addressFormModel == 'xal'" v-bind:address-detail="addressDetailToEdit" v-bind:countries="[accountCountry]" />
+                                    <google-place-api-form v-else-if="addressFormModel == 'gpa'" v-bind:address-detail="addressDetailToEdit" v-bind:search-address="prefilledAddress" map-max-height="300" />
+                                    <xal-address-form v-if="addressFormModel == 'xalnew'" v-bind:address-detail="addressDetailToEdit" v-bind:country="addressDetailToEdit.country" />
+                                    <daum-place-api-form v-else-if="addressFormModel == 'daum'" v-bind:address-detail="addressDetailToEdit" v-bind:search-address="prefilledAddress" map-max-height="300" />
+
+                                 </div>
+                                  <footer class="slds-modal__footer">
+                                    <button type="button" class="slds-button slds-button--neutral" v-on:click="closeAddressForm">Cancel</button>
+                                    <button type="button" class="slds-button slds-button--brand" v-on:click="saveAddress">Save</button>
+                                  </footer>
+                                  </div>
+                              </section>
+                              <div v-if="displayForm" class="slds-backdrop slds-backdrop--open"></div>
+
+                            <spinner v-bind:open="loaderState.state.isLoading" />
+                            <error-handler v-bind:message="errorState.state.message" v-bind:type="errorState.state.type" v-on:closed="errorState.clearErrorMsg()" />
+                    </div>`
+        });
+
+        vueAddressForm.$mount("#addressFormXal");
+    }
+
+    /* *** init code *** */
+
+    tryToSetTabTitle("Clone: {!theAccount.Name}");
+
+    setOpportunityFlag( ("CD_Account" != "{!theAccount.RecordType.DeveloperName}") );
+
+</script>
+
+    <!-- handles page messages as a modal -->
+    <c:VueHandlePageMessagesAsModal id="msgs" />
+    <!-- lds spinnes -->
+    <c:VueSpinner />
+
+<apex:outputPanel layout="inline" id="scriptWrapper">
+
+    <script src="/support/console/42.0/integration.js" type="text/javascript">
+    	var closeSubtab = function closeSubtab(result) {
+            sforce.console.closeTab(result.id);
+        };
+
+        function cloneOnComplete () {
+            var accountId = "{!theClonedAccount.Id}";
+
+            if (accountId=='' || accountId==undefined || accountId==null || !accountId) {
+                console.log("account not cloned");
+                tryToMountVueAddressForm();
+             	document.querySelector('#cloneBtn').removeAttribute("disabled");
+                return; // account not cloned, error occurred
+            }
+
+            if (vueAddressForm) {
+                vueAddressForm.setAccountId(accountId);
+                vueAddressForm.saveAllAddress(function() {
+                    navigateToAccount(accountId);
+                });
+            } else {
+                navigateToAccount(accountId);
+            }
+        }
+
+        function navigateToAccount(accountId) {
+            // one app logic
+            console.log('accountId-->'+accountId);
+            if ((typeof sforce != 'undefined') && sforce && (!!sforce.one) && !('{!$User.UIThemeDisplayed}' == 'Theme4d' || '{!$User.UIThemeDisplayed}' == 'Theme4u')) {
+                 sforce.one.navigateToSObject(accountId);
+
+                return;
+            }
+
+            // console or std logic
+            if (sforce.console.isInConsole()  ) {
+                DHH.openPrimaryTab("/".concat(accountId), "", function (err, res) {
+                    if (!err) {
+                        cancelAf(); // new account created successfully, goes back to original one
+                    }
+                });
+                if(('{!$User.UIThemeDisplayed}' == 'Theme4d' || '{!$User.UIThemeDisplayed}' == 'Theme4u') ){
+					sforce.console.getEnclosingTabId(closeSubtab);
+            	}
+            } else {
+                window.location.href = "/".concat(accountId);
+            }
+        }
+    </script>
+
+    </apex:outputPanel>
+
+    </body>
+    </html>
+</apex:page>

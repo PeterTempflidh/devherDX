@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>FP CS PK Auto Response Email Template</name>
+    <style>freeForm</style>
+    <subject>Thank you - your request {!Case.CaseNumber} has been received!</subject>
+    <textOnly>Hi,
+
+Thanks for contacting foodpanda Customer Support! Resolving your issues and problems are our top priority.
+
+Your request (submission id) has been received and we&apos;ll get back to you within 8 hours. If you’d like to add additional comments, please reply to this email.
+
+Thanks and have a great day!
+foodpanda Customer Support Team
+
+{!Case.Thread_Id__c}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

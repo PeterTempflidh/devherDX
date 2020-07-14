@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>PY_Letterhead_LATAM</letterhead>
+    <name>PY - VENDOR_DELAY (Demora en entrega)</name>
+    <style>freeForm</style>
+    <subject>Gracias por Contactarnos - # {!Case.CaseNumber}</subject>
+    <textOnly>Estimado XXXNombreXXX, 
+
+Nos contactamos en respuesta a tu consulta sobre el cierre momentáneo de tu local en la plataforma, te pedimos disculpas por los inconvenientes.  
+
+Te comentamos que se trata de un cierre automático porque el sistema detectó que se entregaron varios pedidos con demora y accionó a modo preventivo para que no reciban pedidos en caso que les dificultará tenerlos listos a tiempo. (Si se abrió o estaba abierto): El local ya se encuentra habilitado en la plataforma. (Si no se puede abrir) El local se habilitará en el próximo turno ya que por hoy no podremos modificar tus cierres automáticos.
+
+¿Necesitas más ayuda? Te invitamos a conocer el nuevo Centro de Ayuda en Partner Portal. Ahí encontrarás explicaciones y tutoriales sobre todas las funcionalidades para autogestionar tu perfil, además de artículos sobre nuestras herramientas para mejorar tu desempeño y mucho más en el siguiente enlace:   https://portal.pedidosya.com/app/#/help-center/home
+
+Quedamos a las órdenes ante cualquier consulta. 
+
+Saludos, 
+Nombre + Inicial del apellido - Claims Operator 
+PedidosYa</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

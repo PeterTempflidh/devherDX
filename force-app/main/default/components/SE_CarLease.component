@@ -1,0 +1,422 @@
+<apex:component controller="CtrCreateQuote" access="global" layout="none">
+    <apex:attribute name="oppQ" type="String" description="Placeholder" assignTo="{!oppQId}"/>
+<apex:attribute name="acct" type="String" description="Placeholder" assignTo="{!acctId}"/>
+
+    <div style="width:100%">
+    <div style="font-weight: bold; font-size: 16px; display:inline-block; width:40%;vertical-align: top;">KOPEAVTAL BILBESTÄLLNING</div>
+    <div style="display:inline-block; width:20%;vertical-align: top;">
+        <img src="{!URLFOR($Resource.SE_KIA_Logo)}"  />
+    </div>
+    <div style="display:inline-block; width:30%;vertical-align: top;">
+        <table id="carLeaseTable" border="1"  style="display:inline-block; border: 2px solid black !important; border-collapse: collapse;">
+        <tr style="background-color:#a8a8a8">
+            <td style=" background-color:#a8a8a8;border-bottom:2px solid black !important; width:45%;font-size:8px">Datum</td>
+            <td style="border-bottom:2px solid;width:45%;font-size:8px">Registreringsnummer</td>
+        </tr>
+        <tr>
+            <td style="border-right:2px solid !important;" >
+                <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                    <apex:param value="{!TODAY()}" /> 
+                </apex:outputText>
+            </td>
+            <td></td>
+        </tr>
+        </table>
+      </div>  
+    </div>
+    
+    <div style="width:45%; display:inline-block; font-size:12px; ">
+    
+    <apex:outputPanel rendered="{!displayAuto==$Label.SE_Automatic_CarLease}"><span><b>Kia Picanto 1,285hk Automat SPECIAL EDITION</b></span></apex:outputpanel>
+    <apex:outputPanel rendered="{!displayAuto==$Label.SE_Manual_CarLease}"><span><b>Kia Picanto 1,069hk SPECIAL EDITION</b></span></apex:outputpanel><br/>
+    <span style="font-size:10px">Utrustning: AC,CD,stolsvärme fram,Larm<br/> 
+        C-las, AUX ingang, Antisladd, Antispinn, LM Falgär<br/>
+        <b>Garantipaket: 7års/15000 mil Nybilsgaranti</b><br/>
+        3 års fri vaghjalp, 3 års Vagnskandegaranti,<br/>
+        Rostskyddsgaranti 7år, Lackgaranti 5år<br/><br/>
+    </span>
+    
+    </div>
+    <div style="width:45%; display:inline-block; font-size:12px">
+    <span>Leasingavgift:<b><apex:outputpanel rendered="{!displayAuto==$Label.SE_Automatic_CarLease}">1720</apex:outputpanel><apex:outputpanel rendered="{!displayAuto==$Label.SE_Manual_CarLease}">1493</apex:outputpanel>SEK</b>/månad</span><br/>
+    <span>Restvärde: <apex:outputpanel rendered="{!displayAuto==$Label.SE_Automatic_CarLease}">51550</apex:outputpanel><apex:outputPanel rendered="{!displayAuto==$Label.SE_Manual_CarLease}">44750</apex:outputpanel>SEK,Tid:36 mån</span><br/>
+    <span>Insats:0 SEK</span><br/>
+    <span style="font-size: 9px">Leasingförslaget är baserat på DNB Finans aktuella ränta. Vi reserverar oss för ev. ändringar i form av pris/ räntejusteringar, skatter och ev.
+    avgifter som sker utan vårt inflytande. Observa att bilen först blir färdigställd efter att Bilbörsen har erhållit komplett ifyllt leasingavtal.</span><br/>
+    </div>
+    <div style="font-size: 12px">
+    <b>Pris exkl. moms &amp; handpenning <apex:outputpanel rendered="{!displayAuto==$Label.SE_Automatic_CarLease}">103100SEK</apex:outputpanel><apex:outputpanel rendered="{!displayAuto==$Label.SE_Manual_CarLease}">91100SEK</apex:outputpanel></b><br/>
+    <span style="font-size: 10px">-INKL. KOMPL. VINTERHJULOCH FÖRETAGSLOGGA !!</span>
+    </div>
+    
+    <table id="details"  border="1"  style="width:100% ;border-collapse: collapse;border: 2px solid black">
+        <tr style="width:100%;background-color:#a8a8a8;border: 2px solid black">
+            <th style="text-align: left;">KOPARE/KUND</th>
+            <th></th>
+        </tr>
+        <tr style="width:100%">
+            <td style="width:50%; border-right: 2px solid black !important;border-bottom: 2px solid black;font-size: 9px; padding: 1px;">Firmatecknare &nbsp;&nbsp;{!accountWrapper.ownerName}</td>
+            <td style="width:50%;border-bottom: 2px solid black;font-size: 9px; padding: 1px;">Restaurangnamn&nbsp;&nbsp;{!accountWrapper.restaurantName}</td>
+        </tr >
+        <tr style="width:100%">
+            <td style="width:50%; border-right: 2px solid black;border-bottom: 2px solid black;font-size: 9px; padding: 1px;">Adress &nbsp;&nbsp;{!accountWrapper.addressStreet }</td>
+            <td style="width:50%;border-bottom: 2px solid black;font-size: 9px; padding: 1px;">Postnummer och ort &nbsp;&nbsp;{!accountWrapper.addressPostal }&nbsp;{!accountWrapper.addressCity}</td>
+        </tr>
+        <tr style="width:100%">
+            <td style="width:50%; border-right: 2px solid black;border-bottom: 2px solid black;font-size: 9px">Organisationsnummer &nbsp;&nbsp;{!accountWrapper.companyId}</td>
+            <td style="width:50%;border-bottom: 2px solid black;font-size: 9px">Personnummer</td>
+        </tr>
+        <tr style="width:100%">
+            <td style="width:50%; border-right: 2px solid black;border-bottom: 2px solid black;font-size: 9px">Telefon &nbsp;&nbsp;{!accountWrapper.restaurantPhoneNumber} &nbsp;&nbsp;&nbsp;Mobil&nbsp;&nbsp;&nbsp;{!accountWrapper.ownerMobilePhone}</td>
+            <td style="width:50% ;border-bottom: 2px solid black;font-size: 9px">Email&nbsp;&nbsp;{!accountWrapper.restaurantEmail}</td>
+        </tr>
+        <tr style="width:100%">
+            <td style="width:50%;border-right: 2px solid black;font-size: 9px">Nr 4D Korkort</td>
+            <td style="width:50%;font-size: 9px"><!--<input type="Checkbox"/>--><span style="font-size:18px">□</span>kopia utav korkortet bifogas</td>
+        </tr>
+    </table>
+    <br/>
+    <table id="optional"  border="1"  style="width:100% ;border-collapse: collapse;border: 2px solid black;font-size: 12px"> 
+        <tr style="width:100%;background-color:#a8a8a8;border: 2px solid black"> 
+            <th style="text-align: left;">TILLVAL</th>
+        
+        </tr>
+        <tr style="border: 2px solid black;font-size: 9px">
+            <td style="font-size: 9px"><span style="vertical-align:top;font-weight: bold">LACKUTFÖRANDE</span>&nbsp;&nbsp;
+            <!--<input type="Checkbox"/>--><span style="font-size:18px">□</span>VIT &nbsp;&nbsp;
+            <!--<input type="Checkbox"/>--><span style="font-size:18px">□</span>RÖDMETALLIC(+65sek/mån)&nbsp;&nbsp;
+            <!--<input type="Checkbox"/>--><span style="font-size:18px">□</span>SVARTMETALLIC(+65sek/mån)&nbsp;&nbsp;
+            <!--<input type="Checkbox"/>--><span style="font-size:18px">□</span>SILVERGRÅ METALLIC(+65sek/mån)
+            </td>
+        </tr>
+        <tr style="border: 2px solid black;font-size: 9px">
+            <td style="font-size: 9px">
+            <b>BILDEKOR STD</b><br/>
+            <span>Onlinepizza Norden AB tar fram ett förslag för bildekor, dar restraungens originallogotyp tillhandahålls alltid Billbörsen i Linköping<br/>
+                AB genom Onlinepizza Norden ABs försorg. Billbörsen i Linköping tar ansvar för att eventuella andringar och modifikationer enligt nedan utförs.<br/>
+                <!--<input type="Checkbox"/>--><span style="font-size:18px">□</span>Logotyp kommer att användas i det grundutförande som finns upplagt på onlinepizza.se ovanstandåe datum utan förändringer.<br/>
+                <!--<input type="Checkbox"/>--><span style="font-size:18px">□</span>Särskilda villkor för design utav fordonets branding<br/>
+                <!--<input type="Checkbox"/>--><span style="font-size:18px">□</span>Se bifogat dokument
+            </span><br/>
+            </td>
+        </tr>
+        <tr style="border: 2px solid black;font-size: 9px">
+            <td style="font-size: 9px">
+                <div><b>FÖRSÄKRING</b><br/></div>
+                <div><!--<input type="Checkbox"/>--><span style="font-size:18px">□</span> Kund har önskemål om följande försäkringsbolag (om inget anges så används KIA Prova-på försäkring, ett samarbete meellan KIA Motors AB och IF skadeförsäkring):</div><br/>
+            </td>
+        </tr>
+        <tr style="border: 2px solid black;font-size: 9px">
+            <td style="font-size: 9px">
+                <div><b>HJUL</b><br/></div>
+                <div><!--<input type="Checkbox"/>--><span style="font-size:18px">□</span> Önskemål angående vinterdäck anges nedan, Standard år vinterhjul med dubb, om andra önskemål finns fyll i dessa nedan:</div><br/>
+            </td>
+        </tr>
+        <tr style="border: 2px solid black;font-size: 9px">
+            <td style="font-size: 9px">
+                <div><b>ÖVRIGT</b><br/></div>
+                <div><!--<input type="Checkbox"/>--><span style="font-size:18px">□</span> GPS Navigation(+25SEK/mån) &nbsp;&nbsp; <!--<input type="Checkbox"/>--><span style="font-size:18px">□</span>Transport av bill till restaurangen - fastpris is hela Sverige 2200SEK(+84SEK/mån)</div><br/>
+            </td>
+        </tr >
+    </table>
+    
+    <table style="width:100%">
+        <tr style="width:100%">
+            <td style="width:50%"><div style="display:inline-block;font-size:9px"><span><b>Leverantör:</b><br/></span>
+           
+                <span>BILLBÖRSEN I LINKÖPING AB<br/>
+                    Ansvarig säljare: Christian Fornell<br/>
+                    Telefon: 013-139096<br/><br/>
+                    <b>Leverans:</b><br/>
+                    Leverans sker hos Bilborsen i Linköping AB<br/>
+                    KIA Linköping Larlingsgatan 2, 58239 Linköping<br/><br/>
+                    <span style="font-size:9px; font-weight:bolder" ><b>Alla priser i detta avtal ar exklusive moms!</b></span>
+                </span> </div>
+                 <div style="display:inline-block; width:20%;vertical-align: top;">
+        <img src="{!URLFOR($Resource.SE_Bilborsen)}"  style="width:160px;"/>
+    </div>
+               
+            </td>
+            <td style="width:50%; font-size:9px">
+                Leveranstid ca: 4-8 veckor<br/>
+                Avhamtning av fordonet skall ske av firmatecknare<br/><br/>
+                <span style="font-weight:bold;display:none"><b> Handpenning:</b><br/></span>
+                <span  style="font-weight:bold;display:none">Undertecknad av detta avtal, godkanner köparen<br/>
+                    att Onlinepizza Norden AB reserverar 1500SEK<br/>
+                    från koparens medel. Handpenning har avgått fran köpeskilling<br/> 
+                    Betalas ej åter om beställningen ej slutförs.<br/>
+                
+        
+                </span>
+                <div style="display:inline-block; width:20%;vertical-align: top;">
+        <img src="{!URLFOR($Resource.SE_OnlinePizza_Logo)}"  style="width:300px" />
+    </div>
+            </td>
+        </tr>
+    </table>
+    <div style="font-size:7px"> Detta avtal är enligt ovanstående och omstaende bestämmelser ingånget melian undertecknad säljare och köpare. Av avtalet hat två exemplar upprättats och utväxlats mellan parterna. Köparen försäkrar samtidigt att ev. 
+    inbytesbil, frånsett här angivna skulder, är betald och köparens egendom, samtt att den inte är föremål för korforbud/besiktningsföreläggande eller i övrigt är behäftad med avköparen allvarligt fel, som t.ex. att verklig
+     körsträcka från mätarställningen. Om kopeavtalet endast undertecknats av köparen foreligger en beställning, se punkt 2 på det bifogade bladet (Leveransvillkor personbillar)</div>
+     
+     <table style="width:100%">
+     <tr>
+         <td>____________________________________</td>
+         <td>____________________________________</td>
+     </tr>
+     <tr>
+         <td style="font-size:8px"> Köparens underskrift<br/><br/></td>
+         <td style="font-size:8px">Säljföretagets underskrift – behörig företrädare<br/><br/></td>
+     </tr>
+     <tr>
+         <td>____________________________________</td>
+         <td>____________________________________</td>
+     </tr>
+     <tr>
+        <td style="font-size:8px">Datum – Ort</td>
+        <td style="font-size:8px">Datum – Ort</td>
+     </tr>
+     
+     </table>
+
+ <br/><br/><br/>
+ <div style="margin-left:auto;margin-right:auto;  font-size:16px;font-weight:bolder">MRFs LEVERANSVILLKOR PERSONBILAR</div>
+<table style="width:100%; font-size:7px; ">
+    <tr style="width:100%;" >
+        <td width="50%"><span style="font-weight:bold">1. Definitioner</span><br/>
+            <span >A. Med Med konsument menas i dessa bestämmelser en fysisk person som handlar för
+            ändamål som huvudsakligen faller utanför näringsverksamhet. För konsumenter gäller
+            nedan av Konsumentverket/KO godkända villkor. Konsumenter omfattas av
+            konsumentköplagen (1990:932) (KKL). Lagtexten eller en broschyr om lagen ska finnas
+            till- gänglig hos säljföretaget.<br/>
+            B. Med näringsidkare menas i dessa bestämmelser en fysisk eller juridisk person som
+            handlar för ändamål som har samband med den egna näringsverksamheten. <span style="font-style: italic">För
+            näringsidkare finns särskilda bestämmelser som anges kursiverat.</span>
+            C. Med köpare menas i dessa bestämmelser såväl konsument som näringsidkare.
+            </span><br/>
+            <span style="font-weight:bold">2. Köpeavtal och beställning</span>
+            <span>A. Detta köpeavtal är bindande för båda parter när det har undertecknats av köparen och
+            en behörig företrädare för säljföretaget.<br/>
+            B. Har endast en konsument undertecknat köpeavtalet är det fråga om en beställning.
+            Säljföretaget blir bundet när köpeavtalet har undertecknats av en behörig företrädare. Det
+            undertecknade avtalet eller en orderbekräftelse ska skickas till konsumenten senast en
+            vecka efter beställningsdagen. Konsumenten är bunden när han har fått avtalet eller
+            orderbekräftelsen.<br/>
+            <span style="font-style: italic">C. Om köpeavtalet endast undertecknats av en näringsidkare är denne bunden av sin
+            underskrift. För säljföretaget blir avtalet bindande när det undertecknats av behörig
+            företrä- dare och avtalet eller en orderbekräftelse sänts till näringsidkaren. Detta ska
+            göras inom en vecka efter näringsidkarens underskrift.</span><br/>
+            </span>
+            <span style="font-weight:bold">3. Avbeställning av konsument</span><br/>
+            <span>En konsument har rätt att avbeställa bilen före leveransen mot ersättning enligt punkt 11.</span><br/>
+            <span style="font-weight:bold">4. Leveranstid och leveransförsening</span>
+            <span>A. Beräknad leveransdag ska anges på köpeavtalet. Har en leveransdag inte avtalats
+            levereras bilen inom skälig tid, normalt två veckor för en begagnad bil och tolv veckor för
+            en ny bil, från den dag då köparen undertecknade köpeavtalet.<br/>
+            B. Vid leveransförsening ska säljföretaget snarast underrätta köparen. Om förseningen är
+            av väsentlig betydelse för en konsument – vid denna bedömning ska såväl tidsaspek- ten
+            som det egna behovet beaktas – får han häva köpet om han inom skälig tid efter underrättelsen
+            meddelar säljföretaget detta.<br/>
+            C. Konsumenten kan i stället ge säljföretaget en bestämd tilläggstid för leveransen, minst
+            två veckor. Konsumenten får häva köpet om bilen inte avlämnas inom tilläggstiden. Har
+            konsumenten uppmanat säljföretaget att leverera får konsumenten alltid häva köpet om
+            bilen inte avlämnas inom en skälig tid därefter, normalt tre veckor.<br/>
+            D. Säljföretaget är inte skyldigt att leverera om detta är omöjligt p g a de förutsättningar
+            som anges i 12 § KKL.<br/>
+            E. Köparen har rätt till ersättning för den skada han drabbas av p g a leveransförseningen,
+            se punkten 10.<br/>
+            F. Avser köpet en specialleverans som säljföretaget inte kan sälja utan väsentlig förlust
+            får köparen häva köpet endast om syftet med köpet är väsentligt förfelat genom förseningen
+            och säljföretaget insåg eller borde ha insett detta.<br/>
+            G. En konsument har rätt att hålla inne betalningen vid säljarens dröjsmål enligt 11 § KKL.<br/>
+            <span style="font-style: italic">H. En näringsidkare får häva köpet om säljföretaget förfarit vårdslöst och företaget inte
+            inom skälig tid, normalt en månad från en uppmaning att leverera, levererat bilen. Hävningsrätt
+            föreligger dock endast om förseningen är av väsentlig betydelse för näringsidkaren.</span><br/>
+            
+            </span>
+            <span style="font-weight:bold">5. Inbytesbil</span><br/>
+            <span>A. Köparen försäkrar att angiven inbytesbil inte har något av honom känt allvarligt fel och
+            att den är hans egendom utan annan inskränkning i äganderätten än som följer av att den
+            står som säkerhet för den skuld som anges i köpeavtalet. Om det visar sig att skulden är
+            högre än köparen har uppgivit sänks nettopriset på inbytesbilen med motsvarande
+            belopp.</span><br/>
+            <span>B. Inbytesbilen ska levereras i samma skick och med samma utrustning som vid värderingstillfället
+            om inte något annat har avtalats. Om inbytesbilen är i påtagligt annorlunda
+            skick kan säljföretaget kräva en omvärdering dock inte enbart p g a förändrad körsträcka
+            om denna understiger 200 mil från värderingstillfället. Avdrag görs i så fall med 3 kr per
+            mil, om inte annat belopp har avtalats. Parterna har också rätt att kräva omvärdering av
+            inbytesbilen om värdet av denna, direkt eller indirekt, påverkas genom ändringar i skatter
+            eller liknande myndighetsbeslut med mer än 2 %, dock minst 2 000 kr.
+            C. Köparen ska betala fordonsskatt, försäkringar och andra avgifter fram till dess att
+            inbytesbilen har överlämnats till säljföretaget. Säljföretaget har rätt till återstående skatt
+            om inte något annat har avtalats.</span><br/>
+            <span>6. Prisändring</span><br/>
+            <span>
+            A. Om skatter, tullar eller offentliga avgifter höjs efter avtalets tecknande och detta
+            påverkar det avtalade priset ska köparen betala ett pristillägg som motsvarar höjningen
+            om denna överstiger 500 kr. Sänkningar av skatter etc. ska komma köparen till godo
+            genom ett prisavdrag om sänkningen överstiger 500 kr.<br/>
+            B. Om köpet gäller en bil med ett avtalat pris på högst 7.5 prisbasbelopp har en konsument
+            rätt att frånträda avtalet utan kostnad om säljföretaget kräver att få ut mer av
+            höjningen än som motsvarar 2 % av det avtalade priset.<br/>
+            C. Om köpet gäller en bil med ett avtalat pris på mer än 7.5 prisbasbelopp har en konsument
+            rätt att frånträda avtalet utan kostnad om säljföretaget kräver att få ut mer av
+            höjningen än som motsvarar 4 % av det avtalade priset.<br/>
+            D. Vid en prishöjning av någon annan orsak som ligger utanför säljföretagets kontroll och
+            inte heller kunnat förutses och som inträffar mer än fyra månader från avtalets ingående
+            ska köparen betala ett pristillägg som motsvarar höjningen. En konsument har dock i ett
+            sådant fall rätt att frånträda köpet om pristillägget överstiger 2 %. Sänkning av priset ska
+            komma köparen till godo genom ett prisavdrag med motsvarande belopp.<br/>
+            E. Prishöjning får inte ske efter avtalad leveranstidpunkt i andra fall än där
+            leveransförseningen beror på orsaker utanför säljföretagets kontroll som företaget inte
+            skäligen kunde förväntas ha räknat med vid köpet och vars följder det inte heller skäligen
+            kunde ha undvikit eller övervunnit.<br/></span>
+            <span style="font-weight:bold">7. Felansvar</span><br/>
+            <span>
+            A. Säljföretaget ansvarar för fel på varan enligt KKL mot en konsument för de fel som
+            finns vid leveransen, t ex att bilen är i sämre skick än konsumenten med hänsyn till pris,
+            ålder och körsträcka med fog har kunnat förutsätta. Som fel räknas inte normalt slitage.
+            Fel som inträffar inom sex månader efter leveransen ska anses ha funnits vid leveransen
+            om säljföretaget inte kan visa något annat eller felet är oförenligt med bilens pris, ålder
+            och körsträcka eller felets art. För fel som upptäcks efter mer än sex månader svarar
+            säljföre- taget endast om konsumenten kan göra sannolikt att felet fanns vid leveransen
+            eller säl- jaren lämnat en särskild garanti, se punkten 16. En varudeklaration tillsammans
+            med bakomliggande utredning, t ex ett inbytestest, ska tillmätas betydelse för
+            bedömningen av om felet fanns vid leveransen.<br/>
+            <span style="font-style: italic">B. Gentemot näringsidkare svarar säljföretaget beträffande ny bil som sålts utan garanti
+            för tillverkningsfel som förelåg vid leveransen samt för fel som beror på vårdslöshet från
+            säljföretaget. För begagnad bil som sålts utan garanti svarar säljföretaget för att bilen vid
+            leveransen var trafiksäker samt att den inte var i väsentligt sämre skick än köparen med
+            fog kunnat förutsätta.</span><br/>      
+            
+            </span>
+            <span style="font-weight:bold">8. Reklamation</span><br/>
+            <span>
+            A. Vid fel på bilen bör köparen reklamera felet hos säljföretaget så snart som möjligt. En
+            reklamation ska göras inom skälig tid från det att en konsument har märkt eller borde ha
+            märkt felet. En reklamation som har gjorts inom två månader efter det att konsumenten
+            </span><br/>
+            <br/>
+            <span>F2A 02.2011 © Motorbranschkonsult AB</span>
+        </td>
+        <td width="50%">
+        <span>har märkt felet ska alltid anses ha kommit in i rätt tid. Konsumenten får inte reklamera
+        senare än tre år efter leveransdagen (vissa undantag finns i 24 § KKL).</span><br/>
+        <span style="font-style: italic">B. En näringsidkare ska reklamera ett fel inom två veckor från det han märkt eller bort
+        märka felet och inom två år från leveransdagen.
+        </span><br/>
+        <span style="font-weight:bold">9. Påföljder vid fel</span><br/>
+        <span>A. En konsument har rätt att välja avhjälpande eller omleverans om detta kan ske utan
+        oskäliga kostnader för säljföretaget.<br/>
+        B. Kräver konsumenten prisavdrag eller hävning har säljföretaget rätt att avhjälpa felet
+        eller omleverera om detta görs utan kostnad och väsentlig olägenhet för konsumenten.
+        Konsumenten behöver i normalfallet inte acceptera mer än två avhjälpningsförsök för
+        samma fel.<br/>
+        C. Om avhälpande eller omleverans inte kommer i fråga eller inte sker inom skälig tid efter
+        reklamationen eller inte kan ske utan väsentlig olägenhet för konsumenten får han kräva
+        prisavdrag som svarar mot felet eller häva köpet om felet är av väsentlig betydelse för
+        honom eller henne. Vid hävning ska konsumenten återlämna bilen mot att säljföretaget
+        återbetalar köpeskillingen och ränta på denna (Riksbankens referensränta + 2 % under
+        innehavstiden). Säljföretaget har rätt till ersättning för den nytta som konsumenten har
+        haft av bilen. Vid bedömningen av om konsumenten ska betala ersättning för nytta ska
+        hänsyn tas till de besvär och olägenheter konsumenten haft, t ex att han inte kunnat
+        använda bilen i normal omfattning. I normalfallet beräknas ersättning för nytta till summan
+        utav 0,5 % av köpeskillingen per månad sedan leveransen och 0,5 % av köpeskillingen
+        per körda 100 mil sedan leveransen. Konsumenten ska efter avräkning få minst ett belopp
+        som ger honom möjlighet att köpa en felfri bil som, beträffande standard och skick,
+        motsvarar den återlämnade bilen vid hävningstillfället.<br/>
+        D. Konsumenten har rätt till ersättning enligt punkt 10 för den skada han drabbas av
+        p g a fel. Vid hävning har han dock inte rätt till ersättning för besvär och olägenheter, om
+        dessa redan beaktas vid bedömningen av den nytta han har haft av bilen.
+        E. Konsumenten har rätt att hålla inne så mycket av betalningen som svarar mot hans
+        krav p g a felet.<br/>
+        <span style="font-style: italic">F. Om köparen är näringsidkare har säljföretaget rätt att avhjälpa eller omleverera. Om
+        detta blir oskäligt dyrt kan säljföretaget istället medge prisavdrag eller häva köpet.
+        Näringsidkaren har rätt att häva köpet om ett väsentligt fel kvarstår efter tre avhjälpningsförsök.
+        Hävs köpet utgår ingen ränta och har säljföretaget rätt att från köpeskillingen göra
+        avdrag för nytta med 0.5% av bilens pris per månad från leverans plus 0.5% av bilens pris
+        per körda 100 mil. Säljföretaget är dock aldrig skyldigt att betala mer för den återlämnade
+        bilen än marknadsvärdet för motsvarande bil i felfritt skick.</span><br/>
+        </span>
+        <span style="font-weight:bold">10. Köparens rätt till skadestånd</span><br/>
+        <span>A. En konsument har under de i 14 och 30-32 §§ KKL angivna förutsättningarna rätt till
+        ersättning för skada – t ex utgifter och förluster - som orsakas honom p g a att bilen är
+        felaktig eller genom säljarens dröjsmål. Skadeståndet omfattar dock inte ersättning för förlust
+        i näringsverksamhet. Konsumenten är skyldig att vidta skäliga åtgärder för att begränsa
+        sin skada.<br/>
+        <span style="font-style: italic">B. Näringsidkare har rätt till ersättning för den skada han drabbas av på grund av fel eller
+        leveransförsening om säljföretaget förfarit vårdslöst. Ersättning utgår endast för skäliga
+        utlägg men inte för förlust i näringsverksamhet eller skada på annat än bilen.</span>
+        </span><br/>
+        <span style="font-weight:bold">11. Skadestånd vid avbeställning från en konsument</span><br/>
+        <span>A. Har en beställning skett enligt punkten 2 B har konsumenten rätt att utan kostnad
+        avbeställa bilen innan avtalet har blivit bindande.<br/>
+        B. Avbeställer konsumenten bilen inom en vecka efter det att bindande avtal har ingåtts
+        har säljföretaget rätt till ersättning med 1,5 % av det avtalade priset, dock lägst 3 000 kr
+        för en ny bil och 1 500 kr för en begagnad bil. Har bilen försetts med extrautrustning ska
+        kon- sumenten dessutom ersätta säljföretaget för dess kostnader för på- och avmontering
+        av utrustningen och övriga kostnader med anledning av detta. Denna punkt gäller inte för
+        avbeställningar enligt punkten 11 E eller när prishöjningar skett enligt punkten 6.<br/>
+        C. Vid senare avbeställning har säljföretaget rätt till ersättning med 7 %, dock lägst 3 000
+        kr. Denna punkt gäller inte för avbeställningar enligt punkten 11 D och E.<br/>
+        D. Om köpet avser en bil som är av sådant slag att den inte utan betydande förluster kan
+        säljas till en annan köpare eller är bilen dyrare än 7,5 prisbasbelopp har säljföretaget vid
+        avbeställning eller hävning rätt till ersättning med 15 % av bilens pris om konsumenten
+        avbeställer bilen senare än en vecka efter det att avtalet blivit bindande.<br/>
+        E: Avser avbeställningen en bil vars pris är lägre än 7,5 prisbasbelopp eller ett fordon för
+        rörelsehindrade eller dylikt så har säljföretaget inte rätt till ersättning om orsaken till
+        avbeställningen eller dröjsmålet med betalningen är att konsumenten efter avtalets
+        ingående utan egen skuld råkat i varaktiga betalningssvårigheter genom t ex arbetslöshet,
+        sjukdom eller dödsfall och säljföretaget utan onödigt dröjsmål underrättas om avbeställningen.
+        Utöver detta gäller vad som anges i 41 § KKL.<br/>
+        </span>
+        <span style="font-weight:bold">12. Försening på köparens sida</span><br/>
+        <span>
+        A. Om bilen finns för avhämtning och en konsument inte betalar i rätt tid och dröjsmålet
+        inte beror på säljföretaget kan företaget kräva betalning och dröjsmålsränta enligt 6 §
+        räntelagen (1975:635). Säljföretaget kan häva köpet om konsumentens dröjsmål utgör ett
+        väsentligt avtalsbrott eller om konsumenten inte har betalat inom en av säljföretaget
+        bestämd skälig tilläggstid, normalt två veckor. Säljföretaget har vid hävning rätt till ersättning
+        med 10 % av det avtalade priset om inte något annat anges i punkten 11 D och E. <br/>
+        <span style="font-style: italic">B. Om en näringsidkare underlåter att fullfölja köpet kan säljföretaget antingen kräva
+        köpets fullgörande eller häva köpet och kräva ersättning med 18% av det avtalade priset
+        plus ersättning för av- och påmontering av extrautrustning och övriga kostnader med
+        anledning härav.<br/></span>
+        </span>
+        <span style="font-weight:bold">13. Registrering m m</span><br/>
+        <span>Om inte något annat har överenskommits ser säljföretaget till att bilen besiktigas, registreras
+        och försäkras. Kostnaderna för detta betalas av köparen och ska anges i köpeavtalet.
+        
+        </span><br/>
+        <span style="font-weight:bold">14. Återtagandeförbehåll</span><br/>
+        <span>Säljföretaget förbehåller sig rätten att återta den sålda bilen tills köparen har fullgjort
+        samtliga betalningar enligt detta avtal.</span><br/>
+        <span>15. Kreditköp</span><br/>
+        <span>Vid kreditköp utgår kreditkostnader i enlighet med vad som framgår av köpeavtalet.
+        Övriga kreditvillkor framgår av därtill bifogad handling och avbetalningskontrakt. 16.
+        Garantier Har säljföretaget lämnat en garanti ska en särskild garantihandling överlämnas
+        till
+        köparen.</span><br/>
+        <span style="font-weight:bold">17. Tvist</span><br/>
+        <span>
+        A. Om en tvist uppstår och parterna inte kan lösa den på egen hand kan en konsument
+        vända sig till den kommunala konsumentvägledningen, sin motororganisation eller till
+        Allmänna reklamationsnämnden (ARN). Tvister kan även prövas av allmän domstol.<br/>
+        <span>
+        <span style="font-style: italic">B. En näringsidkare kan endast få tvister prövade av allmän domstol. Gentemot
+        näringsidkare är säljföretagets ansvar begränsat till vad som ovan angivits.<br/></span>
+        </span>
+        </span>
+        <span style="font-weight:bold">MRFs kundskydd</span><br/>
+        <span>Under förutsättning att säljföretaget var anslutet till MRF när bilen levererades åtnjuter en
+        konsument MRFs kundskydd som innebär att MRF svarar för att konsumenten vid en tvist
+        erhåller den ersättning ARN rekommenderat. Skulle konsumenten inte godta ARNs
+        avgörande utan dra tvisten inför domstol bortfaller dock kundskyddet.</span><br/>
+        </td>
+
+    </tr>
+
+</table>
+
+
+
+</apex:component>

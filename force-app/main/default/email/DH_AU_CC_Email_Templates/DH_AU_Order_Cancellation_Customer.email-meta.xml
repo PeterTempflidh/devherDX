@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>n&apos;t reach on the phone to inform them that their order has been cancelled.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DH_AU_Letterhead</letterhead>
+    <name>DH AU Order Cancellation Customer</name>
+    <style>formalLetter</style>
+    <subject>Delivery Hero - Your order has been cancelled</subject>
+    <textOnly>Dear (Enter name of the Customer),
+
+Thank you for ordering with Delivery Hero.
+
+We regret to inform you that your order {!Case.Subject} from {!Case.CreatedDate} could not be transferred to the restaurant.
+
+Despite efforts we have been unable to reach you on the contact number provided.
+
+If you&apos;d like any more information on the matter please phone our friendly Customer Care Heroes on 1300 MY MEAL (1300 696 325).
+
+Kind Regards,
+
+The Delivery Hero Customer Care Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

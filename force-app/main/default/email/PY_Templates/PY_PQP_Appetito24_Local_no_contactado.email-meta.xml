@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>PY_Letterhead_Appetito24</letterhead>
+    <name>PY - PQP Appetito24 Local no contactado</name>
+    <style>freeForm</style>
+    <subject>Gracias por Contactarnos - # {!Case.CaseNumber}</subject>
+    <textOnly>Estimado XXX,
+
+En esta oportunidad nos comunicamos desde el departamento de Partner Quality de Appetito24. Intentamos contactarte con respecto al desempeño del local (Nombre del local), al teléfono (XXX), pero no tuvimos éxito.
+
+Te pedimos que por favor nos informes algún número telefónico alternativo y horario en el que pudiéramos llamarte, puedes contestar este correo o escribirnos a ordenespty@appetito24.com.
+
+
+Insistiremos en los intentos en los próximos días, sin embargo, en caso de no lograr establecer comunicación el perfil permanecerá cerrado en la plataforma.
+
+Adjuntamos folleto con las vías de contacto y manual de uso del Partner Portal.
+
+Quedamos a la espera de una respuesta.
+Saludos,</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

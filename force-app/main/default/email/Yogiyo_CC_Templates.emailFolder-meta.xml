@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>Yogiyo - CC Templates</name>
+    <publicFolderAccess>ReadOnly</publicFolderAccess>
+    <sharedTo>
+        <roleAndSubordinates>Yogiyo_Customer_Car_Management</roleAndSubordinates>
+        <roleAndSubordinates>Yogiyo_Local_Admin</roleAndSubordinates>
+    </sharedTo>
+</EmailFolder>

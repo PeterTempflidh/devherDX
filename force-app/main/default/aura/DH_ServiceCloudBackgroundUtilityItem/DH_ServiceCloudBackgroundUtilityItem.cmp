@@ -1,0 +1,4 @@
+<aura:component description="DH_ServiceCloudBackgroundUtilityItem" implements="lightning:backgroundUtilityItem" access="global">
+    <lightning:utilityBarAPI aura:id="utilitybar"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+</aura:component>

@@ -1,0 +1,189 @@
+<!--
+    Account clone component for DE_Account record type.
+    Display a list of fields that users are allowed to enter when cloning an
+    account.
+
+    This component assumes to be included inside an apex:form and that LDS
+    stylesheets is already available.
+-->
+<apex:component >
+    <apex:attribute name="clone" type="Account" required="true" description="Account to clone" />
+
+    <apex:attribute name="mode" type="String"  required="true" description="Account clone mode, based on this value some account fields could be displayed or not" />
+
+
+        <!-- MODE = Account Clone Branch to Branch Express
+                    Account Clone Branch to Branch Main
+                    Account Clone Branch to Branch Virtual
+                    Account Clone Group to Branch Express
+                    Account Clone Group to Branch Main
+                    Account Clone Group to Branch Virtual
+                    Account Clone Owner Change
+
+            Available fields are:
+
+                    Name
+                    Restaurant Name
+                    Cuisine
+                 -->
+
+
+         <apex:outputPanel layout="none" rendered="{!OR(mode = 'Account Clone Branch to Branch Express',mode = 'Account Clone Branch to Branch Main',mode = 'Account Clone Branch to Branch Virtual',mode = 'Account Clone Group to Branch Express',mode = 'Account Clone Group to Branch Main',mode = 'Account Clone Group to Branch Virtual',mode = 'Account Clone Owner Change')}">
+
+             <!-- main grid -->
+            <div class="slds-form-element__group">
+
+                <fieldset class="slds-form--compound">
+                    <legend class="slds-form-element__label slds-text-title--caps">Information</legend>
+                    <div class="slds-form-element__group slds-p-around--small">
+                        <div class="slds-form-element__row">
+                            <div class="slds-form-element slds-size--1-of-2">
+                                <label class="slds-form-element__label slds-truncate" for="{!$Component.input01}">
+                                    <abbr class="slds-required" title="required">*</abbr>
+                                    {!$ObjectType.Account.fields.name.label}
+                                </label>
+                                <apex:inputField id="input01" styleClass="slds-input" value="{!clone.Name}" />
+                            </div>
+
+                            <div class="slds-form-element slds-size--1-of-2">
+                                <label class="slds-form-element__label slds-truncate" for="{!$Component.input02}">
+                                    {!$ObjectType.Account.fields.Restaurant_Name__c.label}
+                                </label>
+                                <apex:inputField id="input02" styleClass="slds-input" value="{!clone.Restaurant_Name__c}" />
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="slds-form--compound slds-m-top--small">
+                    <legend class="slds-form-element__label slds-text-title--caps">Details</legend>
+                    <div class="slds-form-element__group slds-p-around--small">
+                        <div class="slds-form-element__row slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2">
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label slds-truncate" for="{!$Component.input08}">
+                                    {!$ObjectType.Account.fields.Cuisine__c.Label}
+                                </label>
+                                <div class="slds-form-element__control multiselectContainer">
+                                    <apex:inputField id="input08" value="{!clone.Cuisine__c}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+        </apex:outputPanel>
+        
+        <!-- MODE = Account Clone Legal Form Change
+
+            Available fields are:
+
+                    Name
+                    Restaurant Name
+                    Legal Form
+                    Cuisine
+                 -->
+        <apex:outputPanel layout="none" rendered="{!mode == 'Account Clone Legal Form Change'}">
+
+             <!-- main grid -->
+            <div class="slds-form-element__group">
+
+                <fieldset class="slds-form--compound">
+                    <legend class="slds-form-element__label slds-text-title--caps">Information</legend>
+                    <div class="slds-form-element__group slds-p-around--small">
+                        <div class="slds-form-element__row">
+                            <div class="slds-form-element slds-size--1-of-3">
+                                <label class="slds-form-element__label slds-truncate" for="{!$Component.input21}">
+                                    <abbr class="slds-required" title="required">*</abbr>
+                                    {!$ObjectType.Account.fields.name.label}
+                                </label>
+                                <apex:inputField html-data-required="true" id="input21" styleClass="slds-input" value="{!clone.Name}" />
+                            </div>
+
+                            <div class="slds-form-element slds-size--1-of-3">
+                                <label class="slds-form-element__label slds-truncate" for="{!$Component.input22}">
+                                    {!$ObjectType.Account.fields.Restaurant_Name__c.label}
+                                </label>
+                                <apex:inputField id="input22" styleClass="slds-input" value="{!clone.Restaurant_Name__c}" />
+                            </div> 
+                            
+                            <div class="slds-form-element slds-size--1-of-3">
+                                <label class="slds-form-element__label slds-truncate" for="{!$Component.input23}">
+                                    <abbr class="slds-required" title="required">*</abbr>
+                                    {!$ObjectType.Account.fields.Legal_form__c.label}
+                                </label>
+                                <apex:inputField id="input23" html-data-required="true" styleClass="slds-input" value="{!clone.Legal_form__c}" />
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="slds-form--compound slds-m-top--small">
+                    <legend class="slds-form-element__label slds-text-title--caps">Details</legend>
+                    <div class="slds-form-element__group slds-p-around--small">
+                        <div class="slds-form-element__row slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2">
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label slds-truncate" for="{!$Component.input08}">
+                                    {!$ObjectType.Account.fields.Cuisine__c.Label}
+                                </label>
+                                <div class="slds-form-element__control multiselectContainer">
+                                    <apex:inputField id="input24" value="{!clone.Cuisine__c}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+        </apex:outputPanel>
+
+        <!-- MODE = Account Clone Branch to Group
+                    Account Clone Brand to Group
+                    Account Clone Brand to Holding
+                    Account Clone Group to Brand
+                    Account Clone Group to Holding
+                    Account Clone Holding to Brand
+                    Account Clone Holding to Group
+                    Account Clone Holding to Regional/Global HQ
+
+                Available fields are:
+                    Name,
+                    Legal form
+                    -->
+
+        <apex:outputPanel layout="none" rendered="{!OR(mode = 'Account Clone Branch to Group',mode = 'Account Clone Brand to Group',mode = 'Account Clone Brand to Holding',mode = 'Account Clone Group to Brand',mode = 'Account Clone Group to Holding',mode = 'Account Clone Holding to Brand',mode = 'Account Clone Holding to Group',mode = 'Account Clone Holding to Regional/Global HQ')}">
+            <!-- main grid -->
+            <div class="slds-form-element__group">
+
+                <fieldset class="slds-form--compound">
+                    <legend class="slds-form-element__label slds-text-title--caps">Information</legend>
+                    <div class="slds-form-element__group slds-p-around--small">
+                        <div class="slds-form-element__row">
+                            <div class="slds-form-element slds-size--1-of-2">
+                                <label class="slds-form-element__label slds-truncate" for="{!$Component.input04}">
+                                    <abbr class="slds-required" title="required">*</abbr>
+                                    {!$ObjectType.Account.fields.name.label}
+                                </label>
+                                <apex:inputField id="input04" styleClass="slds-input" value="{!clone.Name}" />
+                            </div>
+
+                            <div class="slds-form-element slds-size--1-of-2">
+                                <label class="slds-form-element__label slds-truncate" for="{!$Component.input05}">
+                                    {!$ObjectType.Account.fields.Legal_form__c.label}
+                                </label>
+                                <apex:inputField id="input05" styleClass="slds-input" value="{!clone.Legal_form__c}" />
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </apex:outputPanel>
+
+
+            <script type="text/javascript">
+
+            if (typeof adjustMultiselectPicklist === "function") adjustMultiselectPicklist();
+
+            </script>
+
+</apex:component>

@@ -1,0 +1,11 @@
+<apex:page controller="ctrDH_AU_QuoteVFTemplate" showheader="false" sidebar="false" doctype="html-5.0" standardStylesheets="false">    
+    <!-- contract and products -->
+	<c:FI_Contract_Quote acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!NOT(prodOnly)}" />
+
+	<!-- products only -->
+	<c:FI_product_Quote acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!AND(prodOnly, NOT(premiumPlacement))}" />
+
+	<!-- Premium Placement Quote -->
+	<c:FI_PremiumPlacement_Quote acct="{!theOppQ.Id_Account__c}" oppQ="{!theOppQ.Id}" rendered="{!AND(premiumPlacement, prodOnly)}" />
+
+ </apex:page>

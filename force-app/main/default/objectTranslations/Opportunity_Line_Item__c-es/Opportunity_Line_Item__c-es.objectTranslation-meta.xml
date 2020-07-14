@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Articulos de la Oportunidad</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Articulos de Oportunidades</value>
+    </caseValues>
+    <fieldSets>
+        <label><!-- KR CustomReport --></label>
+        <name>KR_CustomReport</name>
+    </fieldSets>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>Opportunity Line Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Opportunity Line Item Name --></nameFieldLabel>
+    <recordTypes>
+        <label><!-- AT Opportunity Line Item --></label>
+        <name>AT_Opportunity_Line_Item</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- CD Opportunity Line Item --></label>
+        <name>CD_Opportunity_Line_Item</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DE Opportunity Line Item --></label>
+        <name>DE_Opportunity_Line_Item</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DH AU Opportunity Line Item --></label>
+        <name>DH_AU_Opportunity_Line_Item</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FI Opportunity Line Item --></label>
+        <name>FI_Opportunity_Line_Item</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FP Opportunity Line Item --></label>
+        <name>FP_Opportunity_Line_Item</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Hungary Opportunity Line Item --></description>
+        <label><!-- HU Opportunity Line Item --></label>
+        <name>HU_Opportunity_Line_Item</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PY Opportunity Line Item --></label>
+        <name>PY_Opportunity_Line_Item</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SE Opportunity Line Item --></label>
+        <name>SE_Opportunity_Line_Item</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Talabat Opportunity Line Item --></label>
+        <name>Talabat_Opportunity_Line_Item</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- UK Opportunity Line Item --></label>
+        <name>UK_Opportunity_Line_Item</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Yogiyo Opportunity Line Item --></label>
+        <name>Yogiyo_Opportunity_Line_Item</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- You are not allowed to select Premium Placement as a product. --></errorMessage>
+        <name>Global_Cannot_Select_PP_Manually</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You are not allowed to select Premium Placement as a product. --></errorMessage>
+        <name>Talabat_Cannot_Select_PP_Manually</name>
+    </validationRules>
+</CustomObjectTranslation>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Case_Status_To_New_Answer</fullName>
+        <field>Status</field>
+        <literalValue>New Answer</literalValue>
+        <name>Case Status To New Answer</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <targetObject>ParentId</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Closed_Reason_Successful</fullName>
+        <field>Closed_Reason__c</field>
+        <literalValue>Successful</literalValue>
+        <name>Closed Reason Successful</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <targetObject>ParentId</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Closed_case</fullName>
+        <field>Status</field>
+        <literalValue>Closed</literalValue>
+        <name>Closed case</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <targetObject>ParentId</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Owner_to_L1_Q</fullName>
+        <description>Change owner to Level 1 Queue</description>
+        <field>OwnerId</field>
+        <lookupValue>Level_1_Support_Queue</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Owner to L1 Q</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <targetObject>ParentId</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ToAddressUpdate</fullName>
+        <field>EmailToAddress__c</field>
+        <formula>LEFT(ToAddress,255)</formula>
+        <name>ToAddressUpdate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <targetObject>ParentId</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Description_from_Email_Body</fullName>
+        <description>Copies the Email Body to the Case&apos;s description field</description>
+        <field>Description</field>
+        <formula>TextBody</formula>
+        <name>Update Description from Email Body</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <targetObject>ParentId</targetObject>
+    </fieldUpdates>
+    <rules>
+        <fullName>FI %2F UK - Inbound - Update Case Description</fullName>
+        <actions>
+            <name>Update_Description_from_Email_Body</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>EmailMessage.Incoming</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>FI Inbound,UK Inbound</value>
+        </criteriaItems>
+        <description>SFS-4750 - Update Case Description with the text of the latest incoming email
+SP-1002 - Extended to cover UK Inbound as well</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>GLOBAL - Case To New Answer</fullName>
+        <actions>
+            <name>Case_Status_To_New_Answer</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>(1 AND 2 AND 5) OR (3 AND 4 AND 5) OR (4 and 5 and 6 and 7)</booleanFilter>
+        <criteriaItems>
+            <field>Case.IsClosed</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Yogiyo Inbound,Yogiyo Refund,Yogiyo Retention,Yogiyo Entry Case,Yogiyo Internal Case,SE Entry Case</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Global Support Case,SALESFORCE SUPPORT,DH AU Entry Case,DH AU Inbound,DH AU Internal Case,DH AU Retention,SE Inbound,FI Inbound,UK Inbound</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Status</field>
+            <operation>notEqual</operation>
+            <value>New</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>EmailMessage.Incoming</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>UK Internal Case</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Type</field>
+            <operation>equals</operation>
+            <value>Fraud</value>
+        </criteriaItems>
+        <description>If somebody send an email to a closed case the case will be opened with status &quot;new answer&quot;.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>GLOBAL - UpdateToAddressField</fullName>
+        <actions>
+            <name>ToAddressUpdate</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>CD Inbound Case,AT Internal Case,Talabat Inbound Case,PY Entry Case,PY Finance Case,PY Inbound Case,PY Internal Case,PY Restaurant Operations,AT Inbound case,FP Inbound Case,HU Inbound Case,YE Inbound Case</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>EmailMessage.Incoming</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.EmailToAddress__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <description>Used to be able to update fields that cannot be updated from Email to Case , such as Case Reason or any other field.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Salesforce - autoclose on reply</fullName>
+        <actions>
+            <name>Closed_Reason_Successful</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Closed_case</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>EmailMessage.Incoming</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>SALESFORCE SUPPORT</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>EmailMessage.FromAddress</field>
+            <operation>notEqual</operation>
+            <value>noreply.salesforce@deliveryhero.com</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Type</field>
+            <operation>notEqual</operation>
+            <value>Feature Request</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

@@ -1,0 +1,371 @@
+<apex:page controller="ctrDH_AU_QuoteVFTemplate" showheader="false" sidebar="false" standardStylesheets="false">
+<html>
+<head>
+<!--<c:DH_AU_Quote_CSS />-->
+<!--<style type="text/css">
+body         {
+       font-family: Arial, Helvetica, sans-serif;
+        font-size: 10pt;
+             }
+
+/*logo*/
+div.logo{
+            position:absolute; 
+            left:0px;
+            top:0px;
+            }
+            
+div.logo img{
+            width:120px;
+            }
+
+/*adress*/
+div.adress{
+            position:absolute; 
+            left:550px;
+            top:0px;
+            border-left:2px solid rgb(131,130,138);
+            color:rgb(131,130,138); 
+            text-align: left;
+            font-size: 7pt;
+            padding-left:10px;
+            }
+            
+div.adress b{
+            color:#c00000 !important;
+            }
+
+/*content*/
+div.content {
+            color:rgb(131,130,138); 
+            text-align: left;
+            
+            position:absolute;
+            top:150px;
+            width:100%; 
+            }
+            
+div.content table td.toptitle{
+            background-color:#c00000;
+            color:#fff;
+            padding:5px;
+            border:0px !important;
+            vertical-align:top;
+            }
+            
+div.content table.Details td{ 
+            padding: 4px;
+            }
+            
+div.content table.Details td.top{ 
+            border-color: #c00000;
+            border-style: solid ;
+            border-width: 1px 1px 0px 0px;
+            }
+div.content table.Details td.left{ 
+            border-color: #c00000;
+            border-style: solid ;
+            border-width: 0px 0px 0px 1px;
+            }
+div.content table.Details td.right{ 
+            border-color: #c00000;
+            border-style: solid ;
+            border-width: 0px 1px 1px 1px;
+            }
+div.content table.Details td.bottom{ 
+            border-color: #c00000;
+            border-style: solid ;
+            border-width: 1px 1px 1px 0px;
+            }
+
+div.content table.Agreement td{border-left:1px solid black;border-top:1px solid black;padding:5px;}
+div.content table.Agreement td:last-child{border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;padding:5px;}
+        </style>-->
+</head>
+<body style="font-family: Arial, Helvetica, sans-serif;font-size: 10pt;">
+<table width="100%">
+  <tr>
+    <td>
+      <div class="logo">
+          <img src="{!URLFOR($Resource.DH_AU_Logo)}" style="width:120px;"/>
+      </div>
+    </td>
+    <td valign="middle">
+      <div style="height: 90px;float:right;">
+        <div class="adress" style="width: 151px;height: 7px;border-left:2px solid rgb(131,130,138);color:rgb(131,130,138);text-align: left;font-size: 7pt;padding-left:10px;padding-bottom: 95px;"> 
+          <b style="color:#c00000 !important;">Delivery Hero Pty Ltd</b><br />
+          ABN: 26152250274<br />
+          <br />
+          M302 Broadway Shopping Centre<br />
+          1 Bay Street <br />
+          Ultimo NSW 2007, Australia<br />
+          <br />
+          T&nbsp;&nbsp;1300 696 325<br />
+          F&nbsp;&nbsp;8072 6865<br />
+          W&nbsp;&nbsp;www.deliveryhero.com.au<br />
+        </div>
+      </div>
+    </td>
+  </tr>
+</table><br />
+<div class="content" style="color:rgb(131,130,138);text-align: left;width:100%;">
+ <!-- <c:DH_AU_Quote acct="{!relatedTo.AccountId}" /> -->
+
+<!-- 
+     ++++++++++++++++++++++++++++++
+            Asset
+     ++++++++++++++++++++++++++++++
+-->
+<!--<h2>Products </h2>
+    <table border="0" width="100%" style="margin-top:20px;margin-bottom:50px;" cellspacing="0" cellpadding="0">
+    <tr>
+      <td style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;text-align:left">{!$ObjectType.List_Product_Price__c.fields.Product_Name__c.label}</td>
+      <td style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;text-align:right">{!$ObjectType.List_Product_Price__c.fields.List_Price__c.label}</td>
+      <td style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;text-align:right">{!$ObjectType.List_Product_Price__c.fields.List_Price__c.label}</td>
+      <td style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;text-align:right">{!$ObjectType.Opportunity_Product_Item__c.fields.Quantity__c.label}</td>
+      <td style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;text-align:right">{!$ObjectType.Opportunity_Product_Item__c.fields.Total_Amount__c.label}</td>
+    </tr>
+    <tr><td colspan="5">&nbsp;</td></tr>
+
+    <apex:repeat value="{!relatedTo.Opportunity_Product_Items__r}" var="record">  
+    <tr style="text-align:right;padding:5px;">
+      <td style="text-align:left"><apex:outputField value="{!record.name}" /></td>
+      <td><apex:outputField value="{!record.Listed_Price__c}" /></td>
+      <td><apex:outputField value="{!record.Listed_Price__c}" /></td>
+      <td><apex:outputField value="{!record.Quantity__c}" /></td>
+      <td><apex:outputField value="{!record.Total_Amount__c}" /></td>
+    </tr>
+   </apex:repeat> 
+
+
+    <tr><td colspan="5" style="border-bottom:1px solid rgb(131,130,138);">&nbsp;</td></tr>
+    <tr><td colspan="5">&nbsp;</td></tr>
+   
+    <tr style="text-align:right;padding:5px;">
+      <td></td>
+      <td style="font-weight:bold;">Total Price</td>
+      <td><apex:outputField value="{!relatedTo.Subtotal__c}" /></td>
+      <td colspan="2"></td>
+    </tr>
+    <tr style="text-align:right;padding:5px;">
+      <td></td>
+      <td style="font-weight:bold;">Tax</td>
+      <td><apex:outputField value="{!relatedTo.VAT__c}" /></td>
+      <td colspan="2"></td>
+    </tr>
+    <tr style="text-align:right;padding:5px;">
+      <td></td>
+      <td style="font-weight:bold;">Grand Total</td>
+      <td><apex:outputField value="{!relatedTo.Total__c}" /></td>
+      <td colspan="2"></td>
+    </tr>
+    </table> -->
+<!-- 
+     ++++++++++++++++++++++++++++++
+            Asset
+     ++++++++++++++++++++++++++++++
+-->
+
+<!-- 
+     ++++++++++++++++++++++++++++++
+            Service
+     ++++++++++++++++++++++++++++++
+-->
+<c:DH_AU_Quote_Service acct="{!theOppQ.Id_Account__c}" />
+<br /><br />
+<table border="0" width="100%" style="margin-top:20px;" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="20%" valign="top" style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;">Participant Restaurant Agreement Details</td>
+    </tr>
+    <tr>
+      <td style="padding:5px;">
+        This communication is known as the Participant Restaurant Agreement Details, and confirms the formation of an agreement between Delivery Hero Pty Ltd (“<b>DH</b>”) and {!theOppQ.Id_Account__r.Name} (“<b>Participant Restaurant</b>”). This agreement comprises the following documents:<br /><br />
+        a) these Participant Restaurant Agreement Details; and<br /><br />
+        b) the Delivery Hero Participant Restaurant Terms and Conditions (“<b>PRT&amp;C</b>”), available online at http://www.deliveryhero.com.au/contractterms/.<br /><br />
+        By using the Services, the Participant Restaurant agrees to be legally bound by the Participant Restaurant Agreement Details and PRT&amp;C.<br /><br />
+      </td>
+    </tr>
+    <tr>
+      <td width="20%" valign="top" style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;">Agreement Details</td>
+    </tr>
+    <tr>
+      <td style="padding:5px;">
+        DH and Participant Restaurant agree that the following details apply to the agreement, as referred to in the PRT&amp;C:<br /><br />
+      </td>
+    </tr>
+    </table>
+
+    <table style="border:0px;" width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="50%" style="border-left:1px solid black;border-top:1px solid black;padding:5px;" valign="top">Success Fee (excl. GST):</td>
+      <td width="50%" style="border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;padding:5px;" valign="top">&nbsp;<apex:outputField value="{!theOppQ.Id_Opportunity__r.Main_Commission_Fee__c}" /></td>
+    </tr>
+    <!-- <tr>
+      <td width="50%" style="border-left:1px solid black;border-top:1px solid black;padding:5px;" valign="top">One-time setup fee (excl. GST):</td>
+      <td width="50%" style="border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;padding:5px;" valign="top">&nbsp;<apex:outputField value="{!relatedTo.Set_Up_Fee__c}" /></td>
+    </tr> -->
+   <!-- <tr>
+      <td width="50%" style="border-left:1px solid black;border-top:1px solid black;padding:5px;" valign="top">Success Fee (excl. GST):</td>
+      <td width="50%" style="border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;padding:5px;" valign="top">[Drop down: Email, Post]</td>
+    </tr> -->
+    <tr>
+      <td width="50%" style="border-left:1px solid black;border-top:1px solid black;padding:5px;" valign="top">Invoice transmission method:</td>
+      <td width="50%" style="border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;padding:5px;" valign="top">&nbsp;<apex:outputField value="{!theOppQ.Id_Opportunity__r.Invoice_Transmission_method__c}" /></td>
+    </tr>
+    <!-- <tr>
+      <td width="50%" style="border-left:1px solid black;border-top:1px solid black;padding:5px;" valign="top">Express Printer</td>
+      <td width="50%" style="border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;padding:5px;" valign="top">&nbsp;[Drop down: To Be Provided / Not Required] </td>
+    </tr> -->
+    <!-- <tr>
+      <td width="50%" style="border-left:1px solid black;border-top:1px solid black;padding:5px;" valign="top">Deposit for Express Printer (if provided):</td>
+      <td width="50%" style="border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;padding:5px;" valign="top">[Deposit] </td>
+    </tr> -->
+    <!-- <tr>
+      <td width="50%" style="border-left:1px solid black;border-top:1px solid black;padding:5px;" valign="top">Order transmission fee (excl. GST):</td>
+      <td width="50%" style="border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;padding:5px;" valign="top">&nbsp;<apex:outputField value="{!relatedTo.Main_Order_Transmission_Fee__c}" /></td>
+    </tr> -->
+    <!-- <tr>
+      <td width="50%" style="border-left:1px solid black;border-top:1px solid black;padding:5px;" valign="top">Online payment fee (excl. GST) (does not apply to cash orders):</td>
+      <td width="50%" style="border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;padding:5px;" valign="top">&nbsp;<apex:outputField value="{!relatedTo.Main_Online_Payment_Fee__c}" /></td>
+    </tr>
+     <tr>
+      <td width="50%" style="border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;padding:5px;" valign="top">Other Conditions:</td>
+      <td width="50%" style="border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;border-bottom:1px solid black;padding:5px;" valign="top">&nbsp;<apex:outputField value="{!relatedTo.Quote_Comment__c}" /></td>
+    </tr> -->
+    <tr>
+      <td width="50%" style="border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;padding:5px;" valign="top">Online payment fee (excl. GST) (does not apply to cash orders):</td>
+      <td width="50%" style="border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;border-bottom:1px solid black;padding:5px;" valign="top">&nbsp;<apex:outputField value="{!theOppQ.Id_Opportunity__r.Main_Online_Payment_Fee__c}" /></td>
+    </tr>
+    </table>
+    <br />
+    
+    
+    <table border="0" width="100%" style="margin-top:20px;margin-bottom:50px;" cellspacing="0" cellpadding="0">
+    <tr>
+      <td style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;text-align:left">{!$ObjectType.List_Product_Price__c.fields.Product_Name__c.label}</td>
+      <td style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;text-align:right">{!$ObjectType.List_Product_Price__c.fields.List_Price__c.label}</td>
+      <!--<td style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;text-align:right">{!$ObjectType.List_Product_Price__c.fields.List_Price__c.label}</td> -->
+      <td style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;text-align:right">{!$ObjectType.Opportunity_Line_Item__c.fields.Quantity__c.label}</td>
+      <td style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;text-align:right">{!$ObjectType.Opportunity_Line_Item__c.fields.Total_Amount__c.label}</td>
+    </tr>
+    <tr><td colspan="5">&nbsp;</td></tr>
+
+    <apex:repeat value="{!oppProdItems}" var="oppProd">  
+    <tr style="text-align:right;padding:5px;">
+      <td style="text-align:left"><apex:outputField value="{!oppProd.name}" /></td>
+      <td><apex:outputField value="{!oppProd.Listed_Price__c}" /></td>
+      <!-- <td><apex:outputField value="{!record.Listed_Price__c}" /></td> -->
+      <td><apex:outputField value="{!oppProd.Quantity__c}" /></td>
+      <td><apex:outputField value="{!oppProd.Total_Amount__c}" /></td>
+    </tr>
+   </apex:repeat> 
+
+
+    <tr><td colspan="5" style="border-bottom:1px solid rgb(131,130,138);">&nbsp;</td></tr>
+    <tr><td colspan="5">&nbsp;</td></tr>
+   
+    <tr style="text-align:right;padding:5px;">
+      <td></td>
+      <td style="font-weight:bold;">Total Price</td>
+      <td><apex:outputField value="{!theOppQ.SubTotalRF__c}" /></td>
+      <td colspan="2"></td>
+    </tr>
+    <tr style="text-align:right;padding:5px;">
+      <td></td>
+      <td style="font-weight:bold;">Tax</td>
+      <td><apex:outputField value="{!theOppQ.VAT_fm__c}" /></td>
+      <td colspan="2"></td>
+    </tr>
+    <tr style="text-align:right;padding:5px;">
+      <td></td>
+      <td style="font-weight:bold;">Grand Total</td>
+      <td><apex:outputField value="{!theOppQ.Total_fm__c}" /></td>
+      <td colspan="2"></td>
+    </tr>
+    </table>
+    <br />
+    
+    
+    
+    <b>No cancellation fees, no minimum contract period</b>
+
+    <table border="0" width="100%" style="margin-top:20px;" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="20%" valign="top" style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;">Invoicing Period</td>
+      <td width="20%" valign="top" style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;">Processing Time</td>
+      <td width="20%" valign="top" style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;">Payment</td>
+    </tr>
+      <tr>
+      <td class="DHAUInvoicingBorder" width="20%" valign="top" style="padding:5px;border-left:1px solid #c00000;border-bottom:1px solid #c00000;border-right:1px solid #c00000;">{!theOppq.Id_Account__r.Invoice_Frequency__c}</td>
+      <td class="DHAUInvoicingBorderCentre" width="20%" valign="top" style="padding:5px;border-bottom:1px solid #c00000;">
+      {!if(theOppq.Id_Account__r.Invoice_Frequency__c == 'Weekly', $Label.DH_AU_Weekly_ProcessingTime, if(theOppq.Id_Account__r.Invoice_Frequency__c== 'Monthly', $Label.DH_AU_Monthly_ProcessTime, $Label.DH_AU_Bi_monthly_ProcessingTime  ))}</td>
+      <td class="DHAUInvoicingBorder" width="20%" valign="top" style="padding:5px;border-left:1px solid #c00000;border-bottom:1px solid #c00000;border-right:1px solid #c00000;">  {!if(theOppq.Id_Account__r.Invoice_Frequency__c == 'Weekly', $Label.DH_AU_Weekly_Payment, if(theOppq.Id_Account__r.Invoice_Frequency__c  == 'Monthly', $Label.DH_AU_Monthly_Payment, $Label.DH_AU_Bi_monthly_Payment  ))}</td>
+    </tr>
+    <!--<tr>
+      <td class="DHAUInvoicingBorder" width="20%" valign="top" style="padding:5px;border-left:1px solid #c00000;border-bottom:1px solid #c00000;border-right:1px solid #c00000;">1st - 15th</td>
+      <td class="DHAUInvoicingBorderCentre" width="20%" valign="top" style="padding:5px;border-bottom:1px solid #c00000;">Up to 3 business days after the 16th</td>
+      <td class="DHAUInvoicingBorder" width="20%" valign="top" style="padding:5px;border-left:1px solid #c00000;border-bottom:1px solid #c00000;border-right:1px solid #c00000;">Expect by 22nd at latest</td>
+    </tr>
+    <tr>
+      <td class="DHAUInvoicingBorder" width="20%" valign="top" style="padding:5px;border-left:1px solid #c00000;border-bottom:1px solid #c00000;border-right:1px solid #c00000;">16th - last day of month</td>
+      <td class="DHAUInvoicingBorderCentre" width="20%" valign="top" style="padding:5px;border-bottom:1px solid #c00000;">Up to 3 business days after the 1st</td>
+      <td class="DHAUInvoicingBorder" width="20%" valign="top" style="padding:5px;border-left:1px solid #c00000;border-bottom:1px solid #c00000;border-right:1px solid #c00000;">Expect by 7th of the following month at latest</td>
+    </tr>-->
+    </table>
+
+    <table border="0" width="100%" style="margin-top:20px;" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="20%" valign="top" style="background-color:#c00000;color:#fff;padding:5px;border:0px !important;">Brief summary of commercial PRT&amp;C terms</td>
+    </tr>
+    <tr>
+      <td style="padding:5px;">
+      For the convenience of the Participant Restaurant, below is a brief summary of some of the commercial terms of the PRT&amp;C. <b><u>This summary does not state the terms of the agreement.</u></b> The Participant Restaurant must review the PRT&amp;C in full. The Participant Restaurant acknowledges that it has reviewed the complete PRT&amp;C, and agrees that nothing in the summary below limits or prevails over any term or condition stated in the PRT&amp;C. In the summary below, terms that start with a capital letter (eg “Menu”, “Restaurant Produce”) have the specific meanings given to them in the PRT&amp;C.
+      <br /><br />
+
+      1. There is no minimum term of the agreement. Either party may cancel by giving 14 days’ notice in writing to the other party.<br /><br />
+      2. The Participant Restaurant must provide its Menu to DH, and assumes full responsibility for the accuracy of that Menu. The Menu must list all prices, and those prices must not be any higher than the lowest prices the Participant Restaurant would charge if the same Restaurant Produce was ordered online, in store, by telephone, or by any other means.<br /><br />
+      3. DH will list the Menu on its Service Portals (eg, its website and smartphone apps).<br /><br />
+      4. Customers may place Orders for Restaurant Produce (ie, food and beverages) listed on a Menu using the Service Portals.<br /><br />
+      5. At the time of placing an Order, a Customer may pay the Order Price to DH using online payment facilities provided by DH.<br /><br />
+      6. DH will communicate each Order to the Participant Restaurant, and, using the Services (ie, the DH system) the Participant Restaurant must indicate to the Customer if it accepts the Order.<br /><br />
+      7. When a Participant Restaurant accepts an Order, a separate contract is formed between the Customer and the Participant Restaurant, pursuant to which the Participant Restaurant is obliged to provide the Restaurant Produce to the Customer.<br /><br />
+      8. The Participant Restaurant is solely responsible for the supply of Restaurant Produce to the Customer, including for the accurate fulfilment of the Order, the quality of that Restaurant Produce, and ensuring that Restaurant Produce complies with all laws and regulations, including food safety regulations and guidelines.<br /><br />
+      9. DH does not act as an agent or representative of the Participant Restaurant or Customer. The DH Services provide Menu publication, communication and online payment facilities only, and DH does not produce or have any responsibility for Restaurant Produce.<br /><br />
+      10. The Participant Restaurant grants a licence to DH to use any material in which it owns intellectual property rights, including the Participant Restaurant’s name, logo and Menus, for the purpose of providing the Services and for the general promotion of the Participant Restaurant and the Services.<br /><br />
+      11. Unless otherwise agreed, DH’s licence to use material of the Participant Restaurant includes a right to register domain names, on google maps, google locations or any other third party directory websites or services, and operate websites incorporating the Participant Restaurant’s name, for the purpose of promoting the sale of Restaurant Produce using the Services.<br /><br />
+      12. DH is entitled to payment of the Success Fee for each Order placed using the Services.<br /><br />
+      13. The Participant Restaurant assumes all responsibility for, and will indemnify DH against, any claims made by a Customer (except to the extent the claim is caused by DH), or that relate in any way to the Restaurant Produce or late delivery of the Restaurant Produce.<br /><br />
+      14. DH may vary the terms of the PRT&amp;C at any time by posting the revised terms on the DH website.<br /><br />
+      15. DH may vary the terms of the Participant Restaurant Agreement Details at any time by giving 7 days’ notice in writing. If the Participant Restaurant does not accept the revised terms, it may terminate the agreement immediately by notice in writing.<br /><br />
+
+      </td>
+    </tr>
+    </table>
+<!-- 
+     ++++++++++++++++++++++++++++++
+            Service
+     ++++++++++++++++++++++++++++++
+-->
+
+
+
+<!--<ul style="margin-top:30px;margin-bottom:30px;">
+<li>A non-refundable $90 (excl. GST) deposit will be charged by NSD Print on the initial order confirmation</li>
+<li>Total Amount less the deposit will be charged by NSD Print upon approval of final artwork for printing</li>
+<li>Full Colour on 130g Gloss Art. A4 (297x210mm) DL 6pp</li>
+<li>Price includes design, delivery and up to 2 rounds of amendments</li>
+<li>Delivery will take up to 10 business days after final approval</li>
+</ul>
+Payment to NSD Print can be made by VISA/Mastercard (your details will be taken by NSD Print over the phone),<br />
+or by bank transfer (BSB: 112-879, Account #: 484582261, Account Name: NSD Print)<br /><br /><br /><br /><br /> -->
+
+Sincerely,<br />
+Your Delivery Hero Team
+<!-- end -->
+
+
+  </div>
+
+   </body>
+</html>
+</apex:page>

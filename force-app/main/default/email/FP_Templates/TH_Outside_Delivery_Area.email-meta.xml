@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>TH Outside Delivery Area</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>TH Outside Delivery Area</name>
+    <style>freeForm</style>
+    <subject>ร้านอยู่นอกพื้นที่จัดส่ง Outside Delivery Area</subject>
+    <textOnly>เรียน {!Lead.Salutation} {!Lead.Name}
+
+ ทางเราขอพระขอบคุณที่ท่านให้ความสนใจในการเข้าร่วมเป็นพาร์ทเนอร์
+ร้านอาหารกับ foodpanda
+
+
+หลังจากที่ทางเราทำการตรวจสอบใบสมัครของท่านอย่างละเอียดแล้ว 
+ทางเราขอแจ้งให้ทราบว่า foodpanda ไม่สามารถที่จะดำเนินการจัดส่ง
+อาหารของท่านได้เนื่องจากอยู่นอกพื้นที่ให้บริการจัดส่ง
+
+ทางเราจะติดต่อกลับไปหากมีการเปลี่ยนแปลงในอนาคตที่ทำให้เรา
+สามารถร่วมเป็นพาร์ทเนอร์กันได้
+
+
+ด้วยความเคารพ
+
+ทีมงาน foodpanda
+
+
+
+Dear {!Lead.Salutation} {!Lead.Name},
+
+Thank you for writing to foodpanda, and for your interest in 
+partnering with us.
+
+After having analyzed your application carefully, we regret to 
+inform you that we would not be able to proceed with a Delivery 
+partnership with your business currently due to limited delivery 
+areas.
+
+If it becomes possible in the future, for us to work together, we 
+will certainly get in touch with you.
+
+
+Thanks and regards,
+
+foodpanda team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>
