@@ -5,6 +5,8 @@
 * @description Ticket SC-547
 * This schedulable class removes all the ConversationContextEntry records which are older than 30 days
 * and removes all the LiveChatTranscriptEvent records which are older than 180 days
+*
+* Tests in UnitTestScheduleDeleteChatTranscript
 */
 
 public with sharing class ScheduleDeleteChatTranscriptRelated implements Schedulable {
@@ -23,13 +25,14 @@ public with sharing class ScheduleDeleteChatTranscriptRelated implements Schedul
             ConversationContextEntry[] cceList = [SELECT Id
                                                     FROM ConversationContextEntry
                                                     WHERE CreatedDate < LAST_N_DAYS:30
-                                                    LIMIT 10000];
+                                                    LIMIT 5000];
             
             if (!cceList.isEmpty()) {
                 Database.DeleteResult[] deleteResultList = Database.delete(cceList, false);
-                logError(deleteResultList);
+                Boolean isError = logError(deleteResultList);
+                if (isError) return;
 
-                if (!Test.isRunningTest()) {
+                 if (!Test.isRunningTest()) {
                     System.enqueueJob(new DeleteConversationContextEntry());
                 }
             }
@@ -44,11 +47,12 @@ public with sharing class ScheduleDeleteChatTranscriptRelated implements Schedul
             LiveChatTranscriptEvent[] lcteList = [SELECT Id
                                                     FROM LiveChatTranscriptEvent
                                                     WHERE CreatedDate < LAST_N_DAYS:180
-                                                    LIMIT 10000];
+                                                    LIMIT 5000];
             
             if (!lcteList.isEmpty()) {
                 Database.DeleteResult[] deleteResultList = Database.delete(lcteList, false);
-                logError(deleteResultList);
+                Boolean isError = logError(deleteResultList);
+                if (isError) return;
 
                 if (!Test.isRunningTest()) {
                     System.enqueueJob(new DeleteLiveChatTranscriptEvent());
@@ -57,10 +61,15 @@ public with sharing class ScheduleDeleteChatTranscriptRelated implements Schedul
         }        
     }
 
+    /*
+    * Logs errors if there are any, returns true if there is an error
+    */
+    private static Boolean logError(Database.DeleteResult[] deleteResultList) {
+        Boolean isError = false;
 
-    private static void logError(Database.DeleteResult[] deleteResultList) {
         for (Database.DeleteResult res : deleteResultList) {
             if (!res.isSuccess()) {
+                isError = true;
                 String errorMessages = '';
                 for (Database.Error err : res.getErrors()) {
                     errorMessages += ' ' + err.getMessage();
@@ -72,6 +81,7 @@ public with sharing class ScheduleDeleteChatTranscriptRelated implements Schedul
             }
         }
         LoggingUtility.commitLogs();
+        return isError;
     }
 
 }
