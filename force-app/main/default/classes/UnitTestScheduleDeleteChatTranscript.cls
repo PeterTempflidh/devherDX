@@ -74,5 +74,4 @@ public with sharing class UnitTestScheduleDeleteChatTranscript {
         system.assertEquals(1, [SELECT COUNT() FROM ConversationContextEntry]);
         system.assertEquals(1, [SELECT COUNT() FROM LiveChatTranscriptEvent]);
     }
-
 }

@@ -9,14 +9,36 @@
 * Tests in UnitTestScheduleDeleteChatTranscript
 */
 
-public with sharing class ScheduleDeleteChatTranscriptRelated implements Schedulable {
+public with sharing class ScheduleDeleteChatTranscriptRelated implements Schedulable, Database.Batchable<SObject> {
     
-    public void execute(SchedulableContext sc) {
-        System.enqueueJob(new DeleteConversationContextEntry());
-        System.enqueueJob(new DeleteLiveChatTranscriptEvent());
+    private String q;
+
+    public ScheduleDeleteChatTranscriptRelated() {}
+
+    public ScheduleDeleteChatTranscriptRelated(Schema.SObjectType soType, Integer lastNDays) {
+        this.q = 'SELECT Id FROM '
+                + soType.getDescribe().getName()
+                + ' WHERE CreatedDate < LAST_N_DAYS:' + lastNDays;
     }
 
-    public class DeleteConversationContextEntry implements Queueable {
+    public void execute(SchedulableContext sc) {
+        Database.executeBatch(new ScheduleDeleteChatTranscriptRelated(ConversationContextEntry.SObjectType, 30));  
+        Database.executeBatch(new ScheduleDeleteChatTranscriptRelated(LiveChatTranscriptEvent.SObjectType, 180));  
+    }
+
+    public Database.QueryLocator start(Database.BatchableContext BC) {
+        return Database.getQueryLocator(this.q); 
+    }
+
+    public void execute(Database.BatchableContext BC, List<sObject> scope) {
+        Database.DeleteResult[] deleteResultList = Database.delete(scope, false);
+        logError(deleteResultList);
+    }
+
+    public void finish(Database.BatchableContext BC) {
+
+    }
+    /*public class DeleteConversationContextEntry implements Queueable {
         
         public DeleteConversationContextEntry() {}
 
@@ -60,16 +82,15 @@ public with sharing class ScheduleDeleteChatTranscriptRelated implements Schedul
             }
         }        
     }
+    */
 
     /*
     * Logs errors if there are any, returns true if there is an error
     */
-    private static Boolean logError(Database.DeleteResult[] deleteResultList) {
-        Boolean isError = false;
+    private static void logError(Database.DeleteResult[] deleteResultList) {
 
         for (Database.DeleteResult res : deleteResultList) {
             if (!res.isSuccess()) {
-                isError = true;
                 String errorMessages = '';
                 for (Database.Error err : res.getErrors()) {
                     errorMessages += ' ' + err.getMessage();
@@ -81,7 +102,6 @@ public with sharing class ScheduleDeleteChatTranscriptRelated implements Schedul
             }
         }
         LoggingUtility.commitLogs();
-        return isError;
     }
 
 }
