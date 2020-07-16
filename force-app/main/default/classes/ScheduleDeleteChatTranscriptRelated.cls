@@ -16,6 +16,9 @@ public with sharing class ScheduleDeleteChatTranscriptRelated implements Schedul
     public ScheduleDeleteChatTranscriptRelated() {}
 
     public ScheduleDeleteChatTranscriptRelated(Schema.SObjectType soType, Integer lastNDays) {
+        if (soType != ConversationContextEntry.SObjectType && soType != LiveChatTranscriptEvent.SObjectType) system.assert(false, 'This SObject is not allowed to delete.');
+        if (lastNDays != 30 && lastNDays != 180) system.assert(false, 'This time range is not allowed.');
+
         this.q = 'SELECT Id FROM '
                 + soType.getDescribe().getName()
                 + ' WHERE CreatedDate < LAST_N_DAYS:' + lastNDays;
@@ -38,51 +41,6 @@ public with sharing class ScheduleDeleteChatTranscriptRelated implements Schedul
     public void finish(Database.BatchableContext BC) {
 
     }
-    /*public class DeleteConversationContextEntry implements Queueable {
-        
-        public DeleteConversationContextEntry() {}
-
-        public void execute(System.QueueableContext ctx) {
-
-            ConversationContextEntry[] cceList = [SELECT Id
-                                                    FROM ConversationContextEntry
-                                                    WHERE CreatedDate < LAST_N_DAYS:30
-                                                    LIMIT 5000];
-            
-            if (!cceList.isEmpty()) {
-                Database.DeleteResult[] deleteResultList = Database.delete(cceList, false);
-                Boolean isError = logError(deleteResultList);
-                if (isError) return;
-
-                 if (!Test.isRunningTest()) {
-                    System.enqueueJob(new DeleteConversationContextEntry());
-                }
-            }
-        }        
-    }
-
-    public class DeleteLiveChatTranscriptEvent implements Queueable {
-        
-        public DeleteLiveChatTranscriptEvent() {}
-
-        public void execute(System.QueueableContext ctx) {
-            LiveChatTranscriptEvent[] lcteList = [SELECT Id
-                                                    FROM LiveChatTranscriptEvent
-                                                    WHERE CreatedDate < LAST_N_DAYS:180
-                                                    LIMIT 5000];
-            
-            if (!lcteList.isEmpty()) {
-                Database.DeleteResult[] deleteResultList = Database.delete(lcteList, false);
-                Boolean isError = logError(deleteResultList);
-                if (isError) return;
-
-                if (!Test.isRunningTest()) {
-                    System.enqueueJob(new DeleteLiveChatTranscriptEvent());
-                }
-            }
-        }        
-    }
-    */
 
     /*
     * Logs errors if there are any, returns true if there is an error
