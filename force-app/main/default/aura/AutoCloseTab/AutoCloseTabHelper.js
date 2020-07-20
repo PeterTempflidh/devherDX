@@ -53,6 +53,7 @@
                 break;
             }
         }
+        if (!firstVisitorMessageTime) return;
 
         if((result.messages[result.messages.length-1].timestamp) - firstVisitorMessageTime>29000){
             var action = component.get("c.sendSurvey");
