@@ -43,6 +43,9 @@
     },
     sendSurvey: function(component,event,helper,result){
         //Trigger action only if the chat is greater than 30 secs and has a response from the visitor
+
+        if (!result.messages || result.messages.length == 0) return; // in this case there are no messages
+
         var firstVisitorMessageTime;
         for(var i=0;i<result.messages.length;i++){
             if(result.messages[i].type=='EndUser'){
@@ -50,6 +53,7 @@
                 break;
             }
         }
+
         if((result.messages[result.messages.length-1].timestamp) - firstVisitorMessageTime>29000){
             var action = component.get("c.sendSurvey");
             action.setParams({ recId : component.get("v.recordId")});
