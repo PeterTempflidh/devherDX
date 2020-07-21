@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_name_shall_not_be_empty</fullName>
+    <active>true</active>
+    <description>Product name shall not be empty</description>
+    <errorConditionFormula>ISBLANK( Product_Name__c )</errorConditionFormula>
+    <errorMessage>Product name is required</errorMessage>
+</ValidationRule>

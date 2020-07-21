@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Contact Opt-in --></label>
+    <name>Contact_Opt_in__c</name>
+    <picklistValues>
+        <masterLabel>Invoice via Email</masterLabel>
+        <translation>számlázás emailben</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Invoice via Letter</masterLabel>
+        <translation>számlázás levélben</translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Number_of_Copies_SUM__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE( Number_of_Copies__c ,
+&quot;100K&quot;, 100000,
+&quot;200K&quot;, 200000,
+&quot;175K&quot;,175000,
+&quot;150K&quot;,150000,
+&quot;120K&quot;,125000,
+&quot;10K&quot;,10000,
+&quot;50K&quot;,50000,
+&quot;25K&quot;,25000,
+&quot;5K&quot;,5000,
+0)</formula>
+    <label>Number of Copies SUM</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FI_Quality_Check</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6</booleanFilter>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>Due_Date__c</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Legal_Name__c</columns>
+    <columns>Comments_del__c</columns>
+    <columns>Opportunity__c</columns>
+    <columns>CASES.CREATED_DATE_DATE_ONLY</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>CASES.SUBJECT</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.FI_Internal_Case</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Quality Check</value>
+    </filters>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>notEqual</operation>
+        <value>Closed</value>
+    </filters>
+    <filters>
+        <field>Opportunity__c</field>
+        <operation>notContain</operation>
+        <value>Premium placement,Premium</value>
+    </filters>
+    <filters>
+        <field>Restaurant_Name__c</field>
+        <operation>notContain</operation>
+        <value>test FI feng</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>notEqual</operation>
+        <value>FI Finance Team</value>
+    </filters>
+    <label>FI - Quality Check</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>SE_FI_Operations</group>
+        <role>FI_Management</role>
+        <role>FI_Sales_Team</role>
+        <roleAndSubordinates>FI_Management</roleAndSubordinates>
+    </sharedTo>
+</ListView>

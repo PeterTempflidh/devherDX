@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DE_CC_Logistics_Returned</fullName>
+    <booleanFilter>1 AND 2 and 3</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Status__c</columns>
+    <columns>Tracking_Active__c</columns>
+    <columns>Last_Tracking_Update__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset__c.DE_Asset</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Delivered,Invalid</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>contains</operation>
+        <value>Outdated</value>
+    </filters>
+    <label>DE - CC - Logistics Returned open</label>
+    <language>de</language>
+    <sharedTo>
+        <role>DE_Customer_Care_Management</role>
+        <role>DE_Logistics</role>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Backend_UK</fullName>
+    <availability>online</availability>
+    <description>Link to hungryhouse Backend</description>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Backend</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>if (typeof(srcUp) == &apos;function&apos;) { 
+srcUp(&apos;https://roganweb.hungryhouse.co.uk/restaurants/#{!Account.Backend_ID__c}/edit/&apos;); 
+} else { 
+window.open(&apos;https://roganweb.hungryhouse.co.uk/restaurants/#{!Account.Backend_ID__c}/edit/&apos;); 
+}</url>
+</WebLink>

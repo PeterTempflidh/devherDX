@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BusinessProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HU Sales Process</fullName>
+    <description>Hungary Sales Process</description>
+    <isActive>true</isActive>
+    <values>
+        <fullName>Closed Lost</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>New</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Onboarding</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Quality Check Request</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Verbal Agreement</fullName>
+        <default>false</default>
+    </values>
+</BusinessProcess>

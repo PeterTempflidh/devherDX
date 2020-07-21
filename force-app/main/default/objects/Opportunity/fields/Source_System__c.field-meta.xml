@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Source_System__c</fullName>
+    <description>Uses in Booking Rest Service. To store the information about external system name through which the booking was done.</description>
+    <externalId>false</externalId>
+    <label>Source System</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>MIDAS</fullName>
+                <default>false</default>
+                <label>MIDAS</label>
+            </value>
+            <value>
+                <fullName>Restaurant Portal Service</fullName>
+                <default>false</default>
+                <label>Restaurant Portal Service</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Salesforce_Feature_Requests</fullName>
+    <booleanFilter>1 AND 3 AND (2 or (4 and 5)) AND 6 AND 7 AND 8</booleanFilter>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>CASES.EMAIL</columns>
+    <columns>OWNER_NAME</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>Department__c</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CASES.LAST_UPDATE</columns>
+    <columns>Country__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.SALESFORCE_SUPPORT</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Feature Request</value>
+    </filters>
+    <filters>
+        <field>CASES.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>startsWith</operation>
+        <value>Support request - Change request,feature request</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>notEqual</operation>
+        <value>Admin Request,Soft Feature Request</value>
+    </filters>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>notEqual</operation>
+        <value>Approved</value>
+    </filters>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>notContain</operation>
+        <value>[Freshchat],[Alan],[New Voice Media] [PlayVox],[Reporting / Analytics]</value>
+    </filters>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>notContain</operation>
+        <value>[Shyftplan],[Long-term Forecasting Tool],[Short-term Forecasting Tool],[Zendesk]</value>
+    </filters>
+    <label>GLOBAL - Salesforce Team - Feature</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Global_Admin</role>
+        <role>Global_Management</role>
+        <role>PY_Management</role>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HU_Cannot_Edit_Billing_Token</fullName>
+    <active>true</active>
+    <description>Users can&apos;t edit Billing Token (SSC-2736).</description>
+    <errorConditionFormula>AND(
+ISCHANGED(Billing_Token__c),
+RecordType.DeveloperName = &apos;HU_Account&apos;,
+NOT(
+OR($UserRole.Name = &quot;HU Management&quot;, $UserRole.Name = &quot;HU Sales Management&quot;, $UserRole.Name = &quot;HU Account Manager&quot;, $Permission.Exclude_from_Validation)
+)
+)</errorConditionFormula>
+    <errorMessage>You are not allowed to change the Billing Token.</errorMessage>
+</ValidationRule>

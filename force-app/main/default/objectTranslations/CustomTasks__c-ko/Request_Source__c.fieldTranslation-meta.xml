@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>요청 출처</label>
+    <name>Request_Source__c</name>
+    <picklistValues>
+        <masterLabel>Backend</masterLabel>
+        <translation><!-- Backend --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Call center</masterLabel>
+        <translation><!-- Call center --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fax</masterLabel>
+        <translation><!-- Fax --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Portal</masterLabel>
+        <translation><!-- Portal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Telephone</masterLabel>
+        <translation><!-- Telephone --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Web</masterLabel>
+        <translation><!-- Web --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>e-mail</masterLabel>
+        <translation><!-- e-mail --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

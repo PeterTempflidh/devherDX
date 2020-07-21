@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Yogiyo_Service_Improvement_Case</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>UPDATEDBY_USER.ALIAS</columns>
+    <filterScope>Queue</filterScope>
+    <filters>
+        <field>CASES.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>YGY - SI All Open Cases</label>
+    <language>en_US</language>
+    <queue>Yogiyo_Service_Improvement</queue>
+    <sharedTo>
+        <role>Yogiyo_Customer_Car_Management</role>
+    </sharedTo>
+</ListView>

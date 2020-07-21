@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Take_Offline_date_Mandatory</fullName>
+    <active>true</active>
+    <description>Take Offline Date should be mandatory when the closing reason is &apos;Take Offline&apos; for Internal case</description>
+    <errorConditionFormula>AND(RecordType.DeveloperName = &apos;Yogiyo_Internal_Case&apos;, 
+TEXT(Type) = &apos;Take Offline&apos;, TEXT(Closed_Reason__c) = &apos;Take Offline&apos;, ISBLANK(  Take_Offline_Date__c   ))</errorConditionFormula>
+    <errorMessage>Please enter the &apos;Take Offline Date&apos; before closing the case</errorMessage>
+</ValidationRule>

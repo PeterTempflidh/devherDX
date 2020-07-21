@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FI_Additional_Charges</fullName>
+    <active>true</active>
+    <label>FI Additional Charges</label>
+    <picklistValues>
+        <picklist>Migrated_From_Source_System__c</picklist>
+        <values>
+            <fullName>Salesforce PeYa</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Active</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Expired</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminated</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Termination_Reason__c</picklist>
+        <values>
+            <fullName>Business Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cannot Contact</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Capacity - Driver Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Capacity - Order Volume</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Downgrade</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Duplicate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fraud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Invalid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal Form Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lost to Competition</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Owner - New Contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Owner - No New Contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Delivery Service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Enough Orders</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Payment Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Poor Performance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pricing - Commission</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pricing - Premium Placement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pricing - Setup Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transmission Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Upgrade</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

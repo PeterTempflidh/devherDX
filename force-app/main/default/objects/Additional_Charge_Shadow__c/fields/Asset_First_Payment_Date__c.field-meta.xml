@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Asset_First_Payment_Date__c</fullName>
+    <description>First Payment Date for a Stock item</description>
+    <externalId>false</externalId>
+    <label>Asset First Payment Date</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

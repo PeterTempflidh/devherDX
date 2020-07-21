@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Motivo para estar Offline</label>
+    <name>Offline_Reason__c</name>
+    <picklistValues>
+        <masterLabel>Agreement issues</masterLabel>
+        <translation><!-- Agreement issues --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Closed temporarily</masterLabel>
+        <translation><!-- Closed temporarily --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivery area issues</masterLabel>
+        <translation><!-- Delivery area issues --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivery hours issues</masterLabel>
+        <translation><!-- Delivery hours issues --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Email issues</masterLabel>
+        <translation><!-- Email issues --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fax issues</masterLabel>
+        <translation><!-- Fax issues --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Invoice issues</masterLabel>
+        <translation><!-- Invoice issues --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Menu issues</masterLabel>
+        <translation><!-- Menu issues --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No delivery service</masterLabel>
+        <translation><!-- No delivery service --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not enough orders</masterLabel>
+        <translation><!-- Not enough orders --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Terminal issues</masterLabel>
+        <translation><!-- Terminal issues --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Attach_File</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Attach File</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>/apex/DragDropAttach__AttachFiles?recordid={!Lead.Id}&amp;recordname={!Lead.Name}&amp;recordtype=Lead</url>
+</WebLink>

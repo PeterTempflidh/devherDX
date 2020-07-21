@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Status__c</fullName>
+    <description>SP-1725 - It represents the life cycle of an account</description>
+    <externalId>false</externalId>
+    <label>Account Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>New</fullName>
+                <default>true</default>
+                <label>New</label>
+            </value>
+            <value>
+                <fullName>Negotiation</fullName>
+                <default>false</default>
+                <label>Negotiation</label>
+            </value>
+            <value>
+                <fullName>Collecting Documents</fullName>
+                <default>false</default>
+                <label>Collecting Documents</label>
+            </value>
+            <value>
+                <fullName>Quality Check</fullName>
+                <default>false</default>
+                <label>Quality Check</label>
+            </value>
+            <value>
+                <fullName>Menu processing</fullName>
+                <default>false</default>
+                <label>Menu processing</label>
+            </value>
+            <value>
+                <fullName>Onboarding</fullName>
+                <default>false</default>
+                <label>Onboarding</label>
+            </value>
+            <value>
+                <fullName>Active</fullName>
+                <default>false</default>
+                <label>Active</label>
+            </value>
+            <value>
+                <fullName>Terminated</fullName>
+                <default>false</default>
+                <label>Terminated</label>
+            </value>
+            <value>
+                <fullName>Lost</fullName>
+                <default>false</default>
+                <label>Lost</label>
+            </value>
+            <value>
+                <fullName>Partially Online</fullName>
+                <default>false</default>
+                <label>Partially Online</label>
+            </value>
+            <value>
+                <fullName>Win Back failed</fullName>
+                <default>false</default>
+                <label>Win Back failed</label>
+            </value>
+            <value>
+                <fullName>Active - Temp. Unavailable</fullName>
+                <default>false</default>
+                <label>Active - Temp. Unavailable</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

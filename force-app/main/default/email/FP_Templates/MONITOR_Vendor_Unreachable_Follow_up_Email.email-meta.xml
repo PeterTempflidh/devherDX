@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Follow-up email for Monitor - Vendor Unreachable</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>MONITOR - Vendor Unreachable Follow-up Email</name>
+    <style>freeForm</style>
+    <subject>Actions Required On Your Restaurant’s Unreachability</subject>
+    <textOnly>Dear {!Account.Name},
+
+We made several attempts to contact you at &lt;NUMBER&gt;. In the past week, your foodpanda device has been unreachable for &lt;X%&gt; of your opening hours, with a daily average unreachability of &lt;X&gt; minutes.
+
+You may receive automated calls and your restaurant may be closed if your device remains unreachable, and you will not receive any orders.
+
+To ensure that your restaurant is reachable and can receive orders, please check that
+● your device is switched on with the foodpanda app open on the screen
+● your network or WiFi connection is strong
+
+If your contact number has changed or if you are experiencing device issues, please contact us via this form: &lt;SG / MY Formstack link&gt;
+
+Best regards,
+&lt;Your Name&gt;</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

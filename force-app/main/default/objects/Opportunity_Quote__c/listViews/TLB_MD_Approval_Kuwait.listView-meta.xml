@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TLB_MD_Approval_Kuwait</fullName>
+    <columns>NAME</columns>
+    <columns>Id_Opportunity__c</columns>
+    <columns>Status__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Opportunity_Quote__c.Talabat_Opportunity_Quote</value>
+    </filters>
+    <filters>
+        <field>CURRENCY_ISO_CODE</field>
+        <operation>equals</operation>
+        <value>KWD</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Approval pending</value>
+    </filters>
+    <filters>
+        <field>Id_Opportunity__c</field>
+        <operation>notContain</operation>
+        <value>test</value>
+    </filters>
+    <label>TLB : MD Approval - Kuwait</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Global_Admin</role>
+        <role>Talabat_Management</role>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X03_Transmissions_Rejected</fullName>
+    <columns>Id_Asset__c</columns>
+    <columns>NAME</columns>
+    <columns>Comments__c</columns>
+    <columns>Status__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Transmission-Rejected</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Replacement_Order__c.UK_Replacement_Order</value>
+    </filters>
+    <label>03.Transmissions Rejected</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>UK_Customer_Care_Management</role>
+        <role>UK_Customer_Care_Team</role>
+    </sharedTo>
+</ListView>

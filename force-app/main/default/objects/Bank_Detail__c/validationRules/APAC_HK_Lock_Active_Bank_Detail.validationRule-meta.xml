@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>APAC_HK_Lock_Active_Bank_Detail</fullName>
+    <active>false</active>
+    <description>Lock the active Bank account details record</description>
+    <errorConditionFormula>AND(NOT(ISNEW()),ISPICKVAL( Status__c, &apos;Active&apos;),NOT($Permission.Exclude_from_Validation), $Profile.Name &lt;&gt;&apos;System Administrator&apos;,NOT( $Permission.FP_Finance_Permissions),OR(NOT(ISPICKVAL( Account__r.Account_Status__c,&apos;New&apos;)),NOT(ISPICKVAL( Account__r.Account_Status__c,&apos;Negotiation&apos;)),NOT(ISPICKVAL( Account__r.Account_Status__c,&apos;Collecting Documents&apos;))))</errorConditionFormula>
+    <errorMessage>You cannot edit an active bank detail record.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ON_UpsertForgotten__c</fullName>
+    <description>This is used to find records which were not transferred although they were changed. (If the process was temporarily inactive etc.).</description>
+    <externalId>false</externalId>
+    <formula>ON_LastModified__c - ON_LastUpsert__c &gt; 0.0006</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>This is used to find records which were not transferred although they were changed. (If the process was temporarily inactive etc.).</inlineHelpText>
+    <label>Connector: Upsert Forgotten</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

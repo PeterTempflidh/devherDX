@@ -1,0 +1,2633 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FI_Inbound</fullName>
+    <active>true</active>
+    <businessProcess>FI Inbound</businessProcess>
+    <description>Inbound Case for Finland(Email, Chat, Phone etc. )</description>
+    <label>FI Inbound</label>
+    <picklistValues>
+        <picklist>ActionItemType__c</picklist>
+        <values>
+            <fullName>Commission Upgrade</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Area</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Time</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Exclusivity</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fail Rate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Joker</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MOV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Menu</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Premium Listing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reviews</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Switch</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transmission Method</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>BE_Account_Errors__c</picklist>
+        <values>
+            <fullName>Missing Details</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Multiple Backend ID</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wrong Categories</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wrong Commission</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wrong Delivery Charges%2FMin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wrong Delivery Suburbs</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wrong Email%2FTransmission Method</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wrong Name of Restaurant</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wrong Opening Hours</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wrong Phone Numbers</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>BE_Account_Rating__c</picklist>
+        <values>
+            <fullName>1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>CRM_P_I_C__c</picklist>
+        <values>
+            <fullName>A</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A%28A%29-정현주</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A%28B%29-오택룡</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A-배은령</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A-이민</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>B</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>D%28A%29-최민지</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Case_Reason__c</picklist>
+        <values>
+            <fullName>Bonus %2F Bonus Problems</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Change of Ownership</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commission Fee %2F Contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Compensation refund</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Complaint</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Complaint Food Quality</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contract Cancellation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Areas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Time %2F Status Order</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Development Proposal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Discount Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Exclusivity</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Failed Order</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fraud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GDPR - Customer account deletion</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GDPR - Data protection inquiry</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GDPR - Newsletter unsubscription</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>General Question</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>General Support Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Incorrect Order Confirmation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Interested in Promo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Login %2F Sign-Up</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Logo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Menu Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Opening hours</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Order Cancellation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Order Inquiry</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Password Forgotten%2Freset</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Premium Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Price Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rating On website %2F Reviews</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Refund Enquiry</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant Closed Temporarily</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant Suggestion</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Software Issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Spam</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Technical Problems App</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Technical Problems Website</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminal request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transmission Method Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unsubscribe</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Voucher request</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Change_of_Ownership_Documentation__c</picklist>
+        <values>
+            <fullName>Change of Ownership form</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Owner%27s ID</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sublease Agreement</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Closed_Reason__c</picklist>
+        <values>
+            <fullName>Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Back Online</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Create Retention Task</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Create Take Offline Task for Non Contracted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Invalid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Reachable</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Successful</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Successful - Commission is not correct</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Successful - Data Missing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejected</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Retention</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Spam</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Successful</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Take Offline</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Take Online</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Take Online is not possible</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Country__c</picklist>
+        <values>
+            <fullName>Finland</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Department__c</picklist>
+        <values>
+            <fullName>Customer Care</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Finance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal%2C Security</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Logistics</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant Operations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Operations</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Entity__c</picklist>
+        <values>
+            <fullName>Delivery Hero Germany</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Hero Holding</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Foodora-FI</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Failed_Orders_source__c</picklist>
+        <values>
+            <fullName>Mobile App Order</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Phone Order</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Further_Feedback__c</picklist>
+        <values>
+            <fullName>Commission changed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Educated on 9Cookies</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Educated on Commission%2FSet-Up Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Educated on Invoices</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Educated on NPS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Educated on Partner Portal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Educated on Ranking Score %2F Penalties</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Educated on Reviews</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Educated on Terminal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSA Rating Requested</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fixed Account Issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fixed Technical Issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Happy with Competitor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Menu Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Offers Applied</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Opening Times Changed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Order Transmission Method Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Referred to Sales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant Not Cooperative</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant Referred for Branding%2FMenu</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant Referred for PP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminal Support Requested</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Updated Contact Details</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Handover_Case_Record_Type__c</picklist>
+        <values>
+            <fullName>DE Entry Case</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DE Finance Case</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DE Inbound Case</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DE Internal Case</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DE Restaurant Operations</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Is_the_restaurant_going_to_take_orders__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Mark_up__c</picklist>
+        <values>
+            <fullName>In flat amount</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In percentage</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No mark-up</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Menu_Typing_Errors__c</picklist>
+        <values>
+            <fullName>Flavour set name too long</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Format issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Longer time than expected</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Missing flavour set</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Missing section</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Spelling Errors</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wrong price</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Menu_Typing_Rating__c</picklist>
+        <values>
+            <fullName>1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Migrated_From_Source_System__c</picklist>
+        <values>
+            <fullName>Salesforce PeYa</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>OKR__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Offline_Reason__c</picklist>
+        <values>
+            <fullName>0%25 Contract Cancel request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Best Price Guarantee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Collection Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commission %2F Subscription too high</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contract violation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Data incomplete</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Disappointed by our business methods</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Duplicate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Exclusive with competitor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Failed in Upgrade</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>High Failure Rate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Incomplete Contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lost to competition</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Owner - New Contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Owner - Will not continue contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No delievery Service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non Contracted Rest - 2nd rejection</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not able to receive orders</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not enough capacity</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not enough orders</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not interested in product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not satisfied with our product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quick Order Sticker</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejected the contract proposal from Sales team</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejects Online Payment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant Closed Permanently</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant closed temporarily</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Successful in Upgrade</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Temporary Sales O%2EE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminal issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Termination</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>On_Hold_Reason__c</picklist>
+        <values>
+            <fullName>Language Barrier</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Menu Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Technical Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unreachable</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Origin</picklist>
+        <values>
+            <fullName>Call Center</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email - Contract Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email - Customer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email - Restaurant</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fax</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Phone</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Portal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Web</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Override_Validation_Reason__c</picklist>
+        <values>
+            <fullName>Case Escalated To Sales Admin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Missed%2FSpam Chat</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Partial_Refund_Type__c</picklist>
+        <values>
+            <fullName>Bank transfer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Online payment</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Payment_Provider__c</picklist>
+        <values>
+            <fullName>AMEX</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Adyen</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ApplePay</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Checkout</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Checkout Oy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dohabank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ethoca</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GlobalPay</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GooglePay</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kbank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Klarna</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MolPay</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NBB</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NBK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PayPal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ravelin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SiftScience</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Person_In_Charge_First_Check__c</picklist>
+        <values>
+            <fullName>Amit Kumar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Amit Sharma</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Anju Sharma</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ankur</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Devender</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Geeta Chugh</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inder Singh</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Madhusudan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Manpreet Kaur</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Nitya Gautam</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paramjeet Singh</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rahul Kumar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rahul Tomer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tanu Gupta</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tanvi</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vitesh Kumar</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Person_In_Charge_Take_Online__c</picklist>
+        <values>
+            <fullName>A%28B%29-오택룡</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A-배은령</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A-이민</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A-최윤정</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aaron</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Amy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Andrea Walsh</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Christopher Tan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Clare Nicholl</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Colin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>D%28C%29-김희영</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Damian Dekker</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Daphne Lin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Debbie Yeung</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Derek Du</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Diana Lee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Editorial Management Team</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Genie Ooi</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Heidi Halm</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Heli Halm</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Heni</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Henry Feng</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jacky</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jacqueline Wu</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>James Evans</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jason Yeo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Joshua Jun</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Khaled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kristen Lanskail-Morris</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Laura Anson</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lihwen Soo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Madison Murphy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Matthew Ma</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Olivia Jeon</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Patrick Thomson</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paul Mansat</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paulus Poon</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Radwa</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ramon Pedroche</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ruba</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shell Pandaeng</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shihan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Stephen Sanjaya</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Steven Morrison</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Stuart Terry</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Taimur</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Thomas Payne</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tony Greig</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wan Hoe Goh</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wendy Xin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>William Kim</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Zheng Lee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>a</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>b</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>c</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Person_In_Charge__c</picklist>
+        <values>
+            <fullName>A</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A%28A%29-정현주</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A%28B%29-오택룡</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A-배은령</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A-이민</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A-최윤정</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aaron</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Amy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Andrea Walsh</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Annie Shao</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Arlene Salanguit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>B</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Brendan O%27Shea</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>C</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Christopher Tan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Clare Nicholl</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>D</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>D%28A%29-권수정</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>D%28A%29-최민지</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Damian Dekker</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Daniel Canales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Daniel Wedgwood</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Debbie Yeung</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Diana Lee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Editorial Management Team</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Chriselle</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Elanor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Shahin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Si Wei</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Yau Shen</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Genie Ooi</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Heidi Halm</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Heli Halm</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Henry Feng</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jacky</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jacqueline Wu</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>James Evans</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jason Yeo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Josh Stevens</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Joshua Jun</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Khaled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kieran Collins</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kristen Lanskail-Morris</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Madison Murphy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mark Ong</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Matthew Ma</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Michael Gavieres</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Nina Domingo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Olivia Jeon</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paul Valenti</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paulus Poon</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ramon Pedroche</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ruba</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Saniya Nihalani</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Serene Ho</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shell Pandaeng</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Simon Laycock</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sophie Alba</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Stephen Sanjaya</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Steven Morrison</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Taimur</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Thomas Payne</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Timothy Reyes</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tony Greig</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tristan Guanco</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wan Hoe Goh</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wendy Xin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>William Kim</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Zheng Lee</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Person_in_Charge_Final_Check__c</picklist>
+        <values>
+            <fullName>A</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A%28B%29-오택룡</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A-배은령</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A-이민</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A-최윤정</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aaron</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Andrea Walsh</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Arlene Salanguit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>B</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>C</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Christopher Tan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Debbie Yeung</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Derek Du</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Diana Lee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Editorial Management Team</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Dimple</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Joohi</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Leila</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Qistina</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Sammy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Shahin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Sharon</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Sunnie Loh</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Vincent Tan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Genie Ooi</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Heli Halm</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Heni</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Henry Feng</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jacky</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jacqueline Wu</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>James Evans</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jason Yeo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Joshua Jun</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Khaled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mark Ong</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Matthew Ma</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Michael Gavieres</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Nina Domingo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Olivia Jeon</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Patrick Thomson</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paulus Poon</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Radwa</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ramon Pedroche</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ruba</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Serene Ho</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sharon Ramachandran</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shell Pandaeng</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shihan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sophie Alba</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Stephen Sanjaya</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Steven Morrison</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Taimur</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Thomas Payne</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Timothy Reyes</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tony Greig</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tristan Guanco</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wan Hoe Goh</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wendy Xin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>William Kim</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Zheng Lee</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Person_in_charge_BE__c</picklist>
+        <values>
+            <fullName>Aaron</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Amy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Andrea Walsh</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Arlene Salanguit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Christopher Tan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Clare Nicholl</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Debbie Yeung</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Derek Du</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Diana Lee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Editorial Management Team</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gloria Siu</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Henry Feng</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jacky</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>James Evans</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Joshua Jun</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mark Ong</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Nina Domingo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Olivia Jeon</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paulus Poon</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shell Pandaeng</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sophia Alba</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Stephen Sanjaya</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Steven Morrison</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Timothy Reyes</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tony Greig</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tristan Guanco</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wan Hoe Goh</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Person_in_charge_Delivery_Area__c</picklist>
+        <values>
+            <fullName>Alexander Liljeskär</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Elena Lövholm Eriksson</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Henrik Eriksson</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jakob Wikenstå</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jasmine Berhane Selassiel</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Johanna Wickström</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lia Kousta Bergström</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Linn Lindholm</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Linnea Hjerpe Persson</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Malin Wallander</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Maria Bengtsson</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Nellie Eriksson</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Olivia Blom</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Richard Karlsson</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Stina Lönnqvist</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Stiven Persson</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Therese Nilsson</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tove Stork</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Person_in_charge_Menu_Typing__c</picklist>
+        <values>
+            <fullName>Aaron</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Andrea Walsh</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Annie Shao</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Arlene Salanguit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Christopher Tan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Debbie Yeung</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Derek Du</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Diana Lee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Editorial Management Team</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Alina</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Brian</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Chriselle</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Dimple</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Elanor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Ety</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Giovanni</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Hanna Ting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Joohi</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Justin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Kanishya</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Khaldoon</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Leila</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Qistina</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Shahin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Si Wei</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Sunnie Loh</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Thara</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Vincent Tan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GVS Yau Shen</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Genie Ooi</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Heli Halm</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Henry Feng</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jacky</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jacqueline Wu</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>James Evans</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jason Yeo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Joshua Jun</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mark Ong</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Matthew Ma</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Michael Gavieres</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Nina Domingo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Olivia Jeon</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paulus Poon</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ramon Pedroche</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Serene Ho</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shell Pandaeng</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sophie Alba</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Stephen Sanjaya</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Steven Morrison</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Thomas Payne</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Timothy Reyes</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tony Greig</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tristan Guanco</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wan Hoe Goh</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wendy Xin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>William Kim</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Zheng Lee</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Platform__c</picklist>
+        <values>
+            <fullName>FoodOnClick</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Priority</picklist>
+        <values>
+            <fullName>High</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Low</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Medium</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Reason</picklist>
+        <values>
+            <fullName>Complex functionality</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Existing problem</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Instructions not clear</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New problem</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Spam</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminal-Cancel</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminal-Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminal-Replace</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>User didn%27t attend training</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Refund_Period__c</picklist>
+        <values>
+            <fullName>1st Period</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2nd Period</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Root_Cause__c</picklist>
+        <values>
+            <fullName>Commission Change - No Entry needed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contract Cancelled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Duplicated</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MOV Target not successful</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Delivery Service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Reachable</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Parent Account - No Entry needed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Price %2F Menu outdated</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prohibited Lead</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejected Service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant Closed Permanently</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Same Owner - No Entry needed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wrong information</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Site__c</picklist>
+        <values>
+            <fullName>Carriage</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Damejidlo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Hero Finland</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Hero Germany</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Hero Greece</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Hero Korea</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Hero Sweden</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Domicilios</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Donesi</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Foodora Canada</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Foodora Europe</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Foodpanda APAC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Foodpanda Bangladesh</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Foodpanda Bulgaria</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Foodpanda Pakistan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Foodpanda Romania</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Global</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HipMenu</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hungerstation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Netpincer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Otlob</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pauza</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PedidosYa</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Talabat</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yemeksepeti</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Target__c</picklist>
+        <values>
+            <fullName>Customers</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Tool__c</picklist>
+        <values>
+            <fullName>ALAN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Freshchat</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Long-term Forecasting Tool</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Voice Media</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PlayVox</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reporting %2F Analytics</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Short-term Forecasting Tool</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shyftplan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Zendesk</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Topics_Discussed__c</picklist>
+        <values>
+            <fullName>Case Generation Review</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contact Details</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Zones</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Item Unavailable</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Menu</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Opening Times</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Order Failure Offlining</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Order Failure Penalties%2FFees</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Order Tracking</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Portal Usage</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reviews Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales %2F AM Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transmission App Logged Out</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transmission Behaviour Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transmission Device Off</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transmission Mobile Data Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transmission WiFi Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vendor Not Cooperative</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Customer Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant - Contract Issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant - Data</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant - Order Related</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant - Product %2F Sales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant - Transmission</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Voucher_Severity__c</picklist>
+        <values>
+            <fullName>Level 1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Level 2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Level 3</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Level 4</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Level 5</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lost</fullName>
+    <columns>NAME</columns>
+    <columns>Simcard_Number__c</columns>
+    <columns>Simcard_Provider__c</columns>
+    <columns>Status__c</columns>
+    <columns>Condition__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Lost</value>
+    </filters>
+    <label>Lost</label>
+    <language>en_US</language>
+    <sharedTo>
+        <roleAndSubordinates>DH_AU_Management</roleAndSubordinates>
+    </sharedTo>
+</ListView>

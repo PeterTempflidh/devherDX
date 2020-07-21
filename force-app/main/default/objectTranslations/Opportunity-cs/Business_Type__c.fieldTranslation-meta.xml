@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Typ obchodu</label>
+    <name>Business_Type__c</name>
+    <picklistValues>
+        <masterLabel>Complementary Contract</masterLabel>
+        <translation><!-- Complementary Contract --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Downgrade</masterLabel>
+        <translation><!-- Downgrade --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Franchise Extension</masterLabel>
+        <translation><!-- Franchise Extension --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Legal Form Change</masterLabel>
+        <translation>Změna právní formy</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Business</masterLabel>
+        <translation>Nový podnik</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Owner Change</masterLabel>
+        <translation>Změna majitele</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Refund</masterLabel>
+        <translation>Vrácení peněz</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Switch</masterLabel>
+        <translation>Výměna</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Upgrade/Upsell</masterLabel>
+        <translation><!-- Upgrade/Upsell --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Win Back</masterLabel>
+        <translation>Získat zpět</translation>
+    </picklistValues>
+</CustomFieldTranslation>

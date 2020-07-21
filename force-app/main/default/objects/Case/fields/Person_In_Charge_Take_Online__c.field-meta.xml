@@ -1,0 +1,1481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Person_In_Charge_Take_Online__c</fullName>
+    <externalId>false</externalId>
+    <label>Person In Charge - Take Online</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>0.자동</fullName>
+                <default>false</default>
+                <label>0.자동</label>
+            </value>
+            <value>
+                <fullName>a</fullName>
+                <default>false</default>
+                <label>a</label>
+            </value>
+            <value>
+                <fullName>A(A)-배요환</fullName>
+                <default>false</default>
+                <label>A(A)-배요환</label>
+            </value>
+            <value>
+                <fullName>A(A)-신지현</fullName>
+                <default>false</default>
+                <label>A(A)-신지현</label>
+            </value>
+            <value>
+                <fullName>A(A)-정우경</fullName>
+                <default>false</default>
+                <label>A(A)-정우경</label>
+            </value>
+            <value>
+                <fullName>A(A)-정현주</fullName>
+                <default>false</default>
+                <label>A(A)-정현주</label>
+            </value>
+            <value>
+                <fullName>A(B)-구하윤</fullName>
+                <default>false</default>
+                <label>A(B)-구하윤</label>
+            </value>
+            <value>
+                <fullName>A(B)-박애경</fullName>
+                <default>false</default>
+                <label>A(B)-박애경</label>
+            </value>
+            <value>
+                <fullName>A(B)-오택룡</fullName>
+                <default>false</default>
+                <label>A(B)-오택룡</label>
+            </value>
+            <value>
+                <fullName>A(B)-이명현</fullName>
+                <default>false</default>
+                <label>A(B)-이명현</label>
+            </value>
+            <value>
+                <fullName>A(B)-이수현</fullName>
+                <default>false</default>
+                <label>A(B)-이수현</label>
+            </value>
+            <value>
+                <fullName>A(B)-이승희</fullName>
+                <default>false</default>
+                <label>A(B)-이승희</label>
+            </value>
+            <value>
+                <fullName>A(B)-이지호</fullName>
+                <default>false</default>
+                <label>A(B)-이지호</label>
+            </value>
+            <value>
+                <fullName>A(B)-장유화</fullName>
+                <default>false</default>
+                <label>A(B)-장유화</label>
+            </value>
+            <value>
+                <fullName>A(C)-심수빈</fullName>
+                <default>false</default>
+                <label>A(C)-심수빈</label>
+            </value>
+            <value>
+                <fullName>A(C)-조우미</fullName>
+                <default>false</default>
+                <label>A(C)-조우미</label>
+            </value>
+            <value>
+                <fullName>Aaron</fullName>
+                <default>false</default>
+                <label>Aaron</label>
+            </value>
+            <value>
+                <fullName>Abdulsamad</fullName>
+                <default>false</default>
+                <label>Abdulsamad</label>
+            </value>
+            <value>
+                <fullName>Ahmed Kamel</fullName>
+                <default>false</default>
+                <label>Ahmed Kamel</label>
+            </value>
+            <value>
+                <fullName>Aileen Masagca Romero</fullName>
+                <default>false</default>
+                <label>Aileen Masagca Romero</label>
+            </value>
+            <value>
+                <fullName>Alexander Liljeskär</fullName>
+                <default>false</default>
+                <label>Alexander Liljeskär</label>
+            </value>
+            <value>
+                <fullName>Allan Jose Bautista</fullName>
+                <default>false</default>
+                <label>Allan Jose Bautista</label>
+            </value>
+            <value>
+                <fullName>Amy</fullName>
+                <default>false</default>
+                <label>Amy</label>
+            </value>
+            <value>
+                <fullName>Andrea Walsh</fullName>
+                <default>false</default>
+                <label>Andrea Walsh</label>
+            </value>
+            <value>
+                <fullName>Arifin Tellegen</fullName>
+                <default>false</default>
+                <label>Arifin Tellegen</label>
+            </value>
+            <value>
+                <fullName>Arlene Salanguit</fullName>
+                <default>false</default>
+                <label>Arlene Salanguit</label>
+            </value>
+            <value>
+                <fullName>Ashita</fullName>
+                <default>false</default>
+                <label>Ashita</label>
+            </value>
+            <value>
+                <fullName>A-배은령</fullName>
+                <default>false</default>
+                <label>A-배은령</label>
+            </value>
+            <value>
+                <fullName>A-이민</fullName>
+                <default>false</default>
+                <label>A-이민</label>
+            </value>
+            <value>
+                <fullName>A-최윤정</fullName>
+                <default>false</default>
+                <label>A-최윤정</label>
+            </value>
+            <value>
+                <fullName>b</fullName>
+                <default>false</default>
+                <label>b</label>
+            </value>
+            <value>
+                <fullName>Bulk Insert</fullName>
+                <default>false</default>
+                <label>Bulk Insert</label>
+            </value>
+            <value>
+                <fullName>c</fullName>
+                <default>false</default>
+                <label>c</label>
+            </value>
+            <value>
+                <fullName>Cherry Torre</fullName>
+                <default>false</default>
+                <label>Cherry Torre</label>
+            </value>
+            <value>
+                <fullName>Christopher Tan</fullName>
+                <default>false</default>
+                <label>Christopher Tan</label>
+            </value>
+            <value>
+                <fullName>Clare Nicholl</fullName>
+                <default>false</default>
+                <label>Clare Nicholl</label>
+            </value>
+            <value>
+                <fullName>Colin</fullName>
+                <default>false</default>
+                <label>Colin</label>
+            </value>
+            <value>
+                <fullName>D(A)-권수정</fullName>
+                <default>false</default>
+                <label>D(A)-권수정</label>
+            </value>
+            <value>
+                <fullName>D(A)-심민선</fullName>
+                <default>false</default>
+                <label>D(A)-심민선</label>
+            </value>
+            <value>
+                <fullName>D(A)-양희영</fullName>
+                <default>false</default>
+                <label>D(A)-양희영</label>
+            </value>
+            <value>
+                <fullName>D(A)-임수현</fullName>
+                <default>false</default>
+                <label>D(A)-임수현</label>
+            </value>
+            <value>
+                <fullName>D(A)-최민지</fullName>
+                <default>false</default>
+                <label>D(A)-최민지</label>
+            </value>
+            <value>
+                <fullName>D(C)-김규민</fullName>
+                <default>false</default>
+                <label>D(C)-김규민</label>
+            </value>
+            <value>
+                <fullName>D(C)-김미현</fullName>
+                <default>false</default>
+                <label>D(C)-김미현</label>
+            </value>
+            <value>
+                <fullName>D(C)-김보성</fullName>
+                <default>false</default>
+                <label>D(C)-김보성</label>
+            </value>
+            <value>
+                <fullName>D(C)-김희영</fullName>
+                <default>false</default>
+                <label>D(C)-김희영</label>
+            </value>
+            <value>
+                <fullName>D(C)-박세영</fullName>
+                <default>false</default>
+                <label>D(C)-박세영</label>
+            </value>
+            <value>
+                <fullName>D(C)-이다인</fullName>
+                <default>false</default>
+                <label>D(C)-이다인</label>
+            </value>
+            <value>
+                <fullName>D(C)-전한비</fullName>
+                <default>false</default>
+                <label>D(C)-전한비</label>
+            </value>
+            <value>
+                <fullName>D(C)-주지은</fullName>
+                <default>false</default>
+                <label>D(C)-주지은</label>
+            </value>
+            <value>
+                <fullName>Damian Dekker</fullName>
+                <default>false</default>
+                <label>Damian Dekker</label>
+            </value>
+            <value>
+                <fullName>Daphne Lin</fullName>
+                <default>false</default>
+                <label>Daphne Lin</label>
+            </value>
+            <value>
+                <fullName>Debbie Yeung</fullName>
+                <default>false</default>
+                <label>Debbie Yeung</label>
+            </value>
+            <value>
+                <fullName>Derek Du</fullName>
+                <default>false</default>
+                <label>Derek Du</label>
+            </value>
+            <value>
+                <fullName>Diana Lee</fullName>
+                <default>false</default>
+                <label>Diana Lee</label>
+            </value>
+            <value>
+                <fullName>Diana Rose Fernando</fullName>
+                <default>false</default>
+                <label>Diana Rose Fernando</label>
+            </value>
+            <value>
+                <fullName>Dolrich</fullName>
+                <default>false</default>
+                <label>Dolrich</label>
+            </value>
+            <value>
+                <fullName>Editorial Management Team</fullName>
+                <default>false</default>
+                <label>Editorial Management Team</label>
+            </value>
+            <value>
+                <fullName>Elena Lövholm Eriksson</fullName>
+                <default>false</default>
+                <label>Elena Lövholm Eriksson</label>
+            </value>
+            <value>
+                <fullName>Elena Ogrimen</fullName>
+                <default>false</default>
+                <label>Elena Ogrimen</label>
+            </value>
+            <value>
+                <fullName>Genie Ooi</fullName>
+                <default>false</default>
+                <label>Genie Ooi</label>
+            </value>
+            <value>
+                <fullName>GVS</fullName>
+                <default>false</default>
+                <label>GVS</label>
+            </value>
+            <value>
+                <fullName>Hany</fullName>
+                <default>false</default>
+                <label>Hany</label>
+            </value>
+            <value>
+                <fullName>Heidi Halm</fullName>
+                <default>false</default>
+                <label>Heidi Halm</label>
+            </value>
+            <value>
+                <fullName>Heli Halm</fullName>
+                <default>false</default>
+                <label>Heli Halm</label>
+            </value>
+            <value>
+                <fullName>Heni</fullName>
+                <default>false</default>
+                <label>Heni</label>
+            </value>
+            <value>
+                <fullName>Henrik Eriksson</fullName>
+                <default>false</default>
+                <label>Henrik Eriksson</label>
+            </value>
+            <value>
+                <fullName>Henry Feng</fullName>
+                <default>false</default>
+                <label>Henry Feng</label>
+            </value>
+            <value>
+                <fullName>Huda</fullName>
+                <default>false</default>
+                <label>Huda</label>
+            </value>
+            <value>
+                <fullName>Jacky</fullName>
+                <default>false</default>
+                <label>Jacky</label>
+            </value>
+            <value>
+                <fullName>Jacqueline Wu</fullName>
+                <default>false</default>
+                <label>Jacqueline Wu</label>
+            </value>
+            <value>
+                <fullName>Jakob Wikenstå</fullName>
+                <default>false</default>
+                <label>Jakob Wikenstå</label>
+            </value>
+            <value>
+                <fullName>James Evans</fullName>
+                <default>false</default>
+                <label>James Evans</label>
+            </value>
+            <value>
+                <fullName>Jasmine Berhane Selassiel</fullName>
+                <default>false</default>
+                <label>Jasmine Berhane Selassiel</label>
+            </value>
+            <value>
+                <fullName>Jason Yeo</fullName>
+                <default>false</default>
+                <label>Jason Yeo</label>
+            </value>
+            <value>
+                <fullName>Jay-R Galpo</fullName>
+                <default>false</default>
+                <label>Jay-R Galpo</label>
+            </value>
+            <value>
+                <fullName>Jervis Jose</fullName>
+                <default>false</default>
+                <label>Jervis Jose</label>
+            </value>
+            <value>
+                <fullName>Johanna Wickström</fullName>
+                <default>false</default>
+                <label>Johanna Wickström</label>
+            </value>
+            <value>
+                <fullName>Joshua Jun</fullName>
+                <default>false</default>
+                <label>Joshua Jun</label>
+            </value>
+            <value>
+                <fullName>Karloe Magbanua Gayadan</fullName>
+                <default>false</default>
+                <label>Karloe Magbanua Gayadan</label>
+            </value>
+            <value>
+                <fullName>Karolina Tornberg</fullName>
+                <default>false</default>
+                <label>Karolina Tornberg</label>
+            </value>
+            <value>
+                <fullName>Katleen Capuno Morales</fullName>
+                <default>false</default>
+                <label>Katleen Capuno Morales</label>
+            </value>
+            <value>
+                <fullName>Kevin Lindberg</fullName>
+                <default>false</default>
+                <label>Kevin Lindberg</label>
+            </value>
+            <value>
+                <fullName>Khaled</fullName>
+                <default>false</default>
+                <label>Khaled</label>
+            </value>
+            <value>
+                <fullName>Kristen Lanskail-Morris</fullName>
+                <default>false</default>
+                <label>Kristen Lanskail-Morris</label>
+            </value>
+            <value>
+                <fullName>Kristoffer Ross Olino</fullName>
+                <default>false</default>
+                <label>Kristoffer Ross Olino</label>
+            </value>
+            <value>
+                <fullName>Lara Escano</fullName>
+                <default>false</default>
+                <label>Lara Escano</label>
+            </value>
+            <value>
+                <fullName>Laura Anson</fullName>
+                <default>false</default>
+                <label>Laura Anson</label>
+            </value>
+            <value>
+                <fullName>Leonell Banaag</fullName>
+                <default>false</default>
+                <label>Leonell Banaag</label>
+            </value>
+            <value>
+                <fullName>Lia Kousta Bergström</fullName>
+                <default>false</default>
+                <label>Lia Kousta Bergström</label>
+            </value>
+            <value>
+                <fullName>Lihwen Soo</fullName>
+                <default>false</default>
+                <label>Lihwen Soo</label>
+            </value>
+            <value>
+                <fullName>Linnea Hjerpe Persson</fullName>
+                <default>false</default>
+                <label>Linnea Hjerpe Persson</label>
+            </value>
+            <value>
+                <fullName>Linn Lindholm</fullName>
+                <default>false</default>
+                <label>Linn Lindholm</label>
+            </value>
+            <value>
+                <fullName>M(A)-강은정</fullName>
+                <default>false</default>
+                <label>M(A)-강은정</label>
+            </value>
+            <value>
+                <fullName>M(A)-고은미</fullName>
+                <default>false</default>
+                <label>M(A)-고은미</label>
+            </value>
+            <value>
+                <fullName>M(A)-권지영</fullName>
+                <default>false</default>
+                <label>M(A)-권지영</label>
+            </value>
+            <value>
+                <fullName>M(A)-기수연</fullName>
+                <default>false</default>
+                <label>M(A)-기수연</label>
+            </value>
+            <value>
+                <fullName>M(A)-김광석</fullName>
+                <default>false</default>
+                <label>M(A)-김광석</label>
+            </value>
+            <value>
+                <fullName>M(A)-김광진</fullName>
+                <default>false</default>
+                <label>M(A)-김광진</label>
+            </value>
+            <value>
+                <fullName>M(A)-김그림</fullName>
+                <default>false</default>
+                <label>M(A)-김그림</label>
+            </value>
+            <value>
+                <fullName>M(A)-김다빈</fullName>
+                <default>false</default>
+                <label>M(A)-김다빈</label>
+            </value>
+            <value>
+                <fullName>M(A)-김다혜</fullName>
+                <default>false</default>
+                <label>M(A)-김다혜</label>
+            </value>
+            <value>
+                <fullName>M(A)-김보미</fullName>
+                <default>false</default>
+                <label>M(A)-김보미</label>
+            </value>
+            <value>
+                <fullName>M(A)-김수빈</fullName>
+                <default>false</default>
+                <label>M(A)-김수빈</label>
+            </value>
+            <value>
+                <fullName>M(A)-김승윤</fullName>
+                <default>false</default>
+                <label>M(A)-김승윤</label>
+            </value>
+            <value>
+                <fullName>M(A)-김아름</fullName>
+                <default>false</default>
+                <label>M(A)-김아름</label>
+            </value>
+            <value>
+                <fullName>M(A)-김예은</fullName>
+                <default>false</default>
+                <label>M(A)-김예은</label>
+            </value>
+            <value>
+                <fullName>M(A)-김은성</fullName>
+                <default>false</default>
+                <label>M(A)-김은성</label>
+            </value>
+            <value>
+                <fullName>M(A)-김재현</fullName>
+                <default>false</default>
+                <label>M(A)-김재현</label>
+            </value>
+            <value>
+                <fullName>M(A)-김종찬</fullName>
+                <default>false</default>
+                <label>M(A)-김종찬</label>
+            </value>
+            <value>
+                <fullName>M(A)-김주영</fullName>
+                <default>false</default>
+                <label>M(A)-김주영</label>
+            </value>
+            <value>
+                <fullName>M(A)-김주희</fullName>
+                <default>false</default>
+                <label>M(A)-김주희</label>
+            </value>
+            <value>
+                <fullName>M(A)-김지연</fullName>
+                <default>false</default>
+                <label>M(A)-김지연</label>
+            </value>
+            <value>
+                <fullName>M(A)-김지혜</fullName>
+                <default>false</default>
+                <label>M(A)-김지혜</label>
+            </value>
+            <value>
+                <fullName>M(A)-김현민</fullName>
+                <default>false</default>
+                <label>M(A)-김현민</label>
+            </value>
+            <value>
+                <fullName>M(A)-김혜진</fullName>
+                <default>false</default>
+                <label>M(A)-김혜진</label>
+            </value>
+            <value>
+                <fullName>M(A)-김혜진B</fullName>
+                <default>false</default>
+                <label>M(A)-김혜진B</label>
+            </value>
+            <value>
+                <fullName>M(A)-김화랑</fullName>
+                <default>false</default>
+                <label>M(A)-김화랑</label>
+            </value>
+            <value>
+                <fullName>M(A)-나종현</fullName>
+                <default>false</default>
+                <label>M(A)-나종현</label>
+            </value>
+            <value>
+                <fullName>M(A)-노진아</fullName>
+                <default>false</default>
+                <label>M(A)-노진아</label>
+            </value>
+            <value>
+                <fullName>M(A)-문석환</fullName>
+                <default>false</default>
+                <label>M(A)-문석환</label>
+            </value>
+            <value>
+                <fullName>M(A)-문세현</fullName>
+                <default>false</default>
+                <label>M(A)-문세현</label>
+            </value>
+            <value>
+                <fullName>M(A)-민선홍</fullName>
+                <default>false</default>
+                <label>M(A)-민선홍</label>
+            </value>
+            <value>
+                <fullName>M(A)-박건수</fullName>
+                <default>false</default>
+                <label>M(A)-박건수</label>
+            </value>
+            <value>
+                <fullName>M(A)-박건욱</fullName>
+                <default>false</default>
+                <label>M(A)-박건욱</label>
+            </value>
+            <value>
+                <fullName>M(A)-박미숙</fullName>
+                <default>false</default>
+                <label>M(A)-박미숙</label>
+            </value>
+            <value>
+                <fullName>M(A)-박민경</fullName>
+                <default>false</default>
+                <label>M(A)-박민경</label>
+            </value>
+            <value>
+                <fullName>M(A)-박성경</fullName>
+                <default>false</default>
+                <label>M(A)-박성경</label>
+            </value>
+            <value>
+                <fullName>M(A)-박세정</fullName>
+                <default>false</default>
+                <label>M(A)-박세정</label>
+            </value>
+            <value>
+                <fullName>M(A)-박수인</fullName>
+                <default>false</default>
+                <label>M(A)-박수인</label>
+            </value>
+            <value>
+                <fullName>M(A)-박유라</fullName>
+                <default>false</default>
+                <label>M(A)-박유라</label>
+            </value>
+            <value>
+                <fullName>M(A)-박유정</fullName>
+                <default>false</default>
+                <label>M(A)-박유정</label>
+            </value>
+            <value>
+                <fullName>M(A)-박윤상</fullName>
+                <default>false</default>
+                <label>M(A)-박윤상</label>
+            </value>
+            <value>
+                <fullName>M(A)-박지윤</fullName>
+                <default>false</default>
+                <label>M(A)-박지윤</label>
+            </value>
+            <value>
+                <fullName>M(A)-박혜인</fullName>
+                <default>false</default>
+                <label>M(A)-박혜인</label>
+            </value>
+            <value>
+                <fullName>M(A)-박혜정</fullName>
+                <default>false</default>
+                <label>M(A)-박혜정</label>
+            </value>
+            <value>
+                <fullName>M(A)-배미진</fullName>
+                <default>false</default>
+                <label>M(A)-배미진</label>
+            </value>
+            <value>
+                <fullName>M(A)-배수빈</fullName>
+                <default>false</default>
+                <label>M(A)-배수빈</label>
+            </value>
+            <value>
+                <fullName>M(A)-배한솔</fullName>
+                <default>false</default>
+                <label>M(A)-배한솔</label>
+            </value>
+            <value>
+                <fullName>M(A)-서지원</fullName>
+                <default>false</default>
+                <label>M(A)-서지원</label>
+            </value>
+            <value>
+                <fullName>M(A)-설민이</fullName>
+                <default>false</default>
+                <label>M(A)-설민이</label>
+            </value>
+            <value>
+                <fullName>M(A)-손미경</fullName>
+                <default>false</default>
+                <label>M(A)-손미경</label>
+            </value>
+            <value>
+                <fullName>M(A)-손진영</fullName>
+                <default>false</default>
+                <label>M(A)-손진영</label>
+            </value>
+            <value>
+                <fullName>M(A)-손효경</fullName>
+                <default>false</default>
+                <label>M(A)-손효경</label>
+            </value>
+            <value>
+                <fullName>M(A)-송민지B</fullName>
+                <default>false</default>
+                <label>M(A)-송민지B</label>
+            </value>
+            <value>
+                <fullName>M(A)-송주현</fullName>
+                <default>false</default>
+                <label>M(A)-송주현</label>
+            </value>
+            <value>
+                <fullName>M(A)-신성빈</fullName>
+                <default>false</default>
+                <label>M(A)-신성빈</label>
+            </value>
+            <value>
+                <fullName>M(A)-안유경</fullName>
+                <default>false</default>
+                <label>M(A)-안유경</label>
+            </value>
+            <value>
+                <fullName>M(A)-안지은</fullName>
+                <default>false</default>
+                <label>M(A)-안지은</label>
+            </value>
+            <value>
+                <fullName>M(A)-여소은</fullName>
+                <default>false</default>
+                <label>M(A)-여소은</label>
+            </value>
+            <value>
+                <fullName>M(A)-오동준</fullName>
+                <default>false</default>
+                <label>M(A)-오동준</label>
+            </value>
+            <value>
+                <fullName>M(A)-원소정</fullName>
+                <default>false</default>
+                <label>M(A)-원소정</label>
+            </value>
+            <value>
+                <fullName>M(A)-윤송이</fullName>
+                <default>false</default>
+                <label>M(A)-윤송이</label>
+            </value>
+            <value>
+                <fullName>M(A)-윤정혜</fullName>
+                <default>false</default>
+                <label>M(A)-윤정혜</label>
+            </value>
+            <value>
+                <fullName>M(A)-이명하</fullName>
+                <default>false</default>
+                <label>M(A)-이명하</label>
+            </value>
+            <value>
+                <fullName>M(A)-이별샘</fullName>
+                <default>false</default>
+                <label>M(A)-이별샘</label>
+            </value>
+            <value>
+                <fullName>M(A)-이새별</fullName>
+                <default>false</default>
+                <label>M(A)-이새별</label>
+            </value>
+            <value>
+                <fullName>M(A)-이설희</fullName>
+                <default>false</default>
+                <label>M(A)-이설희</label>
+            </value>
+            <value>
+                <fullName>M(A)-이수빈</fullName>
+                <default>false</default>
+                <label>M(A)-이수빈</label>
+            </value>
+            <value>
+                <fullName>M(A)-이수진</fullName>
+                <default>false</default>
+                <label>M(A)-이수진</label>
+            </value>
+            <value>
+                <fullName>M(A)-이신애</fullName>
+                <default>false</default>
+                <label>M(A)-이신애</label>
+            </value>
+            <value>
+                <fullName>M(A)-이윤정</fullName>
+                <default>false</default>
+                <label>M(A)-이윤정</label>
+            </value>
+            <value>
+                <fullName>M(A)-이재연</fullName>
+                <default>false</default>
+                <label>M(A)-이재연</label>
+            </value>
+            <value>
+                <fullName>M(A)-이정</fullName>
+                <default>false</default>
+                <label>M(A)-이정</label>
+            </value>
+            <value>
+                <fullName>M(A)-이종협</fullName>
+                <default>false</default>
+                <label>M(A)-이종협</label>
+            </value>
+            <value>
+                <fullName>M(A)-이주연B</fullName>
+                <default>false</default>
+                <label>M(A)-이주연B</label>
+            </value>
+            <value>
+                <fullName>M(A)-이주하</fullName>
+                <default>false</default>
+                <label>M(A)-이주하</label>
+            </value>
+            <value>
+                <fullName>M(A)-이진영</fullName>
+                <default>false</default>
+                <label>M(A)-이진영</label>
+            </value>
+            <value>
+                <fullName>M(A)-이현이</fullName>
+                <default>false</default>
+                <label>M(A)-이현이</label>
+            </value>
+            <value>
+                <fullName>M(A)-이혜진</fullName>
+                <default>false</default>
+                <label>M(A)-이혜진</label>
+            </value>
+            <value>
+                <fullName>M(A)-임시49</fullName>
+                <default>false</default>
+                <label>M(A)-임시49</label>
+            </value>
+            <value>
+                <fullName>M(A)-임시50</fullName>
+                <default>false</default>
+                <label>M(A)-임시50</label>
+            </value>
+            <value>
+                <fullName>M(A)-임시51</fullName>
+                <default>false</default>
+                <label>M(A)-임시51</label>
+            </value>
+            <value>
+                <fullName>M(A)-임시52</fullName>
+                <default>false</default>
+                <label>M(A)-임시52</label>
+            </value>
+            <value>
+                <fullName>M(A)-임시53</fullName>
+                <default>false</default>
+                <label>M(A)-임시53</label>
+            </value>
+            <value>
+                <fullName>M(A)-임시54</fullName>
+                <default>false</default>
+                <label>M(A)-임시54</label>
+            </value>
+            <value>
+                <fullName>M(A)-임시55</fullName>
+                <default>false</default>
+                <label>M(A)-임시55</label>
+            </value>
+            <value>
+                <fullName>M(A)-임시56</fullName>
+                <default>false</default>
+                <label>M(A)-임시56</label>
+            </value>
+            <value>
+                <fullName>M(A)-임시57</fullName>
+                <default>false</default>
+                <label>M(A)-임시57</label>
+            </value>
+            <value>
+                <fullName>M(A)-임시58</fullName>
+                <default>false</default>
+                <label>M(A)-임시58</label>
+            </value>
+            <value>
+                <fullName>M(A)-임시59</fullName>
+                <default>false</default>
+                <label>M(A)-임시59</label>
+            </value>
+            <value>
+                <fullName>M(A)-임시60</fullName>
+                <default>false</default>
+                <label>M(A)-임시60</label>
+            </value>
+            <value>
+                <fullName>M(A)-임시61</fullName>
+                <default>false</default>
+                <label>M(A)-임시61</label>
+            </value>
+            <value>
+                <fullName>M(A)-임시62</fullName>
+                <default>false</default>
+                <label>M(A)-임시62</label>
+            </value>
+            <value>
+                <fullName>M(A)-임시63</fullName>
+                <default>false</default>
+                <label>M(A)-임시63</label>
+            </value>
+            <value>
+                <fullName>M(A)-임시64</fullName>
+                <default>false</default>
+                <label>M(A)-임시64</label>
+            </value>
+            <value>
+                <fullName>M(A)-임시65</fullName>
+                <default>false</default>
+                <label>M(A)-임시65</label>
+            </value>
+            <value>
+                <fullName>M(A)-임시66</fullName>
+                <default>false</default>
+                <label>M(A)-임시66</label>
+            </value>
+            <value>
+                <fullName>M(A)-임시67</fullName>
+                <default>false</default>
+                <label>M(A)-임시67</label>
+            </value>
+            <value>
+                <fullName>M(A)-임시68</fullName>
+                <default>false</default>
+                <label>M(A)-임시68</label>
+            </value>
+            <value>
+                <fullName>M(A)-임시69</fullName>
+                <default>false</default>
+                <label>M(A)-임시69</label>
+            </value>
+            <value>
+                <fullName>M(A)-임시70</fullName>
+                <default>false</default>
+                <label>M(A)-임시70</label>
+            </value>
+            <value>
+                <fullName>M(A)-임유정</fullName>
+                <default>false</default>
+                <label>M(A)-임유정</label>
+            </value>
+            <value>
+                <fullName>M(A)-임은혜</fullName>
+                <default>false</default>
+                <label>M(A)-임은혜</label>
+            </value>
+            <value>
+                <fullName>M(A)-장성민</fullName>
+                <default>false</default>
+                <label>M(A)-장성민</label>
+            </value>
+            <value>
+                <fullName>M(A)-장현석</fullName>
+                <default>false</default>
+                <label>M(A)-장현석</label>
+            </value>
+            <value>
+                <fullName>M(A)-장희진</fullName>
+                <default>false</default>
+                <label>M(A)-장희진</label>
+            </value>
+            <value>
+                <fullName>M(A)-전아영</fullName>
+                <default>false</default>
+                <label>M(A)-전아영</label>
+            </value>
+            <value>
+                <fullName>M(A)-전효진</fullName>
+                <default>false</default>
+                <label>M(A)-전효진</label>
+            </value>
+            <value>
+                <fullName>M(A)-정다운</fullName>
+                <default>false</default>
+                <label>M(A)-정다운</label>
+            </value>
+            <value>
+                <fullName>M(A)-정예슬</fullName>
+                <default>false</default>
+                <label>M(A)-정예슬</label>
+            </value>
+            <value>
+                <fullName>M(A)-정유진</fullName>
+                <default>false</default>
+                <label>M(A)-정유진</label>
+            </value>
+            <value>
+                <fullName>M(A)-정은지</fullName>
+                <default>false</default>
+                <label>M(A)-정은지</label>
+            </value>
+            <value>
+                <fullName>M(A)-정지윤</fullName>
+                <default>false</default>
+                <label>M(A)-정지윤</label>
+            </value>
+            <value>
+                <fullName>M(A)-정효경</fullName>
+                <default>false</default>
+                <label>M(A)-정효경</label>
+            </value>
+            <value>
+                <fullName>M(A)-조희진</fullName>
+                <default>false</default>
+                <label>M(A)-조희진</label>
+            </value>
+            <value>
+                <fullName>M(A)-주경선</fullName>
+                <default>false</default>
+                <label>M(A)-주경선</label>
+            </value>
+            <value>
+                <fullName>M(A)-최성원</fullName>
+                <default>false</default>
+                <label>M(A)-최성원</label>
+            </value>
+            <value>
+                <fullName>M(A)-최수나</fullName>
+                <default>false</default>
+                <label>M(A)-최수나</label>
+            </value>
+            <value>
+                <fullName>M(A)-최수진</fullName>
+                <default>false</default>
+                <label>M(A)-최수진</label>
+            </value>
+            <value>
+                <fullName>M(A)-한시은</fullName>
+                <default>false</default>
+                <label>M(A)-한시은</label>
+            </value>
+            <value>
+                <fullName>M(A)-한아름</fullName>
+                <default>false</default>
+                <label>M(A)-한아름</label>
+            </value>
+            <value>
+                <fullName>M(A)-허신용</fullName>
+                <default>false</default>
+                <label>M(A)-허신용</label>
+            </value>
+            <value>
+                <fullName>M(A)-홍다은</fullName>
+                <default>false</default>
+                <label>M(A)-홍다은</label>
+            </value>
+            <value>
+                <fullName>M(A)-황으뜸</fullName>
+                <default>false</default>
+                <label>M(A)-황으뜸</label>
+            </value>
+            <value>
+                <fullName>Madison Murphy</fullName>
+                <default>false</default>
+                <label>Madison Murphy</label>
+            </value>
+            <value>
+                <fullName>Mahmoud</fullName>
+                <default>false</default>
+                <label>Mahmoud</label>
+            </value>
+            <value>
+                <fullName>Malak</fullName>
+                <default>false</default>
+                <label>Malak</label>
+            </value>
+            <value>
+                <fullName>Malin Wallander</fullName>
+                <default>false</default>
+                <label>Malin Wallander</label>
+            </value>
+            <value>
+                <fullName>Marcelle Risonar</fullName>
+                <default>false</default>
+                <label>Marcelle Risonar</label>
+            </value>
+            <value>
+                <fullName>Maria Bengtsson</fullName>
+                <default>false</default>
+                <label>Maria Bengtsson</label>
+            </value>
+            <value>
+                <fullName>Maria Dena Jalipot</fullName>
+                <default>false</default>
+                <label>Maria Dena Jalipot</label>
+            </value>
+            <value>
+                <fullName>Maria Rizza Lacerna</fullName>
+                <default>false</default>
+                <label>Maria Rizza Lacerna</label>
+            </value>
+            <value>
+                <fullName>Mark Ong</fullName>
+                <default>false</default>
+                <label>Mark Ong</label>
+            </value>
+            <value>
+                <fullName>Matthew Ma</fullName>
+                <default>false</default>
+                <label>Matthew Ma</label>
+            </value>
+            <value>
+                <fullName>Michael 	Gavieres</fullName>
+                <default>false</default>
+                <label>Michael 	Gavieres</label>
+            </value>
+            <value>
+                <fullName>Myleen Arnaiz Siano</fullName>
+                <default>false</default>
+                <label>Myleen Arnaiz Siano</label>
+            </value>
+            <value>
+                <fullName>M-김보람</fullName>
+                <default>false</default>
+                <label>M-김보람</label>
+            </value>
+            <value>
+                <fullName>M-김아현</fullName>
+                <default>false</default>
+                <label>M-김아현</label>
+            </value>
+            <value>
+                <fullName>M-김혜림</fullName>
+                <default>false</default>
+                <label>M-김혜림</label>
+            </value>
+            <value>
+                <fullName>M-남수정</fullName>
+                <default>false</default>
+                <label>M-남수정</label>
+            </value>
+            <value>
+                <fullName>M-박지은</fullName>
+                <default>false</default>
+                <label>M-박지은</label>
+            </value>
+            <value>
+                <fullName>M-박혜은</fullName>
+                <default>false</default>
+                <label>M-박혜은</label>
+            </value>
+            <value>
+                <fullName>M-서승연</fullName>
+                <default>false</default>
+                <label>M-서승연</label>
+            </value>
+            <value>
+                <fullName>M-신소영</fullName>
+                <default>false</default>
+                <label>M-신소영</label>
+            </value>
+            <value>
+                <fullName>M-양민영</fullName>
+                <default>false</default>
+                <label>M-양민영</label>
+            </value>
+            <value>
+                <fullName>M-양선자</fullName>
+                <default>false</default>
+                <label>M-양선자</label>
+            </value>
+            <value>
+                <fullName>M-우성령</fullName>
+                <default>false</default>
+                <label>M-우성령</label>
+            </value>
+            <value>
+                <fullName>M-이지형</fullName>
+                <default>false</default>
+                <label>M-이지형</label>
+            </value>
+            <value>
+                <fullName>M-임시10</fullName>
+                <default>false</default>
+                <label>M-임시10</label>
+            </value>
+            <value>
+                <fullName>M-임시5</fullName>
+                <default>false</default>
+                <label>M-임시5</label>
+            </value>
+            <value>
+                <fullName>M-임시6</fullName>
+                <default>false</default>
+                <label>M-임시6</label>
+            </value>
+            <value>
+                <fullName>M-임시7</fullName>
+                <default>false</default>
+                <label>M-임시7</label>
+            </value>
+            <value>
+                <fullName>M-임시8</fullName>
+                <default>false</default>
+                <label>M-임시8</label>
+            </value>
+            <value>
+                <fullName>M-임시9</fullName>
+                <default>false</default>
+                <label>M-임시9</label>
+            </value>
+            <value>
+                <fullName>M-정혜련</fullName>
+                <default>false</default>
+                <label>M-정혜련</label>
+            </value>
+            <value>
+                <fullName>M-한이현</fullName>
+                <default>false</default>
+                <label>M-한이현</label>
+            </value>
+            <value>
+                <fullName>Nada</fullName>
+                <default>false</default>
+                <label>Nada</label>
+            </value>
+            <value>
+                <fullName>Nasser</fullName>
+                <default>false</default>
+                <label>Nasser</label>
+            </value>
+            <value>
+                <fullName>Nellie Eriksson</fullName>
+                <default>false</default>
+                <label>Nellie Eriksson</label>
+            </value>
+            <value>
+                <fullName>Nina Domingo</fullName>
+                <default>false</default>
+                <label>Nina Domingo</label>
+            </value>
+            <value>
+                <fullName>Nooh</fullName>
+                <default>false</default>
+                <label>Nooh</label>
+            </value>
+            <value>
+                <fullName>Olivia Blom</fullName>
+                <default>false</default>
+                <label>Olivia Blom</label>
+            </value>
+            <value>
+                <fullName>Olivia Jeon</fullName>
+                <default>false</default>
+                <label>Olivia Jeon</label>
+            </value>
+            <value>
+                <fullName>Omer</fullName>
+                <default>false</default>
+                <label>Omer</label>
+            </value>
+            <value>
+                <fullName>Patrick Thomson</fullName>
+                <default>false</default>
+                <label>Patrick Thomson</label>
+            </value>
+            <value>
+                <fullName>Paula Rodelle Rances</fullName>
+                <default>false</default>
+                <label>Paula Rodelle Rances</label>
+            </value>
+            <value>
+                <fullName>Paul Mansat</fullName>
+                <default>false</default>
+                <label>Paul Mansat</label>
+            </value>
+            <value>
+                <fullName>Paulus Poon</fullName>
+                <default>false</default>
+                <label>Paulus Poon</label>
+            </value>
+            <value>
+                <fullName>Princess Mendoza</fullName>
+                <default>false</default>
+                <label>Princess Mendoza</label>
+            </value>
+            <value>
+                <fullName>Radwa</fullName>
+                <default>false</default>
+                <label>Radwa</label>
+            </value>
+            <value>
+                <fullName>Rami</fullName>
+                <default>false</default>
+                <label>Rami</label>
+            </value>
+            <value>
+                <fullName>Ramon Pedroche</fullName>
+                <default>false</default>
+                <label>Ramon Pedroche</label>
+            </value>
+            <value>
+                <fullName>Richard Karlsson</fullName>
+                <default>false</default>
+                <label>Richard Karlsson</label>
+            </value>
+            <value>
+                <fullName>Robert Verdejo</fullName>
+                <default>false</default>
+                <label>Robert Verdejo</label>
+            </value>
+            <value>
+                <fullName>Ruba</fullName>
+                <default>false</default>
+                <label>Ruba</label>
+            </value>
+            <value>
+                <fullName>Safa</fullName>
+                <default>false</default>
+                <label>Safa</label>
+            </value>
+            <value>
+                <fullName>Saif</fullName>
+                <default>false</default>
+                <label>Saif</label>
+            </value>
+            <value>
+                <fullName>SAL</fullName>
+                <default>false</default>
+                <label>SAL</label>
+            </value>
+            <value>
+                <fullName>Shell Pandaeng</fullName>
+                <default>false</default>
+                <label>Shell Pandaeng</label>
+            </value>
+            <value>
+                <fullName>Shihan</fullName>
+                <default>false</default>
+                <label>Shihan</label>
+            </value>
+            <value>
+                <fullName>Srinath</fullName>
+                <default>false</default>
+                <label>Srinath</label>
+            </value>
+            <value>
+                <fullName>Stephen Sanjaya</fullName>
+                <default>false</default>
+                <label>Stephen Sanjaya</label>
+            </value>
+            <value>
+                <fullName>Steven Morrison</fullName>
+                <default>false</default>
+                <label>Steven Morrison</label>
+            </value>
+            <value>
+                <fullName>Stina Lönnqvist</fullName>
+                <default>false</default>
+                <label>Stina Lönnqvist</label>
+            </value>
+            <value>
+                <fullName>Stiven Persson</fullName>
+                <default>false</default>
+                <label>Stiven Persson</label>
+            </value>
+            <value>
+                <fullName>Stuart Terry</fullName>
+                <default>false</default>
+                <label>Stuart Terry</label>
+            </value>
+            <value>
+                <fullName>Sumood</fullName>
+                <default>false</default>
+                <label>Sumood</label>
+            </value>
+            <value>
+                <fullName>Taimur</fullName>
+                <default>false</default>
+                <label>Taimur</label>
+            </value>
+            <value>
+                <fullName>Therese Nilsson</fullName>
+                <default>false</default>
+                <label>Therese Nilsson</label>
+            </value>
+            <value>
+                <fullName>Thomas Fernando</fullName>
+                <default>false</default>
+                <label>Thomas Fernando</label>
+            </value>
+            <value>
+                <fullName>Thomas Payne</fullName>
+                <default>false</default>
+                <label>Thomas Payne</label>
+            </value>
+            <value>
+                <fullName>Timothy Reyes</fullName>
+                <default>false</default>
+                <label>Timothy Reyes</label>
+            </value>
+            <value>
+                <fullName>Tony Greig</fullName>
+                <default>false</default>
+                <label>Tony Greig</label>
+            </value>
+            <value>
+                <fullName>Tove Stork</fullName>
+                <default>false</default>
+                <label>Tove Stork</label>
+            </value>
+            <value>
+                <fullName>Tristan Guanco</fullName>
+                <default>false</default>
+                <label>Tristan Guanco</label>
+            </value>
+            <value>
+                <fullName>Viktor Hildingsson</fullName>
+                <default>false</default>
+                <label>Viktor Hildingsson</label>
+            </value>
+            <value>
+                <fullName>Wan Hoe Goh</fullName>
+                <default>false</default>
+                <label>Wan Hoe Goh</label>
+            </value>
+            <value>
+                <fullName>Wendy Xin</fullName>
+                <default>false</default>
+                <label>Wendy Xin</label>
+            </value>
+            <value>
+                <fullName>William Kim</fullName>
+                <default>false</default>
+                <label>William Kim</label>
+            </value>
+            <value>
+                <fullName>Zheng Lee</fullName>
+                <default>false</default>
+                <label>Zheng Lee</label>
+            </value>
+            <value>
+                <fullName>Zoulfekar</fullName>
+                <default>false</default>
+                <label>Zoulfekar</label>
+            </value>
+            <value>
+                <fullName>동일 작업자</fullName>
+                <default>false</default>
+                <label>동일 작업자</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

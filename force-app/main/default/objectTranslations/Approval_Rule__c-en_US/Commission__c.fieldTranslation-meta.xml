@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Commission --></label>
+    <lookupFilter>
+        <errorMessage><!-- You can choose only your country related records --></errorMessage>
+        <informationalMessage><!-- You can choose only your country related records --></informationalMessage>
+    </lookupFilter>
+    <name>Commission__c</name>
+    <relationshipLabel><!-- Approval Rules --></relationshipLabel>
+</CustomFieldTranslation>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FP_Asset_Cancellation</fullName>
+    <active>true</active>
+    <label>FP_Asset_Cancellation</label>
+    <picklistValues>
+        <picklist>Person_In_Charge_Return__c</picklist>
+        <values>
+            <fullName>방윤승</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>백효인</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>서동주</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>안희영</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>이다빈</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>차지원</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Return_Shipping_Company__c</picklist>
+        <values>
+            <fullName>epost</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Return_Status__c</picklist>
+        <values>
+            <fullName>Arrange Pick up</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivered to Warehouse</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Owner sends Terminal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Rep Terminated</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Returned_Reason__c</picklist>
+        <values>
+            <fullName>Contract canceled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Deliver refused</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fee burden</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inconvenient to use</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No space for Terminal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not enough order</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejection with no reason</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Returned by restaurant</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>System error</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Use POS</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

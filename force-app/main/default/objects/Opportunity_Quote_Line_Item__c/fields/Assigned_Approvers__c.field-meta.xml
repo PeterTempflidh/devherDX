@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Assigned_Approvers__c</fullName>
+    <externalId>false</externalId>
+    <formula>Approver__r.FirstName + &apos; &apos; +  Approver__r.LastName + 
+IF( Approver2__c != null &amp;&amp; Approver2__c != Approver__c, &apos;, &apos; + Approver2__r.FirstName + &apos; &apos; + Approver2__r.LastName, &apos;&apos;) + 
+IF( Approver3__c != null &amp;&amp; Approver3__c != Approver__c, &apos;, &apos; + Approver3__r.FirstName + &apos; &apos; + Approver3__r.LastName, &apos;&apos;) +
+IF( Approver4__c != null &amp;&amp; Approver4__c != Approver__c, &apos;, &apos; + Approver4__r.FirstName + &apos; &apos; + Approver4__r.LastName, &apos;&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Assigned Approvers</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

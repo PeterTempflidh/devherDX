@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_Cannot_Select_Archive_Root_Cause</fullName>
+    <active>true</active>
+    <description>Users cannot close cases with Root Cause as &quot;Archive&quot;</description>
+    <errorConditionFormula>ISPICKVAL(Closed_Reason__c,&apos;Not Successful&apos;)
+&amp;&amp;
+NOT($Profile.Name=&quot;API Only&quot;)
+&amp;&amp;
+Includes(Root_Cause__c,&apos;Archive&apos;)</errorConditionFormula>
+    <errorDisplayField>Root_Cause__c</errorDisplayField>
+    <errorMessage>You cannot close the case using &apos;Archive&apos; as a root cause. Please choose another Root Cause</errorMessage>
+</ValidationRule>

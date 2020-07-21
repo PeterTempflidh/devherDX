@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HS_CS_Chat_Food_English_LiveAgentSession</fullName>
+    <filterScope>Queue</filterScope>
+    <label>HS CS Chat Food-English</label>
+    <queue>HS_CS_Chat_Food_English</queue>
+    <sharedTo>
+        <allInternalUsers/>
+    </sharedTo>
+</ListView>

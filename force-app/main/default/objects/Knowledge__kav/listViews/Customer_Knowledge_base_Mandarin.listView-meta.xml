@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Knowledge_base_Mandarin</fullName>
+    <columns>ARTICLE_NUMBER</columns>
+    <columns>TITLE</columns>
+    <columns>PUBLISH_STATUS</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>LANGUAGE</columns>
+    <columns>LAST_PUBLISHED_DATE</columns>
+    <columns>CREATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>PUBLISH_STATUS</field>
+        <operation>equals</operation>
+        <value>1,2,3</value>
+    </filters>
+    <filters>
+        <field>TITLE</field>
+        <operation>startsWith</operation>
+        <value>Mand</value>
+    </filters>
+    <label>FP - Customer Knowledge-base - Mandarin</label>
+    <sharedTo>
+        <roleAndSubordinates>FP_Management</roleAndSubordinates>
+    </sharedTo>
+</ListView>

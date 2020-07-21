@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Offline_Reason_required_for_Termination</fullName>
+    <active>true</active>
+    <description>Offline reason value is required for Termination process for KR</description>
+    <errorConditionFormula>And ( RecordType.DeveloperName = &apos;Yogiyo_Inbound&apos;,
+ TEXT(Type) = &apos;Termination&apos;,
+ISBLANK(TEXT( Offline_Reason__c ))
+
+)</errorConditionFormula>
+    <errorDisplayField>Offline_Reason__c</errorDisplayField>
+    <errorMessage>Please select the Offline Reason</errorMessage>
+</ValidationRule>

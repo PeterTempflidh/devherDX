@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Franchise_Type</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(ISPICKVAL(Franchise_Type__c, &quot;Directly managed&quot;), ParentId = null,RecordType.DeveloperName = &apos;Yogiyo_Account&apos;)</errorConditionFormula>
+    <errorMessage>Restaurant cannot be Directly managed when Parent Account is not populated.</errorMessage>
+</ValidationRule>

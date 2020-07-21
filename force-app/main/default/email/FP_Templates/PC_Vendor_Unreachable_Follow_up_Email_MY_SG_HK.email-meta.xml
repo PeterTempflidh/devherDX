@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>PC template for Vendor Unreachable</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>PC - Vendor Unreachable Follow-up Email MY, SG, HK</name>
+    <style>freeForm</style>
+    <subject>VENDOR UNREACHABLE - Actions Required to Improve your Restaurant&apos;s Performance</subject>
+    <textOnly>Dear {!Account.Name},
+
+Greetings from foodpanda.
+
+We tried calling you today at &lt;HH:MM AM/PM&gt; on &lt;this/these&gt; numbers &lt;State outlet’s number&gt; regarding your restaurant performance but the contact numbers were unreachable.
+
+Here are the breakdown of your performance:
+Cancelled orders: &lt;XX&gt; (Reason), &lt;XX&gt; (Reason)
+
+We want to help you improve your performance and customer experience, so please see the guidelines below on how to avoid cancelling orders.
+
+&lt;Product Unavailable&gt;
+Please let us know if the menu we have for your restaurant at foodpanda is up-to-date: &lt;Menu attached&gt;.
+
+If there are changes in your menu, please click on this link &lt;Formstack Link&gt; and fill in the necessary details.
+
+It is important to conduct daily inventory and deactivate products from the foodpanda app (GoDroid) when it is out of stock in your restaurant or if there are pending menu updates.
+
+To deactivate unavailable menu items:
+1. Go to GoDroid in your device homepage;
+2. On the top left corner click on the 3 lines;
+3. Go to MENU;
+4. Once the menu is shown, choose:
+- Unavailable Today - if the item is out of stock today (menu will be reverted the next day)
+- Unavailable Indefinitely - if the item is out of stock for the time being
+
+&lt;Restaurant Not Reachable&gt; Please confirm if the additional phone number/s we have for your restaurant is/are correct: &lt;phone number&gt;.
+
+&lt;Restaurant Closed / Restaurant Too Busy&gt; Please confirm if the operating hours we have for your restaurant are correct:
+
+&lt;TIME&gt; - &lt;DAY&gt;
+
+Please note that we use kitchen hours as the timing for foodpanda to ensure that the kitchen is ready for incoming orders. If you are too busy, you can always temporarily close your restaurant using the app:
+
+1. Go to GoDroid in your device homepage;
+2. On the top right corner click AVAILABLE;
+3. Choose BUSY, if you want to reduce the number of incoming orders for 30 minutes
+4. Choose UNAVAILABLE, if you want to stop receiving orders for the day.
+Once you are ready to accept foodpanda orders again, remember to open your restaurant from the app.
+
+Order cancellations will directly impact the ranking of your restaurant on our platform, and your orders can be significantly reduced if there is no improvement. I hope we can work together to ensure that your customers are receiving the best possible experience.
+
+If you have any questions, please feel free to reach out to us via the channels below and we will be glad to assist you.
+
+
+HK: Request Form: https://foodpandasg.formstack.com/forms/foodpanda_support_hk
+
+MY: Request Form: https://foodpandasg.formstack.com/forms/foodpanda_support_malaysia
+Hotline Number: +60162991481
+
+SG: Request Form: https://foodpandasg.formstack.com/forms/foodpanda_support
+Hotline Number: +6531583673
+
+TW: Email: partner@foodpanda.tw
+
+
+
+Best regards,
+&lt;Your Name&gt;</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

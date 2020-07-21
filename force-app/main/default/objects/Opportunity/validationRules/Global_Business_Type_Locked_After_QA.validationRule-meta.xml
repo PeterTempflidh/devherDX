@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_Business_Type_Locked_After_QA</fullName>
+    <active>true</active>
+    <errorConditionFormula>Probability&gt;0.90 
+&amp;&amp; 
+ISCHANGED(Business_Type__c)
+&amp;&amp; 
+NOT($Profile.Name=&quot;System Administrator&quot;)
+&amp;&amp; 
+NOT(CONTAINS($Profile.Name, &quot;Management&quot;))
+&amp;&amp; 
+NOT(ISCHANGED( Last_Call_Comments__c ))</errorConditionFormula>
+    <errorDisplayField>Business_Type__c</errorDisplayField>
+    <errorMessage>You can not edit the business type once the quality check is completed</errorMessage>
+</ValidationRule>

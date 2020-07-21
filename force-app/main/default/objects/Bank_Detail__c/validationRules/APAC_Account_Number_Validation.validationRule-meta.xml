@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>APAC_Account_Number_Validation</fullName>
+    <active>false</active>
+    <description>Bank Account Number should have at least 15 digits for Hong Kong and New Markets. Between 5 and 17 digits for Malaysia. Between 8 and 14 digits for Taiwan. And between 8 and 15 digits for Singapore.</description>
+    <errorConditionFormula>AND(
+Account__r.RecordType.DeveloperName = &apos;FP_Account&apos;,
+NOT($Permission.Exclude_from_Validation),
+NOT(ISBLANK(Bank_Account_Number__c)),
+OR(
+(ISPICKVAL(Account__r.Record_Country__c , &apos;Hong Kong&apos;) &amp;&amp;
+NOT(REGEX(Bank_Account_Number__c, &quot;^.{15,}$&quot;))),
+(ISPICKVAL(Account__r.Record_Country__c , &apos;Malaysia&apos;) &amp;&amp;
+NOT(REGEX(Bank_Account_Number__c, &quot;^[0-9]{5,17}$&quot;))),
+(ISPICKVAL(Account__r.Record_Country__c , &apos;Taiwan&apos;) &amp;&amp;
+NOT(REGEX(Bank_Account_Number__c, &quot;^[0-9]{8,14}$&quot;))),
+(ISPICKVAL(Account__r.Record_Country__c , &apos;Singapore&apos;) &amp;&amp;
+NOT(REGEX(Bank_Account_Number__c, &quot;^[0-9]{8,15}$&quot;))),
+(ISPICKVAL(Account__r.Record_Country__c , &apos;Thailand&apos;) &amp;&amp; NOT(REGEX(Bank_Account_Number__c, &quot;^[0-9]{10,13}$&quot;))),
+(ISPICKVAL(Account__r.Record_Country__c , &apos;Philippines&apos;) &amp;&amp; NOT(REGEX(Bank_Account_Number__c, &quot;^[0-9]{10,16}$&quot;))),
+(ISPICKVAL(Account__r.Record_Country__c , &apos;Bangladesh&apos;) &amp;&amp; NOT(REGEX(Bank_Account_Number__c, &quot;^[0-9]{5,17}$&quot;)))
+)
+)</errorConditionFormula>
+    <errorDisplayField>Bank_Account_Number__c</errorDisplayField>
+    <errorMessage>The bank account needs to be in the right format</errorMessage>
+</ValidationRule>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FP_TakeOwnership_To_Change_Case_Status</fullName>
+    <active>true</active>
+    <description>In order to change the case status, user needs to take the ownership of the case following ticket SSC-404</description>
+    <errorConditionFormula>AND(
+$User.Id &lt;&gt; Owner:User.Id,
+ISCHANGED(Status),
+RecordType.DeveloperName = &quot;FP_Restaurant_Operations&quot;,
+NOT( $Permission.Exclude_from_Validation )
+)</errorConditionFormula>
+    <errorMessage>In order to change the status of a case please Take Ownership.</errorMessage>
+</ValidationRule>

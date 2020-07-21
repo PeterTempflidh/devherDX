@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>대상</label>
+    <name>Target__c</name>
+    <picklistValues>
+        <masterLabel>Customers</masterLabel>
+        <translation>고객</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant</masterLabel>
+        <translation>업체</translation>
+    </picklistValues>
+</CustomFieldTranslation>

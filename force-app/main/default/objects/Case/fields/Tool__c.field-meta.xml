@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tool__c</fullName>
+    <description>List of Global Tools for Global Support Cases</description>
+    <externalId>false</externalId>
+    <label>Tool</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>ALAN</fullName>
+                <default>false</default>
+                <label>ALAN</label>
+            </value>
+            <value>
+                <fullName>Freshchat</fullName>
+                <default>false</default>
+                <label>Freshchat</label>
+            </value>
+            <value>
+                <fullName>New Voice Media</fullName>
+                <default>false</default>
+                <label>New Voice Media</label>
+            </value>
+            <value>
+                <fullName>PlayVox</fullName>
+                <default>false</default>
+                <label>PlayVox</label>
+            </value>
+            <value>
+                <fullName>Reporting / Analytics</fullName>
+                <default>false</default>
+                <label>Reporting / Analytics</label>
+            </value>
+            <value>
+                <fullName>Shyftplan</fullName>
+                <default>false</default>
+                <label>Shyftplan</label>
+            </value>
+            <value>
+                <fullName>Long-term Forecasting Tool</fullName>
+                <default>false</default>
+                <label>Long-term Forecasting Tool</label>
+            </value>
+            <value>
+                <fullName>Short-term Forecasting Tool</fullName>
+                <default>false</default>
+                <label>Short-term Forecasting Tool</label>
+            </value>
+            <value>
+                <fullName>Zendesk</fullName>
+                <default>false</default>
+                <label>Zendesk</label>
+            </value>
+            <value>
+                <fullName>Helpcenter</fullName>
+                <default>false</default>
+                <label>Helpcenter</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

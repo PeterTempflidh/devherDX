@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Talabat_Chats_Escalation_LiveChatTranscript</fullName>
+    <filterScope>Queue</filterScope>
+    <label>Talabat Chats - Escalation</label>
+    <queue>Talabat_Chats_Escalation</queue>
+    <sharedTo>
+        <allInternalUsers/>
+    </sharedTo>
+</ListView>

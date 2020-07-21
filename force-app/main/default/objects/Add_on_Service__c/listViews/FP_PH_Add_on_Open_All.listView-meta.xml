@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FP_PH_Add_on_Open_All</fullName>
+    <columns>CREATED_DATE</columns>
+    <columns>NAME</columns>
+    <columns>Id_List_Add_On__c</columns>
+    <columns>Status__c</columns>
+    <columns>Start_Date__c</columns>
+    <columns>End_Date__c</columns>
+    <columns>Account_Name__c</columns>
+    <columns>Opportunity__c</columns>
+    <columns>LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Add_on_Service__c.FP_Add_On</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>New,Final Check,Please Check</value>
+    </filters>
+    <filters>
+        <field>Company__c</field>
+        <operation>equals</operation>
+        <value>Foodpanda Philippines</value>
+    </filters>
+    <label>FP-PH - Add-on - Open(All)</label>
+    <sharedTo>
+        <group>FP_Editorial</group>
+        <group>FP_Philippines_Users</group>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DH_AU_Contract</fullName>
+    <active>true</active>
+    <label>DH AU Contract</label>
+    <picklistValues>
+        <picklist>Based_On__c</picklist>
+        <values>
+            <fullName>Monetary Amounts</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Orders</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Commission_Type__c</picklist>
+        <values>
+            <fullName>Per Order</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Percentage</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Migrated_From_Source_System__c</picklist>
+        <values>
+            <fullName>Salesforce PeYa</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Physical_Copy__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status</picklist>
+        <values>
+            <fullName>Activated</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Draft</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Approval Process</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminated</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Termination_Reason__c</picklist>
+        <values>
+            <fullName>Bad debtor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Business Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cannot Contact</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Change of Business Name</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comission too high</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Downgrade</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Duplicate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Exclusive with competitor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fraud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Issues with payments to restaurant</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Language issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Owner - New Contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Delivery Service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No willingness to talk</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Enough Orders</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Interested in Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not enough capacity</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not interested in Terminal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Personal appointment requested</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prefers Competition</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Price too high</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Termination</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transmission Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unhappy with service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Upgrade</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Website issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Welcome call unsuccessful</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

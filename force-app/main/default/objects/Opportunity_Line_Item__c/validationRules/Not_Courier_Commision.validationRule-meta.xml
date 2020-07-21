@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Not_Courier_Commision</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(ISBLANK(Id_Opportunity__r.Account.Courier_Service__c),
+								 ISPICKVAL(Sub_type__c, &apos;Courier Fee&apos;)  
+												)</errorConditionFormula>
+    <errorMessage>You can not sell a Courier Commission if the Account is not using Courier Services. Please fill the field &quot;Courier Service&quot; accordingly</errorMessage>
+</ValidationRule>

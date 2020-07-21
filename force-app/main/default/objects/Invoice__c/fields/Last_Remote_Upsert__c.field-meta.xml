@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Last_Remote_Upsert__c</fullName>
+    <description>Helper Field: Shows the date/ time of the last remote upsert event for this object.</description>
+    <externalId>false</externalId>
+    <label>Last Remote Upsert</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

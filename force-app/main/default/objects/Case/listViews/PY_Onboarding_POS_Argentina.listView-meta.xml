@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PY_Onboarding_POS_Argentina</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>GRID_fm__c</columns>
+    <columns>OWNER_NAME</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>Opportunity__c</columns>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.PRIORITY</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Onboarding</value>
+    </filters>
+    <filters>
+        <field>Asset__c</field>
+        <operation>contains</operation>
+        <value>POS</value>
+    </filters>
+    <filters>
+        <field>Asset_Status__c</field>
+        <operation>equals</operation>
+        <value>Activated Successfully</value>
+    </filters>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>equals</operation>
+        <value>New,In Progress</value>
+    </filters>
+    <filters>
+        <field>Country__c</field>
+        <operation>equals</operation>
+        <value>Argentina</value>
+    </filters>
+    <label>PY - Onboarding POS - Argentina</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>PY_Logistics</role>
+    </sharedTo>
+</ListView>

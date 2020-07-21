@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_City_Area_Label__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Model__c,
+&quot;XAL&quot;,
+CASE(CountryCode__c,
+&quot;BH&quot;,
+SubAdministrativeAreaName__c,
+&quot;HK&quot;,
+LocalityName__c,
+&quot;JO&quot;,
+SubAdministrativeAreaName__c,
+&quot;SA&quot;,
+SubAdministrativeAreaName__c,
+&quot;KW&quot;,
+SubAdministrativeAreaName__c,
+&quot;LB&quot;,
+SubAdministrativeAreaName__c,
+&quot;OM&quot;,
+SubAdministrativeAreaName__c,
+&quot;EG&quot;,
+SubAdministrativeAreaName__c,
+&quot;QA&quot;,
+SubAdministrativeAreaName__c,
+&quot;AE&quot;,
+SubAdministrativeAreaName__c,
+&quot;PA&quot;, 
+SubAdministrativeAreaName__c, 
+&quot;PY&quot;, 
+SubAdministrativeAreaName__c,
+&quot;AR&quot;, 
+SubAdministrativeAreaName__c, 
+&quot;CL&quot;, 
+SubAdministrativeAreaName__c, 
+&quot;BO&quot;, 
+SubAdministrativeAreaName__c,
+&quot;SG&quot;, 
+LocalityName__c,
+&quot;MY&quot;, 
+SubAdministrativeAreaName__c,
+&quot;PH&quot;,
+SubAdministrativeAreaName__c,
+&quot;TH&quot;,
+SubAdministrativeAreaName__c,
+&quot;BD&quot;,
+SubAdministrativeAreaName__c,
+&quot;TW&quot;,
+SubAdministrativeAreaName__c,
+&quot;&quot;
+),
+&quot;GPA&quot;, 
+CASE(GPA_Country_short_name__c,
+&quot;DO&quot;, 
+LocalityName__c,
+&quot;VE&quot;,
+LocalityName__c,
+&quot;KR&quot;, 
+LocalityName__c,  
+&quot;UY&quot;, 
+LocalityName__c, 
+&quot;&quot; 
+),
+&quot;&quot;)</formula>
+    <label>Global City Area Label</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

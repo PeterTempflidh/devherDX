@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Collection_Category__c</fullName>
+    <description>Categories for distinguish which restaurant are corporative in terms of debt collection</description>
+    <externalId>false</externalId>
+    <label>Collection Category</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>1. Warning</fullName>
+                <default>false</default>
+                <label>1. Warning</label>
+            </value>
+            <value>
+                <fullName>2. Risk (Danger)</fullName>
+                <default>false</default>
+                <label>2. Risk (Danger)</label>
+            </value>
+            <value>
+                <fullName>3. High-Risk</fullName>
+                <default>false</default>
+                <label>3. High-Risk</label>
+            </value>
+            <value>
+                <fullName>4. New (Initial)</fullName>
+                <default>false</default>
+                <label>4. New (Initial)</label>
+            </value>
+            <value>
+                <fullName>A</fullName>
+                <default>false</default>
+                <label>A</label>
+            </value>
+            <value>
+                <fullName>B</fullName>
+                <default>false</default>
+                <label>B</label>
+            </value>
+            <value>
+                <fullName>C</fullName>
+                <default>false</default>
+                <label>C</label>
+            </value>
+            <value>
+                <fullName>D</fullName>
+                <default>false</default>
+                <label>D</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

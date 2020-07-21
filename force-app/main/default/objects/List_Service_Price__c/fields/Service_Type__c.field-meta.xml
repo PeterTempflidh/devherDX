@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Service_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Service Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Commission Fee</fullName>
+                <default>false</default>
+                <label>Commission Fee</label>
+            </value>
+            <value>
+                <fullName>Online Payment Fee</fullName>
+                <default>false</default>
+                <label>Online Payment Fee</label>
+            </value>
+            <value>
+                <fullName>White Label Website Fee</fullName>
+                <default>false</default>
+                <label>White Label Website Fee</label>
+            </value>
+            <value>
+                <fullName>White Label Commission Fee</fullName>
+                <default>false</default>
+                <label>White Label Commission Fee</label>
+            </value>
+            <value>
+                <fullName>Logistics Fee</fullName>
+                <default>false</default>
+                <label>Logistics Fee</label>
+            </value>
+            <value>
+                <fullName>Credit Card Payment Fee</fullName>
+                <default>false</default>
+                <label>Credit Card Payment Fee</label>
+            </value>
+            <value>
+                <fullName>Debit Card Payment Fee</fullName>
+                <default>false</default>
+                <label>Debit Card Payment Fee</label>
+            </value>
+            <value>
+                <fullName>Take Away Commission Fee</fullName>
+                <default>false</default>
+                <label>Take Away Commission Fee</label>
+            </value>
+            <value>
+                <fullName>Delivery Fee</fullName>
+                <default>false</default>
+                <label>Delivery Fee</label>
+            </value>
+            <value>
+                <fullName>SZÉP Card Payment Fee</fullName>
+                <default>false</default>
+                <label>SZÉP Card Payment Fee</label>
+            </value>
+            <value>
+                <fullName>Bank Card Payment Fee</fullName>
+                <default>false</default>
+                <label>Bank Card Payment Fee</label>
+            </value>
+            <value>
+                <fullName>Complementary Logistics Fee</fullName>
+                <default>false</default>
+                <label>Complementary Logistics Fee</label>
+            </value>
+            <value>
+                <fullName>Courier Fee</fullName>
+                <default>false</default>
+                <label>Courier Fee</label>
+            </value>
+            <value>
+                <fullName>Complementary Commission Fee</fullName>
+                <default>false</default>
+                <label>Complementary Commission Fee</label>
+            </value>
+            <value>
+                <fullName>Additional Menu Fee</fullName>
+                <default>false</default>
+                <label>Additional Menu Fee</label>
+            </value>
+            <value>
+                <fullName>Deal Subscription Fee</fullName>
+                <default>false</default>
+                <label>Deal Subscription Fee</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

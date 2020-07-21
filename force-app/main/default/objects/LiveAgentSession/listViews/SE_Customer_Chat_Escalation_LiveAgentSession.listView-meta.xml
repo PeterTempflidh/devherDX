@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SE_Customer_Chat_Escalation_LiveAgentSession</fullName>
+    <filterScope>Queue</filterScope>
+    <label>SE Customer Chat Escalation</label>
+    <queue>SE_Customer_Chat_Escalation</queue>
+    <sharedTo>
+        <allInternalUsers/>
+    </sharedTo>
+</ListView>

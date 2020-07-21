@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_Country_Bank_Details</fullName>
+    <active>true</active>
+    <description>SSC-3678</description>
+    <errorConditionFormula>AND(
+TEXT(Country__c) &lt;&gt; TEXT(Account__r.Record_Country__c),
+NOT($Permission.Exclude_from_Validation)
+&amp;&amp;
+(Account__r.RecordType.DeveloperName = &apos;PY_Account&apos;
+||
+Account__r.RecordType.DeveloperName = &apos;Talabat_Account&apos;)
+)</errorConditionFormula>
+    <errorMessage>The country selected does not match the Account country, please double check</errorMessage>
+</ValidationRule>

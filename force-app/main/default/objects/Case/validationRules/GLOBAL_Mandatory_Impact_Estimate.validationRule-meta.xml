@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GLOBAL_Mandatory_Impact_Estimate</fullName>
+    <active>true</active>
+    <description>Used for Feature request cases, makes impact effort estimate mandatory on Approval by G-Ops</description>
+    <errorConditionFormula>ISCHANGED(Status)
+&amp;&amp; 
+(RecordType.DeveloperName=&quot;SALESFORCE_SUPPORT&quot;)
+&amp;&amp; 
+TEXT(Status)=&quot;Approved&quot; 
+&amp;&amp; 
+ISBLANK(Impact_Estimate__c )</errorConditionFormula>
+    <errorDisplayField>Impact_Estimate__c</errorDisplayField>
+    <errorMessage>Please enter an Impact Estimate before approving this request.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PY_Refund_Case</fullName>
+    <booleanFilter>(1 AND 2 AND 3 AND 7 ) OR ( 1 AND 4 AND  5 AND 6 AND 7)</booleanFilter>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>GRID_fm__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>CASES.LAST_UPDATE</columns>
+    <columns>Key_VIP_Account__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>notEqual</operation>
+        <value>Closed,Resolved</value>
+    </filters>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.PY_Finance_Case</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Refund</value>
+    </filters>
+    <filters>
+        <field>EmailToAddress__c</field>
+        <operation>contains</operation>
+        <value>sf.collections@pedidosya.com</value>
+    </filters>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.PY_Inbound_Case</value>
+    </filters>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>contains</operation>
+        <value>NDC | Partner</value>
+    </filters>
+    <filters>
+        <field>Key_VIP_Account__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>PY Refund KA</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>PY_Finance</group>
+        <role>PY_Customer_Care</role>
+        <role>PY_Customer_Care_Management</role>
+        <role>PY_Restaurant_Operations</role>
+    </sharedTo>
+</ListView>

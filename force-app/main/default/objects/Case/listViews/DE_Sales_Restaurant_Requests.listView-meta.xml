@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DE_Sales_Restaurant_Requests</fullName>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>NAME</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <filterScope>Queue</filterScope>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>equals</operation>
+        <value>SMS RESPONSE</value>
+    </filters>
+    <label>DE - Sales - Restaurant Requests</label>
+    <language>de</language>
+    <queue>DE_Restaurant_Request</queue>
+    <sharedTo>
+        <role>DE_Account_Management</role>
+        <role>DE_Sales</role>
+        <role>DE_Sales_Management</role>
+        <roleAndSubordinates>DE_Account_Management</roleAndSubordinates>
+        <roleAndSubordinates>DE_Sales</roleAndSubordinates>
+        <roleAndSubordinates>DE_Sales_Management</roleAndSubordinates>
+    </sharedTo>
+</ListView>

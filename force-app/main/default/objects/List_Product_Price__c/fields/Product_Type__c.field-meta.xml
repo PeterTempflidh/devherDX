@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Type__c</fullName>
+    <description>Product Type to determine the Asset Type</description>
+    <externalId>false</externalId>
+    <label>Product Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Menu Printing</fullName>
+                <default>false</default>
+                <label>Menu Printing</label>
+            </value>
+            <value>
+                <fullName>Recurring Fee</fullName>
+                <default>false</default>
+                <label>Recurring Fee</label>
+            </value>
+            <value>
+                <fullName>Setup Fee</fullName>
+                <default>false</default>
+                <label>Setup Fee</label>
+            </value>
+            <value>
+                <fullName>Renewal Fee</fullName>
+                <default>false</default>
+                <label>Renewal Fee</label>
+            </value>
+            <value>
+                <fullName>Automatic</fullName>
+                <default>false</default>
+                <label>Automatic</label>
+            </value>
+            <value>
+                <fullName>Manual</fullName>
+                <default>false</default>
+                <label>Manual</label>
+            </value>
+            <value>
+                <fullName>Replacement</fullName>
+                <default>false</default>
+                <label>Replacement</label>
+            </value>
+            <value>
+                <fullName>Exclusive Special Offer</fullName>
+                <default>false</default>
+                <label>Exclusive Special Offer</label>
+            </value>
+            <value>
+                <fullName>Packaging</fullName>
+                <default>false</default>
+                <label>Packaging</label>
+            </value>
+            <value>
+                <fullName>Online Marketing</fullName>
+                <default>false</default>
+                <label>Online Marketing</label>
+            </value>
+            <value>
+                <fullName>White Label Web</fullName>
+                <default>false</default>
+                <label>White Label Web</label>
+            </value>
+            <value>
+                <fullName>White Label App</fullName>
+                <default>false</default>
+                <label>White Label App</label>
+            </value>
+            <value>
+                <fullName>Software</fullName>
+                <default>false</default>
+                <label>Software</label>
+            </value>
+            <value>
+                <fullName>Premium placement</fullName>
+                <default>false</default>
+                <label>Premium placement</label>
+            </value>
+            <value>
+                <fullName>Premium Listing</fullName>
+                <default>false</default>
+                <label>Premium Listing</label>
+            </value>
+            <value>
+                <fullName>Refund</fullName>
+                <default>false</default>
+                <label>Refund</label>
+            </value>
+            <value>
+                <fullName>Dish Level Photoshoot</fullName>
+                <default>false</default>
+                <label>Dish Level Photoshoot</label>
+            </value>
+            <value>
+                <fullName>Merchandise</fullName>
+                <default>false</default>
+                <label>Merchandise</label>
+            </value>
+            <value>
+                <fullName>Car Leasing</fullName>
+                <default>false</default>
+                <label>Car Leasing</label>
+            </value>
+            <value>
+                <fullName>Hardware</fullName>
+                <default>false</default>
+                <label>Hardware</label>
+            </value>
+            <value>
+                <fullName>Premium placement - 1 Month</fullName>
+                <default>false</default>
+                <label>Premium placement - 1 Month</label>
+            </value>
+            <value>
+                <fullName>Penalty</fullName>
+                <default>false</default>
+                <label>Penalty</label>
+            </value>
+            <value>
+                <fullName>Adjustment</fullName>
+                <default>false</default>
+                <label>Adjustment</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

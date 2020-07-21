@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MyOpenCases_KR</fullName>
+    <booleanFilter>1 AND NOT (2 AND 3 AND (4 OR 5))</booleanFilter>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>CASES.RECORDTYPE</columns>
+    <columns>CASES.TYPE</columns>
+    <columns>Case_Reason__c</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Backend_ID__c</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>CASES.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.Yogiyo_Internal_Case</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Take Offline</value>
+    </filters>
+    <filters>
+        <field>Temp_Offline_date__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>contains</operation>
+        <value>SAL승인완료</value>
+    </filters>
+    <label>My Open Cases (KR)</label>
+    <language>en_US</language>
+    <sharedTo>
+        <roleAndSubordinates>Yogiyo_Local_Admin</roleAndSubordinates>
+    </sharedTo>
+</ListView>

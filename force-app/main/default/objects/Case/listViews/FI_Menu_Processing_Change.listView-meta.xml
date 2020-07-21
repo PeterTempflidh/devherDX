@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FI_Menu_Processing_Change</fullName>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Legal_Name__c</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.TYPE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>Onboarding_Menu_Comments__c</columns>
+    <columns>Take_Online_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.FI_Entry_Case</value>
+    </filters>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>notEqual</operation>
+        <value>Closed</value>
+    </filters>
+    <filters>
+        <field>CREATEDBY_USER.ALIAS</field>
+        <operation>notEqual</operation>
+        <value>Feng Wang</value>
+    </filters>
+    <filters>
+        <field>CREATEDBY_USER.ALIAS</field>
+        <operation>notEqual</operation>
+        <value>fwang,dhawk</value>
+    </filters>
+    <label>FI - Menu Processing / Change</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>SE_FI_Operations</group>
+        <roleAndSubordinates>FI_Management</roleAndSubordinates>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SE_Canceled</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Stock_Item_Serial_No__c</columns>
+    <columns>Return_Comments__c</columns>
+    <columns>Return_Due_Date__c</columns>
+    <columns>Comment__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset__c.SE_Asset</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Canceled</value>
+    </filters>
+    <label>SE - Canceled</label>
+    <language>en_US</language>
+    <sharedTo>
+        <roleAndSubordinates>SE_Management</roleAndSubordinates>
+    </sharedTo>
+</ListView>

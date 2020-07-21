@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PY_Sales_team_can_not_edit_account_owner</fullName>
+    <active>true</active>
+    <description>SP-4287</description>
+    <errorConditionFormula>ISCHANGED(OwnerId)   
+&amp;&amp;
+$Profile.Name = &quot;PY Sales Team&quot;</errorConditionFormula>
+    <errorDisplayField>OwnerId</errorDisplayField>
+    <errorMessage>You can not edit the owner of accounts, please contact your manager to help you transferring this account</errorMessage>
+</ValidationRule>

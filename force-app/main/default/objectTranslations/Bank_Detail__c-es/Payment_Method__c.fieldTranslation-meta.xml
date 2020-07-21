@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- If &apos;Mobile Wallet&apos; is chosen, make sure that the &apos;Account Number&apos; field includes full phone number, including international dialing code, e.g. +49&apos; --></help>
+    <label><!-- Payment Method --></label>
+    <name>Payment_Method__c</name>
+    <picklistValues>
+        <masterLabel>Bank Account</masterLabel>
+        <translation><!-- Bank Account --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cash</masterLabel>
+        <translation><!-- Cash --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cheque</masterLabel>
+        <translation><!-- Cheque --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mobile Wallet</masterLabel>
+        <translation><!-- Mobile Wallet --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Closed_Reason__c</fullName>
+    <externalId>false</externalId>
+    <label>Closed Reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Type</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Take Online</fullName>
+                <default>false</default>
+                <label>Take Online</label>
+            </value>
+            <value>
+                <fullName>Take Online is not possible</fullName>
+                <default>false</default>
+                <label>Take Online is not possible</label>
+            </value>
+            <value>
+                <fullName>Successful</fullName>
+                <default>false</default>
+                <label>Successful</label>
+            </value>
+            <value>
+                <fullName>Not Successful</fullName>
+                <default>false</default>
+                <label>Not Successful</label>
+            </value>
+            <value>
+                <fullName>Invalid</fullName>
+                <default>false</default>
+                <label>Invalid</label>
+            </value>
+            <value>
+                <fullName>Approved</fullName>
+                <default>false</default>
+                <label>Approved</label>
+            </value>
+            <value>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+                <label>Rejected</label>
+            </value>
+            <value>
+                <fullName>Create Retention Task</fullName>
+                <default>false</default>
+                <label>Create Retention Task</label>
+            </value>
+            <value>
+                <fullName>Create Take Offline Task for Non Contracted</fullName>
+                <default>false</default>
+                <label>Create Take Offline Task for Non Contracted</label>
+            </value>
+            <value>
+                <fullName>Take Offline</fullName>
+                <default>false</default>
+                <label>Take Offline</label>
+            </value>
+            <value>
+                <fullName>Retention</fullName>
+                <default>false</default>
+                <label>Retention</label>
+            </value>
+            <value>
+                <fullName>Not Successful - Data Missing</fullName>
+                <default>false</default>
+                <label>Not Successful - Data Missing</label>
+            </value>
+            <value>
+                <fullName>Not Successful - Commission is not correct</fullName>
+                <default>false</default>
+                <label>Not Successful - Commission is not correct</label>
+            </value>
+            <value>
+                <fullName>Back Online</fullName>
+                <default>false</default>
+                <label>Back Online</label>
+            </value>
+            <value>
+                <fullName>Not Reachable</fullName>
+                <default>false</default>
+                <label>Not Reachable</label>
+            </value>
+            <value>
+                <fullName>Spam</fullName>
+                <default>false</default>
+                <label>Spam</label>
+            </value>
+            <value>
+                <fullName>Duplicated</fullName>
+                <default>false</default>
+                <label>Duplicated</label>
+            </value>
+            <value>
+                <fullName>Auto Closed</fullName>
+                <default>false</default>
+                <label>Auto Closed</label>
+            </value>
+            <value>
+                <fullName>Escalated to AM</fullName>
+                <default>false</default>
+                <label>Escalated to AM</label>
+            </value>
+            <value>
+                <fullName>Successful Call</fullName>
+                <default>false</default>
+                <label>Successful Call</label>
+            </value>
+            <value>
+                <fullName>Call Scheduled</fullName>
+                <default>false</default>
+                <label>Call Scheduled</label>
+            </value>
+            <value>
+                <fullName>Improvement on KPI’s (Agent)</fullName>
+                <default>false</default>
+                <label>Improvement on KPI’s (Agent)</label>
+            </value>
+            <value>
+                <fullName>Improvement on KPI’s (AM)</fullName>
+                <default>false</default>
+                <label>Improvement on KPI’s (AM)</label>
+            </value>
+            <value>
+                <fullName>Restaurant Taken Offline (1 st Incident)</fullName>
+                <default>false</default>
+                <label>Restaurant Taken Offline (1 st Incident)</label>
+            </value>
+            <value>
+                <fullName>Restaurant Taken Offline (Permanent)</fullName>
+                <default>false</default>
+                <label>Restaurant Taken Offline (Permanent)</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Follow Up</controllingFieldValue>
+            <controllingFieldValue>Performance</controllingFieldValue>
+            <controllingFieldValue>Handover</controllingFieldValue>
+            <controllingFieldValue>Soft Feature Request</controllingFieldValue>
+            <controllingFieldValue>Global Payments</controllingFieldValue>
+            <controllingFieldValue>Financial</controllingFieldValue>
+            <controllingFieldValue>Not Financial</controllingFieldValue>
+            <controllingFieldValue>Terminal</controllingFieldValue>
+            <controllingFieldValue>Quality Check Replacement</controllingFieldValue>
+            <controllingFieldValue>Partnership Franchise</controllingFieldValue>
+            <controllingFieldValue>Retention</controllingFieldValue>
+            <controllingFieldValue>POS Support</controllingFieldValue>
+            <controllingFieldValue>Take Offline</controllingFieldValue>
+            <controllingFieldValue>Quality Check</controllingFieldValue>
+            <controllingFieldValue>Feature Request</controllingFieldValue>
+            <controllingFieldValue>Accounting</controllingFieldValue>
+            <controllingFieldValue>Customer Request</controllingFieldValue>
+            <controllingFieldValue>Data Change</controllingFieldValue>
+            <controllingFieldValue>Restaurant Request</controllingFieldValue>
+            <controllingFieldValue>Shipment</controllingFieldValue>
+            <controllingFieldValue>Take Online</controllingFieldValue>
+            <controllingFieldValue>NPS</controllingFieldValue>
+            <controllingFieldValue>Quality Audit - Restaurant Operations</controllingFieldValue>
+            <controllingFieldValue>CRM Inquiry</controllingFieldValue>
+            <controllingFieldValue>Quality Audit - Phone Transmissions</controllingFieldValue>
+            <controllingFieldValue>Restaurant - Data</controllingFieldValue>
+            <controllingFieldValue>Restaurant - Contract Issues</controllingFieldValue>
+            <controllingFieldValue>Restaurant - Transmission</controllingFieldValue>
+            <controllingFieldValue>Admin Request</controllingFieldValue>
+            <controllingFieldValue>Restaurant - Product / Sales</controllingFieldValue>
+            <controllingFieldValue>Restaurant - Order Related</controllingFieldValue>
+            <controllingFieldValue>Sales Task</controllingFieldValue>
+            <controllingFieldValue>Create Backend Id</controllingFieldValue>
+            <controllingFieldValue>Owner/Legal Form Change</controllingFieldValue>
+            <controllingFieldValue>Logistics</controllingFieldValue>
+            <controllingFieldValue>Menu Typing</controllingFieldValue>
+            <controllingFieldValue>0% Commission Entry</controllingFieldValue>
+            <controllingFieldValue>Refund</controllingFieldValue>
+            <controllingFieldValue>Finance</controllingFieldValue>
+            <controllingFieldValue>CC Task</controllingFieldValue>
+            <controllingFieldValue>Restaurant Operations</controllingFieldValue>
+            <controllingFieldValue>Fraud</controllingFieldValue>
+            <controllingFieldValue>Online Payment</controllingFieldValue>
+            <controllingFieldValue>Restaurant Supply</controllingFieldValue>
+            <controllingFieldValue>Onboarding</controllingFieldValue>
+            <controllingFieldValue>Menu Errors</controllingFieldValue>
+            <controllingFieldValue>Account Management</controllingFieldValue>
+            <controllingFieldValue>Photo Listing</controllingFieldValue>
+            <valueName>Successful</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Follow Up</controllingFieldValue>
+            <controllingFieldValue>Performance</controllingFieldValue>
+            <controllingFieldValue>Handover</controllingFieldValue>
+            <controllingFieldValue>Soft Feature Request</controllingFieldValue>
+            <controllingFieldValue>Dish Level Photo</controllingFieldValue>
+            <controllingFieldValue>Global Payments</controllingFieldValue>
+            <controllingFieldValue>Financial</controllingFieldValue>
+            <controllingFieldValue>Not Financial</controllingFieldValue>
+            <controllingFieldValue>Terminal</controllingFieldValue>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <controllingFieldValue>Quality Check Replacement</controllingFieldValue>
+            <controllingFieldValue>Partnership Franchise</controllingFieldValue>
+            <controllingFieldValue>Retention</controllingFieldValue>
+            <controllingFieldValue>POS Support</controllingFieldValue>
+            <controllingFieldValue>Take Offline</controllingFieldValue>
+            <controllingFieldValue>Setup Backend</controllingFieldValue>
+            <controllingFieldValue>Quality Check</controllingFieldValue>
+            <controllingFieldValue>Feature Request</controllingFieldValue>
+            <controllingFieldValue>Accounting</controllingFieldValue>
+            <controllingFieldValue>Customer Request</controllingFieldValue>
+            <controllingFieldValue>Data Change</controllingFieldValue>
+            <controllingFieldValue>Restaurant Request</controllingFieldValue>
+            <controllingFieldValue>Shipment</controllingFieldValue>
+            <controllingFieldValue>Take Online</controllingFieldValue>
+            <controllingFieldValue>BE Data Entry</controllingFieldValue>
+            <controllingFieldValue>NPS</controllingFieldValue>
+            <controllingFieldValue>Quality Audit - Restaurant Operations</controllingFieldValue>
+            <controllingFieldValue>CRM Inquiry</controllingFieldValue>
+            <controllingFieldValue>Quality Audit - Phone Transmissions</controllingFieldValue>
+            <controllingFieldValue>Restaurant - Data</controllingFieldValue>
+            <controllingFieldValue>Restaurant - Contract Issues</controllingFieldValue>
+            <controllingFieldValue>Restaurant - Transmission</controllingFieldValue>
+            <controllingFieldValue>Admin Request</controllingFieldValue>
+            <controllingFieldValue>Restaurant - Product / Sales</controllingFieldValue>
+            <controllingFieldValue>Restaurant - Order Related</controllingFieldValue>
+            <controllingFieldValue>Sales Task</controllingFieldValue>
+            <controllingFieldValue>Create Backend Id</controllingFieldValue>
+            <controllingFieldValue>Owner/Legal Form Change</controllingFieldValue>
+            <controllingFieldValue>Logistics</controllingFieldValue>
+            <controllingFieldValue>Menu Typing</controllingFieldValue>
+            <controllingFieldValue>0% Commission Entry</controllingFieldValue>
+            <controllingFieldValue>Refund</controllingFieldValue>
+            <controllingFieldValue>Finance</controllingFieldValue>
+            <controllingFieldValue>CC Task</controllingFieldValue>
+            <controllingFieldValue>Restaurant Operations</controllingFieldValue>
+            <controllingFieldValue>Fraud</controllingFieldValue>
+            <controllingFieldValue>Online Payment</controllingFieldValue>
+            <controllingFieldValue>Restaurant Supply</controllingFieldValue>
+            <controllingFieldValue>Onboarding</controllingFieldValue>
+            <controllingFieldValue>Menu Errors</controllingFieldValue>
+            <controllingFieldValue>Account Management</controllingFieldValue>
+            <valueName>Not Successful</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Follow Up</controllingFieldValue>
+            <controllingFieldValue>Handover</controllingFieldValue>
+            <controllingFieldValue>Global Payments</controllingFieldValue>
+            <controllingFieldValue>Financial</controllingFieldValue>
+            <controllingFieldValue>Not Financial</controllingFieldValue>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <controllingFieldValue>Retention</controllingFieldValue>
+            <controllingFieldValue>Take Offline</controllingFieldValue>
+            <controllingFieldValue>Feature Request</controllingFieldValue>
+            <controllingFieldValue>Accounting</controllingFieldValue>
+            <controllingFieldValue>Customer Request</controllingFieldValue>
+            <controllingFieldValue>Data Change</controllingFieldValue>
+            <controllingFieldValue>Restaurant Request</controllingFieldValue>
+            <controllingFieldValue>Termination</controllingFieldValue>
+            <controllingFieldValue>NPS</controllingFieldValue>
+            <controllingFieldValue>Restaurant - Data</controllingFieldValue>
+            <controllingFieldValue>Restaurant - Transmission</controllingFieldValue>
+            <controllingFieldValue>Admin Request</controllingFieldValue>
+            <controllingFieldValue>Sales Task</controllingFieldValue>
+            <controllingFieldValue>Owner/Legal Form Change</controllingFieldValue>
+            <controllingFieldValue>Logistics</controllingFieldValue>
+            <controllingFieldValue>Refund</controllingFieldValue>
+            <controllingFieldValue>Finance</controllingFieldValue>
+            <controllingFieldValue>Restaurant Operations</controllingFieldValue>
+            <controllingFieldValue>Fraud</controllingFieldValue>
+            <controllingFieldValue>Online Payment</controllingFieldValue>
+            <controllingFieldValue>Discount Request</controllingFieldValue>
+            <controllingFieldValue>Menu Errors</controllingFieldValue>
+            <controllingFieldValue>Account Management</controllingFieldValue>
+            <valueName>Invalid</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Follow Up</controllingFieldValue>
+            <controllingFieldValue>Performance</controllingFieldValue>
+            <controllingFieldValue>Handover</controllingFieldValue>
+            <controllingFieldValue>Financial</controllingFieldValue>
+            <controllingFieldValue>Not Financial</controllingFieldValue>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <controllingFieldValue>Feature Request</controllingFieldValue>
+            <controllingFieldValue>Customer Request</controllingFieldValue>
+            <controllingFieldValue>Restaurant Request</controllingFieldValue>
+            <controllingFieldValue>Restaurant - Data</controllingFieldValue>
+            <controllingFieldValue>Restaurant - Contract Issues</controllingFieldValue>
+            <controllingFieldValue>Restaurant - Transmission</controllingFieldValue>
+            <controllingFieldValue>Admin Request</controllingFieldValue>
+            <controllingFieldValue>Restaurant - Product / Sales</controllingFieldValue>
+            <controllingFieldValue>Restaurant - Order Related</controllingFieldValue>
+            <controllingFieldValue>Sales Task</controllingFieldValue>
+            <controllingFieldValue>Logistics</controllingFieldValue>
+            <controllingFieldValue>Refund</controllingFieldValue>
+            <controllingFieldValue>Restaurant Operations</controllingFieldValue>
+            <controllingFieldValue>Onboarding</controllingFieldValue>
+            <controllingFieldValue>Menu Errors</controllingFieldValue>
+            <controllingFieldValue>Account Management</controllingFieldValue>
+            <valueName>Duplicated</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Terminal</controllingFieldValue>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <controllingFieldValue>Quality Check</controllingFieldValue>
+            <controllingFieldValue>Convert to Contract</controllingFieldValue>
+            <controllingFieldValue>Rescued</controllingFieldValue>
+            <controllingFieldValue>Accounting</controllingFieldValue>
+            <controllingFieldValue>Customer Request</controllingFieldValue>
+            <controllingFieldValue>Data Change</controllingFieldValue>
+            <controllingFieldValue>Restaurant Request</controllingFieldValue>
+            <controllingFieldValue>Termination</controllingFieldValue>
+            <controllingFieldValue>CRM Inquiry</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue>Restaurant - Data</controllingFieldValue>
+            <controllingFieldValue>Restaurant - Contract Issues</controllingFieldValue>
+            <controllingFieldValue>Restaurant - Transmission</controllingFieldValue>
+            <controllingFieldValue>Restaurant - Product / Sales</controllingFieldValue>
+            <controllingFieldValue>Restaurant - Order Related</controllingFieldValue>
+            <controllingFieldValue>Sales Task</controllingFieldValue>
+            <controllingFieldValue>Create Backend Id</controllingFieldValue>
+            <controllingFieldValue>Add On Creation</controllingFieldValue>
+            <controllingFieldValue>Spam, fraud or duplication</controllingFieldValue>
+            <valueName>Spam</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Processing</controllingFieldValue>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <controllingFieldValue>Convert to Contract</controllingFieldValue>
+            <controllingFieldValue>Rescued</controllingFieldValue>
+            <controllingFieldValue>0% Commission Entry</controllingFieldValue>
+            <valueName>Take Online</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Processing</controllingFieldValue>
+            <controllingFieldValue>Convert to Contract</controllingFieldValue>
+            <controllingFieldValue>Rescued</controllingFieldValue>
+            <valueName>Take Online is not possible</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Take Offline</controllingFieldValue>
+            <controllingFieldValue>Termination</controllingFieldValue>
+            <controllingFieldValue>Restaurant - Contract Issues</controllingFieldValue>
+            <valueName>Take Offline</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Take Offline</controllingFieldValue>
+            <controllingFieldValue>Restaurant - Contract Issues</controllingFieldValue>
+            <valueName>Back Online</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Accounting</controllingFieldValue>
+            <controllingFieldValue>Discount Request</controllingFieldValue>
+            <valueName>Approved</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Accounting</controllingFieldValue>
+            <controllingFieldValue>Discount Request</controllingFieldValue>
+            <valueName>Rejected</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Termination</controllingFieldValue>
+            <valueName>Retention</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Restaurant Operations</controllingFieldValue>
+            <valueName>Not Reachable</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Restaurant Operations</controllingFieldValue>
+            <valueName>Escalated to AM</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Restaurant Operations</controllingFieldValue>
+            <valueName>Successful Call</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Restaurant Operations</controllingFieldValue>
+            <valueName>Call Scheduled</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Restaurant Operations</controllingFieldValue>
+            <valueName>Improvement on KPI’s (Agent)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Restaurant Operations</controllingFieldValue>
+            <valueName>Improvement on KPI’s (AM)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Restaurant Operations</controllingFieldValue>
+            <valueName>Restaurant Taken Offline (1 st Incident)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Restaurant Operations</controllingFieldValue>
+            <valueName>Restaurant Taken Offline (Permanent)</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Send_Email_Restaurant</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Send Email - Restaurant</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>location.replace(&apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail}&amp;p26=vip-info@pizza-online.fi&amp;template_id=00Xw0000002IuPL&apos;);</url>
+</WebLink>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Franchise_Connection</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(Franchise_Connection__c != null, 
+ISPICKVAL( Franchise_Type__c, &quot;Directly managed&quot;),RecordType.DeveloperName = &apos;Yogiyo_Account&apos;)</errorConditionFormula>
+    <errorMessage>Franchise connection was set up. Franchise Type cannot be Directly managed</errorMessage>
+</ValidationRule>

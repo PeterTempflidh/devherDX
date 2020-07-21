@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Terminal_PIC__c</fullName>
+    <description>Terminal person in charge for KR</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Terminal person in charge</inlineHelpText>
+    <label>Terminal P.I.C</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>강정현</fullName>
+                <default>false</default>
+                <label>강정현</label>
+            </value>
+            <value>
+                <fullName>김유정</fullName>
+                <default>false</default>
+                <label>김유정</label>
+            </value>
+            <value>
+                <fullName>남호정</fullName>
+                <default>false</default>
+                <label>남호정</label>
+            </value>
+            <value>
+                <fullName>박민제</fullName>
+                <default>false</default>
+                <label>박민제</label>
+            </value>
+            <value>
+                <fullName>박소현</fullName>
+                <default>false</default>
+                <label>박소현</label>
+            </value>
+            <value>
+                <fullName>배현진</fullName>
+                <default>false</default>
+                <label>배현진</label>
+            </value>
+            <value>
+                <fullName>서상철</fullName>
+                <default>false</default>
+                <label>서상철</label>
+            </value>
+            <value>
+                <fullName>오영주</fullName>
+                <default>false</default>
+                <label>오영주</label>
+            </value>
+            <value>
+                <fullName>황지은</fullName>
+                <default>false</default>
+                <label>황지은</label>
+            </value>
+            <value>
+                <fullName>노경미</fullName>
+                <default>false</default>
+                <label>노경미</label>
+            </value>
+            <value>
+                <fullName>김진아</fullName>
+                <default>false</default>
+                <label>김진아</label>
+            </value>
+            <value>
+                <fullName>최정인</fullName>
+                <default>false</default>
+                <label>최정인</label>
+            </value>
+            <value>
+                <fullName>온라인 필요</fullName>
+                <default>false</default>
+                <label>온라인 필요</label>
+            </value>
+            <value>
+                <fullName>온라인 완료</fullName>
+                <default>false</default>
+                <label>온라인 완료</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

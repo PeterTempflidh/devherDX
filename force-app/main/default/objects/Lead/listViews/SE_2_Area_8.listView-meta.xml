@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SE_2_Area_8</fullName>
+    <columns>LEAD.COMPANY</columns>
+    <columns>Legal_Name__c</columns>
+    <columns>LEAD.CITY</columns>
+    <columns>LEAD.ZIP</columns>
+    <columns>Vendor_Grade__c</columns>
+    <columns>Delivery_Service__c</columns>
+    <columns>Competitor__c</columns>
+    <columns>LEAD.STATUS</columns>
+    <columns>LEAD.CREATED_DATE</columns>
+    <columns>Cuisine__c</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>LEAD.UNREAD</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>LEAD.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Lead.SE_Lead</value>
+    </filters>
+    <filters>
+        <field>LEAD.STATUS</field>
+        <operation>notEqual</operation>
+        <value>Lost,Converted</value>
+    </filters>
+    <filters>
+        <field>LEAD.CITY</field>
+        <operation>equals</operation>
+        <value>Uppsala,Borlänge,Borlange,Falun,Gävle,Gavle</value>
+    </filters>
+    <label>SE -2- Area 8</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>SE_Account_Management</group>
+        <group>SE_Sales</group>
+        <group>SE_Sales_Operations</group>
+        <group>SE_Team</group>
+        <role>SE_Account_Management</role>
+        <role>SE_Management</role>
+        <role>SE_Sales_Team</role>
+    </sharedTo>
+</ListView>

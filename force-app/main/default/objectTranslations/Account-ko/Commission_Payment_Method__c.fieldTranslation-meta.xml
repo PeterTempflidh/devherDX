@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>수수료 지급 방식</label>
+    <name>Commission_Payment_Method__c</name>
+    <picklistValues>
+        <masterLabel>Bank Transfer</masterLabel>
+        <translation>계좌 이체</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>C.C</masterLabel>
+        <translation><!-- C.C --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CMS</masterLabel>
+        <translation><!-- CMS --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

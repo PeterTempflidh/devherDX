@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Opps_to_Check</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>OPPORTUNITY.AMOUNT</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>OPPORTUNITY.NAME</field>
+        <operation>notContain</operation>
+        <value>foto,pics,marketing,stickers,Stick,Cart,Foto</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>Please Check,Onboarding Failed</value>
+    </filters>
+    <label>My Opps to Check</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>PY_Sales_Venezuela</group>
+        <role>PY_Account_Manager_Argentina</role>
+        <role>PY_Account_Manager_Bolivia</role>
+        <role>PY_Account_Manager_Chile</role>
+        <role>PY_Account_Manager_Dominican_Republic</role>
+        <role>PY_Account_Manager_Panama</role>
+        <role>PY_Account_Manager_Paraguay</role>
+        <role>PY_Account_Manager_Uruguay</role>
+        <role>PY_Account_Manager_Venezuela</role>
+        <role>PY_Sales_Argentina</role>
+        <role>PY_Sales_Bolivia</role>
+        <role>PY_Sales_Chile</role>
+        <role>PY_Sales_Dominican_Republic</role>
+        <role>PY_Sales_Panama</role>
+        <role>PY_Sales_Paraguay</role>
+        <role>PY_Sales_Uruguay</role>
+        <role>PY_Sales_Venezuela</role>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Thread_Id__c</fullName>
+    <externalId>false</externalId>
+    <formula>&quot;ref:_&quot; &amp; LEFT($Organization.Id,5) &amp; SUBSTITUTE(RIGHT($Organization.Id,10), &quot;0&quot;, &quot;&quot; )&amp; &quot;._&quot; &amp; LEFT(Id,5) &amp; SUBSTITUTE(Left(RIGHT(Id,10), 5), &quot;0&quot;, &quot;&quot;) &amp; RIGHT(Id,5) &amp; &quot;:ref&quot;</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Thread Id</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

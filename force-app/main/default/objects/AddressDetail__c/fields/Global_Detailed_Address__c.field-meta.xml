@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_Detailed_Address__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Model__c, 
+&quot;GPA&quot;, 
+CASE(Global_Country_Code__c, 
+&quot;KR&quot;, 
+DAUM_Detailed_Address_long_name__c, 
+&quot;&quot;), &quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Global Detailed Address</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

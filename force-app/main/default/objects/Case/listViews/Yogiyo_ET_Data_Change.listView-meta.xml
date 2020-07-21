@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Yogiyo_ET_Data_Change</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6</booleanFilter>
+    <columns>OWNER_NAME</columns>
+    <columns>Due_Date__c</columns>
+    <columns>Flyer_Received__c</columns>
+    <columns>Company_Number__c</columns>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>Backend_ID__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>Person_In_Charge__c</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CASES.LAST_UPDATE</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>Number_of_Contact__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.Yogiyo_Inbound</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Data Change</value>
+    </filters>
+    <filters>
+        <field>CASES.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Case_Reason__c</field>
+        <operation>equals</operation>
+        <value>Price Change</value>
+    </filters>
+    <filters>
+        <field>ACCOUNT.NAME</field>
+        <operation>notContain</operation>
+        <value>test,테스트</value>
+    </filters>
+    <filters>
+        <field>OWNER_NAME</field>
+        <operation>notEqual</operation>
+        <value>Yeom HyeJeong,Seo KaHee,Hong Giin,Yogiyo Sales B2B</value>
+    </filters>
+    <label>YGY - CM DC - Price / Menu Change</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Yogiyo_Local_Admin</role>
+        <role>Yogiyo_Operation_Management</role>
+        <role>Yogiyo_Operation_Team</role>
+    </sharedTo>
+</ListView>

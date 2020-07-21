@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_Contact_Email_Validation</fullName>
+    <active>true</active>
+    <description>SSC-1951, SSC-2217 - Including MENA, SSC-2510 - Including PY, SSC-2427 - Including EU</description>
+    <errorConditionFormula>AND(
+NOT(REGEX(UPPER(Email),&quot;^[A-Z0-9._%+-/!#$%&amp;&apos;*=?^_`{|}~]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$&quot;)),
+NOT(ISBLANK(Email)),
+NOT($Permission.Exclude_from_Validation),
+OR(
+RecordType.DeveloperName = &quot;FP_Contact&quot;,
+RecordType.DeveloperName = &quot;PY_Contact&quot;,
+RecordType.DeveloperName = &quot;Talabat_Contact&quot;,
+RecordType.DeveloperName = &quot;AT_Contact&quot;,
+RecordType.DeveloperName = &quot;CZ_Contact&quot;,
+RecordType.DeveloperName = &quot;FI_Contact&quot;,
+RecordType.DeveloperName = &quot;HU_Contact&quot;,
+RecordType.DeveloperName = &quot;SE_Contact&quot;,
+RecordType.DeveloperName = &quot;Facility_Contact&quot;))</errorConditionFormula>
+    <errorDisplayField>Email</errorDisplayField>
+    <errorMessage>Please enter a valid email address.</errorMessage>
+</ValidationRule>

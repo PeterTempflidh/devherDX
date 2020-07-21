@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>UK_Marketing_BS_Blitz_August_2017_View</fullName>
+    <booleanFilter>1 AND 2 AND (3 OR 4) AND 5</booleanFilter>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>NAME</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.UK_Internal_Case</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Sales Task</value>
+    </filters>
+    <filters>
+        <field>Backend_ID__c</field>
+        <operation>equals</operation>
+        <value>1745,1497,1529,1542,1832,1291,1796,1807,1808,1809,1812,1909,3383,2056,2976,2443</value>
+    </filters>
+    <filters>
+        <field>Backend_ID__c</field>
+        <operation>equals</operation>
+        <value>14799,12542,12788,13181,12877,12533,12772,14194,13780,15835,15839,15605,13909,14</value>
+    </filters>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>startsWith</operation>
+        <value>[BRAND</value>
+    </filters>
+    <label>UK - Marketing BS Blitz August 2017 View</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>UK_Sales_Management</role>
+    </sharedTo>
+</ListView>

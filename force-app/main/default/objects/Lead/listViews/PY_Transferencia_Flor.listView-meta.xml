@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PY_Transferencia_Flor</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>LEAD.COMPANY</columns>
+    <columns>LEAD.STATE</columns>
+    <columns>LEAD.EMAIL</columns>
+    <columns>LEAD.STATUS</columns>
+    <columns>LEAD.CREATED_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>LEAD.UNREAD</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>equals</operation>
+        <value>fmont</value>
+    </filters>
+    <filters>
+        <field>LEAD.COUNTRY</field>
+        <operation>equals</operation>
+        <value>Uruguay</value>
+    </filters>
+    <filters>
+        <field>Vertical__c</field>
+        <operation>equals</operation>
+        <value>Restaurant</value>
+    </filters>
+    <label>PY Transferencia Flor - Rest. Uruguay</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>PY_Lead_Research</group>
+    </sharedTo>
+</ListView>

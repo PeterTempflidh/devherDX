@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_District_Label__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Model__c,
+&quot;XAL&quot;,
+CASE(CountryCode__c,
+&quot;HK&quot;,
+SubAdministrativeAreaName__c,
+&quot;SG&quot;,
+SubAdministrativeAreaName__c,
+&quot;&quot;
+),&quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Global District Label</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

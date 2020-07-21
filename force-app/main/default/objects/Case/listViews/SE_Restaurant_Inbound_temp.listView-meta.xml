@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SE_Restaurant_Inbound_temp</fullName>
+    <booleanFilter>(2 AND 1 AND 5 AND 6) OR (2 AND 3 AND 4 AND 6)</booleanFilter>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>Backend_ID__c</columns>
+    <columns>Case_Reason__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Legal_Name__c</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.SE_Inbound</value>
+    </filters>
+    <filters>
+        <field>CASES.CLOSED</field>
+        <operation>notEqual</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.SE_Internal_Case</value>
+    </filters>
+    <filters>
+        <field>CASES.ORIGIN</field>
+        <operation>equals</operation>
+        <value>Email - Restaurant</value>
+    </filters>
+    <filters>
+        <field>Case_Reason__c</field>
+        <operation>notEqual</operation>
+        <value>Restaurant Recommendation,Restaurant Suggestion,Logo</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>notEqual</operation>
+        <value>nacco</value>
+    </filters>
+    <label>SE - Restaurant Inbound</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>SE_FI_Shared_Group</group>
+        <role>SE_Customer_Care_Team</role>
+        <role>SE_Management</role>
+        <role>SE_Sales_Team</role>
+    </sharedTo>
+</ListView>

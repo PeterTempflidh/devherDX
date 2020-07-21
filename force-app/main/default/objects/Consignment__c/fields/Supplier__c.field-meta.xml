@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Supplier__c</fullName>
+    <externalId>false</externalId>
+    <label>Supplier</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Supplier A</fullName>
+                <default>true</default>
+                <label>Supplier A</label>
+            </value>
+            <value>
+                <fullName>Supplier B</fullName>
+                <default>false</default>
+                <label>Supplier B</label>
+            </value>
+            <value>
+                <fullName>Supplier C</fullName>
+                <default>false</default>
+                <label>Supplier C</label>
+            </value>
+            <value>
+                <fullName>Supplier D</fullName>
+                <default>false</default>
+                <label>Supplier D</label>
+            </value>
+            <value>
+                <fullName>Supplier E</fullName>
+                <default>false</default>
+                <label>Supplier E</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

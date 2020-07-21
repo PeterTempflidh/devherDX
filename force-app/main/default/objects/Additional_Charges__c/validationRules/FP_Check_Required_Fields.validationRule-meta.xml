@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FP_Check_Required_Fields</fullName>
+    <active>true</active>
+    <description>check, if mandatory (mandatory not via layout or data model, but by business requirements) fields are populated for FP record type</description>
+    <errorConditionFormula>AND(
+OR( ISPICKVAL( Type__c , &apos;Refund&apos;) , ISPICKVAL(Type__c, &apos;Adjustment&apos;)), 
+OR(RecordType.DeveloperName = &apos;FP_Additional_Charges&apos;,
+RecordType.DeveloperName = &apos;CZ_Additional_Charges&apos;), 
+OR( ISBLANK( Specifications__c ), ISNULL( Total_Amount__c ), ISBLANK( Start_Date__c )))</errorConditionFormula>
+    <errorMessage>Please fill the fields Total Amount, Effective Start Date, Specifications to be able to continue.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CZ_Content_Email_to_Case</fullName>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>GRID_fm__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <filterScope>Queue</filterScope>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.CZ_Entry_Case</value>
+    </filters>
+    <filters>
+        <field>CASES.ORIGIN</field>
+        <operation>equals</operation>
+        <value>Email</value>
+    </filters>
+    <filters>
+        <field>ACCOUNT.NAME</field>
+        <operation>notContain</operation>
+        <value>test</value>
+    </filters>
+    <label>CZ Content - Email-to-Case</label>
+    <language>en_US</language>
+    <queue>CZ_Content_Team</queue>
+    <sharedTo>
+        <group>CZ_Account_Management</group>
+        <group>CZ_Finance_Team</group>
+        <group>CZ_Operations_Team</group>
+        <group>CZ_Sales_Team</group>
+    </sharedTo>
+</ListView>

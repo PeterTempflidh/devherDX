@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Voucher_values_per_country__c</fullName>
+    <externalId>false</externalId>
+    <formula>HYPERLINK(&quot;https://docs.google.com/spreadsheets/d/1fB4XRrtuTNdbRDRmwR_E498EFeP2Yg_1Bp1DLLFGbjI/edit?ts=5cecead0#gid=373797974&quot;, &quot;Voucher Mapping Sheet&quot;, &quot;_blank&quot;)</formula>
+    <label>Voucher values per country</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

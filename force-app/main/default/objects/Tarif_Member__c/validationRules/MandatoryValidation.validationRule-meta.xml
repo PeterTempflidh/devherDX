@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MandatoryValidation</fullName>
+    <active>true</active>
+    <description>field must be entered</description>
+    <errorConditionFormula>ISPICKVAL(Type__c,&apos;&apos;)</errorConditionFormula>
+    <errorDisplayField>Type__c</errorDisplayField>
+    <errorMessage>Enter value for Type</errorMessage>
+</ValidationRule>

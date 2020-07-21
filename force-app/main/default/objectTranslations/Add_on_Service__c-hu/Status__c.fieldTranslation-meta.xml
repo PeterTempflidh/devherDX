@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Státusz</label>
+    <name>Status__c</name>
+    <picklistValues>
+        <masterLabel>Active</masterLabel>
+        <translation>aktív</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Canceled</masterLabel>
+        <translation>Megszakítva</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Expired</masterLabel>
+        <translation>Lejárt</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Final Check</masterLabel>
+        <translation>Végső ellenőrzés</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New</masterLabel>
+        <translation>új</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Please Check</masterLabel>
+        <translation>Ellenőrizd!</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Terminated</masterLabel>
+        <translation>Felbontva</translation>
+    </picklistValues>
+</CustomFieldTranslation>

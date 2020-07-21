@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Singapore_Phone_Validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF(AND(RecordType.DeveloperName = &apos;FP_Contact&apos;,
+ISPICKVAL(Account.Record_Country__c, &apos;Singapore&apos;)),
+OR(
+AND(
+NOT(ISBLANK(Phone)),
+OR(
+NOT(REGEX(Phone,&quot;^((\\+65)?\\d{8})?$&quot;)),
+NOT(REGEX(Phone, &quot;\\+[0-9 ]+&quot;))
+),
+NOT($Permission.Exclude_from_Validation)
+),
+AND(
+NOT(ISBLANK(MobilePhone)),
+OR(
+NOT(REGEX(MobilePhone,&quot;^((\\+65)?\\d{8})?$&quot;)),
+NOT(REGEX(MobilePhone, &quot;\\+[0-9 ]+&quot;))
+),
+NOT($Permission.Exclude_from_Validation)
+),
+AND(
+NOT(ISBLANK(OtherPhone)),
+OR(
+NOT(REGEX(OtherPhone,&quot;^((\\+65)?\\d{8})?$&quot;)),
+NOT(REGEX(OtherPhone, &quot;\\+[0-9 ]+&quot;))
+),
+NOT($Permission.Exclude_from_Validation)
+)
+)
+, false)</errorConditionFormula>
+    <errorMessage>Please add phone in the right format. It should start with +65 and be followed by 8 digits, without space</errorMessage>
+</ValidationRule>

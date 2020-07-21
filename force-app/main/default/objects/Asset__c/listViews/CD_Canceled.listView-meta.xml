@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CD_Canceled</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Activation_Date__c</columns>
+    <columns>Date_Shipped__c</columns>
+    <columns>Opportunity__c</columns>
+    <columns>Status__c</columns>
+    <columns>Stock_Item__c</columns>
+    <columns>Stock_Item_Serial_No__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset__c.CD_Asset</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Canceled</value>
+    </filters>
+    <label>CD - Canceled</label>
+    <language>en_US</language>
+    <sharedTo>
+        <roleAndSubordinates>CD_Management</roleAndSubordinates>
+    </sharedTo>
+</ListView>

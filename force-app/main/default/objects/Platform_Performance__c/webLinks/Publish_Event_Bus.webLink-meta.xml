@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Publish_Event_Bus</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Publish Event</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/40.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/40.0/apex.js&quot;)} 
+
+if(&apos;{!User.Profile}&apos;== &apos;System Administrator&apos; || &apos;{!User.Profile}&apos;== &apos;Global Salesforce Team&apos;){
+sforce.apex.execute(&quot;ClsRemoteController&quot;,&quot;SendEventBusCreation&quot;,{GRID:&apos;{!Platform_Performance__c.GRID__c }&apos;});
+}</url>
+</WebLink>

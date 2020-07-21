@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Üzlet típusa</label>
+    <name>Business_Type__c</name>
+    <picklistValues>
+        <masterLabel>Complementary Contract</masterLabel>
+        <translation><!-- Complementary Contract --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Downgrade</masterLabel>
+        <translation>visszasorolás</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Franchise Extension</masterLabel>
+        <translation><!-- Franchise Extension --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Legal Form Change</masterLabel>
+        <translation>Tulajdonos/társasági forma váltás</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Business</masterLabel>
+        <translation>új belépő</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Owner Change</masterLabel>
+        <translation>tulajdonosváltás</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Refund</masterLabel>
+        <translation><!-- Refund --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Switch</masterLabel>
+        <translation>kiszállítás típus változása</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Upgrade/Upsell</masterLabel>
+        <translation>előresorolás/upsell</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Win Back</masterLabel>
+        <translation>konkurenciától visszaszerezve</translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PY_All_Open_Signup_Opps</fullName>
+    <columns>Record_Country__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>Business_Type__c</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>CORE.USERS.FULL_NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Opportunity.PY_Opportunity</value>
+    </filters>
+    <filters>
+        <field>Business_Type__c</field>
+        <operation>equals</operation>
+        <value>New Business,Owner Change,Win Back,Legal Form Change</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>notEqual</operation>
+        <value>Closed Won,Closed Lost</value>
+    </filters>
+    <label>PY - All Open Signup Opps</label>
+    <language>en_US</language>
+    <sharedTo>
+        <roleAndSubordinates>PY_Management</roleAndSubordinates>
+    </sharedTo>
+</ListView>

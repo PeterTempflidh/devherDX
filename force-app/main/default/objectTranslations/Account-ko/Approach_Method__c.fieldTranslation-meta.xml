@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>요기요 밝힘 여부</label>
+    <name>Approach_Method__c</name>
+    <picklistValues>
+        <masterLabel>Do NOT reveal Yogiyo</masterLabel>
+        <translation>고객인 것처럼 전화</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Reveal Yogiyo</masterLabel>
+        <translation>요기요임을 밝히고 전화</translation>
+    </picklistValues>
+</CustomFieldTranslation>

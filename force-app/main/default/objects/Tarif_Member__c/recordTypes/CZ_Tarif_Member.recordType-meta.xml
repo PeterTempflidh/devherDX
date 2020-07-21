@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CZ_Tarif_Member</fullName>
+    <active>true</active>
+    <description>Czech Republic Tarif Member</description>
+    <label>CZ Tarif Member</label>
+    <picklistValues>
+        <picklist>Type__c</picklist>
+        <values>
+            <fullName>AddOn</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

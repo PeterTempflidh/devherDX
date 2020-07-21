@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DE_CC_Exceptions</fullName>
+    <booleanFilter>1 AND 2</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Status__c</columns>
+    <columns>Tracking_Active__c</columns>
+    <columns>Last_Tracking_Update__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset__c.DE_Asset</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Exception</value>
+    </filters>
+    <label>DE - CC - Logistics Exceptions</label>
+    <language>de</language>
+    <sharedTo>
+        <role>DE_Customer_Care_Management</role>
+        <role>DE_Logistics</role>
+    </sharedTo>
+</ListView>

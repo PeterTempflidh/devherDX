@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Id_List_Product_Group__c</fullName>
+    <description>this information gives you to which product group this product belongs</description>
+    <externalId>false</externalId>
+    <label>List Product Group</label>
+    <referenceTo>List_Product_Group__c</referenceTo>
+    <relationshipName>Id_List_Price_Products</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>true</reparentableMasterDetail>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

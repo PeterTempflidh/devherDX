@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- On Hold Reason --></label>
+    <name>On_Hold_Reason__c</name>
+    <picklistValues>
+        <masterLabel>Language Barrier</masterLabel>
+        <translation><!-- Language Barrier --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Menu Issue</masterLabel>
+        <translation><!-- Menu Issue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pending City Launch</masterLabel>
+        <translation><!-- Pending City Launch --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Technical Issue</masterLabel>
+        <translation><!-- Technical Issue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unreachable</masterLabel>
+        <translation><!-- Unreachable --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

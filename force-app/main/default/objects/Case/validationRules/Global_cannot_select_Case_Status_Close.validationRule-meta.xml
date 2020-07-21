@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_cannot_select_Case_Status_Close</fullName>
+    <active>true</active>
+    <description>In Lightning does not exist the button Close case, so user are going to see the value on the field Status, and we cannot remove the value from the Support process. Modification: SCC-180</description>
+    <errorConditionFormula>AND(
+OR(
+NOT(Override_Validations__c),
+AND(
+Override_Validations__c,
+NOT(ISPICKVAL(Override_Validation_Reason__c,&apos;Missed/Spam Chat&apos;)),
+NOT(ISPICKVAL(Override_Validation_Reason__c,&apos;Case Escalated To Sales Admin&apos;))
+)
+),
+ISCHANGED(Status),
+ISPICKVAL(Status, &apos;Closed&apos;),
+AND(
+CONTAINS(RecordType.DeveloperName, &apos;Inbound&apos;),
+NOT(RecordType.DeveloperName = &apos;FI_Inbound&apos;),
+NOT(RecordType.DeveloperName = &apos;SE_Inbound&apos;),
+NOT(RecordType.DeveloperName = &apos;Yogiyo_Inbound&apos;)
+),
+$User.ProfileId != &apos;00ew0000001HfA4&apos;,
+NOT($Permission.Exclude_from_Validation)
+)</errorConditionFormula>
+    <errorDisplayField>Status</errorDisplayField>
+    <errorMessage>You cannot set the Status of the case to Closed.</errorMessage>
+</ValidationRule>

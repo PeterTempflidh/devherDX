@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Quotes_Approval_Pending</fullName>
+    <columns>NAME</columns>
+    <columns>RECORDTYPE</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Id_Account__c</columns>
+    <columns>Id_Opportunity__c</columns>
+    <columns>Status__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Approval pending</value>
+    </filters>
+    <label>My Quotes - Approval Pending</label>
+    <language>en_US</language>
+    <sharedTo>
+        <roleAndSubordinates>Talabat_Management</roleAndSubordinates>
+    </sharedTo>
+</ListView>

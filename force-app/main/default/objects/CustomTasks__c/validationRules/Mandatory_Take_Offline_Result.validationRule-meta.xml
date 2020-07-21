@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mandatory_Take_Offline_Result</fullName>
+    <active>true</active>
+    <description>When the Request reason take the rest offline the &apos;take offfline date&apos; &amp; &apos;Result&apos; should be mandatory</description>
+    <errorConditionFormula>AND( ISPICKVAL( Request_Reason__c , &quot;Take Restaurant Offline&quot;), ISBLANK( Take_Offline_Date__c ),  ISPICKVAL( Status__c , &quot;Completed&quot;), ISPICKVAL( Result__c ,&quot;&quot;  ))</errorConditionFormula>
+    <errorMessage>Please enter all the mandatory fields</errorMessage>
+</ValidationRule>

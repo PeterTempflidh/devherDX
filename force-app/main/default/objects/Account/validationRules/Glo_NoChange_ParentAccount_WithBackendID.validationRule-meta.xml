@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Glo_NoChange_ParentAccount_WithBackendID</fullName>
+    <active>true</active>
+    <description>Re-parenting of Accounts which have already been sent to the backend is not allowed for CD and talabat as it would break the connections because it does not get updated in the backend</description>
+    <errorConditionFormula>RecordType.DeveloperName = &quot;CD_Account&quot;
+&amp;&amp;
+ NOT(IsBlank(Backend_ID__c))
+&amp;&amp;
+ ISCHANGED( ParentId )
+&amp;&amp;
+ $Profile.Name != &quot;System Administrator&quot;
+&amp;&amp;
+$Profile.Id != &quot;00ew0000001IFkA&quot;
+&amp;&amp;
+$User.Id&lt;&gt;&quot;005w0000006hA22&quot; /*Joel*/
+&amp;&amp;
+$User.Id&lt;&gt;&quot;005w0000006h8AO&quot; /*Juliana Castaneda*/
+&amp;&amp;
+$User.Id&lt;&gt;&quot;005w00000078eeG&quot; /* yovany Ariza*/</errorConditionFormula>
+    <errorDisplayField>ParentId</errorDisplayField>
+    <errorMessage>This account has already a parent account assigned to it and is not possible to reassign as it will not be updated in the backend, for reassignment contact your backend team and the salesforce team.</errorMessage>
+</ValidationRule>

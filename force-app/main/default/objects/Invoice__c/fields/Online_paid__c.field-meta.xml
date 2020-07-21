@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Online_paid__c</fullName>
+    <description>Sums up the all invoice line item totals where the product group contains &apos;PAYMENT&apos;.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Amount that users transferred via online payment</inlineHelpText>
+    <label>Sum Online paid orders</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

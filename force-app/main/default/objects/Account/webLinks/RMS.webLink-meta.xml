@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RMS</fullName>
+    <availability>online</availability>
+    <displayType>link</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>RMS</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>var url = &quot;http://rms.lieferheld.de/restaurants/{!Account.GRID__c}?use_global_id#main&quot;;
+window.open(url.replace(&quot;isdtp=mn&quot;,&quot;&quot;),&quot;_blank&quot;,&quot;toolbar=yes, location=yes, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=600, height=400&quot;);</url>
+</WebLink>

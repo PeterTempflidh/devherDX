@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MENA_Approval_Rules</fullName>
+    <columns>NAME</columns>
+    <columns>Country__c</columns>
+    <columns>City__c</columns>
+    <columns>Commission__c</columns>
+    <columns>Level1__c</columns>
+    <columns>Level1_Approver__c</columns>
+    <columns>Level1_Approver2__c</columns>
+    <columns>Level1_Approver3__c</columns>
+    <columns>Level2__c</columns>
+    <columns>Level2_Approver__c</columns>
+    <columns>Level2_Approver2__c</columns>
+    <columns>Level2_Approver3__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Country__c</field>
+        <operation>contains</operation>
+        <value>Bahrain,Emirates,Qatar,Kuwait,Oman,Kingdom of Saudi arabia,Jordan,Egypt</value>
+    </filters>
+    <label>MENA - Approval Rules</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>FP_Management</role>
+        <roleAndSubordinates>Global_Admin</roleAndSubordinates>
+        <roleAndSubordinates>Global_Management</roleAndSubordinates>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Last_Tracking_Update__c</fullName>
+    <description>Timestamp on when delivery tracking status was updated last time.</description>
+    <externalId>false</externalId>
+    <label>Last Tracking Update</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

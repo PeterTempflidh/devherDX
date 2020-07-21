@@ -1,0 +1,2731 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Yogiyo_Inbound</fullName>
+    <active>true</active>
+    <businessProcess>Yogiyo Inbound</businessProcess>
+    <description>Case for every external communucation in Korea</description>
+    <label>Yogiyo Inbound</label>
+    <picklistValues>
+        <picklist>ActionItemType__c</picklist>
+        <values>
+            <fullName>Commission Upgrade</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Area</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Time</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Exclusivity</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fail Rate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Joker</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MOV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Menu</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Premium Listing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reviews</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Switch</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transmission Method</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>BE_Account_Errors__c</picklist>
+        <values>
+            <fullName>Missing Details</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>BE_Account_Rating__c</picklist>
+        <values>
+            <fullName>1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>CRM_P_I_C__c</picklist>
+        <values>
+            <fullName>A</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>B</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Case_Reason__c</picklist>
+        <values>
+            <fullName>0%25 Commission</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>0%25 Commission Cancel %2F Decrease</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Acct related Call Back</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Add child account</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Alcohol Listing Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BE Restaurant Name Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BPG Violation Report</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bank Account Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Best Price Guarantee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bill Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Business Licensee Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CMS%2C CC Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Call Back Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Category change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Children Account offline request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Claim from Customer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Claim from Restaurant</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Collection Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commission %2F Subscription to high</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commission Standardization</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Company Information Change %28Same Owner%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Company number change %28Same Owner%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Connect request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contract request - Additional Rest from Non-contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contract request - Registered</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contract request-NEW</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contract violation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Data Incomplete</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Area change %2F Phone number out of Service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Deposit Confirmation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Disappointed by our business methods</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Discount Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Duplicate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Error</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Exclusive with competitor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Expand target district %2F Opening time</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Failed in Upgrade</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fee Inquiry</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fee Inquiry %28Terminal%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Holiday Set</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Incomplete Contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Invoice Address Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Invoice Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Keyword Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Late Payment Inquiry</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Long-term absence</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Long-term holiday request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lost to Competition</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Membership Withdraw</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Owner - New Contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Owner - Will not continue contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Delivery Service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non Contracted Rest - 2nd rejection</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Enough Orders</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not able to receive orders</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not enough capacity</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not satisfied with our product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Online Payment rejection</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Order</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Others</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Owner Phone number change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Owners page ID Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partnership proposal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Payment method change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Photographer Image Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Price Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RP Change %28Need Image agreement%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Re-contract request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reject SMS%2FEmail</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejected the contract proposal from Sales team</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejects Online Payment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant Closed Temporarily</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant Discount</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant Marketing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant Operations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant Picture Change %28No legal issue%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Return Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Review Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Review reply</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SF %26 BE Restaurant Name Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SMS Relay requested for Activation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SMS Relay requested for De-activation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Switch OD to VD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Switch VD to OD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Take Out</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Target District - Polygon</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminal request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Voucher request</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Change_of_Ownership_Documentation__c</picklist>
+        <values>
+            <fullName>Change of Ownership form</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Owner%27s ID</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sublease Agreement</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Closed_Reason__c</picklist>
+        <values>
+            <fullName>Create Retention Task</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Create Take Offline Task for Non Contracted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Invalid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Successful</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Retention</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Successful</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Take Offline</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Take Online</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Take Online is not possible</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Country__c</picklist>
+        <values>
+            <fullName>Korea</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Department__c</picklist>
+        <values>
+            <fullName>Customer Care</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Finance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal%2C Security</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Logistics</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant Operations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Operations</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Entity__c</picklist>
+        <values>
+            <fullName>Delivery Hero Germany</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Hero Holding</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Failed_Orders_source__c</picklist>
+        <values>
+            <fullName>Mobile App Order</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Phone Order</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Further_Feedback__c</picklist>
+        <values>
+            <fullName>Commission changed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Educated on 9Cookies</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Educated on Commission%2FSet-Up Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Educated on Invoices</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Educated on NPS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Educated on Partner Portal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Educated on Ranking Score %2F Penalties</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Educated on Reviews</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Educated on Terminal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSA Rating Requested</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fixed Account Issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fixed Technical Issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Happy with Competitor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Menu Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Offers Applied</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Opening Times Changed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Order Transmission Method Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Referred to Sales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant Not Cooperative</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant Referred for Branding%2FMenu</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant Referred for PP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminal Support Requested</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Updated Contact Details</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Handover_Case_Record_Type__c</picklist>
+        <values>
+            <fullName>DE Entry Case</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DE Finance Case</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DE Inbound Case</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DE Internal Case</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DE Restaurant Operations</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Is_the_restaurant_going_to_take_orders__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Mark_up__c</picklist>
+        <values>
+            <fullName>In flat amount</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In percentage</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No mark-up</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Menu_Typing_Errors__c</picklist>
+        <values>
+            <fullName>Flavour set name too long</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Format issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Longer time than expected</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Missing flavour set</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Missing section</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wrong price</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Menu_Typing_Rating__c</picklist>
+        <values>
+            <fullName>1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Migrated_From_Source_System__c</picklist>
+        <values>
+            <fullName>Salesforce PeYa</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>OKR__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Offline_Reason__c</picklist>
+        <values>
+            <fullName>0%25 Contract Cancel request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Best Price Guarantee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Collection Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commission %2F Subscription too high</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contract violation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Data incomplete</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Disappointed by our business methods</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Duplicate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Exclusive with competitor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Failed in Upgrade</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>High Failure Rate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Incomplete Contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lost to competition</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Owner - New Contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Owner - Will not continue contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No delievery Service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non Contracted Rest - 2nd rejection</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non Contracted Rest%2E - Phone Order offline</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not able to receive orders</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not enough capacity</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not enough orders</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not interested in product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not satisfied with our product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quick Order Sticker</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejected TTS%28Text To Speech%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejected the contract proposal from Sales team</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejects Online Payment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant Closed Permanently</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant closed temporarily</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Successful in Upgrade</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Temporary Sales O%2EE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminal issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Termination</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>On_Hold_Reason__c</picklist>
+        <values>
+            <fullName>Language Barrier</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Menu Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Technical Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unreachable</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Origin</picklist>
+        <values>
+            <fullName>Automatic</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Call Center</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email - B2B Franchise</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email - BPG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email - Franchise</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email - Info</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email - Menu Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email - Privacy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email - Support</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email - Trust</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Phone</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Web</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Override_Validation_Reason__c</picklist>
+        <values>
+            <fullName>Case Escalated To Sales Admin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Missed%2FSpam Chat</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Partial_Refund_Type__c</picklist>
+        <values>
+            <fullName>Bank transfer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Online payment</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Payment_Provider__c</picklist>
+        <values>
+            <fullName>AMEX</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Adyen</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ApplePay</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Checkout</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Checkout Oy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dohabank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ethoca</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GlobalPay</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GooglePay</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kbank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Klarna</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MolPay</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NBB</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NBK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PayPal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ravelin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SiftScience</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Person_In_Charge_First_Check__c</picklist>
+        <values>
+            <fullName>Amit Kumar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Amit Sharma</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Anju Sharma</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ankur</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Devender</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Geeta Chugh</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inder Singh</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Madhusudan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Manpreet Kaur</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Nitya Gautam</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paramjeet Singh</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rahul Kumar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rahul Tomer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tanu Gupta</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tanvi</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vitesh Kumar</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Person_In_Charge_Take_Online__c</picklist>
+        <values>
+            <fullName>D%28C%29-김희영</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Person_In_Charge__c</picklist>
+        <values>
+            <fullName>A%28A%29-배요환</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A%28A%29-신지현</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A%28A%29-정우경</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A%28A%29-정현주</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A%28B%29-구하윤</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A%28B%29-박애경</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A%28B%29-오택룡</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A%28B%29-이명현</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A%28B%29-이수현</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A%28B%29-이승희</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A%28B%29-이지호</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A%28B%29-장유화</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A%28C%29-서예은</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A%28C%29-서은주</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A%28C%29-심수빈</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A%28C%29-위영상</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A%28C%29-조우미</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A-배은령</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A-이민</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>D%28A%29-권수정</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>D%28A%29-심민선</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>D%28A%29-양희영</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>D%28A%29-임수현</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>D%28A%29-최민지</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>D%28C%29-김규민</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>D%28C%29-김미현</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>D%28C%29-김보성</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>D%28C%29-박세영</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>D%28C%29-이다인</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>D%28C%29-전한비</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>D%28C%29-주지은</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-강성진</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-강온유</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-강은정</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-강지나</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-고서현</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-고은미</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-고희정</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-공서연</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-권지영</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-권지원</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-기수연</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김경진</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김광석</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김광진</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김그림</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김다빈</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김다혜</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김문정</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김보미</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김소라</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김수빈</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김승윤</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김아름</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김연주</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김영호</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김예림</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김예은</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김우찬</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김유리</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김은성</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김은지</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김은지B</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김재광</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김재현</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김종찬</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김주영</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김주희</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김지연</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김지우</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김지혜</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김지혜C</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김진아</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김현민</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김혜진</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김혜진B</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김화랑</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-김희진</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-나종현</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-노진아</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-노혜진</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-문석환</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-문세현</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-문수지</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-민선홍</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-민예지</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-박건수</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-박미숙</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-박민경</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-박성경</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-박세정</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-박수인</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-박예지</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-박유라</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-박유정</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-박윤상</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-박지윤</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-박지혜</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-박혜인</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-박혜정</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-배미진</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-배수빈</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-배한솔</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-백승규</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-서지원</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-설민이</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-손미경</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-손미지</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-손영광</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-손진영</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-손효경</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-송민지</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-송민지B</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-송주현</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-신성빈</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-안유경</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-안지은</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-양지선</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-여소은</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-오동준</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-오유정</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-원소정</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-유지언</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-유혜정</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-윤송이</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-윤정혜</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-이가영</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-이명주</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-이명하</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-이민규</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-이별샘</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-이새별</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-이설희</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-이수빈</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-이수진</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-이신애</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-이윤정</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-이재연</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-이정</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-이종협</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-이주연B</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-이주하</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-이지수</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-이진영</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-이태준</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-이현승</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-이현이</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-이현정</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-이혜진</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-임시27</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-임시28</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-임시29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-임시30</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-임시31</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-임시32</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-임시33</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-임시34</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-임시35</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-임시36</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-임시37</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-임시38</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-임시39</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-임시40</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-임시41</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-임시42</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-임시43</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-임시44</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-임시45</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-임시46</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-임시47</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-임시48</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-임시49</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-임시50</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-임유정</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-임은혜</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-장성민</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-장현석</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-장혜미</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-장혜원</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-장희진</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-전아영</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-전효진</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-정다운</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-정예림</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-정예슬</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-정유진</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-정은지</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-정지원</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-정지윤</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-정효경</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-조유미</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-조희진</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-주경선</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-지완기</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-진희정</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-최성원</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-최수나</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-최수진</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-한시은</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-한아름</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-한은영</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-허신용</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-홍다은</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-홍수영</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28A%29-황으뜸</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28BE%29-구길양</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28BE%29-김선화</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28BE%29-임시1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28BE%29-임시2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28OD%29-김명진</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28OD%29-유지연</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28OD%29-임시2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28ODE%29-김여은</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28ODE%29-선유리</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28ODE%29-설아람</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28ODE%29-안현경</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28ODE%29-윤이나</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28ODE%29-이건호</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28ODE%29-이정의</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28ODE%29-이주희</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28ODE%29-이현주</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28ODE%29-임시11</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28ODE%29-임시12</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28ODE%29-장유빈</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28ODE%29-조유리</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%28ODE%29-최신재</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M-김보람</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M-김아현</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M-김혜림</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M-남수정</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M-박지은</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M-박혜은</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M-서승연</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M-신소영</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M-양민영</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M-양선자</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M-우성령</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M-이지형</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M-임시10</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M-임시5</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M-임시6</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M-임시7</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M-임시8</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M-임시9</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M-정혜련</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M-한이현</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Person_in_Charge_Final_Check__c</picklist>
+        <values>
+            <fullName>A</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>B</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>C</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Person_in_charge_Delivery_Area__c</picklist>
+        <values>
+            <fullName>Alexander Liljeskär</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Elena Lövholm Eriksson</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Henrik Eriksson</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jakob Wikenstå</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jasmine Berhane Selassiel</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Johanna Wickström</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lia Kousta Bergström</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Linn Lindholm</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Linnea Hjerpe Persson</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Malin Wallander</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Maria Bengtsson</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Nellie Eriksson</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Olivia Blom</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Richard Karlsson</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Stina Lönnqvist</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Stiven Persson</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Therese Nilsson</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tove Stork</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Platform__c</picklist>
+        <values>
+            <fullName>FoodOnClick</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Priority</picklist>
+        <values>
+            <fullName>High</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Low</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Medium</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Reason</picklist>
+        <values>
+            <fullName>Complex functionality</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Existing problem</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Instructions not clear</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New problem</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Spam</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminal-Cancel</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminal-Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminal-Replace</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>User didn%27t attend training</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Refund_Period__c</picklist>
+        <values>
+            <fullName>1st Period</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2nd Period</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Root_Cause__c</picklist>
+        <values>
+            <fullName>BDT Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Change one%27s mind</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commission too high</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Company License missing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Company Number mis-match</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contract Cancelled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Duplicated</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FR Commission applied</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FR Commission applying not possible</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Follow Up Action NOT Required</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lack of Menu info</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Liquor License missing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Long time untreated</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Delivery Service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Single Liquor menu</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Reachable</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Parent Account - No Entry needed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partnership FR - Individual set not possible</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Price %2F Menu outdated</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prohibited Lead</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejected Service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant Closed Permanently</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Same Owner - No Entry needed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Simple Inquiry</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unable to receive Sales declaration</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Waiting feedback from HQ</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Waiting feedback from Rest%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wrong information</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Site__c</picklist>
+        <values>
+            <fullName>Carriage</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Damejidlo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Hero Finland</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Hero Germany</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Hero Greece</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Hero Korea</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Hero Sweden</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Domicilios</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Donesi</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Foodora Canada</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Foodora Europe</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Foodpanda APAC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Foodpanda Bangladesh</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Foodpanda Bulgaria</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Foodpanda Pakistan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Foodpanda Romania</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Global</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HipMenu</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hungerstation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Netpincer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Otlob</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pauza</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PedidosYa</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Talabat</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yemeksepeti</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Target__c</picklist>
+        <values>
+            <fullName>Customers</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Tool__c</picklist>
+        <values>
+            <fullName>ALAN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Freshchat</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Long-term Forecasting Tool</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Voice Media</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PlayVox</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reporting %2F Analytics</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Short-term Forecasting Tool</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shyftplan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Zendesk</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Topics_Discussed__c</picklist>
+        <values>
+            <fullName>Case Generation Review</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contact Details</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Zones</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Item Unavailable</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Menu</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Opening Times</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Order Failure Offlining</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Order Failure Penalties%2FFees</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Order Tracking</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Portal Usage</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reviews Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales %2F AM Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transmission App Logged Out</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transmission Behaviour Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transmission Device Off</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transmission Mobile Data Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transmission WiFi Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vendor Not Cooperative</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Customer Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Data Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>POS Support</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partnership Franchise</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Spam%2C fraud or duplication</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Termination</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Voucher_Severity__c</picklist>
+        <values>
+            <fullName>Level 1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Level 2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Level 3</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Level 4</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Level 5</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

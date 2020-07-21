@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FI_9Cookies_Assets</fullName>
+    <columns>CREATED_DATE</columns>
+    <columns>Status__c</columns>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset__c.FI_Asset</value>
+    </filters>
+    <filters>
+        <field>Account__c</field>
+        <operation>notContain</operation>
+        <value>test</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Activated Successfully</value>
+    </filters>
+    <label>FI - Activated Successfully</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>FI_Customer_Care_Team</role>
+        <role>FI_Sales_Team</role>
+    </sharedTo>
+</ListView>

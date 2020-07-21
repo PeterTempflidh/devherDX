@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PY_Editorial_NV_Restaurant_Data_Email</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7</booleanFilter>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>Vertical_Segment__c</columns>
+    <columns>GRID_fm__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>Country__c</columns>
+    <columns>OWNER_NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.PY_Entry_Case</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Restaurant - Data</value>
+    </filters>
+    <filters>
+        <field>CASES.ORIGIN</field>
+        <operation>equals</operation>
+        <value>Customer Care,Email</value>
+    </filters>
+    <filters>
+        <field>CASES.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>notContain</operation>
+        <value>Restaurant Portal,Sin Tipo</value>
+    </filters>
+    <filters>
+        <field>Case_Reason__c</field>
+        <operation>notEqual</operation>
+        <value>Restaurant Picture Change (No legal issue),Logo</value>
+    </filters>
+    <filters>
+        <field>Vertical_Segment__c</field>
+        <operation>notEqual</operation>
+        <value>,Coffee,Regular Restaurant</value>
+    </filters>
+    <label>PY Editorial - NV Restaurant Data Email</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>PY_Editorial</role>
+    </sharedTo>
+</ListView>

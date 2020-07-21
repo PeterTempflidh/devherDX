@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FP_Vertical_Segment__c</fullName>
+    <description>New mapping field created to match the Vertical segment values with Data fridge and Pandora backend for APAC countries.</description>
+    <externalId>false</externalId>
+    <formula>CASE( TEXT(Vertical_Segment__c),
+&quot;Vehicles&quot;, &quot;vehicles&quot;,
+&quot;Mother &amp; Baby&quot;, &quot;mother_and_baby&quot;,
+&quot;Bakery&quot;, &quot;bakery&quot;,
+&quot;Beauty&quot;, &quot;beauty&quot;,
+&quot;Darkstores&quot;, &quot;darkstores&quot;,
+&quot;Drinks&quot;, &quot;drinks&quot;,
+&quot;Electronics&quot;, &quot;electronics&quot;,
+&quot;Furniture&quot;, &quot;furniture&quot;,
+&quot;Games&quot;, &quot;games&quot;,
+&quot;Groceries&quot;, &quot;groceries&quot;,
+&quot;Flowers&quot;, &quot;flowers&quot;,
+&quot;Health &amp; Wellness&quot;, &quot;health_and_wellness&quot;,
+&quot;Home &amp; Gifts&quot;, &quot;home_and_gifts&quot;,
+&quot;Party Supplies&quot;, &quot;party_supplies&quot;,
+&quot;Pets&quot;, &quot;pets&quot;,
+&quot;Pharmacy&quot;, &quot;pharmacies&quot;,
+&quot;Stationery &amp; Books&quot;, &quot;stationery_and_books&quot;,
+&quot;Home Based Kitchen&quot;, &quot;home_based_kitchen&quot;,
+&quot;Snacks &amp; Sweets&quot;, &quot;snacks_and_sweets&quot;,
+&quot;Convenience&quot;, &quot;convenience&quot;,
+&quot;Supermarket&quot;, &quot;supermarket&quot;,
+&quot;Sports &amp; Lifestyle&quot;, &quot;sports_and_lifestyle&quot;,
+&quot;Fashion&quot;, &quot;fashion&quot;,
+&quot;Just For Adults&quot;, &quot;just_for_adults&quot;,
+&quot;Tobacco&quot;, &quot;tobacco&quot;,
+&quot;Regular Restaurant&quot;, &quot;restaurants&quot;,
+TEXT(Vertical_Segment__c))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>FP Vertical Segment</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

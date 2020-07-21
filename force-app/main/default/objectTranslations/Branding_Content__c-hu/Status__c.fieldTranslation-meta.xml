@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Státusz</label>
+    <name>Status__c</name>
+    <picklistValues>
+        <masterLabel>Approved</masterLabel>
+        <translation><!-- Approved --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Canceled</masterLabel>
+        <translation><!-- Canceled --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Design rejected</masterLabel>
+        <translation><!-- Design rejected --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Installed successfully</masterLabel>
+        <translation>sikeresen telepítve</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New</masterLabel>
+        <translation><!-- New --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New - Awaiting Installation</masterLabel>
+        <translation>új - telepítésre vár</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pending design approval</masterLabel>
+        <translation><!-- Pending design approval --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pending final approval</masterLabel>
+        <translation><!-- Pending final approval --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rejected</masterLabel>
+        <translation><!-- Rejected --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transferred</masterLabel>
+        <translation><!-- Transferred --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Uninstalled</masterLabel>
+        <translation><!-- Uninstalled --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

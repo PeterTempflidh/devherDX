@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Restaurant Status --></label>
+    <name>Restaurant_Status__c</name>
+    <picklistValues>
+        <masterLabel>In Acquisition</masterLabel>
+        <translation><!-- In Acquisition --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>In Research</masterLabel>
+        <translation><!-- In Research --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>In Retention</masterLabel>
+        <translation><!-- In Retention --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>In Winback</masterLabel>
+        <translation><!-- In Winback --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Offline</masterLabel>
+        <translation><!-- Restaurant Offline --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Online</masterLabel>
+        <translation><!-- Restaurant Online --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Taking Restaurant Online</masterLabel>
+        <translation><!-- Taking Restaurant Online --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SE_Cancel_Additional_Charge</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Stock_Item__c</columns>
+    <columns>Stock_Item_Serial_No__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset__c.SE_Asset</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Cancel Additional Charge</value>
+    </filters>
+    <label>SE - Cancel Additional Charge</label>
+    <language>en_US</language>
+    <sharedTo>
+        <roleAndSubordinates>SE_Management</roleAndSubordinates>
+    </sharedTo>
+</ListView>

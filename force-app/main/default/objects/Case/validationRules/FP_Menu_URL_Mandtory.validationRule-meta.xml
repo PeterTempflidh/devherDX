@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FP_Menu_URL_Mandtory</fullName>
+    <active>true</active>
+    <description>Menu URL shoule be filled in mark complete button</description>
+    <errorConditionFormula>AND(
+
+OR( TEXT( Type ) = &quot;Menu Processing&quot;, TEXT( Type ) = &quot;Menu Change&quot; ),
+TEXT( Status ) = &quot;Closed&quot;,
+ISBLANK( Menu_URL__c ),
+RecordType.Name = &quot;FP Entry Case&quot;,
+OR( TEXT( Closed_Reason__c ) = &quot;Take Online&quot;, TEXT( Closed_Reason__c ) = &quot;Successful&quot; ),
+NOT($Permission.Exclude_from_Validation)
+
+)</errorConditionFormula>
+    <errorDisplayField>Menu_URL__c</errorDisplayField>
+    <errorMessage>Menu URL is mandatory to close the case. Please fill it.</errorMessage>
+</ValidationRule>

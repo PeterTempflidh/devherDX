@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GLBL_CC_Cannot_Close_On_Open_Child</fullName>
+    <active>true</active>
+    <description>Cannot change status of a case with open Children</description>
+    <errorConditionFormula>(TEXT(Status)=&quot;Resolved&quot;
+||
+TEXT(Status)=&quot;New&quot;
+||
+TEXT(Status)=&quot;In Progress&quot;
+||
+TEXT(Status)=&quot;Closed&quot;)
+&amp;&amp;
+Open_Children_Cases_Counter__c &gt; 0
+&amp;&amp; 
+(RecordType.DeveloperName = &quot;DE_Inbound_Case&quot;
+||
+RecordType.DeveloperName = &quot;CD_Inbound_Case&quot;
+||
+RecordType.DeveloperName = &quot;PY_Inbound_Case&quot;
+||
+RecordType.DeveloperName = &quot;Talabat_Inbound_Case&quot;
+||
+RecordType.DeveloperName = &quot;AT_Inbound_Case&quot;)
+&amp;&amp;
+NOT($Permission.Exclude_from_Validation)</errorConditionFormula>
+    <errorMessage>Cannot change status of a case if there are open child cases</errorMessage>
+</ValidationRule>

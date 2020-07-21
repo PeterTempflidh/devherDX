@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TLB_Photo_Session_QC</fullName>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>Account_Country__c</columns>
+    <columns>OWNER_NAME</columns>
+    <columns>Opportunity__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Opportunity__c</field>
+        <operation>contains</operation>
+        <value>Photo</value>
+    </filters>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.Talabat_Internal_Case</value>
+    </filters>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>equals</operation>
+        <value>New</value>
+    </filters>
+    <filters>
+        <field>ACCOUNT.NAME</field>
+        <operation>notContain</operation>
+        <value>test</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Quality Check</value>
+    </filters>
+    <label>TLB - Photography Quality Check</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>Talabat_Quality_Team</group>
+        <role>Global_Admin</role>
+        <role>Global_Management</role>
+        <roleAndSubordinates>Talabat_Management</roleAndSubordinates>
+        <roleAndSubordinates>Talabat_Operation_Management</roleAndSubordinates>
+        <roleAndSubordinates>Talabat_Operation_Team</roleAndSubordinates>
+    </sharedTo>
+</ListView>

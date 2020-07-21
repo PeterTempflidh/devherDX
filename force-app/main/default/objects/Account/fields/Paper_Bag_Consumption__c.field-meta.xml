@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Paper_Bag_Consumption__c</fullName>
+    <externalId>false</externalId>
+    <label>Paper Bag Consumption</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>High (2.0 Bags per Order)</fullName>
+                <default>false</default>
+                <label>High (2.0 Bags per Order)</label>
+            </value>
+            <value>
+                <fullName>Above Average (1.5 Bags per Order)</fullName>
+                <default>false</default>
+                <label>Above Average (1.5 Bags per Order)</label>
+            </value>
+            <value>
+                <fullName>Average (1.1 Bags per Order)</fullName>
+                <default>false</default>
+                <label>Average (1.1 Bags per Order)</label>
+            </value>
+            <value>
+                <fullName>Low (0.7 Bags per Order)</fullName>
+                <default>false</default>
+                <label>Low (0.7 Bags per Order)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

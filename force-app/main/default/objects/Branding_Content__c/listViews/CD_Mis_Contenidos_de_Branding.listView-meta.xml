@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CD_Mis_Contenidos_de_Branding</fullName>
+    <columns>NAME</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Status__c</columns>
+    <columns>Opportunity__c</columns>
+    <columns>Restaurant_Name__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>notContain</operation>
+        <value>Installed,Canceled,Transferred,Uninstalled,Rejected,Approved,Expired</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Branding_Content__c.CD_Branding_Content</value>
+    </filters>
+    <label>CD - Mis Contenidos de Branding</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>CD_Design_Team</group>
+        <role>CD_Account_Management_Colombia</role>
+        <role>CD_Account_Management_Ecuador</role>
+        <role>CD_Account_Management_Peru</role>
+    </sharedTo>
+</ListView>

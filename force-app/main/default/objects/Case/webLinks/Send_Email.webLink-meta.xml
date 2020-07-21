@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Send_Email</fullName>
+    <availability>online</availability>
+    <description>Send Email</description>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Send Email</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/support/console/33.0/integration.js&quot;)} 
+
+var url = &apos;&apos;; 
+// Validate 
+if((&apos;{!Case.RecordTypeId}&apos; == &apos;012w0000000R07Q&apos; || &apos;{!Case.RecordTypeId}&apos; == &apos;0121r0000007eRz&apos;)&amp;&amp; &apos;{!Case.Country__c}&apos; == &quot;&quot;){alert(&quot;Please specify the country&quot;); 
+url = &apos;&apos;; 
+} else 
+
+
+if(&apos;{!Case.RecordTypeId}&apos; == &apos;012w00000006jDz&apos; &amp;&amp; &apos;{!Case.Origin}&apos; == &apos;Email - Support&apos;){ 
+url =&apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=support@yogiyo.co.kr&amp;template_id=00Xw0000001Hou2&apos;; 
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;012w00000006jDz&apos; &amp;&amp; &apos;{!Case.Origin}&apos; == &apos;Email - Info&apos;){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=info@yogiyo.co.kr&amp;template_id=00Xw0000001Hou2&apos;; 
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;012w0000000MRED&apos;){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=info@hungryhouse.co.uk&amp;template_id=00Xw0000001OHI1&apos;; 
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;0121r000000V9wg&apos; &amp;&amp; {!INCLUDES(Case.Platform__c,&apos;PizzaDE&apos;)} &amp;&amp; {!INCLUDES(Case.Platform__c,&apos;LieferheldDE&apos;)}){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=support@lieferheld.de&amp;template_id=00X1r000001Y4qZ&apos;; 
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;0121r000000V9wg&apos; &amp;&amp; {!INCLUDES(Case.Platform__c,&apos;PizzaDE&apos;)}){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=info@pizza.de&amp;template_id=00X1r000001Y3pk&apos;; 
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;0121r000000V9wg&apos; &amp;&amp; {!INCLUDES(Case.Platform__c,&apos;LieferheldDE&apos;)}){ 
+url =&apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=support@lieferheld.de&amp;template_id=00X1r000001Y3pV&apos;; 
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;0121r000000V9wg&apos; &amp;&amp; {!INCLUDES(Case.Platform__c,&apos;Burger King&apos;)}){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=support@bklieferservice.de&amp;template_id=00X1r000001Y4Bq&apos;; 
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;012w0000000R07Q&apos; &amp;&amp; {!INCLUDES(Case.Country__c,&apos;Colombia&apos;)}){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=domicilioscolombia@domicilios.com&amp;template_id=00X1r000002FUbv&apos;;
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;012w0000000R07Q&apos; &amp;&amp; {!INCLUDES(Case.Country__c,&apos;Peru&apos;)}){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=domiciliosperu@domicilios.com&amp;template_id=00X1r000002FUbv&apos;; 
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;012w0000000R07Q&apos; &amp;&amp; {!INCLUDES(Case.Country__c,&apos;Ecuador&apos;)}){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=domiciliosecuador@domicilios.com&amp;template_id=00X1r000002FUbv&apos;; 
+
+
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;0121r0000007eRz&apos; &amp;&amp; {!INCLUDES(Case.Country__c,&apos;Kuwait&apos;)}){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=customercare@talabat.com&amp;template_id= 00X1r000002FkO3&apos;; 
+
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;0121r0000007eRz&apos; &amp;&amp; {!INCLUDES(Case.Country__c,&apos;United Arab Emirates&apos;)}){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=customercare.uae@talabat.com&amp;template_id= 00X1r000002FkO3&apos;; 
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;0121r0000007eRz&apos; &amp;&amp; {!INCLUDES(Case.Country__c,&apos;Qatar&apos;)}){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=customercare.qatar@talabat.com&amp;template_id= 00X1r000002FkO3&apos;; 
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;0121r0000007eRz&apos; &amp;&amp; {!INCLUDES(Case.Country__c,&apos;Bahrain&apos;)}){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=customercare.bahrain@talabat.com&amp;template_id= 00X1r000002FkO3&apos;; 
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;0121r0000007eRz&apos; &amp;&amp; {!INCLUDES(Case.Country__c,&apos;Jordan&apos;)}){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=customercare.jordan@talabat.com&amp;template_id= 00X1r000002FkO3&apos;; 
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;0121r0000007eRz&apos; &amp;&amp; {!INCLUDES(Case.Country__c,&apos;Oman&apos;)}){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=customercare.oman@talabat.com&amp;template_id= 00X1r000002FkO3&apos;; 
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;0121r0000007eRz&apos; &amp;&amp; {!INCLUDES(Case.Country__c,&apos;Kingdom of Saudi Arabia&apos;)}){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=customercare.ksa@talabat.com&amp;template_id= 00X1r000002FkO3&apos;; 
+
+
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;0121r0000007eqS&apos; &amp;&amp; {!INCLUDES(Case.Country__c,&apos;Bolivia&apos;)}&amp;&amp; &apos;{!Case.Type}&apos; == &apos;Customer&apos;){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=contacto@pedidosya.com&amp;template_id= 00X1r000002Foxm&apos;; 
+
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;0121r0000007eqS&apos; &amp;&amp; {!INCLUDES(Case.Country__c,&apos;Bolivia&apos;)}&amp;&amp; &apos;{!Case.Type}&apos; == &apos;Partner&apos;){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=soporte@pedidosya.com&amp;template_id= 00X1r000002Foxm&apos;; 
+
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;0121r0000007eqS&apos; &amp;&amp; {!INCLUDES(Case.Country__c,&apos;Argentina&apos;)}&amp;&amp; &apos;{!Case.Type}&apos; == &apos;Customer&apos;){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=contacto@pedidosya.com&amp;template_id= 00X1r000002Foxm&apos;; 
+
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;0121r0000007eqS&apos; &amp;&amp; {!INCLUDES(Case.Country__c,&apos;Argentina&apos;)}&amp;&amp; &apos;{!Case.Type}&apos; == &apos;Partner&apos;){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=soporte@pedidosya.com&amp;template_id= 00X1r000002Foxm&apos;; 
+
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;0121r0000007eqS&apos; &amp;&amp; {!INCLUDES(Case.Country__c,&apos;Paraguay&apos;)}&amp;&amp; &apos;{!Case.Type}&apos; == &apos;Customer&apos;){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=contacto@pedidosya.com&amp;template_id= 00X1r000002Foxm&apos;; 
+
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;0121r0000007eqS&apos; &amp;&amp; {!INCLUDES(Case.Country__c,&apos;Paraguay&apos;)}&amp;&amp; &apos;{!Case.Type}&apos; == &apos;Partner&apos;){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=soporte@pedidosya.com&amp;template_id= 00X1r000002Foxm&apos;; 
+
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;0121r0000007eqS&apos; &amp;&amp; {!INCLUDES(Case.Country__c,&apos;Uruguay&apos;)}&amp;&amp; &apos;{!Case.Type}&apos; == &apos;Customer&apos;){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=contacto@pedidosya.com&amp;template_id= 00X1r000002Foxm&apos;; 
+
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;0121r0000007eqS&apos; &amp;&amp; {!INCLUDES(Case.Country__c,&apos;Uruguay&apos;)}&amp;&amp; &apos;{!Case.Type}&apos; == &apos;Partner&apos;){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=soporte@pedidosya.com&amp;template_id= 00X1r000002Foxm&apos;; 
+
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;0121r0000007eqS&apos; &amp;&amp; {!INCLUDES(Case.Country__c,&apos;Chile&apos;)}&amp;&amp; &apos;{!Case.Type}&apos; == &apos;Customer&apos;){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=contacto@pedidosya.com&amp;template_id= 00X1r000002Foxm&apos;; 
+
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;0121r0000007eqS&apos; &amp;&amp; {!INCLUDES(Case.Country__c,&apos;Chile&apos;)}&amp;&amp; &apos;{!Case.Type}&apos; == &apos;Partner&apos;){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=soporte@pedidosya.com&amp;template_id= 00X1r000002Foxm&apos;; 
+
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;0121r0000007eqS&apos; &amp;&amp; {!INCLUDES(Case.Country__c,&apos;Panamá&apos;)}&amp;&amp; &apos;{!Case.Type}&apos; == &apos;Customer&apos;){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=ordenespty@appetito24.com  &amp;template_id= 00X1r000002Foxr&apos;; 
+
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;0121r0000007eqS&apos; &amp;&amp; {!INCLUDES(Case.Country__c,&apos;Panamá&apos;)}&amp;&amp; &apos;{!Case.Type}&apos; == &apos;Partner&apos;){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=soporte@pedidosya.com&amp;template_id= 00X1r000002Foxm&apos;; 
+
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;012w0000000kcRk&apos; &amp;&amp; &apos;{!Case.Type}&apos; == &apos;Partner&apos;){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=partner@mjam.net&amp;template_id= 00X1r00000232uY&apos;; 
+
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;012w0000000kcRk&apos; &amp;&amp; &apos;{!Case.Type}&apos; == &apos;Customer&apos;){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=support@mjam.net&amp;template_id= 00X1r00000232uY&apos;; 
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;012w0000000kc0L&apos; &amp;&amp; &apos;{!Case.Type}&apos; == &apos;Customer Request&apos;){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=info@pizza-online.fi&amp;template_id= 00Xw0000002IuPG&apos;; 
+
+}else if(&apos;{!Case.RecordTypeId}&apos; == &apos;012w0000000kc0L&apos; &amp;&amp; &apos;{!Case.Type}&apos; != &apos;Customer Request&apos;){ 
+url = &apos;/_ui/core/email/author/EmailAuthor?retURL=/{!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;p3_lkid={!Case.Id}&amp;p5=&amp;p24={!Case.SuppliedEmail};{!Case.Customer_Email__c}&amp;p26=ravintolat@pizza-online.fi&amp;template_id= 00Xw0000002IuPL&apos;; 
+}
+
+if(sforce.console.isInConsole()){ 
+sforce.console.getEnclosingPrimaryTabId(function(response){ 
+// Remember the primary tab ID for openSubtab() 
+var primaryTabId = response.id; 
+
+
+// Define other parameters for openSubtab() 
+var isActive = true; 
+var tabLabel = &apos;Send Email&apos;; 
+var subtabId = null; 
+sforce.console.openSubtab(primaryTabId,url, isActive, tabLabel, subtabId); 
+
+}); 
+}else{ 
+location.replace(url); 
+}</url>
+</WebLink>

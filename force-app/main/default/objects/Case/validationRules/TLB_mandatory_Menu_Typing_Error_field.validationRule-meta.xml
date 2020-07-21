@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TLB_mandatory_Menu_Typing_Error_field</fullName>
+    <active>true</active>
+    <description>&quot;Menu Typing Errors&quot; is mandatory when the status is &quot;please correct errors&quot;</description>
+    <errorConditionFormula>AND
+(
+RecordType.Name =&quot;Talabat Entry Case&quot;, 
+ISPICKVAL( Status ,&quot;Please Correct Errors&quot;) , 
+ISBLANK( Menu_Typing_Errors__c )
+)</errorConditionFormula>
+    <errorDisplayField>Menu_Typing_Errors__c</errorDisplayField>
+    <errorMessage>Please select the &quot;Menu Typing Errors&quot; reason before closing the case</errorMessage>
+</ValidationRule>

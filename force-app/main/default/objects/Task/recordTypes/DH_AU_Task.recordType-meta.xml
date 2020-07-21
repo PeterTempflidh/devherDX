@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DH_AU_Task</fullName>
+    <active>true</active>
+    <label>DH AU Task</label>
+    <picklistValues>
+        <picklist>Call_subject__c</picklist>
+        <values>
+            <fullName>CS - Canceled order</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CS - Change order details</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CS - Change unavailable item</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CS - Order status Inquiry</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CS - Payment inquiries</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CS - Pick up issue - active order</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CS - Pick up issue - post pick up</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CS - Redelivery or Refund</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CS - Rider location inquiry</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CS%2FOPT - Delay%2F Delivery time not met%2C Vendor call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CS%2FOPT - Partner didn%27t answer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CS%2FOPT - Pre%2FBig order verification</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPT - Customer did not answer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPT - Driver behaviour</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPT - Duplicate order - accepted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPT - Duplicate order - cancelled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPT - Operating hours incorrect</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPT - Order accepted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPT - Ordered before partner is open</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPT - Partner number invalid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPT - Partner too busy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPT - Product unavailable</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPT - Technical issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPT - Validate customers delivery address</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PC - Onb - Appointment made</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PC - Onb - Delayed delivery</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PC - Onb - Menu issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PC - Onb - Technical issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PC - Onb - Unreachable</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PC - Perf%3A Automation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PC - Perf%3A Cancellations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PC - Perf%3A Closed Hours</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PC - Perf%3A Delays</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PC - Perf%3A Sales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PC - Sales%3A Deal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PS - Technical issue - Front end website</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PS - Technical issue - Portal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PS - Technical issue - Printer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PS - Technical issue - Tablet</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PS - Technical issue - Transmission or POS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PS%2FContent - Address issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PS%2FContent - Case follow up</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PS%2FContent - Contact information issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PS%2FContent - Menu issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PS%2FContent - Offline payment methods issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PS%2FContent - Operating hours issues</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Priority</picklist>
+        <values>
+            <fullName>High</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Low</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Normal</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status</picklist>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Started</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Postponed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Waiting for Other person</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Subject</picklist>
+        <values>
+            <fullName>Call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Send Letter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Send Quote</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Topis_Discussed__c</picklist>
+        <values>
+            <fullName>Account management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Loyalty Schemes</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Menu Printing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Sign up</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Premium Placement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Upgrade</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Account Management Call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Call</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Cold Call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Meeting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Messaging App</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Walk In</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

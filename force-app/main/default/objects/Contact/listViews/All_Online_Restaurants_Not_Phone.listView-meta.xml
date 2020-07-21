@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Online_Restaurants_Not_Phone</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>CONTACT.TITLE</columns>
+    <columns>CONTACT.EMAIL</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>CONTACT.PHONE3</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Account_Online_Status__c</field>
+        <operation>equals</operation>
+        <value>TRUE</value>
+    </filters>
+    <label>All Online Restaurants Not Phone</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>DH_AU_Management</role>
+        <role>DH_AU_Sales_Team</role>
+    </sharedTo>
+</ListView>

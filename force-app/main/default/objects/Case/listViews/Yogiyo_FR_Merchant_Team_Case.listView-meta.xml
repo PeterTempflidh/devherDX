@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Yogiyo_FR_Merchant_Team_Case</fullName>
+    <filterScope>Queue</filterScope>
+    <label>Yogiyo FR Merchant Team</label>
+    <language>en_US</language>
+    <queue>Yogiyo_FR_Merchant_Team</queue>
+    <sharedTo>
+        <roleAndSubordinates>Yogiyo_Local_Admin</roleAndSubordinates>
+    </sharedTo>
+</ListView>

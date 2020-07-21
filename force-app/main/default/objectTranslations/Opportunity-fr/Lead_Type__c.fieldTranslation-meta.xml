@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Lead Type --></label>
+    <name>Lead_Type__c</name>
+    <picklistValues>
+        <masterLabel>01. Winback - Contracted Churn</masterLabel>
+        <translation><!-- 01. Winback - Contracted Churn --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>02. Winback - Non-contracted On Platform</masterLabel>
+        <translation><!-- 02. Winback - Non-contracted On Platform --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>03. Normal - Non-contracted On Platform</masterLabel>
+        <translation><!-- 03. Normal - Non-contracted On Platform --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>04. Normal - Lead Research</masterLabel>
+        <translation><!-- 04. Normal - Lead Research --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>05. Normal - Sales Coverage Report</masterLabel>
+        <translation><!-- 05. Normal - Sales Coverage Report --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>06. Normal - Wishlist</masterLabel>
+        <translation><!-- 06. Normal - Wishlist --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>07. Similarity - BDMJ</masterLabel>
+        <translation><!-- 07. Similarity - BDMJ --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>08. Similarity - BDT</masterLabel>
+        <translation><!-- 08. Similarity - BDT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>09. Not a Lead - Non-contracted On Platform</masterLabel>
+        <translation><!-- 09. Not a Lead - Non-contracted On Platform --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10. Not a Lead - Contracted On Platform</masterLabel>
+        <translation><!-- 10. Not a Lead - Contracted On Platform --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11. Not a Lead - Not on Platform</masterLabel>
+        <translation><!-- 11. Not a Lead - Not on Platform --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Already listed in Yogiyo (Not a lead)</masterLabel>
+        <translation><!-- Already listed in Yogiyo (Not a lead) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lead (Target List)</masterLabel>
+        <translation><!-- Lead (Target List) --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

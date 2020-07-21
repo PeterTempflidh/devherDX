@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- For e.x. Invoices would send to the customer by email, post, Fax --></help>
+    <label><!-- Invoice Transmission method --></label>
+    <name>Invoice_Transmission_method__c</name>
+    <picklistValues>
+        <masterLabel>Email</masterLabel>
+        <translation><!-- Email --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fax</masterLabel>
+        <translation><!-- Fax --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Post</masterLabel>
+        <translation><!-- Post --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

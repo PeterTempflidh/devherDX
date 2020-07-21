@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FP_Invoice_Frequency_Validation</fullName>
+    <active>false</active>
+    <description>The Invoice Frequency picklist value &apos;Weekly&apos; on the Account object is selectable by users in SG/TW/MY and disabled for Hong Kong and New Markets</description>
+    <errorConditionFormula>RecordType.DeveloperName =&apos;FP_Account&apos;
+&amp;&amp;(
+OR(ISPICKVAL(Record_Country__c, &apos;Hong Kong&apos;),
+ISPICKVAL(Record_Country__c, &apos;Cambodia&apos;),
+ISPICKVAL(Record_Country__c, &apos;Laos&apos;),
+ISPICKVAL(Record_Country__c, &apos;Myanmar&apos;))
+&amp;&amp;
+ISPICKVAL(Invoice_Frequency__c, &apos;Weekly&apos;))</errorConditionFormula>
+    <errorDisplayField>Invoice_Frequency__c</errorDisplayField>
+    <errorMessage>The value &quot;Weekly&quot; is permitted for users in Singapore, Taiwan and Malaysia only.</errorMessage>
+</ValidationRule>

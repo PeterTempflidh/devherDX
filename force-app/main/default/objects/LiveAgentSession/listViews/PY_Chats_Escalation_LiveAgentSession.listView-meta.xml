@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PY_Chats_Escalation_LiveAgentSession</fullName>
+    <filterScope>Queue</filterScope>
+    <label>PY - Chats Escalation</label>
+    <queue>PY_Chats_Escalation</queue>
+    <sharedTo>
+        <allInternalUsers/>
+    </sharedTo>
+</ListView>

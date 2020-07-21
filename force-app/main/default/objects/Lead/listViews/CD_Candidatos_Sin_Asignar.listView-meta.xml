@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CD_Candidatos_Sin_Asignar</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>LEAD.COMPANY</columns>
+    <columns>LEAD.STATE</columns>
+    <columns>LEAD.EMAIL</columns>
+    <columns>LEAD.STATUS</columns>
+    <columns>LEAD.CREATED_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>LEAD.UNREAD</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>LEAD.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Lead.CD_Lead</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.FIRST_NAME</field>
+        <operation>equals</operation>
+        <value>Lead</value>
+    </filters>
+    <filters>
+        <field>Record_Country__c</field>
+        <operation>equals</operation>
+        <value>Colombia,Peru</value>
+    </filters>
+    <filters>
+        <field>LEAD.STATUS</field>
+        <operation>notEqual</operation>
+        <value>Lost</value>
+    </filters>
+    <label>CD - Candidatos Sin Asignar COP &amp; PEN</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>CD_Management</role>
+        <role>CD_Sales_Management_Colombia</role>
+        <role>CD_Sales_Management_Peru</role>
+    </sharedTo>
+</ListView>

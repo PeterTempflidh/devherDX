@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Local_Traffic__c</fullName>
+    <description>Volume of motor and pedestrian traffic nearby the restaurant to judge upon the value to offer branding to the restaurant.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Volume of motor and pedestrian traffic nearby the restaurant to judge upon the value to offer branding to the restaurant.</inlineHelpText>
+    <label>Local Traffic</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>High Traffic</fullName>
+                <default>false</default>
+                <label>High Traffic</label>
+            </value>
+            <value>
+                <fullName>Mid Traffic</fullName>
+                <default>false</default>
+                <label>Mid Traffic</label>
+            </value>
+            <value>
+                <fullName>Low Traffic</fullName>
+                <default>false</default>
+                <label>Low Traffic</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

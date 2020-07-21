@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Activation_Successful_Yogiyo</fullName>
+    <columns>NAME</columns>
+    <columns>Company_Number__c</columns>
+    <columns>Account__c</columns>
+    <columns>Stock_Item__c</columns>
+    <columns>Person_In_Charge_Activation__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Activated Successfully</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset__c.Yogiyo_Asset</value>
+    </filters>
+    <label>YGY - 03. Activated Successfully</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Yogiyo_Local_Admin</role>
+        <roleAndSubordinates>Yogiyo_Customer_Car_Management</roleAndSubordinates>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,1381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Case Reason --></label>
+    <name>Case_Reason__c</name>
+    <picklistValues>
+        <masterLabel>0% Commission</masterLabel>
+        <translation><!-- 0% Commission --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>0% Commission Cancel / Decrease</masterLabel>
+        <translation><!-- 0% Commission Cancel / Decrease --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1st Warning</masterLabel>
+        <translation><!-- 1st Warning --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2nd Warning</masterLabel>
+        <translation><!-- 2nd Warning --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ABN</masterLabel>
+        <translation><!-- ABN --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Accounting</masterLabel>
+        <translation><!-- Accounting --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Acct related Call Back</masterLabel>
+        <translation><!-- Acct related Call Back --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Add / Deactivate User</masterLabel>
+        <translation><!-- Add / Deactivate User --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Add child account</masterLabel>
+        <translation><!-- Add child account --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Additional Order Time</masterLabel>
+        <translation><!-- Additional Order Time --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Agreement Issue</masterLabel>
+        <translation><!-- Agreement Issue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Alcohol Listing Request</masterLabel>
+        <translation><!-- Alcohol Listing Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>All Inclusive</masterLabel>
+        <translation><!-- All Inclusive --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Assignment Rules</masterLabel>
+        <translation><!-- Assignment Rules --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Automation</masterLabel>
+        <translation><!-- Automation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BE Restaurant Name Change</masterLabel>
+        <translation><!-- BE Restaurant Name Change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BPG Violation Report</masterLabel>
+        <translation><!-- BPG Violation Report --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bad Debt Check</masterLabel>
+        <translation><!-- Bad Debt Check --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bad Restaurant Service</masterLabel>
+        <translation><!-- Bad Restaurant Service --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bank Account Change</masterLabel>
+        <translation><!-- Bank Account Change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bank Account Details</masterLabel>
+        <translation><!-- Bank Account Details --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bank Account Details Collected</masterLabel>
+        <translation><!-- Bank Account Details Collected --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bank/Police request</masterLabel>
+        <translation><!-- Bank/Police request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Best Price Guarantee</masterLabel>
+        <translation><!-- Best Price Guarantee --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bill Request</masterLabel>
+        <translation><!-- Bill Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Blacklist removal request</masterLabel>
+        <translation><!-- Blacklist removal request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Block Payout</masterLabel>
+        <translation><!-- Block Payout --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bonus / Bonus Problems</masterLabel>
+        <translation><!-- Bonus / Bonus Problems --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bug</masterLabel>
+        <translation><!-- Bug --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Business Closed</masterLabel>
+        <translation><!-- Business Closed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Business Licensee Change</masterLabel>
+        <translation><!-- Business Licensee Change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CMS, CC Request</masterLabel>
+        <translation><!-- CMS, CC Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CRM Change Only</masterLabel>
+        <translation><!-- CRM Change Only --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Call Back Request</masterLabel>
+        <translation><!-- Call Back Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cannot Contact</masterLabel>
+        <translation><!-- Cannot Contact --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Capacity - Competitors</masterLabel>
+        <translation><!-- Capacity - Competitors --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Capacity - Driver Issue</masterLabel>
+        <translation><!-- Capacity - Driver Issue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Capacity - Order Volume</masterLabel>
+        <translation><!-- Capacity - Order Volume --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Capacity - Own Website</masterLabel>
+        <translation><!-- Capacity - Own Website --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Car Leasing</masterLabel>
+        <translation><!-- Car Leasing --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Category change</masterLabel>
+        <translation><!-- Category change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Change of Ownership</masterLabel>
+        <translation><!-- Change of Ownership --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Charge-back</masterLabel>
+        <translation><!-- Charge-back --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Chargeback</masterLabel>
+        <translation><!-- Chargeback --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Children Account offline request</masterLabel>
+        <translation><!-- Children Account offline request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Claim from Customer</masterLabel>
+        <translation><!-- Claim from Customer --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Claim from Restaurant</masterLabel>
+        <translation><!-- Claim from Restaurant --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Claims Management</masterLabel>
+        <translation><!-- Claims Management --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Clone Request</masterLabel>
+        <translation><!-- Clone Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Closing Down</masterLabel>
+        <translation><!-- Closing Down --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Collecting Documents</masterLabel>
+        <translation><!-- Collecting Documents --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Collection Issue</masterLabel>
+        <translation><!-- Collection Issue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Commission (Additional order)</masterLabel>
+        <translation><!-- Commission (Additional order) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Commission (Current Billing Period)</masterLabel>
+        <translation><!-- Commission (Current Billing Period) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Commission (Previous Billing Period)</masterLabel>
+        <translation><!-- Commission (Previous Billing Period) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Commission / Subscription to high</masterLabel>
+        <translation><!-- Commission / Subscription to high --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Commission Fee / Contract</masterLabel>
+        <translation><!-- Commission Fee / Contract --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Commission Standardization</masterLabel>
+        <translation><!-- Commission Standardization --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Company Information Change (Same Owner)</masterLabel>
+        <translation><!-- Company Information Change (Same Owner) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Company number change (Same Owner)</masterLabel>
+        <translation><!-- Company number change (Same Owner) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Compensation refund</masterLabel>
+        <translation><!-- Compensation refund --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Complaint</masterLabel>
+        <translation><!-- Complaint --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Complaint Food Quality</masterLabel>
+        <translation><!-- Complaint Food Quality --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Compliance</masterLabel>
+        <translation><!-- Compliance --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Connect request</masterLabel>
+        <translation><!-- Connect request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Connectivity Issues</masterLabel>
+        <translation><!-- Connectivity Issues --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Contract Cancellation</masterLabel>
+        <translation><!-- Contract Cancellation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Contract Elements</masterLabel>
+        <translation><!-- Contract Elements --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Contract Update</masterLabel>
+        <translation><!-- Contract Update --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Contract request - Additional Rest from Non-contract</masterLabel>
+        <translation><!-- Contract request - Additional Rest from Non-contract --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Contract request - Registered</masterLabel>
+        <translation><!-- Contract request - Registered --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Contract request-NEW</masterLabel>
+        <translation><!-- Contract request-NEW --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Contract violation</masterLabel>
+        <translation><!-- Contract violation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cost difference refund</masterLabel>
+        <translation><!-- Cost difference refund --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Courier Wait Time</masterLabel>
+        <translation><!-- Courier Wait Time --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Customer Enquiry</masterLabel>
+        <translation><!-- Customer Enquiry --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Customer Membership Deletion Request</masterLabel>
+        <translation><!-- Customer Membership Deletion Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Customer Refund</masterLabel>
+        <translation><!-- Customer Refund --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Customer Survey Reply</masterLabel>
+        <translation><!-- Customer Survey Reply --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Customer change of mine</masterLabel>
+        <translation><!-- Customer change of mine --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Customer fault</masterLabel>
+        <translation><!-- Customer fault --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DH Delivery</masterLabel>
+        <translation><!-- DH Delivery --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Data Incomplete</masterLabel>
+        <translation><!-- Data Incomplete --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Decision Maker Not Reached</masterLabel>
+        <translation><!-- Decision Maker Not Reached --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Decline</masterLabel>
+        <translation><!-- Decline --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivery Area change / Phone number out of Service</masterLabel>
+        <translation><!-- Delivery Area change / Phone number out of Service --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivery Areas</masterLabel>
+        <translation><!-- Delivery Areas --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivery Fees / Minimum Order Value</masterLabel>
+        <translation><!-- Delivery Fees / Minimum Order Value --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivery Time / Status Order</masterLabel>
+        <translation><!-- Delivery Time / Status Order --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Deposit Confirmation</masterLabel>
+        <translation><!-- Deposit Confirmation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Development Proposal</masterLabel>
+        <translation><!-- Development Proposal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Disappointed by our business methods</masterLabel>
+        <translation><!-- Disappointed by our business methods --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Discount Change</masterLabel>
+        <translation><!-- Discount Change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Dish Level Photoshoot</masterLabel>
+        <translation><!-- Dish Level Photoshoot --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Door Sticker Request</masterLabel>
+        <translation>Anfrage zu Türstickern</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Duplicate</masterLabel>
+        <translation><!-- Duplicate --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Eat without money</masterLabel>
+        <translation><!-- Eat without money --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Educate Partner Request</masterLabel>
+        <translation><!-- Educate Partner Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Email Forwarding</masterLabel>
+        <translation><!-- Email Forwarding --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Email Templates</masterLabel>
+        <translation><!-- Email Templates --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Error</masterLabel>
+        <translation><!-- Error --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Exclusive with competitor</masterLabel>
+        <translation><!-- Exclusive with competitor --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Exclusivity</masterLabel>
+        <translation><!-- Exclusivity --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Expand target district / Opening time</masterLabel>
+        <translation><!-- Expand target district / Opening time --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Failed Order</masterLabel>
+        <translation><!-- Failed Order --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Failed in Upgrade</masterLabel>
+        <translation><!-- Failed in Upgrade --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fee Inquiry</masterLabel>
+        <translation><!-- Fee Inquiry --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fee Inquiry (Terminal)</masterLabel>
+        <translation><!-- Fee Inquiry (Terminal) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Feedback</masterLabel>
+        <translation><!-- Feedback --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Follow-Up 15 Days</masterLabel>
+        <translation><!-- Follow-Up 15 Days --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Follow-Up 30 Day</masterLabel>
+        <translation><!-- Follow-Up 30 Day --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Follow-Up 90 Day</masterLabel>
+        <translation><!-- Follow-Up 90 Day --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Follow-Up Quarterly</masterLabel>
+        <translation><!-- Follow-Up Quarterly --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Format/Layout</masterLabel>
+        <translation><!-- Format/Layout --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fraud</masterLabel>
+        <translation><!-- Fraud --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Full Menu</masterLabel>
+        <translation><!-- Full Menu --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>GDPR - Customer account deletion</masterLabel>
+        <translation><!-- GDPR - Customer account deletion --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>GDPR - Data protection inquiry</masterLabel>
+        <translation><!-- GDPR - Data protection inquiry --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>GDPR - Newsletter unsubscription</masterLabel>
+        <translation><!-- GDPR - Newsletter unsubscription --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>General Question</masterLabel>
+        <translation><!-- General Question --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>General Support Request</masterLabel>
+        <translation><!-- General Support Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Gift Voucher Query</masterLabel>
+        <translation><!-- Gift Voucher Query --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hacked Account</masterLabel>
+        <translation><!-- Hacked Account --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hardware Issues</masterLabel>
+        <translation><!-- Hardware Issues --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>High Failure Rate</masterLabel>
+        <translation><!-- High Failure Rate --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>High Risk</masterLabel>
+        <translation><!-- High Risk --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Holiday Set</masterLabel>
+        <translation><!-- Holiday Set --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hygiene Rating</masterLabel>
+        <translation><!-- Hygiene Rating --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Imagery only update</masterLabel>
+        <translation><!-- Imagery only update --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Incomplete Contract</masterLabel>
+        <translation><!-- Incomplete Contract --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Incorrect Order Confirmation</masterLabel>
+        <translation><!-- Incorrect Order Confirmation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Information Change</masterLabel>
+        <translation><!-- Information Change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Interested in Promo</masterLabel>
+        <translation><!-- Interested in Promo --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Invoice Address Change</masterLabel>
+        <translation><!-- Invoice Address Change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Invoice Payment Method</masterLabel>
+        <translation><!-- Invoice Payment Method --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Invoice Query</masterLabel>
+        <translation><!-- Invoice Query --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Invoice Request</masterLabel>
+        <translation><!-- Invoice Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Invoicing / Payments</masterLabel>
+        <translation><!-- Invoicing / Payments --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Keyword Change</masterLabel>
+        <translation><!-- Keyword Change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lack of Menu Information</masterLabel>
+        <translation><!-- Lack of Menu Information --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lack of Rest. Information</masterLabel>
+        <translation><!-- Lack of Rest. Information --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Language Support</masterLabel>
+        <translation><!-- Language Support --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Late Delivery</masterLabel>
+        <translation><!-- Late Delivery --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Late Payment</masterLabel>
+        <translation><!-- Late Payment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Late Payment Inquiry</masterLabel>
+        <translation><!-- Late Payment Inquiry --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Legal Form Change</masterLabel>
+        <translation><!-- Legal Form Change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Legal Issue</masterLabel>
+        <translation><!-- Legal Issue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Limit Target districts / Opening Time</masterLabel>
+        <translation><!-- Limit Target districts / Opening Time --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Login / Sign-Up</masterLabel>
+        <translation><!-- Login / Sign-Up --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Logistics Issue</masterLabel>
+        <translation><!-- Logistics Issue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Logo</masterLabel>
+        <translation><!-- Logo --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Long-term absence</masterLabel>
+        <translation><!-- Long-term absence --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Long-term holiday request</masterLabel>
+        <translation><!-- Long-term holiday request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lost to Competition</masterLabel>
+        <translation><!-- Lost to Competition --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Low Orders</masterLabel>
+        <translation><!-- Low Orders --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Manual Transmission</masterLabel>
+        <translation><!-- Manual Transmission --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Marketing Initiative</masterLabel>
+        <translation><!-- Marketing Initiative --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mass Update</masterLabel>
+        <translation><!-- Mass Update --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mass Upload</masterLabel>
+        <translation><!-- Mass Upload --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Meal Deals</masterLabel>
+        <translation>Rabatt-Feature</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Membership Withdraw</masterLabel>
+        <translation><!-- Membership Withdraw --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Menu Change</masterLabel>
+        <translation><!-- Menu Change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Menu Collected</masterLabel>
+        <translation><!-- Menu Collected --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Menu Issues</masterLabel>
+        <translation><!-- Menu Issues --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Menu Printing</masterLabel>
+        <translation><!-- Menu Printing --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Menu Update</masterLabel>
+        <translation><!-- Menu Update --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Menu Update Major</masterLabel>
+        <translation><!-- Menu Update Major --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Menu Update Major with Images</masterLabel>
+        <translation><!-- Menu Update Major with Images --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Menu Update Minor</masterLabel>
+        <translation><!-- Menu Update Minor --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Missing Documents</masterLabel>
+        <translation><!-- Missing Documents --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Missing Items</masterLabel>
+        <translation><!-- Missing Items --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mixed</masterLabel>
+        <translation><!-- Mixed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mobile payment refund</masterLabel>
+        <translation><!-- Mobile payment refund --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Branch</masterLabel>
+        <translation><!-- New Branch --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Feature</masterLabel>
+        <translation><!-- New Feature --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Hardware</masterLabel>
+        <translation><!-- New Hardware --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Owner - New Contract</masterLabel>
+        <translation><!-- New Owner - New Contract --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Owner - Will not continue contract</masterLabel>
+        <translation><!-- New Owner - Will not continue contract --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Owner Known</masterLabel>
+        <translation><!-- New Owner Known --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Owner Unknown</masterLabel>
+        <translation><!-- New Owner Unknown --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Shipment</masterLabel>
+        <translation><!-- New Shipment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Sign Up</masterLabel>
+        <translation><!-- New Sign Up --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Validation</masterLabel>
+        <translation><!-- New Validation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New field</masterLabel>
+        <translation><!-- New field --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New items</masterLabel>
+        <translation><!-- New items --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No Deliveries</masterLabel>
+        <translation><!-- No Deliveries --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No Delivery Service</masterLabel>
+        <translation><!-- No Delivery Service --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Non Contracted Rest - 2nd rejection</masterLabel>
+        <translation><!-- Non Contracted Rest - 2nd rejection --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Enough Orders</masterLabel>
+        <translation><!-- Not Enough Orders --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Reachable</masterLabel>
+        <translation><!-- Not Reachable --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not able to receive orders</masterLabel>
+        <translation><!-- Not able to receive orders --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not enough capacity</masterLabel>
+        <translation><!-- Not enough capacity --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not interested in product</masterLabel>
+        <translation><!-- Not interested in product --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not satisfied with our product</masterLabel>
+        <translation><!-- Not satisfied with our product --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Offline Duration</masterLabel>
+        <translation><!-- Offline Duration --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Onboarding</masterLabel>
+        <translation><!-- Onboarding --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Online Payment rejection</masterLabel>
+        <translation><!-- Online Payment rejection --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Online Status</masterLabel>
+        <translation><!-- Online Status --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Opening hours</masterLabel>
+        <translation><!-- Opening hours --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Options</masterLabel>
+        <translation><!-- Options --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Order</masterLabel>
+        <translation><!-- Order --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Order Accepted/Rejected</masterLabel>
+        <translation><!-- Order Accepted/Rejected --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Order Cancellation</masterLabel>
+        <translation><!-- Order Cancellation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Order Change</masterLabel>
+        <translation><!-- Order Change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Order Inquiry</masterLabel>
+        <translation><!-- Order Inquiry --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Order Now Button</masterLabel>
+        <translation><!-- Order Now Button --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Order Reimbursement</masterLabel>
+        <translation><!-- Order Reimbursement --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Order Tracking</masterLabel>
+        <translation><!-- Order Tracking --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Order cancelation (All &amp; Partial)</masterLabel>
+        <translation><!-- Order cancelation (All &amp; Partial) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Others</masterLabel>
+        <translation><!-- Others --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Owner Phone number change</masterLabel>
+        <translation><!-- Owner Phone number change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Owner&apos;s Request</masterLabel>
+        <translation><!-- Owner&apos;s Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Owners page ID Request</masterLabel>
+        <translation><!-- Owners page ID Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Paper Bag &amp; Paper Roll Request</masterLabel>
+        <translation>Anfrage zu Papiertüten und Bonrollen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Paper Bag Request</masterLabel>
+        <translation>Anfrage zu Papiertüten</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Paper Roll Request</masterLabel>
+        <translation>Anfrage zu Bonrollen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Partial Refund</masterLabel>
+        <translation><!-- Partial Refund --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Partner Portal</masterLabel>
+        <translation><!-- Partner Portal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Partnership - 1st Warning</masterLabel>
+        <translation><!-- Partnership - 1st Warning --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Partnership - 2nd Warning</masterLabel>
+        <translation><!-- Partnership - 2nd Warning --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Partnership - 3rd Warning</masterLabel>
+        <translation><!-- Partnership - 3rd Warning --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Partnership - 4th Warning</masterLabel>
+        <translation><!-- Partnership - 4th Warning --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Partnership proposal</masterLabel>
+        <translation><!-- Partnership proposal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Password Forgotten/reset</masterLabel>
+        <translation><!-- Password Forgotten/reset --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pay Owed Amounts</masterLabel>
+        <translation><!-- Pay Owed Amounts --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Payment Issue</masterLabel>
+        <translation><!-- Payment Issue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Payment method change</masterLabel>
+        <translation><!-- Payment method change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Photographer Image Request</masterLabel>
+        <translation><!-- Photographer Image Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pick list Value</masterLabel>
+        <translation><!-- Pick list Value --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Poor Performance</masterLabel>
+        <translation><!-- Poor Performance --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Prank order</masterLabel>
+        <translation><!-- Prank order --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pre-warning</masterLabel>
+        <translation><!-- Pre-warning --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Premium Placement</masterLabel>
+        <translation><!-- Premium Placement --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Premium Services</masterLabel>
+        <translation><!-- Premium Services --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Price Change</masterLabel>
+        <translation><!-- Price Change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Price Matching</masterLabel>
+        <translation><!-- Price Matching --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pricing - Admin Fee</masterLabel>
+        <translation><!-- Pricing - Admin Fee --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pricing - Commission</masterLabel>
+        <translation><!-- Pricing - Commission --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pricing - Merchant Fee</masterLabel>
+        <translation><!-- Pricing - Merchant Fee --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pricing - Setup Fee</masterLabel>
+        <translation><!-- Pricing - Setup Fee --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Printer Activation</masterLabel>
+        <translation><!-- Printer Activation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Printer Cancellation</masterLabel>
+        <translation><!-- Printer Cancellation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Printer Deposit Refund</masterLabel>
+        <translation><!-- Printer Deposit Refund --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Printer Exchange Request</masterLabel>
+        <translation><!-- Printer Exchange Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Printer Issues</masterLabel>
+        <translation><!-- Printer Issues --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Printer Request</masterLabel>
+        <translation><!-- Printer Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Process/Flow Change</masterLabel>
+        <translation><!-- Process/Flow Change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Product</masterLabel>
+        <translation><!-- Product --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Promotion Conditions Change</masterLabel>
+        <translation><!-- Promotion Conditions Change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Public Holiday Reply</masterLabel>
+        <translation><!-- Public Holiday Reply --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Quality Concerns</masterLabel>
+        <translation><!-- Quality Concerns --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Quick Order Sticker</masterLabel>
+        <translation><!-- Quick Order Sticker --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RFV</masterLabel>
+        <translation><!-- RFV --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RP Change (Need Image agreement)</masterLabel>
+        <translation><!-- RP Change (Need Image agreement) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ranking Information</masterLabel>
+        <translation><!-- Ranking Information --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rating On website / Reviews</masterLabel>
+        <translation><!-- Rating On website / Reviews --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Re-contract request</masterLabel>
+        <translation><!-- Re-contract request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Recommendations</masterLabel>
+        <translation><!-- Recommendations --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Refund Change of Ownership</masterLabel>
+        <translation><!-- Refund Change of Ownership --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Refund Enquiry</masterLabel>
+        <translation><!-- Refund Enquiry --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Refund Incorrect Billing</masterLabel>
+        <translation><!-- Refund Incorrect Billing --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Refund Premium Placement</masterLabel>
+        <translation><!-- Refund Premium Placement --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Refund Tablink</masterLabel>
+        <translation><!-- Refund Tablink --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Refund Win back</masterLabel>
+        <translation><!-- Refund Win back --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Regional Tariff</masterLabel>
+        <translation><!-- Regional Tariff --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Reject SMS/Email</masterLabel>
+        <translation><!-- Reject SMS/Email --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rejected the contract proposal from Sales team</masterLabel>
+        <translation><!-- Rejected the contract proposal from Sales team --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rejects Online Payment</masterLabel>
+        <translation><!-- Rejects Online Payment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Removing Items</masterLabel>
+        <translation><!-- Removing Items --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Report Request</masterLabel>
+        <translation><!-- Report Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Research</masterLabel>
+        <translation><!-- Research --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Closed Permanently</masterLabel>
+        <translation><!-- Restaurant Closed Permanently --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Closed Temporarily</masterLabel>
+        <translation><!-- Restaurant Closed Temporarily --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Discount</masterLabel>
+        <translation><!-- Restaurant Discount --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Enquiry</masterLabel>
+        <translation><!-- Restaurant Enquiry --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Marketing</masterLabel>
+        <translation><!-- Restaurant Marketing --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Name Change</masterLabel>
+        <translation><!-- Restaurant Name Change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Operations</masterLabel>
+        <translation><!-- Restaurant Operations --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Picture Change (No legal issue)</masterLabel>
+        <translation><!-- Restaurant Picture Change (No legal issue) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Portal</masterLabel>
+        <translation><!-- Restaurant Portal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Recommendation</masterLabel>
+        <translation><!-- Restaurant Recommendation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Suggestion</masterLabel>
+        <translation><!-- Restaurant Suggestion --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Website</masterLabel>
+        <translation><!-- Restaurant Website --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant fault</masterLabel>
+        <translation><!-- Restaurant fault --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Result of Deposit Confirmation</masterLabel>
+        <translation><!-- Result of Deposit Confirmation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Retention</masterLabel>
+        <translation><!-- Retention --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Return Request</masterLabel>
+        <translation><!-- Return Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Return shippment</masterLabel>
+        <translation><!-- Return shippment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Review Request</masterLabel>
+        <translation><!-- Review Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Review reply</masterLabel>
+        <translation><!-- Review reply --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SF &amp; BE Restaurant Name Change</masterLabel>
+        <translation><!-- SF &amp; BE Restaurant Name Change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SIM Activation</masterLabel>
+        <translation><!-- SIM Activation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SIM Deactivation</masterLabel>
+        <translation><!-- SIM Deactivation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SMS Activation</masterLabel>
+        <translation><!-- SMS Activation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SMS Issues</masterLabel>
+        <translation><!-- SMS Issues --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SMS Relay requested for Activation</masterLabel>
+        <translation><!-- SMS Relay requested for Activation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SMS Relay requested for De-activation</masterLabel>
+        <translation><!-- SMS Relay requested for De-activation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sales Request</masterLabel>
+        <translation><!-- Sales Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Section Photos</masterLabel>
+        <translation><!-- Section Photos --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sign Up Voucher</masterLabel>
+        <translation><!-- Sign Up Voucher --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Software Activation</masterLabel>
+        <translation><!-- Software Activation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Software Issues</masterLabel>
+        <translation><!-- Software Issues --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Spam</masterLabel>
+        <translation><!-- Spam --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Spelling Errors</masterLabel>
+        <translation><!-- Spelling Errors --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Successful</masterLabel>
+        <translation><!-- Successful --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Successful in Upgrade</masterLabel>
+        <translation><!-- Successful in Upgrade --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Suspect Account</masterLabel>
+        <translation><!-- Suspect Account --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Switch OD to VD</masterLabel>
+        <translation><!-- Switch OD to VD --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Switch VD to OD</masterLabel>
+        <translation><!-- Switch VD to OD --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>System error</masterLabel>
+        <translation><!-- System error --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Take Offline</masterLabel>
+        <translation><!-- Take Offline --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Take Out</masterLabel>
+        <translation><!-- Take Out --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Target District - Polygon</masterLabel>
+        <translation><!-- Target District - Polygon --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Tax Invoice</masterLabel>
+        <translation><!-- Tax Invoice --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Technical Problems App</masterLabel>
+        <translation><!-- Technical Problems App --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Technical Problems Website</masterLabel>
+        <translation><!-- Technical Problems Website --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Temp Offline Waiting For Printer</masterLabel>
+        <translation><!-- Temp Offline Waiting For Printer --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Temporary Sales O.E</masterLabel>
+        <translation><!-- Temporary Sales O.E --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Terminal Data Usage</masterLabel>
+        <translation><!-- Terminal Data Usage --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Terminal Issue</masterLabel>
+        <translation><!-- Terminal Issue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Terminal request</masterLabel>
+        <translation><!-- Terminal request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Terminal time-out</masterLabel>
+        <translation><!-- Terminal time-out --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Termination</masterLabel>
+        <translation><!-- Termination --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Time To Respond</masterLabel>
+        <translation><!-- Time To Respond --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transaction Check</masterLabel>
+        <translation><!-- Transaction Check --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transmission Issue</masterLabel>
+        <translation><!-- Transmission Issue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transmission Method Change</masterLabel>
+        <translation><!-- Transmission Method Change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unhappy With Service</masterLabel>
+        <translation><!-- Unhappy With Service --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unknown</masterLabel>
+        <translation><!-- Unknown --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unreachable</masterLabel>
+        <translation><!-- Unreachable --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unsubscribe</masterLabel>
+        <translation><!-- Unsubscribe --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Upgrade/Upsell</masterLabel>
+        <translation><!-- Upgrade/Upsell --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>User Activation</masterLabel>
+        <translation><!-- User Activation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>User Deactivation</masterLabel>
+        <translation><!-- User Deactivation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>User Permission</masterLabel>
+        <translation><!-- User Permission --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Visit Request</masterLabel>
+        <translation><!-- Visit Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Voucher Code</masterLabel>
+        <translation><!-- Voucher Code --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Voucher request</masterLabel>
+        <translation><!-- Voucher request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Warning - Non-Contracted Rest.</masterLabel>
+        <translation><!-- Warning - Non-Contracted Rest. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Welcome Call Unsuccessful</masterLabel>
+        <translation><!-- Welcome Call Unsuccessful --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>White Label Website</masterLabel>
+        <translation><!-- White Label Website --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Wrong Information</masterLabel>
+        <translation><!-- Wrong Information --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Yogiyo Human error</masterLabel>
+        <translation><!-- Yogiyo Human error --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>hungryhouse Enquiry</masterLabel>
+        <translation><!-- hungryhouse Enquiry --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

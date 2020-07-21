@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GLOBAL_Backend_ID_required_QC_successful</fullName>
+    <active>true</active>
+    <description>The Backend Id is required before closing QC case as successful</description>
+    <errorConditionFormula>((RecordType.DeveloperName = &quot;AT_Internal_Case&quot;
+||
+RecordType.DeveloperName = &quot;SE_Internal_Case&quot;)
+&amp;&amp;
+ISPICKVAL(Type, &quot;Quality Check&quot;)
+&amp;&amp;
+ISPICKVAL( Closed_Reason__c , &quot;Successful&quot;)
+&amp;&amp; 
+ISBLANK(Account.Backend_ID__c))
+ || 
+(RecordType.DeveloperName = &quot;FI_Entry_Case&quot;
+&amp;&amp;
+ISPICKVAL(Type, &quot;Menu Processing&quot;)
+&amp;&amp;
+ISPICKVAL( Closed_Reason__c , &quot;Take Online&quot;)
+&amp;&amp; 
+ISBLANK(Account.Backend_ID__c))
+&amp;&amp;
+$User.ProfileId &lt;&gt; &apos;00ew0000001HfA4AAK&apos;</errorConditionFormula>
+    <errorMessage>Please enter the Backend ID in the Account before closing the case.</errorMessage>
+</ValidationRule>

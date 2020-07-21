@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GLB_Root_Cause_Mandatory_Not_Successful</fullName>
+    <active>true</active>
+    <description>Make mandatory the root cause when is cloosed not succesful</description>
+    <errorConditionFormula>(RecordType.DeveloperName=&quot;FP_Internal_Case&quot;
+||
+RecordType.DeveloperName=&quot;FP_Entry_Case&quot;
+||
+RecordType.DeveloperName=&quot;FP_Restaurant_Operations&quot; )
+&amp;&amp;
+(TEXT(Type)=&quot;Quality Check&quot;
+||
+TEXT(Type)=&quot;Onboarding&quot;
+||
+TEXT(Type)=&quot;Menu Processing&quot;
+||
+TEXT(Type)=&quot;Retention&quot;
+||
+TEXT(Type)=&quot;Dish Level Photo&quot;
+||
+TEXT(Type)=&quot;Menu Change&quot;)
+&amp;&amp;
+TEXT(Status)=&quot;Closed&quot;
+&amp;&amp;
+ISBLANK((Root_Cause__c))
+&amp;&amp;
+(TEXT(Closed_Reason__c)=&quot;Not Successful&quot;
+||
+TEXT(Closed_Reason__c)=&quot;Take Online is not possible&quot;)
+&amp;&amp;
+ISCHANGED(Status)</errorConditionFormula>
+    <errorDisplayField>Root_Cause__c</errorDisplayField>
+    <errorMessage>Please add a Root Cause before closing this case as Not Successful.</errorMessage>
+</ValidationRule>

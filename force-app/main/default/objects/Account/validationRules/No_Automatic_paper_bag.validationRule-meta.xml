@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>No_Automatic_paper_bag</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF(NOT($Permission.Exclude_from_Validation) &amp;&amp; RecordType.DeveloperName = &apos;FP_Account&apos; &amp;&amp; NOT ISBLANK(TEXT(No_paper_bag_reason__c)) &amp;&amp; NOT INCLUDES( Exclude_from__c, &apos;Automatic paper bag supply&apos;), true, false)</errorConditionFormula>
+    <errorMessage>The field &quot;No paper bag reason&quot; can only have a value if the vendor is excluded from &quot;Automatic paper bag supply&quot;. Please deselect the reason.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TLB_Kuwait_Awaiting_Shipping</fullName>
+    <columns>Backend_Id__c</columns>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Stock_Item__c</columns>
+    <columns>Status__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset__c.Talabat_Asset</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>New - Awaiting Shipping</value>
+    </filters>
+    <filters>
+        <field>CURRENCY_ISO_CODE</field>
+        <operation>equals</operation>
+        <value>KWD</value>
+    </filters>
+    <label>TLB - Kuwait - Awaiting Shipping</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>Talabat_Account_managers</group>
+        <group>Talabat_Sales_Admin</group>
+        <group>Talabat_Sales_Team</group>
+        <role>Talabat_Operation_Management</role>
+    </sharedTo>
+</ListView>

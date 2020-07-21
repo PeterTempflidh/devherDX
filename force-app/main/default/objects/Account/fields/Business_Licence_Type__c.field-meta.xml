@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Business_Licence_Type__c</fullName>
+    <description>Originally use for Alcohol Licences in Australia (Alcohol Service). Changed the name in order to cover more use cases like the Korean Business Licence Types</description>
+    <externalId>false</externalId>
+    <label>Business Licence Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Alcohol Delivery Licence</fullName>
+                <default>false</default>
+                <label>Alcohol Delivery Licence</label>
+            </value>
+            <value>
+                <fullName>Alcohol Delivery Limited</fullName>
+                <default>false</default>
+                <label>Alcohol Delivery Limited</label>
+            </value>
+            <value>
+                <fullName>Bakery Licence</fullName>
+                <default>false</default>
+                <label>Bakery Licence</label>
+            </value>
+            <value>
+                <fullName>Consignment Licence</fullName>
+                <default>false</default>
+                <label>Consignment Licence</label>
+            </value>
+            <value>
+                <fullName>Express Goods Licence</fullName>
+                <default>false</default>
+                <label>Express Goods Licence</label>
+            </value>
+            <value>
+                <fullName>Food Manufacturing processing Licence</fullName>
+                <default>false</default>
+                <label>Food Manufacturing processing Licence</label>
+            </value>
+            <value>
+                <fullName>Instant Food Licence</fullName>
+                <default>false</default>
+                <label>Instant Food Licence</label>
+            </value>
+            <value>
+                <fullName>Manufacturing and Management of Meat</fullName>
+                <default>false</default>
+                <label>Manufacturing and Management of Meat</label>
+            </value>
+            <value>
+                <fullName>Not Provided</fullName>
+                <default>false</default>
+                <label>Not Provided</label>
+            </value>
+            <value>
+                <fullName>Other foods business Licence</fullName>
+                <default>false</default>
+                <label>Other foods business Licence</label>
+            </value>
+            <value>
+                <fullName>Regular Restaurant Licence</fullName>
+                <default>false</default>
+                <label>Regular Restaurant Licence</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

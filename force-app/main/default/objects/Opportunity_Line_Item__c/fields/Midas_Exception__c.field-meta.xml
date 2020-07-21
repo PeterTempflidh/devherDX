@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Midas_Exception__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Field that indicates whether there was an exception when approving/canceling a booking in Midas</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Field that indicates whether there was an exception when approving/canceling a booking in Midas</inlineHelpText>
+    <label>Midas Exception</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

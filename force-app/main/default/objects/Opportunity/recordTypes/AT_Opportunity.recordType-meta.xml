@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AT_Opportunity</fullName>
+    <active>true</active>
+    <businessProcess>AT Sales Process</businessProcess>
+    <compactLayoutAssignment>Opportunity_Compact_LE</compactLayoutAssignment>
+    <label>AT Opportunity</label>
+    <picklistValues>
+        <picklist>ActionItemType__c</picklist>
+        <values>
+            <fullName>Commission Upgrade</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Area</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Time</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Exclusivity</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fail Rate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Joker</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MOV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Menu</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Premium Listing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reviews</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Switch</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transmission Method</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Business_Type__c</picklist>
+        <values>
+            <fullName>Downgrade</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Franchise Extension</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Business</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Owner Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Upgrade%2FUpsell</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Contract_Channel__c</picklist>
+        <values>
+            <fullName>01%2E Direct Call or Visit from Yogiyo %28Only In Lead%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>02%2E Owner Change Case</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>03%2E Contract Request Case</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>04%2E Recommendation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>05%2E Direct Contact from Rest%2E Owner %28not case%29</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Contract_Type__c</picklist>
+        <values>
+            <fullName>01%2E New - 0%25 %28Rep%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>02%2E New - Commission %28Rep%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>03%2E New - Commission %28Agency%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>04%2E Re - 0%25 %28Rep%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>05%2E Re - Commission %28Rep%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>06%2E Re - Commission %28Agency%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>07%2E New - 0%25 %28Etc%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>08%2E New - Commission %28Etc%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>09%2E New - Franchise</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E Re - Franchise</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%2E Re - 0%25 %28Etc%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>12%2E Re - Commission %28Etc%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>13%2E Re - Product Change %280%25%E2%86%94Commission%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>14%2E Re - Commission Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Recontract</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>DB_Competitor__c</picklist>
+        <values>
+            <fullName>Competitor A</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Competitor B</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Competitor C</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>External_Sales_Agency__c</picklist>
+        <values>
+            <fullName>Y001%C2%A0위져스프리</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y002%C2%A0조은아파트강동</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y003%C2%A0윤현기획</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y004%C2%A0탑유통</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y005%C2%A0에스에이치테크%28SH테크%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y006%C2%A0애니원기획</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y007%C2%A0도남기획</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y008%C2%A0용오름기획</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y009 디에이치솔루션%28DHSOLUTION%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y010%C2%A0현대광고연합</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y011%C2%A0스마트애드</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y012%C2%A0드림라이프</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y013%C2%A0국민전화번호부 강동지점</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y014%C2%A0케이%2E엠%2E에스</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y015%C2%A0드림라이프서울</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y016%C2%A0아이티기획</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y017%C2%A0와와소프트</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y018%C2%A0창조기획%28함께가는길%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y019%C2%A0드림디자인</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y020%C2%A0능수기획</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y021%C2%A0참D%26P</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y022%C2%A0에스디피에이디%28SDPAD%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y023%C2%A0노랑디자인</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y024%C2%A0어플천국</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y025%C2%A0한빛광고기획</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y026 E%2EG%2EP편리한생활</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y027%C2%A0모아넷</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y028%C2%A0해피라이프</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y029%C2%A0이배</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y030%C2%A0플러스기획</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y031 혜원디자인</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y032%C2%A0%E3%88%9C스마트월드</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y033%C2%A0애드앱</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y034 A%26C기획</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y035 제이엠기획</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y036%C2%A0애드원</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Y037%C2%A0피플즈81</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>ForecastCategoryName</picklist>
+        <values>
+            <fullName>Best Case</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Omitted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pipeline</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Franchise_Partnership_Checklist__c</picklist>
+        <values>
+            <fullName>Agreement Doc%2E for Image use made</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>All Franchise list received</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Announced to Franchise Branches</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Business Approval Set</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contact for Partnership</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivered Proposal Doc%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Meeting Scheduled</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>LeadSource</picklist>
+        <values>
+            <fullName>IMPORT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inbound</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Own Research</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Recommendation from customer</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Lead_Type__c</picklist>
+        <values>
+            <fullName>01%2E Winback - Contracted Churn</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>02%2E Winback - Non-contracted On Platform</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>03%2E Normal - Non-contracted On Platform</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>04%2E Normal - Lead Research</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>05%2E Normal - Sales Coverage Report</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>06%2E Normal - Wishlist</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>07%2E Similarity - BDMJ</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>08%2E Similarity - BDT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>09%2E Not a Lead - Non-contracted On Platform</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E Not a Lead - Contracted On Platform</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%2E Not a Lead - Not on Platform</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Already listed in Yogiyo %28Not a lead%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lead %28Target List%29</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Level__c</picklist>
+        <values>
+            <fullName>Service A</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service AAA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service B</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service C</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service D</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service R</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminal A</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminal B</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminal T</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Lost_Reason__c</picklist>
+        <values>
+            <fullName>Business Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cannot Contact</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Capacity - Driver Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Capacity - Order Volume</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Downgrade</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Duplicate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fraud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Invalid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal Form Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lost to Competition</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New owner - New contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New owner - No new contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Delivery Service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Enough Orders</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Payment Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Poor Performance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pricing - Commission</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pricing - Premium Placement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pricing - Setup Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transmission Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Upgrade</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Migrated_From_Source_System__c</picklist>
+        <values>
+            <fullName>Salesforce PeYa</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Payment_Method__c</picklist>
+        <values>
+            <fullName>Bank Transfer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cash</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cheque</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Settlement through OP</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Source_System__c</picklist>
+        <values>
+            <fullName>MIDAS</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Time_Based_Tier_Type__c</picklist>
+        <values>
+            <fullName>Intervals</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Scheduled</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Contract %26 Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contract Only</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product Only</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

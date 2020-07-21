@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Weight__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(Commission__c != null, 10, 0) +
+IF(Product__c  != null, 10, 0) +
+IF(Add_On__c  != null, 10, 0) +
+IF(Company_Code__c  != null, 3, 0) +
+IF(Country__c  != null, 2, 0) +
+IF(City__c  != null, 2, 0) +
+IF(ISPICKVAL(Platform__c, &apos;&apos;), 0, 2)+
+IF(ISBLANK(Vertical_Segment__c), 0,1)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Arbitrary number that represents the weight of each rule.This is used in determining the priority in cases where multiple rules satisfy the same scenario.</inlineHelpText>
+    <label>Weight</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

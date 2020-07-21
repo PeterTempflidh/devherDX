@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Menu_Typing_Date_Start__c</fullName>
+    <description>this give you the date when the menu is can started to type , this means opp is wonn</description>
+    <externalId>false</externalId>
+    <label>Menu Typing Date Start</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>DateTime</type>
+</CustomField>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Talabat_Cannot_Change_Customer_Email</fullName>
+    <active>true</active>
+    <description>If the customer email is already filled, user can&apos;t change that.
+SCC - 164</description>
+    <errorConditionFormula>AND(
+NOT(ISBLANK(PRIORVALUE(Customer_Email__c))),
+ISPICKVAL(Type, &quot;Customer&quot;) ,
+ISCHANGED(Customer_Email__c ),
+OR(INCLUDES(Platform__c, &quot;Talabat&quot;), INCLUDES(Platform__c, &quot;Carriage&quot;), INCLUDES(Platform__c, &quot;Otlob&quot;)),
+NOT($Permission.Exclude_from_Validation)
+)</errorConditionFormula>
+    <errorDisplayField>Customer_Email__c</errorDisplayField>
+    <errorMessage>You cannot change the Customer Email.</errorMessage>
+</ValidationRule>

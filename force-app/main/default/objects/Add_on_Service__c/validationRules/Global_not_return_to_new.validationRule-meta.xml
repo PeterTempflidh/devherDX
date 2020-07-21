@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_not_return_to_new</fullName>
+    <active>true</active>
+    <description>The add on status can be set back to new once is already worked on only when there is a need of redoing it because something was missing when doing final check, or after the sales agent checked what was missing in please check.</description>
+    <errorConditionFormula>ISCHANGED( Status__c )
+&amp;&amp;
+TEXT(Status__c )= &quot;New&quot;
+&amp;&amp;
+TEXT(PRIORVALUE(Status__c )) &lt;&gt;   &quot;Please Check&quot;
+&amp;&amp;
+TEXT(PRIORVALUE(Status__c )) &lt;&gt;   &quot;Final Check&quot;</errorConditionFormula>
+    <errorDisplayField>Status__c</errorDisplayField>
+    <errorMessage>The status can&apos;t return to &quot;New&quot;</errorMessage>
+</ValidationRule>

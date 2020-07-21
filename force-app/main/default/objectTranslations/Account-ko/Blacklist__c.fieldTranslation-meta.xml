@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>블랙리스트</label>
+    <name>Blacklist__c</name>
+    <picklistValues>
+        <masterLabel>App Owner Relay</masterLabel>
+        <translation>사장님앱</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SMS Relay</masterLabel>
+        <translation>SMS 릴레이</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Terminal Relay</masterLabel>
+        <translation>단말기</translation>
+    </picklistValues>
+</CustomFieldTranslation>

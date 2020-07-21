@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Override_Validations__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Checkbox to bypass validations for specific scenarios. It is required to specify the Bypass reasons when setting this as true.</description>
+    <externalId>false</externalId>
+    <label>Override Validations</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

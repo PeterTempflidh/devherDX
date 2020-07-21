@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Type</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Billing Address</fullName>
+                <default>false</default>
+                <label>Billing Address</label>
+            </value>
+            <value>
+                <fullName>Shipping Address</fullName>
+                <default>false</default>
+                <label>Shipping Address</label>
+            </value>
+            <value>
+                <fullName>Restaurant Address</fullName>
+                <default>false</default>
+                <label>Restaurant Address</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>3</visibleLines>
+</CustomField>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TLB_Kuwait_Feedback_received</fullName>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <columns>Record_Country__c</columns>
+    <columns>Business_Type__c</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Opportunity.Talabat_Opportunity</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>Feedback Received</value>
+    </filters>
+    <filters>
+        <field>Record_Country__c</field>
+        <operation>equals</operation>
+        <value>Kuwait</value>
+    </filters>
+    <label>TLB - Kuwait - Feedback received</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Talabat_Management</role>
+        <role>Talabat_Sales_Management_Kuwait</role>
+        <role>Talabat_Sales_Team_Kuwait</role>
+    </sharedTo>
+</ListView>

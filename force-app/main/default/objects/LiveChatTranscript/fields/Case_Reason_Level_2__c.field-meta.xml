@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Case_Reason_Level_2__c</fullName>
+    <externalId>false</externalId>
+    <label>Case Reason Level 2</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Case_Reason_Level_1__c</controllingField>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>9Cookies</fullName>
+                <default>false</default>
+                <label>9Cookies</label>
+            </value>
+            <value>
+                <fullName>Account management</fullName>
+                <default>false</default>
+                <label>Account management</label>
+            </value>
+            <value>
+                <fullName>Activation</fullName>
+                <default>false</default>
+                <label>Activation</label>
+            </value>
+            <value>
+                <fullName>Box</fullName>
+                <default>false</default>
+                <label>Box</label>
+            </value>
+            <value>
+                <fullName>Cancellation by restaurant</fullName>
+                <default>false</default>
+                <label>Cancellation by restaurant</label>
+            </value>
+            <value>
+                <fullName>Cancellation of order by customer</fullName>
+                <default>false</default>
+                <label>Cancellation of order by customer</label>
+            </value>
+            <value>
+                <fullName>Changes to restaurant profile</fullName>
+                <default>false</default>
+                <label>Changes to restaurant profile</label>
+            </value>
+            <value>
+                <fullName>Change to order</fullName>
+                <default>false</default>
+                <label>Change to order</label>
+            </value>
+            <value>
+                <fullName>Contactless delivery</fullName>
+                <default>false</default>
+                <label>Contactless delivery</label>
+            </value>
+            <value>
+                <fullName>Customer account</fullName>
+                <default>false</default>
+                <label>Customer account</label>
+            </value>
+            <value>
+                <fullName>Customer evaluations</fullName>
+                <default>false</default>
+                <label>Customer evaluations</label>
+            </value>
+            <value>
+                <fullName>Customer service complaint</fullName>
+                <default>false</default>
+                <label>Customer service complaint</label>
+            </value>
+            <value>
+                <fullName>Deals update</fullName>
+                <default>false</default>
+                <label>Deals update</label>
+            </value>
+            <value>
+                <fullName>Delivery changes</fullName>
+                <default>false</default>
+                <label>Delivery changes</label>
+            </value>
+            <value>
+                <fullName>Delivery complaint</fullName>
+                <default>false</default>
+                <label>Delivery complaint</label>
+            </value>
+            <value>
+                <fullName>Delivery Inquiry</fullName>
+                <default>false</default>
+                <label>Delivery Inquiry</label>
+            </value>
+            <value>
+                <fullName>Food complaint</fullName>
+                <default>false</default>
+                <label>Food complaint</label>
+            </value>
+            <value>
+                <fullName>Frontend issue</fullName>
+                <default>false</default>
+                <label>Frontend issue</label>
+            </value>
+            <value>
+                <fullName>General customer complaint</fullName>
+                <default>false</default>
+                <label>General customer complaint</label>
+            </value>
+            <value>
+                <fullName>HR</fullName>
+                <default>false</default>
+                <label>HR</label>
+            </value>
+            <value>
+                <fullName>Imagery Update</fullName>
+                <default>false</default>
+                <label>Imagery Update</label>
+            </value>
+            <value>
+                <fullName>Interested new restaurant</fullName>
+                <default>false</default>
+                <label>Interested new restaurant</label>
+            </value>
+            <value>
+                <fullName>Invoice inquiry</fullName>
+                <default>false</default>
+                <label>Invoice inquiry</label>
+            </value>
+            <value>
+                <fullName>Irrelevant</fullName>
+                <default>false</default>
+                <label>Irrelevant</label>
+            </value>
+            <value>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+                <label>Marketing</label>
+            </value>
+            <value>
+                <fullName>Marketing inquiry</fullName>
+                <default>false</default>
+                <label>Marketing inquiry</label>
+            </value>
+            <value>
+                <fullName>Menu change</fullName>
+                <default>false</default>
+                <label>Menu change</label>
+            </value>
+            <value>
+                <fullName>Missing order information</fullName>
+                <default>false</default>
+                <label>Missing order information</label>
+            </value>
+            <value>
+                <fullName>Order payment complaint</fullName>
+                <default>false</default>
+                <label>Order payment complaint</label>
+            </value>
+            <value>
+                <fullName>Order process complaint</fullName>
+                <default>false</default>
+                <label>Order process complaint</label>
+            </value>
+            <value>
+                <fullName>Order status query</fullName>
+                <default>false</default>
+                <label>Order status query</label>
+            </value>
+            <value>
+                <fullName>Other customer inquiry before order placement</fullName>
+                <default>false</default>
+                <label>Other customer inquiry before order placement</label>
+            </value>
+            <value>
+                <fullName>Other customer inquiry or feedback</fullName>
+                <default>false</default>
+                <label>Other customer inquiry or feedback</label>
+            </value>
+            <value>
+                <fullName>Other live order process inquiry by customer</fullName>
+                <default>false</default>
+                <label>Other live order process inquiry by customer</label>
+            </value>
+            <value>
+                <fullName>Other Restaurant Data Changes</fullName>
+                <default>false</default>
+                <label>Other Restaurant Data Changes</label>
+            </value>
+            <value>
+                <fullName>Other restaurant inquiries or feedback</fullName>
+                <default>false</default>
+                <label>Other restaurant inquiries or feedback</label>
+            </value>
+            <value>
+                <fullName>Other transmission methods</fullName>
+                <default>false</default>
+                <label>Other transmission methods</label>
+            </value>
+            <value>
+                <fullName>Payment inquiry</fullName>
+                <default>false</default>
+                <label>Payment inquiry</label>
+            </value>
+            <value>
+                <fullName>Payment issue</fullName>
+                <default>false</default>
+                <label>Payment issue</label>
+            </value>
+            <value>
+                <fullName>Permanent deactivation</fullName>
+                <default>false</default>
+                <label>Permanent deactivation</label>
+            </value>
+            <value>
+                <fullName>Positive customer feedback</fullName>
+                <default>false</default>
+                <label>Positive customer feedback</label>
+            </value>
+            <value>
+                <fullName>Positive restaurant feedback</fullName>
+                <default>false</default>
+                <label>Positive restaurant feedback</label>
+            </value>
+            <value>
+                <fullName>Premium features &amp; special campaigns</fullName>
+                <default>false</default>
+                <label>Premium features &amp; special campaigns</label>
+            </value>
+            <value>
+                <fullName>Refund complaint</fullName>
+                <default>false</default>
+                <label>Refund complaint</label>
+            </value>
+            <value>
+                <fullName>Restaurant evaluations</fullName>
+                <default>false</default>
+                <label>Restaurant evaluations</label>
+            </value>
+            <value>
+                <fullName>Restaurant portal</fullName>
+                <default>false</default>
+                <label>Restaurant portal</label>
+            </value>
+            <value>
+                <fullName>Service Offer</fullName>
+                <default>false</default>
+                <label>Service Offer</label>
+            </value>
+            <value>
+                <fullName>Spam</fullName>
+                <default>false</default>
+                <label>Spam</label>
+            </value>
+            <value>
+                <fullName>Temporary deactivation</fullName>
+                <default>false</default>
+                <label>Temporary deactivation</label>
+            </value>
+            <value>
+                <fullName>Terms</fullName>
+                <default>false</default>
+                <label>Terms</label>
+            </value>
+            <value>
+                <fullName>Voucher issue</fullName>
+                <default>false</default>
+                <label>Voucher issue</label>
+            </value>
+            <value>
+                <fullName>Website or app</fullName>
+                <default>false</default>
+                <label>Website or app</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Sales inquiry by restaurant</controllingFieldValue>
+            <valueName>Account management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sales inquiry by restaurant</controllingFieldValue>
+            <valueName>Interested new restaurant</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sales inquiry by restaurant</controllingFieldValue>
+            <valueName>Marketing inquiry</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sales inquiry by restaurant</controllingFieldValue>
+            <valueName>Premium features &amp; special campaigns</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sales inquiry by restaurant</controllingFieldValue>
+            <valueName>Terms</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>HR</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Irrelevant</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Marketing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Service Offer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Spam</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other restaurant inquiries or feedback</controllingFieldValue>
+            <valueName>Other restaurant inquiries or feedback</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other restaurant inquiries or feedback</controllingFieldValue>
+            <valueName>Positive restaurant feedback</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Live order process inquiry by restaurant</controllingFieldValue>
+            <valueName>Cancellation by restaurant</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Live order process inquiry by restaurant</controllingFieldValue>
+            <valueName>Delivery Inquiry</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Live order process inquiry by restaurant</controllingFieldValue>
+            <valueName>Missing order information</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Post-Delivery</controllingFieldValue>
+            <valueName>Contactless delivery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer inquiry before order placement</controllingFieldValue>
+            <valueName>Frontend issue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer inquiry before order placement</controllingFieldValue>
+            <valueName>Other customer inquiry before order placement</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer inquiry before order placement</controllingFieldValue>
+            <valueName>Payment issue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer inquiry before order placement</controllingFieldValue>
+            <valueName>Voucher issue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Live order process inquiry by customer</controllingFieldValue>
+            <valueName>Cancellation of order by customer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Live order process inquiry by customer</controllingFieldValue>
+            <valueName>Change to order</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Live order process inquiry by customer</controllingFieldValue>
+            <valueName>Order status query</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Live order process inquiry by customer</controllingFieldValue>
+            <valueName>Other live order process inquiry by customer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer complaints or negative feedback</controllingFieldValue>
+            <valueName>Customer service complaint</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer complaints or negative feedback</controllingFieldValue>
+            <valueName>Delivery complaint</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer complaints or negative feedback</controllingFieldValue>
+            <valueName>Food complaint</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer complaints or negative feedback</controllingFieldValue>
+            <valueName>General customer complaint</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer complaints or negative feedback</controllingFieldValue>
+            <valueName>Order payment complaint</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer complaints or negative feedback</controllingFieldValue>
+            <valueName>Order process complaint</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer complaints or negative feedback</controllingFieldValue>
+            <valueName>Refund complaint</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other customer inquiries or feedback</controllingFieldValue>
+            <valueName>Customer account</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other customer inquiries or feedback</controllingFieldValue>
+            <valueName>Other customer inquiry or feedback</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other customer inquiries or feedback</controllingFieldValue>
+            <valueName>Positive customer feedback</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other customer inquiries or feedback</controllingFieldValue>
+            <valueName>Restaurant evaluations</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Technical problems &amp; questions</controllingFieldValue>
+            <valueName>9Cookies</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Technical problems &amp; questions</controllingFieldValue>
+            <valueName>Box</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Technical problems &amp; questions</controllingFieldValue>
+            <valueName>Other transmission methods</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Technical problems &amp; questions</controllingFieldValue>
+            <valueName>Restaurant portal</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Technical problems &amp; questions</controllingFieldValue>
+            <valueName>Website or app</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Restaurant data update</controllingFieldValue>
+            <valueName>Changes to restaurant profile</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Restaurant data update</controllingFieldValue>
+            <valueName>Delivery changes</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Restaurant data update</controllingFieldValue>
+            <valueName>Other Restaurant Data Changes</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Content update</controllingFieldValue>
+            <valueName>Deals update</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Content update</controllingFieldValue>
+            <valueName>Imagery Update</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Content update</controllingFieldValue>
+            <valueName>Menu change</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Activation or deactivation of restaurant</controllingFieldValue>
+            <valueName>Activation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Activation or deactivation of restaurant</controllingFieldValue>
+            <valueName>Permanent deactivation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Activation or deactivation of restaurant</controllingFieldValue>
+            <valueName>Temporary deactivation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer evaluations inquiry</controllingFieldValue>
+            <valueName>Customer evaluations</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Finance inquiry by restaurant</controllingFieldValue>
+            <valueName>Invoice inquiry</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Finance inquiry by restaurant</controllingFieldValue>
+            <valueName>Payment inquiry</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

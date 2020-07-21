@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Invoice_Payment_Method__c</fullName>
+    <description>SP-2717</description>
+    <externalId>false</externalId>
+    <label>Invoice Payment Method</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Cash</fullName>
+                <default>false</default>
+                <label>Cash</label>
+            </value>
+            <value>
+                <fullName>Online Payment</fullName>
+                <default>false</default>
+                <label>Online Payment</label>
+            </value>
+            <value>
+                <fullName>Check</fullName>
+                <default>false</default>
+                <label>Check</label>
+            </value>
+            <value>
+                <fullName>KSP Budget</fullName>
+                <default>false</default>
+                <label>KSP Budget</label>
+            </value>
+            <value>
+                <fullName>Online Payment Debtor</fullName>
+                <default>false</default>
+                <label>Online Payment Debtor</label>
+            </value>
+            <value>
+                <fullName>Online Payment Owner Change / Legal Change</fullName>
+                <default>false</default>
+                <label>Online Payment Owner Change / Legal Change</label>
+            </value>
+            <value>
+                <fullName>Collection</fullName>
+                <default>false</default>
+                <label>Collection</label>
+            </value>
+            <value>
+                <fullName>Bank Transfer</fullName>
+                <default>false</default>
+                <label>Bank Transfer</label>
+            </value>
+            <value>
+                <fullName>Aman</fullName>
+                <default>false</default>
+                <label>Aman</label>
+            </value>
+            <value>
+                <fullName>Fawry</fullName>
+                <default>false</default>
+                <label>Fawry</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

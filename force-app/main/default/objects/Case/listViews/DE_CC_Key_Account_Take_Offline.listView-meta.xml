@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DE_CC_Key_Account_Take_Offline</fullName>
+    <booleanFilter>(1 OR 2 OR 3) AND 4 AND 5</booleanFilter>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>Due_Date__c</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>Restaurant_Name__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>GRID_fm__c</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>equals</operation>
+        <value>DE Key Account Request,H Imr,G Obi,J Tov,G Guem,B Zad,C Cio,B Hopf,E Sta,mcarow</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>equals</operation>
+        <value>T Spi,O Wil,S Hel,ymati,magele,s kr,New Voice Media Account,hwoel,btall,skurz</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>equals</operation>
+        <value>A Sch</value>
+    </filters>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>notEqual</operation>
+        <value>Closed,Resolved,Waiting for Answer</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Take Offline</value>
+    </filters>
+    <label>DE - CC - Key Account Take Offline</label>
+    <language>de</language>
+    <sharedTo>
+        <group>DE_Key_Account</group>
+        <role>DE_Customer_Care_Management</role>
+        <role>DE_Restaurant_Operations</role>
+    </sharedTo>
+</ListView>

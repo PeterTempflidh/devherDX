@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Menu_Typing_Details__c</fullName>
+    <description>SP-1708  This field allows the user to specify the effort of a Menu Processing / Menu Change</description>
+    <externalId>false</externalId>
+    <label>Menu Typing Details</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <controllingField>Type</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>MC PDE to PDE Copy</fullName>
+                <default>false</default>
+                <label>MC PDE to PDE Copy</label>
+            </value>
+            <value>
+                <fullName>MC LH to LH Copy</fullName>
+                <default>false</default>
+                <label>MC LH to LH Copy</label>
+            </value>
+            <value>
+                <fullName>MC PDE to LH Copy</fullName>
+                <default>false</default>
+                <label>MC PDE to LH Copy</label>
+            </value>
+            <value>
+                <fullName>MC PDE small</fullName>
+                <default>false</default>
+                <label>MC PDE small</label>
+            </value>
+            <value>
+                <fullName>MC PDE medium</fullName>
+                <default>false</default>
+                <label>MC PDE medium</label>
+            </value>
+            <value>
+                <fullName>MC PDE big / Neues Konzept</fullName>
+                <default>false</default>
+                <label>MC PDE big / Neues Konzept</label>
+            </value>
+            <value>
+                <fullName>MC LH small (bis 20 Min Plattform)</fullName>
+                <default>false</default>
+                <label>MC LH small (bis 20 Min Plattform)</label>
+            </value>
+            <value>
+                <fullName>MC LH medium (bis 60 Minuten)</fullName>
+                <default>false</default>
+                <label>MC LH medium (bis 60 Minuten)</label>
+            </value>
+            <value>
+                <fullName>MC LH big / Neues Konzept</fullName>
+                <default>false</default>
+                <label>MC LH big / Neues Konzept</label>
+            </value>
+            <value>
+                <fullName>MC LH Coca-Cola | PDE Coca-Cola</fullName>
+                <default>false</default>
+                <label>MC LH Coca-Cola | PDE Coca-Cola</label>
+            </value>
+            <value>
+                <fullName>MC LH Ben&amp; Jerrys | PDE Ben &amp; Jerrys</fullName>
+                <default>false</default>
+                <label>MC LH Ben&amp; Jerrys | PDE Ben &amp; Jerrys</label>
+            </value>
+            <value>
+                <fullName>MC LMIV research komplett + LMIV Migrator</fullName>
+                <default>false</default>
+                <label>MC LMIV research komplett + LMIV Migrator</label>
+            </value>
+            <value>
+                <fullName>MC LMIV research + LMIV Migrator</fullName>
+                <default>false</default>
+                <label>MC LMIV research + LMIV Migrator</label>
+            </value>
+            <value>
+                <fullName>MC LMIV Migrator</fullName>
+                <default>false</default>
+                <label>MC LMIV Migrator</label>
+            </value>
+            <value>
+                <fullName>MP PDE Kompletteintragung</fullName>
+                <default>false</default>
+                <label>MP PDE Kompletteintragung</label>
+            </value>
+            <value>
+                <fullName>MP PDE to PDE Copy / PDE to LH</fullName>
+                <default>false</default>
+                <label>MP PDE to PDE Copy / PDE to LH</label>
+            </value>
+            <value>
+                <fullName>MP LH to LH Copy</fullName>
+                <default>false</default>
+                <label>MP LH to LH Copy</label>
+            </value>
+            <value>
+                <fullName>MP LH Kompletteintragung</fullName>
+                <default>false</default>
+                <label>MP LH Kompletteintragung</label>
+            </value>
+            <value>
+                <fullName>MP OC / WB / LMIV</fullName>
+                <default>false</default>
+                <label>MP OC / WB / LMIV</label>
+            </value>
+            <value>
+                <fullName>Description</fullName>
+                <default>false</default>
+                <label>Description</label>
+            </value>
+            <value>
+                <fullName>Layout change</fullName>
+                <default>false</default>
+                <label>Layout change</label>
+            </value>
+            <value>
+                <fullName>Prices change</fullName>
+                <default>false</default>
+                <label>Prices change</label>
+            </value>
+            <value>
+                <fullName>Remove or hide dish/menu category</fullName>
+                <default>false</default>
+                <label>Remove or hide dish/menu category</label>
+            </value>
+            <value>
+                <fullName>Add items/ toppings</fullName>
+                <default>false</default>
+                <label>Add items/ toppings</label>
+            </value>
+            <value>
+                <fullName>Add menu category</fullName>
+                <default>false</default>
+                <label>Add menu category</label>
+            </value>
+            <value>
+                <fullName>Full menu</fullName>
+                <default>false</default>
+                <label>Full menu</label>
+            </value>
+            <value>
+                <fullName>Allergens Update</fullName>
+                <default>false</default>
+                <label>Allergens Update</label>
+            </value>
+            <value>
+                <fullName>Update menu settings</fullName>
+                <default>false</default>
+                <label>Update menu settings</label>
+            </value>
+            <value>
+                <fullName>Change/upload product photo</fullName>
+                <default>false</default>
+                <label>Change/upload product photo</label>
+            </value>
+            <value>
+                <fullName>Change/upload listing image</fullName>
+                <default>false</default>
+                <label>Change/upload listing image</label>
+            </value>
+            <value>
+                <fullName>Change or upload logo</fullName>
+                <default>false</default>
+                <label>Change or upload logo</label>
+            </value>
+            <value>
+                <fullName>Menu Translations</fullName>
+                <default>false</default>
+                <label>Menu Translations</label>
+            </value>
+            <value>
+                <fullName>Delivery area change</fullName>
+                <default>false</default>
+                <label>Delivery area change</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Menu Processing</controllingFieldValue>
+            <valueName>MP PDE Kompletteintragung</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Processing</controllingFieldValue>
+            <valueName>MP PDE to PDE Copy / PDE to LH</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Processing</controllingFieldValue>
+            <valueName>MP LH to LH Copy</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Processing</controllingFieldValue>
+            <valueName>MP LH Kompletteintragung</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Processing</controllingFieldValue>
+            <valueName>MP OC / WB / LMIV</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Processing</controllingFieldValue>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>Description</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Processing</controllingFieldValue>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>Layout change</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Processing</controllingFieldValue>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>Prices change</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Processing</controllingFieldValue>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>Remove or hide dish/menu category</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Processing</controllingFieldValue>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>Add items/ toppings</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Processing</controllingFieldValue>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>Add menu category</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Processing</controllingFieldValue>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>Full menu</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Processing</controllingFieldValue>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>Allergens Update</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Processing</controllingFieldValue>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>Update menu settings</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Processing</controllingFieldValue>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>Change/upload product photo</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Processing</controllingFieldValue>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>Change/upload listing image</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Processing</controllingFieldValue>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>Change or upload logo</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Processing</controllingFieldValue>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>Menu Translations</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Processing</controllingFieldValue>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>Delivery area change</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>MC PDE to PDE Copy</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>MC LH to LH Copy</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>MC PDE to LH Copy</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>MC PDE small</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>MC PDE medium</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>MC PDE big / Neues Konzept</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>MC LH small (bis 20 Min Plattform)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>MC LH medium (bis 60 Minuten)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>MC LH big / Neues Konzept</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>MC LH Coca-Cola | PDE Coca-Cola</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>MC LH Ben&amp; Jerrys | PDE Ben &amp; Jerrys</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>MC LMIV research komplett + LMIV Migrator</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>MC LMIV research + LMIV Migrator</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu Change</controllingFieldValue>
+            <valueName>MC LMIV Migrator</valueName>
+        </valueSettings>
+    </valueSet>
+    <visibleLines>8</visibleLines>
+</CustomField>

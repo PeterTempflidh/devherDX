@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SE_CC_MP_5_Final_Check</fullName>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>Backend_ID__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Legal_Name__c</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>Menu_Typed_Date__c</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.SE_Entry_Case</value>
+    </filters>
+    <filters>
+        <field>CASES.CLOSED</field>
+        <operation>notEqual</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>equals</operation>
+        <value>Final Check,Delivery Area</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Menu Processing</value>
+    </filters>
+    <label>SE - MP 2. Final Check</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>SE_FI_Shared_Group</group>
+        <group>SE_Team</group>
+        <role>SE_Customer_Care_Team</role>
+        <role>SE_Management</role>
+    </sharedTo>
+</ListView>

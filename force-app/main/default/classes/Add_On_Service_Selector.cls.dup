@@ -1,0 +1,38 @@
+/**
+* @author Danish Farooq
+* @date 26.06.2020
+*
+* @description Selector class for Add_on_Service__c
+*/
+public inherited sharing class Add_On_Service_Selector {
+
+    /**
+     * @description query addon service by Id
+     * @param addonId Id of addon service
+     *
+     * @return addon service
+     */
+    public static Add_on_Service__c findById(Id addonId) {
+        Add_on_Service__c addOnService = [SELECT Status__c FROM Add_on_Service__c WHERE Id = :addonId];
+        return addOnService;
+    }
+
+    /**
+   * @description return AddOns for that opportunity
+   * @param opptySet contains set Of Opportunity
+   * @param addOnServiceLst contains current add Ons which are active
+   * @param setOfStatus statuses of Addons
+   * @return List of AddOns
+   * @Jira SSC-3462
+   */
+    public static List<Add_on_Service__c> getAddOnServicesByOppty(Set<Id> opptySet,
+                                                                  Set<string> setOfStatus){
+
+        List<Add_on_Service__c> lstAddOnServices = new List<Add_on_Service__c>();
+
+        lstAddOnServices = [SELECT ID, status__c, opportunity__c from
+                            Add_On_Service__c where opportunity__c in :opptySet
+                            AND Status__c IN : setOfStatus];
+        return lstAddOnServices;
+    }
+}

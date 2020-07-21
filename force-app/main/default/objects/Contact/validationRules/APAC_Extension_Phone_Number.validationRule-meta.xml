@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>APAC_Extension_Phone_Number</fullName>
+    <active>true</active>
+    <description>Validation for extension number</description>
+    <errorConditionFormula>LEN(Extension_Number__c)&gt;6</errorConditionFormula>
+    <errorDisplayField>Extension_Number__c</errorDisplayField>
+    <errorMessage>The maximum length of the extension number is 6 digits.</errorMessage>
+</ValidationRule>

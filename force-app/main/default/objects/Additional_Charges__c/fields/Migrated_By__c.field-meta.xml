@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Migrated_By__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Data Migration user created to use for data migrations only
+SP-2884</description>
+    <externalId>false</externalId>
+    <label>Migrated By</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Additional_ChargesMigratedBy</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

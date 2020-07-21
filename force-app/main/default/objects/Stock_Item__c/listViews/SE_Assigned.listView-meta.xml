@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SE_Assigned</fullName>
+    <columns>NAME</columns>
+    <columns>Id_Account__c</columns>
+    <columns>Condition__c</columns>
+    <columns>Restaurant_Name__c</columns>
+    <columns>Simcard_Number__c</columns>
+    <columns>SIM_Mobile_Number__c</columns>
+    <columns>Simcard_Provider__c</columns>
+    <columns>Date_Arrived__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Stock_Item__c.SE_Stock_Item</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Assigned</value>
+    </filters>
+    <label>SE - Assigned</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>SE_Customer_Care_Team</role>
+        <role>SE_Management</role>
+    </sharedTo>
+</ListView>

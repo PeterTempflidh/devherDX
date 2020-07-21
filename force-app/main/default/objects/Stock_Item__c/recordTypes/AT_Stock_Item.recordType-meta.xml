@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AT_Stock_Item</fullName>
+    <active>true</active>
+    <label>AT Stock Item</label>
+    <picklistValues>
+        <picklist>Condition__c</picklist>
+        <values>
+            <fullName>A - New</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A - New from manufacturer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A1 - New used</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>B - Used</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>B - Used few scratches</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>C - Testing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>C - Used</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>D - Damaged%2FNo longer usable</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>D - Reparable</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>E - Dead</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N - Brand New</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>O - Ordered</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>U - Undefined</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Simcard_Provider__c</picklist>
+        <values>
+            <fullName>A1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LAN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>T-Mobile</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Assigned</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Awaiting Delivery%2FIn Shipment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Damaged</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivered</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Exchange Requested</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Shipping</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Stock</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lost</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New - In Stock</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ordered</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pick-up Needed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Recycled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Retour in Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Returned - In Stock</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Returned - at Manufacturer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shared</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Takeover</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Technical Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tested</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Writeoff</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Stock_Item_Ownership__c</picklist>
+        <values>
+            <fullName>Field Agent</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HQ %2F office</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Manufacturer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Warehouse ext%2E</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

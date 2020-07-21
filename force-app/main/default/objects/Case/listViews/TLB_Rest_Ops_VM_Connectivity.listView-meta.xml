@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TLB_Rest_Ops_VM_Connectivity</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND (4 OR 5)</booleanFilter>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.CURRENCY_ISO_CODE</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>GRID_fm__c</columns>
+    <columns>NAME</columns>
+    <columns>Key_VIP_Account__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.Talabat_Restaurant_Ops</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Performance</value>
+    </filters>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>equals</operation>
+        <value>New,In Progress</value>
+    </filters>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>startsWith</operation>
+        <value>[Monitor] Excess</value>
+    </filters>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>contains</operation>
+        <value>Excess,Unreachable</value>
+    </filters>
+    <label>TLB - Rest Ops - VM - Connectivity</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Talabat_Account_Management_Bahrain</role>
+        <role>Talabat_Account_Management_Jordan</role>
+        <role>Talabat_Account_Management_Kuwait</role>
+        <role>Talabat_Account_Management_Oman</role>
+        <role>Talabat_Account_Management_Qatar</role>
+        <role>Talabat_Account_Management_Saudi_Arabia</role>
+        <role>Talabat_Account_Management_UAE</role>
+        <role>Talabat_Customer_Care</role>
+        <role>Talabat_Customer_Care_Management</role>
+        <role>Talabat_Management</role>
+        <role>Talabat_Operation_Management</role>
+        <role>Talabat_Operation_Team</role>
+        <role>Talabat_Sales_Management_Bahrain</role>
+        <role>Talabat_Sales_Management_Jordan</role>
+        <role>Talabat_Sales_Management_Kuwait</role>
+        <role>Talabat_Sales_Management_Lebanon</role>
+        <role>Talabat_Sales_Management_Oman</role>
+        <role>Talabat_Sales_Management_Qatar</role>
+        <role>Talabat_Sales_Management_UAE</role>
+    </sharedTo>
+</ListView>

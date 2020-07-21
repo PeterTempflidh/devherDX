@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TLB_Asset_Awaiting_Shipment</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Status__c</columns>
+    <columns>Date_Shipped__c</columns>
+    <columns>OWNER.FIRST_NAME</columns>
+    <columns>Activation_Due_date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset__c.Talabat_Asset</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>New - Awaiting Shipping</value>
+    </filters>
+    <label>TLB - Assets - Awaiting Shipment</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Global_Admin</role>
+        <role>Global_Management</role>
+        <role>Talabat_Management</role>
+        <role>Talabat_Operation_Management</role>
+        <role>Talabat_Operation_Team</role>
+        <roleAndSubordinates>Talabat_Sales_Management_Bahrain</roleAndSubordinates>
+        <roleAndSubordinates>Talabat_Sales_Management_Jordan</roleAndSubordinates>
+        <roleAndSubordinates>Talabat_Sales_Management_Kuwait</roleAndSubordinates>
+        <roleAndSubordinates>Talabat_Sales_Management_Oman</roleAndSubordinates>
+        <roleAndSubordinates>Talabat_Sales_Management_Qatar</roleAndSubordinates>
+        <roleAndSubordinates>Talabat_Sales_Management_Saudi_Arabia</roleAndSubordinates>
+        <roleAndSubordinates>Talabat_Sales_Management_UAE</roleAndSubordinates>
+    </sharedTo>
+</ListView>

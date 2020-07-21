@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Last_Status_Change__c</fullName>
+    <description>Tracking the User&apos;s Entity to calculate User License Costs</description>
+    <externalId>false</externalId>
+    <label>Last Status Change</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Date</type>
+</CustomField>

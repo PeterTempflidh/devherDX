@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Yogiyo_Inbound_Subject_Mandatory</fullName>
+    <active>true</active>
+    <description>When the type is terminal and datachange the subject should be mandatory</description>
+    <errorConditionFormula>RecordType.Id  = &quot;01211000000D04O&quot; &amp;&amp; 
+(ISPICKVAL( Type ,&quot;Terminal&quot;) || ISPICKVAL(Type ,&quot;Data Change&quot;))  &amp;&amp; ISBLANK(Subject)</errorConditionFormula>
+    <errorDisplayField>Subject</errorDisplayField>
+    <errorMessage>Please enter subject</errorMessage>
+</ValidationRule>

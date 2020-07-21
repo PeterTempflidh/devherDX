@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Partial_Refund_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Partial Refund Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Bank transfer</fullName>
+                <default>false</default>
+                <label>Bank transfer</label>
+            </value>
+            <value>
+                <fullName>Online payment</fullName>
+                <default>false</default>
+                <label>Online payment</label>
+            </value>
+            <value>
+                <fullName>COD</fullName>
+                <default>false</default>
+                <label>COD</label>
+            </value>
+            <value>
+                <fullName>Paypal</fullName>
+                <default>false</default>
+                <label>Paypal</label>
+            </value>
+            <value>
+                <fullName>MOLpay</fullName>
+                <default>false</default>
+                <label>MOLpay</label>
+            </value>
+            <value>
+                <fullName>Credit Card</fullName>
+                <default>false</default>
+                <label>Credit Card</label>
+            </value>
+            <value>
+                <fullName>Apple Pay</fullName>
+                <default>false</default>
+                <label>Apple Pay</label>
+            </value>
+            <value>
+                <fullName>PayLah</fullName>
+                <default>false</default>
+                <label>PayLah</label>
+            </value>
+            <value>
+                <fullName>Debit Card</fullName>
+                <default>false</default>
+                <label>Debit Card</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

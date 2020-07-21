@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- For Inbound, this is the time the customer spent connected to an agent. For Outbound, this is the time between the customer answering their phone and the call ending. This value is rounded to the nearest second. --></help>
+    <label><!-- Call Talk Time (s) --></label>
+    <name>NVMContactWorld__CallTalkTimeInSeconds__c</name>
+</CustomFieldTranslation>

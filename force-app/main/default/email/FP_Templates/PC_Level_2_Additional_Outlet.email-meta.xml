@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Additional Outlet Sign Up</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>PC Level 2 - Additional Outlet</name>
+    <style>freeForm</style>
+    <subject>foodpanda: Additional Outlet Sign Up</subject>
+    <textOnly>Dear {!Account.Name},
+
+Good day.
+
+We would like to thank you for your interest to sign up for the foodpanda delivery service in your other outlet.
+
+Before we proceed, please help us by:
+1. Completing the attached foodpanda Agreement
+2. Please send us your camera-captured full dine-in menu for price verification and to make sure that all products are correctly added into your online menu, and a copy of your logo
+3. Please provide us a Hero Listing image (4000 x 2080 px, below 25MB) for us to use as the background image on top of your menu page.
+
+Please kindly fill in the foodpanda agreement and provide us the necessary documents, then we will proceed with the next process.
+
+Should you have any concern, please let us know.
+
+Hope you have a great day ahead!
+
+Regards,
+&lt;Agent Name&gt;</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

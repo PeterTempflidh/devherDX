@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Inbound_leads_excl_Lost_Competitor</fullName>
+    <columns>LEAD.COMPANY</columns>
+    <columns>LEAD.PHONE</columns>
+    <columns>LEAD.STATUS</columns>
+    <columns>LEAD.LEAD_SOURCE</columns>
+    <columns>Lead_Data_Origin__c</columns>
+    <columns>LEAD.CITY</columns>
+    <columns>Target_Partner__c</columns>
+    <columns>Area__c</columns>
+    <columns>LEAD.ZIP</columns>
+    <columns>Competitor_Notes__c</columns>
+    <columns>LEAD.CREATED_DATE</columns>
+    <columns>LEAD.LAST_TRANSFER</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>LEAD.STATUS</field>
+        <operation>notEqual</operation>
+        <value>Lost,Perdido</value>
+    </filters>
+    <filters>
+        <field>LEAD.LEAD_SOURCE</field>
+        <operation>equals</operation>
+        <value>Inbound</value>
+    </filters>
+    <label>CO Inbound leads (excl. Lost) Comp Notes</label>
+    <language>es</language>
+</ListView>

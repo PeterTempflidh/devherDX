@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GLB_cannot_change_ownerof_resolved_cases</fullName>
+    <active>true</active>
+    <description>To prevent agents to change the owner of a case if the status is in resolved</description>
+    <errorConditionFormula>AND(
+ISCHANGED(OwnerId ),
+ISPICKVAL(Status, &apos;Resolved&apos;),
+OR(
+RecordType.DeveloperName = &apos;Talabat_Inbound_Case&apos;,
+RecordType.DeveloperName = &apos;AT_Inbound_Case&apos;,
+RecordType.DeveloperName = &apos;CD_Inbound_Case&apos;,
+RecordType.DeveloperName = &apos;DE_Inbound_Case&apos;,
+RecordType.DeveloperName = &apos;FI_Inbound&apos;,
+RecordType.DeveloperName = &apos;PY_Inbound_Case&apos;,
+RecordType.DeveloperName = &apos;SE_Inbound&apos;,
+RecordType.DeveloperName = &apos;FP_Inbound_Case&apos;,
+RecordType.DeveloperName = &apos;HU_Inbound_Case&apos;,
+RecordType.DeveloperName = &apos;YE_Inbound_Case&apos;
+),
+$User.ProfileId != &apos;00ew0000001HfA4&apos;,
+NOT($Permission.Exclude_from_Validation)
+)</errorConditionFormula>
+    <errorMessage>You are not allowed to change the owner of the resolved cases</errorMessage>
+</ValidationRule>

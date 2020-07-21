@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Close_Case</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Close Case</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/xdomain/xdomain.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/apex.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/support/console/30.0/integration.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/resource/jq211&quot;)} 
+requireCssFile(&apos;/resource/bootbox/bootstrapV1.css&apos;); 
+{!REQUIRESCRIPT(&quot;/resource/bootbox/bootstrap.min.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/resource/bootbox/bootbox.min.js&quot;)} 
+
+
+
+function requireCssFile(filename){ 
+var fileref = document.createElement(&apos;link&apos;); 
+fileref.setAttribute(&apos;rel&apos;, &apos;stylesheet&apos;); 
+fileref.setAttribute(&apos;type&apos;, &apos;text/css&apos;); 
+fileref.setAttribute(&apos;href&apos;, filename); 
+document.getElementsByTagName(&apos;head&apos;)[0].appendChild(fileref); 
+} 
+{!REQUIRESCRIPT(&quot;/resource/bootbox/utilityFunctions.js&quot;)} 
+
+construct(this,&quot;{!$Label.Case_Closing} ...&quot;);
+
+var isClosed = &apos;{!Case.IsClosed}&apos;;
+var caseId = &apos;{!Case.Id}&apos;;
+
+if(isClosed == 1){ 
+bootbox.alert(&apos;{!$Label.Case_Case_Already_Closed}&apos;).find(&apos;.modal-content&apos;).addClass( &quot;info&quot; ); 
+ 
+}else{
+
+
+var bussinessType = &apos;&apos;;
+
+if (&apos;{!Case.OpportunityId__c}&apos; != &apos;&apos;){
+
+var myquery = &quot;SELECT Id, Business_Type__c FROM Opportunity WHERE Id = &apos;{!Case.OpportunityId__c}&apos;limit 1&quot;; 
+
+result = sforce.connection.query(myquery); 
+records = result.getArray(&quot;records&quot;); 
+bussinessType = records[0].Business_Type__c;
+}
+debugger;
+console.log(&quot;{!Case.RecordType}&quot;.startsWith(&quot;Talabat&quot;));
+if(&quot;{!Case.RecordType}&quot;.startsWith(&quot;Talabat&quot;) &amp;&amp; bussinessType == &quot;New Business&quot; &amp;&amp; &quot;{!Case.Start_Date__c &gt; TODAY()}&quot; == &quot;true&quot; &amp;&amp; (&quot;{!Case.Type}&quot; == &quot;Onboarding&quot;) ){ 
+
+bootbox.confirm({
+    message: &apos;{!$Label.Close_future_Onboarding}&apos;,
+    buttons: {
+        confirm: {
+            label: &apos;Yes&apos;,
+            className: &apos;btn-success&apos;
+        },
+        cancel: {
+            label: &apos;No&apos;,
+            className: &apos;btn-danger&apos;
+        }
+    },
+    callback: function (result) {
+       if(result){
+          closingCase(caseId);
+       }
+    }
+}).find(&apos;.modal-content&apos;).addClass( &quot;error&quot; );
+ 
+
+}else{
+
+closingCase(caseId);
+}
+}
+
+
+postAction();</url>
+</WebLink>

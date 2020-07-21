@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Vendor_Phone_Number__c</fullName>
+    <description>Field to capture vendor phone number so that the agents can click to dial the number from the case page.
+Created for SCC-26 (Elastix).</description>
+    <externalId>false</externalId>
+    <label>Vendor Phone Number</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Phone</type>
+</CustomField>

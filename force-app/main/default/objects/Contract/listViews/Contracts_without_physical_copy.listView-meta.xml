@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contracts_without_physical_copy</fullName>
+    <columns>CONTRACT.CONTRACT_NUMBER</columns>
+    <columns>SALES.ACCOUNT.NAME</columns>
+    <columns>CONTRACT.STATUS</columns>
+    <columns>CONTRACT.START_DATE</columns>
+    <columns>CONTRACT.END_DATE</columns>
+    <columns>CONTRACT.CURRENCY_ISO_CODE</columns>
+    <columns>Physical_Copy__c</columns>
+    <columns>Do_not_auto_renew__c</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CONTRACT.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Contract.Talabat_Contract</value>
+    </filters>
+    <filters>
+        <field>Physical_Copy__c</field>
+        <operation>notEqual</operation>
+        <value>Yes</value>
+    </filters>
+    <label>Contracts without physical copy</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>Talabat_Legal_Team</group>
+    </sharedTo>
+</ListView>

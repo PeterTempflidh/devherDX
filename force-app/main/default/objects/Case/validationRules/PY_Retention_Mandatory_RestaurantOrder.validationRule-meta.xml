@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PY_Retention_Mandatory_RestaurantOrder</fullName>
+    <active>true</active>
+    <description>If case record type id PY_Internal_Case and case type is Retention then Is_the_restaurant_going_to_take_orders__c field is mandatory</description>
+    <errorConditionFormula>AND(RecordType.DeveloperName=&quot;PY_Internal_Case&quot; ,ISPICKVAL(Type, &quot;Retention&quot;),ISPICKVAL(Is_the_restaurant_going_to_take_orders__c,&apos;&apos;))</errorConditionFormula>
+    <errorMessage>Please select a value for Is the restaurant going to take orders</errorMessage>
+</ValidationRule>

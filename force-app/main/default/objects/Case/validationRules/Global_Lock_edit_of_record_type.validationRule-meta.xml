@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_Lock_edit_of_record_type</fullName>
+    <active>true</active>
+    <description>SP-3235</description>
+    <errorConditionFormula>IsChanged(RecordTypeId) 
+&amp;&amp; 
+(ISBLANK(ParentId ) 
+|| 
+(NOT(ISBLANK(ParentId ) ) 
+&amp;&amp; 
+PRIORVALUE( RecordTypeId ) &lt;&gt; &quot;012w0000000kcRk&quot; 
+&amp;&amp; 
+PRIORVALUE( RecordTypeId ) &lt;&gt; &quot;012w0000000R07Q&quot; 
+&amp;&amp; 
+PRIORVALUE( RecordTypeId ) &lt;&gt; &quot;0121r0000007eqS&quot; 
+&amp;&amp; 
+PRIORVALUE( RecordTypeId ) &lt;&gt; &quot;012w0000000kc0O&quot; 
+&amp;&amp; 
+PRIORVALUE( RecordTypeId ) &lt;&gt; &quot;0121r0000007eRz&quot; 
+&amp;&amp; 
+PRIORVALUE( RecordTypeId ) &lt;&gt; &quot;012w00000006jDz&quot;)) 
+&amp;&amp; 
+NOT( $Permission.Exclude_from_Validation ) 
+/*exclude Finland temporary*/ 
+&amp;&amp; 
+PRIORVALUE( RecordTypeId ) &lt;&gt; &quot;012w0000000kc0L&quot;</errorConditionFormula>
+    <errorMessage>You are not allowed to change the record type of the case.</errorMessage>
+</ValidationRule>

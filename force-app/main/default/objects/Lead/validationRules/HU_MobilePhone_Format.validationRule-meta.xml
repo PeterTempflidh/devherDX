@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HU_MobilePhone_Format</fullName>
+    <active>true</active>
+    <description>Check if Mobile Number start with +36 or 0036</description>
+    <errorConditionFormula>AND(RecordType.DeveloperName =&quot;HU_Lead&quot;,
+	NOT(ISBLANK(MobilePhone)),
+	NOT(AND(OR(LEN(MobilePhone)==11, LEN(MobilePhone)==12),
+			LEFT(MobilePhone, 3) == &quot;+36&quot;,
+			ISNUMBER(RIGHT(MobilePhone,LEN(MobilePhone)-3)))))</errorConditionFormula>
+    <errorDisplayField>MobilePhone</errorDisplayField>
+    <errorMessage>Mobile number should start with country code and not include spaces</errorMessage>
+</ValidationRule>

@@ -1,0 +1,1775 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Category__c</fullName>
+    <externalId>false</externalId>
+    <label>Category</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <controllingField>Vertical_Segment__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Accessories</fullName>
+                <default>false</default>
+                <label>Accessories</label>
+            </value>
+            <value>
+                <fullName>African</fullName>
+                <default>false</default>
+                <label>African</label>
+            </value>
+            <value>
+                <fullName>Alcohol</fullName>
+                <default>false</default>
+                <label>Alcohol</label>
+            </value>
+            <value>
+                <fullName>All Night Alcohol</fullName>
+                <default>false</default>
+                <label>All Night Alcohol</label>
+            </value>
+            <value>
+                <fullName>American</fullName>
+                <default>false</default>
+                <label>American</label>
+            </value>
+            <value>
+                <fullName>Aquariums</fullName>
+                <default>false</default>
+                <label>Aquariums</label>
+            </value>
+            <value>
+                <fullName>Arabic</fullName>
+                <default>false</default>
+                <label>Arabic</label>
+            </value>
+            <value>
+                <fullName>Arepas y Empanadas</fullName>
+                <default>false</default>
+                <label>Arepas y Empanadas</label>
+            </value>
+            <value>
+                <fullName>Argentine</fullName>
+                <default>false</default>
+                <label>Argentine</label>
+            </value>
+            <value>
+                <fullName>argentinian</fullName>
+                <default>false</default>
+                <label>Argentinian</label>
+            </value>
+            <value>
+                <fullName>Armenian</fullName>
+                <default>false</default>
+                <label>Armenian</label>
+            </value>
+            <value>
+                <fullName>Asian</fullName>
+                <default>false</default>
+                <label>Asian</label>
+            </value>
+            <value>
+                <fullName>Austrian</fullName>
+                <default>false</default>
+                <label>Austrian</label>
+            </value>
+            <value>
+                <fullName>Bahraini</fullName>
+                <default>false</default>
+                <label>Bahraini</label>
+            </value>
+            <value>
+                <fullName>Bakery</fullName>
+                <default>false</default>
+                <label>Bakery</label>
+            </value>
+            <value>
+                <fullName>Bangladeshi</fullName>
+                <default>false</default>
+                <label>Bangladeshi</label>
+            </value>
+            <value>
+                <fullName>Barbecue</fullName>
+                <default>false</default>
+                <label>Barbecue</label>
+            </value>
+            <value>
+                <fullName>Beijing</fullName>
+                <default>false</default>
+                <label>Beijing</label>
+            </value>
+            <value>
+                <fullName>Beverages</fullName>
+                <default>false</default>
+                <label>Beverages</label>
+            </value>
+            <value>
+                <fullName>Brazilian</fullName>
+                <default>false</default>
+                <label>Brazilian</label>
+            </value>
+            <value>
+                <fullName>Breakfast</fullName>
+                <default>false</default>
+                <label>Breakfast</label>
+            </value>
+            <value>
+                <fullName>British</fullName>
+                <default>false</default>
+                <label>British</label>
+            </value>
+            <value>
+                <fullName>Burger and Grill</fullName>
+                <default>false</default>
+                <label>Burger and Grill</label>
+            </value>
+            <value>
+                <fullName>Burgers</fullName>
+                <default>false</default>
+                <label>Burgers</label>
+            </value>
+            <value>
+                <fullName>Burmese</fullName>
+                <default>false</default>
+                <label>Burmese</label>
+            </value>
+            <value>
+                <fullName>Cafe</fullName>
+                <default>false</default>
+                <label>Cafe</label>
+            </value>
+            <value>
+                <fullName>Cakes &amp; Bakery</fullName>
+                <default>false</default>
+                <label>Cakes &amp; Bakery</label>
+            </value>
+            <value>
+                <fullName>Calzones</fullName>
+                <default>false</default>
+                <label>Calzones</label>
+            </value>
+            <value>
+                <fullName>Cambodian</fullName>
+                <default>false</default>
+                <label>Cambodian</label>
+            </value>
+            <value>
+                <fullName>Cantonese</fullName>
+                <default>false</default>
+                <label>Cantonese</label>
+            </value>
+            <value>
+                <fullName>Caribbean</fullName>
+                <default>false</default>
+                <label>Caribbean</label>
+            </value>
+            <value>
+                <fullName>Catering</fullName>
+                <default>false</default>
+                <label>Catering</label>
+            </value>
+            <value>
+                <fullName>Cat Toys</fullName>
+                <default>false</default>
+                <label>Cat Toys</label>
+            </value>
+            <value>
+                <fullName>Ceviche</fullName>
+                <default>false</default>
+                <label>Ceviche</label>
+            </value>
+            <value>
+                <fullName>Chicken</fullName>
+                <default>false</default>
+                <label>Chicken</label>
+            </value>
+            <value>
+                <fullName>Chifas</fullName>
+                <default>false</default>
+                <label>Chifas</label>
+            </value>
+            <value>
+                <fullName>Chinese</fullName>
+                <default>false</default>
+                <label>Chinese</label>
+            </value>
+            <value>
+                <fullName>Chiu Chow</fullName>
+                <default>false</default>
+                <label>Chiu Chow</label>
+            </value>
+            <value>
+                <fullName>Chocolate</fullName>
+                <default>false</default>
+                <label>Chocolate</label>
+            </value>
+            <value>
+                <fullName>Cigarretes</fullName>
+                <default>false</default>
+                <label>Cigarretes</label>
+            </value>
+            <value>
+                <fullName>Coffee</fullName>
+                <default>false</default>
+                <label>Coffee</label>
+            </value>
+            <value>
+                <fullName>Colombian</fullName>
+                <default>false</default>
+                <label>Colombian</label>
+            </value>
+            <value>
+                <fullName>Combo</fullName>
+                <default>false</default>
+                <label>Combo</label>
+            </value>
+            <value>
+                <fullName>Confectionary</fullName>
+                <default>false</default>
+                <label>Confectionary</label>
+            </value>
+            <value>
+                <fullName>Crepes</fullName>
+                <default>false</default>
+                <label>Crepes</label>
+            </value>
+            <value>
+                <fullName>Czech</fullName>
+                <default>false</default>
+                <label>Czech</label>
+            </value>
+            <value>
+                <fullName>Desserts</fullName>
+                <default>false</default>
+                <label>Desserts</label>
+            </value>
+            <value>
+                <fullName>Dietary Options</fullName>
+                <default>false</default>
+                <label>Dietary Options</label>
+            </value>
+            <value>
+                <fullName>Dim Sum</fullName>
+                <default>false</default>
+                <label>Dim Sum</label>
+            </value>
+            <value>
+                <fullName>Dog Food</fullName>
+                <default>false</default>
+                <label>Dog Food</label>
+            </value>
+            <value>
+                <fullName>Egyptian</fullName>
+                <default>false</default>
+                <label>Egyptian</label>
+            </value>
+            <value>
+                <fullName>Emirati</fullName>
+                <default>false</default>
+                <label>Emirati</label>
+            </value>
+            <value>
+                <fullName>Empanadas</fullName>
+                <default>false</default>
+                <label>Empanadas</label>
+            </value>
+            <value>
+                <fullName>European</fullName>
+                <default>false</default>
+                <label>European</label>
+            </value>
+            <value>
+                <fullName>Falafel</fullName>
+                <default>false</default>
+                <label>Falafel</label>
+            </value>
+            <value>
+                <fullName>Fast Food</fullName>
+                <default>false</default>
+                <label>Fast Food</label>
+            </value>
+            <value>
+                <fullName>Filipinian</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Filipinian</label>
+            </value>
+            <value>
+                <fullName>Filipino</fullName>
+                <default>false</default>
+                <label>Filipino</label>
+            </value>
+            <value>
+                <fullName>finnish</fullName>
+                <default>false</default>
+                <label>Finnish</label>
+            </value>
+            <value>
+                <fullName>Fixed Menu / Special Menu</fullName>
+                <default>false</default>
+                <label>Fixed Menu / Special Menu</label>
+            </value>
+            <value>
+                <fullName>French</fullName>
+                <default>false</default>
+                <label>French</label>
+            </value>
+            <value>
+                <fullName>Fried Chicken</fullName>
+                <default>false</default>
+                <label>Fried Chicken</label>
+            </value>
+            <value>
+                <fullName>Frozen Food</fullName>
+                <default>false</default>
+                <label>Frozen Food</label>
+            </value>
+            <value>
+                <fullName>Frozen Yoghurt</fullName>
+                <default>false</default>
+                <label>Frozen Yoghurt</label>
+            </value>
+            <value>
+                <fullName>Frozen Yogurt</fullName>
+                <default>false</default>
+                <label>Frozen Yogurt</label>
+            </value>
+            <value>
+                <fullName>Fruits &amp; Vegetables</fullName>
+                <default>false</default>
+                <label>Fruits &amp; Vegetables</label>
+            </value>
+            <value>
+                <fullName>Gangnam Tasty Restaurants</fullName>
+                <default>false</default>
+                <label>Gangnam Tasty Restaurants</label>
+            </value>
+            <value>
+                <fullName>Georgian</fullName>
+                <default>false</default>
+                <label>Georgian</label>
+            </value>
+            <value>
+                <fullName>German</fullName>
+                <default>false</default>
+                <label>German</label>
+            </value>
+            <value>
+                <fullName>Gluten-Free</fullName>
+                <default>false</default>
+                <label>Gluten-Free</label>
+            </value>
+            <value>
+                <fullName>Greek</fullName>
+                <default>false</default>
+                <label>Greek</label>
+            </value>
+            <value>
+                <fullName>Grill</fullName>
+                <default>false</default>
+                <label>Grill</label>
+            </value>
+            <value>
+                <fullName>Grocery</fullName>
+                <default>false</default>
+                <label>Grocery</label>
+            </value>
+            <value>
+                <fullName>Gyros</fullName>
+                <default>false</default>
+                <label>Gyros</label>
+            </value>
+            <value>
+                <fullName>Halal</fullName>
+                <default>false</default>
+                <label>Halal</label>
+            </value>
+            <value>
+                <fullName>Healthcare &amp; Beauty</fullName>
+                <default>false</default>
+                <label>Healthcare &amp; Beauty</label>
+            </value>
+            <value>
+                <fullName>Healthy Food</fullName>
+                <default>false</default>
+                <label>Healthy Food</label>
+            </value>
+            <value>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+                <label>Hong Kong</label>
+            </value>
+            <value>
+                <fullName>Hot Dogs</fullName>
+                <default>false</default>
+                <label>Hot Dogs</label>
+            </value>
+            <value>
+                <fullName>Hungarian</fullName>
+                <default>false</default>
+                <label>Hungarian</label>
+            </value>
+            <value>
+                <fullName>Ice</fullName>
+                <default>false</default>
+                <label>Ice</label>
+            </value>
+            <value>
+                <fullName>Ice cream</fullName>
+                <default>false</default>
+                <label>Ice cream</label>
+            </value>
+            <value>
+                <fullName>Indian</fullName>
+                <default>false</default>
+                <label>Indian</label>
+            </value>
+            <value>
+                <fullName>Indonesian</fullName>
+                <default>false</default>
+                <label>Indonesian</label>
+            </value>
+            <value>
+                <fullName>International</fullName>
+                <default>false</default>
+                <label>International</label>
+            </value>
+            <value>
+                <fullName>Iranian</fullName>
+                <default>false</default>
+                <label>Iranian</label>
+            </value>
+            <value>
+                <fullName>Italian</fullName>
+                <default>false</default>
+                <label>Italian</label>
+            </value>
+            <value>
+                <fullName>jamaican</fullName>
+                <default>false</default>
+                <label>Jamaican</label>
+            </value>
+            <value>
+                <fullName>Japanese</fullName>
+                <default>false</default>
+                <label>Japanese</label>
+            </value>
+            <value>
+                <fullName>Japanese and Sushi</fullName>
+                <default>false</default>
+                <label>Japanese and Sushi</label>
+            </value>
+            <value>
+                <fullName>Japanese Food</fullName>
+                <default>false</default>
+                <label>Japanese Food</label>
+            </value>
+            <value>
+                <fullName>Juices</fullName>
+                <default>false</default>
+                <label>Juices</label>
+            </value>
+            <value>
+                <fullName>Kebab</fullName>
+                <default>false</default>
+                <label>Kebab</label>
+            </value>
+            <value>
+                <fullName>Korean</fullName>
+                <default>false</default>
+                <label>Korean</label>
+            </value>
+            <value>
+                <fullName>Korean Snack</fullName>
+                <default>false</default>
+                <label>Korean Snack</label>
+            </value>
+            <value>
+                <fullName>Kuwaiti</fullName>
+                <default>false</default>
+                <label>Kuwaiti</label>
+            </value>
+            <value>
+                <fullName>Laotian</fullName>
+                <default>false</default>
+                <label>Laotian</label>
+            </value>
+            <value>
+                <fullName>Late night meal</fullName>
+                <default>false</default>
+                <label>Late night meal</label>
+            </value>
+            <value>
+                <fullName>Lebanese</fullName>
+                <default>false</default>
+                <label>Lebanese</label>
+            </value>
+            <value>
+                <fullName>Lebanese and Turkish</fullName>
+                <default>false</default>
+                <label>Lebanese and Turkish</label>
+            </value>
+            <value>
+                <fullName>Local Food</fullName>
+                <default>false</default>
+                <label>Local Food</label>
+            </value>
+            <value>
+                <fullName>Malay</fullName>
+                <default>false</default>
+                <label>Malay</label>
+            </value>
+            <value>
+                <fullName>Malaysian</fullName>
+                <default>false</default>
+                <label>Malaysian</label>
+            </value>
+            <value>
+                <fullName>Mandi</fullName>
+                <default>false</default>
+                <label>Mandi</label>
+            </value>
+            <value>
+                <fullName>Meat</fullName>
+                <default>false</default>
+                <label>Meat</label>
+            </value>
+            <value>
+                <fullName>Medicine</fullName>
+                <default>false</default>
+                <label>Medicine</label>
+            </value>
+            <value>
+                <fullName>Mediterranean</fullName>
+                <default>false</default>
+                <label>Mediterranean</label>
+            </value>
+            <value>
+                <fullName>Melaka Portuguese</fullName>
+                <default>false</default>
+                <label>Melaka Portuguese</label>
+            </value>
+            <value>
+                <fullName>Mexican</fullName>
+                <default>false</default>
+                <label>Mexican</label>
+            </value>
+            <value>
+                <fullName>Middle Eastern</fullName>
+                <default>false</default>
+                <label>Middle Eastern</label>
+            </value>
+            <value>
+                <fullName>Mobile Phone Related Articles</fullName>
+                <default>false</default>
+                <label>Mobile Phone Related Articles</label>
+            </value>
+            <value>
+                <fullName>Moroccan</fullName>
+                <default>false</default>
+                <label>Moroccan</label>
+            </value>
+            <value>
+                <fullName>Nepalese</fullName>
+                <default>false</default>
+                <label>Nepalese</label>
+            </value>
+            <value>
+                <fullName>Non-alcoholic Drinks</fullName>
+                <default>false</default>
+                <label>Non-alcoholic Drinks</label>
+            </value>
+            <value>
+                <fullName>Noodles</fullName>
+                <default>false</default>
+                <label>Noodles</label>
+            </value>
+            <value>
+                <fullName>Omani</fullName>
+                <default>false</default>
+                <label>Omani</label>
+            </value>
+            <value>
+                <fullName>Organic</fullName>
+                <default>false</default>
+                <label>Organic</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Pakistani</fullName>
+                <default>false</default>
+                <label>Pakistani</label>
+            </value>
+            <value>
+                <fullName>Pasta</fullName>
+                <default>false</default>
+                <label>Pasta</label>
+            </value>
+            <value>
+                <fullName>Pastries</fullName>
+                <default>false</default>
+                <label>Pastries</label>
+            </value>
+            <value>
+                <fullName>Patisserie</fullName>
+                <default>false</default>
+                <label>Patisserie</label>
+            </value>
+            <value>
+                <fullName>Persian</fullName>
+                <default>false</default>
+                <label>Persian</label>
+            </value>
+            <value>
+                <fullName>Personal Cafe</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Personal Cafe</label>
+            </value>
+            <value>
+                <fullName>Personal Care</fullName>
+                <default>false</default>
+                <label>Personal Care</label>
+            </value>
+            <value>
+                <fullName>Peruvian</fullName>
+                <default>false</default>
+                <label>Peruvian</label>
+            </value>
+            <value>
+                <fullName>Pet Food</fullName>
+                <default>false</default>
+                <label>Pet Food</label>
+            </value>
+            <value>
+                <fullName>Pig feet / Pork dish</fullName>
+                <default>false</default>
+                <label>Pig feet / Pork dish</label>
+            </value>
+            <value>
+                <fullName>Pizza</fullName>
+                <default>false</default>
+                <label>Pizza</label>
+            </value>
+            <value>
+                <fullName>Pizza / Western Food</fullName>
+                <default>false</default>
+                <label>Pizza / Western Food</label>
+            </value>
+            <value>
+                <fullName>PlayStation</fullName>
+                <default>false</default>
+                <label>PlayStation</label>
+            </value>
+            <value>
+                <fullName>Poke</fullName>
+                <default>false</default>
+                <label>Poke</label>
+            </value>
+            <value>
+                <fullName>Portuguese</fullName>
+                <default>false</default>
+                <label>Portuguese</label>
+            </value>
+            <value>
+                <fullName>Premium</fullName>
+                <default>false</default>
+                <label>Premium</label>
+            </value>
+            <value>
+                <fullName>Qatari</fullName>
+                <default>false</default>
+                <label>Qatari</label>
+            </value>
+            <value>
+                <fullName>Raw Meat &amp; Fish</fullName>
+                <default>false</default>
+                <label>Raw Meat &amp; Fish</label>
+            </value>
+            <value>
+                <fullName>Roastery</fullName>
+                <default>false</default>
+                <label>Roastery</label>
+            </value>
+            <value>
+                <fullName>Russian</fullName>
+                <default>false</default>
+                <label>Russian</label>
+            </value>
+            <value>
+                <fullName>Salad Bar</fullName>
+                <default>false</default>
+                <label>Salad Bar</label>
+            </value>
+            <value>
+                <fullName>Salads</fullName>
+                <default>false</default>
+                <label>Salads</label>
+            </value>
+            <value>
+                <fullName>Sandwiches</fullName>
+                <default>false</default>
+                <label>Sandwiches</label>
+            </value>
+            <value>
+                <fullName>Saudi</fullName>
+                <default>false</default>
+                <label>Saudi</label>
+            </value>
+            <value>
+                <fullName>Sausage</fullName>
+                <default>false</default>
+                <label>Sausage</label>
+            </value>
+            <value>
+                <fullName>Schnitzel</fullName>
+                <default>false</default>
+                <label>Schnitzel</label>
+            </value>
+            <value>
+                <fullName>Seafood</fullName>
+                <default>false</default>
+                <label>Seafood</label>
+            </value>
+            <value>
+                <fullName>Serbian</fullName>
+                <default>false</default>
+                <label>Serbian</label>
+            </value>
+            <value>
+                <fullName>Shakes</fullName>
+                <default>false</default>
+                <label>Shakes</label>
+            </value>
+            <value>
+                <fullName>Shanghainese</fullName>
+                <default>false</default>
+                <label>Shanghainese</label>
+            </value>
+            <value>
+                <fullName>Shawarma &amp; Doner</fullName>
+                <default>false</default>
+                <label>Shawarma &amp; Doner</label>
+            </value>
+            <value>
+                <fullName>Sichuan</fullName>
+                <default>false</default>
+                <label>Sichuan</label>
+            </value>
+            <value>
+                <fullName>Singaporean</fullName>
+                <default>false</default>
+                <label>Singaporean</label>
+            </value>
+            <value>
+                <fullName>Slavic</fullName>
+                <default>false</default>
+                <label>Slavic</label>
+            </value>
+            <value>
+                <fullName>Sliders</fullName>
+                <default>false</default>
+                <label>Sliders</label>
+            </value>
+            <value>
+                <fullName>Smoothie</fullName>
+                <default>false</default>
+                <label>Smoothie</label>
+            </value>
+            <value>
+                <fullName>Snacks</fullName>
+                <default>false</default>
+                <label>Snacks</label>
+            </value>
+            <value>
+                <fullName>Soups</fullName>
+                <default>false</default>
+                <label>Soups</label>
+            </value>
+            <value>
+                <fullName>South American</fullName>
+                <default>false</default>
+                <label>South American</label>
+            </value>
+            <value>
+                <fullName>South East Asian</fullName>
+                <default>false</default>
+                <label>South East Asian</label>
+            </value>
+            <value>
+                <fullName>Spanish</fullName>
+                <default>false</default>
+                <label>Spanish</label>
+            </value>
+            <value>
+                <fullName>Sports stickers - Panini</fullName>
+                <default>false</default>
+                <label>Sports stickers - Panini</label>
+            </value>
+            <value>
+                <fullName>Sports Supplement</fullName>
+                <default>false</default>
+                <label>Sports Supplement</label>
+            </value>
+            <value>
+                <fullName>Steak</fullName>
+                <default>false</default>
+                <label>Steak</label>
+            </value>
+            <value>
+                <fullName>Street food</fullName>
+                <default>false</default>
+                <label>Street food</label>
+            </value>
+            <value>
+                <fullName>Supplements</fullName>
+                <default>false</default>
+                <label>Supplements</label>
+            </value>
+            <value>
+                <fullName>Sushi</fullName>
+                <default>false</default>
+                <label>Sushi</label>
+            </value>
+            <value>
+                <fullName>Swedish</fullName>
+                <default>false</default>
+                <label>Swedish</label>
+            </value>
+            <value>
+                <fullName>Sweets</fullName>
+                <default>false</default>
+                <label>Sweets</label>
+            </value>
+            <value>
+                <fullName>Taiwanese</fullName>
+                <default>false</default>
+                <label>Taiwanese</label>
+            </value>
+            <value>
+                <fullName>Takeout</fullName>
+                <default>false</default>
+                <label>Takeout</label>
+            </value>
+            <value>
+                <fullName>TexMex</fullName>
+                <default>false</default>
+                <label>TexMex</label>
+            </value>
+            <value>
+                <fullName>Thai</fullName>
+                <default>false</default>
+                <label>Thai</label>
+            </value>
+            <value>
+                <fullName>Tortilla</fullName>
+                <default>false</default>
+                <label>Tortilla</label>
+            </value>
+            <value>
+                <fullName>Toys</fullName>
+                <default>false</default>
+                <label>Toys</label>
+            </value>
+            <value>
+                <fullName>Turkish</fullName>
+                <default>false</default>
+                <label>Turkish</label>
+            </value>
+            <value>
+                <fullName>TV</fullName>
+                <default>false</default>
+                <label>TV</label>
+            </value>
+            <value>
+                <fullName>Vegan</fullName>
+                <default>false</default>
+                <label>Vegan</label>
+            </value>
+            <value>
+                <fullName>Vegetarian</fullName>
+                <default>false</default>
+                <label>Vegetarian</label>
+            </value>
+            <value>
+                <fullName>Venezuelan</fullName>
+                <default>false</default>
+                <label>Venezuelan</label>
+            </value>
+            <value>
+                <fullName>Vietnamese</fullName>
+                <default>false</default>
+                <label>Vietnamese</label>
+            </value>
+            <value>
+                <fullName>Vitamins</fullName>
+                <default>false</default>
+                <label>Vitamins</label>
+            </value>
+            <value>
+                <fullName>Washing Machines</fullName>
+                <default>false</default>
+                <label>Washing Machines</label>
+            </value>
+            <value>
+                <fullName>Western</fullName>
+                <default>false</default>
+                <label>Western</label>
+            </value>
+            <value>
+                <fullName>Wings</fullName>
+                <default>false</default>
+                <label>Wings</label>
+            </value>
+            <value>
+                <fullName>Woks</fullName>
+                <default>false</default>
+                <label>Woks</label>
+            </value>
+            <value>
+                <fullName>Wraps</fullName>
+                <default>false</default>
+                <label>Wraps</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>African</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <controllingFieldValue>Drinks</controllingFieldValue>
+            <controllingFieldValue>Groceries</controllingFieldValue>
+            <valueName>Alcohol</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>All Night Alcohol</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>American</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Arabic</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Arepas y Empanadas</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Argentine</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Armenian</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Asian</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Austrian</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Bahraini</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <controllingFieldValue>Groceries</controllingFieldValue>
+            <valueName>Bakery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Barbecue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <controllingFieldValue>Drinks</controllingFieldValue>
+            <valueName>Beverages</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Brazilian</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Breakfast</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>British</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Burger and Grill</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Burgers</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Burmese</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Cakes &amp; Bakery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Calzones</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Cambodian</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Caribbean</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Catering</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Ceviche</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Chicken</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Chifas</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Chinese</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <controllingFieldValue>Coffee</controllingFieldValue>
+            <controllingFieldValue>Drinks</controllingFieldValue>
+            <valueName>Coffee</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Colombian</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Confectionary</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Crepes</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Czech</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Desserts</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Dietary Options</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Dim Sum</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Egyptian</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Emirati</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Empanadas</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>European</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Falafel</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Fast Food</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Filipino</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Fixed Menu / Special Menu</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>French</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Frozen Food</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Frozen Yoghurt</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Gangnam Tasty Restaurants</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Georgian</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>German</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Gluten-Free</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Greek</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Grill</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Grocery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Gyros</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Halal</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Healthy Food</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Hong Kong</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Hungarian</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Ice cream</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <controllingFieldValue>Desert</controllingFieldValue>
+            <valueName>Ice cream</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Indian</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Indonesian</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <controllingFieldValue>charity</controllingFieldValue>
+            <valueName>International</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Iranian</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <controllingFieldValue>Street Kitchen</controllingFieldValue>
+            <valueName>Italian</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Japanese</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Japanese and Sushi</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Japanese Food</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Juices</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Kebab</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Korean</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Korean Snack</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Kuwaiti</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Laotian</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Late night meal</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Lebanese</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Lebanese and Turkish</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Local Food</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Malay</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Malaysian</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Mandi</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Meat</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Mediterranean</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Melaka Portuguese</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Mexican</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Middle Eastern</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Moroccan</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Nepalese</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Non-alcoholic Drinks</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Noodles</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Omani</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Organic</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Other</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Pakistani</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Pasta</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Persian</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Peruvian</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Pig feet / Pork dish</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Pizza</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Pizza / Western Food</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Poke</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Portuguese</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Premium</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Qatari</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Roastery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Russian</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Salad Bar</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Sandwiches</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Saudi</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Sausage</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Schnitzel</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Seafood</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Serbian</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Shawarma &amp; Doner</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Singaporean</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Slavic</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Smoothie</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Snacks</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Soups</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>South East Asian</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Spanish</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Steak</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <controllingFieldValue>Street Kitchen</controllingFieldValue>
+            <valueName>Sushi</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Swedish</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Sweets</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Taiwanese</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Takeout</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>TexMex</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <controllingFieldValue>Street Kitchen</controllingFieldValue>
+            <valueName>Thai</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Tortilla</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Turkish</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Vegan</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Vegetarian</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Venezuelan</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Vietnamese</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Western</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Woks</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Home Based Kitchen</controllingFieldValue>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Wraps</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Pets</controllingFieldValue>
+            <valueName>Aquariums</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Pets</controllingFieldValue>
+            <valueName>Cat Toys</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Pets</controllingFieldValue>
+            <valueName>Dog Food</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Pharmacy</controllingFieldValue>
+            <valueName>Medicine</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Pharmacy</controllingFieldValue>
+            <controllingFieldValue>Groceries</controllingFieldValue>
+            <controllingFieldValue>Healthcare &amp; Beauty</controllingFieldValue>
+            <valueName>Personal Care</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Pharmacy</controllingFieldValue>
+            <valueName>Supplements</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>argentinian</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Bangladeshi</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Beijing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Cafe</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Cantonese</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Chiu Chow</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>finnish</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>jamaican</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <controllingFieldValue>Groceries</controllingFieldValue>
+            <valueName>Salads</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Shanghainese</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Sichuan</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>South American</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Regular Restaurant</controllingFieldValue>
+            <valueName>Street food</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Desert</controllingFieldValue>
+            <valueName>Patisserie</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Drinks</controllingFieldValue>
+            <valueName>Ice</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Electronics</controllingFieldValue>
+            <valueName>Accessories</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Electronics</controllingFieldValue>
+            <valueName>PlayStation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Electronics</controllingFieldValue>
+            <valueName>TV</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Electronics</controllingFieldValue>
+            <valueName>Washing Machines</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Groceries</controllingFieldValue>
+            <valueName>Cigarretes</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Groceries</controllingFieldValue>
+            <valueName>Fruits &amp; Vegetables</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Groceries</controllingFieldValue>
+            <valueName>Pet Food</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Groceries</controllingFieldValue>
+            <valueName>Raw Meat &amp; Fish</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Healthcare &amp; Beauty</controllingFieldValue>
+            <valueName>Sports Supplement</valueName>
+        </valueSettings>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

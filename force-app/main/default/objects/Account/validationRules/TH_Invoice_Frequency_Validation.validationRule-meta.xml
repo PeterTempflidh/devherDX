@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TH_Invoice_Frequency_Validation</fullName>
+    <active>true</active>
+    <description>&apos;Daily&apos; value of Invoice_Frequency__c field can be selected only for Thailand.
+https://jira.deliveryhero.com/browse/SSC-3416</description>
+    <errorConditionFormula>AND(
+RecordType.DeveloperName = &apos;FP_Account&apos;,
+ISPICKVAL(Invoice_Frequency__c, &apos;Daily&apos;),
+NOT(ISPICKVAL(Record_Country__c, &apos;Thailand&apos;)),
+NOT($Permission.Exclude_from_Validation)
+)</errorConditionFormula>
+    <errorDisplayField>Invoice_Frequency__c</errorDisplayField>
+    <errorMessage>You can select &apos;Daily&apos; only for Thailand</errorMessage>
+</ValidationRule>

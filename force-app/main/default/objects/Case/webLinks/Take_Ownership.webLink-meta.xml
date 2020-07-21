@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Take_Ownership</fullName>
+    <availability>online</availability>
+    <description>Take ownership button</description>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Take Ownership</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/31.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/31.0/apex.js&quot;)}
+{!REQUIRESCRIPT(&quot;/support/console/31.0/integration.js&quot;)}
+/*var updateRecord = new Array();
+var myquery = &quot;SELECT Id FROM Case WHERE Id = &apos;{!Case.Id}&apos; limit 1&quot;;
+
+result = sforce.connection.query(myquery);
+records = result.getArray(&quot;records&quot;);
+
+if(records[0])
+{
+var update_Case = records[0];
+update_Case.OwnerId = &quot;{!$User.Id}&quot;;
+updateRecord.push(update_Case);
+}*/
+var myquery = &quot;SELECT Id, Owner.Name FROM Case WHERE Id = &apos;{!Case.Id}&apos; limit 1&quot;;
+
+result = sforce.connection.query(myquery);
+records = result.getArray(&quot;records&quot;);
+var ownerName = &apos;&apos;;
+if (records[0]) {
+var update_Case = records[0];
+var ownerName = update_Case.Owner.Name;
+}
+var accountID = &quot;{!Case.AccountId}&quot;;
+// SSC-1569 DefectFix- Adding Talabat Finance Team value, dependent on SSC-1332
+var ownerToCheck = &quot;DE Sales Operations,DE Special Cases,DE Cancellation/Preorders,DE Data Protection,DE Design Team,DE Take On/Offline,DE Restaurant Request - 2nd Level,DE Restaurant Operations,DE Account Management,DE Sales Team,DE Editorial,DE Finance,DE Key Account Request,DE Restaurant Partner Shop,DE Skill - LiveChat,DE Online Payments,DE Ops Management Escalation,DE Refund,DE Team Lead Escalation, DH AU Customer Care Team, DH AU Editorial Team, DH AU Sales Team, Level 1 Support Queue,Level 2 Escalations Queue, SE Editorial Team,SE Customer Care,SE Sales Team,SE Photo Listing Team,SE Photo Team, FI Editorial Team,FI Customer Care,UK Editorial Team, UK Restaurant Care,UK Customer Care,UK Sales Team,UK Restaurant Operations,UK Accounting Team,CD Editorial Queue,CD Sales Team,CD Customer Care,CD Data Team,CD Design Team,CD Research,Talabat Content Team,Talabat Legal Team,Talabat Sales Admin,Talabat Operations Team,Talabat Editorial Team,Talabat Sales Team ,Talabat Photography Team, Talabat Graphics Team,Talabat Quality Check team,SE Dish Level Team,PY Restaurant Operations,PY Account Management,PY Sales Team,PY Editorial,PY Finance, PY Photography, PY Sales Operations, PY_Restaurant_Operations,PY Customer Care,PY Legal,PY Logistics,PY Onboarding, Talabat Cases - CMT Escalation High Prio, Talabat Cases - CMT Escalation Low Prio, Talabat Cases - TGO High Prio, Talabat Cases - TGO Low Prio, Talabat Finance Team&quot;;
+
+function reloadParent() {
+if (sforce.console.isInConsole()) {
+testGetFocusedPrimaryTabId();
+} else if ((typeof sforce != &apos;undefined&apos;) &amp;&amp; sforce &amp;&amp; (!!sforce.one)) {
+if (accountID != null) {
+sforce.one.navigateToSObject(accountID);
+} else {
+sforce.one.navigateToSObject(&quot;{!Case.Id}&quot;);
+}
+} else if (!sforce.one) {
+navigateToUrl(&quot;/{!Case.Id}&quot;);
+}
+//return true;
+}
+
+
+
+
+
+var showTabId = function showTabId(result) {
+if (accountID != null) {
+console.log(&apos;inside: &apos; + result.id);
+//sforce.console.closeTab(result.id, sforce.console.openPrimaryTab(null, &quot;/{!Case.Id}&quot;, true, null, openSuccess));
+//sforce.console.openPrimaryTab(result.id,&apos;/{!Case.AccountId}&apos;,true);
+
+sforce.console.refreshPrimaryTabById(result.id, true, openSuccessPrimaryTab);
+
+} else {
+sforce.console.refreshPrimaryTabById(result.id, true);
+}
+
+};
+
+var openSuccessPrimaryTab = function openSuccessPrimaryTab(result4) {
+
+if (result4.success == true) {
+sforce.console.openSubtab(result4.id, &quot;/{!Case.Id}&quot;, true, null, openSuccess);
+}
+};
+
+
+var openSuccess = function openSuccess(result3) {
+console.log(&apos;result3.success: &apos; + result3.success);
+if (result3.success == true) {
+console.log(&apos;succ: &apos; + result3.id);
+
+}
+};
+
+
+
+
+var refreshTab = function refreshTab(result2) {
+sforce.console.getFocusedPrimaryTabId(function(showTabId2) {
+console.log(&apos;result.id: &apos; + showTabId2.id);
+});
+//alert(&quot;hi&quot;);
+console.log(&apos;result.id: &apos; + result2.id);
+sforce.console.refreshPrimaryTabById(result2.id, true);
+console.log(&apos;finished&apos;);
+}
+
+function testGetFocusedPrimaryTabId() {
+sforce.console.getEnclosingPrimaryTabId(showTabId);
+
+}
+var caseRecordType = &quot;{!Case.RecordType}&quot;;
+var ownerId = &quot;{!Case.OwnerId}&quot;;
+var userId = &quot;{!$User.Id}&quot;;
+var reloadFlag = new Boolean(true);
+var status = &quot;{!Case.Status}&quot;;
+var type = &quot;{!Case.Type}&quot;
+debugger;
+if (caseRecordType.indexOf(&quot;DH AU&quot;) &gt; -1 || caseRecordType.indexOf(&quot;SE&quot;) &gt; -1 || caseRecordType.indexOf(&quot;FI&quot;) &gt; -1 || caseRecordType.indexOf(&quot;UK&quot;) &gt; -1 || caseRecordType.indexOf(&quot;CD&quot;) &gt; -1 || caseRecordType.indexOf(&quot;Talabat&quot;) &gt; -1 || caseRecordType.indexOf(&quot;DE&quot;) &gt; -1 || caseRecordType.indexOf(&quot;PY&quot;) &gt; -1) {
+if (ownerToCheck.indexOf(ownerName) &gt;= 0) {
+var record = new sforce.SObject(&quot;Case&quot;);
+record.Id = &quot;{!Case.Id}&quot;;
+record.queue_id__c = ownerId;
+record.OwnerId = userId;
+
+if (status == &apos;New&apos; &amp;&amp; type == &apos;Menu Processing&apos;) {
+record.status = &apos;Backend ID Creation&apos;;
+
+if (caseRecordType.indexOf(&quot;DE&quot;) &gt; -1 || caseRecordType.indexOf(&quot;FI&quot;) &gt; -1 || caseRecordType.indexOf(&quot;UK&quot;) &gt; -1 || caseRecordType.indexOf(&quot;CD&quot;) &gt; -1 || caseRecordType.indexOf(&quot;SE&quot;) &gt; -1 || caseRecordType.indexOf(&quot;Talabat&quot;) &gt; -1 || caseRecordType.indexOf(&quot;PY&quot;) &gt; -1) {
+record.status = &apos;Menu Typing&apos;;
+}
+} else if (status == &apos;New&apos; &amp;&amp; type == &apos;Menu Change&apos; &amp;&amp; (caseRecordType.indexOf(&quot;UK&quot;) == -1 || caseRecordType.indexOf(&quot;DE&quot;) &gt; -1)) {
+record.status = &apos;Menu Typing&apos;;
+} else if (status == &apos;New&apos; &amp;&amp; type == &apos;BE Data Entry&apos; &amp;&amp; caseRecordType.indexOf(&quot;CD&quot;) &gt; -1) {
+record.status = &apos;Finalize Design&apos;;
+
+} else if (status == &apos;New&apos; &amp;&amp; type == &apos;Dish Level Photo&apos; &amp;&amp; (caseRecordType.indexOf(&quot;Talabat&quot;) &gt; -1 || caseRecordType.indexOf(&quot;PY&quot;) &gt; -1)){ 
+record.status = &apos;Make Appointment&apos;; 
+
+} else if (status == &apos;New&apos; &amp;&amp; (type == &apos;Restaurant - Data&apos; || type == &apos;Dish Level Photo&apos;) &amp;&amp; (caseRecordType.indexOf(&quot;CD&quot;) &gt; -1 || caseRecordType.indexOf(&quot;SE&quot;) &gt; -1)) { 
+record.status = &apos;In Progress&apos;; 
+}
+result = sforce.connection.update([record]);
+} else if (ownerId != userId) {
+alert(&quot;This case is no longer in the Queue, and is already owned by another agent.&quot;);
+reloadFlag = false;
+}
+} else {
+var record = new sforce.SObject(&quot;Case&quot;);
+record.Id = &quot;{!Case.Id}&quot;;
+
+record.OwnerId = userId;
+
+result = sforce.connection.update([record]);
+}
+if (reloadFlag) {
+reloadParent();
+}</url>
+</WebLink>

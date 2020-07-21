@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Vendor_Score__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Target_Partner__c , &quot;Basic Lead&quot;, 0,&quot;Target Partner&quot;, 3,&quot;SCTP&quot;,5,&quot;Dreamlist&quot;,15,0)  + 
+CASE(Feature_Competitor__c, &quot;No&quot;,0,&quot;Yes&quot;,2,&quot;Top Competitor Account&quot;,4,0)  + 
+(IF( Number_of_Reviews__c  &lt; 10,0,
+IF(AND(ISPICKVAL(External_Rating__c,&quot;1&quot;),Number_of_Reviews__c  &gt;= 10),-5, 
+IF(AND(ISPICKVAL(External_Rating__c,&quot;2&quot;),Number_of_Reviews__c  &gt;= 10),-2, 
+IF(AND(ISPICKVAL(External_Rating__c,&quot;3&quot;),Number_of_Reviews__c  &gt;= 10),0, 
+IF(AND(ISPICKVAL(External_Rating__c,&quot;4&quot;),Number_of_Reviews__c  &gt;= 10),5, 
+IF(AND(ISPICKVAL(External_Rating__c,&quot;5&quot;),Number_of_Reviews__c  &gt;= 10),10,0)
+))))) +
+IF((Number_of_Restaurants__c -1) &gt; 5, 5, 
+IF((Number_of_Restaurants__c -1) &lt;=0,0,
+(Number_of_Restaurants__c -1))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Vendor Score</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

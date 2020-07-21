@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SE_In_Stock1</fullName>
+    <columns>NAME</columns>
+    <columns>Condition__c</columns>
+    <columns>Restaurant_Name__c</columns>
+    <columns>Simcard_Number__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Stock_Item__c.SE_Stock_Item</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>contains</operation>
+        <value>In Stock</value>
+    </filters>
+    <label>SE - In Stock</label>
+    <language>en_US</language>
+    <sharedTo>
+        <roleAndSubordinates>SE_Customer_Care_Team</roleAndSubordinates>
+    </sharedTo>
+</ListView>

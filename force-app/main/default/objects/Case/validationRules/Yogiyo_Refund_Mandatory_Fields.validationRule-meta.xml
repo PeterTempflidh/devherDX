@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Yogiyo_Refund_Mandatory_Fields</fullName>
+    <active>true</active>
+    <description>Yogiyo refund with the type of CSC Refund target, 
+Refund Amount, Bank Name, Bank Account Name
+Bank Account Number should be mandatory
+Mobile Phone Number</description>
+    <errorConditionFormula>RecordType.Id = &quot;01211000000D1fV&quot;  &amp;&amp; ISPICKVAL( Type ,&quot;CSC&quot;) &amp;&amp; (ISBLANK( Bank_Account_Name__c ) || ISBLANK( Bank_Name__c )|| ISBLANK(  Refund_Amount__c ) || ISBLANK(  Bank_Account_Number__c   )|| ISBLANK( Customer_Phone_Number_2__c)  || ISPICKVAL( Target__c, &quot;&quot;)    )</errorConditionFormula>
+    <errorMessage>Missing fields</errorMessage>
+</ValidationRule>

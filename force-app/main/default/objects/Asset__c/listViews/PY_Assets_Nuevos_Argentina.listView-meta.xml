@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PY_Assets_Nuevos_Argentina</fullName>
+    <columns>Account__c</columns>
+    <columns>Opportunity__c</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>Shipping_Address__c</columns>
+    <columns>NAME</columns>
+    <columns>Comment__c</columns>
+    <columns>Takeover_Information__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>NAME</field>
+        <operation>contains</operation>
+        <value>POS</value>
+    </filters>
+    <filters>
+        <field>Account_Country__c</field>
+        <operation>equals</operation>
+        <value>Argentina</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>New - Awaiting Shipping</value>
+    </filters>
+    <label>PY - Assets Nuevos - Argentina</label>
+    <language>en_US</language>
+    <sharedTo>
+        <roleAndSubordinates>PY_Account_Manager_Argentina</roleAndSubordinates>
+        <roleAndSubordinates>PY_Logistics</roleAndSubordinates>
+        <roleAndSubordinates>PY_Management</roleAndSubordinates>
+        <roleAndSubordinates>PY_Sales_Argentina</roleAndSubordinates>
+    </sharedTo>
+</ListView>

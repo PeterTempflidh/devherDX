@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CD_Casos_de_Contabilidad</fullName>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>OWNER_NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.CD_Internal_Case</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Accounting</value>
+    </filters>
+    <filters>
+        <field>CASES.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>CD - Casos de Contabilidad</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>CD_Customer_Care</role>
+        <role>CD_Editorial</role>
+        <role>CD_Management</role>
+        <role>CD_Sales_Management_Colombia</role>
+        <role>CD_Sales_Management_Ecuador</role>
+        <role>CD_Sales_Management_Peru</role>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lead_Research_Agent_1</fullName>
+    <columns>LEAD.COMPANY</columns>
+    <columns>LEAD.PHONE</columns>
+    <columns>Area__c</columns>
+    <columns>LEAD.STATUS</columns>
+    <columns>Target_Partner__c</columns>
+    <columns>LEAD.ZIP</columns>
+    <columns>Competitor_Notes__c</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>LEAD.CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>LEAD.CITY</field>
+        <operation>contains</operation>
+        <value>Medellín</value>
+    </filters>
+    <filters>
+        <field>Area__c</field>
+        <operation>equals</operation>
+        <value>Poblado</value>
+    </filters>
+    <filters>
+        <field>LEAD.ZIP</field>
+        <operation>equals</operation>
+        <value>B1,B2</value>
+    </filters>
+    <filters>
+        <field>LEAD.STATUS</field>
+        <operation>equals</operation>
+        <value>Qualified,Calificado</value>
+    </filters>
+    <label>Lead Research Agent 1</label>
+    <language>es</language>
+    <sharedTo>
+        <role>CD_Editorial</role>
+        <role>CD_Management</role>
+        <role>CD_Restaurant_Operations</role>
+        <role>PY_Restaurant_Operations</role>
+    </sharedTo>
+</ListView>

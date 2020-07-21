@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X3rd_Party_Delivery_Service__c</fullName>
+    <description>Third party delivery service partners for Australia Restaurants</description>
+    <externalId>false</externalId>
+    <label>3rd Party Delivery Service</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Cuisine Courier</fullName>
+                <default>false</default>
+                <label>Cuisine Courier</label>
+            </value>
+            <value>
+                <fullName>Hungerline</fullName>
+                <default>false</default>
+                <label>Hungerline</label>
+            </value>
+            <value>
+                <fullName>One Hour Delivery</fullName>
+                <default>false</default>
+                <label>One Hour Delivery</label>
+            </value>
+            <value>
+                <fullName>Quiqup</fullName>
+                <default>false</default>
+                <label>Quiqup</label>
+            </value>
+            <value>
+                <fullName>Sherpa</fullName>
+                <default>false</default>
+                <label>Sherpa</label>
+            </value>
+            <value>
+                <fullName>Suppertime</fullName>
+                <default>false</default>
+                <label>Suppertime</label>
+            </value>
+            <value>
+                <fullName>Swift</fullName>
+                <default>false</default>
+                <label>Swift</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Gl_Enter_Cusine_when_industry_Restaurant</fullName>
+    <active>true</active>
+    <description>Pedidos Ya migration</description>
+    <errorConditionFormula>(RecordType.DeveloperName =&quot;PY_Lead&quot;
+ || 
+RecordType.DeveloperName =&quot;CD_Lead&quot;)
+&amp;&amp;
+ TEXT(Industry )=&quot;Restaurant&quot;
+&amp;&amp;
+ ISBLANK( Cuisine__c )
+&amp;&amp; 
+NOT( $Permission.Exclude_from_Validation )</errorConditionFormula>
+    <errorDisplayField>Cuisine__c</errorDisplayField>
+    <errorMessage>Please select the cuisine of the Restaurant</errorMessage>
+</ValidationRule>

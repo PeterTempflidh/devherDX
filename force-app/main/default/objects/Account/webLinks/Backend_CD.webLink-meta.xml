@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Backend_CD</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Backend</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/31.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/31.0/apex.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/support/console/31.0/integration.js&quot;)}
+
+var myquery = &quot;SELECT Id, Type,Backend_ID__c FROM Account WHERE Id = &apos;{!Account.Id}&apos; limit 1&quot;; 
+result = sforce.connection.query(myquery); 
+records = result.getArray(&quot;records&quot;); 
+
+if(records[0]) 
+{ 
+var atype=&quot;{!Account.Type}&quot;;  
+var backend =&quot;{!Account.Backend_ID__c}&quot;; 
+} 
+
+
+if (typeof(srcUp) == &apos;function&apos;) {
+	if ((atype==&apos;Branch&apos;) &amp;&amp; (backend != null)){
+	srcUp(&apos;https://domicilios.com/super/establecimientos/edit/{!Account.Backend_ID__c}&apos;); 
+	} 
+	else if((atype==&apos;Client&apos;) &amp;&amp; (backend != null)){
+	srcUp(&apos;https://domicilios.com/facturacion/facturas/cliente/{!Account.Backend_ID__c}&apos;); 
+	}
+
+
+}
+
+else {
+	if ((atype==&apos;Branch&apos;) &amp;&amp; (backend != null)){
+	window.open(&apos;https://domicilios.com/super/establecimientos/edit/{!Account.Backend_ID__c}&apos;); 
+	} 
+	else if((atype==&apos;Client&apos;) &amp;&amp; (backend != null)){
+	window.open(&apos;https://domicilios.com/facturacion/facturas/cliente/{!Account.Backend_ID__c}&apos;); 
+	}
+ }</url>
+</WebLink>

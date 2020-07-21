@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DE_CC_Take_Offline_1</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>CASES.TYPE</columns>
+    <columns>Due_Date__c</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <filterScope>Queue</filterScope>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.DE_Internal_Case</value>
+    </filters>
+    <filters>
+        <field>CASES.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Take Offline</value>
+    </filters>
+    <filters>
+        <field>Due_Date__c</field>
+        <operation>lessOrEqual</operation>
+        <value>TODAY</value>
+    </filters>
+    <label>DE - CC - Take Offline</label>
+    <language>en_US</language>
+    <queue>DE_Take_On_Offline</queue>
+    <sharedTo>
+        <group>DE_Associate</group>
+        <group>DE_Customer_Care</group>
+        <group>DE_Ops_Management</group>
+        <group>DE_Restaurant_Operations</group>
+        <group>DE_Take_Online_Offline</group>
+        <role>DE_Customer_Care</role>
+        <role>DE_Customer_Care_Management</role>
+        <role>DE_Restaurant_Operations</role>
+    </sharedTo>
+</ListView>

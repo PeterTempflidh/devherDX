@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This is used to find records which were not transferred although they were changed. (If the process was temporarily inactive etc.). --></help>
+    <label><!-- Connector: Upsert Forgotten --></label>
+    <name>ON_UpsertForgotten__c</name>
+</CustomFieldTranslation>

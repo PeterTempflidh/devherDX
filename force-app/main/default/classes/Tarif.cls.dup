@@ -1,0 +1,2191 @@
+/**
+ * Created by t.holawala on 28.09.2017.
+ */
+/**
+    @Description: Class representation of the Tarif__c object.
+ */
+global class Tarif {
+    public List<Commission> commissions;
+    public List<Product> products;
+    public List<Product> assets;
+    public List<AddOn> addOns;
+    public List<Booking> bookings;
+    public List<BookingWrapper> availableBookings;
+    public List<String> availableCategories;
+    public List<Tarif_Member__c> tarifMembers;
+    public String id;
+    public boolean isActive;
+    public boolean locked;
+    public boolean productOnly;
+    public String company;
+    public string country;
+    public string name;
+    public string monthYear;
+    public string errorMsg;
+    private String oppRecordTypeId;
+    public Boolean showTimeBasedTier;
+
+    public Tarif(){
+        commissions         = new List<Commission>();
+        products            = new List<Product>();
+        assets              = new List<Product>();
+        addOns              = new List<AddOn>();
+        bookings			= new List<Booking>();
+        availableBookings	= new List<BookingWrapper>();
+        availableCategories = new List<String>();
+        tarifMembers        = new List<Tarif_Member__c>();
+        Date today			= Date.Today();
+        monthYear			= today.month() + '-' + today.year(); // Populate default Month and Year
+        errorMsg			= '';
+    }
+
+    /**
+        @Description: Constructor to intialize the tarif from the tarif Id
+     */
+    public Tarif(String tarifId, String recordTypeId) {
+        commissions         = new List<Commission>();
+        products            = new List<Product>();
+        assets              = new List<Product>();
+        addOns              = new List<AddOn>();
+        bookings			= new List<Booking>();
+        availableBookings	= new List<BookingWrapper>();
+        availableCategories = new List<String>();
+        tarifMembers        = new List<Tarif_Member__c>();
+        Date today			= Date.Today();
+        monthYear			= today.month() + '-' + today.year(); // Populate default Month and Year
+        errorMsg			= '';
+        oppRecordTypeId     = recordTypeId;
+        if(String.isBlank(tarifId)){
+            return;
+        }
+
+        populateTarifWrapper(tarifId);
+    }
+    
+    /**
+        @Description: Populates the values in the wrapper fields from the tarif object.
+     */
+    private void populateTarifWrapper(String tarifId){
+        // Fetch Tarif Object
+        Tarif__c tarifObj = [SELECT Id,Name,Is_Locked__c,Product_Only__c,company__c,Id_country__c,Is_Active__c,categories__c,
+                                    (SELECT Id,Type__c,Id_Tarif_Item__c
+                                        FROM Tarif_Members__r)
+                                FROM Tarif__c
+                                where id = :tarifId];
+
+        // Prepare Tarif Wrapper
+        id            = tarifObj.Id;
+        
+        isActive      = tarifObj.Is_Active__c; 
+        locked        = tarifObj.Is_locked__c;
+        productOnly   = tarifObj.Product_Only__c; 
+        company       = tarifObj.company__c;
+        country       = tarifObj.Id_Country__c;
+        tarifMembers  = tarifObj.Tarif_Members__r;
+        name          = tarifObj.Name;	
+        
+        if(!String.isBlank(tarifObj.Categories__c)) {
+            availableCategories = tarifObj.Categories__c.split(';');
+        }
+    }
+
+    /**
+        @Description: Populates the commission from the tarif Members
+    */
+    public void fetchCommissionsFromTarif(){
+        List<Id> commissionMembersId = new List<Id>();
+ 
+        for(Tarif_Member__c member : tarifMembers){
+            if(member.Type__c == 'Service') {
+                commissionMembersId.add(member.Id_Tarif_Item__c);
+            }
+        }
+
+        List<List_Service_Price__c> commissionList = new List<List_Service_Price__c>();
+        if(commissionMembersId.size() > 0) {
+            commissionList = populateCommissionsMap(commissionMembersId).values();
+        }
+
+        for(List_Service_Price__c commObj : commissionList){
+            Tarif.Commission comm = new tarif.Commission();
+            comm.populateValuesFromObject(commObj,true);
+            commissions.add(comm);
+        }
+    }
+
+    /**
+        @Description: Populates the additional charges and assets from the Tarif Members
+     */
+    public void fetchProductsFromTarif(){
+        List<Id> productIds = new List<Id>();
+
+        for(Tarif_Member__c member : tarifMembers){
+            if(member.Type__c == 'Product') {
+                productIds.add(member.Id_Tarif_Item__c);
+            }
+        }
+
+        List<List_Product_Price__c> productList = new List<List_Product_Price__c>();
+        if(productIds.size() > 0){
+            productList = populateProductMap(productIds).values();
+        }
+
+
+        for(List_Product_Price__c product : productList){
+            if(!product.requires_asset__c && !product.requires_branding__c) {
+                Tarif.Product productWrapper = new Tarif.Product();
+                productWrapper.populateProductFromObject(product, true);
+                products.add(productWrapper);
+            }else{
+                Tarif.Product productWrapper = new Tarif.Product();
+                productWrapper.populateProductFromObject(product, true);
+                assets.add(productWrapper);
+            }
+        }
+    }
+    
+    /**
+        @Description: Populates the Add Ons from the Tarif Members
+     */
+    public void fetchAddOnsFromTarif(){
+        List<Id> addOnIds = new List<Id>();
+
+        for(Tarif_Member__c member : tarifMembers){
+            if(member.Type__c == 'AddOn') {
+                addOnIds.add(member.Id_Tarif_Item__c);
+            }
+        }
+
+        List<List_Add_On__c> addOnList = new List<List_Add_on__c>();
+        if(addOnIds.size() > 0){
+            addOnList = populateAddOnMap(addOnIds).values();
+        }
+
+        for(List_Add_On__c addOn : addOnList){
+            Tarif.AddOn addOnWrapper = new Tarif.AddOn();
+            addOnWrapper.populateAddOnFromObject(addOn,true);
+            addOns.add(addOnWrapper);
+        }
+    }
+
+    /**
+        @Description: Populates the commission from the opportunity line items
+     */
+    public void fetchCommissionsFromLineItems(List<Opportunity_Line_Item__c> lineItems){
+        Map<Id,List_Service_Price__c> lineItemVsCommissionMap = new Map<Id,List_Service_Price__c>();
+        List<Id> commissionIds = new List<Id>();
+        for(Opportunity_Line_Item__c lineItem : lineItems){
+            if(lineItem.Line_Item_Type__c == 'Service'){
+                commissionIds.add(lineItem.Id_List_Service_Price__c);
+            }
+        }
+
+        if(commissionIds.size() > 0){
+            Map<Id,List_Service_Price__c> commissionMap = populateCommissionsMap(commissionIds);
+            for(Opportunity_Line_Item__c lineItem : lineItems){
+                if(lineItem.Line_Item_Type__c == 'Service'){
+                    lineItemVsCommissionMap.put(lineItem.Id,commissionMap.get(lineItem.Id_List_Service_Price__c));
+                }
+            }
+        }
+
+        for(Opportunity_Line_Item__c lineItem : lineItems){
+            if(lineItem.Line_Item_Type__c == 'Service'){
+                Tarif.Commission comm = new tarif.Commission();
+                comm.populateCommissionFromLineItem(lineItem,lineItemVsCommissionMap);
+                for(Tier__c tr : lineItem.Tiers__r){
+                    Tarif.Tier tier = new Tarif.tier();
+                    tier.populateTierFromObject(tr);
+                    comm.tiers.add(tier);
+                }
+                commissions.add(comm);
+            }
+        }
+    }
+
+    /**
+        @Description: Populates the products from the opportunitt line items
+     */
+    public void fetchProductsFromLineItems(List<Opportunity_Line_Item__c> lineItems){
+        Map<Id,List_Product_Price__c> lineItemVsProductMap = new Map<Id,List_Product_Price__c>();
+        List<Id> productIds = new List<Id>();
+        for(Opportunity_Line_Item__c lineItem : lineItems){
+            if(lineItem.Line_Item_Type__c == 'Product' && lineItem.Sub_type__c != 'Premium Placement' && lineItem.Sub_type__c != 'Flat Commission'){
+                productIds.add(lineItem.Id_List_Price_Product__c);
+            }
+        }
+
+        if(productIds.size() > 0){
+            Map<Id,List_Product_Price__c> productMap = populateProductMap(productIds);
+            for(Opportunity_Line_Item__c lineItem : lineItems){
+                if(lineItem.Line_Item_Type__c == 'Product' && lineItem.Sub_type__c != 'Premium Placement'){
+                    lineItemVsProductMap.put(lineItem.Id,productMap.get(lineItem.Id_List_Price_Product__c));
+                }
+            }
+        }
+
+        for(Opportunity_Line_Item__c lineItem : lineItems){
+            if(lineItem.Line_Item_Type__c == 'Product' && lineItem.Sub_type__c != 'Premium Placement' ){
+                if( !lineitem.id_list_price_product__r.requires_asset__c && !lineitem.id_list_price_product__r.requires_branding__c) {
+                    Tarif.Product productWrapper = new Tarif.Product();
+                    productWrapper.populateProductFromLineItem(lineItem, lineItemVsProductMap);
+                    products.add(productWrapper);
+                } else {
+                    Tarif.Product productWrapper = new Tarif.Product();
+                    productWrapper.populateProductFromLineItem(lineItem, lineItemVsProductMap);
+                    assets.add(productWrapper);
+                }
+            }
+        }
+    }
+    
+    /**
+    * @Description: Populates the Add Ons from the opportunity line Items
+    */
+    public void fetchAddOnsFromLineItems(List<Opportunity_Line_Item__c> lineItems){
+    	Map<Id,List_Add_on__c> lineItemVsAddOnMap = new Map<Id,List_Add_On__c>();
+        List<Id> addOnIds = new List<Id>();
+        for(Opportunity_Line_Item__c lineItem : lineItems){
+            if(lineItem.Line_Item_Type__c == 'AddOn'){
+                addOnIds.add(lineItem.Id_List_Add_On__c);
+            }
+        }
+
+        if(addOnIds.size() > 0){
+            Map<Id,List_Add_On__c> addOnMap = populateAddOnMap(addOnIds);
+            for(Opportunity_Line_Item__c lineItem : lineItems){
+                if(lineItem.Line_Item_Type__c == 'AddOn'){
+                    lineItemVsAddOnMap.put(lineItem.Id,addOnMap.get(lineItem.Id_List_Add_On__c));
+                }
+            }
+        }
+        
+        for(Opportunity_Line_Item__c lineItem : lineItems){
+            if(lineItem.Line_Item_Type__c == 'AddOn') {
+                Tarif.AddOn addOnWrapper = new Tarif.AddOn();
+                addOnWrapper.populateAddOnFromLineItem(lineItem,lineItemVsAddOnMap);
+                addOns.add(addOnWrapper);
+            }
+        }
+    }
+    
+    /**
+    * @Description: Populates premium placement bookings from line items
+    */
+    public void fetchBookingsFromLineItems(List<Opportunity_Line_Item__c> lineItems){
+    	bookings	= new List<Booking>();
+    	for(Opportunity_Line_Item__c lineItem : lineItems){
+            if(lineItem.Line_Item_Type__c == 'Product' && lineItem.Sub_type__c == 'Premium Placement') {
+                Tarif.Booking bookingWrapper = new Tarif.Booking();
+                bookingWrapper.populateBookingFromLineItem(lineItem);
+                bookings.add(bookingWrapper);
+            }
+        }
+    }
+    
+    /**
+    * @Description: Fetch the Available bookings for the restaurant for one or multiple platforms
+    */
+    public void fetchAvailableBookings(Opportunity opp,Country__c oppCountry,String monthYear){
+    	availableBookings = new List<BookingWrapper>();
+    	if (String.isBlank(monthYear)){
+            return;
+        }
+        try{
+	        List<String> myyyy 	= monthYear.split('-');
+	        Integer year 		= Integer.valueOf(myyyy[1]);
+	        Integer month 		= Integer.valueOf(myyyy[0]);
+	        Integer days 		= Date.daysInMonth(year, month);
+			
+			// if the month is the current month then consider today's date otherwise take date as 1
+			Date dt = Date.today();
+			Integer currentDay;
+			if(dt.month() == month && dt.year() == year){
+				currentDay = dt.day();
+			}else{
+				currentDay = 1;
+			}
+			
+	        String startdate 	= year + '-' + month + '-' + currentDay;
+	        String enddate 		= year + '-' + month + '-' + days;
+	        
+	        /**
+	        * 	1. If there are multiple platforms for a Account make callout based on the platforms asscoated with Account
+	        *	2. If there are no platforms associated with the account make callout based on the Country
+	        */
+	        
+	        // Fetch the Platform Performance objects. Avoid fetching Burger King and Offline platforms
+	 		List<Platform_Performance__c> platforms = [Select Name,Platform__c,Backend_ID__c,account__r.recordType.developerName 
+	 														from Platform_Performance__c  
+	 														where account__c =: opp.accountId
+	 															AND platform__c !='Burger King' AND platform__c !='Foodora'];
+	 		if(platforms.size() > 0){
+	 			for(Platform_Performance__c platform : platforms){
+	 				BookingWrapper wrapper 	= new BookingWrapper();
+	 				String platformName;
+	 				if(platform.account__r.recordType.developerName == 'Talabat_Account'){
+	 					platformName 	= platform.Name;
+	 				}else{
+	 					platformName	= platform.Platform__c;
+	 				}
+	 				
+	 				wrapper.platform		= platformName;
+	 				wrapper.bookings		= makeHttpCallout(platformName,opp,platform.Backend_ID__c,startDate,endDate);
+	 					
+	 				if(wrapper.bookings != null){
+		 				populateBookingOptionsAndPlatform(wrapper.bookings,platformName,platform.backend_id__c);
+		 				availableBookings.add(wrapper);
+	 				}		
+	 			}
+	 		}else{
+	 			BookingWrapper wrapper 	= new BookingWrapper();
+ 				wrapper.platform		= oppCountry.Name;
+ 				wrapper.bookings		= makeHttpCallout(oppCountry.Name,opp,opp.account.backend_Id__c,startDate,endDate);
+ 				if(wrapper.bookings != null){
+ 					populateBookingOptionsAndPlatform(wrapper.bookings,oppCountry.Name,opp.account.backend_Id__c);
+	 				availableBookings.add(wrapper);
+ 				}	
+	 		}
+   			
+        }catch(Exception e){
+        	availableBookings = new List<BookingWrapper>();
+        	errorMsg = e.getMessage();
+        }
+    }
+    
+    /**
+    * @Description: Create Quote
+    */
+    public String createQuote(Opportunity opp,Country__c opportunityCountry){
+    	Savepoint sp = Database.setSavepoint();
+    	try{
+    		//First Save the Line Items if the Tarif is not Premium Placement
+    		if(this.name != 'Premium Placement'){
+    			save(opp);
+    		}
+    		
+    		//Create Quote
+    		Opportunity_Quote__c quote = initializeQuote(opp);
+    		
+    		// Create Quote Line items
+    		createQuoteLineItems(quote,opp);
+    		
+    		return quote.Id;
+    	}catch(Exception e){
+    		Database.rollBack(sp);
+            throw e;
+    	}
+    }
+    
+
+    /**
+     * @description : This method saves the Tarif
+     */
+    public void Save(Opportunity opp){
+        Savepoint sp = Database.setSavepoint();
+        try{
+            // Update Opporunity with the new Tarif
+            //Create temporary opportunity to not override any cached fields.
+            //SSC-3802: Defect fix - Adding Time_Based_Tier_Type__c mapping
+            Opportunity tempOpportunity = new Opportunity(Id = opp.Id, Id_Tarif__c = this.id,Time_Based_Tier_Type__c=opp.Time_Based_Tier_Type__c);
+            // Set opportunity type
+            setOpportunityType(tempOpportunity);
+            update tempOpportunity;
+
+            // Delete previous Line Items
+            deleteLineItems(opp.id);
+
+            // Validate 
+            validate();
+
+            // Create new Line Items
+            createLineItems(opp);
+
+        }catch(Exception e){
+        	system.debug(e.getStackTraceString());
+            Database.rollBack(sp);
+            throw e;
+        }
+    }
+    
+    /**
+    * @Description: This method pushes the PP line items to MIDAS and inserts line items into the sytem
+    */
+    public void savePPLineItems(Opportunity opp,Country__c opportunityCountry){
+    	Savepoint sp;
+    	try{
+    		// Update Opporunity with the new Tarif
+            opp.Id_Tarif__c = this.Id;
+            
+    		// Set opportunity type
+    		setOpportunityType(opp);
+
+    		// set opportunity name to Premium Placement
+    		opp.name	= 'Premium Placement';
+    		
+    		List<Booking> bookingsToBeInserted = getBookingsToBeInserted(availableBookings);
+    		if(bookings.size() == 0 && bookingsToBeInserted.size() == 0){
+    			throw new TarifException('Please book the zip codes before saving');
+    		}
+    		
+    		if(bookingsToBeInserted.size() == 0){
+    			return;
+    		}
+    			
+    		List<Opportunity_Line_Item__c> lineItemsToBeInserted = pushBookingsAndCreateLineItems(opp,bookingsToBeInserted,monthYear);
+    		
+    		//Before inserting data make call for fetching the available bookings
+    		if(!Test.isRunningTest()){
+    			fetchAvailableBookings(opp,opportunityCountry,monthYear);
+    		}
+    		sp = Database.setSavepoint();
+    		// Delete previous non premium placement Line Items 
+            deleteLineItems(opp.id);
+    		update opp;
+    		insert lineItemsToBeInserted;
+    		if(!Test.isRunningTest()){
+    			List<Opportunity_line_item__c> lineItemsList = populateLineItems(opp.id);
+    			fetchBookingsFromLineItems(lineItemsList);
+    		}
+    	}catch(Exception e){
+    		system.debug('Stack Trace ' + e.getStackTraceString());
+    		errorMsg = 'Error: ' + e.getMessage();
+    		fetchAvailableBookings(opp,opportunityCountry,monthYear);
+    		if(sp != null){
+    			Database.rollback(sp);
+    		}
+    	}
+    }
+
+	/**
+    * @Description: Set the opportunity type based on commissions and products presence
+    */
+    public void setOpportunityType(Opportunity opp){
+    	if(commissions.size() > 0){
+    		opp.Type = 'Contract Only';
+    		if(products.size() > 0 || addOns.size() > 0){
+    			opp.Type = 'Contract & Product';
+    		}
+    	}else{
+    		opp.Type = 'Product Only';
+    	}
+    }
+    
+    /**
+    * @Description: Make http callout to MIDAS
+    */
+	public static List<Booking> makeHttpCallout(String code,Opportunity opp,String backendId,String startDate,String endDate){
+		List<Booking> bookings = new List<Booking>();
+		HttpResponse res = new HttpResponse();
+		Http http = new Http();
+ 		HttpRequest req 
+            	= LibWebserviceHelper.constructMidasHttpRequest('PP', 
+					'/restaurants/id:' + backendId + '/postcodes/availability?availability_date_end=' + endDate + '&availability_date_begin=' + startDate, 
+					code,'GET', null);
+				
+		// Log
+		String logName = code+'fetchBooking';
+		LoggingUtility.createLog(logName,'MIDAS','FETCH BOOKINGS',opp.Id);
+		LoggingUtility.log(logName,'Code : ' + code + '\nBackendId : ' + backendId + '\nstart date : ' + startDate);
+		LoggingUtility.log(logName,'\nend date : ' + endDate + '\nType : GET' );
+		if(req != null){
+			try{
+				LoggingUtility.captureTimeStamp(logName,'Begin');
+				res = http.send(req);
+				LoggingUtility.captureTimeStamp(logName,'End');
+				LoggingUtility.log(logName,'\nResponse Body : ' + res.getBody() + 'Response status code : ' + res.getStatusCode());
+	            if (res.getStatusCode() == 200) {
+	                PremiumPlacemntWrapper wrapper = (PremiumPlacemntWrapper)JSON.deserialize(res.getBody(), PremiumPlacemntWrapper.class);
+	                if(wrapper.data.postcodes.size() > 0){
+	                	bookings = wrapper.data.postcodes;
+	                }
+	                bookings = shortListValidBookings(bookings);
+	                return bookings;
+	            }else {
+	            	System.debug('Error from MIDAS ' + res.getBody());
+	                LoggingUtility.logError(logName,'Error in Midas ' + res.getBody());
+	                return null;
+	            }
+			}catch(CalloutException e){
+				LoggingUtility.captureTimeStamp(logName,'End');
+            	LoggingUtility.logError(logName,e.getMessage());
+            	throw e;
+			}
+		}else{
+			throw new TarifException('Something wrong with the configurations');
+		}
+	}
+	
+	/**
+	@Description: This method shorlists the booking if the status is Open
+	*/
+	private static List<Booking> shortListValidBookings(List<Booking> bookings){
+		List<Booking> finalBookings = new List<Booking>();
+		for(Booking book : bookings){
+			if(book.status == 'Open'){
+				finalBookings.add(book);
+			}
+		}
+		
+		return finalBookings;
+	}
+	
+	/**; 
+	* @Description: Poluates the list of packages
+	*/
+	public static void populateBookingOptionsAndPlatform(List<Booking> bookings,String platform,String backendId){
+		for(Booking booking : bookings){
+			booking.packageOptions = new List<CtrOpportunityLineItems.Option>();
+			for(RestaurantPackage pack : booking.restaurant_packages){
+				booking.packageOptions.add(new CtrOpportunityLineItems.Option(pack.description,pack.description,pack.is_default));
+			}			
+			booking.platform 	= platform;
+			booking.booked		= false;
+			booking.restaurantPosition	= '';
+			booking.discount	= '';
+			booking.totalAmount	= 0;
+			booking.packageId	= '';
+			booking.platformBackendId = backendId;
+		}
+	}
+	
+    /**
+     * @description : This Method deletes all the line items assciociated with the opportunity
+     */
+    public static void deleteLineItems(String oppId){
+    	List<Opportunity_Line_Item__c> lineItems = [SELECT Id,(Select Id from Tiers__r)
+                                                        FROM Opportunity_Line_Item__c
+                                                        where Id_Opportunity__c =: oppId
+                                                        	AND Sub_type__c	!= 'Premium Placement'];                                                                                      
+		
+		// Delete Tiers
+		List<Tier__c> tiersToBeDeleted = new List<Tier__c>(); 
+		for(Opportunity_line_item__c lineItem : lineItems){
+			if(lineItem.tiers__r.size() > 0)
+				tiersToBeDeleted.addAll(lineItem.tiers__r);
+		}
+		
+		if(tiersToBeDeleted.size() > 0)
+			delete tiersToBeDeleted;
+		
+		// Delete the line Items
+        if(lineItems.size() > 0){
+            delete lineItems;
+        }
+    }
+    
+    /**
+     * @Description: This method validates the Commissions,Products and Additonal charges
+     */
+     private void validate(){
+		validateEmptyLineItems();
+     	validateCommissions();
+     	validateProducts();
+        validateAssets();
+     	validateAddOns();	
+     }
+     
+     /**
+     * @Description: validate that there should be an additional charge or a commission present before saving
+     */ 
+     public void validateEmptyLineItems(){
+     	if(commissions.size() == 0 && products.size() == 0 && addOns.size() == 0 && assets.size() == 0){
+     		throw new TarifException(Label.Tarif_additional_charges_Exception);
+     	}
+     }
+     
+     /**
+     * @Description: This method validates the Commissions
+     */
+	 private void validateCommissions(){
+	 	validateStartDate(commissions);
+	 	validateBlankValues(commissions);
+	 	checkForDuplicateStartDates(commissions);
+	 	validateTiers(commissions);
+	 }
+	 
+	 /**
+     * @Description: This method validates the Products
+     */
+     private void validateProducts() {
+         Business_Config__c flatCommissionTarifRule = LibBusinessConfig.getBusinessConfigFromRuleMap('addOpportunityLineItems', oppRecordTypeId, 'FlatCommissionTarif');
+         if(flatCommissionTarifRule != null && this.name == flatCommissionTarifRule.Business_Rule_Value__c) {
+             checkForBlankTotalAmount(products);
+         } else {
+             checkForBlankQuantities(products);
+         }
+	 }
+
+    /**
+    *
+    */
+    private void validateAssets(){
+        checkForDeliverySourceGrid(assets);
+    }
+	 
+	 /**
+     * @Description: This method validates the Add Ons
+     */
+	 private void validateAddOns(){
+	 	
+	 }
+	 
+	 /**
+	 * @Description: craete the line items
+	 */
+	 public void createLineItems(Opportunity opp){
+	 	List<Opportunity_Line_Item__c> lineItemsToBeInserted = new List<Opportunity_Line_Item__c>();
+	 	
+	 		
+        List<TierOpportunityLineItemWrapper> tierLineItemWrapperList = createLineItemsFromCommissions(commissions,opp);
+        for(TierOpportunityLineItemWrapper wrapper : tierLineItemWrapperList){
+            lineItemsToBeInserted.add(wrapper.lineItem);
+        }
+        lineItemsToBeInserted.addAll(createLineItemsFromProducts(products,opp, this.name));
+        lineItemsToBeInserted.addAll(createLineItemsFromAddOns(addOns,opp));
+        lineItemsToBeInserted.addAll(createLineItemsFromProducts(assets,opp));
+
+        // Insert the line items
+        insert lineItemsToBeInserted;
+
+        // Insert the Tiers once the line items for commissions are inserted
+        List<Tier__c> tiersTobeInserted = new List<Tier__c>();
+        for(TierOpportunityLineItemWrapper wrapper : tierLineItemWrapperList){
+            for(Tier__c tr : wrapper.tiers){
+                tr.Id_Opportunity_line_item__c = wrapper.lineItem.id;
+                tiersTobeInserted.add(tr);
+            }
+        }
+        insert tiersTobeInserted;
+	 }
+	 
+	 /**
+	 *	@Description: Initialize Opportunity quote data
+	 */ 
+	 private static Opportunity_Quote__c initializeQuote(Opportunity opp){
+	 	Opportunity_Quote__c quote = new Opportunity_Quote__c();
+	 	quote.Id_tarif__c 	= opp.Id_Tarif__c;
+	 	quote.recordtypeId 	= LibRecordTypeHelper.getRecordTypeValue(opp.company_code__c + '_Opportunity_Quote');
+		quote.Id_Opportunity__c = opp.Id;
+		quote.CurrencyISOCode = opp.CurrencyISOCode;
+		quote.status__c = 'Approved';
+  		quote.Id_Account__c = opp.accountId;
+		insert quote;
+		return quote;
+	 }
+
+    /*
+    *   @Description: Used as wrapper type for sorting approval rule records
+    */ 
+    private class RuleWrapper implements Comparable {
+        Approval_Rule__c rule;
+        Integer weight;
+        
+        public Integer compareTo(Object compareTo) {
+            RuleWrapper aHW = (RuleWrapper)compareTo;
+            
+            Integer returnValue = 0;
+            
+            if ( weight > aHW.weight) {
+                returnValue = -1;
+            } else if ( weight < aHW.weight) {
+                returnValue = 1;
+            } else {
+                if(rule.Level2_Percentage__c < aHW.rule.Level2_Percentage__c) {
+                    returnValue = -1;
+                } else if(rule.Level2_Percentage__c > aHW.rule.Level2_Percentage__c) {
+                    returnValue = 1;
+                }
+            }
+            return returnValue;
+        }
+    }
+    
+    
+    @testVisible
+    private static void assignLevel1Approvers(Opportunity_Quote_Line_Item__c lineItem, RuleWrapper wRule) {
+        lineItem.Approval_Rule__c = wRule.rule.Id;
+        lineItem.Approver__c = wRule.rule.Level1_Approver__c;
+        lineItem.Approver2__c = (wRule.rule.Level1_Approver2__c != null) ? wRule.rule.Level1_Approver2__c : wRule.rule.Level1_Approver__c;
+        lineItem.Approver3__c = (wRule.rule.Level1_Approver3__c != null) ? wRule.rule.Level1_Approver3__c : wRule.rule.Level1_Approver__c;
+        lineItem.Approver4__c = (wRule.rule.Level1_Approver4__c != null) ? wRule.rule.Level1_Approver4__c : wRule.rule.Level1_Approver__c;
+    }
+    
+    @testVisible
+    private static void assignLevel2Approvers(Opportunity_Quote_Line_Item__c lineItem, RuleWrapper wRule) {
+        lineItem.Approval_Rule__c = wRule.rule.Id;
+        lineItem.Approver__c = wRule.rule.Level2_Approver__c;
+        lineItem.Approver2__c = (wRule.rule.Level2_Approver2__c != null) ? wRule.rule.Level2_Approver2__c : wRule.rule.Level2_Approver__c;
+        lineItem.Approver3__c = (wRule.rule.Level2_Approver3__c != null) ? wRule.rule.Level2_Approver3__c : wRule.rule.Level2_Approver__c;
+        lineItem.Approver4__c = (wRule.rule.Level2_Approver4__c != null) ? wRule.rule.Level2_Approver4__c : wRule.rule.Level2_Approver__c;
+    }
+
+    @testVisible
+    private static void assignAddOnApprovers(Opportunity_Quote_Line_Item__c lineItem, RuleWrapper wRule) {
+        lineItem.Approval_Rule__c = wRule.rule.Id;
+        lineItem.Approver__c = wRule.rule.AddOn_Approver__c;
+        lineItem.Approver2__c = (wRule.rule.AddOn_Approver2__c != null) ? wRule.rule.AddOn_Approver2__c : wRule.rule.AddOn_Approver__c;
+        lineItem.Approver3__c = (wRule.rule.AddOn_Approver3__c != null) ? wRule.rule.AddOn_Approver3__c : wRule.rule.AddOn_Approver__c;
+        lineItem.Approver4__c = (wRule.rule.AddOn_Approver4__c != null) ? wRule.rule.AddOn_Approver4__c : wRule.rule.AddOn_Approver__c;
+    }
+    
+    /**
+    *   @Description: Assigns approvers to quote line items based on approval rules - if line items has an approver assigned it will be submitted for approval
+    */ 
+    public static void assignApprovalRules(List<Opportunity_Quote_Line_Item__c> lineItems, Id AccountId, Map<Opportunity_Quote_Line_Item__c, Tier__c> minTierPercentagePerLineItem ) {
+        Set<Id> commissions = new Set<Id>();
+        Set<Id> products = new Set<Id>();
+        Set<Id> addOns = new Set<Id>();
+        Set<string> countries = new Set<string>();
+        Set<string> platforms = new Set<string>();
+        Set<string> companyCodes = new Set<string>();
+        Set<Id> oppQuoteIds = new Set<Id>();
+        Set<Id> accountIds = new Set<Id>();
+        // assign approval rules
+        for(Opportunity_Quote_Line_Item__c lineItem : lineItems) {
+            if(lineItem.Id_List_Service_Price__c != null) {
+                commissions.add(lineItem.Id_List_Service_Price__c);
+            }
+            if(lineItem.Id_List_Product_Price__c != null) {
+                products.add(lineItem.Id_List_Product_Price__c);
+            }
+            if(lineItem.Id_List_Add_On__c != null) {
+                addOns.add(lineItem.Id_List_Add_On__c);
+            }
+
+            oppQuoteIds.add(lineItem.Id_Opportunity_Quote__c);
+            if(AccountId != null) {
+                accountIds.add(AccountId);
+            }
+        }
+
+        // get all country and company data
+        Map<Id, Opportunity_Quote__c> quotesMap = OpportunityQuoteSelector.getQuotesMap(oppQuoteIds);
+        Map<Id, AddressDetail__c> addresses = AddressDetail_Selector.getAccountIdREstaurantAddressMap(accountIds);
+        if(quotesMap != null && !quotesMap.isEmpty()) {
+            for(Opportunity_Quote__c q : quotesMap.values()) {
+                companyCodes.add(q.Id_Account__r.Company_Code__c);
+                platforms.add(q.Id_Account__r.Platform__c);
+                countries.add(q.Id_Account__r.Record_Country__c);
+            }
+        }
+
+        Set<Id> lineItemIds = new Set<Id>();
+        for(Opportunity_Quote_Line_Item__c li : lineItems) {
+            lineItemIds.add(li.Id);
+        }
+
+        // get all approval rules for this country/region/city/market
+        List<Approval_Rule__c> rules = ApprovalRuleSelector.getApprovalRules(commissions, products, addOns, countries, companyCodes, platforms);
+
+        List<RuleWrapper> weightedRules = new List<RuleWrapper>();
+        if(rules != null && !rules.isEmpty()) {
+            for(Approval_Rule__c rule : rules) {
+                RuleWrapper wRule = new RuleWrapper();
+                wRule.rule = rule;
+                wRule.weight = (Integer)rule.Weight__c;
+                weightedRules.add(wRule);
+            }
+        }
+        // this will put most specific rules on the top
+        weightedRules.sort();
+
+        // find rules that combine addon and commission
+        Map<Id, Approval_Rule__c> addOnsForApproval = new Map<Id, Approval_Rule__c>();
+        for(RuleWrapper wRule : weightedRules) {
+            if(wRule.rule.Commission__c != null && wRule.rule.Add_On__c != null ) {
+                // check that this quote has both commission and addon
+                boolean comm = false;
+                boolean addon = false;
+                for(Opportunity_Quote_Line_Item__c lineItem : lineItems) {
+                    if(lineItem.Id_List_Service_Price__c == wRule.rule.Commission__c) {
+                            // check commission values for this rule
+                        // and then set to true if conditions apply
+                        if(lineItem.Commission_In_Percentage__c < wRule.rule.Level2_Percentage__c || lineItem.Commission_In_Percentage__c < wRule.rule.Level1_Percentage__c ||
+                           lineItem.Commission_Per_Order__c < wRule.rule.Level2_Value__c || lineItem.Commission_Per_Order__c < wRule.rule.Level1_Value__c
+                          ) {
+                              comm = true;
+                        }
+                    }
+                    if(lineItem.Id_List_Add_On__c == wRule.rule.Add_On__c) {
+                        if(wRule.rule.Applies_To__c != null) {
+                            addon = true;
+                        }
+                    }
+                }
+                // if this order has commission which values fall within the rule for addon/commission combination
+                // set approval rule for the addon
+                if(comm && addon) {
+                    //Opportunity_Quote_Line_Item__c addOn = null;
+                    for(Opportunity_Quote_Line_Item__c lineItem : lineItems) {
+                        if(lineItem.Id_List_Add_On__c == wRule.rule.Add_On__c  && wRule.rule.Applies_To__c.contains('Add-ons')) {
+                            assignAddOnApprovers(lineItem, wRule);
+                        }
+                        if(lineItem.Id_List_Service_Price__c == wRule.rule.Commission__c && wRule.rule.Applies_To__c.contains('Commission')) {
+                            lineItem.Approval_Rule__c = wRule.rule.Id;
+                            if(lineItem.Commission_In_Percentage__c < wRule.rule.Level2_Percentage__c) {
+                                assignLevel2Approvers(lineItem, wRule);
+                            } else if(lineItem.Commission_In_Percentage__c < wRule.rule.Level1_Percentage__c) {
+                                assignLevel1Approvers(lineItem, wRule);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+        set<String> stCity = new set<String>();
+        set<String> stVerticalSegment = new set<String>();
+      
+        for(RuleWrapper wRule : weightedRules) {
+            Approval_Rule__c rule = wRule.rule;
+            stCity = new set<String>();
+            if(rule.City__c != null){
+                stCity.addAll(rule.City__c.toUpperCase().split(','));
+            }
+
+            stVerticalSegment = new set<String>();
+            if(rule.Vertical_Segment__c != null){
+                stVerticalSegment.addAll(rule.Vertical_Segment__c.split(';'));
+            }
+
+            for(Opportunity_Quote_Line_Item__c lineItem : lineItems) {
+                Opportunity_Quote__c quote = quotesMap.get(lineItem.Id_Opportunity_Quote__c);
+                if(lineItem.Approval_Rule__c == null) {
+                    AddressDetail__c addr = addresses.get(quote.Id_Account__c);
+                    if(addr == null) {
+                        addr = new AddressDetail__c();
+                    }
+                    if(   (lineItem.Id_List_Service_Price__c == rule.Commission__c || rule.Commission__c == null)
+                       && (lineItem.Id_List_Product_Price__c == rule.Product__c || rule.Product__c == null)
+                       && (lineItem.Id_List_Add_On__c == rule.Add_On__c || rule.Add_On__c == null)
+                       && (addr.Account__r.Record_Country__c == rule.Country__r.Name || rule.Country__c == null)
+                       && (rule.City__c == null || (addr.Global_City_Label__c != null  && stCity.contains(addr.Global_City_Label__c.toUpperCase()) ))
+                       && (quote.Id_Account__r.Platform__c == rule.Platform__c || rule.Platform__c == null)
+                       && (quote.Id_Account__r.Company_Code__c == rule.Company_Code__c || rule.Company_Code__c == null)
+                        && (rule.Vertical_Segment__c == null || (quote.Id_Account__r.Vertical_Segment__c != null  && stVerticalSegment.contains(quote.Id_Account__r.Vertical_Segment__c) ))
+                            ) {
+                        // we have a rule match, now we have to compare type and figure out appropriate approver
+                        // Addons are assigned to approver 1 always
+                        if(  lineItem.Id_List_Add_On__c != null && wRule.rule.Applies_To__c != null && wRule.rule.Applies_To__c.contains('Add-ons')) {
+                            // assign rule if its applicable to this line item type
+                            assignAddOnApprovers(lineItem, wRule);
+                        } else if (lineItem.Id_List_Service_Price__c != null && wRule.rule.Applies_To__c != null && wRule.rule.Applies_To__c.contains('Commissions')) {
+                            // logic for commissions
+                            if(lineItem.Commission_In_Percentage__c >= 0 && lineItem.Commission_Per_Order__c == null) {
+                                if(lineItem.Commission_In_Percentage__c < wRule.rule.Level2_Percentage__c) {
+                                    assignLevel2Approvers(lineItem, wRule);
+                                } else if(lineItem.Commission_In_Percentage__c < wRule.rule.Level1_Percentage__c) {
+                                    assignLevel1Approvers(lineItem, wRule);
+                                }
+                            } else if (minTierPercentagePerLineItem.containsKey(lineItem)) {
+                                Tier__c minTier = minTierPercentagePerLineItem.get(lineItem);
+                                if(minTier.Commission_in_percentage__c >= 0 && (minTier.Commission_per_order__c == 0 || minTier.Commission_per_order__c == null)) {
+                                    if(minTier.Commission_in_percentage__c < wRule.rule.Level2_Percentage__c) {
+                                        assignLevel2Approvers(lineItem, wRule);
+                                    } else if (minTier.Commission_in_percentage__c < wRule.rule.Level1_Percentage__c) {
+                                        assignLevel1Approvers(lineItem, wRule);
+                                    }
+                                } else {
+                                    if(minTier.Commission_per_order__c < wRule.rule.Level2_Value__c) {
+                                        assignLevel2Approvers(lineItem, wRule);
+                                    } else if (minTier.Commission_per_order__c < wRule.rule.Level1_Value__c) {
+                                        assignLevel1Approvers(lineItem, wRule);
+                                    }
+                                }
+                                
+                            } else {
+                                if(lineItem.Commission_Per_Order__c < wRule.rule.Level2_Value__c) {
+                                    assignLevel2Approvers(lineItem, wRule);
+                                } else if(lineItem.Commission_Per_Order__c < wRule.rule.Level1_Value__c) {
+                                    assignLevel1Approvers(lineItem, wRule);
+                                }
+                            }
+                        } else if(lineItem.Id_List_Product_Price__c != null && wRule.rule.Applies_To__c != null && wRule.rule.Applies_To__c.contains('Products')) {
+                            // logic for products
+                            // calculate product discount first
+                            // calculate approver based on product discount
+                            // all combinations of percentage and value discounts are taken into consideration
+                            String discount = lineItem.Discount__c;
+                            Decimal discountValue = (discount.contains('%')) ? 0 : Decimal.valueOf(discount);
+                            Decimal discountPercent = (discount.contains('%')) ? Decimal.valueOf(discount.replace('%', '')) : 0;
+
+                            if(discountPercent > 0)
+                                discountValue = lineItem.Listed_Price__c * (discountPercent / 100);
+                            if(discountPercent == 0)
+                                discountPercent = discountValue * 100 / (discountValue + lineItem.Total_Amount__c);
+
+                            if(wRule.rule.Level2_Value__c > 0 && discountValue > wRule.rule.Level2_Value__c) {
+                                assignLevel2Approvers(lineItem, wRule);
+                            } else if (wRule.rule.Level1_Value__c > 0 && discountValue > wRule.rule.Level1_Value__c) {
+                                assignLevel1Approvers(lineItem, wRule);
+                            } else if (wRule.rule.Level2_Percentage__c > 0 && discountPercent > wRule.rule.Level2_Percentage__c) {
+                                assignLevel2Approvers(lineItem, wRule);
+                            } else if (wRule.rule.Level1_Percentage__c > 0 && discountPercent > wRule.rule.Level1_Percentage__c) {
+                                assignLevel1Approvers(lineItem, wRule);
+                            }
+                            if(lineItem.Approver__c != null) {
+                                lineItem.Approval_Rule__c = rule.Id;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+    * @Description: This method checks if the required addon is added to the quote. Required addon is specified in DishLevelCheck business process
+    */
+    @testVisible
+    private static void checkShopVertical(Opportunity opp, List<Opportunity_Line_Item__c> oppLineItems) {
+        Map<string, Map<string, Business_Config__c>> process = LibBusinessConfig.getGenericProcessData('DishLevelCheck');
+        if (process == null || opp.RecordTypeId == null) { return; }
+        String recordTypeName = LibRecordTypeHelper.getRecordTypeValue(opp.RecordTypeId);
+        recordTypeName = !recordTypeName.equals('Chain_Opportunity') || oppLineItems.isEmpty() ? recordTypeName
+                : LibRecordTypeHelper.getRecordTypeValue(oppLineItems.get(0).RecordTypeId).substringBefore('_') + '_Opportunity';
+        Map<string, Business_Config__c> configMap = process.get(recordTypeName);
+        if(configMap != null && !configMap.isEmpty() && configMap.get((String)opp.get((String)configMap.get('OpportunityFieldName').Business_Rule_Value__c)) != null) {
+            Boolean hasDishLevel = false;
+            for(Opportunity_Line_Item__c lineItem : oppLineItems) {
+                if(lineItem.Id_List_Price_Product__r.Product_Type__c == configMap.get((String)opp.get((String)configMap.get('OpportunityFieldName').Business_Rule_Value__c)).Business_Rule_Value__c) {
+                    hasDishLevel = true;
+                    break;
+                }
+            }
+            
+            if(opp.Account.Vertical__c == 'Shop' && hasDishLevel == false) {
+                throw new TarifException('\n' + Label.Dish_Level_Add_Charge_Missing);
+            }
+        }
+    }
+    
+    /**
+    * @Description: Validation - Commission Fee and Commission base should go together can't go separate.
+    * @param Opportunity opp
+    * @param Opportunity_Line_Item__c oppLineItems
+    */
+    @testVisible
+    private static void checkCommissionFee(Opportunity opp, List<Opportunity_Line_Item__c> oppLineItems) {
+        Boolean hasLogisticsFee = false;
+        Boolean hasCommissionFee = false;
+        Boolean hasCommissionBase = opp.Account.Commission_Base__c != null;
+        Map<string, Map<string, Business_Config__c>> process = LibBusinessConfig.getGenericProcessData('CommissionFeeCheck');
+        Map<string, Business_Config__c> configMap = (process != null) ? process.get(opp.RecordType.DeveloperName) : null;
+        
+        if(configMap == null || !configMap.containsKey('Enable')) {
+            return;
+        }
+
+        if (Boolean.valueOf(configMap.get('Enable').Business_Rule_Value__c)) {
+            for(Opportunity_Line_Item__c lineItem : oppLineItems) {
+                if(lineItem.Id_List_Service_Price__c == null) {
+                    continue;
+                }
+
+                if(lineItem.Id_List_Service_Price__r.Service_Type__c == 'Commission Fee') {
+                    hasCommissionFee = true;
+                } else if(lineItem.Id_List_Service_Price__r.Service_Type__c == 'Logistics Fee'){
+                    hasLogisticsFee = true;
+                }
+            }
+        }
+
+        if((hasLogisticsFee || hasCommissionFee) && ((hasCommissionFee && !hasCommissionBase) || (!hasCommissionFee && hasCommissionBase))){
+            throw new TarifException('\n' + Label.CZ_Commission_Fee_Check_Error_Message);
+        }
+    }
+
+    /**
+    * @Description: Validation - Checks that Additional Menu Fee is accompanied by Commission Fee or Logistics Fee
+    * @param Opportunity opp
+    * @param Opportunity_Line_Item__c oppLineItems
+    */
+    @testVisible
+    private static void checkAdditionalMenuFee(Opportunity opp, List<Opportunity_Line_Item__c> oppLineItems) {
+        Boolean doCheck = true;
+        Boolean hasAdditionalFee = false;
+        Boolean hasLogisticsFee = false;
+        Boolean hasCommissionFee = false;
+        Map<string, Map<string, Business_Config__c>> process = LibBusinessConfig.getGenericProcessData('AdditionalMenuFeeCheck');
+        Map<string, Business_Config__c> configMap = (process != null) ? process.get(opp.RecordType.DeveloperName) : null;
+        
+        if (configMap == null || !configMap.containsKey('BusinessType')) {
+            return;
+        }
+
+        if(!configMap.get('BusinessType').Business_Rule_Value__c.contains(opp.Business_Type__c)) {
+            return;
+        }
+
+        for(Opportunity_Line_Item__c lineItem : oppLineItems) {
+            if(lineItem.Id_List_Service_Price__c == null) {
+                continue;
+            }
+            if(lineItem.Id_List_Service_Price__r.Service_Type__c == 'Commission Fee') {
+                hasCommissionFee = true;
+            } else if(lineItem.Id_List_Service_Price__r.Service_Type__c == 'Logistics Fee') {
+                hasLogisticsFee = true;
+            } else if(lineItem.Id_List_Service_Price__r.Service_Type__c == 'Additional Menu Fee') {
+                hasAdditionalFee = true;
+            }
+        }
+
+        if(hasAdditionalFee && !(hasCommissionFee || hasLogisticsFee)) {
+            throw new TarifException('\n' + Label.CZ_Additional_Fee_Check_Error_Message);
+        }
+    }
+	 
+	 /**
+	 * @Description: This method creates all the quote line items from the opportunity line items
+	 */
+	 public static void createQuoteLineItems(Opportunity_Quote__c quote,Opportunity opp){
+	 	List<Opportunity_Quote_Line_Item__c> quoteLineItems = new List<Opportunity_Quote_Line_Item__c>();
+	 	List<TierQuoteLineItemWrapper> quoteLineItemWrapper = new List<TierQuoteLineItemWrapper>();
+	 	
+	 	// Fetch all the Line items associated with the Opportunity
+	 	List<Opportunity_Line_Item__c> lineItems = new List<Opportunity_Line_Item__c>();
+        lineItems = populateLineItems(opp.id);
+
+        Map<Opportunity_Quote_Line_Item__c, Tier__c> minTierPercentagePerLineItem = new Map<Opportunity_Quote_Line_Item__c, Tier__c>();
+                    
+        for(Opportunity_Line_Item__c lineItem : lineItems){
+        	TierQuoteLineItemWrapper wrapper 				= new TierQuoteLineItemWrapper();
+        	wrapper.lineItem								= mapOpportuntiyLineItemToQuoteLineItem(lineItem);
+        	wrapper.lineItem.Id_Opportunity_Quote__c 		= quote.Id;
+		 	wrapper.lineItem.recordtypeId					= LibRecordTypeHelper.getRecordTypeValue(opp.Company_Code__c + '_Opportunity_Quote_Line_Item');
+	 		wrapper.lineItem.CurrencyIsoCode				= opp.CurrencyIsoCode;
+	 		if(lineItem.tiers__r.size() > 0){
+	 			List<Tier__c> tiersToBeadded = new List<Tier__c>();
+	 			for(Tier__c tier : lineItem.tiers__r){
+	 				Tier__c quoteTier = tier.clone();
+	 				quoteTier.Id_opportunity_line_item__c = null;
+					tiersToBeadded.add(quoteTier);
+
+                    Tier__c foundTier = minTierPercentagePerLineItem.get(wrapper.lineItem);
+                    if(foundTier == null) {
+                        minTierPercentagePerLineItem.put(wrapper.lineItem, quoteTier);
+                    } else {
+                        if(quoteTier.Commission_per_order__c < foundTier.Commission_per_order__c || quoteTier.Commission_in_percentage__c < foundTier.Commission_in_percentage__c) {
+                            minTierPercentagePerLineItem.put(wrapper.lineItem, quoteTier);
+                        }
+                    }
+	 			}
+	 			wrapper.tiers =	tiersToBeadded; 
+	 		}
+            quoteLineItems.add(wrapper.lineItem);
+        	quoteLineItemWrapper.add(wrapper);
+        }
+
+        assignApprovalRules(quoteLineItems, opp.AccountId, minTierPercentagePerLineItem);
+
+        checkShopVertical(opp, lineItems);
+        checkCommissionFee(opp, lineItems);
+        checkAdditionalMenuFee(opp, lineItems);
+
+        insert quoteLineItems;
+        
+        // Insert the tiers once the quote line items are inserted
+        List<Tier__c> tiersToBeInserted = new List<Tier__c>();
+        for(TierQuoteLineItemWrapper wrapper : quoteLineItemWrapper){
+        	for(Tier__c tier : wrapper.tiers){
+        		tier.Id_Opportunity_Quote_Line_item__c = wrapper.lineItem.id;
+        		tiersToBeInserted.add(tier);
+        	} 
+        	
+        }
+        if(tiersToBeInserted.size() > 0){
+        	insert tiersToBeInserted;
+        }
+ 
+         // populate the tempplate name
+         string recordTypeDevName;
+         if(opp.account.RecordType.developerName == null){
+             Account acc = ClsAccountSelector.findAccountById(opp.AccountId);
+             recordTypeDevName = acc.RecordType.DeveloperName;
+         }else{
+             recordTypeDevName = opp.account.RecordType.developerName;
+         }
+         ClsQuoteProcessor processor = new ClsQuoteProcessor(opp, quote,recordTypeDevName,quoteLineItems);
+         Opportunity_Quote__c quoteTemp = new Opportunity_Quote__c (Template_Name__c = processor.vfTemplateName, id = quote.id,All_Records_Inserted__c=true);
+         // quote.status__c           = 'Approved';       // Set the status as Drat by default for germany
+         update quoteTemp;
+        
+	 }
+	 
+	 /**
+	 * @Description: This method popualtes the opportunity based on Opportunity Id
+	 */
+	 public static List<Opportunity_line_item__c> populateLineItems(String oppId){
+	 	return [SELECT Ad_Sales_Type__c,Booking_Api_Id__c,Category_Id__c,Category__c,City_ZipCode__c,Commission_In_Percentage__c,Commission_Per_Order__c,
+                            Commission_Type__c,Deposit_Method__c,Deposit__c,Design_Note__c,Discount__c,District_Id__c,District__c,End_Date__c,Has_Related_Tarif__c,
+                            Id,Id_List_Price_Product__c,Id_List_Service_Price__c,Id_Opportunity__c,Id_Replacement_Order__c,index__c,Installments__c,IsTiered__c,
+                            Line_Item_Type__c,Listed_Price__c,Max__c,Min__c,Name,Number_of_Copies__c,OldOppQuoteLineId__c,Online_Payment_Fee__c,Position_fm__c,
+                            Position__c,Product_Group__c,Quantity__c,RecordTypeId,Recurring_Fee__c,Size__c,Start_Date__c,Subsidy__c,Sub_type__c,Total_Amount__c,
+                            Weight__c,Id_List_Add_on__c,ContractAddition__c,Billable_Account__c,Specifications__c,Scaled__c,Id_list_price_product__r.company__r.name,
+                            Source_GRID__c,delivery__c,id_list_price_product__r.SKU__c, id_list_price_product__r.Product_Type__c,Commission_Type_PickList__c,  Based_ON__c,
+                            Interval__c, Sub_Product_Name__c, Budget__c, Unit_Cost__c, Id_List_Service_Price__r.Service_Type__c,
+                        (SELECT Min__c,Max__c,Commission_In_percentage__c,Commission_Per_Order__c,Id_Opportunity_Quote_Line_item__c,Id_Opportunity_Line_item__c, Sequence__c
+                                FROM Tiers__r
+                                ORDER BY min__c)
+                    FROM Opportunity_Line_Item__c
+                    WHERE Id_Opportunity__c =: oppId
+                    ORDER BY Id_list_price_product__r.company__r.name];
+	 }
+	 
+	 /**
+	 * @Description: This method maps opporunity line item fields to quote line item fields
+	 */
+	 public static Opportunity_Quote_Line_Item__c mapOpportuntiyLineItemToQuoteLineItem(Opportunity_Line_Item__c lineItem){
+	 	Opportunity_Quote_Line_Item__c quoteItem  	= new Opportunity_Quote_Line_Item__c();
+ 		quoteItem.name								= lineItem.name;
+ 		quoteItem.OldOppQuoteLineId__c				= lineItem.OldOppQuoteLineId__c;
+ 		quoteItem.Id_List_Product_Price__c			= lineItem.Id_List_Price_Product__c;
+ 		quoteItem.Listed_Price__c					= lineItem.Listed_Price__c;						 	
+	 	quoteItem.Quantity__c						= lineItem.Quantity__c;
+	 	quoteItem.Min__c							= lineItem.Min__c;
+	 	quoteItem.Max__c							= lineItem.Max__c;
+	 	quoteItem.index__c							= lineItem.index__c;
+	 	quoteItem.IsTiered__c						= lineItem.IsTiered__c;
+	 	quoteItem.Total_Amount__c					= lineItem.Total_Amount__c;
+	 	quoteItem.Id_Opportunity__c					= lineItem.Id_Opportunity__c;
+	 	quoteItem.Id_List_Service_Price__c			= lineItem.Id_List_Service_Price__c;
+	 	quoteItem.Product_Group__c					= lineItem.Product_Group__c;
+	 	quoteItem.discount__c						= lineItem.discount__c;
+	 	quoteItem.Installments__c					= lineItem.Installments__c;
+	 	quoteItem.Has_Related_Tarif__c				= lineItem.Has_Related_Tarif__c;
+	 	quoteItem.Line_Item_Type__c					= lineItem.Line_Item_Type__c;
+	 	quoteItem.sub_type__c						= lineItem.sub_type__c;
+	 	quoteItem.online_payment_fee__c				= lineItem.online_payment_fee__c;
+	 	quoteItem.Commission_In_Percentage__c		= lineItem.Commission_In_Percentage__c;
+	 	quoteItem.Commission_Per_Order__c			= lineItem.Commission_Per_Order__c;
+	 	quoteItem.Recurring_Fee__c					= lineItem.Recurring_Fee__c;
+	 	quoteItem.Category__c						= lineItem.Category__c;
+	 	quoteItem.Category_Id__c					= lineItem.Category_Id__c;
+	 	quoteItem.District__c						= lineItem.District__c;
+	 	quoteItem.District_Id__c					= lineItem.District_Id__c;
+	 	quoteItem.Start_Date__c						= lineItem.Start_Date__c;
+	 	quoteItem.End_Date__c						= lineItem.End_Date__c;
+	 	quoteItem.City_ZipCode__c					= lineItem.City_ZipCode__c;
+	 	quoteItem.design_note__c					= lineItem.design_note__c;
+	 	quoteItem.Number_of_Copies__c				= lineItem.Number_of_Copies__c;
+	 	quoteItem.Size__c							= lineItem.Size__c;
+	 	quoteItem.weight__c							= lineItem.weight__c;
+	 	quoteItem.deposit__c						= lineItem.deposit__c;
+	 	quoteItem.deposit_method__c					= lineItem.deposit_method__c; 
+	 	quoteItem.subsidy__c						= lineItem.subsidy__c;
+	 	quoteItem.Billable_Account__c				= lineItem.Billable_Account__c; 
+	 	quoteItem.Contract_Addition__c				= lineItem.ContractAddition__c;
+	 	quoteItem.Id_List_Add_On__c					= lineItem.Id_List_Add_On__c;
+	 	quoteItem.Scaled__c							= lineItem.scaled__c;
+	 	quoteItem.specifications__c					= lineItem.specifications__c;
+	 	quoteItem.Position__c						= lineItem.position__c;
+	 	quoteItem.Booking_Api_id__c					= lineItem.Booking_Api_Id__c;
+        quoteItem.source_grid__c                    = lineItem.Source_grid__c;
+        quoteItem.delivery__c                       = lineItem.delivery__c;
+        quoteItem.Commission_Type_PickList__c       = lineItem.Commission_Type_PickList__c;
+        quoteItem.Based_On__c                       = lineItem.Based_On__c;
+        quoteItem.Interval__c                       = lineItem.Interval__c;
+        quoteItem.Sub_Product_Name__c               = lineItem.Sub_Product_Name__c;
+        quoteItem.Budget__c                         = lineItem.Budget__c;
+        quoteItem.Unit_Cost__c                      = lineItem.Unit_Cost__c;
+
+return quoteItem;  
+	 }
+	 
+    /**
+     * @description : This method populates the Opportunity line items from the commissions
+     */
+    private static List<TierOpportunityLineItemWrapper> createLineItemsFromCommissions(List<Tarif.Commission> commissions,Opportunity opp){
+        List<TierOpportunityLineItemWrapper> wrapperList = new List<TierOpportunityLineItemWrapper>();
+
+        for(Tarif.commission comm : commissions){
+            TierOpportunityLineItemWrapper wrapper  = new TierOpportunityLineItemWrapper();
+            wrapper.lineItem                        = comm.mapCommissionToLineItem(opp);
+            if(comm.Scaled){
+                for(Tarif.Tier tier : comm.tiers){
+                    wrapper.tiers.add(tier.mapTierToObject());
+                }
+            }
+
+            wrapperList.add(wrapper);
+        }
+
+        return wrapperList;
+    }
+
+    /**
+        @Description: This method populates the opportunity line items from the products
+     */
+    private static List<Opportunity_Line_Item__c> createLineItemsFromProducts(List<Tarif.Product> products,Opportunity opp) {
+        return createLineItemsFromProducts(products, opp, '');
+    }
+
+    /**
+        @Description: This method populates the opportunity line items from the products
+     */
+    private static List<Opportunity_Line_Item__c> createLineItemsFromProducts(List<Tarif.Product> products,Opportunity opp, String tarifName){
+        List<Opportunity_Line_Item__c> lineItems = new List<Opportunity_Line_Item__c>();
+        Business_Config__c flatCommissionTarifRule = LibBusinessConfig.getBusinessConfigFromRuleMap('addOpportunityLineItems', opp.RecordTypeId, 'FlatCommissionTarif');
+        Boolean flatProducts = flatCommissionTarifRule != null && tarifName == flatCommissionTarifRule.Business_Rule_Value__c;
+        for(Tarif.Product prod : products) {
+            lineItems.add(flatProducts ? prod.mapFlatProductToLineItem(opp) : prod.mapProductToLineItem(opp));
+        }
+
+        return lineItems;
+    }
+    
+    /**
+        @Description: This method populates the opportunity line items from the Add Ons
+     */
+    private static List<Opportunity_Line_Item__c> createLineItemsFromAddOns(List<Tarif.AddOn> addOns,Opportunity opp){
+        List<Opportunity_Line_Item__c> lineItems = new List<Opportunity_Line_Item__c>();
+
+        for(Tarif.AddOn addOn : addOns) {
+            lineItems.add(addOn.mapAddOnToLineItem(opp));
+        }
+
+        return lineItems;
+    }
+    
+    /**
+        @Description: Populates commission map based on commission Ids
+     */
+    private static Map<Id,List_Service_Price__c> populateCommissionsMap(List<Id> commissionIds){
+        Map<Id,List_Service_Price__c> commissionMap
+                            = new Map<Id,List_Service_Price__c>(
+                                [SELECT Based_On__c,Commission_In_Percentage__c,Commission_Per_Order__c,Commission_Type__c,Company__c,
+                                        Default_Commission_In_Percentage__c,Displayed_Name__c,Id,Id_Asset__c,Id_Country__c,Is_Active__c,
+                                        Maximum_Commission_In_Percentage__c,Maximum_Commission_Per_Order__c,Minimum_Commission_in_Percentage__c,
+                                        Minimum_Commission_Per_Order__c,Name,Recurring_Fee__c,Recurring_Interval__c,Requires_Approval__c,
+                                        Scaled__c,Service_Type__c,Type__c,recordTypeId
+                                FROM List_Service_Price__c
+                                WHERE Id in: commissionIds]);
+
+        return commissionMap;
+    }
+
+    /**
+        @Description: Populates product map based on product Ids
+     */
+    private static Map<Id,List_Product_Price__c> populateProductMap(List<Id> productIds){
+        Map<Id,List_Product_Price__c> productMap
+                            = new Map<Id,List_Product_Price__c>(
+                                    [SELECT Allow_Installments__c,Company__c,Default_Quantity__c,Displayed_Name__c,Id,Id_Asset__c,Id_Country__c,
+                                            Id_List_Product_Group__c,Installments__c,Is_Active__c,List_Price__c,Maximum_Discount__c,Name,Product_Name__c,
+                                            Product_Type__c,RecordTypeId,Requires_Additional_Charge__c,Requires_Add_On__c,Requires_Asset__c,SKU__c,
+                                            Requires_Branding__c,Requires_Replacement__c,Unapproved_Discount_Limit__c ,Id_List_Product_Group__r.name
+                                        FROM List_Product_Price__c
+                                        where id in : productIds]);
+
+
+        return productMap;
+    }
+    
+    /**
+    	@Description: Populates Add On map based on add On Ids
+    */
+    private static Map<Id,List_Add_On__c> populateAddOnMap(List<Id> addOnIds){
+    	Map<Id,List_Add_On__c> addOnMap = new Map<Id,List_Add_on__c>(
+    											[SELECT Company__c,Contract_Addition__c,Id,Id_Country__c,Is_Active__c,Name,
+            											RecordTypeId,Requires_Approval__c,type__c 
+        											FROM List_Add_On__c
+        											WHERE Id in: addOnIds]);
+    	
+    	return addOnMap;
+    }
+
+	/**
+	 * @Description: This method validates whether the commissions have start date or not
+	 */
+	 private static void validateStartDate(List<Tarif.Commission> commissions){
+	 	 for(Tarif.Commission comm : commissions){
+	 	 	if(comm.startDate == null){
+	 	 		throw new TarifException('Start Date for a commission cannot be blank');
+	 	 	}
+	 	 }
+	 }
+	 
+	 /**
+	 * @Description: This method ensures that Commission value and quantity should 
+	 */
+	 public static void validateBlankValues(List<Tarif.Commission> commissions){
+	 	for(Tarif.Commission comm : commissions){
+	 		if(!comm.Scaled){
+		 		if(comm.commissionType == 'Percentage'){
+		 			if(comm.commissionInPercentage == null){
+		 				throw new TarifException('Commission cannot be blank');
+		 			}
+		 		}else{
+		 			if(comm.commissionPerOrder == null){
+		 				throw new TarifException('Commission cannot be blank');
+		 			}
+		 		}
+	 		}
+	 	}
+	 }
+	 
+	 /**
+	 * @Description: This method checks whether the commissions have same start date or not 
+	 */
+	 private static void checkForDuplicateStartDates(List<Tarif.Commission> commissions){
+        List<Tarif.Commission> finalCommissionList = new List<Tarif.Commission>();
+        Map<String,Map<String,Map<Date,Tarif.Commission>>> companyVsServiceTypeMap = new  Map<String,Map<String,Map<Date,Tarif.Commission>>>();
+        RecordType talabatRecordType = LibRecordTypeHelper.getRecordType('Talabat_List_Service_Price','List_Service_price__c');
+
+        //populate the map
+        for(Tarif.Commission comm : commissions){
+            if(comm.startDate != null) {
+            	if(companyVsServiceTypeMap.containsKey(comm.company)){
+            		Map<String,Map<Date,Tarif.Commission>> serviceTypeVsDateMap = companyVsServiceTypeMap.get(comm.company);
+            		if (serviceTypeVsDateMap.containsKey(comm.serviceType)) {
+	                    if(serviceTypeVsDateMap.get(comm.serviceType).get(comm.startDate) == null) {
+	                        serviceTypeVsDateMap.get(comm.serviceType).put(comm.startDate, comm);
+	                    }else{
+	                    	throw new TarifException('Two commissions of same service type cannot have same start date');
+	                    }
+	                } else {
+	                    Map<Date, Tarif.Commission> startDateMap = new Map<Date, Tarif.Commission>();
+	                    startDateMap.put(comm.startDate, comm);
+	                    serviceTypeVsDateMap.put(comm.serviceType, startDateMap);
+	                }
+            	}else{
+            		Map<String,Map<Date,Tarif.Commission>> serviceTypeVsDateMap =  new Map<String,Map<Date,Tarif.Commission>>();
+            		Map<Date, Tarif.Commission> startDateMap = new Map<Date, Tarif.Commission>();
+                    startDateMap.put(comm.startDate, comm);
+                    serviceTypeVsDateMap.put(comm.serviceType, startDateMap);
+                    companyVsServiceTypeMap.put(comm.company,serviceTypeVsDateMap);
+            	}
+          
+            }else{
+                finalCommissionList.add(comm);
+            }
+        }
+	}
+	
+	/**
+		@Description: This method checks 
+						1. whether a scaled commission has minimum 2 tiers associated with them or not
+						2. A Scaled commission should have a tier with empty value as blank signinfying last tier
+	*/
+	private static void validateTiers(List<Tarif.Commission> commissions){
+		for(Tarif.commission comm : commissions){
+			if(comm.Scaled){
+				// check whether minimum 2 tiers are present
+				if(comm.tiers.size() < 2){
+					throw new TarifException('Scaled commissions should have at least 2 tiers');
+				}			
+				
+				// check if the last commission has maximum value as blank
+				if(comm.tiers[comm.tiers.size()-1].max != null){
+					throw new TarifException('Last tier should have the maximum value as blank');
+				}
+			}
+		}
+	}
+	
+	/**
+	* @Description: Check whether the quantity of the additional charges/product is not blank
+	*/
+	private static void checkForBlankQuantities(List<Tarif.Product> products){
+		for(Tarif.Product prod : products){
+			if(prod.quantity == null || prod.quantity == 0){
+				throw new TarifException('Quantity cannot be blank or 0!');
+			}
+		}
+	}
+    private static void checkForDeliverySourceGrid(List<Tarif.Product> assets){
+        for(Tarif.Product ast : assets){
+            if(ast.delivery != null ){
+                if(( ast.delivery == 'Takeover' || ast.delivery == 'Sharing') && String.isBlank(ast.sourceGrid) ) {
+                    throw new TarifException('Source GRID cannot be empty');
+
+                }else if(ast.delivery == 'Shipment' && ast.sku==null){
+                    throw new TarifException(ast.displayedName+' cannot be shipped without SKU. Please specify SKU in SMC');
+                }
+            }
+            else if(ast.delivery == null && ast.sku!=null){
+                throw new TarifException(ast.displayedName+': Please Specify if the product requires delivery');
+            }
+        }
+    }
+    /**
+	* @Description: Check whether the total amount of the additional charges/product is not blank
+	*/
+    private static void checkForBlankTotalAmount(List<Tarif.Product> products){
+        for(Tarif.Product prod : products){
+            if(prod.totalAmount == null || prod.totalAmount < 0){
+                throw new TarifException(Label.Flat_Commission_Amount_missing);
+
+            }
+        }
+    }
+		
+	/**
+	* @Description: This method makes multiple callouts to MIDAS based on the number of platforms and inserts the line items
+	*/
+	public List<Opportunity_Line_item__c> pushBookingsAndCreateLineItems(Opportunity opp, List<Booking> bookingsToBeInserted, String monthYear) {
+        String userRole 									= [Select Name from UserRole where Id =: UserInfo.getUserRoleId()].Name;
+        String userEmail									= UserInfo.getUserEmail();
+        Map<String, Opportunity_Line_Item__c> oppLineMap 	= new Map<String, Opportunity_Line_Item__c>();
+        Map<String,List<Booking>> platformVsBookingsMap		= new Map<String,List<Booking>>();
+        String logName 										= 'PushBookings';
+        // create log
+        LoggingUtility.createLog(logName,'MIDAS','BOOKINGS',opp.Id);
+        try {
+            List<String> myyyy = monthYear.split('-');
+            Integer year = Integer.valueOf(myyyy[1]);
+            Integer month = Integer.valueOf(myyyy[0]);
+            
+            // Fetch the premo=ium placement product and assign it to the line items
+            Map<String,List_Product_Price__c> premiumPlacementProductMap = fetchPremiumPlacementMap(opp.Company_Code__c + '_List_Product_Price');
+
+			Set<String> platforms = fetchPlatforms(bookingsToBeInserted);
+			for(String plat : platforms){
+				if(PlatformCompanyMapping__c.getInstance(plat) == null){
+					throw new TarifException('Platform Company Mapping not present');
+				}
+				premiumPlacementProductMap.put(plat,premiumPlacementProductMap.get(PlatformCompanyMapping__c.getInstance(plat).company_code__c));
+			}           
+                
+            Date startDate2 = Date.today();
+            Integer startDay = startDate2.day();
+            if (month != startDate2.month() || year != startDate2.year()) {
+                startDate2 = date.newinstance(year, month, 1);
+                startDay = 1;
+            }
+            Integer days = Date.daysInMonth(year, month);
+            Date endDate2 = date.newinstance(year, month, days);
+            String startdate = year + '-' + month + '-' + startDay;
+            String enddate = year + '-' + month + '-' + days;
+            
+            // Prepare the data that is to be pushed
+            BookingData dataToBePushed = new BookingData();
+            Meta metaData				= new Meta();
+            metaData.username			= userEmail;
+            metaData.sf_role			= userRole;
+            metaData.sf_opportunity_id 	= opp.Id;
+            
+            List<Booking> bookingsToBePushed 	= new List<Booking>();
+            DataWrapper wrapper					= new DataWrapper();
+            for(Booking booking : bookingsToBeInserted){
+            	if(CountryCompanyBrand__c.getInstance(booking.platform) == null){
+            		throw new TarifException('Country-Company-Brand setting is missing');
+            	}
+            	Booking bk = new Booking();
+            	bk.restaurant_package_id 	= Integer.valueOf(booking.packageId);
+            	bk.date_end					= enddate;
+            	bk.date_begin				= startdate;
+            	bk.price					= booking.price;
+            	bk.postcode					= booking.postcode;
+            	bk.site						= CountryCompanyBrand__c.getInstance(booking.platform).code__c;
+            	bk.price					= booking.totalAmount;
+            	bk.status					= 'new';
+            	bk.restaurant_id			= Integer.valueOf(booking.platformBackendId);	
+            	bookingsToBePushed.add(bk);		
+            	
+            	// Populate date for passing to Line Items
+            	booking.startDate			= startDate2;
+            	booking.endDate				= endDate2;
+            	booking.site				= bk.site;
+            	// Prepare line Item map
+            	oppLineMap.put(booking.postcode+booking.site, booking.mapBookingToLineItem(opp,premiumPlacementProductMap));
+            }
+             
+            wrapper.bookings = bookingsToBePushed;
+            dataToBePushed.meta = metaData;
+            dataToBePushed.data = wrapper; 
+			
+			// Create the HTTP Request
+			HttpResponse res = new HttpResponse();
+            Http http = new Http();
+			String body = JSON.serialize(dataToBePushed,true);
+            HttpRequest req = LibWebserviceHelper.constructMidasHttpRequestForBookings('PP', body);
+            
+            // Log
+            LoggingUtility.log(logName,'Request Body : '+ body);
+            if(req != null){
+            	LoggingUtility.captureTimeStamp(logName,'Begin');
+            	res = http.send(req);
+            	LoggingUtility.captureTimeStamp(logName,'End');
+            	LoggingUtility.log(logName,'\nResponse status code :' + res.getStatusCode() + '\nResponse Body => ' + res.getBody());
+            	if (res.getStatusCode() == 201 || res.getStatusCode() == 200) {
+            		BookingData bookingResult = (BookingData)JSON.deserialize(res.getBody(),BookingData.class);
+            		for(Booking booking : bookingResult.data.bookings){
+            			oppLineMap.get(booking.postcode+booking.site).Booking_Api_Id__c = String.valueOf(booking.id);
+            		}
+            	}else{
+                    throw new TarifException('Error in Callout for pushing bookings ' + res.getBody());
+                }
+            }else{
+                 	throw new TarifException('MidasIntegration__c is not configured');
+            }
+            
+            return oppLineMap.values();
+       }catch(CalloutException e){
+       		LoggingUtility.captureTimeStamp(logName,'End');
+       		LoggingUtility.logError(logName,'Error : ' + e.getMessage());
+    		throw e;
+       }catch (Exception e) {
+       		LoggingUtility.logError(logName,'Error : ' + e.getMessage());
+            throw e;
+       }
+    }
+    
+    /**
+    * @Description: This method populate the List product price map
+    */
+    public static Map<String,List_Product_price__c> fetchPremiumPlacementMap(String recordType){
+    	Map<String,List_Product_price__c> productMap = new Map<String,List_Product_price__c>();
+    	List<List_Product_Price__c> premiumPlaceApiProd = [SELECT id, Id_List_Product_Group__r.Name ,company__r.name,company__r.company_code__c
+															FROM List_Product_Price__c 
+															WHERE Product_Name__c = 'Premium Placement API' 
+																AND RecordTypeId = : LibRecordTypeHelper.getRecordTypeValue(recordType)];
+																
+		for(List_product_price__c prod : premiumPlaceApiProd){
+			productMap.put(prod.company__r.name,prod);
+		}
+		
+		return productMap;
+    }
+    
+    /**
+    * @Description: Fetch all the platforms present in the booking
+    */
+    public static Set<String> fetchPlatforms(List<Booking> bookings){
+    	Set<String> platforms = new Set<String>();
+    	for(Booking booking : bookings){
+    		platforms.add(booking.platform);
+    	}
+    	
+    	return platforms;
+    } 
+    
+    /**
+    * @Description: This method shortlists the booked pincodes from the available bookings
+    */
+    public static List<Booking> getBookingsToBeInserted(List<BookingWrapper> availableBookings){
+    	List<Booking> temp = new List<Booking>();
+		for(BookingWrapper wrapper : availableBookings){
+			temp.addAll(wrapper.bookings);
+		}
+    	List<Booking> bookings = new List<Booking>();
+    	for(Booking booking : temp){
+    		if(booking.booked){
+    			bookings.add(booking);
+    		}
+    	}
+    	
+    	return bookings;
+    }
+    
+    /**
+    * @Description: This method populates Platform Vs the booking map
+    */
+    public static Map<String,List<Booking>> populatePlatformVsBookingMap(List<Booking> bookings){
+    	Map<String,List<Booking>> bookingMap = new Map<String,List<Booking>>();
+    	for(Booking booking : bookings){
+    		if(bookingMap.containsKey(booking.platform)){
+    			bookingMap.get(booking.platform).add(booking);
+    		}else{
+    			List<Booking> temp = new List<Booking>();
+    			temp.add(booking);
+    			bookingMap.put(booking.platform,temp);
+    		}
+    	}
+    	
+    	return bookingMap;
+    }
+  
+    /**
+        @Description: A Class representation of the Commission object(List_Service_price__c)
+     */
+    global class Commission{
+        public List<Tier> tiers;
+        public String BasedOn;
+        public decimal CommissionInPercentage;
+        public decimal CommissionPerOrder;
+        public string CommissionType;
+        public string Company;
+        public decimal DefaultCommissionInPercentage;
+        public string DisplayedName;
+        public string Id;
+        public string assetId;
+        public string country;
+        public boolean isActive;
+        public decimal MaximumCommissionInPercentage;
+        public decimal MaximumCommissionPerOrder;
+        public decimal MinimumCommissionInPercentage;
+        public decimal MinimumCommissionPerOrder;
+        public string Name;
+        public decimal RecurringFee;
+        public String RecurringInterval;
+        public boolean RequiresApproval;
+        public string recordTypeId;
+        public boolean Scaled;
+        public string ServiceType;
+        public string Type;
+        public boolean isDisbaled;
+        public date startDate;
+        public date endDate;
+        public boolean hasRelatedTarif;
+        public string billableAccountId;
+
+        public Commission(){
+            tiers = new List<Tier>();
+        }
+        
+        public void populateCommissionFromLineItem(Opportunity_Line_Item__c lineItem,Map<Id,List_Service_Price__c> lineItemVsCommissionMap){
+            BasedOn 						= lineItemVsCommissionMap.get(lineItem.id).Based_On__c;
+            CommissionInPercentage          = lineItem.Commission_In_Percentage__c;
+            CommissionPerOrder              = lineItem.Commission_Per_Order__c;
+            CommissionType                  = lineItemVsCommissionMap.get(lineItem.id).Commission_Type__c;
+            Company                         = lineItemVsCommissionMap.get(lineItem.id).Company__c;
+            DefaultCommissionInPercentage   = lineItemVsCommissionMap.get(lineItem.id).Default_Commission_In_Percentage__c;
+            DisplayedName                   = lineItemVsCommissionMap.get(lineItem.id).Displayed_Name__c;
+            Id                              = lineItemVsCommissionMap.get(lineItem.id).Id;
+            assetId                         = lineItemVsCommissionMap.get(lineItem.id).Id_Asset__c;
+            country                         = lineItemVsCommissionMap.get(lineItem.id).Id_Country__c;
+            isActive                        = lineItemVsCommissionMap.get(lineItem.id).Is_Active__c;
+            MaximumCommissionInPercentage   = lineItemVsCommissionMap.get(lineItem.id).Maximum_Commission_In_Percentage__c;
+            MaximumCommissionPerOrder       = lineItemVsCommissionMap.get(lineItem.id).Maximum_Commission_Per_Order__c;
+            MinimumCommissionInPercentage   = lineItemVsCommissionMap.get(lineItem.id).Minimum_Commission_in_Percentage__c;
+            MinimumCommissionPerOrder       = lineItemVsCommissionMap.get(lineItem.id).Minimum_Commission_Per_Order__c;
+            Name                            = lineItemVsCommissionMap.get(lineItem.id).Name;
+            RecurringFee                    = lineItem.Recurring_Fee__c;
+            RecurringInterval               = lineItemVsCommissionMap.get(lineItem.id).Recurring_Interval__c;
+            RequiresApproval                = lineItemVsCommissionMap.get(lineItem.id).Requires_Approval__c;
+            Scaled                          = lineItemVsCommissionMap.get(lineItem.id).Scaled__c;
+            ServiceType                     = lineItemVsCommissionMap.get(lineItem.id).Service_Type__c;
+            Type                            = lineItemVsCommissionMap.get(lineItem.id).type__c;
+            startDate                       = lineItem.Start_Date__c;
+            endDate                         = lineItem.End_Date__c;
+            isDisbaled                      = lineItem.Has_Related_Tarif__c;
+            hasRelatedTarif                 = lineItem.Has_Related_Tarif__c;
+            recordTypeId					= lineItemVsCommissionMap.get(lineItem.id).recordTypeId;
+            billableAccountId				= lineItem.Billable_Account__c;
+        }
+        
+        public void populateValuesFromObject(List_Service_Price__c commObj,Boolean hasRelatedTarif){
+            BasedOn 						= commObj.Based_On__c;
+            CommissionInPercentage 			= commObj.Scaled__c ? null:commObj.Commission_In_Percentage__c; // set commission in percentage as null if the commission is scaled
+            CommissionPerOrder 				= commObj.Scaled__c ? null:commObj.Commission_Per_Order__c; // set commission per order as null if the commission is scaled
+        	CommissionType 					= commObj.Commission_Type__c;
+            Company 						= commObj.Company__c;
+            DefaultCommissionInPercentage 	= commObj.Default_Commission_In_Percentage__c;
+            DisplayedName 					= commObj.Displayed_Name__c;
+            Id 								= commObj.Id;
+            assetId 						= commObj.Id_Asset__c;
+            country 						= commObj.Id_Country__c;
+            isActive 						= commObj.Is_Active__c;
+            MaximumCommissionInPercentage 	= commObj.Maximum_Commission_In_Percentage__c;
+            MaximumCommissionPerOrder 		= commObj.Maximum_Commission_Per_Order__c;
+            MinimumCommissionInPercentage 	= commObj.Minimum_Commission_in_Percentage__c;
+            MinimumCommissionPerOrder 		= commObj.Minimum_Commission_Per_Order__c;
+            Name 							= commObj.Name;
+            RecurringFee 					= commObj.Recurring_Fee__c;
+            RecurringInterval 				= commObj.Recurring_Interval__c;
+            RequiresApproval 				= commObj.Requires_Approval__c;
+            Scaled 							= commObj.Scaled__c;
+            ServiceType 					= commObj.Service_Type__c;
+            Type 							= commObj.type__c;
+            startDate 						= Date.today();
+            this.hasRelatedTarif 			= hasRelatedTarif;
+            isDisbaled 						= hasRelatedTarif;
+            recordTypeId					= commObj.recordTypeId;
+            billableAccountId				= null;
+        }
+        
+        public Opportunity_Line_Item__c mapCommissionToLineItem(Opportunity opp){
+            Opportunity_Line_Item__c lineItem       = new Opportunity_Line_Item__c();
+            lineItem.Commission_In_Percentage__c    = CommissionInPercentage;
+            lineItem.Commission_Per_Order__c        = CommissionPerOrder;
+            lineItem.End_Date__c                    = endDate;
+            lineItem.Has_Related_Tarif__c           = hasRelatedTarif; 
+            lineItem.Id_List_Service_Price__c       = Id;
+            lineItem.Id_Opportunity__c              = opp.Id;
+            lineItem.Line_Item_Type__c              = 'Service';
+            lineItem.RecordTypeId                   = LibRecordTypeHelper.getRecordTypeValue(opp.Company_Code__c + '_Opportunity_Line_Item');
+            lineItem.Start_Date__c                  = startDate;
+            lineItem.name							= name; 
+            lineItem.Sub_type__c					= serviceType;
+            lineItem.Billable_Account__c			= billableAccountId;
+            lineItem.Scaled__c						= Scaled;
+            lineItem.Based_On__c                    = BasedOn;
+            lineItem.Commission_Type_PickList__c     = CommissionType;
+            //PKALINA 19-Jun-2019 Added to make allign all currencies SP-3050
+            lineItem.CurrencyIsoCode				= opp.CurrencyIsoCode;
+            return lineItem;
+        }
+    }
+
+    /**
+        @Description: A Class representation of the Tier object(Tier__c)
+     */
+    global class Tier{
+        public decimal min;
+        public decimal max;
+        public decimal CommissionInPercentage;
+        public decimal CommissionPerOrder;
+        public decimal sequence;
+
+        public Tier__c mapTierToObject(){
+            Tier__c tr                      = new Tier__c();
+            tr.min__c                       = min;
+            tr.max__c                       = max;
+            tr.commission_in_Percentage__c  = commissionInPercentage;
+            tr.commission_Per_order__c      = commissionPerOrder;
+            tr.Sequence__c                     = sequence;
+            return tr;
+        }
+
+        public void populateTierFromObject(Tier__c tr){
+            min                     = tr.Min__c;
+            max                     = tr.max__c;
+            CommissionInPercentage  = tr.Commission_In_Percentage__c;
+            CommissionPerOrder      = tr.Commission_Per_order__c;
+            sequence                = tr.Sequence__c;
+        }
+    }
+
+    /**
+        @Description: A Class representation of the Addtional charges and Assets object(List_Product_Price__c)
+     */
+    global class Product{
+        public Boolean allowInstallments;
+        public string companyId;
+        public Decimal defaultQuantity;
+        public string displayedName;
+        public string Id;
+        public string assetId;
+        public string countryId;
+        public string categoryId;
+        public string lineCategoryId;
+        public string lineDistrictId;
+        public Decimal installments;
+        public Boolean isActive;
+        public decimal listPrice;
+        public decimal maximumDiscount;
+        public string name;
+        public string productName;
+        public string productType;
+        public String district;
+        public string category;
+        public string recordTypeId;
+        public boolean requiresAdditionalCharge;
+        public boolean requiresAddOn;
+        public boolean requiresAsset;
+        public boolean requiresBranding;
+        public boolean requiresReplacement;
+        public decimal unapprovedDiscountLimit;
+        public String discount;
+        public decimal quantity;
+        public string categoryName;
+        public boolean hasRelatedTarif;
+        public boolean isDisbaled;
+        public decimal totalAmount;
+        public string size;
+        public string subType;
+        public string weight;
+        public string numberOfCopies;
+        public string depositMethod;
+        public decimal deposit;
+        public string designNote;
+        public string billableAccountId;
+        public Date startDate;
+        public Date endDate;
+        public string specifications;
+        public string delivery;
+        public string sourceGrid;
+        public string sku;
+        public string postcode; //SSC-1932
+        
+        public void populateProductFromLineItem(Opportunity_Line_Item__c lineItem,Map<Id,List_Product_Price__c> lineItemVsProductMap){
+
+            if(lineItemVsProductMap.containsKey(lineItem.Id)) {
+                allowInstallments = lineItemVsProductMap.get(lineItem.Id).Allow_Installments__c;
+                companyId = lineItemVsProductMap.get(lineItem.Id).Company__c;
+                defaultQuantity = lineItemVsProductMap.get(lineItem.Id).Default_Quantity__c;
+                displayedName = lineItemVsProductMap.get(lineItem.Id).Displayed_Name__c;
+                assetId = lineItemVsProductMap.get(lineItem.Id).Id_Asset__c;
+                countryId = lineItemVsProductMap.get(lineItem.Id).Id_Country__c;
+                categoryId = lineItemVsProductMap.get(lineItem.Id).Id_List_Product_Group__c;
+                categoryName = lineItemVsProductMap.get(lineItem.Id).Id_List_Product_Group__r.name;
+                isActive = lineItemVsProductMap.get(lineItem.Id).Is_Active__c;
+                maximumDiscount = lineItemVsProductMap.get(lineItem.Id).Maximum_Discount__c;
+                name = lineItemVsProductMap.get(lineItem.Id).Name;
+                productName = lineItemVsProductMap.get(lineItem.Id).Product_Name__c;
+                productType = lineItemVsProductMap.get(lineItem.Id).Product_Type__c;
+                recordTypeId = lineItemVsProductMap.get(lineItem.Id).RecordTypeId;
+                requiresAdditionalCharge = lineItemVsProductMap.get(lineItem.Id).Requires_Additional_Charge__c;
+                requiresAddOn = lineItemVsProductMap.get(lineItem.Id).Requires_Add_On__c;
+                requiresAsset = lineItemVsProductMap.get(lineItem.Id).Requires_Asset__c;
+                requiresAsset = lineItemVsProductMap.get(lineItem.Id).Requires_Asset__c;
+                requiresBranding = lineItemVsProductMap.get(lineItem.Id).Requires_Branding__c;
+                requiresReplacement = lineItemVsProductMap.get(lineItem.Id).Requires_Replacement__c;
+                unapprovedDiscountLimit = lineItemVsProductMap.get(lineItem.Id).Unapproved_Discount_Limit__c;
+                sku                         = lineItemVsProductMap.get(lineItem.Id).sku__c;
+            }
+            Id                          = lineItem.Id_List_Price_Product__c;
+            installments                = lineItem.Installments__c;
+            listPrice                   = lineItem.Listed_Price__c;
+            district                    = lineItem.District__c;
+            category                    = lineItem.Category__c;
+            subType                     = lineItem.Sub_type__c;
+            discount                    = lineItem.Discount__c;
+            quantity                    = lineItem.Quantity__c;
+            lineCategoryId              = lineItem.Category_Id__c;
+            lineDistrictId              = lineItem.District_Id__c;
+            hasRelatedTarif             = lineItem.Has_Related_Tarif__c;
+            isDisbaled                  = lineItem.Has_Related_Tarif__c;
+            size						= lineItem.size__c;
+        	weight						= lineItem.weight__c;
+        	numberOfCopies				= lineItem.number_Of_Copies__c;
+        	depositMethod				= lineItem.deposit_method__c;
+        	deposit						= lineItem.deposit__c;
+        	designNote					= lineItem.Design_Note__c;
+        	totalAmount					= lineItem.Total_Amount__c;
+        	billableAccountId			= lineItem.Billable_Account__c;
+        	startDate					= lineItem.start_Date__c;
+        	endDate						= lineItem.end_Date__c;
+        	specifications				= lineItem.Specifications__c;
+            delivery                    = lineItem.Delivery__c;
+            sourceGrid                  = lineItem.Source_GRID__c;
+            postcode                    = lineItem.City_ZipCode__c; //SSC-1932
+        }
+        
+        public void populateProductFromObject(List_Product_Price__c product,Boolean hasRelatedTarif){
+            allowInstallments           = product.Allow_Installments__c;
+            companyId                   = product.Company__c;
+            defaultQuantity             = product.Default_Quantity__c;
+            displayedName               = product.Displayed_Name__c;
+            Id                          = product.Id;
+            assetId                     = product.Id_Asset__c;
+            countryId                   = product.Id_Country__c;
+            categoryId                  = product.Id_List_Product_Group__c;
+            installments                = product.Installments__c;
+            isActive                    = product.Is_Active__c;
+            listPrice                   = product.List_Price__c;
+            maximumDiscount             = product.Maximum_Discount__c;
+            name                        = product.Name;
+            productName                 = product.Product_Name__c;
+            productType                 = product.Product_Type__c;
+            recordTypeId                = product.RecordTypeId;
+            requiresAdditionalCharge    = product.Requires_Additional_Charge__c;
+            requiresAddOn               = product.Requires_Add_On__c;
+            requiresAsset               = product.Requires_Asset__c;
+            requiresBranding            = product.Requires_Branding__c;
+            requiresReplacement         = product.Requires_Replacement__c;
+            unapprovedDiscountLimit     = product.Unapproved_Discount_Limit__c;
+            sku                         = product.sku__c;
+            discount                    = '0';
+            quantity                    = 1;
+            categoryName                = product.Id_List_Product_Group__r.name;
+            this.hasRelatedTarif        = hasRelatedTarif;
+            isDisbaled                  = hasRelatedTarif;
+            size						= '';
+        	weight						= '';
+        	numberOfCopies				= '';
+        	depositMethod				= ''; 
+        	deposit						= 0;
+        	designNote					= '';
+        	billableAccountId			= null;
+        	startDate					= Date.today(); 
+        	endDate						= null;
+            delivery                    = null;
+            sourceGrid                  = '';
+            postcode                    = ''; //SSC-1932
+        }
+        /**
+         * @description creates a opportunity line item from 0% commission product wrapper
+         *
+         * @param opp Opportunity
+         *
+         * @return Opportunity_Line_Item__c
+         */
+        public Opportunity_Line_Item__c mapFlatProductToLineItem(Opportunity opp) {
+            Business_Config__c flatCommissionTarifRule = LibBusinessConfig.getBusinessConfigFromRuleMap('addOpportunityLineItems', opp.RecordTypeId, 'FlatCommissionTarif');
+            Tarif_Member__c tarifMember;
+            if(flatCommissionTarifRule != null) {
+                tarifMember = TarifMember_Selector.findTarifMemberByTarifName(flatCommissionTarifRule.Business_Rule_Value__c);
+            }
+            Opportunity_Line_Item__c lineItem = new Opportunity_Line_Item__c();
+            lineItem.Id_Opportunity__c = opp.Id;
+            lineItem.Name = category + ' / ' + district;
+            lineItem.CurrencyIsoCode = opp.CurrencyIsoCode;
+            lineItem.Sub_type__c = null;
+            lineItem.Category_Id__c = lineCategoryId;
+            lineItem.Category__c = category;
+            lineItem.District_Id__c = lineDistrictId;
+            lineItem.District__c = district;
+            lineItem.Start_Date__c = startDate;
+            lineItem.Sub_type__c = 'Flat Commission';
+            lineItem.Line_Item_Type__c = 'Product';
+            lineItem.Total_Amount__c = totalAmount;
+            if(tarifMember != null) {
+                lineItem.Id_List_Price_Product__c = tarifMember.Id_Tarif_Item__c;
+            }
+            lineItem.RecordTypeId = LibRecordTypeHelper.getRecordTypeValue(opp.Company_Code__c + '_Opportunity_Line_Item');
+            return lineItem;
+        }
+        
+        public Opportunity_Line_Item__c mapProductToLineItem(Opportunity opp){
+            Opportunity_Line_Item__c lineItem = new Opportunity_Line_Item__c();
+
+            lineItem.Discount__c                = discount == null ? discount : discount.replace(' ','');
+            lineItem.Category_Id__c             = lineCategoryId;
+            lineItem.District_Id__c             = lineDistrictId;
+            lineItem.Has_Related_Tarif__c       = hasRelatedTarif;
+            lineItem.Id_List_Price_Product__c   = Id;
+            lineItem.Id_Opportunity__c          = opp.Id;
+            lineItem.Installments__c            = Installments;
+            lineItem.Line_Item_Type__c          = 'Product';
+            lineItem.Listed_Price__c            = listPrice;
+            lineItem.Product_Group__c           = categoryName;
+            lineItem.Quantity__c                = quantity;
+            lineItem.RecordTypeId               = LibRecordTypeHelper.getRecordTypeValue(opp.Company_Code__c + '_Opportunity_Line_Item');
+            lineItem.Total_Amount__c            = totalAmount;
+			lineItem.name						= displayedName;
+			lineItem.size__c					= size;
+        	lineItem.weight__c					= weight;
+        	lineItem.number_Of_Copies__c		= numberOfCopies;
+        	lineItem.deposit_method__c			= depositMethod;
+            lineItem.District__c                = district;
+        	lineItem.deposit__c					= deposit;
+            lineItem.Category__c                = category;
+        	lineItem.Design_Note__c				= designNote;
+        	lineItem.Billable_Account__c		= billableAccountId;
+        	lineItem.Sub_type__c				= productType;
+        	lineItem.start_date__c				= startDate;
+        	lineItem.end_date__c				= endDate;
+        	lineItem.Specifications__c			= specifications;
+            lineItem.Delivery__c                = delivery;
+            lineItem.Source_Grid__c             = sourceGrid;
+            //PKALINA 19-Jun-2019 Added to make allign all currencies SP-3050
+            lineItem.CurrencyIsoCode			= opp.CurrencyIsoCode;
+            lineItem.City_ZipCode__c            = postcode; //SSC-1932
+            return lineItem; 
+        }
+    }
+
+    /**
+        @Description: A Class representation of the Add-On object(List_Add_On__c)
+     */
+    global class AddOn{
+        public string contractAddition;
+        public boolean requiresApproval;
+        public string type;
+        public string companyId;
+        public String countryId;
+        public boolean hasRelatedTarif;
+        public string Id;
+        public string name;
+        public string recordTypeId;
+        public string specifications; 
+        public Date startDate;
+        public Date endDate;
+        public String postcode; //SSC-1932
+
+        public void populateAddOnFromLineItem(Opportunity_Line_Item__c lineItem,Map<Id,List_Add_On__c> lineItemVsAddOnMap){
+			contractAddition	= lineItem.ContractAddition__c; 		
+	        requiresApproval	= lineItemVsAddOnMap.get(lineItem.Id).Requires_Approval__c;
+	        type				= lineItem.Sub_type__c;
+	        companyId			= lineItemVsAddOnMap.get(lineItem.Id).Id_Country__c;
+	        countryId			= lineItemVsAddOnMap.get(lineItem.Id).Company__c;
+	        hasRelatedTarif		= lineItem.Has_related_Tarif__c;
+	        Id					= lineItem.Id_List_Add_On__c;
+	        name				= lineItemVsAddOnMap.get(lineItem.Id).name;
+	        recordTypeId		= lineItemVsAddOnMap.get(lineItem.Id).recordTypeId;
+	        specifications		= lineItem.Specifications__c;
+	        startDate			= lineItem.start_date__c;
+	        endDate				= lineItem.end_date__c;
+            postcode            = lineItem.City_ZipCode__c; //SSC-1932
+        }
+
+        public void populateAddOnFromObject(List_Add_On__c addOn,Boolean hasRelatedTarif){
+			contractAddition	= addOn.Contract_Addition__c; 		
+	        requiresApproval	= addOn.Requires_Approval__c;
+	        type				= addOn.type__c;
+	        companyId			= addOn.Id_Country__c;
+	        countryId			= addOn.Company__c;
+	        this.hasRelatedTarif= hasRelatedTarif;
+	        Id					= addOn.Id;
+	        name				= addOn.name;
+	        recordTypeId		= addOn.recordTypeId;
+	        startDate			= Date.today();
+        }
+
+        public Opportunity_Line_Item__c mapAddOnToLineItem(Opportunity opp){
+             Opportunity_Line_Item__c lineItem = new Opportunity_Line_Item__c();
+             lineItem.contractAddition__c	= contractAddition;
+             lineItem.Sub_type__c			= type;
+             lineItem.Has_related_tarif__c	= hasRelatedTarif;
+             lineItem.Id_List_Add_On__c		= Id;
+             lineItem.Id_Opportunity__c		= opp.Id;
+         	 lineItem.Line_Item_Type__c     = 'AddOn';
+         	 lineItem.RecordTypeId          = LibRecordTypeHelper.getRecordTypeValue(opp.Company_Code__c + '_Opportunity_Line_Item');
+         	 lineItem.name					= name;
+         	 lineItem.Specifications__c		= specifications;
+         	 lineItem.start_date__c			= startDate;
+         	 lineItem.end_date__c			= endDate;
+             //PKALINA 19-Jun-2019 Added to make allign all currencies SP-3050
+             lineItem.CurrencyIsoCode		= opp.CurrencyIsoCode;
+             lineItem.City_ZipCode__c       = postcode; //SSC-1932
+             return lineItem;
+        } 
+    }
+	
+	/**
+	* @Description: A Wrapper for preimum placement data
+	*/
+	public class PremiumPlacemntWrapper{
+		public Data data;
+	}
+	
+	public class Data{
+		public List<Booking> postcodes;
+	}
+	
+	/**
+	* @Description: Class definition for Premium placement post codes
+	*/
+	global class Booking{
+		public decimal price_base;
+        public decimal distance;
+        public List<RestaurantPackage> restaurant_packages;
+        public String distance_units;
+        public decimal minimum_order_value;
+        public String postcode;
+        public decimal coverage;
+        public Integer available_items;
+        public Date startDate;
+        public Date endDate;
+        public String restaurantPosition;
+        public decimal listPrice;
+        public String discount;
+        public decimal totalAmount;
+        public String bookingId;
+        public String productName;
+        public Boolean booked;
+        public string platform;
+        public string platformBackendId;
+        public List<CtrOpportunityLineItems.Option> packageOptions;
+        public String packageId;
+        public string companyName;
+        public String billableAccountId;
+        
+        // Data related to MIDAS pushing bookings request
+        public Integer restaurant_package_id;
+        public String date_end;
+        public String date_begin;
+        public decimal price;
+        public String sf_restaurant_id;
+        public String site;
+        public Integer restaurant_id;
+        
+        // Date related to MIDAS booking result
+        public String status;
+        public string restaurant_package_description;
+        public string created_by;
+        public decimal amount;
+        public String restaurant_name;
+        public Integer position;
+        public Integer id;
+        
+        public Booking(){
+        	packageOptions 	= new List<CtrOpportunityLineItems.Option>();
+        	booked			= false;
+        }
+        
+        public void populateBookingFromLineItem(Opportunity_Line_Item__c lineItem){
+        	this.postcode	= lineItem.City_ZipCode__c;
+        	this.startDate	= lineItem.start_date__c;
+        	this.endDate	= lineItem.End_Date__c;
+        	this.restaurantPosition	= lineItem.position__c;
+        	this.listPrice	= lineItem.Listed_Price__c;
+        	this.discount	= lineItem.discount__c;
+        	this.totalAmount= lineItem.Total_Amount__c;
+        	this.bookingId	= lineItem.Booking_Api_Id__c;
+        	this.productName= lineItem.name;
+        	this.companyName= lineItem.Id_list_price_product__r.company__r.name;
+        	this.billableAccountId	= lineItem.Billable_Account__c;
+        }
+        
+        public Opportunity_Line_Item__c mapBookingToLineItem(Opportunity opp,Map<String,List_product_price__c> premiumPlacementProductMap){
+             Opportunity_Line_Item__c lineItem 	= new Opportunity_Line_Item__c();
+             lineItem.City_ZipCode__c			= postcode;
+             lineItem.Sub_type__c				= 'Premium Placement';
+             lineItem.Has_related_tarif__c		= false;
+             lineItem.Id_Opportunity__c			= opp.Id;
+         	 lineItem.Line_Item_Type__c     	= 'Product';
+         	 lineItem.RecordTypeId          	= LibRecordTypeHelper.getRecordTypeValue(opp.Company_Code__c + '_Opportunity_Line_Item');
+         	 lineItem.name						= 'Premium Placement';
+         	 lineItem.start_date__c 			= startDate;
+         	 lineItem.end_Date__c 				= endDate;
+         	 lineItem.position__c				= restaurantPosition;
+         	 lineItem.listed_price__c 			= listPrice;
+         	 lineItem.discount__c 				= discount;     	 
+         	 lineItem.Id_List_Price_Product__c	= premiumPlacementProductMap.get(platform).Id;
+         	 lineItem.Total_Amount__c			= totalAmount;
+         	 lineItem.Billable_Account__c		= billableAccountId;
+             return lineItem;
+        }
+	}
+	
+	/**
+	* @Description: A class definiton for restaurant packages
+	*/
+	global class RestaurantPackage{
+		public Boolean is_default;
+        public decimal price;
+        public String description;
+        public Integer id;
+	}
+	
+	/**
+	* @Description: A wrapper for holding platforms against the list of bookings
+	*/
+	global class BookingWrapper{
+		public String platform;
+		public List<Booking> bookings;
+	}
+	
+	/**
+	* @Description: This class is a wrapper for the bookings to be pushed to MIDAS for creation
+	*/
+	global class BookingData{
+		public Meta meta;
+		public DataWrapper data;
+	}
+	
+	global class Meta{
+		public string username;
+		public string sf_role;
+		public string sf_opportunity_id;
+	}
+	
+	global class dataWrapper{
+		public List<Booking> bookings;
+	}
+	
+    global class TierOpportunityLineItemWrapper {
+        public Opportunity_Line_Item__c lineItem;
+        public List<Tier__c> tiers;
+
+        public TierOpportunityLineItemWrapper(){
+            tiers = new List<Tier__c>();
+        }
+    }
+    
+    global class TierQuoteLineItemWrapper {
+        public Opportunity_Quote_Line_Item__c lineItem;
+        public List<Tier__c> tiers;
+
+        public TierQuoteLineItemWrapper(){
+            tiers = new List<Tier__c>();
+        }
+    }
+    
+    global class TarifException extends exception{}
+}

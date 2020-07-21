@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Menu_Tax_Information__c</fullName>
+    <externalId>false</externalId>
+    <label>Menu Tax Information</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Tax Included</fullName>
+                <default>false</default>
+                <label>Tax Included</label>
+            </value>
+            <value>
+                <fullName>Tax To Be Added</fullName>
+                <default>false</default>
+                <label>Tax To Be Added</label>
+            </value>
+            <value>
+                <fullName>Tax Exempt</fullName>
+                <default>false</default>
+                <label>Tax Exempt</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

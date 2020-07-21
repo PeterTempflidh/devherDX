@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Shipping_Company__c</fullName>
+    <description>The Company responsible for delivering the Asset to the restaurant.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The Company responsible for delivering the Asset to the restaurant.</inlineHelpText>
+    <label>Shipping Company</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>AUS Post</fullName>
+                <default>false</default>
+                <label>AUS Post</label>
+            </value>
+            <value>
+                <fullName>DH Staff</fullName>
+                <default>false</default>
+                <label>DH Staff</label>
+            </value>
+            <value>
+                <fullName>DHL</fullName>
+                <default>false</default>
+                <label>DHL</label>
+            </value>
+            <value>
+                <fullName>Fastway</fullName>
+                <default>false</default>
+                <label>Fastway</label>
+            </value>
+            <value>
+                <fullName>Epost</fullName>
+                <default>false</default>
+                <label>Epost</label>
+            </value>
+            <value>
+                <fullName>Cvsnet</fullName>
+                <default>false</default>
+                <label>Cvsnet</label>
+            </value>
+            <value>
+                <fullName>Field Agent</fullName>
+                <default>false</default>
+                <label>Field Agent</label>
+            </value>
+            <value>
+                <fullName>Sherpa</fullName>
+                <default>false</default>
+                <label>Sherpa</label>
+            </value>
+            <value>
+                <fullName>UPS</fullName>
+                <default>false</default>
+                <label>UPS</label>
+            </value>
+            <value>
+                <fullName>Servientrega</fullName>
+                <default>false</default>
+                <label>Servientrega</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

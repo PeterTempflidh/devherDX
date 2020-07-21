@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>해지 이유</label>
+    <name>Termination_Reason__c</name>
+    <picklistValues>
+        <masterLabel>0% Commission Upselling</masterLabel>
+        <translation>월정액 상품 가격인상</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bad debtor</masterLabel>
+        <translation>채무불이행</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Best Price Guarantee</masterLabel>
+        <translation>BPG</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Business Closed</masterLabel>
+        <translation>폐업</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Business Temporarily out of service</masterLabel>
+        <translation>휴업</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cannot Contact</masterLabel>
+        <translation>연락불가</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Capacity - Competitors</masterLabel>
+        <translation><!-- Capacity - Competitors --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Capacity - Driver Issue</masterLabel>
+        <translation><!-- Capacity - Driver Issue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Capacity - Order Volume</masterLabel>
+        <translation><!-- Capacity - Order Volume --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Capacity - Own Website</masterLabel>
+        <translation><!-- Capacity - Own Website --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Change of Business Name</masterLabel>
+        <translation><!-- Change of Business Name --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Comission too high</masterLabel>
+        <translation>높은 수수료</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Commission Upselling</masterLabel>
+        <translation><!-- Commission Upselling --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Contract never received</masterLabel>
+        <translation>불완전 계약</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DH Delivery</masterLabel>
+        <translation><!-- DH Delivery --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Does not accept Online Payment</masterLabel>
+        <translation>온라인 결제 거부</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Downgrade</masterLabel>
+        <translation>강등</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Duplicate</masterLabel>
+        <translation>중복</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Exclusive with competitor</masterLabel>
+        <translation>경쟁사 독점업체</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Franchise Contract - Commission Change</masterLabel>
+        <translation>프랜차이즈 제휴 - 수수료 변경</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fraud</masterLabel>
+        <translation><!-- Fraud --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>High Failure Rate</masterLabel>
+        <translation>높은 주문 실패율</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Invalid</masterLabel>
+        <translation><!-- Invalid --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Issues with payments to restaurant</masterLabel>
+        <translation>업체 환급 문제</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Language issues</masterLabel>
+        <translation>언어문제</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Legal Form Change</masterLabel>
+        <translation><!-- Legal Form Change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Legal Issue</masterLabel>
+        <translation><!-- Legal Issue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Logistics Issue</masterLabel>
+        <translation><!-- Logistics Issue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lost to Competition</masterLabel>
+        <translation>경쟁사에 밀림</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Low Rating</masterLabel>
+        <translation><!-- Low Rating --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Owner - New Contract</masterLabel>
+        <translation>새로운 사업자 - 신규 가맹</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Owner - No New Contract</masterLabel>
+        <translation><!-- New Owner - No New Contract --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No Delivery Service</masterLabel>
+        <translation>배달 안함</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No willingness to talk</masterLabel>
+        <translation>영업용 O.E 단기</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Enough Orders</masterLabel>
+        <translation>주문이 충분치 않음</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Interested in Product</masterLabel>
+        <translation>영업팀 컨택 거부 O.E 장기</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not enough capacity</masterLabel>
+        <translation>수용력 불충분</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not interested in Terminal</masterLabel>
+        <translation>단말기에 관심 없음</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not satisfied with our product</masterLabel>
+        <translation>서비스에 만족하지 못함</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Onboarding Failure</masterLabel>
+        <translation><!-- Onboarding Failure --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation>기타</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Payment Issue</masterLabel>
+        <translation><!-- Payment Issue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Personal appointment requested</masterLabel>
+        <translation>개인 상담 요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Poor Performance</masterLabel>
+        <translation><!-- Poor Performance --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Prefers Competition</masterLabel>
+        <translation>경쟁 선호</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Price too high</masterLabel>
+        <translation>너무 높은 가격</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pricing - Admin Fee</masterLabel>
+        <translation><!-- Pricing - Admin Fee --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pricing - Commission</masterLabel>
+        <translation><!-- Pricing - Commission --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pricing - Merchant Fee</masterLabel>
+        <translation><!-- Pricing - Merchant Fee --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pricing - Premium Placement</masterLabel>
+        <translation><!-- Pricing - Premium Placement --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pricing - Setup Fee</masterLabel>
+        <translation><!-- Pricing - Setup Fee --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Product Change</masterLabel>
+        <translation>상품변경</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Product Not Available</masterLabel>
+        <translation>서비스종료로 인한 가맹해지</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Quick order sticker</masterLabel>
+        <translation>빠른 주문 스티커</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Switch OD to VD</masterLabel>
+        <translation>OD → VD 전환 요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Switch VD to OD</masterLabel>
+        <translation>VD → OD 전환 요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Terminal Issue</masterLabel>
+        <translation><!-- Terminal Issue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Termination</masterLabel>
+        <translation>폐업</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transmission Issue</masterLabel>
+        <translation><!-- Transmission Issue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unhappy with service</masterLabel>
+        <translation>서비스에 불만족</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Upgrade</masterLabel>
+        <translation>업그레이드 성공</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Upgrade Failed</masterLabel>
+        <translation>업그레이드 실패</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Website issues</masterLabel>
+        <translation>웹사이트 문제</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Welcome call unsuccessful</masterLabel>
+        <translation>가맹 통화 실패</translation>
+    </picklistValues>
+</CustomFieldTranslation>

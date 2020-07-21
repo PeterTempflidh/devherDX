@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Outsourcing_Company__c</fullName>
+    <externalId>false</externalId>
+    <label>Outsourcing Company</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Asean CC</fullName>
+                <default>false</default>
+                <label>Asean CC</label>
+            </value>
+            <value>
+                <fullName>Asia Master</fullName>
+                <default>false</default>
+                <label>Asia Master</label>
+            </value>
+            <value>
+                <fullName>CMX</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>CMX</label>
+            </value>
+            <value>
+                <fullName>CMX - Skopje</fullName>
+                <default>false</default>
+                <label>CMX - Skopje</label>
+            </value>
+            <value>
+                <fullName>CMX - Tbilisi</fullName>
+                <default>false</default>
+                <label>CMX - Tbilisi</label>
+            </value>
+            <value>
+                <fullName>COS</fullName>
+                <default>false</default>
+                <label>COS</label>
+            </value>
+            <value>
+                <fullName>ExpertCloud</fullName>
+                <default>false</default>
+                <label>ExpertCloud</label>
+            </value>
+            <value>
+                <fullName>Genex</fullName>
+                <default>false</default>
+                <label>Genex</label>
+            </value>
+            <value>
+                <fullName>Ibex FPPK</fullName>
+                <default>false</default>
+                <label>Ibex FPPK</label>
+            </value>
+            <value>
+                <fullName>Ibex PH</fullName>
+                <default>false</default>
+                <label>Ibex PH</label>
+            </value>
+            <value>
+                <fullName>Ibex PK</fullName>
+                <default>false</default>
+                <label>Ibex PK</label>
+            </value>
+            <value>
+                <fullName>Market Mix</fullName>
+                <default>false</default>
+                <label>Market Mix</label>
+            </value>
+            <value>
+                <fullName>MIBs</fullName>
+                <default>false</default>
+                <label>MIBs</label>
+            </value>
+            <value>
+                <fullName>MindBridge</fullName>
+                <default>false</default>
+                <label>MindBridge</label>
+            </value>
+            <value>
+                <fullName>MMix</fullName>
+                <default>false</default>
+                <label>MMix</label>
+            </value>
+            <value>
+                <fullName>Raya</fullName>
+                <default>false</default>
+                <label>Raya</label>
+            </value>
+            <value>
+                <fullName>Sellbytel</fullName>
+                <default>false</default>
+                <label>Sellbytel</label>
+            </value>
+            <value>
+                <fullName>TCT</fullName>
+                <default>false</default>
+                <label>TCT</label>
+            </value>
+            <value>
+                <fullName>TP</fullName>
+                <default>false</default>
+                <label>TP</label>
+            </value>
+            <value>
+                <fullName>VN</fullName>
+                <default>false</default>
+                <label>VN</label>
+            </value>
+            <value>
+                <fullName>Xceed</fullName>
+                <default>false</default>
+                <label>Xceed</label>
+            </value>
+            <value>
+                <fullName>XTENDO</fullName>
+                <default>false</default>
+                <label>XTENDO</label>
+            </value>
+            <value>
+                <fullName>Yopeso</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Yopeso</label>
+            </value>
+            <value>
+                <fullName>Yopeso - Moldova</fullName>
+                <default>false</default>
+                <label>Yopeso - Moldova</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

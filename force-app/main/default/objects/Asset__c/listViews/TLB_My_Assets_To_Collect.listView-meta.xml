@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TLB_My_Assets_To_Collect</fullName>
+    <columns>NAME</columns>
+    <columns>Stock_Item_Serial_No__c</columns>
+    <columns>Return_Status__c</columns>
+    <columns>Account__c</columns>
+    <columns>Shipping_Address_Korea__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Canceled</value>
+    </filters>
+    <label>TLB - My Assets - To Collect</label>
+    <language>en_US</language>
+    <sharedTo>
+        <roleAndSubordinates>Talabat_Sales_Team_Bahrain</roleAndSubordinates>
+        <roleAndSubordinates>Talabat_Sales_Team_Jordan</roleAndSubordinates>
+        <roleAndSubordinates>Talabat_Sales_Team_Kuwait</roleAndSubordinates>
+        <roleAndSubordinates>Talabat_Sales_Team_Lebanon</roleAndSubordinates>
+        <roleAndSubordinates>Talabat_Sales_Team_Qatar</roleAndSubordinates>
+        <roleAndSubordinates>Talabat_Sales_Team_Saudi_Arabia</roleAndSubordinates>
+        <roleAndSubordinates>Talabat_Sales_Team_UAE</roleAndSubordinates>
+    </sharedTo>
+</ListView>

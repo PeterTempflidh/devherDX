@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Email_Recipients__c</fullName>
+    <description>Emails sent from Apex will use this field when manually creating Activity Entries for the sent out email. This field will a csv of all recipients of the email</description>
+    <externalId>false</externalId>
+    <label>Email Recipients</label>
+    <required>false</required>
+    <type>TextArea</type>
+</CustomField>

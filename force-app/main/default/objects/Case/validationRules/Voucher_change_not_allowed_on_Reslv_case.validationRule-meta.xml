@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Voucher_change_not_allowed_on_Reslv_case</fullName>
+    <active>true</active>
+    <description>If the case is set to Resolved once, then do not allow voucher update</description>
+    <errorConditionFormula>AND(CONTAINS(RecordType.DeveloperName,&apos;Inbound&apos;),IsAlreadyResolved__c, OR(AND(PRIORVALUE(Partial_Refund_Amount__c)&gt;0,ISCHANGED(Partial_Refund_Amount__c)),AND(NOT(ISBLANK(TEXT(PRIORVALUE(Partial_Refund_Type__c)))),ISCHANGED(Partial_Refund_Type__c)),AND(NOT(ISBLANK(TEXT(PRIORVALUE((Voucher_Severity__c))))),ISCHANGED(Voucher_Severity__c))))</errorConditionFormula>
+    <errorMessage>Voucher cannot be updated once the Case is resolved.</errorMessage>
+</ValidationRule>

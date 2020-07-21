@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TLB_EG_Assets_Activated_successfully</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Backend_Id__c</columns>
+    <columns>Activation_Date__c</columns>
+    <columns>OWNER.ALIAS</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset__c.Talabat_Asset</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Activated Successfully</value>
+    </filters>
+    <filters>
+        <field>CURRENCY_ISO_CODE</field>
+        <operation>equals</operation>
+        <value>EGP</value>
+    </filters>
+    <label>TLB - EG Asset - Activated successfully</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Talabat_Management</role>
+        <roleAndSubordinates>Talabat_Operation_Management</roleAndSubordinates>
+    </sharedTo>
+</ListView>

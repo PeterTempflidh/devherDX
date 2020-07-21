@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Payment Provider --></label>
+    <name>Payment_Provider__c</name>
+    <picklistValues>
+        <masterLabel>AMEX</masterLabel>
+        <translation><!-- AMEX --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Adyen</masterLabel>
+        <translation><!-- Adyen --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ApplePay</masterLabel>
+        <translation><!-- ApplePay --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Checkout</masterLabel>
+        <translation><!-- Checkout --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Checkout Oy</masterLabel>
+        <translation><!-- Checkout Oy --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Dohabank</masterLabel>
+        <translation><!-- Dohabank --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ethoca</masterLabel>
+        <translation><!-- Ethoca --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>GlobalPay</masterLabel>
+        <translation><!-- GlobalPay --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>GooglePay</masterLabel>
+        <translation><!-- GooglePay --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Kbank</masterLabel>
+        <translation><!-- Kbank --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Klarna</masterLabel>
+        <translation><!-- Klarna --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MolPay</masterLabel>
+        <translation><!-- MolPay --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>NBB</masterLabel>
+        <translation><!-- NBB --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>NBK</masterLabel>
+        <translation><!-- NBK --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PayPal</masterLabel>
+        <translation><!-- PayPal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ravelin</masterLabel>
+        <translation><!-- Ravelin --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SiftScience</masterLabel>
+        <translation><!-- SiftScience --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

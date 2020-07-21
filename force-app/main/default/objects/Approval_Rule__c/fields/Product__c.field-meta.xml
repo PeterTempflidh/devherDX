@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Product</label>
+    <lookupFilter>
+        <active>true</active>
+        <booleanFilter>(1 AND (2 OR 3)) OR (4 AND 5)</booleanFilter>
+        <errorMessage>You can choose only your country related records</errorMessage>
+        <filterItems>
+            <field>List_Product_Price__c.RecordType.DeveloperName</field>
+            <operation>equals</operation>
+            <value>FP_List_Product_Price</value>
+        </filterItems>
+        <filterItems>
+            <field>$User.Entity__c</field>
+            <operation>equals</operation>
+            <value>APAC FoodPanda</value>
+        </filterItems>
+        <filterItems>
+            <field>$User.Entity__c</field>
+            <operation>equals</operation>
+            <value>DHH Delivery Hero Holding</value>
+        </filterItems>
+        <filterItems>
+            <field>List_Product_Price__c.RecordType.DeveloperName</field>
+            <operation>equals</operation>
+            <value>PY_List_Product_Price</value>
+        </filterItems>
+        <filterItems>
+            <field>$User.Entity__c</field>
+            <operation>equals</operation>
+            <value>DHH Delivery Hero Holding, UY Pedidosya</value>
+        </filterItems>
+        <infoMessage>You can choose only your country related records</infoMessage>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>List_Product_Price__c</referenceTo>
+    <relationshipLabel>Approval Rules</relationshipLabel>
+    <relationshipName>Approval_Rules</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Field_Agent_Owner_is_Required</fullName>
+    <active>true</active>
+    <description>Field Agent Owner is required when Stock Ownership = Field Agent</description>
+    <errorConditionFormula>ISBLANK(Field_Agent_Owner__c) &amp;&amp; ISPICKVAL( Stock_Item_Ownership__c , &quot;Field Agent&quot;)</errorConditionFormula>
+    <errorDisplayField>Field_Agent_Owner__c</errorDisplayField>
+    <errorMessage>Field Agent Owner is required when Ownership = Field Agent</errorMessage>
+</ValidationRule>

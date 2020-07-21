@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- For Inbound, this is the time between the agent&apos;s phone ringing and the agent answering the call. For Outbound, this is the time between the customer&apos;s phone ringing and the customer answering the call. This value is rounded to the nearest second. --></help>
+    <label><!-- Call Ring Time (s) --></label>
+    <name>NVMContactWorld__CallRingTimeInSeconds__c</name>
+</CustomFieldTranslation>

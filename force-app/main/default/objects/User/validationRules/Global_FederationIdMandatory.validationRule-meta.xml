@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_FederationIdMandatory</fullName>
+    <active>true</active>
+    <description>Change Log
+-Excluded API Profile from validation as per SP-4357</description>
+    <errorConditionFormula>ISBLANK(FederationIdentifier)
+&amp;&amp;
+IsActive = true
+&amp;&amp;
+NOT(CONTAINS(Profile.Name,&quot;API&quot;))</errorConditionFormula>
+    <errorMessage>Federation Id is mandatory</errorMessage>
+</ValidationRule>

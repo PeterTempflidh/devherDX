@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_Mandatory_Finance_Fields</fullName>
+    <active>true</active>
+    <description>Cannot change a Finance case if the mandatory fields are incomplete.</description>
+    <errorConditionFormula>AND (
+  ISPICKVAL(Type, &apos;Refund&apos;),
+  OR (
+    ISBLANK(Invoice_Number__c),
+    ISBLANK(Refund_Amount__c)
+  ),
+  LEFT(RecordType.DeveloperName, 3) = &apos;HU_&apos;
+)</errorConditionFormula>
+    <errorMessage>Mandatory fields are missing. Make sure the following fields are entered: Refund Amount, Invoice Number</errorMessage>
+</ValidationRule>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>YGY_CM_Photo_Menu_IMG_Request</fullName>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CREATEDBY_USER.ALIAS</columns>
+    <columns>OWNER_NAME</columns>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>Company_Number__c</columns>
+    <columns>Backend_ID__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>Person_In_Charge__c</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.TYPE</columns>
+    <columns>Case_Reason__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.Yogiyo_Inbound</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Restaurant Request</value>
+    </filters>
+    <filters>
+        <field>Case_Reason__c</field>
+        <operation>equals</operation>
+        <value>Photographer Image Request</value>
+    </filters>
+    <filters>
+        <field>CASES.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>YGY - CM Photo Menu IMG Request</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Yogiyo_Local_Admin</role>
+        <role>Yogiyo_Operation_Management</role>
+        <role>Yogiyo_Operation_Team</role>
+    </sharedTo>
+</ListView>

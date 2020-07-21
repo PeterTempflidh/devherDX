@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Copy_of_HU_Asset_Tablet_Open</fullName>
+    <columns>Account__c</columns>
+    <columns>NAME</columns>
+    <columns>Status__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset__c.HU_Asset</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Activated Successfully,Lost,Invalid,Canceled</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>notContain</operation>
+        <value>tablet</value>
+    </filters>
+    <label>HU - Asset - Portal - Open</label>
+    <sharedTo>
+        <group>HU_Account_Management</group>
+        <group>HU_Content_Team</group>
+        <group>HU_Restaurant_Operations</group>
+        <group>HU_Sales_Operations</group>
+        <role>HU_Account_Manager</role>
+        <role>HU_Management</role>
+        <role>HU_Operations_Agent</role>
+        <role>HU_Operations_Management</role>
+        <role>HU_Sales_Management</role>
+    </sharedTo>
+</ListView>

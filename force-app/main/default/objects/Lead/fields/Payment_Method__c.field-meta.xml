@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Method__c</fullName>
+    <description>this multi-picklist is to track whith which payment method the restaurant work (wants to work)</description>
+    <externalId>false</externalId>
+    <label>Payment Method</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Cash</fullName>
+                <default>false</default>
+                <label>Cash</label>
+            </value>
+            <value>
+                <fullName>Mobile Credit Card Reader</fullName>
+                <default>false</default>
+                <label>Mobile Credit Card Reader</label>
+            </value>
+            <value>
+                <fullName>Mobile Electronic Cash Card Reader</fullName>
+                <default>false</default>
+                <label>Mobile Electronic Cash Card Reader</label>
+            </value>
+            <value>
+                <fullName>Online Payment</fullName>
+                <default>false</default>
+                <label>Online Payment</label>
+            </value>
+            <value>
+                <fullName>OP - Mobile Electronic Cash Card Reader</fullName>
+                <default>false</default>
+                <label>OP - Mobile Electronic Cash Card Reader</label>
+            </value>
+            <value>
+                <fullName>OP - Mobile Payment</fullName>
+                <default>false</default>
+                <label>OP - Mobile Payment</label>
+            </value>
+            <value>
+                <fullName>OP - Bank transfer</fullName>
+                <default>false</default>
+                <label>OP - Bank transfer</label>
+            </value>
+            <value>
+                <fullName>Credit Card On Delivery</fullName>
+                <default>false</default>
+                <label>Credit Card On Delivery</label>
+            </value>
+            <value>
+                <fullName>K-NET</fullName>
+                <default>false</default>
+                <label>K-NET</label>
+            </value>
+            <value>
+                <fullName>Sodexo</fullName>
+                <default>false</default>
+                <label>Sodexo</label>
+            </value>
+            <value>
+                <fullName>Visa</fullName>
+                <default>false</default>
+                <label>Visa</label>
+            </value>
+            <value>
+                <fullName>American Express</fullName>
+                <default>false</default>
+                <label>American Express</label>
+            </value>
+            <value>
+                <fullName>Diners_Club</fullName>
+                <default>false</default>
+                <label>Diners Club</label>
+            </value>
+            <value>
+                <fullName>Matercard</fullName>
+                <default>false</default>
+                <label>Matercard</label>
+            </value>
+            <value>
+                <fullName>Bank Card (1 click payment is)</fullName>
+                <default>false</default>
+                <label>Bank Card (1 click payment is)</label>
+            </value>
+            <value>
+                <fullName>Bank Card</fullName>
+                <default>false</default>
+                <label>Bank Card</label>
+            </value>
+            <value>
+                <fullName>OTP SZÉP Card</fullName>
+                <default>false</default>
+                <label>OTP SZÉP Card</label>
+            </value>
+            <value>
+                <fullName>MKB SZÉP Card</fullName>
+                <default>false</default>
+                <label>MKB SZÉP Card</label>
+            </value>
+            <value>
+                <fullName>KH SZÉP Card</fullName>
+                <default>false</default>
+                <label>KH SZÉP Card</label>
+            </value>
+            <value>
+                <fullName>Erzsébet Card Meal Pocket</fullName>
+                <default>false</default>
+                <label>Erzsébet Card Meal Pocket</label>
+            </value>
+            <value>
+                <fullName>Erzsébet Card Gift Pocket</fullName>
+                <default>false</default>
+                <label>Erzsébet Card Gift Pocket</label>
+            </value>
+            <value>
+                <fullName>Erzsébet Voucher</fullName>
+                <default>false</default>
+                <label>Erzsébet Voucher</label>
+            </value>
+            <value>
+                <fullName>Meal Vouchers</fullName>
+                <default>false</default>
+                <label>Meal Vouchers</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>3</visibleLines>
+</CustomField>

@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Vertical_Segment__c</fullName>
+    <externalId>false</externalId>
+    <label>Vertical Segment</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Vertical__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>B2B/B2C Courier</fullName>
+                <default>false</default>
+                <label>B2B/B2C Courier</label>
+            </value>
+            <value>
+                <fullName>Bakery</fullName>
+                <default>false</default>
+                <label>Bakery</label>
+            </value>
+            <value>
+                <fullName>Beauty</fullName>
+                <default>false</default>
+                <label>Beauty</label>
+            </value>
+            <value>
+                <fullName>books &amp; stationary</fullName>
+                <default>false</default>
+                <label>Books &amp; Stationary</label>
+            </value>
+            <value>
+                <fullName>C2C Courier</fullName>
+                <default>false</default>
+                <label>C2C Courier</label>
+            </value>
+            <value>
+                <fullName>charity</fullName>
+                <default>false</default>
+                <label>Charity</label>
+            </value>
+            <value>
+                <fullName>Coffee</fullName>
+                <default>false</default>
+                <label>Coffee</label>
+            </value>
+            <value>
+                <fullName>confectionery</fullName>
+                <default>false</default>
+                <label>Confectionery</label>
+            </value>
+            <value>
+                <fullName>convenience</fullName>
+                <default>false</default>
+                <label>Convenience</label>
+            </value>
+            <value>
+                <fullName>cosmetics</fullName>
+                <default>false</default>
+                <label>Cosmetics</label>
+            </value>
+            <value>
+                <fullName>Darkstores</fullName>
+                <default>false</default>
+                <label>Darkstores</label>
+            </value>
+            <value>
+                <fullName>delicatessen</fullName>
+                <default>false</default>
+                <label>Delicatessen</label>
+            </value>
+            <value>
+                <fullName>Desert</fullName>
+                <default>false</default>
+                <label>Desert</label>
+            </value>
+            <value>
+                <fullName>Drinks</fullName>
+                <default>false</default>
+                <label>Drinks</label>
+            </value>
+            <value>
+                <fullName>Electronics</fullName>
+                <default>false</default>
+                <label>Electronics</label>
+            </value>
+            <value>
+                <fullName>Entertainment</fullName>
+                <default>false</default>
+                <label>Entertainment</label>
+            </value>
+            <value>
+                <fullName>fashion</fullName>
+                <default>false</default>
+                <label>Fashion</label>
+            </value>
+            <value>
+                <fullName>Flowers</fullName>
+                <default>false</default>
+                <label>Flowers</label>
+            </value>
+            <value>
+                <fullName>Furniture</fullName>
+                <default>false</default>
+                <label>Furniture</label>
+            </value>
+            <value>
+                <fullName>games</fullName>
+                <default>false</default>
+                <label>Games</label>
+            </value>
+            <value>
+                <fullName>Groceries</fullName>
+                <default>false</default>
+                <label>Groceries</label>
+            </value>
+            <value>
+                <fullName>health_and_wellness</fullName>
+                <default>false</default>
+                <label>Health &amp; Wellness</label>
+            </value>
+            <value>
+                <fullName>Healthcare &amp; Beauty</fullName>
+                <default>false</default>
+                <label>Healthcare &amp; Beauty</label>
+            </value>
+            <value>
+                <fullName>Home &amp; Gifts</fullName>
+                <default>false</default>
+                <label>Home &amp; Gifts</label>
+            </value>
+            <value>
+                <fullName>Home Based Kitchen</fullName>
+                <default>false</default>
+                <label>Home Based Kitchen</label>
+            </value>
+            <value>
+                <fullName>Ice cream</fullName>
+                <default>false</default>
+                <label>Ice cream</label>
+            </value>
+            <value>
+                <fullName>just_for_adults</fullName>
+                <default>false</default>
+                <label>Just For Adults</label>
+            </value>
+            <value>
+                <fullName>Kiosk</fullName>
+                <default>false</default>
+                <label>Kiosk</label>
+            </value>
+            <value>
+                <fullName>mother_and_baby</fullName>
+                <default>false</default>
+                <label>Mother &amp; Baby</label>
+            </value>
+            <value>
+                <fullName>Party Supplies</fullName>
+                <default>false</default>
+                <label>Party Supplies</label>
+            </value>
+            <value>
+                <fullName>Pets</fullName>
+                <default>false</default>
+                <label>Pets</label>
+            </value>
+            <value>
+                <fullName>Pharmacy</fullName>
+                <default>false</default>
+                <label>Pharmacy</label>
+            </value>
+            <value>
+                <fullName>Regular Restaurant</fullName>
+                <default>false</default>
+                <label>Regular Restaurant</label>
+            </value>
+            <value>
+                <fullName>Shops</fullName>
+                <default>false</default>
+                <label>Shops</label>
+            </value>
+            <value>
+                <fullName>snacks_and_sweets</fullName>
+                <default>false</default>
+                <label>Snacks &amp; Sweets</label>
+            </value>
+            <value>
+                <fullName>sports_and_lifestyle</fullName>
+                <default>false</default>
+                <label>Sports &amp; Lifestyle</label>
+            </value>
+            <value>
+                <fullName>stationery_and_books</fullName>
+                <default>false</default>
+                <label>Stationery &amp; Books</label>
+            </value>
+            <value>
+                <fullName>Street Kitchen</fullName>
+                <default>false</default>
+                <label>Street Kitchen</label>
+            </value>
+            <value>
+                <fullName>supermarket</fullName>
+                <default>false</default>
+                <label>Supermarket</label>
+            </value>
+            <value>
+                <fullName>tobacco</fullName>
+                <default>false</default>
+                <label>Tobacco</label>
+            </value>
+            <value>
+                <fullName>vehicles</fullName>
+                <default>false</default>
+                <label>Vehicles</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Restaurant</controllingFieldValue>
+            <valueName>charity</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Restaurant</controllingFieldValue>
+            <valueName>Coffee</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Restaurant</controllingFieldValue>
+            <valueName>Desert</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Restaurant</controllingFieldValue>
+            <valueName>Home Based Kitchen</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Restaurant</controllingFieldValue>
+            <valueName>Ice cream</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Restaurant</controllingFieldValue>
+            <valueName>Regular Restaurant</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Restaurant</controllingFieldValue>
+            <valueName>Street Kitchen</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>Bakery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>Beauty</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>books &amp; stationary</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>confectionery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>convenience</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>cosmetics</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>Darkstores</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>delicatessen</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>Drinks</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>Electronics</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>Entertainment</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>fashion</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>Flowers</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>Furniture</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>games</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>Groceries</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>health_and_wellness</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>Healthcare &amp; Beauty</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>Home &amp; Gifts</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>just_for_adults</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>Kiosk</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>mother_and_baby</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>Party Supplies</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>Pets</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>Pharmacy</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>Shops</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>snacks_and_sweets</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>sports_and_lifestyle</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>stationery_and_books</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>supermarket</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>tobacco</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shop</controllingFieldValue>
+            <valueName>vehicles</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Courier</controllingFieldValue>
+            <valueName>B2B/B2C Courier</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Courier</controllingFieldValue>
+            <valueName>C2C Courier</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

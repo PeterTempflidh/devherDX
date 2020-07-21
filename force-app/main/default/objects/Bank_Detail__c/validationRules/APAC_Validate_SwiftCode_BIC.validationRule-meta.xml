@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>APAC_Validate_SwiftCode_BIC</fullName>
+    <active>true</active>
+    <description>SSC-2259</description>
+    <errorConditionFormula>AND(OR(TEXT(Account__r.Record_Country__c) == &apos;Philippines&apos;,
+TEXT(Account__r.Record_Country__c) == &apos;Thailand&apos;,
+TEXT(Account__r.Record_Country__c) == &apos;Taiwan&apos;,
+TEXT(Account__r.Record_Country__c) == &apos;Bangladesh&apos;,
+TEXT(Account__r.Record_Country__c) == &apos;Singapore&apos;,
+TEXT(Account__r.Record_Country__c) == &apos;Myanmar&apos;,
+TEXT(Account__r.Record_Country__c) == &apos;Cambodia&apos;,
+TEXT(Account__r.Record_Country__c) == &apos;Laos&apos;,
+TEXT(Account__r.Record_Country__c) == &apos;Japan&apos;,
+TEXT(Account__r.Record_Country__c) == &apos;Malaysia&apos;),ISBLANK( Swift_Code_BIC__c),Text(Payment_Method__c) == &apos;Bank Account&apos;,
+NOT($Permission.Exclude_from_Validation))</errorConditionFormula>
+    <errorDisplayField>Swift_Code_BIC__c</errorDisplayField>
+    <errorMessage>Please fill Swift Code/BIC</errorMessage>
+</ValidationRule>

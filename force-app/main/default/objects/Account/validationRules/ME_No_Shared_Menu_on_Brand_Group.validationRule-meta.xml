@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ME_No_Shared_Menu_on_Brand_Group</fullName>
+    <active>true</active>
+    <description>SP-2743</description>
+    <errorConditionFormula>RecordType.DeveloperName = &quot;Talabat_Account&quot; 
+&amp;&amp; 
+(ISPICKVAL(Type, &quot;Brand&quot;) 
+|| 
+ISPICKVAL(Type, &quot;Group&quot;)) 
+&amp;&amp; 
+NOT(ISBLANK(Shared_Menu__c))</errorConditionFormula>
+    <errorMessage>Shared Menu should be filled on Branch level</errorMessage>
+</ValidationRule>

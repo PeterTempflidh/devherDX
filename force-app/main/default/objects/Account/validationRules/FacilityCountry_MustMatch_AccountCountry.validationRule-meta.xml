@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FacilityCountry_MustMatch_AccountCountry</fullName>
+    <active>true</active>
+    <description>You selected a Facility in another country then the Branch(SSC-3111and SSC-3266)</description>
+    <errorConditionFormula>AND(NOT(ISBLANK(Facility__c)),OR(
+  TEXT(Facility__r.Record_Country__c)  &lt;&gt;  TEXT(Record_Country__c), Facility__r.RecordType.DeveloperName &lt;&gt; &apos;Facility_Account&apos;))</errorConditionFormula>
+    <errorMessage>You selected a Facility in another country then the Branch or You have not selected Facility Account</errorMessage>
+</ValidationRule>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Voucher_Request_Validation</fullName>
+    <active>true</active>
+    <description>If the refund type or refund amount is filled then make Voucher severity, Refund Type and Refund Amount as mandatory for Inbound Case record types.</description>
+    <errorConditionFormula>AND(
+CONTAINS(RecordType.DeveloperName,&apos;Inbound&apos;),
+	OR(
+		AND(
+			IsAlreadyResolved__c,
+			AND(			OR(ISBLANK(PRIORVALUE(Partial_Refund_Amount__c)),PRIORVALUE(Partial_Refund_Amount__c)&lt;=0),Partial_Refund_Amount__c&gt;0,ISBLANK(TEXT(Partial_Refund_Type__c))
+			)
+		),
+		AND(
+			NOT(IsAlreadyResolved__c),		
+			AND(
+			Partial_Refund_Amount__c&gt;0,ISBLANK(TEXT(Partial_Refund_Type__c))
+			)			
+		)
+	)
+)</errorConditionFormula>
+    <errorMessage>Both refund fields are required to request refund.</errorMessage>
+</ValidationRule>

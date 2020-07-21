@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validate_Level_1</fullName>
+    <active>true</active>
+    <errorConditionFormula>!ISBLANK(Level1__c) 
+&amp;&amp;
+Level1_Value__c == 0
+&amp;&amp;
+Level1_Percentage__c == 0</errorConditionFormula>
+    <errorMessage>Level 1 has to be a number or a percentage ending in %</errorMessage>
+</ValidationRule>

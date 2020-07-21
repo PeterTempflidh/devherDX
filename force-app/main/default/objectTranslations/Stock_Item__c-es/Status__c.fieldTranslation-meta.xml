@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Etapa</label>
+    <name>Status__c</name>
+    <picklistValues>
+        <masterLabel>Assigned</masterLabel>
+        <translation><!-- Assigned --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Awaiting Delivery/In Shipment</masterLabel>
+        <translation><!-- Awaiting Delivery/In Shipment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Damaged</masterLabel>
+        <translation><!-- Damaged --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivered</masterLabel>
+        <translation><!-- Delivered --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Exchange Requested</masterLabel>
+        <translation><!-- Exchange Requested --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>In Shipping</masterLabel>
+        <translation><!-- In Shipping --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>In Stock</masterLabel>
+        <translation><!-- In Stock --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lost</masterLabel>
+        <translation><!-- Lost --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New - In Stock</masterLabel>
+        <translation><!-- New - In Stock --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ordered</masterLabel>
+        <translation><!-- Ordered --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pick-up Needed</masterLabel>
+        <translation><!-- Pick-up Needed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Recycled</masterLabel>
+        <translation><!-- Recycled --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Retour in Progress</masterLabel>
+        <translation><!-- Retour in Progress --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Returned - In Stock</masterLabel>
+        <translation><!-- Returned - In Stock --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Returned - at Manufacturer</masterLabel>
+        <translation><!-- Returned - at Manufacturer --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Shared</masterLabel>
+        <translation><!-- Shared --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Takeover</masterLabel>
+        <translation><!-- Takeover --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Technical Issue</masterLabel>
+        <translation><!-- Technical Issue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Tested</masterLabel>
+        <translation><!-- Tested --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unknown</masterLabel>
+        <translation><!-- Unknown --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Writeoff</masterLabel>
+        <translation><!-- Writeoff --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

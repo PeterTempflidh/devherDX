@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Today_s_Leads</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>LEAD.COMPANY</columns>
+    <columns>LEAD.STATE</columns>
+    <columns>LEAD.EMAIL</columns>
+    <columns>LEAD.STATUS</columns>
+    <columns>LEAD.CREATED_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>LEAD.UNREAD</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>LEAD.CREATED_DATE</field>
+        <operation>equals</operation>
+        <value>TODAY</value>
+    </filters>
+    <label>Today&apos;s Leads</label>
+    <language>en_US</language>
+    <sharedTo>
+        <roleAndSubordinates>AT_Management</roleAndSubordinates>
+        <roleAndSubordinates>CD_Management</roleAndSubordinates>
+        <roleAndSubordinates>DE_Management</roleAndSubordinates>
+        <roleAndSubordinates>FI_Management</roleAndSubordinates>
+        <roleAndSubordinates>Global_Management</roleAndSubordinates>
+        <roleAndSubordinates>SE_Management</roleAndSubordinates>
+        <roleAndSubordinates>Talabat_Management</roleAndSubordinates>
+        <roleAndSubordinates>UK_Management</roleAndSubordinates>
+        <roleAndSubordinates>Yogiyo_Sales_Managment</roleAndSubordinates>
+    </sharedTo>
+</ListView>

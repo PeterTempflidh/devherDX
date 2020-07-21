@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stock_Item__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The Stock Item currently assigned to this Asset</description>
+    <externalId>false</externalId>
+    <label>Stock Item</label>
+    <lookupFilter>
+        <active>true</active>
+        <booleanFilter>(1 AND 2 AND 3) OR (4 AND 5 AND 6)</booleanFilter>
+        <filterItems>
+            <field>Stock_Item__c.Status__c</field>
+            <operation>equals</operation>
+            <value>In Stock</value>
+        </filterItems>
+        <filterItems>
+            <field>Stock_Item__c.Condition__c</field>
+            <operation>equals</operation>
+            <value>A - New from manufacturer, A1 - New used, B - Used few scratches, A - New, B - Used, C - Testing, D - Reparable, E - Dead, N - Brand New, O - Ordered, U - Undefined, A - New from manufacturer, A1 - New used, B - Used few scratches, C - Used, D - Damaged/N</value>
+        </filterItems>
+        <filterItems>
+            <field>Stock_Item__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Yogiyo Stock Item, FI Stock Item, SE Stock Item</value>
+        </filterItems>
+        <filterItems>
+            <field>$Source.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>DH AU Asset</value>
+        </filterItems>
+        <filterItems>
+            <field>Stock_Item__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Ordered, New - In Stock, Assigned, In Shipping, Delivered, Retour in Progress, Lost, Returned - at Manufacturer, Recycled, Damaged, Writeoff, Tested, Returned - In Stock, Awaiting Delivery/In Shipment, In Stock, Technical Issue, Exchange Requested, Takeov</value>
+        </filterItems>
+        <filterItems>
+            <field>Stock_Item__c.Condition__c</field>
+            <operation>equals</operation>
+            <value>A - New, B - Used, C - Testing, D - Reparable, E - Dead, N - Brand New, O - Ordered, U - Undefined, A - New from manufacturer, A1 - New used, B - Used few scratches, C - Used, D - Damaged/No longer usable</value>
+        </filterItems>
+        <infoMessage>In stock devices</infoMessage>
+        <isOptional>true</isOptional>
+    </lookupFilter>
+    <referenceTo>Stock_Item__c</referenceTo>
+    <relationshipLabel>Asset Assignment</relationshipLabel>
+    <relationshipName>Asset_Assignment</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

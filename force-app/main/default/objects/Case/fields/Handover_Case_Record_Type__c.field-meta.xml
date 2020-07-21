@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Handover_Case_Record_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Handover Case Record Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>DE Entry Case</fullName>
+                <default>false</default>
+                <label>DE Entry Case</label>
+            </value>
+            <value>
+                <fullName>DE Finance Case</fullName>
+                <default>false</default>
+                <label>DE Finance Case</label>
+            </value>
+            <value>
+                <fullName>DE Inbound Case</fullName>
+                <default>false</default>
+                <label>DE Inbound Case</label>
+            </value>
+            <value>
+                <fullName>DE Internal Case</fullName>
+                <default>false</default>
+                <label>DE Internal Case</label>
+            </value>
+            <value>
+                <fullName>DE Restaurant Operations</fullName>
+                <default>false</default>
+                <label>DE Restaurant Operations</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

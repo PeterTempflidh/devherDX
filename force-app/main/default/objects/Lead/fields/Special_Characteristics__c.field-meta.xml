@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Special_Characteristics__c</fullName>
+    <externalId>false</externalId>
+    <label>Special Characteristics</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>0/0 Partner</fullName>
+                <default>false</default>
+                <label>0/0 Partner</label>
+            </value>
+            <value>
+                <fullName>24 Hours</fullName>
+                <default>false</default>
+                <label>24 Hours</label>
+            </value>
+            <value>
+                <fullName>Finest</fullName>
+                <default>false</default>
+                <label>Finest</label>
+            </value>
+            <value>
+                <fullName>Hawker Legend</fullName>
+                <default>false</default>
+                <label>Hawker Legend</label>
+            </value>
+            <value>
+                <fullName>Kiosk</fullName>
+                <default>false</default>
+                <label>Kiosk</label>
+            </value>
+            <value>
+                <fullName>Late Night Delivery</fullName>
+                <default>false</default>
+                <label>Late Night Delivery</label>
+            </value>
+            <value>
+                <fullName>Michelin Guide</fullName>
+                <default>false</default>
+                <label>Michelin Guide</label>
+            </value>
+            <value>
+                <fullName>Shiok</fullName>
+                <default>false</default>
+                <label>Shiok</label>
+            </value>
+            <value>
+                <fullName>Stall</fullName>
+                <default>false</default>
+                <label>Stall</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

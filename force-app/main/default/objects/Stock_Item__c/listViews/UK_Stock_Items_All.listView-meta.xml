@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>UK_Stock_Items_All</fullName>
+    <columns>NAME</columns>
+    <columns>Id_Account__c</columns>
+    <columns>Status__c</columns>
+    <columns>Condition__c</columns>
+    <columns>Stock_Item_Ownership__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Stock_Item__c.UK_Stock_Item</value>
+    </filters>
+    <label>UK - Stock Items - All</label>
+    <language>en_US</language>
+    <sharedTo/>
+</ListView>

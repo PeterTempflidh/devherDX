@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Initiate_Return__c</fullName>
+    <externalId>false</externalId>
+    <label>Initiate Return</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Arrange Pick up</fullName>
+                <default>false</default>
+                <label>Arrange Pick up</label>
+            </value>
+            <value>
+                <fullName>Delivered to Warehouse</fullName>
+                <default>false</default>
+                <label>Delivered to Warehouse</label>
+            </value>
+            <value>
+                <fullName>Exchange Requested</fullName>
+                <default>false</default>
+                <label>Exchange Requested</label>
+            </value>
+            <value>
+                <fullName>Owner sends Terminal</fullName>
+                <default>false</default>
+                <label>Owner sends Terminal</label>
+            </value>
+            <value>
+                <fullName>Sales Rep Terminated</fullName>
+                <default>false</default>
+                <label>Sales Rep Terminated</label>
+            </value>
+            <value>
+                <fullName>Takeover</fullName>
+                <default>false</default>
+                <label>Takeover</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

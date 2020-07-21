@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PY_Editorial_Logo1</fullName>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>Country__c</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.PY_Entry_Case</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Restaurant - Data</value>
+    </filters>
+    <filters>
+        <field>CASES.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Case_Reason__c</field>
+        <operation>equals</operation>
+        <value>Logo</value>
+    </filters>
+    <label>PY Editorial - Logo</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>PY_Editorial</role>
+        <role>PY_Outsourcing</role>
+        <role>PY_Sales_Argentina</role>
+        <role>PY_Sales_Chile</role>
+        <role>PY_Sales_Management</role>
+    </sharedTo>
+</ListView>

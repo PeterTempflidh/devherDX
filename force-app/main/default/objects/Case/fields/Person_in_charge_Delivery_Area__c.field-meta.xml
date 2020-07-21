@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Person_in_charge_Delivery_Area__c</fullName>
+    <externalId>false</externalId>
+    <label>Person in-charge Delivery Area</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Alexander Liljeskär</fullName>
+                <default>false</default>
+                <label>Alexander Liljeskär</label>
+            </value>
+            <value>
+                <fullName>Elena Lövholm Eriksson</fullName>
+                <default>false</default>
+                <label>Elena Lövholm Eriksson</label>
+            </value>
+            <value>
+                <fullName>Henrik Eriksson</fullName>
+                <default>false</default>
+                <label>Henrik Eriksson</label>
+            </value>
+            <value>
+                <fullName>Jakob Wikenstå</fullName>
+                <default>false</default>
+                <label>Jakob Wikenstå</label>
+            </value>
+            <value>
+                <fullName>Jasmine Berhane Selassiel</fullName>
+                <default>false</default>
+                <label>Jasmine Berhane Selassiel</label>
+            </value>
+            <value>
+                <fullName>Johanna Wickström</fullName>
+                <default>false</default>
+                <label>Johanna Wickström</label>
+            </value>
+            <value>
+                <fullName>Lia Kousta Bergström</fullName>
+                <default>false</default>
+                <label>Lia Kousta Bergström</label>
+            </value>
+            <value>
+                <fullName>Linnea Hjerpe Persson</fullName>
+                <default>false</default>
+                <label>Linnea Hjerpe Persson</label>
+            </value>
+            <value>
+                <fullName>Linn Lindholm</fullName>
+                <default>false</default>
+                <label>Linn Lindholm</label>
+            </value>
+            <value>
+                <fullName>Malin Wallander</fullName>
+                <default>false</default>
+                <label>Malin Wallander</label>
+            </value>
+            <value>
+                <fullName>Maria Bengtsson</fullName>
+                <default>false</default>
+                <label>Maria Bengtsson</label>
+            </value>
+            <value>
+                <fullName>Nellie Eriksson</fullName>
+                <default>false</default>
+                <label>Nellie Eriksson</label>
+            </value>
+            <value>
+                <fullName>Olivia Blom</fullName>
+                <default>false</default>
+                <label>Olivia Blom</label>
+            </value>
+            <value>
+                <fullName>Richard Karlsson</fullName>
+                <default>false</default>
+                <label>Richard Karlsson</label>
+            </value>
+            <value>
+                <fullName>Stina Lönnqvist</fullName>
+                <default>false</default>
+                <label>Stina Lönnqvist</label>
+            </value>
+            <value>
+                <fullName>Stiven Persson</fullName>
+                <default>false</default>
+                <label>Stiven Persson</label>
+            </value>
+            <value>
+                <fullName>Therese Nilsson</fullName>
+                <default>false</default>
+                <label>Therese Nilsson</label>
+            </value>
+            <value>
+                <fullName>Tove Stork</fullName>
+                <default>false</default>
+                <label>Tove Stork</label>
+            </value>
+            <value>
+                <fullName>Viktor Hildingsson</fullName>
+                <default>false</default>
+                <label>Viktor Hildingsson</label>
+            </value>
+            <value>
+                <fullName>Karolina Tornberg</fullName>
+                <default>false</default>
+                <label>Karolina Tornberg</label>
+            </value>
+            <value>
+                <fullName>Kevin Lindberg</fullName>
+                <default>false</default>
+                <label>Kevin Lindberg</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

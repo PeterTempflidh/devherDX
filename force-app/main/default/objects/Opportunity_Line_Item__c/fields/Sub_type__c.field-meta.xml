@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sub_type__c</fullName>
+    <externalId>false</externalId>
+    <label>Sub Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Line_Item_Type__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Transmission Fee</fullName>
+                <default>false</default>
+                <label>Transmission Fee</label>
+            </value>
+            <value>
+                <fullName>Commission Fee</fullName>
+                <default>false</default>
+                <label>Commission Fee</label>
+            </value>
+            <value>
+                <fullName>Online Payment Fee</fullName>
+                <default>false</default>
+                <label>Online Payment Fee</label>
+            </value>
+            <value>
+                <fullName>White Label Website Fee</fullName>
+                <default>false</default>
+                <label>White Label Website Fee</label>
+            </value>
+            <value>
+                <fullName>Order Now Button Fee</fullName>
+                <default>false</default>
+                <label>Order Now Button Fee</label>
+            </value>
+            <value>
+                <fullName>RFV Discount</fullName>
+                <default>false</default>
+                <label>RFV Discount</label>
+            </value>
+            <value>
+                <fullName>Branding Discount</fullName>
+                <default>false</default>
+                <label>Branding Discount</label>
+            </value>
+            <value>
+                <fullName>White Label Website Discount</fullName>
+                <default>false</default>
+                <label>White Label Website Discount</label>
+            </value>
+            <value>
+                <fullName>Order Now Button Discount</fullName>
+                <default>false</default>
+                <label>Order Now Button Discount</label>
+            </value>
+            <value>
+                <fullName>Exclusive Branding Discount</fullName>
+                <default>false</default>
+                <label>Exclusive Branding Discount</label>
+            </value>
+            <value>
+                <fullName>Fixed Amount</fullName>
+                <default>false</default>
+                <label>Fixed Amount</label>
+            </value>
+            <value>
+                <fullName>Terminal Box</fullName>
+                <default>false</default>
+                <label>Terminal Box</label>
+            </value>
+            <value>
+                <fullName>Voucher</fullName>
+                <default>false</default>
+                <label>Voucher</label>
+            </value>
+            <value>
+                <fullName>Pizza Cartons</fullName>
+                <default>false</default>
+                <label>Pizza Cartons</label>
+            </value>
+            <value>
+                <fullName>Menu Printing</fullName>
+                <default>false</default>
+                <label>Menu Printing</label>
+            </value>
+            <value>
+                <fullName>Recurring Fee</fullName>
+                <default>false</default>
+                <label>Recurring Fee</label>
+            </value>
+            <value>
+                <fullName>Monthly Box Fee</fullName>
+                <default>false</default>
+                <label>Monthly Box Fee</label>
+            </value>
+            <value>
+                <fullName>Setup Fee</fullName>
+                <default>false</default>
+                <label>Setup Fee</label>
+            </value>
+            <value>
+                <fullName>Promotions</fullName>
+                <default>false</default>
+                <label>Promotions</label>
+            </value>
+            <value>
+                <fullName>Annual Fee</fullName>
+                <default>false</default>
+                <label>Annual Fee</label>
+            </value>
+            <value>
+                <fullName>Renewal Fee</fullName>
+                <default>false</default>
+                <label>Renewal Fee</label>
+            </value>
+            <value>
+                <fullName>Automatic</fullName>
+                <default>false</default>
+                <label>Automatic</label>
+            </value>
+            <value>
+                <fullName>Manual</fullName>
+                <default>false</default>
+                <label>Manual</label>
+            </value>
+            <value>
+                <fullName>Premium Placement</fullName>
+                <default>false</default>
+                <label>Premium Placement</label>
+            </value>
+            <value>
+                <fullName>Apron</fullName>
+                <default>false</default>
+                <label>Apron</label>
+            </value>
+            <value>
+                <fullName>Caps</fullName>
+                <default>false</default>
+                <label>Caps</label>
+            </value>
+            <value>
+                <fullName>Heating Bag</fullName>
+                <default>false</default>
+                <label>Heating Bag</label>
+            </value>
+            <value>
+                <fullName>Notepads and Pens</fullName>
+                <default>false</default>
+                <label>Notepads and Pens</label>
+            </value>
+            <value>
+                <fullName>Roofie</fullName>
+                <default>false</default>
+                <label>Roofie</label>
+            </value>
+            <value>
+                <fullName>T-shirt</fullName>
+                <default>false</default>
+                <label>T-shirt</label>
+            </value>
+            <value>
+                <fullName>Ad Sales</fullName>
+                <default>false</default>
+                <label>Ad Sales</label>
+            </value>
+            <value>
+                <fullName>Flat Commission</fullName>
+                <default>false</default>
+                <label>Flat Commission</label>
+            </value>
+            <value>
+                <fullName>Welcome Pack</fullName>
+                <default>false</default>
+                <label>Welcome Pack</label>
+            </value>
+            <value>
+                <fullName>Blade Sign</fullName>
+                <default>false</default>
+                <label>Blade Sign</label>
+            </value>
+            <value>
+                <fullName>Monthly Fee</fullName>
+                <default>false</default>
+                <label>Monthly Fee</label>
+            </value>
+            <value>
+                <fullName>Replacement</fullName>
+                <default>false</default>
+                <label>Replacement</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Terminal Box</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Voucher</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Pizza Cartons</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Menu Printing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Recurring Fee</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Monthly Box Fee</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Setup Fee</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Promotions</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Annual Fee</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Renewal Fee</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Automatic</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Manual</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Premium Placement</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Apron</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Caps</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Heating Bag</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Notepads and Pens</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Roofie</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>T-shirt</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Ad Sales</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>Flat Commission</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Service</controllingFieldValue>
+            <valueName>Transmission Fee</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Service</controllingFieldValue>
+            <valueName>Commission Fee</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Service</controllingFieldValue>
+            <valueName>Online Payment Fee</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Service</controllingFieldValue>
+            <valueName>White Label Website Fee</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Service</controllingFieldValue>
+            <valueName>Order Now Button Fee</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Service</controllingFieldValue>
+            <valueName>RFV Discount</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Service</controllingFieldValue>
+            <valueName>Branding Discount</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Service</controllingFieldValue>
+            <valueName>White Label Website Discount</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Service</controllingFieldValue>
+            <valueName>Order Now Button Discount</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Service</controllingFieldValue>
+            <valueName>Exclusive Branding Discount</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Service</controllingFieldValue>
+            <valueName>Fixed Amount</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

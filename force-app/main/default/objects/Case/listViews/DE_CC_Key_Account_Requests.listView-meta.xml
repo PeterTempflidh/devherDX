@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DE_CC_Key_Account_Requests</fullName>
+    <booleanFilter>(1 OR 2 OR 3) AND 4 AND 5</booleanFilter>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>Restaurant_Name__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>NAME</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.ORIGIN</columns>
+    <columns>Case_Reason_Level_1__c</columns>
+    <columns>CASES.TYPE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>equals</operation>
+        <value>DE Key Account Request,H Imr,G Obi,J Tov,G Guem,B Zad,C Cio,B Hopf,E Sta,mcarow</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>equals</operation>
+        <value>T Spi,O Wil,S Hel,ymati,magele,s kr,New Voice Media Account,hwoel,btall,skurz</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>equals</operation>
+        <value>A Sch,DE Key Account Requests Xlisting</value>
+    </filters>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>notEqual</operation>
+        <value>Closed,Resolved</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>notEqual</operation>
+        <value>Menu Processing,Onboarding,Take Offline,Owner/Legal Form Change,Retention</value>
+    </filters>
+    <label>DE - CC - Key Account Requests</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>DE_Key_Account</group>
+        <role>DE_Customer_Care_Management</role>
+        <role>DE_Restaurant_Operations</role>
+    </sharedTo>
+</ListView>

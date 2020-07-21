@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsMyActionItem__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( $User.Id =  Owner__c  , TRUE, FALSE)</formula>
+    <label>Is My Action Item</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

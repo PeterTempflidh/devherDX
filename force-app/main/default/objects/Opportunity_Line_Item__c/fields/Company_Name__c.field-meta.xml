@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Company_Name__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(TEXT(Line_Item_Type__c) == &apos;Service&apos;,Id_List_Service_Price__r.Company__r.Name,
+IF(TEXT(Line_Item_Type__c) == &apos;Product&apos;,Id_List_Price_Product__r.Company__r.Name,
+IF(TEXT(Line_Item_Type__c) == &apos;AddOn&apos;,Id_List_Add_On__r.Company__r.Name,&quot;&quot;)))</formula>
+    <label>Company Name</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

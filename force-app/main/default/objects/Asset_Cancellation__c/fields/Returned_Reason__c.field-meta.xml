@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Returned_Reason__c</fullName>
+    <externalId>false</externalId>
+    <label>Returned Reason</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+                <label>Cancelled</label>
+            </value>
+            <value>
+                <fullName>Contract canceled</fullName>
+                <default>false</default>
+                <label>Contract canceled</label>
+            </value>
+            <value>
+                <fullName>Defect</fullName>
+                <default>false</default>
+                <label>Defect</label>
+            </value>
+            <value>
+                <fullName>Deliver refused</fullName>
+                <default>false</default>
+                <label>Deliver refused</label>
+            </value>
+            <value>
+                <fullName>Delivery refused</fullName>
+                <default>false</default>
+                <label>Delivery refused</label>
+            </value>
+            <value>
+                <fullName>Didn&apos;t pick up</fullName>
+                <default>false</default>
+                <label>Didn&apos;t pick up</label>
+            </value>
+            <value>
+                <fullName>Exchanged</fullName>
+                <default>false</default>
+                <label>Exchanged</label>
+            </value>
+            <value>
+                <fullName>Fee burden</fullName>
+                <default>false</default>
+                <label>Fee burden</label>
+            </value>
+            <value>
+                <fullName>Inconvenient to use</fullName>
+                <default>false</default>
+                <label>Inconvenient to use</label>
+            </value>
+            <value>
+                <fullName>No space for Terminal</fullName>
+                <default>false</default>
+                <label>No space for Terminal</label>
+            </value>
+            <value>
+                <fullName>Not enough order</fullName>
+                <default>false</default>
+                <label>Not enough order</label>
+            </value>
+            <value>
+                <fullName>Rejection with no reason</fullName>
+                <default>false</default>
+                <label>Rejection with no reason</label>
+            </value>
+            <value>
+                <fullName>Returned by restaurant</fullName>
+                <default>false</default>
+                <label>Returned by restaurant</label>
+            </value>
+            <value>
+                <fullName>Returned by the restaurant</fullName>
+                <default>false</default>
+                <label>Returned by the restaurant</label>
+            </value>
+            <value>
+                <fullName>System error</fullName>
+                <default>false</default>
+                <label>System error</label>
+            </value>
+            <value>
+                <fullName>Use POS</fullName>
+                <default>false</default>
+                <label>Use POS</label>
+            </value>
+            <value>
+                <fullName>Wrong recipients</fullName>
+                <default>false</default>
+                <label>Wrong recipients</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

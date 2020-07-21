@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>입점 허용 업종</label>
+    <name>Business_Licence_Type__c</name>
+    <picklistValues>
+        <masterLabel>Alcohol Delivery Licence</masterLabel>
+        <translation><!-- Alcohol Delivery Licence --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Alcohol Delivery Limited</masterLabel>
+        <translation><!-- Alcohol Delivery Limited --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bakery Licence</masterLabel>
+        <translation>5.제과점영업</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Consignment Licence</masterLabel>
+        <translation>4.위탁급식영업</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Express Goods Licence</masterLabel>
+        <translation>2.휴게음식점영업</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Food Manufacturing processing Licence</masterLabel>
+        <translation>8. 식품제조·가공업</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Instant Food Licence</masterLabel>
+        <translation>1.즉석판매제조∙가공업</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Manufacturing and Management of Meat</masterLabel>
+        <translation>7.식육즉석판매·가공업</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Provided</masterLabel>
+        <translation>0. 제공하지 않음</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other foods business Licence</masterLabel>
+        <translation>6.기타 식품 판매업</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Regular Restaurant Licence</masterLabel>
+        <translation>3.일반음식점영업</translation>
+    </picklistValues>
+</CustomFieldTranslation>

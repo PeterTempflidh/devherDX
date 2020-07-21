@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lead_Data_Origin__c</fullName>
+    <description>SP-2251 : lead organiser</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Shows the Websites etc. that a Lead came from.</inlineHelpText>
+    <label>Lead Data Origin</label>
+    <length>30</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_Standard_Contract_Components__c</fullName>
+    <externalId>false</externalId>
+    <label>Non Standard Contract Components</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Platform exclusivity</fullName>
+                <default>false</default>
+                <label>Platform exclusivity</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Online Payment Doc</fullName>
+                <default>false</default>
+                <label>Online Payment Doc</label>
+            </value>
+            <value>
+                <fullName>Registration fee</fullName>
+                <default>false</default>
+                <label>Registration fee</label>
+            </value>
+            <value>
+                <fullName>Renewal fee</fullName>
+                <default>false</default>
+                <label>Renewal fee</label>
+            </value>
+            <value>
+                <fullName>Pizza</fullName>
+                <default>false</default>
+                <label>Pizza</label>
+            </value>
+            <value>
+                <fullName>Sushi</fullName>
+                <default>false</default>
+                <label>Sushi</label>
+            </value>
+            <value>
+                <fullName>New Restaurant Info</fullName>
+                <default>false</default>
+                <label>New Restaurant Info</label>
+            </value>
+            <value>
+                <fullName>Ownership Change</fullName>
+                <default>false</default>
+                <label>Ownership Change</label>
+            </value>
+            <value>
+                <fullName>Premium Show Discount</fullName>
+                <default>false</default>
+                <label>Premium Show Discount</label>
+            </value>
+            <value>
+                <fullName>Cash before delivery</fullName>
+                <default>false</default>
+                <label>Cash before delivery</label>
+            </value>
+            <value>
+                <fullName>Partial prepayment</fullName>
+                <default>false</default>
+                <label>Partial prepayment</label>
+            </value>
+            <value>
+                <fullName>Settlement</fullName>
+                <default>false</default>
+                <label>Settlement</label>
+            </value>
+            <value>
+                <fullName>BladeT&amp;C</fullName>
+                <default>false</default>
+                <label>BladeT&amp;C</label>
+            </value>
+            <value>
+                <fullName>Exclusive Special Offer</fullName>
+                <default>false</default>
+                <label>Exclusive Special Offer</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

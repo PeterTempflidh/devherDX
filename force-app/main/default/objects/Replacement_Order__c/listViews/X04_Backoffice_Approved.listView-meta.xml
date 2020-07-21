@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X04_Backoffice_Approved</fullName>
+    <columns>NAME</columns>
+    <columns>Replacement_Product__c</columns>
+    <columns>Reason__c</columns>
+    <columns>Status__c</columns>
+    <columns>Id_Account__c</columns>
+    <columns>Id_Asset__c</columns>
+    <columns>Id_Opportunity__c</columns>
+    <columns>Serial_No__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>BackOffice-Approved</value>
+    </filters>
+    <label>05.Backoffice Approved</label>
+    <language>en_US</language>
+    <sharedTo>
+        <roleAndSubordinates>UK_Management</roleAndSubordinates>
+    </sharedTo>
+</ListView>

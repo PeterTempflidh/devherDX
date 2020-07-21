@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Location of the branding content --></help>
+    <label>Lokace</label>
+    <name>Location__c</name>
+    <picklistValues>
+        <masterLabel>Counter</masterLabel>
+        <translation><!-- Counter --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Door</masterLabel>
+        <translation><!-- Door --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Main window</masterLabel>
+        <translation><!-- Main window --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Secondary window</masterLabel>
+        <translation><!-- Secondary window --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Vehicle</masterLabel>
+        <translation><!-- Vehicle --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Wall</masterLabel>
+        <translation><!-- Wall --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

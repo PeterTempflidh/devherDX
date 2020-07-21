@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Knowledge_Department_Formula__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF($Permission.Talabat_Partner_service_Knowledge, &quot;Talabat - Partner service&quot;,NULL)+
+IF($Permission.Talabat_Back_office_Knowledge, &quot;Talabat - Back office&quot;,NULL)+
+IF($Permission.Talabat_Live_chat_Knowledge, &quot;Talabat - Live chat&quot;,NULL)+
+IF($Permission.APAC_Bengali_Knowledge,&quot;APAC - Bengali&quot;,NULL) +
+IF($Permission.APAC_Burmese_Knowledge,&quot;APAC - Burmese&quot;,NULL) +
+IF($Permission.APAC_Cantonese_Knowledge,&quot;APAC - Cantonese&quot;,NULL) +
+IF($Permission.APAC_English_Knowledge,&quot;APAC - English&quot;,NULL) +
+IF($Permission.APAC_Khmer_Knowledge,&quot;APAC - Khmer&quot;,NULL) +
+IF($Permission.APAC_Lao_Knowledge,&quot;APAC - Lao&quot;,NULL) +
+IF($Permission.APAC_Mandarin_Knowledge,&quot;APAC - Mandarin&quot;,NULL) +
+IF($Permission.APAC_Thai_Knowledge,&quot;APAC - Thai&quot;,NULL) +
+IF($Permission.APAC_Urdu_Knowledge,&quot;APAC - Urdu&quot;,NULL) +
+IF($Permission.PedidosYa_Spanish_Knowledge,&quot;PedidosYa - Spanish&quot;,NULL)</formula>
+    <label>Knowledge Department Formula</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

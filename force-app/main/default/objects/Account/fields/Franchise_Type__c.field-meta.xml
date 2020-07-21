@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Franchise_Type__c</fullName>
+    <description>Only use to indicate if a Restaurant is managed via Headquarter or individually in a hierarchy</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Only use to indicate if a Restaurant is managed via Headquarter or individually in a hierarchy</inlineHelpText>
+    <label>Franchise Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Directly managed</fullName>
+                <default>false</default>
+                <label>Directly managed</label>
+            </value>
+            <value>
+                <fullName>Indirectly managed</fullName>
+                <default>false</default>
+                <label>Indirectly managed</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Voucher Restrictions --></label>
+    <name>Voucher_Restrictions__c</name>
+    <picklistValues>
+        <masterLabel>First time only</masterLabel>
+        <translation><!-- First time only --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Online payment only</masterLabel>
+        <translation><!-- Online payment only --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

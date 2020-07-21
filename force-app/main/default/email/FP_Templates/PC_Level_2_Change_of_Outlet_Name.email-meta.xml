@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Template for Change of Outlet Name</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>PC Level 2 - Change of Outlet Name</name>
+    <style>freeForm</style>
+    <subject>foodpanda: Change of Outlet Name</subject>
+    <textOnly>Dear {!Account.Name},
+
+Good day.
+
+Thank you for reaching out to foodpanda.
+
+We would like to inform you that we have changed your outlet name from &lt;old name&gt; to &lt;new name&gt; in our system.
+
+Please do let us know if you have any other concerns.
+
+Hope you have a great day ahead!
+
+Regards,
+&lt;Agent Name&gt;</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

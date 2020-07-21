@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>SIM 제공사</label>
+    <name>Simcard_Provider__c</name>
+    <picklistValues>
+        <masterLabel>A1</masterLabel>
+        <translation><!-- A1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>D1</masterLabel>
+        <translation><!-- D1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>LAN</masterLabel>
+        <translation><!-- LAN --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SKT</masterLabel>
+        <translation><!-- SKT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T-Mobile</masterLabel>
+        <translation><!-- T-Mobile --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Vodafone</masterLabel>
+        <translation><!-- Vodafone --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

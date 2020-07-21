@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Terminal_Return_after_14_21</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Returned_Reason__c</columns>
+    <columns>Person_In_Charge_Return__c</columns>
+    <columns>Retour_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset__c.Yogiyo_Asset</value>
+    </filters>
+    <filters>
+        <field>Returned_Date__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>Retour_Date__c</field>
+        <operation>lessOrEqual</operation>
+        <value>N_DAYS_AGO:14</value>
+    </filters>
+    <filters>
+        <field>Retour_Date__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>N_DAYS_AGO:21</value>
+    </filters>
+    <label>YGY - Terminal Return after 14 - 21</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Yogiyo_Customer_Car_Management</role>
+        <role>Yogiyo_Customer_Care_Team</role>
+        <role>Yogiyo_Local_Admin</role>
+        <roleAndSubordinates>Yogiyo_Customer_Car_Management</roleAndSubordinates>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Case_Reason</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Case Reason</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/resource/jQuery&quot;)} 
+{!REQUIRESCRIPT(&quot;https://code.jquery.com/ui/1.10.4/jquery-ui.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/apex.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/support/console/35.0/integration.js&quot;)} 
+
+
+{!REQUIRESCRIPT(&quot;/resource/ReasonCodingPopup&quot;)} 
+
+
+j$(&quot;#modalDiv&quot;).dialog(&apos;option&apos;,&apos;title&apos;,&apos;Case: {!Case.CaseNumber}&apos;).dialog(&apos;open&apos;);</url>
+</WebLink>

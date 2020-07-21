@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Estado</label>
+    <name>Status__c</name>
+    <picklistValues>
+        <masterLabel>Activated Successfully</masterLabel>
+        <translation><!-- Activated Successfully --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Activated but not in use</masterLabel>
+        <translation><!-- Activated but not in use --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Awaiting Delivery</masterLabel>
+        <translation><!-- Awaiting Delivery --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cancel Additional Charge</masterLabel>
+        <translation><!-- Cancel Additional Charge --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Canceled</masterLabel>
+        <translation><!-- Canceled --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cancelled before Shipment</masterLabel>
+        <translation><!-- Cancelled before Shipment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivered</masterLabel>
+        <translation><!-- Delivered --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivered - Activation Needed</masterLabel>
+        <translation><!-- Delivered - Activation Needed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Exception</masterLabel>
+        <translation><!-- Exception --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Exchange Requested</masterLabel>
+        <translation><!-- Exchange Requested --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>InTransit</masterLabel>
+        <translation><!-- InTransit --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Incomplete</masterLabel>
+        <translation><!-- Incomplete --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Invalid</masterLabel>
+        <translation><!-- Invalid --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lost</masterLabel>
+        <translation><!-- Lost --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New - Awaiting Shipping</masterLabel>
+        <translation><!-- New - Awaiting Shipping --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New - Deposit awaited</masterLabel>
+        <translation><!-- New - Deposit awaited --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Redeliver</masterLabel>
+        <translation><!-- Redeliver --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Replacement Requested</masterLabel>
+        <translation><!-- Replacement Requested --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Returned Shipment</masterLabel>
+        <translation><!-- Returned Shipment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sent - Awaiting Activation</masterLabel>
+        <translation><!-- Sent - Awaiting Activation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Takeover</masterLabel>
+        <translation><!-- Takeover --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Technical Issue</masterLabel>
+        <translation><!-- Technical Issue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Waiting For Replacement</masterLabel>
+        <translation><!-- Waiting For Replacement --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

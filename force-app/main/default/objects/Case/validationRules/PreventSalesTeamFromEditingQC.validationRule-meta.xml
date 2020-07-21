@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PreventSalesTeamFromEditingQC</fullName>
+    <active>true</active>
+    <description>Moved from trigger to validation rule sales team profile is not allowed to change status of Quality check cases. currently used by CD, Talabat, UK, AT</description>
+    <errorConditionFormula>NOT(ISNEW()) 
+&amp;&amp;
+ISCHANGED(Status) 
+&amp;&amp; 
+(( RecordType.DeveloperName =&quot;CD_Internal_Case&quot; 
+&amp;&amp; $User.ProfileId =&quot;00ew0000001R8q7&quot; ) 
+||
+(RecordType.DeveloperName =&quot;AT_Internal_Case&quot; 
+&amp;&amp; $User.ProfileId =&quot;00ew0000001pFom&quot; ) 
+|| 
+(RecordType.DeveloperName =&quot;Talabat_Internal_Case&quot; 
+&amp;&amp;
+$User.ProfileId =&quot;00ew0000001IFkB&quot; ) )
+&amp;&amp;
+TEXT(Type)=&quot;Quality Check&quot;</errorConditionFormula>
+    <errorMessage>You do not have the permission to change status of Quality Check Cases</errorMessage>
+</ValidationRule>

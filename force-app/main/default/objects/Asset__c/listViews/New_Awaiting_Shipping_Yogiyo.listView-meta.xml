@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_Awaiting_Shipping_Yogiyo</fullName>
+    <columns>NAME</columns>
+    <columns>Company_Number__c</columns>
+    <columns>Account__c</columns>
+    <columns>Terminal_PIC__c</columns>
+    <columns>Stock_Item__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>New - Awaiting Shipping</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset__c.Yogiyo_Asset</value>
+    </filters>
+    <label>YGY - 01. New - Awaiting Shipping</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Yogiyo_Customer_Car_Management</role>
+        <role>Yogiyo_Customer_Care_Team</role>
+        <role>Yogiyo_Local_Admin</role>
+    </sharedTo>
+</ListView>

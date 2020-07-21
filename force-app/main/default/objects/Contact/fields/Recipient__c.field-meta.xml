@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Recipient__c</fullName>
+    <description>SSC-1567 - Field represent individual or thing recipient of contact information for a purpose</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Recipient of Contact information</inlineHelpText>
+    <label>Recipient</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Taiwan Tax Invoice</fullName>
+                <default>false</default>
+                <label>Taiwan Tax Invoice</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

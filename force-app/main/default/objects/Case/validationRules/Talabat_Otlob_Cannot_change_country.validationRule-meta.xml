@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Talabat_Otlob_Cannot_change_country</fullName>
+    <active>true</active>
+    <description>Prevent users from changing Country between Egypt and Talabat countries , should only be allow to change country when is empty or changing between Talabat countries</description>
+    <errorConditionFormula>AND(
+	OR(
+		AND(
+			ISCHANGED(Country__c),
+			INCLUDES(Country__c, &apos;Egypt&apos;),
+			OR(
+				INCLUDES(PRIORVALUE(Country__c), &apos;Bahrain&apos;),
+				INCLUDES(PRIORVALUE(Country__c), &apos;Jordan&apos;),
+				INCLUDES(PRIORVALUE(Country__c), &apos;Kingdom of Saudi Arabia&apos;),
+				INCLUDES(PRIORVALUE(Country__c), &apos;Kuwait&apos;),
+				INCLUDES(PRIORVALUE(Country__c), &apos;Oman&apos;),
+				INCLUDES(PRIORVALUE(Country__c), &apos;United Arab Emirates&apos;),
+				INCLUDES(PRIORVALUE(Country__c), &apos;Qatar&apos;)
+			)
+		),
+		AND(
+			ISCHANGED(Country__c),
+			INCLUDES(PRIORVALUE(Country__c) , &apos;Egypt&apos;)
+		)
+	),
+	RecordType.DeveloperName = &quot;Talabat_Inbound_Case&quot;,
+	NOT($Permission.Exclude_from_Validation)
+)</errorConditionFormula>
+    <errorDisplayField>Country__c</errorDisplayField>
+    <errorMessage>You cannot change the Country</errorMessage>
+</ValidationRule>

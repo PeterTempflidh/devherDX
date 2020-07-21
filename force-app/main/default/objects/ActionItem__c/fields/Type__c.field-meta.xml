@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Commission Upgrade</fullName>
+                <default>false</default>
+                <label>Commission Upgrade</label>
+            </value>
+            <value>
+                <fullName>Delivery Area</fullName>
+                <default>false</default>
+                <label>Delivery Area</label>
+            </value>
+            <value>
+                <fullName>Delivery Fee</fullName>
+                <default>false</default>
+                <label>Delivery Fee</label>
+            </value>
+            <value>
+                <fullName>Delivery Time</fullName>
+                <default>false</default>
+                <label>Delivery Time</label>
+            </value>
+            <value>
+                <fullName>Exclusivity</fullName>
+                <default>false</default>
+                <label>Exclusivity</label>
+            </value>
+            <value>
+                <fullName>Fail Rate</fullName>
+                <default>false</default>
+                <label>Fail Rate</label>
+            </value>
+            <value>
+                <fullName>Joker</fullName>
+                <default>false</default>
+                <label>Joker</label>
+            </value>
+            <value>
+                <fullName>Menu</fullName>
+                <default>false</default>
+                <label>Menu</label>
+            </value>
+            <value>
+                <fullName>MOV</fullName>
+                <default>false</default>
+                <label>MOV</label>
+            </value>
+            <value>
+                <fullName>Premium Listing</fullName>
+                <default>false</default>
+                <label>Premium Listing</label>
+            </value>
+            <value>
+                <fullName>Reviews</fullName>
+                <default>false</default>
+                <label>Reviews</label>
+            </value>
+            <value>
+                <fullName>Switch</fullName>
+                <default>false</default>
+                <label>Switch</label>
+            </value>
+            <value>
+                <fullName>Transmission Method</fullName>
+                <default>false</default>
+                <label>Transmission Method</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

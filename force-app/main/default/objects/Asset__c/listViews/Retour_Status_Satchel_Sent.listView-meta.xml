@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Retour_Status_Satchel_Sent</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Retour_Date__c</columns>
+    <columns>Return_Due_Date__c</columns>
+    <columns>Retour_Status__c</columns>
+    <columns>Retour_Tracking_Number__c</columns>
+    <columns>Stock_Item__c</columns>
+    <columns>Comment__c</columns>
+    <columns>Status__c</columns>
+    <columns>Replaced_Stock_Item__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Retour_Status__c</field>
+        <operation>equals</operation>
+        <value>Awaiting Shipping,En Route</value>
+    </filters>
+    <filters>
+        <field>Retour_Tracking_Number__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <label>Retour Status - Satchel Sent</label>
+    <language>en_US</language>
+    <sharedTo>
+        <roleAndSubordinates>DH_AU_Management</roleAndSubordinates>
+    </sharedTo>
+</ListView>

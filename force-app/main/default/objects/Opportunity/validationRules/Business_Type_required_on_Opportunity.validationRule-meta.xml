@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Business_Type_required_on_Opportunity</fullName>
+    <active>true</active>
+    <description>Business Type is required to move CD opportunity forward beyond Stage Prospeccion</description>
+    <errorConditionFormula>AND( 
+ISPICKVAL( Business_Type__c,&quot;&quot;), 
+RecordType.DeveloperName = &apos;CD_Opportunity&apos;, 
+OR( TEXT(StageName)= &apos;Menu received&apos;, 
+TEXT(StageName)= &apos;Editorial Queue&apos;, 
+TEXT(StageName)= &apos;Terminals Queue&apos;, 
+TEXT(StageName)= &apos;Closed Won&apos;,
+TEXT(StageName)= &apos;Promo and Logistics Queue&apos;,
+TEXT(StageName)= &apos;Design Approval&apos; ) 
+)</errorConditionFormula>
+    <errorDisplayField>Business_Type__c</errorDisplayField>
+    <errorMessage>Please update the Business Type on the opportunity before moving forward with the Opportunity Stage</errorMessage>
+</ValidationRule>

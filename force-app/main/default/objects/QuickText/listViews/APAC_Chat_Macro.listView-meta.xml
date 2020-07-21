@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>APAC_Chat_Macro</fullName>
+    <columns>Name</columns>
+    <columns>Message</columns>
+    <columns>Channel</columns>
+    <columns>CreatedDate</columns>
+    <filterScope>Mine</filterScope>
+    <label>APAC - Chat Macro</label>
+    <sharedTo>
+        <role>FP_Customer_Service_Agent</role>
+        <role>FP_Customer_Service_Management</role>
+        <role>FP_Management</role>
+    </sharedTo>
+</ListView>

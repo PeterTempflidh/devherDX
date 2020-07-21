@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GLOBAL_Incorrect_Order_Number_Spelling</fullName>
+    <active>true</active>
+    <description>SP-1960
+Modification: SCC-464
+Modification: SCC-541</description>
+    <errorConditionFormula>NOT(ISBLANK(Order_Number__c))
+&amp;&amp;
+(
+(
+ISNEW()
+&amp;&amp;
+(TEXT(Origin) = &quot;Customer Care&quot;
+||
+TEXT(Origin) = &quot;Social Media&quot;)
+)
+||
+ISCHANGED(Order_Number__c)
+||
+ISCHANGED(Platform__c)
+)
+&amp;&amp;
+(
+( RecordType.DeveloperName = &apos;DE_Inbound_Case&apos;
+&amp;&amp;
+INCLUDES(Platform__c ,&quot;LieferheldDE&quot;)
+&amp;&amp;
+(NOT(REGEX(Order_Number__c , &quot;[0-9]{13}&quot;)) &amp;&amp; Order_Number__c&lt;&gt;&quot;0&quot;)
+) ||
+
+( RecordType.DeveloperName = &apos;DE_Inbound_Case&apos;
+&amp;&amp;
+INCLUDES(Platform__c ,&quot;PizzaDE&quot;)
+&amp;&amp;
+(NOT(REGEX(Order_Number__c , &quot;9[0-9]{13}&quot;)) &amp;&amp; Order_Number__c&lt;&gt;&quot;0&quot;)
+) ||
+
+( RecordType.DeveloperName = &apos;DE_Inbound_Case&apos;
+&amp;&amp;
+INCLUDES(Platform__c ,&quot;Burger King&quot;)
+&amp;&amp;
+(NOT(REGEX(Order_Number__c , &quot;s[a-z0-9]{3}-[a-z0-9]{4}&quot;)) &amp;&amp; Order_Number__c&lt;&gt;&quot;0&quot;)
+) ||
+
+( RecordType.DeveloperName = &apos;CD_Inbound_Case&apos;
+&amp;&amp;
+(NOT(ISNUMBER(Order_Number__c))
+))||
+
+(
+RecordType.DeveloperName = &apos;Talabat_Inbound_Case&apos; &amp;&amp;
+( 
+  (INCLUDES(Platform__c ,&quot;Talabat&quot;) &amp;&amp; NOT(REGEX(Order_Number__c , &quot;[0-9]{9}&quot;)) &amp;&amp; Order_Number__c&lt;&gt;&quot;0&quot;) ||
+  (INCLUDES(Platform__c ,&quot;Otlob&quot;) &amp;&amp; NOT(REGEX(Order_Number__c , &quot;[0-9]{8,9}&quot;)) &amp;&amp; Order_Number__c&lt;&gt;&quot;0&quot;)
+)
+) ||
+
+(
+RecordType.DeveloperName = &apos;PY_Inbound_Case&apos;
+&amp;&amp;
+(NOT(ISNUMBER(Order_Number__c))
+))||
+
+(
+RecordType.DeveloperName = &apos;AT_Inbound_Case&apos;
+&amp;&amp;
+(NOT(REGEX(Order_Number__c , &quot;[0-9]{10}&quot;)) &amp;&amp; Order_Number__c&lt;&gt;&quot;0&quot;)
+)||
+
+(
+RecordType.DeveloperName = &apos;FP_Inbound_Case&apos;
+&amp;&amp;
+NOT(INCLUDES(Platform__c,&quot;Hungerstation&quot;))
+&amp;&amp;
+(NOT(REGEX(Order_Number__c , &quot;[a-z0-9]{4}-[a-z0-9]{4}&quot;)) &amp;&amp; Order_Number__c&lt;&gt;&quot;0&quot;)
+) ||
+(
+RecordType.DeveloperName = &apos;FP_Inbound_Case&apos;
+&amp;&amp;
+INCLUDES(Platform__c,&quot;Hungerstation&quot;)
+&amp;&amp;
+(NOT(REGEX(Order_Number__c , &quot;[0-9]{1,19}&quot;)) &amp;&amp; Order_Number__c&lt;&gt;&quot;0&quot;)
+) ||
+
+( RecordType.DeveloperName = &apos;YE_Inbound_Case&apos;
+&amp;&amp;
+(NOT(REGEX(Order_Number__c , &quot;[0-9]{9}&quot;)) &amp;&amp; Order_Number__c&lt;&gt;&quot;0&quot;)
+) ||
+
+( RecordType.DeveloperName = &apos;HU_Inbound_Case&apos;
+&amp;&amp;
+(NOT(REGEX(Order_Number__c , &quot;[a-z0-9]{4}-[a-z0-9]{4}&quot;)||
+REGEX(Order_Number__c , &quot;[a-z0-9]{2}-[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}&quot;)) &amp;&amp; Order_Number__c&lt;&gt;&quot;0&quot;)
+)
+)</errorConditionFormula>
+    <errorMessage>Order Number is not in a valid format.</errorMessage>
+</ValidationRule>

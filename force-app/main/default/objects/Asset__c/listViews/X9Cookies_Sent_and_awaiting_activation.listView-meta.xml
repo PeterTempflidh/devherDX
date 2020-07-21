@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X9Cookies_Sent_and_awaiting_activation</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Date_Shipped__c</columns>
+    <columns>Status__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Backend_Id__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>New - Awaiting Shipping,Sent - Awaiting Activation</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>equals</operation>
+        <value>9Cookies Go</value>
+    </filters>
+    <label>FI - Sent and Awaiting Activation</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>FI_Account_Management</role>
+        <role>FI_Customer_Care_Team</role>
+        <role>FI_Management</role>
+        <role>FI_Sales_Team</role>
+    </sharedTo>
+</ListView>

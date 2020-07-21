@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Cílový partner</label>
+    <name>Target_Partner__c</name>
+    <picklistValues>
+        <masterLabel>Basic Lead</masterLabel>
+        <translation>Základní prodejní tip</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Dreamlist</masterLabel>
+        <translation><!-- Dreamlist --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Gap Finder Target Partner</masterLabel>
+        <translation>Cílený partner - mezera v nabídce</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SCTP</masterLabel>
+        <translation><!-- SCTP --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Target Partner</masterLabel>
+        <translation>Cílový partner</translation>
+    </picklistValues>
+</CustomFieldTranslation>

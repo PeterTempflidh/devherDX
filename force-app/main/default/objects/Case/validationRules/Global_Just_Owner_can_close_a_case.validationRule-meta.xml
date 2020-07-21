@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_Just_Owner_can_close_a_case</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+  $User.Id &lt;&gt; Owner:User.Id,
+  ISPICKVAL(Status,&apos;Closed&apos;),
+  ISPICKVAL(Type,&apos;Quality Check&apos;),
+  OR(
+    RecordType.DeveloperName = &apos;Talabat_Internal_Case&apos;,
+    RecordType.DeveloperName = &apos;HU_Internal_Case&apos;
+  )
+)</errorConditionFormula>
+    <errorMessage>In order to close a case please Take Ownership</errorMessage>
+</ValidationRule>

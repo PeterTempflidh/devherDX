@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>sync_Central_Billing__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>the Restaurant offers the payment method: Online Payment</description>
+    <externalId>false</externalId>
+    <inlineHelpText>the restaurant offers online payment</inlineHelpText>
+    <label>Central Billing</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

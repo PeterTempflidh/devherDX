@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Finance_Specifications__c</fullName>
+    <externalId>false</externalId>
+    <label>Finance Specifications</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <controllingField>Record_Country__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Cashless Pre Payment</fullName>
+                <default>false</default>
+                <label>Cashless Pre Payment</label>
+            </value>
+            <value>
+                <fullName>Pay and Pick Pre Payment</fullName>
+                <default>false</default>
+                <label>Pay and Pick Pre Payment</label>
+            </value>
+            <value>
+                <fullName>Buy and Sell Model</fullName>
+                <default>false</default>
+                <label>Buy and Sell Model</label>
+            </value>
+            <value>
+                <fullName>Block Invoicing</fullName>
+                <default>false</default>
+                <label>Block Invoicing</label>
+            </value>
+            <value>
+                <fullName>Basket Size Calculation</fullName>
+                <default>false</default>
+                <label>Basket Size Calculation</label>
+            </value>
+            <value>
+                <fullName>Order Size Calculation</fullName>
+                <default>false</default>
+                <label>Order Size Calculation</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Singapore</controllingFieldValue>
+            <valueName>Block Invoicing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Taiwan</controllingFieldValue>
+            <valueName>Buy and Sell Model</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Egypt</controllingFieldValue>
+            <valueName>Cashless Pre Payment</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Egypt</controllingFieldValue>
+            <valueName>Pay and Pick Pre Payment</valueName>
+        </valueSettings>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

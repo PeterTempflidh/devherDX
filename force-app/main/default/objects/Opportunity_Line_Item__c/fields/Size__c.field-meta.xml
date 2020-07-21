@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Size__c</fullName>
+    <externalId>false</externalId>
+    <label>Size</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>A5</fullName>
+                <default>false</default>
+                <label>A5</label>
+            </value>
+            <value>
+                <fullName>A4</fullName>
+                <default>false</default>
+                <label>A4</label>
+            </value>
+            <value>
+                <fullName>A3</fullName>
+                <default>false</default>
+                <label>A3</label>
+            </value>
+            <value>
+                <fullName>B4</fullName>
+                <default>false</default>
+                <label>B4</label>
+            </value>
+            <value>
+                <fullName>A4 Extended</fullName>
+                <default>false</default>
+                <label>A4 Extended</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

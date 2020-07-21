@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AT_All</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Activation_Date__c</columns>
+    <columns>Opportunity__c</columns>
+    <columns>Status__c</columns>
+    <columns>Stock_Item__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset__c.AT_Asset</value>
+    </filters>
+    <label>AT - All</label>
+    <language>en_US</language>
+    <sharedTo>
+        <roleAndSubordinates>AT_Management</roleAndSubordinates>
+    </sharedTo>
+</ListView>

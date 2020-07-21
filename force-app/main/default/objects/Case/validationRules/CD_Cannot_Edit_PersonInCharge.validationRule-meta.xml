@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CD_Cannot_Edit_PersonInCharge</fullName>
+    <active>true</active>
+    <description>Cannot Edit Person in Charge when the field is completed.</description>
+    <errorConditionFormula>AND(
+OR(
+ISCHANGED(Person_in_Charge_Final_Check__c)&amp;&amp;
+NOT(ISPICKVAL(PRIORVALUE (Person_in_Charge_Final_Check__c),&quot;&quot;)),
+ISCHANGED(Person_in_charge_Menu_Typing__c)&amp;&amp;
+NOT(ISPICKVAL(PRIORVALUE (Person_in_charge_Menu_Typing__c),&quot;&quot;))
+),
+OR (
+RecordType.DeveloperName = &apos;CD_Entry_Case&apos;,RecordType.DeveloperName = &apos;CD_Internal_Case&apos;
+),
+$User.Id != &apos;005w0000006h8AL&apos;&amp;&amp;$User.ProfileId != &apos;00ew0000001HfA4&apos; &amp;&amp;$User.Id !=&quot;005w0000006hD7f&quot; &amp;&amp;$User.Id !=&quot;0051r000009TDlK&quot; &amp;&amp;$User.Id !=&quot;0051r000009TDl0&quot; &amp;&amp; $UserRole.DeveloperName !=&apos;CD_Customer_Care_Management&apos; &amp;&amp; $Profile.Name != &apos;CD Customer Care Management&apos;
+
+)</errorConditionFormula>
+    <errorMessage>No es posible cambiar la Persona a Cargo cuando ya ha sido asignada una persona.</errorMessage>
+</ValidationRule>

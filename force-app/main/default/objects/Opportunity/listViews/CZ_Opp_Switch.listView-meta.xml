@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CZ_Opp_Switch</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>Business_Type__c</columns>
+    <columns>CORE.USERS.FULL_NAME</columns>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Opportunity.CZ_Opportunity</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>notEqual</operation>
+        <value>Closed Won</value>
+    </filters>
+    <filters>
+        <field>Business_Type__c</field>
+        <operation>equals</operation>
+        <value>Switch</value>
+    </filters>
+    <filters>
+        <field>ACCOUNT.NAME</field>
+        <operation>notContain</operation>
+        <value>test</value>
+    </filters>
+    <label>CZ Opp - Switch</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>CZ_Account_Management</group>
+        <group>CZ_Finance_Team</group>
+        <group>CZ_Operations_Team</group>
+        <group>CZ_Sales_Team</group>
+    </sharedTo>
+</ListView>

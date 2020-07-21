@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FP_Category_is_Mandatory_for_Restaurants</fullName>
+    <active>false</active>
+    <description>Temporary VR to make Category mandatory for Regular Restaurants in APAC</description>
+    <errorConditionFormula>RecordType.DeveloperName =&apos;FP_Lead&apos;
+
+&amp;&amp; (ISPICKVAL( Vertical_Segment__c , &apos;Regular Restaurant&apos;) || ISPICKVAL( Vertical_Segment__c , &apos;Home Based Kitchen&apos;) )
+&amp;&amp; ISBLANK(Category__c)
+&amp;&amp; NOT( $Permission.Exclude_from_Validation )</errorConditionFormula>
+    <errorDisplayField>Category__c</errorDisplayField>
+    <errorMessage>Please select the Category of the Restaurant</errorMessage>
+</ValidationRule>

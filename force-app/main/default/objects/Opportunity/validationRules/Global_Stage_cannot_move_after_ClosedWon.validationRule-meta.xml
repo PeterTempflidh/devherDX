@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_Stage_cannot_move_after_ClosedWon</fullName>
+    <active>true</active>
+    <description>Draft Validation Rule</description>
+    <errorConditionFormula>AND(ISCHANGED(StageName),($Profile.Name &lt;&gt; &apos;System Administrator&apos;),
+TEXT(PRIORVALUE(StageName))=&quot;Closed Won&quot;,
+TEXT(StageName) &lt;&gt; &quot;Closed Won&quot;
+)</errorConditionFormula>
+    <errorDisplayField>StageName</errorDisplayField>
+    <errorMessage>The Opportunity Stage cannot move back after being &apos;Close Won&apos;.</errorMessage>
+</ValidationRule>

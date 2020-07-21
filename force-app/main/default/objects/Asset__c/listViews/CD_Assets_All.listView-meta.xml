@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CD_Assets_All</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Activation_Date__c</columns>
+    <columns>Date_Shipped__c</columns>
+    <columns>Opportunity__c</columns>
+    <columns>Status__c</columns>
+    <columns>Stock_Item__c</columns>
+    <columns>Stock_Item_Serial_No__c</columns>
+    <columns>OWNER.ALIAS</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset__c.CD_Asset</value>
+    </filters>
+    <label>CD - Assets - All</label>
+    <language>en_US</language>
+    <sharedTo>
+        <roleAndSubordinates>CD_Management</roleAndSubordinates>
+    </sharedTo>
+</ListView>

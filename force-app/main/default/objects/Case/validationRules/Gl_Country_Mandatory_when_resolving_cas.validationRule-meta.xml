@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Gl_Country_Mandatory_when_resolving_cas</fullName>
+    <active>true</active>
+    <description>SP-2035</description>
+    <errorConditionFormula>(RecordType.DeveloperName=&quot;CD_Inbound_Case&quot; 
+|| 
+RecordType.DeveloperName=&quot;CD_Retention&quot; 
+|| 
+RecordType.DeveloperName=&quot;CD_Entry_Case&quot; 
+|| 
+RecordType.DeveloperName=&quot;CD_Internal_Case&quot; 
+|| 
+RecordType.DeveloperName=&quot;CD_Restaurant_Operations&quot; 
+|| 
+RecordType.DeveloperName=&quot;PY_Inbound_Case&quot; 
+|| 
+RecordType.DeveloperName=&quot;PY_Retention&quot; 
+|| 
+RecordType.DeveloperName=&quot;PY_Entry_Case&quot; 
+|| 
+RecordType.DeveloperName=&quot;PY_Internal_Case&quot; 
+|| 
+RecordType.DeveloperName=&quot;PY_Restaurant_Operations&quot;) 
+&amp;&amp; 
+(TEXT(Status)=&quot;Resolved&quot; 
+|| 
+TEXT(Status)=&quot;Closed&quot;) 
+&amp;&amp; 
+ISBLANK(Country__c) 
+&amp;&amp; 
+ISCHANGED(Status) 
+&amp;&amp; 
+NOT( $Permission.Exclude_from_Validation )</errorConditionFormula>
+    <errorMessage>Please enter a country before closing this case.</errorMessage>
+</ValidationRule>

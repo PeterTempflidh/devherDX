@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TLB_Sales_AM_Open_Opportunities1</fullName>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <columns>Record_Country__c</columns>
+    <columns>Business_Type__c</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Opportunity.Talabat_Opportunity</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>notEqual</operation>
+        <value>Please Check,Onboarding Failed</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>notEqual</operation>
+        <value>Feedback Received,Onboarding Failed,Closed Won,Closed Lost</value>
+    </filters>
+    <label>TLB - All - Open Opportunities</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>Talabat_Sales_Admin</group>
+        <group>Talabat_Sales_Team</group>
+        <role>Talabat_Management</role>
+        <role>Talabat_Operation_Management</role>
+        <role>Talabat_Operation_Team</role>
+        <role>Talabat_Sales_Management_Bahrain</role>
+        <role>Talabat_Sales_Management_Jordan</role>
+        <role>Talabat_Sales_Management_Kuwait</role>
+        <role>Talabat_Sales_Management_Lebanon</role>
+        <role>Talabat_Sales_Management_Oman</role>
+        <role>Talabat_Sales_Management_Qatar</role>
+        <role>Talabat_Sales_Management_Saudi_Arabia</role>
+        <role>Talabat_Sales_Management_UAE</role>
+        <role>Talabat_Sales_Team_Bahrain</role>
+        <role>Talabat_Sales_Team_Jordan</role>
+        <role>Talabat_Sales_Team_Kuwait</role>
+        <role>Talabat_Sales_Team_Lebanon</role>
+        <role>Talabat_Sales_Team_Oman</role>
+        <role>Talabat_Sales_Team_Qatar</role>
+        <role>Talabat_Sales_Team_Saudi_Arabia</role>
+        <role>Talabat_Sales_Team_UAE</role>
+    </sharedTo>
+</ListView>

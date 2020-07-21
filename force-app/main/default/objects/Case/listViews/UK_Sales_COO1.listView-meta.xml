@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>UK_Sales_COO1</fullName>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>Change_of_Ownership_Documentation__c</columns>
+    <columns>Due_Date__c</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Case_Reason__c</columns>
+    <columns>UPDATEDBY_USER.ALIAS</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Case_Reason__c</field>
+        <operation>equals</operation>
+        <value>Change of Ownership</value>
+    </filters>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.UK_Internal_Case</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Sales Task</value>
+    </filters>
+    <filters>
+        <field>CASES.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.FIRST_NAME</field>
+        <operation>contains</operation>
+        <value>nathan,jack,akvile,angelo,Max,vid,Karim,fikr</value>
+    </filters>
+    <label>UK - Sales - COO Nathan,Jack + TeleSales</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>UK_Research_Team</group>
+    </sharedTo>
+</ListView>

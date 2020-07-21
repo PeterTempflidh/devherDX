@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PY_Restaurant_Operations_Cases</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7 AND 8 AND 9 And 10</booleanFilter>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>GRID_fm__c</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Country__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.PY_Restaurant_Operations</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Restaurant Operations</value>
+    </filters>
+    <filters>
+        <field>CASES.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>notContain</operation>
+        <value>PY Customer Request,PY Restaurant Request</value>
+    </filters>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>notEqual</operation>
+        <value>Inicio Welcome,Onboarding / welcome,Análisis,Onboarding / NP Malo,Análisis X</value>
+    </filters>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>notEqual</operation>
+        <value>Onboarding / NP Malo 2,Onboarding / NP Bueno,2do Análisis,3er Análisis,Zombie</value>
+    </filters>
+    <filters>
+        <field>Case_Reason__c</field>
+        <operation>notEqual</operation>
+        <value>Poor Performance,Bad Restaurant Service,Educate Partner Request</value>
+    </filters>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>notContain</operation>
+        <value>Inicio Welcome,Análisis 1,Análisis 2,Análisis 3,TRY1,TRY2,TRY3,TRY 1,TRY 2,TRY 3</value>
+    </filters>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>notContain</operation>
+        <value>Onboarding / welcome NP Bueno,TRY4,Analisis,Onboarding / welcome NP Malo,ICWX</value>
+    </filters>
+    <filters>
+        <field>Case_Reason__c</field>
+        <operation>notContain</operation>
+        <value>Decision Maker Not Reached</value>
+    </filters>
+    <label>PY Restaurant Operations Cases</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>PY_Logistics</role>
+        <role>PY_Restaurant_Operations</role>
+    </sharedTo>
+</ListView>

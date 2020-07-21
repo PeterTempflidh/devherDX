@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Activity_Subject__c</fullName>
+    <externalId>false</externalId>
+    <label>Activity Subject</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Call - Decision maker reached</fullName>
+                <default>false</default>
+                <label>Call - Decision maker reached</label>
+            </value>
+            <value>
+                <fullName>Call - Employee reached</fullName>
+                <default>false</default>
+                <label>Call - Employee reached</label>
+            </value>
+            <value>
+                <fullName>Call - Nobody reached</fullName>
+                <default>false</default>
+                <label>Call - Nobody reached</label>
+            </value>
+            <value>
+                <fullName>Editorial - Lead Research</fullName>
+                <default>false</default>
+                <label>Editorial - Lead Research</label>
+            </value>
+            <value>
+                <fullName>Franchise</fullName>
+                <default>false</default>
+                <label>Franchise</label>
+            </value>
+            <value>
+                <fullName>High Failure Rate - Kick Out</fullName>
+                <default>false</default>
+                <label>High Failure Rate - Kick Out</label>
+            </value>
+            <value>
+                <fullName>High Failure Rate - Warning</fullName>
+                <default>false</default>
+                <label>High Failure Rate - Warning</label>
+            </value>
+            <value>
+                <fullName>Order confirmation sent</fullName>
+                <default>false</default>
+                <label>Order confirmation sent</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Terminal</fullName>
+                <default>false</default>
+                <label>Terminal</label>
+            </value>
+            <value>
+                <fullName>Competition</fullName>
+                <default>false</default>
+                <label>Competition</label>
+            </value>
+            <value>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+                <label>Marketing</label>
+            </value>
+            <value>
+                <fullName>Visit</fullName>
+                <default>false</default>
+                <label>Visit</label>
+            </value>
+            <value>
+                <fullName>Dissatisfaction - CC</fullName>
+                <default>false</default>
+                <label>Dissatisfaction - CC</label>
+            </value>
+            <value>
+                <fullName>Dissatisfaction - Sales</fullName>
+                <default>false</default>
+                <label>Dissatisfaction - Sales</label>
+            </value>
+            <value>
+                <fullName>Dissatisfaction - Premium</fullName>
+                <default>false</default>
+                <label>Dissatisfaction - Premium</label>
+            </value>
+            <value>
+                <fullName>Dissatisfaction - Opinions</fullName>
+                <default>false</default>
+                <label>Dissatisfaction - Opinions</label>
+            </value>
+            <value>
+                <fullName>Dissatisfaction - Commission</fullName>
+                <default>false</default>
+                <label>Dissatisfaction - Commission</label>
+            </value>
+            <value>
+                <fullName>Dissatisfaction - Other</fullName>
+                <default>false</default>
+                <label>Dissatisfaction - Other</label>
+            </value>
+            <value>
+                <fullName>Shipment</fullName>
+                <default>false</default>
+                <label>Shipment</label>
+            </value>
+            <value>
+                <fullName>Rest. Optimization Initiative</fullName>
+                <default>false</default>
+                <label>Rest. Optimization Initiative</label>
+            </value>
+            <value>
+                <fullName>Report Information</fullName>
+                <default>false</default>
+                <label>Report Information</label>
+            </value>
+            <value>
+                <fullName>Appointment needed - Restaurant Not Reached</fullName>
+                <default>false</default>
+                <label>Appointment needed - Restaurant Not Reached</label>
+            </value>
+            <value>
+                <fullName>Appointment needed - Menu Collection</fullName>
+                <default>false</default>
+                <label>Appointment needed - Menu Collection</label>
+            </value>
+            <value>
+                <fullName>Appointment needed - Restaurant Request</fullName>
+                <default>false</default>
+                <label>Appointment needed - Restaurant Request</label>
+            </value>
+            <value>
+                <fullName>Call Back Requested</fullName>
+                <default>false</default>
+                <label>Call Back Requested</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

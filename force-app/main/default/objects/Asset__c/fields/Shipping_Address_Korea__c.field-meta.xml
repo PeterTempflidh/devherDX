@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Shipping_Address_Korea__c</fullName>
+    <externalId>false</externalId>
+    <formula>If(LEN(Account__r.ShippingStreet)&gt;0, Account__r.ShippingStreet, &quot;&quot;) &amp; BR() &amp;
+If(LEN(Account__r.ShippingPostalCode)&gt;0, Account__r.ShippingPostalCode, &quot;&quot;) &amp; BR() &amp;
+If(LEN(Account__r.ShippingCity)&gt;0, Account__r.ShippingCity, &quot;&quot;) &amp; BR() &amp;
+If(LEN(Account__r.ShippingState)&gt;0, Account__r.ShippingState, &quot;&quot;) &amp; BR() &amp;
+If(LEN(Account__r.ShippingCountry)&gt;0, Account__r.ShippingCountry, &quot;&quot;)</formula>
+    <label>Shipping Address</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

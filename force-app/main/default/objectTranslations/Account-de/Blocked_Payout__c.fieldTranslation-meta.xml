@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Auszahlungssperre</label>
+    <name>Blocked_Payout__c</name>
+    <picklistValues>
+        <masterLabel>Change of Ownership</masterLabel>
+        <translation>Besitzerwechsel</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Debcon</masterLabel>
+        <translation><!-- Debcon --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Insolvency</masterLabel>
+        <translation>Insolvenz</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No Block</masterLabel>
+        <translation>Nicht Blockiert</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Third debtor declaration</masterLabel>
+        <translation>Drittschuldnererklärung</translation>
+    </picklistValues>
+</CustomFieldTranslation>

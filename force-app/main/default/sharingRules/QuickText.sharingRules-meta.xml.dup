@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingOwnerRules>
+        <fullName>APAC_Quick_Text</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>APAC Quick Text</label>
+        <sharedTo>
+            <roleAndSubordinates>FP_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>FP_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Clickdelivery_quick_text</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Clickdelivery quick text</label>
+        <sharedTo>
+            <roleAndSubordinates>CD_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>CD_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>DE_Quick_text</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>DE Quick text</label>
+        <sharedTo>
+            <roleAndSubordinates>DE_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>DE_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Damejidlo_quick_text</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Damejidlo quick text</label>
+        <sharedTo>
+            <roleAndSubordinates>CZ_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>CZ_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FI_Management</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FI Management</label>
+        <sharedTo>
+            <roleAndSubordinates>FI_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>FI_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Hungerstation_quick_text</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>SCC-347</description>
+        <label>Hungerstation quick text</label>
+        <sharedTo>
+            <roleAndSubordinates>HS_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>HS_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Mjam_Quick_Text</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>This sharing rule is for Mjam Quick Text</description>
+        <label>Mjam Quick Text</label>
+        <sharedTo>
+            <roleAndSubordinates>AT_Customer_Care_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>AT_Customer_Care_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>NO_Quick_Text</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>NO Quick Text</label>
+        <sharedTo>
+            <roleAndSubordinates>NO_Service_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>NO_Service_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Netpincer_quick_text</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Netpincer_quick_text</label>
+        <sharedTo>
+            <roleAndSubordinates>HU_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>HU_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>PY_Quick_Text</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>PY Quick Text</label>
+        <sharedTo>
+            <roleAndSubordinates>PY_Customer_Care_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>PY_Customer_Care_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>RO_Quick_Text</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>RO Quick Text</label>
+        <sharedTo>
+            <roleAndSubordinates>RO_Customer_Service_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>RO_Customer_Service_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>SE_Management</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>SE Management</label>
+        <sharedTo>
+            <roleAndSubordinates>SE_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>SE_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Talabat_quick_text</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Talabat quick text</label>
+        <sharedTo>
+            <roleAndSubordinates>Talabat_Management</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>Talabat_Management</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

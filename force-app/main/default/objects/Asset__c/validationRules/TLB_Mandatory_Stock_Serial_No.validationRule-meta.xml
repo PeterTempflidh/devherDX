@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TLB_Mandatory_Stock_Serial_No</fullName>
+    <active>true</active>
+    <errorConditionFormula>RecordType.DeveloperName = &quot;Talabat_Asset&quot;
+&amp;&amp; ISPICKVAL(Status__c, &quot;Activated Successfully&quot;)
+&amp;&amp; ISBLANK( Stock_Item_Serial_No__c )
+&amp;&amp;   ISPICKVAL( Id_Opportunity_Quote_Line_Item__r.Sub_type__c ,&quot;Hardware&quot;)</errorConditionFormula>
+    <errorDisplayField>Stock_Item_Serial_No__c</errorDisplayField>
+    <errorMessage>Please fill out the &quot;Stock Item Serial No&quot;</errorMessage>
+</ValidationRule>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PC_Level_2_Adhoc_HK</fullName>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>Case_Reason__c</columns>
+    <columns>CASES.CREATED_DATE_DATE_ONLY</columns>
+    <columns>Country__c</columns>
+    <columns>CASES.TYPE</columns>
+    <columns>OWNER_NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Vendor_Grade__c</columns>
+    <columns>CORE.USERS.FIRST_NAME</columns>
+    <filterScope>Queue</filterScope>
+    <filters>
+        <field>Vendor_Grade__c</field>
+        <operation>equals</operation>
+        <value>,A,B,C,D</value>
+    </filters>
+    <filters>
+        <field>Country__c</field>
+        <operation>equals</operation>
+        <value>Hong Kong</value>
+    </filters>
+    <filters>
+        <field>CASES.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Account Management,Owner/Legal Form Change,Retention,Sales Task,Take Online,Termination</value>
+    </filters>
+    <filters>
+        <field>Case_Reason__c</field>
+        <operation>notEqual</operation>
+        <value>Dish Level Photoshoot,Marketing Initiative,Transmission Issue</value>
+    </filters>
+    <label>PC Level 2 - Adhoc (HK)</label>
+    <queue>FP_HK_Account_Management</queue>
+    <sharedTo>
+        <group>FP_HK_Account_Managers</group>
+        <group>FP_HK_Finance</group>
+        <role>FP_Operations</role>
+    </sharedTo>
+</ListView>

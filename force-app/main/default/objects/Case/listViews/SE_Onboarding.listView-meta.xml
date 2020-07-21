@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SE_Onboarding</fullName>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>Backend_ID__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Legal_Name__c</columns>
+    <columns>Next_Call_Date__c</columns>
+    <columns>Onboarding_Menu_Comments__c</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Due_Date__c</columns>
+    <columns>Opportunity__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.SE_Restaurant_Operations</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Onboarding</value>
+    </filters>
+    <filters>
+        <field>CASES.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>ACCOUNT.NAME</field>
+        <operation>notContain</operation>
+        <value>test</value>
+    </filters>
+    <label>SE - Onboarding</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>SE_FI_Shared_Group</group>
+        <group>SE_Sales_Operations</group>
+        <role>Global_Management</role>
+        <role>SE_Management</role>
+        <roleAndSubordinates>SE_Management</roleAndSubordinates>
+    </sharedTo>
+</ListView>

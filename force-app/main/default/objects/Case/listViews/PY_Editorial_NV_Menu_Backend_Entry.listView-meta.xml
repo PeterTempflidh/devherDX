@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PY_Editorial_NV_Menu_Backend_Entry</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6</booleanFilter>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Person_in_charge_Menu_Typing__c</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Country__c</columns>
+    <columns>CASES.CURRENCY_ISO_CODE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.PY_Entry_Case</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Menu Processing</value>
+    </filters>
+    <filters>
+        <field>CASES.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>equals</operation>
+        <value>New</value>
+    </filters>
+    <filters>
+        <field>Opportunity__c</field>
+        <operation>notContain</operation>
+        <value>Owner Change,Cambio de razón social,Legal From Change</value>
+    </filters>
+    <filters>
+        <field>Vertical_Segment__c</field>
+        <operation>notContain</operation>
+        <value>Coffee,Regular Restaurant</value>
+    </filters>
+    <label>PY Editorial - NV Menu Backend Entry</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>PY_Editorial</role>
+    </sharedTo>
+</ListView>

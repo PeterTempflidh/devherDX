@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_FederationIdblankforAPIOnly</fullName>
+    <active>true</active>
+    <description>This validation rule is to throw an error when a Federation id is filled for an API User
+SP-4357</description>
+    <errorConditionFormula>If((CONTAINS(Profile.Name,&quot;API&quot;)) &amp;&amp;  FederationIdentifier!=null,true,false)</errorConditionFormula>
+    <errorMessage>Federation Id should be blank when the profile is API</errorMessage>
+</ValidationRule>

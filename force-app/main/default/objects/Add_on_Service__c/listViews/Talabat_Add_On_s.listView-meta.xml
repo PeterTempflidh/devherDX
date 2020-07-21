@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Talabat_Add_On_s</fullName>
+    <columns>NAME</columns>
+    <columns>Account_Name__c</columns>
+    <columns>Id_List_Add_On__c</columns>
+    <columns>Type__c</columns>
+    <columns>Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Add_on_Service__c.Talabat_Add_On</value>
+    </filters>
+    <label>Talabat Add On&apos;s</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Talabat_Management</role>
+        <roleAndSubordinates>Global_Admin</roleAndSubordinates>
+        <roleAndSubordinates>Global_Management</roleAndSubordinates>
+    </sharedTo>
+</ListView>

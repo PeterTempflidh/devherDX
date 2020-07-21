@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Yogiyo_Acct_Refund</fullName>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>Case_Reason__c</columns>
+    <columns>Company_Number__c</columns>
+    <columns>Backend_ID__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.Yogiyo_Refund</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Accounting</value>
+    </filters>
+    <filters>
+        <field>CASES.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>YGY - Acct Refund</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Yogiyo_Local_Admin</role>
+        <role>Yogiyo_Sales_Managment</role>
+    </sharedTo>
+</ListView>

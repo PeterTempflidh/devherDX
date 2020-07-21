@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status_Reason__c</fullName>
+    <description>Talabat Backend Field that indicates why a branch is on a certain status</description>
+    <externalId>false</externalId>
+    <label>Status Reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Shortage of Delivery Drivers</fullName>
+                <default>false</default>
+                <label>Shortage of Delivery Drivers</label>
+            </value>
+            <value>
+                <fullName>Shortage of Production Capacity</fullName>
+                <default>false</default>
+                <label>Shortage of Production Capacity</label>
+            </value>
+            <value>
+                <fullName>Electricity Failure</fullName>
+                <default>false</default>
+                <label>Electricity Failure</label>
+            </value>
+            <value>
+                <fullName>Issue in punching order in system</fullName>
+                <default>false</default>
+                <label>Issue in punching order in system</label>
+            </value>
+            <value>
+                <fullName>Overload of orders</fullName>
+                <default>false</default>
+                <label>Overload of orders</label>
+            </value>
+            <value>
+                <fullName>Municipality issue</fullName>
+                <default>false</default>
+                <label>Municipality issue</label>
+            </value>
+            <value>
+                <fullName>Renovation of Restaurant</fullName>
+                <default>false</default>
+                <label>Renovation of Restaurant</label>
+            </value>
+            <value>
+                <fullName>Maintenance issue</fullName>
+                <default>false</default>
+                <label>Maintenance issue</label>
+            </value>
+            <value>
+                <fullName>Telephone Line not working</fullName>
+                <default>false</default>
+                <label>Telephone Line not working</label>
+            </value>
+            <value>
+                <fullName>Bad weather outside</fullName>
+                <default>false</default>
+                <label>Bad weather outside</label>
+            </value>
+            <value>
+                <fullName>Internet failure/cut off</fullName>
+                <default>false</default>
+                <label>Internet failure/cut off</label>
+            </value>
+            <value>
+                <fullName>Fax problems</fullName>
+                <default>false</default>
+                <label>Fax problems</label>
+            </value>
+            <value>
+                <fullName>Updates in Menu</fullName>
+                <default>false</default>
+                <label>Updates in Menu</label>
+            </value>
+            <value>
+                <fullName>Party In Restaurant</fullName>
+                <default>false</default>
+                <label>Party In Restaurant</label>
+            </value>
+            <value>
+                <fullName>Coordination Issues</fullName>
+                <default>false</default>
+                <label>Coordination Issues</label>
+            </value>
+            <value>
+                <fullName>Due to traffic issues</fullName>
+                <default>false</default>
+                <label>Due to traffic issues</label>
+            </value>
+            <value>
+                <fullName>Physically closed due to poor dine in business</fullName>
+                <default>false</default>
+                <label>Physically closed due to poor dine in business</label>
+            </value>
+            <value>
+                <fullName>Set Busy by Operations</fullName>
+                <default>false</default>
+                <label>Set Busy by Operations</label>
+            </value>
+            <value>
+                <fullName>Auto busy on GPRS Last Activity more than 15 minutes</fullName>
+                <default>false</default>
+                <label>Auto busy on GPRS Last Activity more than 15 minutes</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

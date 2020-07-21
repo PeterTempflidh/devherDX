@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FP_No_categories_for_shops</fullName>
+    <active>false</active>
+    <description>Temporary VR to prevent users from picking the values in Category when the vertical is shop.</description>
+    <errorConditionFormula>RecordType.DeveloperName =&apos;FP_Lead&apos;
+
+&amp;&amp; ISPICKVAL( Vertical__c , &apos;Shop&apos;)
+&amp;&amp; NOT(ISBLANK(Category__c)) 
+&amp;&amp; NOT( $Permission.Exclude_from_Validation )</errorConditionFormula>
+    <errorDisplayField>Category__c</errorDisplayField>
+    <errorMessage>Categories for shops are not available for APAC</errorMessage>
+</ValidationRule>

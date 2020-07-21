@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ON_LastUpsert__c</fullName>
+    <description>The timestamp of the latest upsert.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The timestamp of the latest upsert.</inlineHelpText>
+    <label>Connector: Last Upsert</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>DateTime</type>
+</CustomField>

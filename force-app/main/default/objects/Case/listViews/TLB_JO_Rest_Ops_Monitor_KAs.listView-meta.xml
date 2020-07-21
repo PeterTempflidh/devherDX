@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TLB_JO_Rest_Ops_Monitor_KAs</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.CURRENCY_ISO_CODE</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>GRID_fm__c</columns>
+    <columns>NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.Talabat_Restaurant_Ops</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Performance</value>
+    </filters>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>equals</operation>
+        <value>New,In Progress</value>
+    </filters>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>startsWith</operation>
+        <value>[MONITOR]</value>
+    </filters>
+    <filters>
+        <field>CASES.CURRENCY_ISO_CODE</field>
+        <operation>startsWith</operation>
+        <value>JOD</value>
+    </filters>
+    <label>TLB JO - Rest Ops - Monitor KAs</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>Talabat_Restaurant_Operations_Team</group>
+        <role>Talabat_Account_Management_Jordan</role>
+        <role>Talabat_Customer_Care_Management</role>
+        <role>Talabat_Management</role>
+        <role>Talabat_Operation_Management</role>
+        <role>Talabat_Operation_Team</role>
+        <role>Talabat_Sales_Management_Jordan</role>
+    </sharedTo>
+</ListView>

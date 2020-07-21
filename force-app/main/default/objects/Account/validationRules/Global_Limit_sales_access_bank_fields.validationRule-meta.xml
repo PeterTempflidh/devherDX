@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_Limit_sales_access_bank_fields</fullName>
+    <active>true</active>
+    <description>SP-2735 - sales agents should only be able to edit bank fields in the account when the account status is New,Negotiation or Collecting Documents</description>
+    <errorConditionFormula>AND(
+  NOT($Permission.Manage_Finance_fields),
+  NOT(TEXT(Account_Status__c)=&quot;New&quot;),
+  NOT(TEXT(Account_Status__c)=&quot;Negotiation&quot;),
+  NOT(TEXT(Account_Status__c)=&quot;Collecting Documents&quot;),
+  NOT(TEXT(Account_Status__c)=&quot;&quot;),
+  OR (RecordType.DeveloperName = &quot;Talabat_Account&quot;,
+    RecordType.DeveloperName = &quot;HU_Account&quot;,
+    RecordType.DeveloperName = &quot;FI_Account&quot;
+  ),
+  AND(
+    OR(
+      OR (ISCHANGED(Bank_Account_Owner__c),
+        ISCHANGED(Bank_Name__c),
+        ISCHANGED(Swift_Code_BIC__c),
+        ISCHANGED(IBAN__c),
+        ISCHANGED(Bank_Account_Number__c),
+        ISCHANGED(Bank_Account_Type__c)
+      ),
+      AND (RecordType.DeveloperName = &quot;FI_Account&quot;,
+        ISCHANGED(Invoice_Frequency__c)
+      )
+    )
+  )
+)</errorConditionFormula>
+    <errorMessage>You can not edit the Bank Details at this stage anymore.Please contact your management of finance team to help with changing the bank details.</errorMessage>
+</ValidationRule>

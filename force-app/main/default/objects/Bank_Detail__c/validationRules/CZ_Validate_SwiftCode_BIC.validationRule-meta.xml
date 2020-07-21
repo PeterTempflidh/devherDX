@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CZ_Validate_SwiftCode_BIC</fullName>
+    <active>true</active>
+    <description>Validation for SwiftCode_(BIC) field for CZ</description>
+    <errorConditionFormula>AND(
+  Account__r.RecordType.DeveloperName = &apos;CZ_Account&apos;,
+  NOT(ISBLANK(Swift_Code_BIC__c)),
+  NOT(REGEX(Swift_Code_BIC__c, &quot;^([a-zA-Z0-9]{8}|[a-zA-Z0-9]{11})$&quot;))
+)</errorConditionFormula>
+    <errorMessage>Swift Code/BIC should be 8 OR 11 alphanumeric characters</errorMessage>
+</ValidationRule>

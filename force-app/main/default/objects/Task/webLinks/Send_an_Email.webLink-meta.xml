@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Send_an_Email</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Send an Email</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <requireRowSelection>false</requireRowSelection>
+    <url>{!REQUIRESCRIPT(&quot;/xdomain/xdomain.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/apex.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/support/console/30.0/integration.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/resource/jq211&quot;)} 
+requireCssFile(&apos;/resource/bootbox/bootstrapV1.css&apos;); 
+{!REQUIRESCRIPT(&quot;/resource/bootbox/bootstrap.min.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/resource/bootbox/bootbox.min.js&quot;)} 
+
+function requireCssFile(filename){ 
+var fileref = document.createElement(&apos;link&apos;); 
+fileref.setAttribute(&apos;rel&apos;, &apos;stylesheet&apos;); 
+fileref.setAttribute(&apos;type&apos;, &apos;text/css&apos;); 
+fileref.setAttribute(&apos;href&apos;, filename); 
+document.getElementsByTagName(&apos;head&apos;)[0].appendChild(fileref); 
+} 
+
+var oppId = &apos;{!Opportunity.Id}&apos;;
+
+{!REQUIRESCRIPT(&quot;/resource/bootbox/utilityFunctions.js&quot;)} 
+construct(this, &apos;{!$Label.Send_Email_Send_Email}&apos;); 
+
+navigateToUrl(&apos;/apex/OpportunitySendEmail?id=&apos; + oppId);
+postAction();</url>
+</WebLink>

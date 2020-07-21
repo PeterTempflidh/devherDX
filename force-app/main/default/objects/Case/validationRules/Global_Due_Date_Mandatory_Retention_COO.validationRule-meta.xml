@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_Due_Date_Mandatory_Retention_COO</fullName>
+    <active>true</active>
+    <description>SP-1761
+SP-2706
+SSC-1544</description>
+    <errorConditionFormula>(RecordType.DeveloperName=&quot;DE_Internal_Case&quot;
+||
+RecordType.DeveloperName=&apos;FI_Internal_Case&apos;
+||
+RecordType.DeveloperName=&apos;FP_Internal_Case&apos;
+|| 
+RecordType.DeveloperName=&apos;SE_Internal_Case&apos;
+|| 
+RecordType.DeveloperName=&apos;PY_Internal_Case&apos;
+|| 
+RecordType.DeveloperName=&apos;HU_Internal_Case&apos;
+||
+RecordType.DeveloperName=&apos;Talabat_Internal_Case&apos;
+) 
+&amp;&amp;
+TEXT(Status)=&quot;Closed&quot;
+&amp;&amp;
+ISBLANK(Due_Date__c)
+&amp;&amp;
+(TEXT(Type)=&quot;Owner/Legal Form Change&quot;
+||
+ TEXT(Type)=&quot;Retention&quot;
+||
+(TEXT(Type)=&quot;Account Management&quot;
+&amp;&amp;
+TEXT( Case_Reason__c) =&quot;Quality Concerns&quot;))
+&amp;&amp;
+TEXT(Closed_Reason__c)=&quot;Not Successful&quot;
+&amp;&amp;
+NOT( $Permission.Exclude_from_Validation )</errorConditionFormula>
+    <errorDisplayField>Due_Date__c</errorDisplayField>
+    <errorMessage>Please enter a Due Date before closing the case</errorMessage>
+</ValidationRule>

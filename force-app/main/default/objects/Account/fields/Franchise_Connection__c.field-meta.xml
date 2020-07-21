@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Franchise_Connection__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Only use to establish a connection between TWO hierarchies, used mostly for billing transfers on Opportunity level.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Only use to establish a connection between TWO hierarchies, used mostly for billing transfers on Opportunity level</inlineHelpText>
+    <label>Franchise Connection</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>Account.Type</field>
+            <operation>equals</operation>
+            <value>Franchise, DH Concept</value>
+        </filterItems>
+        <isOptional>true</isOptional>
+    </lookupFilter>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Accounts (Franchise Connection)</relationshipLabel>
+    <relationshipName>AccountsFranchise</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SE_Opportunity_Quote</fullName>
+    <active>true</active>
+    <label>SE Opportunity Quote</label>
+    <picklistValues>
+        <picklist>Attachment__c</picklist>
+        <values>
+            <fullName>Quote</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>T%26C</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Non_Standard_Contract_Components__c</picklist>
+        <values>
+            <fullName>Ownership Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pizza</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Premium Show Discount</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sushi</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Accepted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Declined</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Draft</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejected</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Waiting for answer</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

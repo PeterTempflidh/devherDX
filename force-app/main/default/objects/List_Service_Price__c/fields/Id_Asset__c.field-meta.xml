@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Id_Asset__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>this shows if this service is also a asset</description>
+    <externalId>false</externalId>
+    <label>Asset</label>
+    <referenceTo>Asset__c</referenceTo>
+    <relationshipLabel>List Services Price</relationshipLabel>
+    <relationshipName>List_Services_Price</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

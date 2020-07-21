@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PY_DR_Assets_All_Open</fullName>
+    <columns>Account__c</columns>
+    <columns>Opportunity__c</columns>
+    <columns>NAME</columns>
+    <columns>Status__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>OWNER.ALIAS</columns>
+    <columns>CURRENCY_ISO_CODE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset__c.PY_Asset</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>New - Awaiting Shipping,Sent - Awaiting Activation</value>
+    </filters>
+    <filters>
+        <field>CURRENCY_ISO_CODE</field>
+        <operation>equals</operation>
+        <value>DOP</value>
+    </filters>
+    <label>PY DR - Assets - All Open</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>PY_Logistics</group>
+        <role>PY_Logistics</role>
+    </sharedTo>
+</ListView>

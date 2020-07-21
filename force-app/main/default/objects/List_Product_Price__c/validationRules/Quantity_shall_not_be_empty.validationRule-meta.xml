@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quantity_shall_not_be_empty</fullName>
+    <active>true</active>
+    <description>Quantity shall not be empty</description>
+    <errorConditionFormula>ISBLANK( Default_Quantity__c )</errorConditionFormula>
+    <errorDisplayField>Default_Quantity__c</errorDisplayField>
+    <errorMessage>Default quantity is required</errorMessage>
+</ValidationRule>

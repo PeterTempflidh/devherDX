@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Street_with_number__c</fullName>
+    <description>Used only for JustOn integration. When JustOn will be gone please remove it</description>
+    <externalId>false</externalId>
+    <formula>IF(Model__c = &quot;GPA&quot;, GPA_Route_long_name__c + &quot; &quot; + GPA_Street_number_long_name__c, &quot;&quot;)</formula>
+    <label>GPA Street with number</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

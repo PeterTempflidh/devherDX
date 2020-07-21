@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Terminate_Restaurant</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Terminate Restaurant</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>/*{!REQUIRESCRIPT(&quot;/soap/ajax/20.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/20.0/apex.js&quot;)}
+{!REQUIRESCRIPT(&quot;/support/console/30.0/integration.js&quot;)}
+
+var accountId = &quot;{!Account.Id}&quot;;
+console.log(accountId);
+if(confirm(&apos;{!$Label.Terminate_Restaurant_Confirmation_Message}&apos;)){
+	var callResult = sforce.apex.execute(&quot;ClsRemoteController&quot;,&quot;checkForItemsToTerminate&quot;,{accountId:&quot;{!Account.Id}&quot;});
+
+	if(callResult[0] == &apos;true&apos;){
+		//console.log(sforce.console.getEnclosingPrimaryTabId());
+		//sforce.console.getEnclosingPrimaryTabId(doSomething);
+		myOpenPrimaryTab();
+	}
+}//end if confirm
+
+function myOpenSubTab(result) {
+	console.log(&apos;openSubTab &apos;+result.Id);
+	sforce.console.openSubTab(result.id,&apos;/apex/TerminateRestaurant?id=&apos; + accountId,true,&apos;Terminate Restaurant&apos;);
+}
+
+function myOpenPrimaryTab(){
+	sforce.console.openPrimaryTab(undefined,&apos;/apex/TerminateRestaurant?id=&apos; + accountId,true,&apos;Terminate Restaurant&apos;);
+}*/
+
+var accId = &quot;{!Account.Id}&quot;; 
+navigateToUrl(&apos;/apex/TerminateRestaurant?id=&apos; +accId+&apos;&amp;amp;isdtp=vw&apos;);</url>
+</WebLink>

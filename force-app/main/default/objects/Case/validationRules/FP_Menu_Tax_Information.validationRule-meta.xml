@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FP_Menu_Tax_Information</fullName>
+    <active>true</active>
+    <description>made some changes in entry criteria ticket # - SSC-2658</description>
+    <errorConditionFormula>AND(
+ISPICKVAL(Type, &quot;Quality Check&quot;),
+ISPICKVAL(Status, &quot;Closed&quot;),
+ISCHANGED(Status), 
+ISPICKVAL( Closed_Reason__c, &apos;Successful&apos;),
+ISBLANK(TEXT(Account.Menu_Tax_Information__c)), 
+RecordType.Name = &quot;FP Internal Case&quot;,
+OR(
+Account_Country__c = &quot;Laos&quot;,
+Account_Country__c = &quot;Cambodia&quot;,
+Account_Country__c = &quot;Myanmar&quot;,
+Account_Country__c = &quot;Singapore&quot;,
+Account_Country__c = &quot;Thailand&quot;,
+Account_Country__c = &quot;Malaysia&quot;
+),
+NOT($Permission.Exclude_from_Validation)
+)</errorConditionFormula>
+    <errorMessage>Please enter information in the &apos;Menu Tax Information&apos; field in order to save this record</errorMessage>
+</ValidationRule>

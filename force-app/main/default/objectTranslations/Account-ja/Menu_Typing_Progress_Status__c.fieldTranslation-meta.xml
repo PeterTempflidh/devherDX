@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Menu Typing Progress Status --></label>
+    <name>Menu_Typing_Progress_Status__c</name>
+    <picklistValues>
+        <masterLabel>Final Check</masterLabel>
+        <translation><!-- Final Check --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>In Progress</masterLabel>
+        <translation><!-- In Progress --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Started</masterLabel>
+        <translation><!-- Not Started --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>On Hold</masterLabel>
+        <translation><!-- On Hold --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Take Online</masterLabel>
+        <translation><!-- Take Online --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

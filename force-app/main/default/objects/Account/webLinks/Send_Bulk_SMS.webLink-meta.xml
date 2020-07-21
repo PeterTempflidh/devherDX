@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Send_Bulk_SMS</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Send Bulk SMS</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/10.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/14.0/apex.js&quot;)} 
+{!REQUIRESCRIPT(&apos;/resource/smagicinteract__smJQuery/js/jquery-1.10.2.js&apos;)} 
+{!REQUIRESCRIPT(&apos;/resource/smagicinteract__smJQuery/js/jquery-ui-1.10.4.custom.min.js&apos;)} 
+{!REQUIRESCRIPT(&quot;/resource/smagicinteract__sendSMSJS&quot;)} 
+
+var records = {!GETRECORDIDS($ObjectType.Account)};
+if (records[0] == null)
+{
+alert(&quot;Please select at least one Account&quot;)
+}
+else{
+var packagePrefix = &quot;smagicinteract__&quot;;
+var recordType = &quot;account&quot;;
+var recordIds = &quot;&quot;;
+var nameField = &apos;Name&apos;;
+var mobileField = &apos;Phone&apos;; 
+var optOutField = &apos;false&apos;; 
+var optOutDefaultValue = &apos;yes&apos;;
+var smsType = &apos;&apos;; 
+var userId = &apos;{!$User.Id}&apos;; 
+var elementIdVar = &apos;&apos;; 
+var showUserDropDown = false; 
+var dialogTitle = &apos;&apos;; 
+var queryString = &apos;&apos;; 
+
+for (var n in records) {
+if(n == &apos;remove&apos; || n == &apos;indexOf&apos;) continue;
+recordIds = recordIds + records[n];
+
+if (n != records.length-1) {
+recordIds = recordIds + &quot;,&quot;;
+}
+}
+
+var cssUrl = &apos;{!URLFOR(&apos;/resource/smagicinteract__smJQuery/css/sm-theme/jquery-ui-1.10.4.custom.min.css&apos;)}&apos;;
+
+sendSMS(recordType, recordIds, userId, nameField, mobileField, optOutField, optOutDefaultValue, smsType, elementIdVar, packagePrefix, showUserDropDown, dialogTitle, cssUrl);
+
+}</url>
+</WebLink>

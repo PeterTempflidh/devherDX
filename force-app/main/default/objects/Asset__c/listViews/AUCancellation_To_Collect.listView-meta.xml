@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AUCancellation_To_Collect</fullName>
+    <booleanFilter>(1 AND 2 AND 4) OR (2 and 3 and (4 OR 5))</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Return_Due_Date__c</columns>
+    <columns>Retour_Date__c</columns>
+    <columns>Retour_Tracking_Number__c</columns>
+    <columns>Replaced_Stock_Item__c</columns>
+    <columns>Return_Status__c</columns>
+    <columns>Retour_Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Canceled</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset__c.DH_AU_Asset</value>
+    </filters>
+    <filters>
+        <field>Replaced_Stock_Item__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>Return_Status__c</field>
+        <operation>contains</operation>
+        <value>Arrange Pick up,Awaiting Shipping,En Route,Sales Rep Terminated,Owner sends Ter</value>
+    </filters>
+    <filters>
+        <field>Retour_Status__c</field>
+        <operation>contains</operation>
+        <value>Awaiting Shipping,En Route,Arrange Pick up,Owner sends Terminal,Sales Rep Te</value>
+    </filters>
+    <label>05. Cancellation - To Collect_AU</label>
+    <language>en_US</language>
+    <sharedTo>
+        <roleAndSubordinates>DH_AU_Management</roleAndSubordinates>
+    </sharedTo>
+</ListView>

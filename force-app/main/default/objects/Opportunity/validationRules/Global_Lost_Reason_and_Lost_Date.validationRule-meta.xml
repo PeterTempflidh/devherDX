@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_Lost_Reason_and_Lost_Date</fullName>
+    <active>true</active>
+    <description>Lost Date and Reason only when the stage set to lost</description>
+    <errorConditionFormula>AND(
+       NOT(ISPICKVAL( StageName, &quot;Closed Lost&quot;))
+          ||(ISPICKVAL( StageName, &quot;Terminal Returned&quot;)), 
+      OR(
+          NOT( ISBLANK( Lost_Date__c ) ), 
+          NOT (ISBLANK (TEXT (Lost_Reason__c )))
+          ), 
+       ($Profile.Name &lt;&gt; &apos;System Administrator&apos;)
+)</errorConditionFormula>
+    <errorDisplayField>Lost_Date__c</errorDisplayField>
+    <errorMessage>These two fields can be filled up only when the stage is Closed Lost or Terminal Returned</errorMessage>
+</ValidationRule>

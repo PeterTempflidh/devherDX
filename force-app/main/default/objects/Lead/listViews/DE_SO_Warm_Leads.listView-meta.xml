@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DE_SO_Warm_Leads</fullName>
+    <columns>LEAD.COMPANY</columns>
+    <columns>Restaurant_Name__c</columns>
+    <columns>LEAD.CITY</columns>
+    <columns>Inbound_Date__c</columns>
+    <columns>LEAD.STATUS</columns>
+    <columns>LEAD.LEAD_SOURCE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>LEAD.CREATED_DATE</columns>
+    <columns>Migration_status__c</columns>
+    <filterScope>Queue</filterScope>
+    <filters>
+        <field>LEAD.LEAD_SOURCE</field>
+        <operation>equals</operation>
+        <value>Inbound</value>
+    </filters>
+    <filters>
+        <field>LEAD.STATUS</field>
+        <operation>equals</operation>
+        <value>New,Open</value>
+    </filters>
+    <filters>
+        <field>Inbound_Date__c</field>
+        <operation>greaterThan</operation>
+        <value>1/1/2018</value>
+    </filters>
+    <filters>
+        <field>LEAD.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Lead.DE_Lead</value>
+    </filters>
+    <filters>
+        <field>Mark_for_Testing_Training__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>DE - SO - Warm Leads</label>
+    <language>en_US</language>
+    <queue>DE_Sales_Operations</queue>
+    <sharedTo>
+        <group>DE_Sales_Operations</group>
+    </sharedTo>
+</ListView>

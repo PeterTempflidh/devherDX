@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Menu_Image_Coverage__c</fullName>
+    <description>Percentage of items on the menu that have an image to them.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Percentage of items on the restaurant menu that have a photo.</inlineHelpText>
+    <label>Menu Image Coverage</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Percent</type>
+</CustomField>

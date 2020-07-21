@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SE_FI_Root_Cause_for_negative_closure</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+OR(
+RecordType.DeveloperName=&quot;SE_Restaurant_Operations&quot;,
+RecordType.DeveloperName=&quot;FI_Restaurant_Operations&quot;,
+RecordType.DeveloperName=&quot;SE_Entry_Case&quot;,
+RecordType.DeveloperName=&quot;FI_Entry_Case&quot;,
+RecordType.DeveloperName=&quot;SE_Internal_Case&quot;,
+RecordType.DeveloperName=&quot;FI_Internal_Case&quot;
+),
+OR(
+TEXT( Type )=&quot;Quality Check&quot;,
+TEXT( Type )=&quot;Menu Processing&quot;,
+TEXT( Type )=&quot;Onboarding&quot;
+),
+OR(
+ISPICKVAL( Closed_Reason__c,&quot;Not Successful&quot;),
+ISPICKVAL( Closed_Reason__c,&quot;Take Online is not possible&quot;)
+),
+ISBLANK( Root_Cause__c)
+)</errorConditionFormula>
+    <errorDisplayField>Root_Cause__c</errorDisplayField>
+    <errorMessage>Please add a Root Cause</errorMessage>
+</ValidationRule>

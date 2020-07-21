@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Escalated_To_Level_2__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>For AU reporting for cases escalated by offshore team to Level 2</description>
+    <externalId>false</externalId>
+    <label>Escalated To Level 2</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

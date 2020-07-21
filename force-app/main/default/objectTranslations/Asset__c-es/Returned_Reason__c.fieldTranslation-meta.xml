@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Motivo de Devolución</label>
+    <name>Returned_Reason__c</name>
+    <picklistValues>
+        <masterLabel>Cancelled</masterLabel>
+        <translation><!-- Cancelled --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Contract canceled</masterLabel>
+        <translation><!-- Contract canceled --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Defect</masterLabel>
+        <translation><!-- Defect --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Deliver refused</masterLabel>
+        <translation><!-- Deliver refused --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivery refused</masterLabel>
+        <translation><!-- Delivery refused --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Didn&apos;t pick up</masterLabel>
+        <translation><!-- Didn&apos;t pick up --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Exchanged</masterLabel>
+        <translation><!-- Exchanged --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fee burden</masterLabel>
+        <translation><!-- Fee burden --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Inconvenient to use</masterLabel>
+        <translation><!-- Inconvenient to use --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No space for Terminal</masterLabel>
+        <translation><!-- No space for Terminal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not enough order</masterLabel>
+        <translation><!-- Not enough order --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rejection with no reason</masterLabel>
+        <translation><!-- Rejection with no reason --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Returned by restaurant</masterLabel>
+        <translation><!-- Returned by restaurant --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Returned by the restaurant</masterLabel>
+        <translation><!-- Returned by the restaurant --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>System error</masterLabel>
+        <translation><!-- System error --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Wrong recipients</masterLabel>
+        <translation><!-- Wrong recipients --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

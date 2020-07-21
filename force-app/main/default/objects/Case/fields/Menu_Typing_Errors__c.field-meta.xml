@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Menu_Typing_Errors__c</fullName>
+    <externalId>false</externalId>
+    <label>Menu Typing Errors</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Flavour set name too long</fullName>
+                <default>false</default>
+                <label>Flavour set name too long</label>
+            </value>
+            <value>
+                <fullName>Format issue</fullName>
+                <default>false</default>
+                <label>Format issue</label>
+            </value>
+            <value>
+                <fullName>Longer time than expected</fullName>
+                <default>false</default>
+                <label>Longer time than expected</label>
+            </value>
+            <value>
+                <fullName>Missing flavour set</fullName>
+                <default>false</default>
+                <label>Missing flavour set</label>
+            </value>
+            <value>
+                <fullName>Missing section</fullName>
+                <default>false</default>
+                <label>Missing section</label>
+            </value>
+            <value>
+                <fullName>Wrong item name</fullName>
+                <default>false</default>
+                <label>Missing/Wrong item</label>
+            </value>
+            <value>
+                <fullName>Wrong price</fullName>
+                <default>false</default>
+                <label>Wrong price</label>
+            </value>
+            <value>
+                <fullName>Spelling Errors</fullName>
+                <default>false</default>
+                <label>Spelling Errors</label>
+            </value>
+            <value>
+                <fullName>Incorrect Options</fullName>
+                <default>false</default>
+                <label>Incorrect Options</label>
+            </value>
+            <value>
+                <fullName>Ignored Notes</fullName>
+                <default>false</default>
+                <label>Ignored Notes</label>
+            </value>
+            <value>
+                <fullName>Incorrect Backend Set Up</fullName>
+                <default>false</default>
+                <label>Incorrect Backend Set Up</label>
+            </value>
+            <value>
+                <fullName>Disagreement on Typing Details</fullName>
+                <default>false</default>
+                <label>Disagreement on Typing Details</label>
+            </value>
+            <value>
+                <fullName>Missing Description</fullName>
+                <default>false</default>
+                <label>Missing Description</label>
+            </value>
+            <value>
+                <fullName>Wrong Deals</fullName>
+                <default>false</default>
+                <label>Wrong Deals</label>
+            </value>
+            <value>
+                <fullName>Missing LMIV</fullName>
+                <default>false</default>
+                <label>Missing LMIV</label>
+            </value>
+            <value>
+                <fullName>Wrong/Missing account set-up information</fullName>
+                <default>false</default>
+                <label>Wrong/Missing account set-up information</label>
+            </value>
+            <value>
+                <fullName>Documents submitted incorrectly</fullName>
+                <default>false</default>
+                <label>Documents submitted incorrectly</label>
+            </value>
+            <value>
+                <fullName>Design guide errors</fullName>
+                <default>false</default>
+                <label>Design guide errors</label>
+            </value>
+            <value>
+                <fullName>Incorrect Delivery</fullName>
+                <default>false</default>
+                <label>Incorrect Delivery</label>
+            </value>
+            <value>
+                <fullName>Missing/Wrong description</fullName>
+                <default>false</default>
+                <label>Missing/Wrong description</label>
+            </value>
+            <value>
+                <fullName>Minimum Amount</fullName>
+                <default>false</default>
+                <label>Minimum Amount</label>
+            </value>
+            <value>
+                <fullName>Status of menu</fullName>
+                <default>false</default>
+                <label>Status of menu</label>
+            </value>
+            <value>
+                <fullName>Phone</fullName>
+                <default>false</default>
+                <label>Phone</label>
+            </value>
+            <value>
+                <fullName>Language</fullName>
+                <default>false</default>
+                <label>Language</label>
+            </value>
+            <value>
+                <fullName>Missing/Wrong Size</fullName>
+                <default>false</default>
+                <label>Missing/Wrong Size</label>
+            </value>
+            <value>
+                <fullName>Fill in Arabic and English data correctly</fullName>
+                <default>false</default>
+                <label>Fill in Arabic and English data correctly</label>
+            </value>
+            <value>
+                <fullName>Missing itemWrong Item Name</fullName>
+                <default>false</default>
+                <label>Missing itemWrong Item Name</label>
+            </value>
+            <value>
+                <fullName>Delivery Time</fullName>
+                <default>false</default>
+                <label>Delivery Time</label>
+            </value>
+            <value>
+                <fullName>space /, / and capital first litter</fullName>
+                <default>false</default>
+                <label>space /, / and capital first litter</label>
+            </value>
+            <value>
+                <fullName>Municipal Tax text</fullName>
+                <default>false</default>
+                <label>Municipal Tax text</label>
+            </value>
+            <value>
+                <fullName>Working Hours</fullName>
+                <default>false</default>
+                <label>Working Hours</label>
+            </value>
+            <value>
+                <fullName>Billing Emails</fullName>
+                <default>false</default>
+                <label>Billing Emails</label>
+            </value>
+            <value>
+                <fullName>Routing Method</fullName>
+                <default>false</default>
+                <label>Routing Method</label>
+            </value>
+            <value>
+                <fullName>Cuisine</fullName>
+                <default>false</default>
+                <label>Cuisine</label>
+            </value>
+            <value>
+                <fullName>VAT Value</fullName>
+                <default>false</default>
+                <label>VAT Value</label>
+            </value>
+            <value>
+                <fullName>Delivery Charges</fullName>
+                <default>false</default>
+                <label>Delivery Charges</label>
+            </value>
+            <value>
+                <fullName>Manager Contacts</fullName>
+                <default>false</default>
+                <label>Manager Contacts</label>
+            </value>
+            <value>
+                <fullName>Area Name</fullName>
+                <default>false</default>
+                <label>Area Name</label>
+            </value>
+            <value>
+                <fullName>Missing / Wrong Translation</fullName>
+                <default>false</default>
+                <label>Missing / Wrong Translation</label>
+            </value>
+            <value>
+                <fullName>Auto Description</fullName>
+                <default>false</default>
+                <label>Auto Description</label>
+            </value>
+            <value>
+                <fullName>Second Review</fullName>
+                <default>false</default>
+                <label>Second Review</label>
+            </value>
+            <value>
+                <fullName>Missing / Wrong topping</fullName>
+                <default>false</default>
+                <label>Missing / Wrong topping</label>
+            </value>
+            <value>
+                <fullName>Item Images</fullName>
+                <default>false</default>
+                <label>Item Images</label>
+            </value>
+            <value>
+                <fullName>Arrange of Ingredients</fullName>
+                <default>false</default>
+                <label>Arrange of Ingredients</label>
+            </value>
+            <value>
+                <fullName>Coverage Status</fullName>
+                <default>false</default>
+                <label>Coverage Status</label>
+            </value>
+            <value>
+                <fullName>Payment Method</fullName>
+                <default>false</default>
+                <label>Payment Method</label>
+            </value>
+            <value>
+                <fullName>Logo</fullName>
+                <default>false</default>
+                <label>Logo</label>
+            </value>
+            <value>
+                <fullName>Coverage  Areas</fullName>
+                <default>false</default>
+                <label>Coverage  Areas</label>
+            </value>
+            <value>
+                <fullName>Arrangement of items and categories</fullName>
+                <default>false</default>
+                <label>Arrangement of items and categories</label>
+            </value>
+            <value>
+                <fullName>Status of branch</fullName>
+                <default>false</default>
+                <label>Status of branch</label>
+            </value>
+            <value>
+                <fullName>Brand</fullName>
+                <default>false</default>
+                <label>Brand</label>
+            </value>
+            <value>
+                <fullName>Branch Name</fullName>
+                <default>false</default>
+                <label>Branch Name</label>
+            </value>
+            <value>
+                <fullName>Unified writing way</fullName>
+                <default>false</default>
+                <label>Unified writing way</label>
+            </value>
+            <value>
+                <fullName>Missing / Wrong Choice</fullName>
+                <default>false</default>
+                <label>Missing / Wrong Choice</label>
+            </value>
+            <value>
+                <fullName>Restaurant Header image</fullName>
+                <default>false</default>
+                <label>Restaurant Header image</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>10</visibleLines>
+</CustomField>

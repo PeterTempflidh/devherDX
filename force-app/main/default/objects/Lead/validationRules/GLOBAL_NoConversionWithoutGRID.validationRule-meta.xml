@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GLOBAL_NoConversionWithoutGRID</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+  ISCHANGED(IsConverted),
+  IsConverted,
+  ISBLANK(GRID__c)
+)</errorConditionFormula>
+    <errorMessage>This lead doesn&apos;t have a GRID and can&apos;t be converted.</errorMessage>
+</ValidationRule>

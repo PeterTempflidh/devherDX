@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Online_Status_Report</fullName>
+    <availability>online</availability>
+    <displayType>link</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Online Status Report</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>if (typeof(srcUp) == &apos;function&apos;) { 
+srcUp(&apos;/00Ow00000067sv8?pv1={!Territory__c.Territory__c}&apos;); 
+} else { 
+window.open(&apos;/00Ow00000067sv8?pv1={!Territory__c.Territory__c}&apos;); 
+}</url>
+</WebLink>

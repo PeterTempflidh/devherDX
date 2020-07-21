@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Terminated_Canceled_Addons_status_change</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(ISCHANGED(Status__c),
+OR(TEXT(PRIORVALUE(Status__c)) == &apos;Terminated&apos;, TEXT(PRIORVALUE(Status__c)) == &apos;Canceled&apos;),
+NOT(TEXT(Status__c)=&quot;terminated&quot;),
+NOT(TEXT(Status__c)=&quot;Canceled&quot;))</errorConditionFormula>
+    <errorMessage>Status of add on cannot be changed once is Terminated or Canceled</errorMessage>
+</ValidationRule>

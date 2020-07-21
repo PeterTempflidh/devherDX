@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ON_UpsertableSE__c</fullName>
+    <externalId>false</externalId>
+    <formula>NOT(ISBLANK(AccountId)) 
+&amp;&amp; 
+OR(RecordType.DeveloperName = &quot;SE_Contract&quot;,RecordType.DeveloperName = &quot;FI_Contract&quot;)
+&amp;&amp;
+Account.ON_UpsertableSE__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Connector: Upsertable SE</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

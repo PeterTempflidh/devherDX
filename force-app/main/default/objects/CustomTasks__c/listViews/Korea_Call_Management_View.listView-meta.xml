@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Korea_Call_Management_View</fullName>
+    <columns>NAME</columns>
+    <columns>OWNER.ALIAS</columns>
+    <columns>RelatedAccount__c</columns>
+    <columns>RelatedOpportunity__c</columns>
+    <columns>Number_of_Orders__c</columns>
+    <columns>Total_Revenue__c</columns>
+    <columns>Restaurant_Level__c</columns>
+    <columns>Next_Call_Date__c</columns>
+    <columns>Closed_Date__c</columns>
+    <columns>Status__c</columns>
+    <columns>Call_Comments__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>CustomTasks__c.Yogiyo_Entry_Task</value>
+    </filters>
+    <label>Korea Call Management View</label>
+    <language>en_US</language>
+</ListView>

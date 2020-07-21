@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HU_Lead_Open_All</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>LEAD.COMPANY</columns>
+    <columns>LEAD.CITY</columns>
+    <columns>Area__c</columns>
+    <columns>Vendor_Grade__c</columns>
+    <columns>Delivery_Service__c</columns>
+    <columns>Competitor__c</columns>
+    <columns>LEAD.STATUS</columns>
+    <columns>LEAD.CREATED_DATE</columns>
+    <columns>Vertical__c</columns>
+    <columns>Vertical_Segment__c</columns>
+    <columns>Category__c</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>LEAD.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Lead.HU_Lead</value>
+    </filters>
+    <filters>
+        <field>LEAD.STATUS</field>
+        <operation>notEqual</operation>
+        <value>Qualified,Lost,Converted</value>
+    </filters>
+    <label>HU Lead - Open(All)</label>
+    <sharedTo>
+        <group>HU_Account_Management</group>
+        <group>HU_Sales_Operations</group>
+        <group>HU_Sales_Team</group>
+        <role>HU_Management</role>
+        <role>HU_Sales_Agent</role>
+        <role>HU_Sales_Management</role>
+    </sharedTo>
+</ListView>

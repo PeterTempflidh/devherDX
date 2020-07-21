@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Indicates where in the hierarchy an Invoice / Tax Bill is aggregated. Normally, this is on Branch Level or done via &quot;Billable Account / Transfer to&quot; on Opportunity Level. --></help>
+    <label><!-- Tax Bill / Invoice Consolidation --></label>
+    <name>Tax_Bill_Invoice_Consolidation__c</name>
+    <relationshipLabel><!-- Accounts (Tax Bill / Invoice Consolidation) --></relationshipLabel>
+</CustomFieldTranslation>

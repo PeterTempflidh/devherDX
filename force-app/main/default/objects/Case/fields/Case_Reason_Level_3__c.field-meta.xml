@@ -1,0 +1,2592 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Case_Reason_Level_3__c</fullName>
+    <externalId>false</externalId>
+    <label>Case Reason Level 3</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Case_Reason_Level_2__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Account deletion</fullName>
+                <default>false</default>
+                <label>Account deletion</label>
+            </value>
+            <value>
+                <fullName>Account management feedback on existing issue required</fullName>
+                <default>false</default>
+                <label>Account management feedback on existing issue required</label>
+            </value>
+            <value>
+                <fullName>Account management meeting request</fullName>
+                <default>false</default>
+                <label>Account management meeting request</label>
+            </value>
+            <value>
+                <fullName>Add items/ toppings</fullName>
+                <default>false</default>
+                <label>Add items/ toppings</label>
+            </value>
+            <value>
+                <fullName>Add menu category</fullName>
+                <default>false</default>
+                <label>Add menu category</label>
+            </value>
+            <value>
+                <fullName>Address</fullName>
+                <default>false</default>
+                <label>Address</label>
+            </value>
+            <value>
+                <fullName>Address change</fullName>
+                <default>false</default>
+                <label>Address change</label>
+            </value>
+            <value>
+                <fullName>Allergens Update</fullName>
+                <default>false</default>
+                <label>Allergens Update</label>
+            </value>
+            <value>
+                <fullName>App complaint by customer</fullName>
+                <default>false</default>
+                <label>App complaint by customer</label>
+            </value>
+            <value>
+                <fullName>App does not receive orders</fullName>
+                <default>false</default>
+                <label>App does not receive orders</label>
+            </value>
+            <value>
+                <fullName>App issue</fullName>
+                <default>false</default>
+                <label>App issue</label>
+            </value>
+            <value>
+                <fullName>App problem ‒ 9Cookies</fullName>
+                <default>false</default>
+                <label>App problem ‒ 9Cookies</label>
+            </value>
+            <value>
+                <fullName>App shows blank screen</fullName>
+                <default>false</default>
+                <label>App shows blank screen</label>
+            </value>
+            <value>
+                <fullName>Automations - Backend Ticket</fullName>
+                <default>false</default>
+                <label>Automations - Backend Ticket</label>
+            </value>
+            <value>
+                <fullName>Automations - Missed Contact</fullName>
+                <default>false</default>
+                <label>Automations - Missed Contact</label>
+            </value>
+            <value>
+                <fullName>Bank account details change</fullName>
+                <default>false</default>
+                <label>Bank account details change</label>
+            </value>
+            <value>
+                <fullName>Branded material request</fullName>
+                <default>false</default>
+                <label>Branded material request</label>
+            </value>
+            <value>
+                <fullName>Calculation mistakes in invoice</fullName>
+                <default>false</default>
+                <label>Calculation mistakes in invoice</label>
+            </value>
+            <value>
+                <fullName>Cancellation reason inquiry</fullName>
+                <default>false</default>
+                <label>Cancellation reason inquiry</label>
+            </value>
+            <value>
+                <fullName>Cannot apply</fullName>
+                <default>false</default>
+                <label>Cannot apply</label>
+            </value>
+            <value>
+                <fullName>Category hide or unhide</fullName>
+                <default>false</default>
+                <label>Category hide or unhide</label>
+            </value>
+            <value>
+                <fullName>Change/upload listing image</fullName>
+                <default>false</default>
+                <label>Change/upload listing image</label>
+            </value>
+            <value>
+                <fullName>Change/upload product photo</fullName>
+                <default>false</default>
+                <label>Change/upload product photo</label>
+            </value>
+            <value>
+                <fullName>Change account details</fullName>
+                <default>false</default>
+                <label>Change account details</label>
+            </value>
+            <value>
+                <fullName>Change delivery time</fullName>
+                <default>false</default>
+                <label>Change delivery time</label>
+            </value>
+            <value>
+                <fullName>Change of business registration</fullName>
+                <default>false</default>
+                <label>Change of business registration</label>
+            </value>
+            <value>
+                <fullName>Change of mind</fullName>
+                <default>false</default>
+                <label>Change of mind</label>
+            </value>
+            <value>
+                <fullName>Change of owner</fullName>
+                <default>false</default>
+                <label>Change of owner</label>
+            </value>
+            <value>
+                <fullName>Change or upload logo</fullName>
+                <default>false</default>
+                <label>Change or upload logo</label>
+            </value>
+            <value>
+                <fullName>Changes in delivery fee</fullName>
+                <default>false</default>
+                <label>Changes in delivery fee</label>
+            </value>
+            <value>
+                <fullName>Changes in minimum order value</fullName>
+                <default>false</default>
+                <label>Changes in minimum order value</label>
+            </value>
+            <value>
+                <fullName>Charger lost or damaged</fullName>
+                <default>false</default>
+                <label>Charger lost or damaged</label>
+            </value>
+            <value>
+                <fullName>Check backend status</fullName>
+                <default>false</default>
+                <label>Check backend status</label>
+            </value>
+            <value>
+                <fullName>Check order status</fullName>
+                <default>false</default>
+                <label>Check order status</label>
+            </value>
+            <value>
+                <fullName>Choices or toppings update</fullName>
+                <default>false</default>
+                <label>Choices or toppings update</label>
+            </value>
+            <value>
+                <fullName>Close restaurant temporarily</fullName>
+                <default>false</default>
+                <label>Close restaurant temporarily</label>
+            </value>
+            <value>
+                <fullName>Closing of restaurant</fullName>
+                <default>false</default>
+                <label>Closing of restaurant</label>
+            </value>
+            <value>
+                <fullName>Compensation</fullName>
+                <default>false</default>
+                <label>Compensation</label>
+            </value>
+            <value>
+                <fullName>Complain about late order</fullName>
+                <default>false</default>
+                <label>Complain about late order</label>
+            </value>
+            <value>
+                <fullName>Complaint: logistics cancellation</fullName>
+                <default>false</default>
+                <label>Complaint: logistics cancellation</label>
+            </value>
+            <value>
+                <fullName>Complaint: vendor cancellation</fullName>
+                <default>false</default>
+                <label>Complaint: vendor cancellation</label>
+            </value>
+            <value>
+                <fullName>Confirmation time too long</fullName>
+                <default>false</default>
+                <label>Confirmation time too long</label>
+            </value>
+            <value>
+                <fullName>Connection issues</fullName>
+                <default>false</default>
+                <label>Connection issues</label>
+            </value>
+            <value>
+                <fullName>Connection problem ‒ Box</fullName>
+                <default>false</default>
+                <label>Connection problem ‒ Box</label>
+            </value>
+            <value>
+                <fullName>Contact Details</fullName>
+                <default>false</default>
+                <label>Contact Details</label>
+            </value>
+            <value>
+                <fullName>Contactless delivery feature inquiry</fullName>
+                <default>false</default>
+                <label>Contactless delivery feature inquiry</label>
+            </value>
+            <value>
+                <fullName>Cooking instructions</fullName>
+                <default>false</default>
+                <label>Cooking instructions</label>
+            </value>
+            <value>
+                <fullName>Cooking instructions were not followed</fullName>
+                <default>false</default>
+                <label>Cooking instructions were not followed</label>
+            </value>
+            <value>
+                <fullName>Customer account deletion</fullName>
+                <default>false</default>
+                <label>Customer account deletion</label>
+            </value>
+            <value>
+                <fullName>Customer address problem</fullName>
+                <default>false</default>
+                <label>Customer address problem</label>
+            </value>
+            <value>
+                <fullName>Customer cancellation</fullName>
+                <default>false</default>
+                <label>Customer cancellation</label>
+            </value>
+            <value>
+                <fullName>Customer did not pick up</fullName>
+                <default>false</default>
+                <label>Customer did not pick up</label>
+            </value>
+            <value>
+                <fullName>Customer email address change</fullName>
+                <default>false</default>
+                <label>Customer email address change</label>
+            </value>
+            <value>
+                <fullName>Customer information missing</fullName>
+                <default>false</default>
+                <label>Customer information missing</label>
+            </value>
+            <value>
+                <fullName>Customer left pick up due to delay</fullName>
+                <default>false</default>
+                <label>Customer left pick up due to delay</label>
+            </value>
+            <value>
+                <fullName>Customer not at delivery address</fullName>
+                <default>false</default>
+                <label>Customer not at delivery address</label>
+            </value>
+            <value>
+                <fullName>Customer outside of delivery area</fullName>
+                <default>false</default>
+                <label>Customer outside of delivery area</label>
+            </value>
+            <value>
+                <fullName>Customer phone number problem</fullName>
+                <default>false</default>
+                <label>Customer phone number problem</label>
+            </value>
+            <value>
+                <fullName>Customer unreachable</fullName>
+                <default>false</default>
+                <label>Customer unreachable</label>
+            </value>
+            <value>
+                <fullName>Data protection inquiry</fullName>
+                <default>false</default>
+                <label>Data protection inquiry</label>
+            </value>
+            <value>
+                <fullName>Deal addition or removal</fullName>
+                <default>false</default>
+                <label>Deal addition or removal</label>
+            </value>
+            <value>
+                <fullName>Deal extension or change</fullName>
+                <default>false</default>
+                <label>Deal extension or change</label>
+            </value>
+            <value>
+                <fullName>Delay in order delivery</fullName>
+                <default>false</default>
+                <label>Delay in order delivery</label>
+            </value>
+            <value>
+                <fullName>Delivery address change</fullName>
+                <default>false</default>
+                <label>Delivery address change</label>
+            </value>
+            <value>
+                <fullName>Delivery area change</fullName>
+                <default>false</default>
+                <label>Delivery area change</label>
+            </value>
+            <value>
+                <fullName>Delivery area incorrect</fullName>
+                <default>false</default>
+                <label>Delivery area incorrect</label>
+            </value>
+            <value>
+                <fullName>Delivery instructions</fullName>
+                <default>false</default>
+                <label>Delivery instructions</label>
+            </value>
+            <value>
+                <fullName>Delivery instructions not followed</fullName>
+                <default>false</default>
+                <label>Delivery instructions not followed</label>
+            </value>
+            <value>
+                <fullName>Delivery late</fullName>
+                <default>false</default>
+                <label>Delivery late</label>
+            </value>
+            <value>
+                <fullName>Delivery staff behaviour issue</fullName>
+                <default>false</default>
+                <label>Delivery staff behaviour issue</label>
+            </value>
+            <value>
+                <fullName>Delivery staff too busy</fullName>
+                <default>false</default>
+                <label>Delivery staff too busy</label>
+            </value>
+            <value>
+                <fullName>Delivery time/date</fullName>
+                <default>false</default>
+                <label>Delivery time/date</label>
+            </value>
+            <value>
+                <fullName>Delivery time change</fullName>
+                <default>false</default>
+                <label>Delivery time change</label>
+            </value>
+            <value>
+                <fullName>Delivery time exceeded</fullName>
+                <default>false</default>
+                <label>Delivery time exceeded</label>
+            </value>
+            <value>
+                <fullName>Description</fullName>
+                <default>false</default>
+                <label>Description</label>
+            </value>
+            <value>
+                <fullName>Device problem ‒ Box</fullName>
+                <default>false</default>
+                <label>Device problem ‒ Box</label>
+            </value>
+            <value>
+                <fullName>Didn&apos;t receive order confirmation</fullName>
+                <default>false</default>
+                <label>Didn&apos;t receive order confirmation</label>
+            </value>
+            <value>
+                <fullName>Door Sticker Request</fullName>
+                <default>false</default>
+                <label>Door Sticker Request</label>
+            </value>
+            <value>
+                <fullName>Double cooking inquiry</fullName>
+                <default>false</default>
+                <label>Double cooking inquiry</label>
+            </value>
+            <value>
+                <fullName>Dunning inquiry</fullName>
+                <default>false</default>
+                <label>Dunning inquiry</label>
+            </value>
+            <value>
+                <fullName>Duplicate order</fullName>
+                <default>false</default>
+                <label>Duplicate order</label>
+            </value>
+            <value>
+                <fullName>Early delivery</fullName>
+                <default>false</default>
+                <label>Early delivery</label>
+            </value>
+            <value>
+                <fullName>ETA is stuck or increasing</fullName>
+                <default>false</default>
+                <label>ETA is stuck or increasing</label>
+            </value>
+            <value>
+                <fullName>Evaluation change or deletion request</fullName>
+                <default>false</default>
+                <label>Evaluation change or deletion request</label>
+            </value>
+            <value>
+                <fullName>Evaluation process inquiry</fullName>
+                <default>false</default>
+                <label>Evaluation process inquiry</label>
+            </value>
+            <value>
+                <fullName>Extreme delay</fullName>
+                <default>false</default>
+                <label>Extreme delay</label>
+            </value>
+            <value>
+                <fullName>Fake order</fullName>
+                <default>false</default>
+                <label>Fake order</label>
+            </value>
+            <value>
+                <fullName>Follow up on existing case</fullName>
+                <default>false</default>
+                <label>Follow up on existing case</label>
+            </value>
+            <value>
+                <fullName>Follow up on existing sign up required</fullName>
+                <default>false</default>
+                <label>Follow up on existing sign up required</label>
+            </value>
+            <value>
+                <fullName>Food cold</fullName>
+                <default>false</default>
+                <label>Food cold</label>
+            </value>
+            <value>
+                <fullName>Food items</fullName>
+                <default>false</default>
+                <label>Food items</label>
+            </value>
+            <value>
+                <fullName>Food poisoning</fullName>
+                <default>false</default>
+                <label>Food poisoning</label>
+            </value>
+            <value>
+                <fullName>Food portion</fullName>
+                <default>false</default>
+                <label>Food portion</label>
+            </value>
+            <value>
+                <fullName>Food quality</fullName>
+                <default>false</default>
+                <label>Food quality</label>
+            </value>
+            <value>
+                <fullName>Food quality issue – not eatable</fullName>
+                <default>false</default>
+                <label>Food quality issue – not eatable</label>
+            </value>
+            <value>
+                <fullName>Food quality issue – still eatable</fullName>
+                <default>false</default>
+                <label>Food quality issue – still eatable</label>
+            </value>
+            <value>
+                <fullName>Food temperature</fullName>
+                <default>false</default>
+                <label>Food temperature</label>
+            </value>
+            <value>
+                <fullName>Forward - Customer Service</fullName>
+                <default>false</default>
+                <label>Forward - Customer Service</label>
+            </value>
+            <value>
+                <fullName>Forward - Finance</fullName>
+                <default>false</default>
+                <label>Forward - Finance</label>
+            </value>
+            <value>
+                <fullName>Forward - Human Resources</fullName>
+                <default>false</default>
+                <label>Forward - Human Resources</label>
+            </value>
+            <value>
+                <fullName>Forward - Marketing</fullName>
+                <default>false</default>
+                <label>Forward - Marketing</label>
+            </value>
+            <value>
+                <fullName>Forward - Sales</fullName>
+                <default>false</default>
+                <label>Forward - Sales</label>
+            </value>
+            <value>
+                <fullName>Forward - Vendor Service</fullName>
+                <default>false</default>
+                <label>Forward - Vendor Service</label>
+            </value>
+            <value>
+                <fullName>Fraud</fullName>
+                <default>false</default>
+                <label>Fraud</label>
+            </value>
+            <value>
+                <fullName>Full menu</fullName>
+                <default>false</default>
+                <label>Full menu</label>
+            </value>
+            <value>
+                <fullName>Full menu change</fullName>
+                <default>false</default>
+                <label>Full menu change</label>
+            </value>
+            <value>
+                <fullName>Functionality question</fullName>
+                <default>false</default>
+                <label>Functionality question</label>
+            </value>
+            <value>
+                <fullName>Functionality question ‒ 9Cookies</fullName>
+                <default>false</default>
+                <label>Functionality question ‒ 9Cookies</label>
+            </value>
+            <value>
+                <fullName>Functionality question ‒ Box</fullName>
+                <default>false</default>
+                <label>Functionality question ‒ Box</label>
+            </value>
+            <value>
+                <fullName>Functionality question ‒ Restaurant portal</fullName>
+                <default>false</default>
+                <label>Functionality question ‒ Restaurant portal</label>
+            </value>
+            <value>
+                <fullName>General inquiries related to customer evaluations</fullName>
+                <default>false</default>
+                <label>General inquiries related to customer evaluations</label>
+            </value>
+            <value>
+                <fullName>General renegotiation</fullName>
+                <default>false</default>
+                <label>General renegotiation</label>
+            </value>
+            <value>
+                <fullName>General restaurant inquiry related to customer evaluations</fullName>
+                <default>false</default>
+                <label>General restaurant inquiry related to customer evaluations</label>
+            </value>
+            <value>
+                <fullName>General terms inquiry</fullName>
+                <default>false</default>
+                <label>General terms inquiry</label>
+            </value>
+            <value>
+                <fullName>Hardware chase up</fullName>
+                <default>false</default>
+                <label>Hardware chase up</label>
+            </value>
+            <value>
+                <fullName>Hardware issues</fullName>
+                <default>false</default>
+                <label>Hardware issues</label>
+            </value>
+            <value>
+                <fullName>HR</fullName>
+                <default>false</default>
+                <label>HR</label>
+            </value>
+            <value>
+                <fullName>Inappropriate behaviour</fullName>
+                <default>false</default>
+                <label>Inappropriate behaviour</label>
+            </value>
+            <value>
+                <fullName>Incomplete or incorrect payment received</fullName>
+                <default>false</default>
+                <label>Incomplete or incorrect payment received</label>
+            </value>
+            <value>
+                <fullName>Incorrect invoice</fullName>
+                <default>false</default>
+                <label>Incorrect invoice</label>
+            </value>
+            <value>
+                <fullName>Incorrect invoice details</fullName>
+                <default>false</default>
+                <label>Incorrect invoice details</label>
+            </value>
+            <value>
+                <fullName>Incorrect payment received by partner</fullName>
+                <default>false</default>
+                <label>Incorrect payment received by partner</label>
+            </value>
+            <value>
+                <fullName>Indicated delivery time too long</fullName>
+                <default>false</default>
+                <label>Indicated delivery time too long</label>
+            </value>
+            <value>
+                <fullName>Information incorrect</fullName>
+                <default>false</default>
+                <label>Information incorrect</label>
+            </value>
+            <value>
+                <fullName>Information request</fullName>
+                <default>false</default>
+                <label>Information request</label>
+            </value>
+            <value>
+                <fullName>Interest in a deal</fullName>
+                <default>false</default>
+                <label>Interest in a deal</label>
+            </value>
+            <value>
+                <fullName>Invoice calculation explanation request</fullName>
+                <default>false</default>
+                <label>Invoice calculation explanation request</label>
+            </value>
+            <value>
+                <fullName>Invoice missing</fullName>
+                <default>false</default>
+                <label>Invoice missing</label>
+            </value>
+            <value>
+                <fullName>Invoice missing on portal</fullName>
+                <default>false</default>
+                <label>Invoice missing on portal</label>
+            </value>
+            <value>
+                <fullName>Invoice not in restaurant portal</fullName>
+                <default>false</default>
+                <label>Invoice not in restaurant portal</label>
+            </value>
+            <value>
+                <fullName>Invoice request by partner</fullName>
+                <default>false</default>
+                <label>Invoice request by partner</label>
+            </value>
+            <value>
+                <fullName>Invoice request by restaurant</fullName>
+                <default>false</default>
+                <label>Invoice request by restaurant</label>
+            </value>
+            <value>
+                <fullName>Irrelevant</fullName>
+                <default>false</default>
+                <label>Irrelevant</label>
+            </value>
+            <value>
+                <fullName>Item addition or removal or change</fullName>
+                <default>false</default>
+                <label>Item addition or removal or change</label>
+            </value>
+            <value>
+                <fullName>Item missing</fullName>
+                <default>false</default>
+                <label>Item missing</label>
+            </value>
+            <value>
+                <fullName>Item or category addition or removal</fullName>
+                <default>false</default>
+                <label>Item or category addition or removal</label>
+            </value>
+            <value>
+                <fullName>Item or category description update</fullName>
+                <default>false</default>
+                <label>Item or category description update</label>
+            </value>
+            <value>
+                <fullName>Item or category price update</fullName>
+                <default>false</default>
+                <label>Item or category price update</label>
+            </value>
+            <value>
+                <fullName>Late Delivery</fullName>
+                <default>false</default>
+                <label>Late Delivery</label>
+            </value>
+            <value>
+                <fullName>Layout change</fullName>
+                <default>false</default>
+                <label>Layout change</label>
+            </value>
+            <value>
+                <fullName>LMIV update</fullName>
+                <default>false</default>
+                <label>LMIV update</label>
+            </value>
+            <value>
+                <fullName>Login data inquiry - Restaurant portal</fullName>
+                <default>false</default>
+                <label>Login data inquiry - Restaurant portal</label>
+            </value>
+            <value>
+                <fullName>Logo update</fullName>
+                <default>false</default>
+                <label>Logo update</label>
+            </value>
+            <value>
+                <fullName>Loyalty program issue</fullName>
+                <default>false</default>
+                <label>Loyalty program issue</label>
+            </value>
+            <value>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+                <label>Marketing</label>
+            </value>
+            <value>
+                <fullName>Meal photography interest</fullName>
+                <default>false</default>
+                <label>Meal photography interest</label>
+            </value>
+            <value>
+                <fullName>Missing equipment/uniform</fullName>
+                <default>false</default>
+                <label>Missing equipment/uniform</label>
+            </value>
+            <value>
+                <fullName>Missing item</fullName>
+                <default>false</default>
+                <label>Missing item</label>
+            </value>
+            <value>
+                <fullName>Mistake in invoice</fullName>
+                <default>false</default>
+                <label>Mistake in invoice</label>
+            </value>
+            <value>
+                <fullName>Moderate delay</fullName>
+                <default>false</default>
+                <label>Moderate delay</label>
+            </value>
+            <value>
+                <fullName>Modify customer address</fullName>
+                <default>false</default>
+                <label>Modify customer address</label>
+            </value>
+            <value>
+                <fullName>Modify item</fullName>
+                <default>false</default>
+                <label>Modify item</label>
+            </value>
+            <value>
+                <fullName>Money collection issue</fullName>
+                <default>false</default>
+                <label>Money collection issue</label>
+            </value>
+            <value>
+                <fullName>Negative</fullName>
+                <default>false</default>
+                <label>Negative</label>
+            </value>
+            <value>
+                <fullName>New partner sign up request</fullName>
+                <default>false</default>
+                <label>New partner sign up request</label>
+            </value>
+            <value>
+                <fullName>Newsletter unsubscription</fullName>
+                <default>false</default>
+                <label>Newsletter unsubscription</label>
+            </value>
+            <value>
+                <fullName>No or late confirmation</fullName>
+                <default>false</default>
+                <label>No or late confirmation</label>
+            </value>
+            <value>
+                <fullName>No solution provided</fullName>
+                <default>false</default>
+                <label>No solution provided</label>
+            </value>
+            <value>
+                <fullName>Not printing due to technical issue</fullName>
+                <default>false</default>
+                <label>Not printing due to technical issue</label>
+            </value>
+            <value>
+                <fullName>Not satisfied with value</fullName>
+                <default>false</default>
+                <label>Not satisfied with value</label>
+            </value>
+            <value>
+                <fullName>Offline payment issue</fullName>
+                <default>false</default>
+                <label>Offline payment issue</label>
+            </value>
+            <value>
+                <fullName>Onboarding status inquiries</fullName>
+                <default>false</default>
+                <label>Onboarding status inquiries</label>
+            </value>
+            <value>
+                <fullName>Online payment issue</fullName>
+                <default>false</default>
+                <label>Online payment issue</label>
+            </value>
+            <value>
+                <fullName>Online payment pending</fullName>
+                <default>false</default>
+                <label>Online payment pending</label>
+            </value>
+            <value>
+                <fullName>Opening hours change</fullName>
+                <default>false</default>
+                <label>Opening hours change</label>
+            </value>
+            <value>
+                <fullName>Order cancellation not received by customer</fullName>
+                <default>false</default>
+                <label>Order cancellation not received by customer</label>
+            </value>
+            <value>
+                <fullName>Order cancelled due to platform fault</fullName>
+                <default>false</default>
+                <label>Order cancelled due to platform fault</label>
+            </value>
+            <value>
+                <fullName>Order cancelled due to restaurant fault</fullName>
+                <default>false</default>
+                <label>Order cancelled due to restaurant fault</label>
+            </value>
+            <value>
+                <fullName>Order confirmation not received by customer</fullName>
+                <default>false</default>
+                <label>Order confirmation not received by customer</label>
+            </value>
+            <value>
+                <fullName>Order information missing</fullName>
+                <default>false</default>
+                <label>Order information missing</label>
+            </value>
+            <value>
+                <fullName>Order marked as delivered but didn&apos;t receive</fullName>
+                <default>false</default>
+                <label>Order marked as delivered but didn&apos;t receive</label>
+            </value>
+            <value>
+                <fullName>Order never arrived</fullName>
+                <default>false</default>
+                <label>Order never arrived</label>
+            </value>
+            <value>
+                <fullName>Order never reached customer</fullName>
+                <default>false</default>
+                <label>Order never reached customer</label>
+            </value>
+            <value>
+                <fullName>Order not assigned to a rider</fullName>
+                <default>false</default>
+                <label>Order not assigned to a rider</label>
+            </value>
+            <value>
+                <fullName>Order not delivered to doorstep</fullName>
+                <default>false</default>
+                <label>Order not delivered to doorstep</label>
+            </value>
+            <value>
+                <fullName>Order placed outside of opening hours</fullName>
+                <default>false</default>
+                <label>Order placed outside of opening hours</label>
+            </value>
+            <value>
+                <fullName>Order tracking issue</fullName>
+                <default>false</default>
+                <label>Order tracking issue</label>
+            </value>
+            <value>
+                <fullName>Order will be delivered but late</fullName>
+                <default>false</default>
+                <label>Order will be delivered but late</label>
+            </value>
+            <value>
+                <fullName>Order will not be delivered</fullName>
+                <default>false</default>
+                <label>Order will not be delivered</label>
+            </value>
+            <value>
+                <fullName>Order will not be processed</fullName>
+                <default>false</default>
+                <label>Order will not be processed</label>
+            </value>
+            <value>
+                <fullName>Other App issues</fullName>
+                <default>false</default>
+                <label>Other App issues</label>
+            </value>
+            <value>
+                <fullName>Other change of restaurant data</fullName>
+                <default>false</default>
+                <label>Other change of restaurant data</label>
+            </value>
+            <value>
+                <fullName>Other customer inquiry or feedback</fullName>
+                <default>false</default>
+                <label>Other customer inquiry or feedback</label>
+            </value>
+            <value>
+                <fullName>Other delivery inquiry</fullName>
+                <default>false</default>
+                <label>Other delivery inquiry</label>
+            </value>
+            <value>
+                <fullName>Other delivery issue</fullName>
+                <default>false</default>
+                <label>Other delivery issue</label>
+            </value>
+            <value>
+                <fullName>Other food complaint</fullName>
+                <default>false</default>
+                <label>Other food complaint</label>
+            </value>
+            <value>
+                <fullName>Other general customer complaint</fullName>
+                <default>false</default>
+                <label>Other general customer complaint</label>
+            </value>
+            <value>
+                <fullName>Other issues related to contactless delivery</fullName>
+                <default>false</default>
+                <label>Other issues related to contactless delivery</label>
+            </value>
+            <value>
+                <fullName>Other live order inquiry</fullName>
+                <default>false</default>
+                <label>Other live order inquiry</label>
+            </value>
+            <value>
+                <fullName>Other live order process related query</fullName>
+                <default>false</default>
+                <label>Other live order process related query</label>
+            </value>
+            <value>
+                <fullName>Other marketing query by restaurant</fullName>
+                <default>false</default>
+                <label>Other marketing query by restaurant</label>
+            </value>
+            <value>
+                <fullName>Other order process complaint</fullName>
+                <default>false</default>
+                <label>Other order process complaint</label>
+            </value>
+            <value>
+                <fullName>Other order status query</fullName>
+                <default>false</default>
+                <label>Other order status query</label>
+            </value>
+            <value>
+                <fullName>Other positive restaurant feedback</fullName>
+                <default>false</default>
+                <label>Other positive restaurant feedback</label>
+            </value>
+            <value>
+                <fullName>Other problem</fullName>
+                <default>false</default>
+                <label>Other problem</label>
+            </value>
+            <value>
+                <fullName>Other problem or question</fullName>
+                <default>false</default>
+                <label>Other problem or question</label>
+            </value>
+            <value>
+                <fullName>Other question</fullName>
+                <default>false</default>
+                <label>Other question</label>
+            </value>
+            <value>
+                <fullName>Other reason</fullName>
+                <default>false</default>
+                <label>Other reason</label>
+            </value>
+            <value>
+                <fullName>Other reason for cancellation by customer</fullName>
+                <default>false</default>
+                <label>Other reason for cancellation by customer</label>
+            </value>
+            <value>
+                <fullName>Other reason for cancellation by restaurant</fullName>
+                <default>false</default>
+                <label>Other reason for cancellation by restaurant</label>
+            </value>
+            <value>
+                <fullName>Other reason for deactivation</fullName>
+                <default>false</default>
+                <label>Other reason for deactivation</label>
+            </value>
+            <value>
+                <fullName>Other restaurant inquiry or feedback</fullName>
+                <default>false</default>
+                <label>Other restaurant inquiry or feedback</label>
+            </value>
+            <value>
+                <fullName>Other technical problem ‒ 9Cookies</fullName>
+                <default>false</default>
+                <label>Other technical problem ‒ 9Cookies</label>
+            </value>
+            <value>
+                <fullName>Other technical problem or question</fullName>
+                <default>false</default>
+                <label>Other technical problem or question</label>
+            </value>
+            <value>
+                <fullName>Other voucher inquiry</fullName>
+                <default>false</default>
+                <label>Other voucher inquiry</label>
+            </value>
+            <value>
+                <fullName>Owner contact details change</fullName>
+                <default>false</default>
+                <label>Owner contact details change</label>
+            </value>
+            <value>
+                <fullName>Packaging issue</fullName>
+                <default>false</default>
+                <label>Packaging issue</label>
+            </value>
+            <value>
+                <fullName>Paper Bag &amp; Paper Roll Request</fullName>
+                <default>false</default>
+                <label>Paper Bag &amp; Paper Roll Request</label>
+            </value>
+            <value>
+                <fullName>Paper Bag Request</fullName>
+                <default>false</default>
+                <label>Paper Bag Request</label>
+            </value>
+            <value>
+                <fullName>Paper Roll Request</fullName>
+                <default>false</default>
+                <label>Paper Roll Request</label>
+            </value>
+            <value>
+                <fullName>Partner bank account details change</fullName>
+                <default>false</default>
+                <label>Partner bank account details change</label>
+            </value>
+            <value>
+                <fullName>Partner channel transmission device change</fullName>
+                <default>false</default>
+                <label>Partner channel transmission device change</label>
+            </value>
+            <value>
+                <fullName>Partner contact details change</fullName>
+                <default>false</default>
+                <label>Partner contact details change</label>
+            </value>
+            <value>
+                <fullName>Partner details changes</fullName>
+                <default>false</default>
+                <label>Partner details changes</label>
+            </value>
+            <value>
+                <fullName>Partner name change</fullName>
+                <default>false</default>
+                <label>Partner name change</label>
+            </value>
+            <value>
+                <fullName>Partner page is missing</fullName>
+                <default>false</default>
+                <label>Partner page is missing</label>
+            </value>
+            <value>
+                <fullName>Partner requested to remove customer evaluation</fullName>
+                <default>false</default>
+                <label>Partner requested to remove customer evaluation</label>
+            </value>
+            <value>
+                <fullName>Password request by customer</fullName>
+                <default>false</default>
+                <label>Password request by customer</label>
+            </value>
+            <value>
+                <fullName>Payment cycle inquiry</fullName>
+                <default>false</default>
+                <label>Payment cycle inquiry</label>
+            </value>
+            <value>
+                <fullName>Payment cycle mistake</fullName>
+                <default>false</default>
+                <label>Payment cycle mistake</label>
+            </value>
+            <value>
+                <fullName>Payment deducted twice</fullName>
+                <default>false</default>
+                <label>Payment deducted twice</label>
+            </value>
+            <value>
+                <fullName>Payment issue</fullName>
+                <default>false</default>
+                <label>Payment issue</label>
+            </value>
+            <value>
+                <fullName>Payment method</fullName>
+                <default>false</default>
+                <label>Payment method</label>
+            </value>
+            <value>
+                <fullName>Payment not received</fullName>
+                <default>false</default>
+                <label>Payment not received</label>
+            </value>
+            <value>
+                <fullName>Payment not received by partner</fullName>
+                <default>false</default>
+                <label>Payment not received by partner</label>
+            </value>
+            <value>
+                <fullName>Payment reconciliation</fullName>
+                <default>false</default>
+                <label>Payment reconciliation</label>
+            </value>
+            <value>
+                <fullName>Positive</fullName>
+                <default>false</default>
+                <label>Positive</label>
+            </value>
+            <value>
+                <fullName>Positive customer feedback ‒ Customer care</fullName>
+                <default>false</default>
+                <label>Positive customer feedback ‒ Customer care</label>
+            </value>
+            <value>
+                <fullName>Positive customer feedback ‒ Marketing campaign</fullName>
+                <default>false</default>
+                <label>Positive customer feedback ‒ Marketing campaign</label>
+            </value>
+            <value>
+                <fullName>Positive customer feedback ‒ Restaurant or food</fullName>
+                <default>false</default>
+                <label>Positive customer feedback ‒ Restaurant or food</label>
+            </value>
+            <value>
+                <fullName>Positive customer feedback ‒ Website or app</fullName>
+                <default>false</default>
+                <label>Positive customer feedback ‒ Website or app</label>
+            </value>
+            <value>
+                <fullName>Positive restaurant feedback ‒ 9Cookies or restaurant portal</fullName>
+                <default>false</default>
+                <label>Positive restaurant feedback ‒ 9Cookies or restaurant portal</label>
+            </value>
+            <value>
+                <fullName>Positive restaurant feedback ‒ Customer care</fullName>
+                <default>false</default>
+                <label>Positive restaurant feedback ‒ Customer care</label>
+            </value>
+            <value>
+                <fullName>Positive restaurant feedback ‒ Website or app</fullName>
+                <default>false</default>
+                <label>Positive restaurant feedback ‒ Website or app</label>
+            </value>
+            <value>
+                <fullName>Premium listing interest</fullName>
+                <default>false</default>
+                <label>Premium listing interest</label>
+            </value>
+            <value>
+                <fullName>Premium listing performance issue</fullName>
+                <default>false</default>
+                <label>Premium listing performance issue</label>
+            </value>
+            <value>
+                <fullName>Prices change</fullName>
+                <default>false</default>
+                <label>Prices change</label>
+            </value>
+            <value>
+                <fullName>Printer damaged</fullName>
+                <default>false</default>
+                <label>Printer damaged</label>
+            </value>
+            <value>
+                <fullName>Printer problem ‒ 9Cookies</fullName>
+                <default>false</default>
+                <label>Printer problem ‒ 9Cookies</label>
+            </value>
+            <value>
+                <fullName>Printer stolen or lost</fullName>
+                <default>false</default>
+                <label>Printer stolen or lost</label>
+            </value>
+            <value>
+                <fullName>Printing problem ‒ Box</fullName>
+                <default>false</default>
+                <label>Printing problem ‒ Box</label>
+            </value>
+            <value>
+                <fullName>Process related</fullName>
+                <default>false</default>
+                <label>Process related</label>
+            </value>
+            <value>
+                <fullName>Product image update</fullName>
+                <default>false</default>
+                <label>Product image update</label>
+            </value>
+            <value>
+                <fullName>Product unavailable</fullName>
+                <default>false</default>
+                <label>Product unavailable</label>
+            </value>
+            <value>
+                <fullName>Promised feedback not delivered</fullName>
+                <default>false</default>
+                <label>Promised feedback not delivered</label>
+            </value>
+            <value>
+                <fullName>Promotion/discount not applied</fullName>
+                <default>false</default>
+                <label>Promotion/discount not applied</label>
+            </value>
+            <value>
+                <fullName>Reactivate restaurant after temporary closure</fullName>
+                <default>false</default>
+                <label>Reactivate restaurant after temporary closure</label>
+            </value>
+            <value>
+                <fullName>Receipt request</fullName>
+                <default>false</default>
+                <label>Receipt request</label>
+            </value>
+            <value>
+                <fullName>Receiving order problem</fullName>
+                <default>false</default>
+                <label>Receiving order problem</label>
+            </value>
+            <value>
+                <fullName>Recipient details change</fullName>
+                <default>false</default>
+                <label>Recipient details change</label>
+            </value>
+            <value>
+                <fullName>Redelivery required</fullName>
+                <default>false</default>
+                <label>Redelivery required</label>
+            </value>
+            <value>
+                <fullName>Refund not yet received</fullName>
+                <default>false</default>
+                <label>Refund not yet received</label>
+            </value>
+            <value>
+                <fullName>Refund query</fullName>
+                <default>false</default>
+                <label>Refund query</label>
+            </value>
+            <value>
+                <fullName>Refund received later than promised</fullName>
+                <default>false</default>
+                <label>Refund received later than promised</label>
+            </value>
+            <value>
+                <fullName>Refund request</fullName>
+                <default>false</default>
+                <label>Refund request</label>
+            </value>
+            <value>
+                <fullName>Refund timeline inquiry</fullName>
+                <default>false</default>
+                <label>Refund timeline inquiry</label>
+            </value>
+            <value>
+                <fullName>Regular notice</fullName>
+                <default>false</default>
+                <label>Regular notice</label>
+            </value>
+            <value>
+                <fullName>Remove or hide dish/menu category</fullName>
+                <default>false</default>
+                <label>Remove or hide dish/menu category</label>
+            </value>
+            <value>
+                <fullName>Renegotiation base fee</fullName>
+                <default>false</default>
+                <label>Renegotiation base fee</label>
+            </value>
+            <value>
+                <fullName>Renegotiation commission</fullName>
+                <default>false</default>
+                <label>Renegotiation commission</label>
+            </value>
+            <value>
+                <fullName>Reopen temporarily closed restaurant</fullName>
+                <default>false</default>
+                <label>Reopen temporarily closed restaurant</label>
+            </value>
+            <value>
+                <fullName>Request: accidental order</fullName>
+                <default>false</default>
+                <label>Request: accidental order</label>
+            </value>
+            <value>
+                <fullName>Request: changed mind</fullName>
+                <default>false</default>
+                <label>Request: changed mind</label>
+            </value>
+            <value>
+                <fullName>Request: duplicated order</fullName>
+                <default>false</default>
+                <label>Request: duplicated order</label>
+            </value>
+            <value>
+                <fullName>Request: order is late, does not want to wait</fullName>
+                <default>false</default>
+                <label>Request: order is late, does not want to wait</label>
+            </value>
+            <value>
+                <fullName>Request: order modification not possible</fullName>
+                <default>false</default>
+                <label>Request: order modification not possible</label>
+            </value>
+            <value>
+                <fullName>Request: order will take longer than expected</fullName>
+                <default>false</default>
+                <label>Request: order will take longer than expected</label>
+            </value>
+            <value>
+                <fullName>Request: preorder by mistake</fullName>
+                <default>false</default>
+                <label>Request: preorder by mistake</label>
+            </value>
+            <value>
+                <fullName>Request: voucher not applied</fullName>
+                <default>false</default>
+                <label>Request: voucher not applied</label>
+            </value>
+            <value>
+                <fullName>Request to comment customer evaluation</fullName>
+                <default>false</default>
+                <label>Request to comment customer evaluation</label>
+            </value>
+            <value>
+                <fullName>Request to comment on customer evaluation</fullName>
+                <default>false</default>
+                <label>Request to comment on customer evaluation</label>
+            </value>
+            <value>
+                <fullName>Request to delete evaluation by restaurant</fullName>
+                <default>false</default>
+                <label>Request to delete evaluation by restaurant</label>
+            </value>
+            <value>
+                <fullName>Restaurant address change</fullName>
+                <default>false</default>
+                <label>Restaurant address change</label>
+            </value>
+            <value>
+                <fullName>Restaurant characteristics changes</fullName>
+                <default>false</default>
+                <label>Restaurant characteristics changes</label>
+            </value>
+            <value>
+                <fullName>Restaurant complaint</fullName>
+                <default>false</default>
+                <label>Restaurant complaint</label>
+            </value>
+            <value>
+                <fullName>Restaurant contact details request</fullName>
+                <default>false</default>
+                <label>Restaurant contact details request</label>
+            </value>
+            <value>
+                <fullName>Restaurant hasn&apos;t started preparing the food</fullName>
+                <default>false</default>
+                <label>Restaurant hasn&apos;t started preparing the food</label>
+            </value>
+            <value>
+                <fullName>Restaurant name change</fullName>
+                <default>false</default>
+                <label>Restaurant name change</label>
+            </value>
+            <value>
+                <fullName>Restaurant not shown</fullName>
+                <default>false</default>
+                <label>Restaurant not shown</label>
+            </value>
+            <value>
+                <fullName>Restaurant proposal</fullName>
+                <default>false</default>
+                <label>Restaurant proposal</label>
+            </value>
+            <value>
+                <fullName>Restaurant shown as closed</fullName>
+                <default>false</default>
+                <label>Restaurant shown as closed</label>
+            </value>
+            <value>
+                <fullName>Restaurant too busy</fullName>
+                <default>false</default>
+                <label>Restaurant too busy</label>
+            </value>
+            <value>
+                <fullName>Rider left some items</fullName>
+                <default>false</default>
+                <label>Rider left some items</label>
+            </value>
+            <value>
+                <fullName>Rider left without paying the order to the restaurant</fullName>
+                <default>false</default>
+                <label>Rider left without paying the order to the restaurant</label>
+            </value>
+            <value>
+                <fullName>Rider related</fullName>
+                <default>false</default>
+                <label>Rider related</label>
+            </value>
+            <value>
+                <fullName>Rider wasn&apos;t compliant with contactless rules</fullName>
+                <default>false</default>
+                <label>Rider wasn&apos;t compliant with contactless rules</label>
+            </value>
+            <value>
+                <fullName>Service offer</fullName>
+                <default>false</default>
+                <label>Service offer</label>
+            </value>
+            <value>
+                <fullName>Set-up or change</fullName>
+                <default>false</default>
+                <label>Set-up or change</label>
+            </value>
+            <value>
+                <fullName>Severe delay</fullName>
+                <default>false</default>
+                <label>Severe delay</label>
+            </value>
+            <value>
+                <fullName>Short delay</fullName>
+                <default>false</default>
+                <label>Short delay</label>
+            </value>
+            <value>
+                <fullName>Sign up interest</fullName>
+                <default>false</default>
+                <label>Sign up interest</label>
+            </value>
+            <value>
+                <fullName>Sign up issue</fullName>
+                <default>false</default>
+                <label>Sign up issue</label>
+            </value>
+            <value>
+                <fullName>SIM Card Connection issues</fullName>
+                <default>false</default>
+                <label>SIM Card Connection issues</label>
+            </value>
+            <value>
+                <fullName>SMS Verification issue</fullName>
+                <default>false</default>
+                <label>SMS Verification issue</label>
+            </value>
+            <value>
+                <fullName>Spam</fullName>
+                <default>false</default>
+                <label>Spam</label>
+            </value>
+            <value>
+                <fullName>Spam / Irrelevant</fullName>
+                <default>false</default>
+                <label>Spam / Irrelevant</label>
+            </value>
+            <value>
+                <fullName>Special campaign participation interest</fullName>
+                <default>false</default>
+                <label>Special campaign participation interest</label>
+            </value>
+            <value>
+                <fullName>Special request issue</fullName>
+                <default>false</default>
+                <label>Special request issue</label>
+            </value>
+            <value>
+                <fullName>Specification of delivery instructions</fullName>
+                <default>false</default>
+                <label>Specification of delivery instructions</label>
+            </value>
+            <value>
+                <fullName>Specification of food ordered</fullName>
+                <default>false</default>
+                <label>Specification of food ordered</label>
+            </value>
+            <value>
+                <fullName>Spilled food</fullName>
+                <default>false</default>
+                <label>Spilled food</label>
+            </value>
+            <value>
+                <fullName>System related</fullName>
+                <default>false</default>
+                <label>System related</label>
+            </value>
+            <value>
+                <fullName>Tablet damaged</fullName>
+                <default>false</default>
+                <label>Tablet damaged</label>
+            </value>
+            <value>
+                <fullName>Tablet lost or stolen</fullName>
+                <default>false</default>
+                <label>Tablet lost or stolen</label>
+            </value>
+            <value>
+                <fullName>Tablet problem ‒ 9Cookies</fullName>
+                <default>false</default>
+                <label>Tablet problem ‒ 9Cookies</label>
+            </value>
+            <value>
+                <fullName>Technical problem</fullName>
+                <default>false</default>
+                <label>Technical problem</label>
+            </value>
+            <value>
+                <fullName>Technical problem ‒ Restaurant portal</fullName>
+                <default>false</default>
+                <label>Technical problem ‒ Restaurant portal</label>
+            </value>
+            <value>
+                <fullName>Termination by delivery hero</fullName>
+                <default>false</default>
+                <label>Termination by delivery hero</label>
+            </value>
+            <value>
+                <fullName>Termination due to change of owner / business name</fullName>
+                <default>false</default>
+                <label>Termination due to change of owner / business name</label>
+            </value>
+            <value>
+                <fullName>Termination due to partner closure</fullName>
+                <default>false</default>
+                <label>Termination due to partner closure</label>
+            </value>
+            <value>
+                <fullName>Termination notice given by partner</fullName>
+                <default>false</default>
+                <label>Termination notice given by partner</label>
+            </value>
+            <value>
+                <fullName>Termination of a deal</fullName>
+                <default>false</default>
+                <label>Termination of a deal</label>
+            </value>
+            <value>
+                <fullName>Termination of premium listing</fullName>
+                <default>false</default>
+                <label>Termination of premium listing</label>
+            </value>
+            <value>
+                <fullName>Training required ‒ 9Cookies</fullName>
+                <default>false</default>
+                <label>Training required ‒ 9Cookies</label>
+            </value>
+            <value>
+                <fullName>Training required ‒ Restaurant portal</fullName>
+                <default>false</default>
+                <label>Training required ‒ Restaurant portal</label>
+            </value>
+            <value>
+                <fullName>Transmission method change</fullName>
+                <default>false</default>
+                <label>Transmission method change</label>
+            </value>
+            <value>
+                <fullName>Unable to log in</fullName>
+                <default>false</default>
+                <label>Unable to log in</label>
+            </value>
+            <value>
+                <fullName>Unfriendly agent</fullName>
+                <default>false</default>
+                <label>Unfriendly agent</label>
+            </value>
+            <value>
+                <fullName>Unreachable or long waiting time</fullName>
+                <default>false</default>
+                <label>Unreachable or long waiting time</label>
+            </value>
+            <value>
+                <fullName>Update menu settings</fullName>
+                <default>false</default>
+                <label>Update menu settings</label>
+            </value>
+            <value>
+                <fullName>Update on onboarding or going live status</fullName>
+                <default>false</default>
+                <label>Update on onboarding or going live status</label>
+            </value>
+            <value>
+                <fullName>Update operating hours</fullName>
+                <default>false</default>
+                <label>Update operating hours</label>
+            </value>
+            <value>
+                <fullName>Update schedule temporarily</fullName>
+                <default>false</default>
+                <label>Update schedule temporarily</label>
+            </value>
+            <value>
+                <fullName>VAT inquiry</fullName>
+                <default>false</default>
+                <label>VAT inquiry</label>
+            </value>
+            <value>
+                <fullName>Vendor dues to delivery hero</fullName>
+                <default>false</default>
+                <label>Vendor dues to delivery hero</label>
+            </value>
+            <value>
+                <fullName>Voucher</fullName>
+                <default>false</default>
+                <label>Voucher</label>
+            </value>
+            <value>
+                <fullName>Voucher already used</fullName>
+                <default>false</default>
+                <label>Voucher already used</label>
+            </value>
+            <value>
+                <fullName>Voucher code addition</fullName>
+                <default>false</default>
+                <label>Voucher code addition</label>
+            </value>
+            <value>
+                <fullName>Voucher conditions</fullName>
+                <default>false</default>
+                <label>Voucher conditions</label>
+            </value>
+            <value>
+                <fullName>Voucher could not be used</fullName>
+                <default>false</default>
+                <label>Voucher could not be used</label>
+            </value>
+            <value>
+                <fullName>Voucher invalid – already used by customer</fullName>
+                <default>false</default>
+                <label>Voucher invalid – already used by customer</label>
+            </value>
+            <value>
+                <fullName>Voucher invalid – expired</fullName>
+                <default>false</default>
+                <label>Voucher invalid – expired</label>
+            </value>
+            <value>
+                <fullName>Voucher issue</fullName>
+                <default>false</default>
+                <label>Voucher issue</label>
+            </value>
+            <value>
+                <fullName>Voucher not received</fullName>
+                <default>false</default>
+                <label>Voucher not received</label>
+            </value>
+            <value>
+                <fullName>Voucher request</fullName>
+                <default>false</default>
+                <label>Voucher request</label>
+            </value>
+            <value>
+                <fullName>Voucher valid – conditions not met</fullName>
+                <default>false</default>
+                <label>Voucher valid – conditions not met</label>
+            </value>
+            <value>
+                <fullName>Voucher validity</fullName>
+                <default>false</default>
+                <label>Voucher validity</label>
+            </value>
+            <value>
+                <fullName>Voucher valid – technical problem</fullName>
+                <default>false</default>
+                <label>Voucher valid – technical problem</label>
+            </value>
+            <value>
+                <fullName>Voucher valid – typing mistake by customer</fullName>
+                <default>false</default>
+                <label>Voucher valid – typing mistake by customer</label>
+            </value>
+            <value>
+                <fullName>Wallet issue</fullName>
+                <default>false</default>
+                <label>Wallet issue</label>
+            </value>
+            <value>
+                <fullName>Website complaint by customer</fullName>
+                <default>false</default>
+                <label>Website complaint by customer</label>
+            </value>
+            <value>
+                <fullName>Website issue</fullName>
+                <default>false</default>
+                <label>Website issue</label>
+            </value>
+            <value>
+                <fullName>Wrong amount refunded</fullName>
+                <default>false</default>
+                <label>Wrong amount refunded</label>
+            </value>
+            <value>
+                <fullName>Wrong delivery fee charged</fullName>
+                <default>false</default>
+                <label>Wrong delivery fee charged</label>
+            </value>
+            <value>
+                <fullName>Wrong item</fullName>
+                <default>false</default>
+                <label>Wrong item</label>
+            </value>
+            <value>
+                <fullName>Wrong item price charged</fullName>
+                <default>false</default>
+                <label>Wrong item price charged</label>
+            </value>
+            <value>
+                <fullName>Wrong order</fullName>
+                <default>false</default>
+                <label>Wrong order</label>
+            </value>
+            <value>
+                <fullName>Wrong restaurant information</fullName>
+                <default>false</default>
+                <label>Wrong restaurant information</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Paper Bag Request</controllingFieldValue>
+            <valueName>Paper Bag Request</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Paper Roll Request</controllingFieldValue>
+            <valueName>Paper Roll Request</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Paper Bag &amp; Paper Roll Request</controllingFieldValue>
+            <valueName>Paper Bag &amp; Paper Roll Request</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Door Sticker Request</controllingFieldValue>
+            <valueName>Door Sticker Request</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Follow up on existing case</controllingFieldValue>
+            <controllingFieldValue>Information request</controllingFieldValue>
+            <valueName>Follow up on existing case</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Spam / Irrelevant</controllingFieldValue>
+            <controllingFieldValue>Internal</controllingFieldValue>
+            <valueName>Spam / Irrelevant</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Contactless delivery</controllingFieldValue>
+            <valueName>Other issues related to contactless delivery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Contactless delivery</controllingFieldValue>
+            <valueName>Rider wasn&apos;t compliant with contactless rules</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Basic profile change</controllingFieldValue>
+            <valueName>Address change</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Basic profile change</controllingFieldValue>
+            <valueName>Change of business registration</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Basic profile change</controllingFieldValue>
+            <valueName>Partner bank account details change</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Basic profile change</controllingFieldValue>
+            <valueName>Partner contact details change</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Basic profile change</controllingFieldValue>
+            <valueName>Partner details changes</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Basic profile change</controllingFieldValue>
+            <valueName>Partner name change</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancellation</controllingFieldValue>
+            <valueName>Complaint: logistics cancellation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancellation</controllingFieldValue>
+            <valueName>Complaint: vendor cancellation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancellation</controllingFieldValue>
+            <valueName>Request: accidental order</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancellation</controllingFieldValue>
+            <valueName>Request: changed mind</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancellation</controllingFieldValue>
+            <valueName>Request: duplicated order</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancellation</controllingFieldValue>
+            <valueName>Request: order is late, does not want to wait</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancellation</controllingFieldValue>
+            <valueName>Request: order modification not possible</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancellation</controllingFieldValue>
+            <valueName>Request: order will take longer than expected</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancellation</controllingFieldValue>
+            <valueName>Request: preorder by mistake</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancellation</controllingFieldValue>
+            <valueName>Request: voucher not applied</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Change order details</controllingFieldValue>
+            <valueName>Address</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Change order details</controllingFieldValue>
+            <valueName>Contact Details</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Change order details</controllingFieldValue>
+            <valueName>Cooking instructions</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Change order details</controllingFieldValue>
+            <valueName>Delivery instructions</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Change order details</controllingFieldValue>
+            <valueName>Delivery time/date</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Change order details</controllingFieldValue>
+            <valueName>Food items</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Change order details</controllingFieldValue>
+            <valueName>Payment method</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Change order details</controllingFieldValue>
+            <valueName>Voucher</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer reviews for partners</controllingFieldValue>
+            <valueName>General inquiries related to customer evaluations</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer reviews for partners</controllingFieldValue>
+            <valueName>Partner requested to remove customer evaluation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer reviews for partners</controllingFieldValue>
+            <valueName>Request to comment on customer evaluation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Delivery inquiries</controllingFieldValue>
+            <valueName>Customer address problem</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Delivery inquiries</controllingFieldValue>
+            <valueName>Customer not at delivery address</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Delivery inquiries</controllingFieldValue>
+            <valueName>Customer unreachable</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Delivery inquiries</controllingFieldValue>
+            <valueName>Delivery late</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Delivery inquiries</controllingFieldValue>
+            <valueName>Rider left some items</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Delivery inquiries</controllingFieldValue>
+            <valueName>Rider left without paying the order to the restaurant</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Delivery time</controllingFieldValue>
+            <valueName>Early delivery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Delivery time</controllingFieldValue>
+            <valueName>Extreme delay</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Delivery time</controllingFieldValue>
+            <valueName>Moderate delay</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Delivery time</controllingFieldValue>
+            <valueName>Severe delay</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Delivery time</controllingFieldValue>
+            <valueName>Short delay</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Feedback</controllingFieldValue>
+            <valueName>Negative</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Feedback</controllingFieldValue>
+            <valueName>Positive</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer account</controllingFieldValue>
+            <valueName>Account deletion</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer account</controllingFieldValue>
+            <valueName>Change account details</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer account</controllingFieldValue>
+            <valueName>Data protection inquiry</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer account</controllingFieldValue>
+            <valueName>Loyalty program issue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer account</controllingFieldValue>
+            <valueName>Newsletter unsubscription</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer account</controllingFieldValue>
+            <valueName>SMS Verification issue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Food issue</controllingFieldValue>
+            <valueName>Cooking instructions were not followed</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Food issue</controllingFieldValue>
+            <valueName>Food poisoning</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Food issue</controllingFieldValue>
+            <valueName>Food portion</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Food issue</controllingFieldValue>
+            <valueName>Food quality</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Food issue</controllingFieldValue>
+            <valueName>Food temperature</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Food issue</controllingFieldValue>
+            <valueName>Spilled food</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment issue</controllingFieldValue>
+            <valueName>Offline payment issue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment issue</controllingFieldValue>
+            <valueName>Online payment issue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment issue</controllingFieldValue>
+            <valueName>Wallet issue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Voucher issue</controllingFieldValue>
+            <valueName>Cannot apply</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Voucher issue</controllingFieldValue>
+            <valueName>Not satisfied with value</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Voucher issue</controllingFieldValue>
+            <valueName>Other voucher inquiry</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Voucher issue</controllingFieldValue>
+            <valueName>Promotion/discount not applied</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Voucher issue</controllingFieldValue>
+            <valueName>Voucher already used</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Voucher issue</controllingFieldValue>
+            <valueName>Voucher conditions</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Voucher issue</controllingFieldValue>
+            <valueName>Voucher not received</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Voucher issue</controllingFieldValue>
+            <valueName>Voucher request</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Voucher issue</controllingFieldValue>
+            <valueName>Voucher validity</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Front end website</controllingFieldValue>
+            <valueName>Delivery area incorrect</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Front end website</controllingFieldValue>
+            <valueName>Information incorrect</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Front end website</controllingFieldValue>
+            <valueName>Partner page is missing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Front end website</controllingFieldValue>
+            <valueName>Restaurant shown as closed</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Imagery only update</controllingFieldValue>
+            <valueName>Change/upload listing image</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Imagery only update</controllingFieldValue>
+            <valueName>Change/upload product photo</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Imagery only update</controllingFieldValue>
+            <valueName>Change or upload logo</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Information request</controllingFieldValue>
+            <valueName>Contactless delivery feature inquiry</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Information request</controllingFieldValue>
+            <valueName>Information request</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Internal</controllingFieldValue>
+            <valueName>Automations - Backend Ticket</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Internal</controllingFieldValue>
+            <valueName>Automations - Missed Contact</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Internal</controllingFieldValue>
+            <valueName>Forward - Customer Service</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Internal</controllingFieldValue>
+            <valueName>Forward - Finance</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Internal</controllingFieldValue>
+            <valueName>Forward - Human Resources</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Internal</controllingFieldValue>
+            <valueName>Forward - Marketing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Internal</controllingFieldValue>
+            <valueName>Forward - Sales</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Internal</controllingFieldValue>
+            <valueName>Forward - Vendor Service</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Invoice inquiries</controllingFieldValue>
+            <valueName>Compensation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Invoice inquiries</controllingFieldValue>
+            <valueName>Double cooking inquiry</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Invoice inquiries</controllingFieldValue>
+            <valueName>Dunning inquiry</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Invoice inquiries</controllingFieldValue>
+            <valueName>Invoice calculation explanation request</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Invoice inquiries</controllingFieldValue>
+            <valueName>Invoice request by partner</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Invoice inquiries</controllingFieldValue>
+            <valueName>Mistake in invoice</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Invoice inquiries</controllingFieldValue>
+            <valueName>VAT inquiry</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Invoice inquiries</controllingFieldValue>
+            <valueName>Vendor dues to delivery hero</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Issue with order</controllingFieldValue>
+            <valueName>Customer cancellation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Issue with order</controllingFieldValue>
+            <valueName>Customer did not pick up</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Issue with order</controllingFieldValue>
+            <valueName>Customer information missing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Issue with order</controllingFieldValue>
+            <valueName>Customer left pick up due to delay</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Issue with order</controllingFieldValue>
+            <valueName>Customer outside of delivery area</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Issue with order</controllingFieldValue>
+            <valueName>Delivery staff too busy</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Issue with order</controllingFieldValue>
+            <valueName>Duplicate order</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Issue with order</controllingFieldValue>
+            <valueName>Fake order</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Issue with order</controllingFieldValue>
+            <valueName>Modify customer address</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Issue with order</controllingFieldValue>
+            <valueName>Modify item</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Issue with order</controllingFieldValue>
+            <valueName>Order information missing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Issue with order</controllingFieldValue>
+            <valueName>Order placed outside of opening hours</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Issue with order</controllingFieldValue>
+            <valueName>Product unavailable</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Issue with order</controllingFieldValue>
+            <valueName>Redelivery required</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Issue with order</controllingFieldValue>
+            <valueName>Restaurant too busy</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Issue with order</controllingFieldValue>
+            <valueName>Voucher issue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu update - Major</controllingFieldValue>
+            <controllingFieldValue>Menu Update Major with Images</controllingFieldValue>
+            <valueName>Add items/ toppings</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu update - Major</controllingFieldValue>
+            <controllingFieldValue>Menu Update Major with Images</controllingFieldValue>
+            <valueName>Add menu category</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu update - Major</controllingFieldValue>
+            <valueName>Allergens Update</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu update - Major</controllingFieldValue>
+            <controllingFieldValue>Menu Update Major with Images</controllingFieldValue>
+            <valueName>Full menu</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu update - Major</controllingFieldValue>
+            <valueName>Update menu settings</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu update - Minor</controllingFieldValue>
+            <valueName>Description</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu update - Minor</controllingFieldValue>
+            <valueName>Layout change</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu update - Minor</controllingFieldValue>
+            <valueName>Prices change</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Menu update - Minor</controllingFieldValue>
+            <valueName>Remove or hide dish/menu category</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Delivery changes</controllingFieldValue>
+            <valueName>Change delivery time</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Delivery changes</controllingFieldValue>
+            <valueName>Changes in delivery fee</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Delivery changes</controllingFieldValue>
+            <valueName>Changes in minimum order value</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Delivery changes</controllingFieldValue>
+            <valueName>Delivery area change</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Negative partner feedback</controllingFieldValue>
+            <controllingFieldValue>Positive partner feedback</controllingFieldValue>
+            <valueName>Process related</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Negative partner feedback</controllingFieldValue>
+            <controllingFieldValue>Positive partner feedback</controllingFieldValue>
+            <valueName>Rider related</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Negative partner feedback</controllingFieldValue>
+            <controllingFieldValue>Positive partner feedback</controllingFieldValue>
+            <valueName>System related</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Onboarding and Sign up</controllingFieldValue>
+            <valueName>New partner sign up request</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Onboarding and Sign up</controllingFieldValue>
+            <valueName>Onboarding status inquiries</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order status</controllingFieldValue>
+            <valueName>Cancellation reason inquiry</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order status</controllingFieldValue>
+            <valueName>Check order status</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order status</controllingFieldValue>
+            <valueName>Complain about late order</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order status</controllingFieldValue>
+            <valueName>Didn&apos;t receive order confirmation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order status</controllingFieldValue>
+            <valueName>ETA is stuck or increasing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order status</controllingFieldValue>
+            <valueName>Order marked as delivered but didn&apos;t receive</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order status</controllingFieldValue>
+            <valueName>Order not assigned to a rider</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order status</controllingFieldValue>
+            <valueName>Order tracking issue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order status</controllingFieldValue>
+            <valueName>Order will not be processed</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Order status</controllingFieldValue>
+            <valueName>Restaurant hasn&apos;t started preparing the food</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other live order inquiry</controllingFieldValue>
+            <valueName>Other live order inquiry</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Partner app</controllingFieldValue>
+            <valueName>App does not receive orders</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Partner app</controllingFieldValue>
+            <valueName>App shows blank screen</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Partner app</controllingFieldValue>
+            <controllingFieldValue>Partner Portal</controllingFieldValue>
+            <valueName>Functionality question</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Partner app</controllingFieldValue>
+            <valueName>Other App issues</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Partner app</controllingFieldValue>
+            <valueName>Transmission method change</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Partner Portal</controllingFieldValue>
+            <valueName>Invoice missing on portal</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Partner Portal</controllingFieldValue>
+            <controllingFieldValue>POS integration</controllingFieldValue>
+            <valueName>Technical problem</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Partner Portal</controllingFieldValue>
+            <valueName>Unable to log in</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment &amp; Refunds</controllingFieldValue>
+            <valueName>Fraud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment &amp; Refunds</controllingFieldValue>
+            <valueName>Incorrect invoice</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment &amp; Refunds</controllingFieldValue>
+            <valueName>Incorrect invoice details</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment &amp; Refunds</controllingFieldValue>
+            <valueName>Invoice missing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment &amp; Refunds</controllingFieldValue>
+            <valueName>Refund query</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment &amp; Refunds</controllingFieldValue>
+            <valueName>Refund request</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment inquiries</controllingFieldValue>
+            <controllingFieldValue>Payment inquiry</controllingFieldValue>
+            <valueName>Incorrect payment received by partner</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment inquiries</controllingFieldValue>
+            <controllingFieldValue>Payment inquiry</controllingFieldValue>
+            <valueName>Payment cycle inquiry</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment inquiries</controllingFieldValue>
+            <controllingFieldValue>Payment inquiry</controllingFieldValue>
+            <valueName>Payment not received by partner</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Payment inquiries</controllingFieldValue>
+            <valueName>Payment reconciliation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>POS integration</controllingFieldValue>
+            <valueName>Set-up or change</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Premium features &amp; Promotional deals</controllingFieldValue>
+            <valueName>Branded material request</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Premium features &amp; Promotional deals</controllingFieldValue>
+            <valueName>Interest in a deal</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Premium features &amp; Promotional deals</controllingFieldValue>
+            <valueName>Meal photography interest</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Premium features &amp; Promotional deals</controllingFieldValue>
+            <valueName>Premium listing interest</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Premium features &amp; Promotional deals</controllingFieldValue>
+            <valueName>Premium listing performance issue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Premium features &amp; Promotional deals</controllingFieldValue>
+            <valueName>Special campaign participation interest</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Premium features &amp; Promotional deals</controllingFieldValue>
+            <valueName>Termination of a deal</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Premium features &amp; Promotional deals</controllingFieldValue>
+            <valueName>Termination of premium listing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Printer</controllingFieldValue>
+            <controllingFieldValue>Transmission Device</controllingFieldValue>
+            <valueName>Connection issues</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Printer</controllingFieldValue>
+            <valueName>Not printing due to technical issue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Printer</controllingFieldValue>
+            <valueName>Printer damaged</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Printer</controllingFieldValue>
+            <valueName>Printer stolen or lost</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Terms</controllingFieldValue>
+            <valueName>General renegotiation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Terms</controllingFieldValue>
+            <valueName>General terms inquiry</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Terms</controllingFieldValue>
+            <valueName>Renegotiation base fee</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Terms</controllingFieldValue>
+            <valueName>Renegotiation commission</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Account management</controllingFieldValue>
+            <valueName>Account management feedback on existing issue required</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Account management</controllingFieldValue>
+            <valueName>Account management meeting request</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Rider issue</controllingFieldValue>
+            <valueName>Delivery instructions not followed</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Rider issue</controllingFieldValue>
+            <valueName>Inappropriate behaviour</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Rider issue</controllingFieldValue>
+            <valueName>Missing equipment/uniform</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Rider issue</controllingFieldValue>
+            <valueName>Money collection issue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Rider issue</controllingFieldValue>
+            <valueName>Order not delivered to doorstep</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Scheduling</controllingFieldValue>
+            <valueName>Check backend status</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Scheduling</controllingFieldValue>
+            <valueName>Reactivate restaurant after temporary closure</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Scheduling</controllingFieldValue>
+            <valueName>Update operating hours</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Scheduling</controllingFieldValue>
+            <valueName>Update schedule temporarily</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Technical issue</controllingFieldValue>
+            <valueName>App issue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Technical issue</controllingFieldValue>
+            <valueName>Website issue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Termination</controllingFieldValue>
+            <valueName>Termination by delivery hero</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Termination</controllingFieldValue>
+            <valueName>Termination due to change of owner / business name</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Termination</controllingFieldValue>
+            <valueName>Termination due to partner closure</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Termination</controllingFieldValue>
+            <valueName>Termination notice given by partner</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Transmission Device</controllingFieldValue>
+            <valueName>Charger lost or damaged</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Transmission Device</controllingFieldValue>
+            <valueName>Hardware chase up</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Transmission Device</controllingFieldValue>
+            <valueName>Hardware issues</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Transmission Device</controllingFieldValue>
+            <valueName>Partner channel transmission device change</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Transmission Device</controllingFieldValue>
+            <valueName>SIM Card Connection issues</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Transmission Device</controllingFieldValue>
+            <valueName>Tablet damaged</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Transmission Device</controllingFieldValue>
+            <valueName>Tablet lost or stolen</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Wrong / Missing item</controllingFieldValue>
+            <valueName>Missing item</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Wrong / Missing item</controllingFieldValue>
+            <valueName>Wrong item</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Wrong order / Never arrived</controllingFieldValue>
+            <valueName>Order never arrived</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Wrong order / Never arrived</controllingFieldValue>
+            <valueName>Wrong order</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

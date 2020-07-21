@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Root Cause for negative case closure --></help>
+    <label>Kiváltó ok</label>
+    <name>Root_Cause__c</name>
+    <picklistValues>
+        <masterLabel>Activity Not Registered</masterLabel>
+        <translation>nem történt előrelépés</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Against global standards</masterLabel>
+        <translation><!-- Against global standards --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Already Answered</masterLabel>
+        <translation><!-- Already Answered --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Already Refunded</masterLabel>
+        <translation>már visszautalva</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Archive</masterLabel>
+        <translation><!-- Archive --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BDT Request</masterLabel>
+        <translation><!-- BDT Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Billing Issues</masterLabel>
+        <translation><!-- Billing Issues --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Branding</masterLabel>
+        <translation><!-- Branding --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bulk Update Done</masterLabel>
+        <translation><!-- Bulk Update Done --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Business Closed</masterLabel>
+        <translation>üzlet bezárt</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Call Content Inadequate</masterLabel>
+        <translation><!-- Call Content Inadequate --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Call Frequency Inadequate</masterLabel>
+        <translation><!-- Call Frequency Inadequate --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Campaign</masterLabel>
+        <translation><!-- Campaign --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Can Not Reproduce Issue</masterLabel>
+        <translation><!-- Can Not Reproduce Issue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cannot Contact</masterLabel>
+        <translation>nem elérhető</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cannot schedule appointment</masterLabel>
+        <translation><!-- Cannot schedule appointment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Capacity - Competitors</masterLabel>
+        <translation><!-- Capacity - Competitors --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Capacity - Driver issue</masterLabel>
+        <translation><!-- Capacity - Driver issue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Capacity - Drivers</masterLabel>
+        <translation>kapacitás - nincs elág futár</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Capacity - Order Volume</masterLabel>
+        <translation>kapacitás - nincs elég megrendelés</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Capacity - Own Website</masterLabel>
+        <translation><!-- Capacity - Own Website --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Case Action Incomplete</masterLabel>
+        <translation><!-- Case Action Incomplete --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cause Unresolved</masterLabel>
+        <translation><!-- Cause Unresolved --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Change of Ownership</masterLabel>
+        <translation><!-- Change of Ownership --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Change one&apos;s mind</masterLabel>
+        <translation><!-- Change one&apos;s mind --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Chargeback</masterLabel>
+        <translation><!-- Chargeback --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Commission Change - No Entry needed</masterLabel>
+        <translation><!-- Commission Change - No Entry needed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Commission too high</masterLabel>
+        <translation><!-- Commission too high --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Company License missing</masterLabel>
+        <translation><!-- Company License missing --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Company Number mis-match</masterLabel>
+        <translation><!-- Company Number mis-match --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Contract Cancelled</masterLabel>
+        <translation>szerződéses folyamat megszakadt</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Contract/Quote</masterLabel>
+        <translation>szerződéstervezet</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DH Delivery</masterLabel>
+        <translation>Netpincér kiszállítás</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Deflection</masterLabel>
+        <translation><!-- Deflection --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivery Completed</masterLabel>
+        <translation><!-- Delivery Completed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivery Fee Too High</masterLabel>
+        <translation>túl magas kiszállítási díj</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Discount Request</masterLabel>
+        <translation><!-- Discount Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Duplicated</masterLabel>
+        <translation>duplikált</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Duplicated Payment</masterLabel>
+        <translation><!-- Duplicated Payment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Education Not Given</masterLabel>
+        <translation><!-- Education Not Given --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>FR Commission applied</masterLabel>
+        <translation><!-- FR Commission applied --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>FR Commission applying not possible</masterLabel>
+        <translation><!-- FR Commission applying not possible --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Follow Up Action NOT Required</masterLabel>
+        <translation><!-- Follow Up Action NOT Required --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Follow Up Action Required</masterLabel>
+        <translation><!-- Follow Up Action Required --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fraud</masterLabel>
+        <translation>fraud</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fraud Restaurant</masterLabel>
+        <translation><!-- Fraud Restaurant --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Future/Unknown Online date</masterLabel>
+        <translation>nyitás időpontja ismeretlen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Generated in Error</masterLabel>
+        <translation><!-- Generated in Error --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Goodwill</masterLabel>
+        <translation>méltányosság</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Handover Not Done</masterLabel>
+        <translation><!-- Handover Not Done --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hygiene Rating</masterLabel>
+        <translation><!-- Hygiene Rating --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Inbound</masterLabel>
+        <translation><!-- Inbound --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Incorrectly Tagged</masterLabel>
+        <translation><!-- Incorrectly Tagged --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Internet Issues</masterLabel>
+        <translation><!-- Internet Issues --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Invalid</masterLabel>
+        <translation><!-- Invalid --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lack of Menu info</masterLabel>
+        <translation><!-- Lack of Menu info --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Legal Issue</masterLabel>
+        <translation>jogi probléma</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Liquor License missing</masterLabel>
+        <translation><!-- Liquor License missing --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Logo Rejected</masterLabel>
+        <translation><!-- Logo Rejected --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Long time untreated</masterLabel>
+        <translation><!-- Long time untreated --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lost to Competition</masterLabel>
+        <translation>nem NP-el szerződött</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Low Rating</masterLabel>
+        <translation><!-- Low Rating --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Loyalty Schemes</masterLabel>
+        <translation><!-- Loyalty Schemes --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MOV Target not successful</masterLabel>
+        <translation><!-- MOV Target not successful --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mark-up Rejected</masterLabel>
+        <translation><!-- Mark-up Rejected --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Menu Issues</masterLabel>
+        <translation>menü problémák</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Minimum Order Value Too High</masterLabel>
+        <translation>MOV túl magas</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mis-Sold</masterLabel>
+        <translation>sikertelen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Missing Information / Documents</masterLabel>
+        <translation>hiányzó információk/dokumentumok</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Missing Items</masterLabel>
+        <translation>hiányzó tételek</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No Delivery Service</masterLabel>
+        <translation>nincs kiszállítás</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No Single Liquor menu</masterLabel>
+        <translation><!-- No Single Liquor menu --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No Valid Contact Details</masterLabel>
+        <translation><!-- No Valid Contact Details --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No guarantee</masterLabel>
+        <translation>nincs garancia</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Non-Contracted Rest - No Entry needed</masterLabel>
+        <translation><!-- Non-Contracted Rest - No Entry needed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Cooperative</masterLabel>
+        <translation><!-- Not Cooperative --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Globally Aligned/Relevant</masterLabel>
+        <translation><!-- Not Globally Aligned/Relevant --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Interested</masterLabel>
+        <translation><!-- Not Interested --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Interested in Product</masterLabel>
+        <translation><!-- Not Interested in Product --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Reachable</masterLabel>
+        <translation>nem elérhető</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Readable</masterLabel>
+        <translation>nem olvasható</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Technically Feasible</masterLabel>
+        <translation><!-- Not Technically Feasible --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not business priority</masterLabel>
+        <translation><!-- Not business priority --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not enough orders</masterLabel>
+        <translation>nincs elég megrendelés</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>On boarding Failure</masterLabel>
+        <translation><!-- On boarding Failure --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Order Cancellation</masterLabel>
+        <translation>lemondott rendelések</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Order Transmission Inadequate</masterLabel>
+        <translation><!-- Order Transmission Inadequate --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation>egyéb</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Owner&apos;s Request</masterLabel>
+        <translation><!-- Owner&apos;s Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Parent Account - No Entry needed</masterLabel>
+        <translation><!-- Parent Account - No Entry needed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Partnership FR - Individual set not possible</masterLabel>
+        <translation><!-- Partnership FR - Individual set not possible --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Payment Issue</masterLabel>
+        <translation>fizetési problémák</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Payment Refused</masterLabel>
+        <translation><!-- Payment Refused --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Photos not compliant</masterLabel>
+        <translation><!-- Photos not compliant --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Poor Performance</masterLabel>
+        <translation><!-- Poor Performance --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Price / Menu outdated</masterLabel>
+        <translation>árak/menü elavult</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Price Matching</masterLabel>
+        <translation><!-- Price Matching --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pricing - Admin Fee</masterLabel>
+        <translation><!-- Pricing - Admin Fee --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pricing - Commission</masterLabel>
+        <translation>Árazás - jutalék</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pricing - Merchant Fee</masterLabel>
+        <translation><!-- Pricing - Merchant Fee --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pricing - Setup Fee</masterLabel>
+        <translation>Árazás - csatlakozási díj</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Product Not Available</masterLabel>
+        <translation><!-- Product Not Available --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Prohibited Lead</masterLabel>
+        <translation><!-- Prohibited Lead --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Refunded</masterLabel>
+        <translation><!-- Refunded --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rejected Service</masterLabel>
+        <translation><!-- Rejected Service --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Research Without Results</masterLabel>
+        <translation><!-- Research Without Results --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Closed Permanently</masterLabel>
+        <translation>étterem végleg bezárt</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Closed Temporarily</masterLabel>
+        <translation><!-- Restaurant Closed Temporarily --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Retention In Progress</masterLabel>
+        <translation><!-- Retention In Progress --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Same Owner - No Entry needed</masterLabel>
+        <translation><!-- Same Owner - No Entry needed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Simple Inquiry</masterLabel>
+        <translation><!-- Simple Inquiry --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Technical Error</masterLabel>
+        <translation>technikai probléma</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Technically not feasible</masterLabel>
+        <translation><!-- Technically not feasible --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Termination</masterLabel>
+        <translation><!-- Termination --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Time exceeeded</masterLabel>
+        <translation>határidő lejárt</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transmission Issue</masterLabel>
+        <translation>Rendelésátvételi probléma</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unable to receive Sales declaration</masterLabel>
+        <translation><!-- Unable to receive Sales declaration --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unknown</masterLabel>
+        <translation><!-- Unknown --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>User Mistake</masterLabel>
+        <translation>felhasználói hiva</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Waiting feedback from HQ</masterLabel>
+        <translation><!-- Waiting feedback from HQ --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Waiting feedback from Rest.</masterLabel>
+        <translation><!-- Waiting feedback from Rest. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Win back</masterLabel>
+        <translation><!-- Win back --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Wrong Target Group</masterLabel>
+        <translation><!-- Wrong Target Group --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Wrong information</masterLabel>
+        <translation>rossz adatok</translation>
+    </picklistValues>
+</CustomFieldTranslation>

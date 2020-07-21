@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FormattedAddress__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(CONTAINS(&quot;AT_Account,SE_Account,Yogiyo_Account,FI_Account,HU_Account&quot;, Account__r.RecordType.DeveloperName),
+  GPA_formatted_address__c,
+  IF(CONTAINS(&quot;PY_Account, Facility_Account&quot;,Account__r.RecordType.DeveloperName),
+    IF(CONTAINS(&quot;Panamá, Bolivia, Paraguay, Argentina, Chile&quot;, TEXT(Account__r.Record_Country__c)),
+      AdministrativeAreaType__c &amp; &quot;: &quot; &amp; AdministrativeAreaName__c &amp; BR() &amp; SubAdministrativeAreaType__c &amp; &quot;: &quot; &amp; SubAdministrativeAreaName__c &amp; BR() &amp; AddressLine__c &amp; BR() &amp; LocalityType__c &amp; &quot;: &quot; &amp; LocalityName__c,
+      IF(CONTAINS(&quot;Uruguay&quot;, TEXT(Account__r.Record_Country__c)),
+        GPA_formatted_address__c &amp; BR() &amp; &quot;Neighbourhood : &quot; &amp; LocalityName__c,
+        IF(CONTAINS(&quot;Dominican Republic, Venezuela&quot;, TEXT(Account__r.Record_Country__c)),
+          GPA_formatted_address__c,
+          AddressLine__c
+        )
+      )
+    ),
+    IF(CONTAINS(&quot;Talabat_Account,Facility_Account&quot;, Account__r.RecordType.DeveloperName),
+      AdministrativeAreaType__c &amp; &quot;: &quot; &amp; AdministrativeAreaName__c &amp; BR() &amp; SubAdministrativeAreaType__c &amp; &quot;: &quot; &amp; SubAdministrativeAreaName__c &amp; BR() &amp; AddressLine__c,
+      IF(&quot;FP_Account&quot;=Account__r.RecordType.DeveloperName,
+        CASE(Account__r.Record_Country__c,
+          &quot;Hong Kong&quot;,
+            AdministrativeAreaType__c &amp; &quot;: &quot; &amp; AdministrativeAreaName__c &amp; BR() &amp; SubAdministrativeAreaType__c &amp; &quot;: &quot; &amp; SubAdministrativeAreaName__c &amp; BR() &amp; LocalityType__c &amp; &quot;: &quot; &amp; LocalityName__c &amp; BR() &amp; AddressLine__c,
+          &quot;Laos&quot;,
+            AdministrativeAreaType__c &amp; &quot;: &quot; &amp; AdministrativeAreaName__c &amp; BR() &amp; IF( ISBLANK(SubAdministrativeAreaName__c) ,&apos;&apos;, (SubAdministrativeAreaType__c &amp; &quot;: &quot; &amp; SubAdministrativeAreaName__c &amp; BR())) &amp; PostalCodeName__c &amp; BR() &amp; AddressLine__c,
+          &quot;Cambodia&quot;,
+            AdministrativeAreaType__c &amp; &quot;: &quot; &amp; AdministrativeAreaName__c &amp; BR() &amp; PostalCodeName__c &amp; BR() &amp; AddressLine__c,
+          &quot;Myanmar&quot;,
+            AdministrativeAreaType__c &amp; &quot;: &quot; &amp; AdministrativeAreaName__c &amp; BR() &amp; PostalCodeName__c &amp; BR() &amp; AddressLine__c,
+          &quot;Singapore&quot;,
+            AdministrativeAreaType__c &amp; &quot;: &quot; &amp; AdministrativeAreaName__c &amp; BR() &amp; SubAdministrativeAreaType__c &amp; &quot;: &quot; &amp; SubAdministrativeAreaName__c &amp; BR() &amp; &quot;Area: &quot; &amp; LocalityName__c &amp; BR() &amp; AddressLine__c,
+          &quot;Malaysia&quot;,
+            AdministrativeAreaType__c &amp; &quot;: &quot; &amp; AdministrativeAreaName__c &amp; BR() &amp; SubAdministrativeAreaType__c &amp; &quot;: &quot; &amp; SubAdministrativeAreaName__c &amp; BR() &amp; AddressLine__c,
+          &quot;Taiwan&quot;,
+            AdministrativeAreaType__c &amp; &quot;: &quot; &amp; AdministrativeAreaName__c &amp; BR() &amp; SubAdministrativeAreaType__c &amp; &quot;: &quot; &amp; SubAdministrativeAreaName__c &amp; BR() &amp; AddressLine__c,
+  &quot;Japan&quot;,
+           AdministrativeAreaType__c &amp; &quot;: &quot; &amp; AdministrativeAreaName__c &amp; BR () &amp; PostalCodeName__c &amp; BR() &amp; AddressLine__c,
+          AdministrativeAreaType__c &amp; &quot;: &quot; &amp; AdministrativeAreaName__c &amp; BR() &amp; SubAdministrativeAreaType__c &amp; &quot;: &quot; &amp; SubAdministrativeAreaName__c &amp; BR() &amp; PostalCodeName__c &amp; BR() &amp; AddressLine__c
+        ),
+        IF(&quot;CZ_Account&quot;=Account__r.RecordType.DeveloperName,
+          AddressLine__c &amp; BR() &amp; PostalCodeName__c &amp; &quot; &quot; &amp; SubAdministrativeAreaName__c &amp; BR() &amp; AdministrativeAreaName__c &amp; BR() &amp; CountryName__c,
+          AddressLine__c
+        )
+      )
+    )
+  )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Address</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

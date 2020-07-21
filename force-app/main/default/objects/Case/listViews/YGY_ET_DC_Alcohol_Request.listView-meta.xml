@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>YGY_ET_DC_Alcohol_Request</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+    <columns>OWNER_NAME</columns>
+    <columns>CASES.ORIGIN</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>Person_In_Charge__c</columns>
+    <columns>CASES.STATUS</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.Yogiyo_Inbound</value>
+    </filters>
+    <filters>
+        <field>CASES.ORIGIN</field>
+        <operation>equals</operation>
+        <value>Email - Menu Change</value>
+    </filters>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>notEqual</operation>
+        <value>Closed</value>
+    </filters>
+    <filters>
+        <field>Case_Reason__c</field>
+        <operation>notEqual</operation>
+        <value>Alcohol Listing Request</value>
+    </filters>
+    <label>YGY - CM DC - Alcohol Request Email</label>
+    <language>en_US</language>
+    <sharedTo>
+        <roleAndSubordinates>Yogiyo_Local_Admin</roleAndSubordinates>
+        <roleAndSubordinates>Yogiyo_Operation_Management</roleAndSubordinates>
+        <roleAndSubordinates>Yogiyo_Operation_Team</roleAndSubordinates>
+    </sharedTo>
+</ListView>

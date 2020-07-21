@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Talabat_Not_Allow_to_set_status_qualifie</fullName>
+    <active>true</active>
+    <description>Not allow sales team to choose &quot;Qualified&quot; for status</description>
+    <errorConditionFormula>ISPICKVAL( Status ,&quot;Qualified&quot;) 
+&amp;&amp; 
+$Profile.Id=&quot;00ew0000001IFkB&quot;
+&amp;&amp;
+ISCHANGED(Status)</errorConditionFormula>
+    <errorDisplayField>Status</errorDisplayField>
+    <errorMessage>You can not change the status to qualified, this needs to be done by the Research Team.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_Street_Number_Code__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Model__c,
+&quot;GPA&quot;,
+CASE(GPA_Country_short_name__c,
+&quot;DE&quot;,
+GPA_Street_number_long_name__c,
+&quot;DO&quot;,
+GPA_Street_number_long_name__c,
+&quot;VE&quot;,
+GPA_Street_number_long_name__c,
+&quot;AT&quot;,
+GPA_Street_number_long_name__c,
+&quot;HU&quot;,
+GPA_Street_number_long_name__c,
+&quot;SE&quot;,
+GPA_Street_number_long_name__c,
+&quot;FI&quot;,
+GPA_Street_number_long_name__c,
+&quot;KR&quot;,
+GPA_Street_number_long_name__c,
+&quot;UY&quot;,
+GPA_Street_number_long_name__c,
+&quot;CZ&quot;,
+GPA_Street_number_long_name__c,
+&quot;&quot;
+)
+,
+/* at this time XAL does not include street number */
+&quot;&quot;)</formula>
+    <label>Global Street Number Code</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

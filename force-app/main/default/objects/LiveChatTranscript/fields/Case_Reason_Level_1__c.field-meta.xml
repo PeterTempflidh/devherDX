@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Case_Reason_Level_1__c</fullName>
+    <externalId>false</externalId>
+    <label>Case Reason Level 1</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Type__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Customer inquiry before order placement</fullName>
+                <default>false</default>
+                <label>Customer inquiry before order placement</label>
+            </value>
+            <value>
+                <fullName>Live order process inquiry by customer</fullName>
+                <default>false</default>
+                <label>Live order process inquiry by customer</label>
+            </value>
+            <value>
+                <fullName>Customer complaints or negative feedback</fullName>
+                <default>false</default>
+                <label>Customer complaints or negative feedback</label>
+            </value>
+            <value>
+                <fullName>Other customer inquiries or feedback</fullName>
+                <default>false</default>
+                <label>Other customer inquiries or feedback</label>
+            </value>
+            <value>
+                <fullName>Technical problems &amp; questions</fullName>
+                <default>false</default>
+                <label>Technical problems &amp; questions</label>
+            </value>
+            <value>
+                <fullName>Restaurant data update</fullName>
+                <default>false</default>
+                <label>Restaurant data update</label>
+            </value>
+            <value>
+                <fullName>Content update</fullName>
+                <default>false</default>
+                <label>Content update</label>
+            </value>
+            <value>
+                <fullName>Activation or deactivation of restaurant</fullName>
+                <default>false</default>
+                <label>Activation or deactivation of restaurant</label>
+            </value>
+            <value>
+                <fullName>Customer evaluations inquiry</fullName>
+                <default>false</default>
+                <label>Customer evaluations inquiry</label>
+            </value>
+            <value>
+                <fullName>Finance inquiry by restaurant</fullName>
+                <default>false</default>
+                <label>Finance inquiry by restaurant</label>
+            </value>
+            <value>
+                <fullName>Sales inquiry by restaurant</fullName>
+                <default>false</default>
+                <label>Sales inquiry by restaurant</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Other restaurant inquiries or feedback</fullName>
+                <default>false</default>
+                <label>Other restaurant inquiries or feedback</label>
+            </value>
+            <value>
+                <fullName>Live order process inquiry by restaurant</fullName>
+                <default>false</default>
+                <label>Live order process inquiry by restaurant</label>
+            </value>
+            <value>
+                <fullName>Live Order Process</fullName>
+                <default>false</default>
+                <label>Live Order Process</label>
+            </value>
+            <value>
+                <fullName>Across Journey</fullName>
+                <default>false</default>
+                <label>Across Journey</label>
+            </value>
+            <value>
+                <fullName>Post-Delivery</fullName>
+                <default>false</default>
+                <label>Post-Delivery</label>
+            </value>
+            <value>
+                <fullName>Partner data update</fullName>
+                <default>false</default>
+                <label>Partner data update</label>
+            </value>
+            <value>
+                <fullName>Technical Inquiry</fullName>
+                <default>false</default>
+                <label>Technical Inquiry</label>
+            </value>
+            <value>
+                <fullName>Live order inquiries by restaurant</fullName>
+                <default>false</default>
+                <label>Live order inquiries by restaurant</label>
+            </value>
+            <value>
+                <fullName>Billing inquiries</fullName>
+                <default>false</default>
+                <label>Billing inquiries</label>
+            </value>
+            <value>
+                <fullName>Contract and Sales inquiries</fullName>
+                <default>false</default>
+                <label>Contract and Sales inquiries</label>
+            </value>
+            <value>
+                <fullName>Partner Feedback</fullName>
+                <default>false</default>
+                <label>Partner Feedback</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Customer</controllingFieldValue>
+            <valueName>Live Order Process</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer</controllingFieldValue>
+            <valueName>Across Journey</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer</controllingFieldValue>
+            <valueName>Post-Delivery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Partner</controllingFieldValue>
+            <valueName>Content update</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Partner</controllingFieldValue>
+            <valueName>Partner data update</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Partner</controllingFieldValue>
+            <valueName>Technical Inquiry</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Partner</controllingFieldValue>
+            <valueName>Live order inquiries by restaurant</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Partner</controllingFieldValue>
+            <valueName>Billing inquiries</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Partner</controllingFieldValue>
+            <valueName>Contract and Sales inquiries</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Partner</controllingFieldValue>
+            <valueName>Partner Feedback</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

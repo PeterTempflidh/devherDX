@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mark_up_Value_validation</fullName>
+    <active>true</active>
+    <description>validate that if there a mark up value they select the type of mark up, for now is just for APAC Countries.</description>
+    <errorConditionFormula>IF(AND( RecordType.DeveloperName = &apos;FP_Account&apos;, 
+NOT($Permission.Exclude_from_Validation) ), 
+AND(
+OR(( ISPICKVAL(Mark_up__c, &apos;No mark-up&apos;)), 
+( ISPICKVAL(Mark_up__c, &apos;&apos;))), 
+NOT( ISBLANK(Mark_up_Value__c))) 
+, false)</errorConditionFormula>
+    <errorDisplayField>Mark_up__c</errorDisplayField>
+    <errorMessage>Please select the Mark up type if Markup Value is filled</errorMessage>
+</ValidationRule>

@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Case Reason Level 2 --></label>
+    <name>Case_Reason_Level_2__c</name>
+    <picklistValues>
+        <masterLabel>Account management</masterLabel>
+        <translation>Accountmanagement</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Activation</masterLabel>
+        <translation>Aktivierung</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Basic profile change</masterLabel>
+        <translation>Allgeneine Daten</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Box</masterLabel>
+        <translation>Box</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cancellation</masterLabel>
+        <translation>Stornierung der Bestellung durch den Kunden</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cancellation by restaurant</masterLabel>
+        <translation>Stornierung durch das Restaurant</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cancellation of order by customer</masterLabel>
+        <translation>Stornierung der Bestellung durch den Kunden</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Change order details</masterLabel>
+        <translation>Änderung der Bestellung</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Change to order</masterLabel>
+        <translation>Änderung der Bestellung</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Changes to restaurant profile</masterLabel>
+        <translation>Änderung der Restaurantdaten</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Contactless delivery</masterLabel>
+        <translation><!-- Contactless delivery --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Customer account</masterLabel>
+        <translation>Kundenkonto</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Customer evaluations</masterLabel>
+        <translation>Kundenbewertungen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Customer reviews for partners</masterLabel>
+        <translation>Kundenbewertungen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Customer service complaint</masterLabel>
+        <translation>Beschwerde über den Kundenservice</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Deals update</masterLabel>
+        <translation>Änderung der Deals</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivery Inquiry</masterLabel>
+        <translation>Frage zur Lieferung</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivery changes</masterLabel>
+        <translation>Änderung der Lieferbedingungen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivery complaint</masterLabel>
+        <translation>Beschwerde über die Lieferung</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivery inquiries</masterLabel>
+        <translation>Frage zur Lieferung</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivery time</masterLabel>
+        <translation>Lieferzeit</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Door Sticker Request</masterLabel>
+        <translation>Anfrage zu Türstickern</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Feedback</masterLabel>
+        <translation>Feedback</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Follow up on existing case</masterLabel>
+        <translation>Nachfrage zu existierendem Fall</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Food complaint</masterLabel>
+        <translation>Beschwerde über das Essen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Food issue</masterLabel>
+        <translation>Beschwerde über das Essen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Front end website</masterLabel>
+        <translation>Frontend</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Frontend issue</masterLabel>
+        <translation>Frontend-Problem</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>General customer complaint</masterLabel>
+        <translation>Allgemeine Kundenbeschwerde</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>HR</masterLabel>
+        <translation>Human Resources</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Imagery Update</masterLabel>
+        <translation>Änderung des Bildmaterials</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Imagery only update</masterLabel>
+        <translation>Änderung des Bildmaterials</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Information request</masterLabel>
+        <translation>Informationsanfrage</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Interested new restaurant</masterLabel>
+        <translation>Interessiertes Restaurant</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Internal</masterLabel>
+        <translation>Intern</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Invoice inquiries</masterLabel>
+        <translation>Rechnungsanfrage</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Invoice inquiry</masterLabel>
+        <translation>Frage zur Rechnung</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Irrelevant</masterLabel>
+        <translation>Irrelevant</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Issue with order</masterLabel>
+        <translation>Restaurantanfrage zu einer Bestellung</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Marketing</masterLabel>
+        <translation>Marketing</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Marketing inquiry</masterLabel>
+        <translation>Marketing-Anfrage</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Menu Update Major with Images</masterLabel>
+        <translation><!-- Menu Update Major with Images --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Menu change</masterLabel>
+        <translation>Speisekartenänderung</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Menu update - Major</masterLabel>
+        <translation>Große Speisekartenänderung</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Menu update - Minor</masterLabel>
+        <translation>Kleine Speisekartenänderung</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Missing order information</masterLabel>
+        <translation>Fehlende Information zu einer Bestellung</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Negative partner feedback</masterLabel>
+        <translation>Negatives Restaurant-Feedback</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Onboarding and Sign up</masterLabel>
+        <translation>Onboarding</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Order payment complaint</masterLabel>
+        <translation>Beschwerde über die Zahlung einer Bestellung</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Order process complaint</masterLabel>
+        <translation>Beschwerde über den Bestellprozess</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Order status</masterLabel>
+        <translation>Bestellstatus</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Order status query</masterLabel>
+        <translation>Bestellstatus</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other Restaurant Data Changes</masterLabel>
+        <translation>Andere Änderungen der Restaurantdaten</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other customer inquiry before order placement</masterLabel>
+        <translation>Andere Kundenanfrage vor Aufgabe der Bestellung</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other customer inquiry or feedback</masterLabel>
+        <translation>Andere Kundenanfrage oder - Feedback</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other live order inquiry</masterLabel>
+        <translation>Andere Kundenanfrage zum Live-Bestellprozess</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other live order process inquiry by customer</masterLabel>
+        <translation>Andere Kundenanfrage zum Live-Bestellprozess</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other restaurant inquiries or feedback</masterLabel>
+        <translation>Andere Restaurantanfragen oder -Feedback</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other transmission methods</masterLabel>
+        <translation>Andere Übertragungsmethode</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>POS integration</masterLabel>
+        <translation>Kassensysteme</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Paper Bag &amp; Paper Roll Request</masterLabel>
+        <translation>Anfrage zu Papiertüten und Bonrollen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Paper Bag Request</masterLabel>
+        <translation>Anfrage zu Papiertüten</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Paper Roll Request</masterLabel>
+        <translation>Anfrage zu Bonrollen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Partner Portal</masterLabel>
+        <translation>Restaurant portal</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Partner app</masterLabel>
+        <translation>Restaurant App</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Payment &amp; Refunds</masterLabel>
+        <translation>Anfrage zu Bezahlung und Erstattung</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Payment inquiries</masterLabel>
+        <translation>Frage zur Auszahlung</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Payment inquiry</masterLabel>
+        <translation>Frage zur Zahlung</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Payment issue</masterLabel>
+        <translation>Anfrage zur Zahlung</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Permanent deactivation</masterLabel>
+        <translation>Deaktivierung</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Positive customer feedback</masterLabel>
+        <translation>Positives Kunden-Feedback</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Positive partner feedback</masterLabel>
+        <translation>Positive restaurant feedback</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Positive restaurant feedback</masterLabel>
+        <translation>Positives Restaurant-Feedback</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Premium features &amp; Promotional deals</masterLabel>
+        <translation>Premium Placement &amp; Deals</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Premium features &amp; special campaigns</masterLabel>
+        <translation>Premium Features</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Printer</masterLabel>
+        <translation>Drucker</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Refund complaint</masterLabel>
+        <translation>Beschwerde über eine Erstattung</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant evaluations</masterLabel>
+        <translation>Restaurantbewertungen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant portal</masterLabel>
+        <translation>Restaurantportal</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rider issue</masterLabel>
+        <translation>Fahrer Problem</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Scheduling</masterLabel>
+        <translation>Öffnungszeiten</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Service Offer</masterLabel>
+        <translation>Service-Angebot</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Spam</masterLabel>
+        <translation>Spam</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Spam / Irrelevant</masterLabel>
+        <translation>Spam/Irrelevant</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Technical issue</masterLabel>
+        <translation>Technisches Problem</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Temporary deactivation</masterLabel>
+        <translation>Vorübergehende Schließung</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Termination</masterLabel>
+        <translation>Kündigung, Inhaberwechsel, Umfirmierung</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Terms</masterLabel>
+        <translation>Bedingungen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transmission Device</masterLabel>
+        <translation>Tablet</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Voucher issue</masterLabel>
+        <translation>Gutscheinanfrage</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Website or app</masterLabel>
+        <translation>Website oder App</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Wrong / Missing item</masterLabel>
+        <translation>Fehlendes / Falsches Produkt</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Wrong order / Never arrived</masterLabel>
+        <translation>Falsche / keine Lieferung erhalten</translation>
+    </picklistValues>
+</CustomFieldTranslation>

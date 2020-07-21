@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Orders__c</fullName>
+    <description>Total Number of Orders placed with the Restaurant</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Total number of orders.</inlineHelpText>
+    <label>Number of Orders</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

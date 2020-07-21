@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>주문 유형</label>
+    <name>Failed_Orders_source__c</name>
+    <picklistValues>
+        <masterLabel>Mobile App Order</masterLabel>
+        <translation>터치주문</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Phone Order</masterLabel>
+        <translation>전화주문</translation>
+    </picklistValues>
+</CustomFieldTranslation>

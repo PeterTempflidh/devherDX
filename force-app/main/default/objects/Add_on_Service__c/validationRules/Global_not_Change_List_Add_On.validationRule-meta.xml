@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_not_Change_List_Add_On</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF( ISPICKVAL( Status__c , &apos;Active&apos;) &amp;&amp; ISCHANGED( Id_List_Add_On__c ) , true, false)</errorConditionFormula>
+    <errorMessage>List Add on can&apos;t be changed when the Add on service is active.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Service_Name_Required</fullName>
+    <active>true</active>
+    <description>The service name is required</description>
+    <errorConditionFormula>ISBLANK(Name)</errorConditionFormula>
+    <errorDisplayField>Name</errorDisplayField>
+    <errorMessage>Service Name is required</errorMessage>
+</ValidationRule>

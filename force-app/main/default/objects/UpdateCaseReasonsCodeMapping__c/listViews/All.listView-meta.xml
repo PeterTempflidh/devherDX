@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>CaseReasonLevelOld1__c</columns>
+    <columns>CaseReasonLevelOld2__c</columns>
+    <columns>CaseReasonLevelOld3__c</columns>
+    <columns>CaseReasonLevelNew1__c</columns>
+    <columns>CaseReasonLevelNew2__c</columns>
+    <columns>CaseReasonLevelNew3__c</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <columns>Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+    <language>en_US</language>
+</ListView>

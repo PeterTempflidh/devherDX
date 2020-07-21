@@ -1,0 +1,2454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bank_Name_Picklist__c</fullName>
+    <description>SSC-2181 Bank Name Picklist for PY based on country</description>
+    <externalId>false</externalId>
+    <label>Bank Name</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Country__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>AHORROCOOP</fullName>
+                <default>false</default>
+                <label>AHORROCOOP</label>
+            </value>
+            <value>
+                <fullName>ALLBANK</fullName>
+                <default>false</default>
+                <label>ALLBANK</label>
+            </value>
+            <value>
+                <fullName>AMERICAN EXPRESS</fullName>
+                <default>false</default>
+                <label>AMERICAN EXPRESS</label>
+            </value>
+            <value>
+                <fullName>ANDA</fullName>
+                <default>false</default>
+                <label>ANDA</label>
+            </value>
+            <value>
+                <fullName>ASOC. BONAO DE AHORROS Y PREST</fullName>
+                <default>false</default>
+                <label>ASOC. BONAO DE AHORROS Y PREST</label>
+            </value>
+            <value>
+                <fullName>ASOC. CIBAO</fullName>
+                <default>false</default>
+                <label>ASOC. CIBAO</label>
+            </value>
+            <value>
+                <fullName>ASOC. LA NACIONAL</fullName>
+                <default>false</default>
+                <label>ASOC. LA NACIONAL</label>
+            </value>
+            <value>
+                <fullName>ASOC. POPULAR DE AHORROS Y PRESTAMOS</fullName>
+                <default>false</default>
+                <label>ASOC. POPULAR DE AHORROS Y PRESTAMOS</label>
+            </value>
+            <value>
+                <fullName>ATLAS BANK</fullName>
+                <default>false</default>
+                <label>ATLAS BANK</label>
+            </value>
+            <value>
+                <fullName>BAC INTERNATIONAL BANK</fullName>
+                <default>false</default>
+                <label>BAC INTERNATIONAL BANK</label>
+            </value>
+            <value>
+                <fullName>BACS BANCO DE CREDITO Y SECURITIZACION S</fullName>
+                <default>false</default>
+                <label>BACS BANCO DE CREDITO Y SECURITIZACION S</label>
+            </value>
+            <value>
+                <fullName>BALBOA BANK &amp; TRUST</fullName>
+                <default>false</default>
+                <label>BALBOA BANK &amp; TRUST</label>
+            </value>
+            <value>
+                <fullName>BANCO CONSORCIO</fullName>
+                <default>false</default>
+                <label>BANCO CONSORCIO</label>
+            </value>
+            <value>
+                <fullName>BANCO ALIADO</fullName>
+                <default>false</default>
+                <label>BANCO ALIADO</label>
+            </value>
+            <value>
+                <fullName>BANCO BASA</fullName>
+                <default>false</default>
+                <label>BANCO BASA</label>
+            </value>
+            <value>
+                <fullName>BANCO PARIS</fullName>
+                <default>false</default>
+                <label>BANCO PARIS</label>
+            </value>
+            <value>
+                <fullName>BANCO ATLANTICO</fullName>
+                <default>false</default>
+                <label>BANCO ATLANTICO</label>
+            </value>
+            <value>
+                <fullName>BANCO AZTECA</fullName>
+                <default>false</default>
+                <label>BANCO AZTECA</label>
+            </value>
+            <value>
+                <fullName>BANCO BDI SA</fullName>
+                <default>false</default>
+                <label>BANCO BDI SA</label>
+            </value>
+            <value>
+                <fullName>BANCO BICA S.A.</fullName>
+                <default>false</default>
+                <label>BANCO BICA S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO BICE</fullName>
+                <default>false</default>
+                <label>BANCO BICE</label>
+            </value>
+            <value>
+                <fullName>BANCO BILBAO VIZCAYA ARGENTARIA</fullName>
+                <default>false</default>
+                <label>BANCO BILBAO VIZCAYA ARGENTARIA</label>
+            </value>
+            <value>
+                <fullName>BANCO BILBAO VIZCAYA ARGENTARIA, CHILE</fullName>
+                <default>false</default>
+                <label>BANCO BILBAO VIZCAYA ARGENTARIA, CHILE</label>
+            </value>
+            <value>
+                <fullName>BANCO BISA S.A.</fullName>
+                <default>false</default>
+                <label>BANCO BISA S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO BRADESCO ARGENTINA S.A.</fullName>
+                <default>false</default>
+                <label>BANCO BRADESCO ARGENTINA S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO CENTRAL DE BOLIVIA</fullName>
+                <default>false</default>
+                <label>BANCO CENTRAL DE BOLIVIA</label>
+            </value>
+            <value>
+                <fullName>BANCO CENTRAL DEL PARAGUAY</fullName>
+                <default>false</default>
+                <label>BANCO CENTRAL DEL PARAGUAY</label>
+            </value>
+            <value>
+                <fullName>BANCO CETELEM ARGENTINA S.A.</fullName>
+                <default>false</default>
+                <label>BANCO CETELEM ARGENTINA S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO CMF S.A.</fullName>
+                <default>false</default>
+                <label>BANCO CMF S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO COINAG S.A.</fullName>
+                <default>false</default>
+                <label>BANCO COINAG S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO COLUMBIA S.A.</fullName>
+                <default>false</default>
+                <label>BANCO COLUMBIA S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO COMAFI SOCIEDAD ANONIMA</fullName>
+                <default>false</default>
+                <label>BANCO COMAFI SOCIEDAD ANONIMA</label>
+            </value>
+            <value>
+                <fullName>BANCO CONTINENTAL S.A.</fullName>
+                <default>false</default>
+                <label>BANCO CONTINENTAL S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO CREDICOOP COOPERATIVO LIMITADO</fullName>
+                <default>false</default>
+                <label>BANCO CREDICOOP COOPERATIVO LIMITADO</label>
+            </value>
+            <value>
+                <fullName>BANCO DE AHORRO Y CREDITO INMOBILIARIO</fullName>
+                <default>false</default>
+                <label>BANCO DE AHORRO Y CREDITO INMOBILIARIO</label>
+            </value>
+            <value>
+                <fullName>BANCO DE AHORRO Y CREDITO JMMB BANK</fullName>
+                <default>false</default>
+                <label>BANCO DE AHORRO Y CREDITO JMMB BANK</label>
+            </value>
+            <value>
+                <fullName>BANCO DE AHORRO Y CREDITO UNION</fullName>
+                <default>false</default>
+                <label>BANCO DE AHORRO Y CREDITO UNION</label>
+            </value>
+            <value>
+                <fullName>BANCO DE CHILE</fullName>
+                <default>false</default>
+                <label>BANCO DE CHILE</label>
+            </value>
+            <value>
+                <fullName>BANCO DE COMERCIO S.A.</fullName>
+                <default>false</default>
+                <label>BANCO DE COMERCIO S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO DE CORRIENTES S.A.</fullName>
+                <default>false</default>
+                <label>BANCO DE CORRIENTES S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO DE CREDITO DE BOLIVIA</fullName>
+                <default>false</default>
+                <label>BANCO DE CREDITO DE BOLIVIA</label>
+            </value>
+            <value>
+                <fullName>BANCO DE CREDITO E INVERSIONES</fullName>
+                <default>false</default>
+                <label>BANCO DE CREDITO E INVERSIONES</label>
+            </value>
+            <value>
+                <fullName>BANCO DE CREDITO ORURO</fullName>
+                <default>false</default>
+                <label>BANCO DE CREDITO ORURO</label>
+            </value>
+            <value>
+                <fullName>BANCO DE FORMOSA S.A.</fullName>
+                <default>false</default>
+                <label>BANCO DE FORMOSA S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO DE GALICIA Y BUENOS AIRES S.A.</fullName>
+                <default>false</default>
+                <label>BANCO DE GALICIA Y BUENOS AIRES S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO DE INVERSION BOLIVIANO S.A.</fullName>
+                <default>false</default>
+                <label>BANCO DE INVERSION BOLIVIANO S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO DE INVERSION Y COMERCIO EXTERIOR S</fullName>
+                <default>false</default>
+                <label>BANCO DE INVERSION Y COMERCIO EXTERIOR S</label>
+            </value>
+            <value>
+                <fullName>BANCO DE LA CIUDAD DE BUENOS AIRES</fullName>
+                <default>false</default>
+                <label>BANCO DE LA CIUDAD DE BUENOS AIRES</label>
+            </value>
+            <value>
+                <fullName>BANCO DE LA NACION ARGENTINA</fullName>
+                <default>false</default>
+                <label>BANCO DE LA NACION ARGENTINA</label>
+            </value>
+            <value>
+                <fullName>BANCO DE LA PAMPA SOCIEDAD DE ECONOMIA</fullName>
+                <default>false</default>
+                <label>BANCO DE LA PAMPA SOCIEDAD DE ECONOMIA</label>
+            </value>
+            <value>
+                <fullName>BANCO DE LA PAZ, S.A.</fullName>
+                <default>false</default>
+                <label>BANCO DE LA PAZ, S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO DE LA PROVINCIA DE BUENOS AIRES</fullName>
+                <default>false</default>
+                <label>BANCO DE LA PROVINCIA DE BUENOS AIRES</label>
+            </value>
+            <value>
+                <fullName>BANCO DE LA PROVINCIA DE CORDOBA S.A.</fullName>
+                <default>false</default>
+                <label>BANCO DE LA PROVINCIA DE CORDOBA S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO DE LA REPUBLICA ORIENTAL DEL URUGU</fullName>
+                <default>false</default>
+                <label>BANCO DE LA REPUBLICA ORIENTAL DEL URUGU</label>
+            </value>
+            <value>
+                <fullName>BANCO DE LAS AMERICAS S.A. (BANCAMERICA)</fullName>
+                <default>false</default>
+                <label>BANCO DE LAS AMERICAS S.A. (BANCAMERICA)</label>
+            </value>
+            <value>
+                <fullName>BANCO DEL CHUBUT S.A.</fullName>
+                <default>false</default>
+                <label>BANCO DEL CHUBUT S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO DEL ESTADO DE CHILE</fullName>
+                <default>false</default>
+                <label>BANCO DEL ESTADO DE CHILE</label>
+            </value>
+            <value>
+                <fullName>BANCO DEL PACIFICO (PANAMA), S.A.</fullName>
+                <default>false</default>
+                <label>BANCO DEL PACIFICO (PANAMA), S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO DEL SOL S.A.</fullName>
+                <default>false</default>
+                <label>BANCO DEL SOL S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO DELTA</fullName>
+                <default>false</default>
+                <label>BANCO DELTA</label>
+            </value>
+            <value>
+                <fullName>BANCO DEL TUCUMAN S.A.</fullName>
+                <default>false</default>
+                <label>BANCO DEL TUCUMAN S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO DE RESERVAS DE LA R D</fullName>
+                <default>false</default>
+                <label>BANCO DE RESERVAS DE LA R D</label>
+            </value>
+            <value>
+                <fullName>BANCO DE SAN JUAN S.A.</fullName>
+                <default>false</default>
+                <label>BANCO DE SAN JUAN S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO DE SANTA CRUZ S.A.</fullName>
+                <default>false</default>
+                <label>BANCO DE SANTA CRUZ S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO DE SANTIAGO DEL ESTERO S.A.</fullName>
+                <default>false</default>
+                <label>BANCO DE SANTIAGO DEL ESTERO S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO DE SEGUROS DEL ESTADO</fullName>
+                <default>false</default>
+                <label>BANCO DE SEGUROS DEL ESTADO</label>
+            </value>
+            <value>
+                <fullName>BANCO DE SERVICIOS FINANCIEROS S.A.</fullName>
+                <default>false</default>
+                <label>BANCO DE SERVICIOS FINANCIEROS S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO DE SERVICIOS Y TRANSACCIONES S.A.</fullName>
+                <default>false</default>
+                <label>BANCO DE SERVICIOS Y TRANSACCIONES S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO DE VALORES S.A.</fullName>
+                <default>false</default>
+                <label>BANCO DE VALORES S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO DO BRASIL</fullName>
+                <default>false</default>
+                <label>BANCO DO BRASIL</label>
+            </value>
+            <value>
+                <fullName>BANCO DO BRASIL S A</fullName>
+                <default>false</default>
+                <label>BANCO DO BRASIL S A</label>
+            </value>
+            <value>
+                <fullName>BANCO DOMINICANO DEL PROGRESO</fullName>
+                <default>false</default>
+                <label>BANCO DOMINICANO DEL PROGRESO</label>
+            </value>
+            <value>
+                <fullName>BANCO ECONOMICO S.A.</fullName>
+                <default>false</default>
+                <label>BANCO ECONOMICO S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO EMPIRE</fullName>
+                <default>false</default>
+                <label>BANCO EMPIRE</label>
+            </value>
+            <value>
+                <fullName>BANCO FALABELLA</fullName>
+                <default>false</default>
+                <label>BANCO FALABELLA</label>
+            </value>
+            <value>
+                <fullName>BANCO FASSIL S.A</fullName>
+                <default>false</default>
+                <label>BANCO FASSIL S.A</label>
+            </value>
+            <value>
+                <fullName>BANCO FICOHSA PANAMA</fullName>
+                <default>false</default>
+                <label>BANCO FICOHSA PANAMA</label>
+            </value>
+            <value>
+                <fullName>BANCO FIE</fullName>
+                <default>false</default>
+                <label>BANCO FIE</label>
+            </value>
+            <value>
+                <fullName>BANCO FINANSUR S.A.</fullName>
+                <default>false</default>
+                <label>BANCO FINANSUR S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO FORTALEZA</fullName>
+                <default>false</default>
+                <label>BANCO FORTALEZA</label>
+            </value>
+            <value>
+                <fullName>BANCO GANADERO S.A.</fullName>
+                <default>false</default>
+                <label>BANCO GANADERO S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO GENERAL</fullName>
+                <default>false</default>
+                <label>BANCO GENERAL</label>
+            </value>
+            <value>
+                <fullName>Banco GNB</fullName>
+                <default>false</default>
+                <label>Banco GNB</label>
+            </value>
+            <value>
+                <fullName>BANCO HIPOTECARIO NACIONAL</fullName>
+                <default>false</default>
+                <label>BANCO HIPOTECARIO NACIONAL</label>
+            </value>
+            <value>
+                <fullName>BANCO HIPOTECARIO S.A.</fullName>
+                <default>false</default>
+                <label>BANCO HIPOTECARIO S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO INDUSTRIAL S.A.</fullName>
+                <default>false</default>
+                <label>BANCO INDUSTRIAL S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO INTEGRACION SA (BANCO ATLAS SA)</fullName>
+                <default>false</default>
+                <label>BANCO INTEGRACION SA (BANCO ATLAS SA)</label>
+            </value>
+            <value>
+                <fullName>BANCO INTERFINANZAS S.A.</fullName>
+                <default>false</default>
+                <label>BANCO INTERFINANZAS S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO INTERNACIONAL</fullName>
+                <default>false</default>
+                <label>BANCO INTERNACIONAL</label>
+            </value>
+            <value>
+                <fullName>BANCO ITAÚ CHILE</fullName>
+                <default>false</default>
+                <label>BANCO ITAÚ CHILE</label>
+            </value>
+            <value>
+                <fullName>BANCO ITAU ARGENTINA S.A.</fullName>
+                <default>false</default>
+                <label>BANCO ITAU ARGENTINA S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO ITAU PARAGUAY S.A.</fullName>
+                <default>false</default>
+                <label>BANCO ITAU PARAGUAY S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO JULIO SOCIEDAD ANONIMA</fullName>
+                <default>false</default>
+                <label>BANCO JULIO SOCIEDAD ANONIMA</label>
+            </value>
+            <value>
+                <fullName>BANCO LAFISE PANAMA, S.A.</fullName>
+                <default>false</default>
+                <label>BANCO LAFISE PANAMA, S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO LATINOAMERICANO DE DESARROLLO S.A.</fullName>
+                <default>false</default>
+                <label>BANCO LATINOAMERICANO DE DESARROLLO S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCOLOMBIA</fullName>
+                <default>false</default>
+                <label>BANCOLOMBIA</label>
+            </value>
+            <value>
+                <fullName>BANCO LOS ANDES PROCREDIT</fullName>
+                <default>false</default>
+                <label>BANCO LOS ANDES PROCREDIT</label>
+            </value>
+            <value>
+                <fullName>BANCO MACRO S.A.</fullName>
+                <default>false</default>
+                <label>BANCO MACRO S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO MARIVA S.A.</fullName>
+                <default>false</default>
+                <label>BANCO MARIVA S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO MASVENTAS S.A.</fullName>
+                <default>false</default>
+                <label>BANCO MASVENTAS S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO MERCANTIL DE SANTA CRUZ S.A.</fullName>
+                <default>false</default>
+                <label>BANCO MERCANTIL DE SANTA CRUZ S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO MERIDIAN S.A.</fullName>
+                <default>false</default>
+                <label>BANCO MERIDIAN S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO MINERO DE BOLIVIA</fullName>
+                <default>false</default>
+                <label>BANCO MINERO DE BOLIVIA</label>
+            </value>
+            <value>
+                <fullName>BANCO MULTIPLE ACTIVO DOMINICANA</fullName>
+                <default>false</default>
+                <label>BANCO MULTIPLE ACTIVO DOMINICANA</label>
+            </value>
+            <value>
+                <fullName>BANCO MULTIPLE ADEMI</fullName>
+                <default>false</default>
+                <label>BANCO MULTIPLE ADEMI</label>
+            </value>
+            <value>
+                <fullName>BANCO MULTIPLE BELLBANK SA</fullName>
+                <default>false</default>
+                <label>BANCO MULTIPLE BELLBANK SA</label>
+            </value>
+            <value>
+                <fullName>BANCO MULTIPLE BHD LEON, S.A.</fullName>
+                <default>false</default>
+                <label>BANCO MULTIPLE BHD LEON, S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO MULTIPLE CARIBE INTERNAC</fullName>
+                <default>false</default>
+                <label>BANCO MULTIPLE CARIBE INTERNAC</label>
+            </value>
+            <value>
+                <fullName>BANCO MULTIPLE LAFISE S A</fullName>
+                <default>false</default>
+                <label>BANCO MULTIPLE LAFISE S A</label>
+            </value>
+            <value>
+                <fullName>BANCO MULTIPLE LOPEZ DE HARO</fullName>
+                <default>false</default>
+                <label>BANCO MULTIPLE LOPEZ DE HARO</label>
+            </value>
+            <value>
+                <fullName>BANCO MULTIPLE PROMERICA RD</fullName>
+                <default>false</default>
+                <label>BANCO MULTIPLE PROMERICA RD</label>
+            </value>
+            <value>
+                <fullName>BANCO MUNICIPAL DE ROSARIO</fullName>
+                <default>false</default>
+                <label>BANCO MUNICIPAL DE ROSARIO</label>
+            </value>
+            <value>
+                <fullName>BANCO NACIONAL DE BOLIVIA</fullName>
+                <default>false</default>
+                <label>BANCO NACIONAL DE BOLIVIA</label>
+            </value>
+            <value>
+                <fullName>BANCO NACIONAL DE FOMENTO</fullName>
+                <default>false</default>
+                <label>BANCO NACIONAL DE FOMENTO</label>
+            </value>
+            <value>
+                <fullName>BANCO NACIONAL DE PANAMA</fullName>
+                <default>false</default>
+                <label>BANCO NACIONAL DE PANAMA</label>
+            </value>
+            <value>
+                <fullName>BANCOP (Banco Online)</fullName>
+                <default>false</default>
+                <label>BANCOP (Banco Online)</label>
+            </value>
+            <value>
+                <fullName>BANCO PANAMA</fullName>
+                <default>false</default>
+                <label>BANCO PANAMA</label>
+            </value>
+            <value>
+                <fullName>BANCO PATAGONIA S.A.</fullName>
+                <default>false</default>
+                <label>BANCO PATAGONIA S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO PENTA</fullName>
+                <default>false</default>
+                <label>BANCO PENTA</label>
+            </value>
+            <value>
+                <fullName>BANCO PIANO S.A.</fullName>
+                <default>false</default>
+                <label>BANCO PIANO S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO PICHINCHA PANAMA</fullName>
+                <default>false</default>
+                <label>BANCO PICHINCHA PANAMA</label>
+            </value>
+            <value>
+                <fullName>BANCO POPULAR DOMINICANO CPORA</fullName>
+                <default>false</default>
+                <label>BANCO POPULAR DOMINICANO CPORA</label>
+            </value>
+            <value>
+                <fullName>BANCO PRODEM S.A.</fullName>
+                <default>false</default>
+                <label>BANCO PRODEM S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO PROVINCIA DEL NEUQUEN SOCIEDAD ANONIMA</fullName>
+                <default>false</default>
+                <label>BANCO PROVINCIA DEL NEUQUEN SOCIEDAD ANONIMA</label>
+            </value>
+            <value>
+                <fullName>BANCO PROVINCIA DE TIERRA DEL FUEGO</fullName>
+                <default>false</default>
+                <label>BANCO PROVINCIA DE TIERRA DEL FUEGO</label>
+            </value>
+            <value>
+                <fullName>BANCO PYME ECOFUTURO S.A.</fullName>
+                <default>false</default>
+                <label>BANCO PYME ECOFUTURO S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO REGIONAL S.A.E.C.A.</fullName>
+                <default>false</default>
+                <label>BANCO REGIONAL S.A.E.C.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO RIOJA SOCIEDAD ANONIMA UNIPERSONAL</fullName>
+                <default>false</default>
+                <label>BANCO RIOJA SOCIEDAD ANONIMA UNIPERSONAL</label>
+            </value>
+            <value>
+                <fullName>BANCO RIPLEY</fullName>
+                <default>false</default>
+                <label>BANCO RIPLEY</label>
+            </value>
+            <value>
+                <fullName>BANCO ROELA S.A.</fullName>
+                <default>false</default>
+                <label>BANCO ROELA S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO SAENZ S.A.</fullName>
+                <default>false</default>
+                <label>BANCO SAENZ S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO SANTA CRUZ SA</fullName>
+                <default>false</default>
+                <label>BANCO SANTA CRUZ SA</label>
+            </value>
+            <value>
+                <fullName>BANCO SANTANDER-CHILE</fullName>
+                <default>false</default>
+                <label>BANCO SANTANDER-CHILE</label>
+            </value>
+            <value>
+                <fullName>BANCO SANTANDER RIO S.A.</fullName>
+                <default>false</default>
+                <label>BANCO SANTANDER RIO S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO SECURITY</fullName>
+                <default>false</default>
+                <label>BANCO SECURITY</label>
+            </value>
+            <value>
+                <fullName>BANCO SOLAR FINANCIERA</fullName>
+                <default>false</default>
+                <label>BANCO SOLAR FINANCIERA</label>
+            </value>
+            <value>
+                <fullName>BANCO SOLIDARIO S.A.</fullName>
+                <default>false</default>
+                <label>BANCO SOLIDARIO S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO SUDAMERICANO</fullName>
+                <default>false</default>
+                <label>BANCO SUDAMERICANO</label>
+            </value>
+            <value>
+                <fullName>BANCO SUPERVIELLE S.A.</fullName>
+                <default>false</default>
+                <label>BANCO SUPERVIELLE S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO UNION S.A.</fullName>
+                <default>false</default>
+                <label>BANCO UNION S.A.</label>
+            </value>
+            <value>
+                <fullName>BANCO UNIVERSAL</fullName>
+                <default>false</default>
+                <label>BANCO UNIVERSAL</label>
+            </value>
+            <value>
+                <fullName>BANCO VIMENCA C X A</fullName>
+                <default>false</default>
+                <label>BANCO VIMENCA C X A</label>
+            </value>
+            <value>
+                <fullName>BANCO VOII S.A.</fullName>
+                <default>false</default>
+                <label>BANCO VOII S.A.</label>
+            </value>
+            <value>
+                <fullName>BANDES</fullName>
+                <default>false</default>
+                <label>BANDES</label>
+            </value>
+            <value>
+                <fullName>BANESCO</fullName>
+                <default>false</default>
+                <label>BANESCO</label>
+            </value>
+            <value>
+                <fullName>BANESCO BANCO MULTIPLE S A</fullName>
+                <default>false</default>
+                <label>BANESCO BANCO MULTIPLE S A</label>
+            </value>
+            <value>
+                <fullName>BANISI, S.A.</fullName>
+                <default>false</default>
+                <label>BANISI, S.A.</label>
+            </value>
+            <value>
+                <fullName>BANISTMO S.A.</fullName>
+                <default>false</default>
+                <label>BANISTMO S.A.</label>
+            </value>
+            <value>
+                <fullName>BANK OF AMERICA, NATIONAL ASSOCIATION</fullName>
+                <default>false</default>
+                <label>BANK OF AMERICA, NATIONAL ASSOCIATION</label>
+            </value>
+            <value>
+                <fullName>BANVIVIENDA</fullName>
+                <default>false</default>
+                <label>BANVIVIENDA</label>
+            </value>
+            <value>
+                <fullName>BBP BANK, S.A.</fullName>
+                <default>false</default>
+                <label>BBP BANK, S.A.</label>
+            </value>
+            <value>
+                <fullName>BBVA BANCO FRANCES S.A.</fullName>
+                <default>false</default>
+                <label>BBVA BANCO FRANCES S.A.</label>
+            </value>
+            <value>
+                <fullName>BBVA URUGUAY</fullName>
+                <default>false</default>
+                <label>BBVA URUGUAY</label>
+            </value>
+            <value>
+                <fullName>BCO INTL COSTA RICA</fullName>
+                <default>false</default>
+                <label>BCO INTL COSTA RICA</label>
+            </value>
+            <value>
+                <fullName>BCT BANK</fullName>
+                <default>false</default>
+                <label>BCT BANK</label>
+            </value>
+            <value>
+                <fullName>BHD INTERNATIONAL BANK (PANAMA), S.A.</fullName>
+                <default>false</default>
+                <label>BHD INTERNATIONAL BANK (PANAMA), S.A.</label>
+            </value>
+            <value>
+                <fullName>BHN MULTIBANCO S.A.</fullName>
+                <default>false</default>
+                <label>BHN MULTIBANCO S.A.</label>
+            </value>
+            <value>
+                <fullName>BI BANK</fullName>
+                <default>false</default>
+                <label>BI BANK</label>
+            </value>
+            <value>
+                <fullName>BNP PARIBAS</fullName>
+                <default>false</default>
+                <label>BNP PARIBAS</label>
+            </value>
+            <value>
+                <fullName>BOLSA BOLIVIANA DE VALORES S.A.</fullName>
+                <default>false</default>
+                <label>BOLSA BOLIVIANA DE VALORES S.A.</label>
+            </value>
+            <value>
+                <fullName>BROU</fullName>
+                <default>false</default>
+                <label>BROU</label>
+            </value>
+            <value>
+                <fullName>BRUBANK S.A.U.</fullName>
+                <default>false</default>
+                <label>BRUBANK S.A.U.</label>
+            </value>
+            <value>
+                <fullName>CACECHI</fullName>
+                <default>false</default>
+                <label>CACECHI</label>
+            </value>
+            <value>
+                <fullName>CAJA DE AHORROS</fullName>
+                <default>false</default>
+                <label>CAJA DE AHORROS</label>
+            </value>
+            <value>
+                <fullName>CAJA DE CREDITO &quot;CUENCA&quot; COOPERATIVA LIM</fullName>
+                <default>false</default>
+                <label>CAJA DE CREDITO &quot;CUENCA&quot; COOPERATIVA LIM</label>
+            </value>
+            <value>
+                <fullName>CAPITAL BANK</fullName>
+                <default>false</default>
+                <label>CAPITAL BANK</label>
+            </value>
+            <value>
+                <fullName>CAPUAL</fullName>
+                <default>false</default>
+                <label>CAPUAL</label>
+            </value>
+            <value>
+                <fullName>CENTRAL</fullName>
+                <default>false</default>
+                <label>CENTRAL</label>
+            </value>
+            <value>
+                <fullName>CITIBANK</fullName>
+                <default>false</default>
+                <label>CITIBANK</label>
+            </value>
+            <value>
+                <fullName>CITIBANK, N.A.</fullName>
+                <default>false</default>
+                <label>CITIBANK, N.A.</label>
+            </value>
+            <value>
+                <fullName>CITIBANK N.A.</fullName>
+                <default>false</default>
+                <label>CITIBANK N.A.</label>
+            </value>
+            <value>
+                <fullName>CITIBANK NA</fullName>
+                <default>false</default>
+                <label>CITIBANK NA</label>
+            </value>
+            <value>
+                <fullName>CITIBANK N A</fullName>
+                <default>false</default>
+                <label>CITIBANK N A</label>
+            </value>
+            <value>
+                <fullName>COEDUCO</fullName>
+                <default>false</default>
+                <label>COEDUCO</label>
+            </value>
+            <value>
+                <fullName>COFAC</fullName>
+                <default>false</default>
+                <label>COFAC</label>
+            </value>
+            <value>
+                <fullName>COOCRETAL</fullName>
+                <default>false</default>
+                <label>COOCRETAL</label>
+            </value>
+            <value>
+                <fullName>COOESAN</fullName>
+                <default>false</default>
+                <label>COOESAN</label>
+            </value>
+            <value>
+                <fullName>COOP. JESUS NAZARENO LTDA</fullName>
+                <default>false</default>
+                <label>COOP. JESUS NAZARENO LTDA</label>
+            </value>
+            <value>
+                <fullName>COOPEDUC</fullName>
+                <default>false</default>
+                <label>COOPEDUC</label>
+            </value>
+            <value>
+                <fullName>COOPERATIVA CRISTOBAL</fullName>
+                <default>false</default>
+                <label>COOPERATIVA CRISTOBAL</label>
+            </value>
+            <value>
+                <fullName>COOPERATIVA DE PROFESIONALES</fullName>
+                <default>false</default>
+                <label>COOPERATIVA DE PROFESIONALES</label>
+            </value>
+            <value>
+                <fullName>COOPEUCH</fullName>
+                <default>false</default>
+                <label>COOPEUCH</label>
+            </value>
+            <value>
+                <fullName>COOPEVE</fullName>
+                <default>false</default>
+                <label>COOPEVE</label>
+            </value>
+            <value>
+                <fullName>COOPRAC, R.L</fullName>
+                <default>false</default>
+                <label>COOPRAC, R.L</label>
+            </value>
+            <value>
+                <fullName>CORPBANCA</fullName>
+                <default>false</default>
+                <label>CORPBANCA</label>
+            </value>
+            <value>
+                <fullName>CREDICORP BANK</fullName>
+                <default>false</default>
+                <label>CREDICORP BANK</label>
+            </value>
+            <value>
+                <fullName>CREDIT URUGUAY</fullName>
+                <default>false</default>
+                <label>CREDIT URUGUAY</label>
+            </value>
+            <value>
+                <fullName>CREDIT URUGUAY BANCO</fullName>
+                <default>false</default>
+                <label>CREDIT URUGUAY BANCO</label>
+            </value>
+            <value>
+                <fullName>DAVIVIENDA</fullName>
+                <default>false</default>
+                <label>DAVIVIENDA</label>
+            </value>
+            <value>
+                <fullName>DE LA PROV DE BS AS</fullName>
+                <default>false</default>
+                <label>DE LA PROV DE BS AS</label>
+            </value>
+            <value>
+                <fullName>DETACOOP</fullName>
+                <default>false</default>
+                <label>DETACOOP</label>
+            </value>
+            <value>
+                <fullName>DEUTSCHE BANK</fullName>
+                <default>false</default>
+                <label>DEUTSCHE BANK</label>
+            </value>
+            <value>
+                <fullName>DEUTSCHE BANK S.A.</fullName>
+                <default>false</default>
+                <label>DEUTSCHE BANK S.A.</label>
+            </value>
+            <value>
+                <fullName>DINERO ELECTRONICO ANDA</fullName>
+                <default>false</default>
+                <label>DINERO ELECTRONICO ANDA</label>
+            </value>
+            <value>
+                <fullName>DISCOUNT</fullName>
+                <default>false</default>
+                <label>DISCOUNT</label>
+            </value>
+            <value>
+                <fullName>ECASESO</fullName>
+                <default>false</default>
+                <label>ECASESO</label>
+            </value>
+            <value>
+                <fullName>ECONSTAR S.A. (PREX)</fullName>
+                <default>false</default>
+                <label>ECONSTAR S.A. (PREX)</label>
+            </value>
+            <value>
+                <fullName>EDIOACC, R.L</fullName>
+                <default>false</default>
+                <label>EDIOACC, R.L</label>
+            </value>
+            <value>
+                <fullName>EXPRINTER C. B.</fullName>
+                <default>false</default>
+                <label>EXPRINTER C. B.</label>
+            </value>
+            <value>
+                <fullName>FAMILIAR SAECA</fullName>
+                <default>false</default>
+                <label>FAMILIAR SAECA</label>
+            </value>
+            <value>
+                <fullName>FONPLATA - FONDO FINANCIERO PARA EL DESAROLLO DE LA CUENCA DEL PLATA</fullName>
+                <default>false</default>
+                <label>FONPLATA - FONDO FINANCIERO PARA EL DESAROLLO DE LA CUENCA DEL PLATA</label>
+            </value>
+            <value>
+                <fullName>FORD CREDIT COMPAÑIA FINANCIERA S.A.</fullName>
+                <default>false</default>
+                <label>FORD CREDIT COMPAÑIA FINANCIERA S.A.</label>
+            </value>
+            <value>
+                <fullName>GLOBAL BANK</fullName>
+                <default>false</default>
+                <label>GLOBAL BANK</label>
+            </value>
+            <value>
+                <fullName>GRUPO INTERNACIONAL DE FINANZAS S.A.E.C.A. (INTERFISA BANCO)</fullName>
+                <default>false</default>
+                <label>GRUPO INTERNACIONAL DE FINANZAS S.A.E.C.A. (INTERFISA BANCO)</label>
+            </value>
+            <value>
+                <fullName>HAPOALIM C. B.</fullName>
+                <default>false</default>
+                <label>HAPOALIM C. B.</label>
+            </value>
+            <value>
+                <fullName>HERITAGE</fullName>
+                <default>false</default>
+                <label>HERITAGE</label>
+            </value>
+            <value>
+                <fullName>HIPOTECARIO</fullName>
+                <default>false</default>
+                <label>HIPOTECARIO</label>
+            </value>
+            <value>
+                <fullName>HSBC</fullName>
+                <default>false</default>
+                <label>HSBC</label>
+            </value>
+            <value>
+                <fullName>HSBC BANK</fullName>
+                <default>false</default>
+                <label>HSBC BANK</label>
+            </value>
+            <value>
+                <fullName>HSBC BANK ARGENTINA S.A.</fullName>
+                <default>false</default>
+                <label>HSBC BANK ARGENTINA S.A.</label>
+            </value>
+            <value>
+                <fullName>INDUSTRIAL AND COMMERCIAL BANK OF CHINA</fullName>
+                <default>false</default>
+                <label>INDUSTRIAL AND COMMERCIAL BANK OF CHINA</label>
+            </value>
+            <value>
+                <fullName>ITAU</fullName>
+                <default>false</default>
+                <label>ITAU</label>
+            </value>
+            <value>
+                <fullName>JPMORGAN CHASE BANK, NATIONAL ASSOCIATIO</fullName>
+                <default>false</default>
+                <label>JPMORGAN CHASE BANK, NATIONAL ASSOCIATIO</label>
+            </value>
+            <value>
+                <fullName>LAUTARO ROSAS</fullName>
+                <default>false</default>
+                <label>LAUTARO ROSAS</label>
+            </value>
+            <value>
+                <fullName>LEUMI LE ISRAEL C. B</fullName>
+                <default>false</default>
+                <label>LEUMI LE ISRAEL C. B</label>
+            </value>
+            <value>
+                <fullName>LLOYDS</fullName>
+                <default>false</default>
+                <label>LLOYDS</label>
+            </value>
+            <value>
+                <fullName>MERCANTIL BANK</fullName>
+                <default>false</default>
+                <label>MERCANTIL BANK</label>
+            </value>
+            <value>
+                <fullName>METROBANK S.A.</fullName>
+                <default>false</default>
+                <label>METROBANK S.A.</label>
+            </value>
+            <value>
+                <fullName>MMG BANK</fullName>
+                <default>false</default>
+                <label>MMG BANK</label>
+            </value>
+            <value>
+                <fullName>MONTEMAR COMPAÑIA FINANCIERA S.A.</fullName>
+                <default>false</default>
+                <label>MONTEMAR COMPAÑIA FINANCIERA S.A.</label>
+            </value>
+            <value>
+                <fullName>MOTOR CREDITO, S.A., BANCO DE AHORRO Y CREDITO</fullName>
+                <default>false</default>
+                <label>MOTOR CREDITO, S.A., BANCO DE AHORRO Y CREDITO</label>
+            </value>
+            <value>
+                <fullName>MULTIBANK</fullName>
+                <default>false</default>
+                <label>MULTIBANK</label>
+            </value>
+            <value>
+                <fullName>MULTIFINANZAS COMPAÑIA FINANCIERA S.A.</fullName>
+                <default>false</default>
+                <label>MULTIFINANZAS COMPAÑIA FINANCIERA S.A.</label>
+            </value>
+            <value>
+                <fullName>NACION ARGENTINA</fullName>
+                <default>false</default>
+                <label>NACION ARGENTINA</label>
+            </value>
+            <value>
+                <fullName>NUEVO BANCO DE ENTRE RIOS S.A.</fullName>
+                <default>false</default>
+                <label>NUEVO BANCO DE ENTRE RIOS S.A.</label>
+            </value>
+            <value>
+                <fullName>NUEVO BANCO DEL CHACO S. A.</fullName>
+                <default>false</default>
+                <label>NUEVO BANCO DEL CHACO S. A.</label>
+            </value>
+            <value>
+                <fullName>NUEVO BANCO DE SANTA FE SOCIEDAD ANONIMA</fullName>
+                <default>false</default>
+                <label>NUEVO BANCO DE SANTA FE SOCIEDAD ANONIMA</label>
+            </value>
+            <value>
+                <fullName>NUMMI S.A. (MI DINERO)</fullName>
+                <default>false</default>
+                <label>NUMMI S.A. (MI DINERO)</label>
+            </value>
+            <value>
+                <fullName>ORIENCOOP</fullName>
+                <default>false</default>
+                <label>ORIENCOOP</label>
+            </value>
+            <value>
+                <fullName>PRIVAL BANK</fullName>
+                <default>false</default>
+                <label>PRIVAL BANK</label>
+            </value>
+            <value>
+                <fullName>RABOBANK CHILE</fullName>
+                <default>false</default>
+                <label>RABOBANK CHILE</label>
+            </value>
+            <value>
+                <fullName>RCI BANQUE S.A.</fullName>
+                <default>false</default>
+                <label>RCI BANQUE S.A.</label>
+            </value>
+            <value>
+                <fullName>SANTANDER</fullName>
+                <default>false</default>
+                <label>SANTANDER</label>
+            </value>
+            <value>
+                <fullName>SCOTIABANK</fullName>
+                <default>false</default>
+                <label>SCOTIABANK</label>
+            </value>
+            <value>
+                <fullName>SCOTIABANK CHILE</fullName>
+                <default>false</default>
+                <label>SCOTIABANK CHILE</label>
+            </value>
+            <value>
+                <fullName>SCOTIABANK REPUBLICA DOMINICAN</fullName>
+                <default>false</default>
+                <label>SCOTIABANK REPUBLICA DOMINICAN</label>
+            </value>
+            <value>
+                <fullName>ST. GEORGES BANK</fullName>
+                <default>false</default>
+                <label>ST. GEORGES BANK</label>
+            </value>
+            <value>
+                <fullName>SUDAMERIS BANK S.A.E.C.A.</fullName>
+                <default>false</default>
+                <label>SUDAMERIS BANK S.A.E.C.A.</label>
+            </value>
+            <value>
+                <fullName>THE BANK OF TOKYO-MITSUBISHI UFJ, LTD.</fullName>
+                <default>false</default>
+                <label>THE BANK OF TOKYO-MITSUBISHI UFJ, LTD.</label>
+            </value>
+            <value>
+                <fullName>TOWERBANK</fullName>
+                <default>false</default>
+                <label>TOWERBANK</label>
+            </value>
+            <value>
+                <fullName>UNI BANK &amp; TRUST, INC</fullName>
+                <default>false</default>
+                <label>UNI BANK &amp; TRUST, INC</label>
+            </value>
+            <value>
+                <fullName>VISION BANCO S.A.E.C.A.</fullName>
+                <default>false</default>
+                <label>VISION BANCO S.A.E.C.A.</label>
+            </value>
+            <value>
+                <fullName>WILOBANK S.A.</fullName>
+                <default>false</default>
+                <label>WILOBANK S.A.</label>
+            </value>
+            <value>
+                <fullName>ASOC DUARTE DE AHORROS Y PRES</fullName>
+                <default>false</default>
+                <label>ASOC DUARTE DE AHORROS Y PRES</label>
+            </value>
+            <value>
+                <fullName>ASOC LA VEGA REAL DE AHOR Y PR</fullName>
+                <default>false</default>
+                <label>ASOC LA VEGA REAL DE AHOR Y PR</label>
+            </value>
+            <value>
+                <fullName>ASOC MAGUANA DE AHORROS Y PRES</fullName>
+                <default>false</default>
+                <label>ASOC MAGUANA DE AHORROS Y PRES</label>
+            </value>
+            <value>
+                <fullName>ASOC MOCANA DE AHORROS Y PREST</fullName>
+                <default>false</default>
+                <label>ASOC MOCANA DE AHORROS Y PREST</label>
+            </value>
+            <value>
+                <fullName>ASOC PERAVIA DE AHORROS Y PRES</fullName>
+                <default>false</default>
+                <label>ASOC PERAVIA DE AHORROS Y PRES</label>
+            </value>
+            <value>
+                <fullName>ASOC ROMANA DE AHORROS Y PREST</fullName>
+                <default>false</default>
+                <label>ASOC ROMANA DE AHORROS Y PREST</label>
+            </value>
+            <value>
+                <fullName>BACC DE AHORRO Y CREDITO DEL CARIBE</fullName>
+                <default>false</default>
+                <label>BACC DE AHORRO Y CREDITO DEL CARIBE</label>
+            </value>
+            <value>
+                <fullName>BANCO ATLÃNTICO</fullName>
+                <default>false</default>
+                <label>BANCO ATLÃNTICO</label>
+            </value>
+            <value>
+                <fullName>BANCO DE AHORRO Y CREDITO ADOPEM</fullName>
+                <default>false</default>
+                <label>BANCO DE AHORRO Y CREDITO ADOPEM</label>
+            </value>
+            <value>
+                <fullName>BANCO DE AHORRO Y CREDITO ATLAS</fullName>
+                <default>false</default>
+                <label>BANCO DE AHORRO Y CREDITO ATLAS</label>
+            </value>
+            <value>
+                <fullName>BANCO DE AHORRO Y CREDITO BANCOTUI</fullName>
+                <default>false</default>
+                <label>BANCO DE AHORRO Y CREDITO BANCOTUI</label>
+            </value>
+            <value>
+                <fullName>BANCO DE AHORRO Y CREDITO BDA</fullName>
+                <default>false</default>
+                <label>BANCO DE AHORRO Y CREDITO BDA</label>
+            </value>
+            <value>
+                <fullName>BANCO DE AHORRO Y CREDITO COFACI</fullName>
+                <default>false</default>
+                <label>BANCO DE AHORRO Y CREDITO COFACI</label>
+            </value>
+            <value>
+                <fullName>BANCO DE AHORRO Y CREDITO CONFISA</fullName>
+                <default>false</default>
+                <label>BANCO DE AHORRO Y CREDITO CONFISA</label>
+            </value>
+            <value>
+                <fullName>BANCO DE AHORRO Y CREDITO FIHOGAR</fullName>
+                <default>false</default>
+                <label>BANCO DE AHORRO Y CREDITO FIHOGAR</label>
+            </value>
+            <value>
+                <fullName>BANCO DE AHORRO Y CREDITO FONDESA</fullName>
+                <default>false</default>
+                <label>BANCO DE AHORRO Y CREDITO FONDESA</label>
+            </value>
+            <value>
+                <fullName>BANCO DE AHORRO Y CREDITO GRUFICORP</fullName>
+                <default>false</default>
+                <label>BANCO DE AHORRO Y CREDITO GRUFICORP</label>
+            </value>
+            <value>
+                <fullName>BANCO FEDERAL</fullName>
+                <default>false</default>
+                <label>BANCO FEDERAL</label>
+            </value>
+            <value>
+                <fullName>BANCO PROVIDENCIAL</fullName>
+                <default>false</default>
+                <label>BANCO PROVIDENCIAL</label>
+            </value>
+            <value>
+                <fullName>BONANZA BANCO DE AHORRO Y CREDITO</fullName>
+                <default>false</default>
+                <label>BONANZA BANCO DE AHORRO Y CREDITO</label>
+            </value>
+            <value>
+                <fullName>FINANCIERA RIO SA (Banco RIO)</fullName>
+                <default>false</default>
+                <label>FINANCIERA RIO SA (Banco RIO)</label>
+            </value>
+            <value>
+                <fullName>FINANCIERA EL COMERCIO S.A.E.C.A.</fullName>
+                <default>false</default>
+                <label>FINANCIERA EL COMERCIO S.A.E.C.A.</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BACS BANCO DE CREDITO Y SECURITIZACION S</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO BICA S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO BRADESCO ARGENTINA S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO CETELEM ARGENTINA S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO CMF S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO COINAG S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO COLUMBIA S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO COMAFI SOCIEDAD ANONIMA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO CREDICOOP COOPERATIVO LIMITADO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO DE COMERCIO S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO DE CORRIENTES S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO DE FORMOSA S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO DE GALICIA Y BUENOS AIRES S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO DE INVERSION Y COMERCIO EXTERIOR S</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO DE LA CIUDAD DE BUENOS AIRES</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>BANCO DE LA NACION ARGENTINA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO DE LA PAMPA SOCIEDAD DE ECONOMIA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO DE LA PROVINCIA DE BUENOS AIRES</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO DE LA PROVINCIA DE CORDOBA S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO DE LA REPUBLICA ORIENTAL DEL URUGU</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO DEL CHUBUT S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO DEL SOL S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO DEL TUCUMAN S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO DE SAN JUAN S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO DE SANTA CRUZ S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO DE SANTIAGO DEL ESTERO S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO DE SERVICIOS FINANCIEROS S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO DE SERVICIOS Y TRANSACCIONES S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO DE VALORES S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO FINANSUR S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO HIPOTECARIO S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO INDUSTRIAL S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO INTERFINANZAS S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO ITAU ARGENTINA S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO JULIO SOCIEDAD ANONIMA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO MACRO S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO MARIVA S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO MASVENTAS S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO MERIDIAN S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO MUNICIPAL DE ROSARIO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO PATAGONIA S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO PIANO S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO PROVINCIA DEL NEUQUEN SOCIEDAD ANONIMA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO PROVINCIA DE TIERRA DEL FUEGO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO RIOJA SOCIEDAD ANONIMA UNIPERSONAL</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO ROELA S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO SAENZ S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO SANTANDER RIO S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO SUPERVIELLE S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANCO VOII S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BANK OF AMERICA, NATIONAL ASSOCIATION</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BBVA BANCO FRANCES S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BNP PARIBAS</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>BRUBANK S.A.U.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>CAJA DE CREDITO &quot;CUENCA&quot; COOPERATIVA LIM</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <controllingFieldValue>Paraguay</controllingFieldValue>
+            <valueName>CITIBANK N.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>DEUTSCHE BANK S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>FORD CREDIT COMPAÑIA FINANCIERA S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>HSBC BANK ARGENTINA S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>INDUSTRIAL AND COMMERCIAL BANK OF CHINA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>JPMORGAN CHASE BANK, NATIONAL ASSOCIATIO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>MONTEMAR COMPAÑIA FINANCIERA S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>MULTIFINANZAS COMPAÑIA FINANCIERA S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>NUEVO BANCO DE ENTRE RIOS S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>NUEVO BANCO DEL CHACO S. A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>NUEVO BANCO DE SANTA FE SOCIEDAD ANONIMA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>RCI BANQUE S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>THE BANK OF TOKYO-MITSUBISHI UFJ, LTD.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <valueName>WILOBANK S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>BANCO BISA S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>BANCO CENTRAL DE BOLIVIA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>BANCO DE CREDITO DE BOLIVIA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>BANCO DE CREDITO ORURO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>BANCO DE INVERSION BOLIVIANO S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>BANCO DE LA PAZ, S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>BANCO DO BRASIL S A</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>BANCO ECONOMICO S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>BANCO FASSIL S.A</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>BANCO FIE</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>BANCO FORTALEZA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>BANCO GANADERO S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>BANCO HIPOTECARIO NACIONAL</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>BANCO LATINOAMERICANO DE DESARROLLO S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>BANCO LOS ANDES PROCREDIT</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>BANCO MERCANTIL DE SANTA CRUZ S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>BANCO MINERO DE BOLIVIA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>BANCO NACIONAL DE BOLIVIA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>BANCO PRODEM S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>BANCO PYME ECOFUTURO S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>BANCO SOLIDARIO S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>BANCO UNION S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>BHN MULTIBANCO S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>BOLSA BOLIVIANA DE VALORES S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>CITIBANK, N.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <valueName>COOP. JESUS NAZARENO LTDA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>AHORROCOOP</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>BANCO CONSORCIO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>BANCO PARIS</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>BANCO BICE</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>BANCO BILBAO VIZCAYA ARGENTARIA, CHILE</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>BANCO DE CHILE</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>BANCO DE CREDITO E INVERSIONES</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>BANCO DEL ESTADO DE CHILE</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>BANCO FALABELLA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>BANCO INTERNACIONAL</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>BANCO ITAÚ CHILE</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>BANCO PENTA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>BANCO RIPLEY</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>BANCO SANTANDER-CHILE</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>BANCO SECURITY</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>BANCO SUDAMERICANO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>CAPUAL</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>COOCRETAL</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>COOPEUCH</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>CORPBANCA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>DETACOOP</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>DEUTSCHE BANK</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>HSBC BANK</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>LAUTARO ROSAS</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>ORIENCOOP</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>RABOBANK CHILE</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <valueName>SCOTIABANK CHILE</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>ASOC. BONAO DE AHORROS Y PREST</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>ASOC. CIBAO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>ASOC. LA NACIONAL</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>ASOC. POPULAR DE AHORROS Y PRESTAMOS</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO ATLANTICO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO BDI SA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO DE AHORRO Y CREDITO INMOBILIARIO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO DE AHORRO Y CREDITO JMMB BANK</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO DE AHORRO Y CREDITO UNION</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO DE LAS AMERICAS S.A. (BANCAMERICA)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO DE RESERVAS DE LA R D</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO DOMINICANO DEL PROGRESO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO EMPIRE</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO MULTIPLE ACTIVO DOMINICANA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO MULTIPLE ADEMI</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO MULTIPLE BELLBANK SA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO MULTIPLE BHD LEON, S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO MULTIPLE CARIBE INTERNAC</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO MULTIPLE LAFISE S A</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO MULTIPLE LOPEZ DE HARO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO MULTIPLE PROMERICA RD</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO POPULAR DOMINICANO CPORA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO SANTA CRUZ SA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO VIMENCA C X A</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANESCO BANCO MULTIPLE S A</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BHD INTERNATIONAL BANK (PANAMA), S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>CITIBANK N A</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>MOTOR CREDITO, S.A., BANCO DE AHORRO Y CREDITO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>SCOTIABANK REPUBLICA DOMINICAN</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>ASOC DUARTE DE AHORROS Y PRES</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>ASOC LA VEGA REAL DE AHOR Y PR</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>ASOC MAGUANA DE AHORROS Y PRES</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>ASOC MOCANA DE AHORROS Y PREST</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>ASOC PERAVIA DE AHORROS Y PRES</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>ASOC ROMANA DE AHORROS Y PREST</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BACC DE AHORRO Y CREDITO DEL CARIBE</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO ATLÃNTICO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO DE AHORRO Y CREDITO ADOPEM</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO DE AHORRO Y CREDITO ATLAS</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO DE AHORRO Y CREDITO BANCOTUI</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO DE AHORRO Y CREDITO BDA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO DE AHORRO Y CREDITO COFACI</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO DE AHORRO Y CREDITO CONFISA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO DE AHORRO Y CREDITO FIHOGAR</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO DE AHORRO Y CREDITO FONDESA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO DE AHORRO Y CREDITO GRUFICORP</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO FEDERAL</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BANCO PROVIDENCIAL</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>BONANZA BANCO DE AHORRO Y CREDITO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>ALLBANK</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>ATLAS BANK</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>BAC INTERNATIONAL BANK</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>BALBOA BANK &amp; TRUST</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>BANCO ALIADO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>BANCO AZTECA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>BANCO DEL PACIFICO (PANAMA), S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>BANCO DELTA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>BANCO FICOHSA PANAMA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>BANCO GENERAL</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>BANCO LAFISE PANAMA, S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>BANCOLOMBIA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>BANCO NACIONAL DE PANAMA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <valueName>BANCO PANAMA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>BANCO PICHINCHA PANAMA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>BANCO UNIVERSAL</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>BANESCO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>BANISI, S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>BANISTMO S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>BANVIVIENDA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>BBP BANK, S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>BCO INTL COSTA RICA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>BCT BANK</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>BI BANK</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>CACECHI</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>CAJA DE AHORROS</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>CAPITAL BANK</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>CITIBANK</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>COEDUCO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>COOESAN</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>COOPEDUC</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>COOPERATIVA CRISTOBAL</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>COOPERATIVA DE PROFESIONALES</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>COOPEVE</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>COOPRAC, R.L</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>CREDICORP BANK</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>DAVIVIENDA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>ECASESO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>EDIOACC, R.L</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>GLOBAL BANK</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>MERCANTIL BANK</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>METROBANK S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>MMG BANK</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>MULTIBANK</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>PRIVAL BANK</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>SCOTIABANK</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>ST. GEORGES BANK</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>TOWERBANK</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>UNI BANK &amp; TRUST, INC</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Paraguay</controllingFieldValue>
+            <valueName>BANCO BASA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Paraguay</controllingFieldValue>
+            <valueName>BANCO BILBAO VIZCAYA ARGENTARIA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Paraguay</controllingFieldValue>
+            <valueName>BANCO CENTRAL DEL PARAGUAY</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Paraguay</controllingFieldValue>
+            <valueName>BANCO CONTINENTAL S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Paraguay</controllingFieldValue>
+            <valueName>BANCO DO BRASIL</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Paraguay</controllingFieldValue>
+            <valueName>Banco GNB</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Paraguay</controllingFieldValue>
+            <valueName>BANCO INTEGRACION SA (BANCO ATLAS SA)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Paraguay</controllingFieldValue>
+            <valueName>BANCO ITAU PARAGUAY S.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Paraguay</controllingFieldValue>
+            <valueName>BANCO NACIONAL DE FOMENTO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Paraguay</controllingFieldValue>
+            <valueName>BANCOP (Banco Online)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Paraguay</controllingFieldValue>
+            <valueName>BANCO REGIONAL S.A.E.C.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Paraguay</controllingFieldValue>
+            <valueName>BANCO SOLAR FINANCIERA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Paraguay</controllingFieldValue>
+            <valueName>FAMILIAR SAECA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Paraguay</controllingFieldValue>
+            <valueName>FONPLATA - FONDO FINANCIERO PARA EL DESAROLLO DE LA CUENCA DEL PLATA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Paraguay</controllingFieldValue>
+            <valueName>GRUPO INTERNACIONAL DE FINANZAS S.A.E.C.A. (INTERFISA BANCO)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Paraguay</controllingFieldValue>
+            <valueName>SUDAMERIS BANK S.A.E.C.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Paraguay</controllingFieldValue>
+            <valueName>VISION BANCO S.A.E.C.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Paraguay</controllingFieldValue>
+            <valueName>FINANCIERA RIO SA (Banco RIO)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Paraguay</controllingFieldValue>
+            <valueName>FINANCIERA EL COMERCIO S.A.E.C.A.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <valueName>AMERICAN EXPRESS</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <valueName>ANDA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <valueName>BANCO DE SEGUROS DEL ESTADO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <valueName>BANDES</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <valueName>BBVA URUGUAY</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <valueName>BROU</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <valueName>CENTRAL</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <valueName>CITIBANK NA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <valueName>COFAC</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <valueName>CREDIT URUGUAY</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <valueName>CREDIT URUGUAY BANCO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <valueName>DE LA PROV DE BS AS</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <valueName>DINERO ELECTRONICO ANDA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <valueName>DISCOUNT</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <valueName>ECONSTAR S.A. (PREX)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <valueName>EXPRINTER C. B.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <valueName>HAPOALIM C. B.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <valueName>HERITAGE</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <valueName>HIPOTECARIO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <valueName>HSBC</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <valueName>ITAU</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <valueName>LEUMI LE ISRAEL C. B</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <valueName>LLOYDS</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <valueName>NACION ARGENTINA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <valueName>NUMMI S.A. (MI DINERO)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <valueName>SANTANDER</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Backend_AT</fullName>
+    <availability>online</availability>
+    <description>Link to Austrian Backend</description>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Backend</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>if (typeof(srcUp) == &apos;function&apos;) { 
+srcUp(&quot;https://mjam.net/backend/restaurant/{!Account.Backend_ID__c}/&quot;); 
+} else { 
+window.open(&quot;https://mjam.net/backend/restaurant/{!Account.Backend_ID__c}/&quot;); 
+}</url>
+</WebLink>

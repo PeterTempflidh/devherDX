@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DE_Event</fullName>
+    <active>true</active>
+    <label>DE Event</label>
+    <picklistValues>
+        <picklist>Activity_Subject__c</picklist>
+        <values>
+            <fullName>Appointment needed - Menu Collection</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Appointment needed - Restaurant Not Reached</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Appointment needed - Restaurant Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Call - Decision maker reached</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Call - Employee reached</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Call - Nobody reached</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Call Back Requested</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Competition</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dissatisfaction - CC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dissatisfaction - Commission</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dissatisfaction - Opinions</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dissatisfaction - Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dissatisfaction - Premium</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dissatisfaction - Sales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Editorial - Lead Research</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Franchise</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>High Failure Rate - Kick Out</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>High Failure Rate - Warning</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Marketing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Order confirmation sent</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Report Information</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rest%2E Optimization Initiative</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shipment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Visit</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Call_subject__c</picklist>
+        <values>
+            <fullName>CS - Change unavailable item</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CS - Pick up issue - active order</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CS - Pick up issue - post pick up</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPT - Duplicate order - accepted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPT - Duplicate order - cancelled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPT - Operating hours incorrect</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPT - Order accepted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPT - Ordered before partner is open</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPT - Partner number invalid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPT - Partner too busy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPT - Product unavailable</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PC - Onb - Appointment made</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PC - Onb - Delayed delivery</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PC - Onb - Menu issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PC - Onb - Technical issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PC - Onb - Unreachable</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PC - Perf%3A Automation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PC - Perf%3A Cancellations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PC - Perf%3A Closed Hours</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PC - Perf%3A Delays</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PC - Perf%3A Sales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PC - Sales%3A Deal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PS - Technical issue - Front end website</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PS - Technical issue - Portal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PS - Technical issue - Printer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PS - Technical issue - Tablet</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PS - Technical issue - Transmission or POS</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Subject</picklist>
+        <values>
+            <fullName>Call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Meeting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Send Letter%2FQuote</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Topis_Discussed__c</picklist>
+        <values>
+            <fullName>Account management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Branding</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contract cancellation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contract issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Deals</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Decline rate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery areas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Loyalty Schemes</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Menu Printing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Merchandise</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Sign up</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Onboarding%2FWellcome Call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Opening times</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Premium Placement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reorder rate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rest Ops%2E - Improvement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rest Ops%2E - No Improvement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rest Ops%2E - follow-up required</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Retention</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reviews</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales_Offer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Temporarily Deactivated</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Too busy during peak time</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transmission problem</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Upgrade</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Meeting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Delivery__c</fullName>
+    <externalId>false</externalId>
+    <label>Delivery</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Shipment</fullName>
+                <default>false</default>
+                <label>Shipment</label>
+            </value>
+            <value>
+                <fullName>Takeover</fullName>
+                <default>false</default>
+                <label>Takeover</label>
+            </value>
+            <value>
+                <fullName>Sharing</fullName>
+                <default>false</default>
+                <label>Sharing</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

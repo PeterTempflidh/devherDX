@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Contract Type --></label>
+    <name>Contract_Type__c</name>
+    <picklistValues>
+        <masterLabel>01. New - 0% (Rep)</masterLabel>
+        <translation><!-- 01. New - 0% (Rep) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>02. New - Commission (Rep)</masterLabel>
+        <translation><!-- 02. New - Commission (Rep) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>03. New - Commission (Agency)</masterLabel>
+        <translation><!-- 03. New - Commission (Agency) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>04. Re - 0% (Rep)</masterLabel>
+        <translation><!-- 04. Re - 0% (Rep) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>05. Re - Commission (Rep)</masterLabel>
+        <translation><!-- 05. Re - Commission (Rep) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>06. Re - Commission (Agency)</masterLabel>
+        <translation><!-- 06. Re - Commission (Agency) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>07. New - 0% (Etc)</masterLabel>
+        <translation><!-- 07. New - 0% (Etc) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>08. New - Commission (Etc)</masterLabel>
+        <translation><!-- 08. New - Commission (Etc) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>09. New - Franchise</masterLabel>
+        <translation><!-- 09. New - Franchise --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10. Re - Franchise</masterLabel>
+        <translation><!-- 10. Re - Franchise --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>11. Re - 0% (Etc)</masterLabel>
+        <translation><!-- 11. Re - 0% (Etc) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12. Re - Commission (Etc)</masterLabel>
+        <translation><!-- 12. Re - Commission (Etc) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13. Re - Product Change (0%↔Commission)</masterLabel>
+        <translation><!-- 13. Re - Product Change (0%↔Commission) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14. Re - Commission Change</masterLabel>
+        <translation><!-- 14. Re - Commission Change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Contract</masterLabel>
+        <translation><!-- New Contract --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Product Change</masterLabel>
+        <translation><!-- Product Change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Recontract</masterLabel>
+        <translation><!-- Recontract --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

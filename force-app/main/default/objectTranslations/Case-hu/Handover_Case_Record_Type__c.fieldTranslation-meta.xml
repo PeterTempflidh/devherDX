@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Handover Case Record Type --></label>
+    <name>Handover_Case_Record_Type__c</name>
+    <picklistValues>
+        <masterLabel>DE Entry Case</masterLabel>
+        <translation><!-- DE Entry Case --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DE Finance Case</masterLabel>
+        <translation><!-- DE Finance Case --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DE Inbound Case</masterLabel>
+        <translation><!-- DE Inbound Case --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DE Internal Case</masterLabel>
+        <translation><!-- DE Internal Case --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DE Restaurant Operations</masterLabel>
+        <translation><!-- DE Restaurant Operations --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

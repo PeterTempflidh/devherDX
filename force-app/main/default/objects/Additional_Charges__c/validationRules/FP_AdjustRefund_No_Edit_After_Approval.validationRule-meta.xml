@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FP_AdjustRefund_No_Edit_After_Approval</fullName>
+    <active>true</active>
+    <description>Prohibits editing of Adjustment/Refund Additional Charges after approval for Finance users</description>
+    <errorConditionFormula>AND(NOT( ISNEW() ), ISPICKVAL( Status__c , &apos;Active&apos;),OR( ISPICKVAL( Type__c , &apos;Refund&apos;),ISPICKVAL( Type__c , &apos;Adjustment&apos;)), $Permission.FP_Finance_Permissions)</errorConditionFormula>
+    <errorMessage>You can&apos;t edit Additional Charges record of &quot;Refund or &apos;Adjustment&apos; type after approval.</errorMessage>
+</ValidationRule>

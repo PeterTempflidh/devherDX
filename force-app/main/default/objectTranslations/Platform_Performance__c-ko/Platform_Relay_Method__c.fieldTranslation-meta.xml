@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>플랫폼 주문전달 수단</label>
+    <name>Platform_Relay_Method__c</name>
+    <picklistValues>
+        <masterLabel>9cookies GO</masterLabel>
+        <translation><!-- 9cookies GO --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>9cookies IOS</masterLabel>
+        <translation><!-- 9cookies IOS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Acom</masterLabel>
+        <translation><!-- Acom --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Box helicom</masterLabel>
+        <translation><!-- Box helicom --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Email</masterLabel>
+        <translation>이메일</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fax</masterLabel>
+        <translation>팩스</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>POS polling via device</masterLabel>
+        <translation><!-- POS polling via device --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>POS push</masterLabel>
+        <translation><!-- POS push --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>POS push REST</masterLabel>
+        <translation><!-- POS push REST --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SMS Fallback</masterLabel>
+        <translation><!-- SMS Fallback --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

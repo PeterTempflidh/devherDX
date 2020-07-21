@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CD_Menu_Processing</fullName>
+    <booleanFilter>((1 AND 2) or (4 and 5 ) or (6 and 7)) and 3 and 8</booleanFilter>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>Person_in_charge_Menu_Typing__c</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>Opportunity__c</columns>
+    <columns>Country__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Menu Processing</value>
+    </filters>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.CD_Entry_Case</value>
+    </filters>
+    <filters>
+        <field>CASES.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.CD_Internal_Case</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Quality Check</value>
+    </filters>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.CD_Restaurant_Operations</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Onboarding</value>
+    </filters>
+    <filters>
+        <field>Opportunity__c</field>
+        <operation>notContain</operation>
+        <value>tablet,impresora,printer,pos</value>
+    </filters>
+    <label>CD - Quality,Menu Processing &amp; Activar</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>CD_Data_team</group>
+        <role>CD_Customer_Care</role>
+        <role>CD_Restaurant_Operations</role>
+    </sharedTo>
+</ListView>

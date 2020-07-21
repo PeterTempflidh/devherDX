@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Talabat_Root_Cause_for_negative_closure</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+OR(
+AND(
+RecordType.DeveloperName=&quot;Talabat_Internal_Case&quot;,
+NOT(ISPICKVAL(Type, &quot;Owner/Legal Form Change&quot;)),
+NOT(ISPICKVAL(Type, &quot;Take Offline&quot;)),
+NOT(ISPICKVAL(Type, &quot;Retention&quot;)),
+NOT(ISPICKVAL(Type, &quot;Take Online&quot;)),
+NOT(ISPICKVAL(Type, &quot;Sales Task&quot;))
+),
+RecordType.DeveloperName=&quot;Talabat_Restaurant_Ops&quot;,
+RecordType.DeveloperName=&quot;Talabat_Entry_Case&quot;
+),
+OR(ISPICKVAL( Closed_Reason__c,&quot;Not Successful&quot;),
+ISPICKVAL( Closed_Reason__c,&quot;Take Online is not possible&quot;)),
+ISBLANK( Root_Cause__c)
+)</errorConditionFormula>
+    <errorDisplayField>Root_Cause__c</errorDisplayField>
+    <errorMessage>Please add a root cause</errorMessage>
+</ValidationRule>

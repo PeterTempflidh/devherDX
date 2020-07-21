@@ -1,0 +1,1381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>사례 이유</label>
+    <name>Case_Reason__c</name>
+    <picklistValues>
+        <masterLabel>0% Commission</masterLabel>
+        <translation>0% 상품</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>0% Commission Cancel / Decrease</masterLabel>
+        <translation>0% 상품 해지 및 축소</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1st Warning</masterLabel>
+        <translation>1차 경고</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2nd Warning</masterLabel>
+        <translation>2차 경고</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ABN</masterLabel>
+        <translation><!-- ABN --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Accounting</masterLabel>
+        <translation><!-- Accounting --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Acct related Call Back</masterLabel>
+        <translation>회계팀 통화 요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Add / Deactivate User</masterLabel>
+        <translation><!-- Add / Deactivate User --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Add child account</masterLabel>
+        <translation>하위 계정 추가 요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Additional Order Time</masterLabel>
+        <translation><!-- Additional Order Time --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Agreement Issue</masterLabel>
+        <translation><!-- Agreement Issue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Alcohol Listing Request</masterLabel>
+        <translation>주류 메뉴 등록/수정</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>All Inclusive</masterLabel>
+        <translation><!-- All Inclusive --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Assignment Rules</masterLabel>
+        <translation><!-- Assignment Rules --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Automation</masterLabel>
+        <translation><!-- Automation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BE Restaurant Name Change</masterLabel>
+        <translation>백엔드 상호 변경</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BPG Violation Report</masterLabel>
+        <translation>BPG 위반</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bad Debt Check</masterLabel>
+        <translation><!-- Bad Debt Check --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bad Restaurant Service</masterLabel>
+        <translation><!-- Bad Restaurant Service --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bank Account Change</masterLabel>
+        <translation>계좌 변경</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bank Account Details</masterLabel>
+        <translation><!-- Bank Account Details --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bank Account Details Collected</masterLabel>
+        <translation><!-- Bank Account Details Collected --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bank/Police request</masterLabel>
+        <translation><!-- Bank/Police request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Best Price Guarantee</masterLabel>
+        <translation>BPG 제보</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bill Request</masterLabel>
+        <translation>세금계산서 요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Blacklist removal request</masterLabel>
+        <translation><!-- Blacklist removal request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Block Payout</masterLabel>
+        <translation><!-- Block Payout --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bonus / Bonus Problems</masterLabel>
+        <translation><!-- Bonus / Bonus Problems --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bug</masterLabel>
+        <translation><!-- Bug --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Business Closed</masterLabel>
+        <translation><!-- Business Closed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Business Licensee Change</masterLabel>
+        <translation>사업주 변경</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CMS, CC Request</masterLabel>
+        <translation>CMS, CC 요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CRM Change Only</masterLabel>
+        <translation>CRM만 변경</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Call Back Request</masterLabel>
+        <translation>담당자 통화 요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cannot Contact</masterLabel>
+        <translation><!-- Cannot Contact --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Capacity - Competitors</masterLabel>
+        <translation><!-- Capacity - Competitors --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Capacity - Driver Issue</masterLabel>
+        <translation><!-- Capacity - Driver Issue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Capacity - Order Volume</masterLabel>
+        <translation><!-- Capacity - Order Volume --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Capacity - Own Website</masterLabel>
+        <translation><!-- Capacity - Own Website --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Car Leasing</masterLabel>
+        <translation><!-- Car Leasing --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Category change</masterLabel>
+        <translation>카테고리 변경</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Change of Ownership</masterLabel>
+        <translation><!-- Change of Ownership --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Charge-back</masterLabel>
+        <translation><!-- Charge-back --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Chargeback</masterLabel>
+        <translation><!-- Chargeback --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Children Account offline request</masterLabel>
+        <translation>하위계정 오프라인 요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Claim from Customer</masterLabel>
+        <translation>고객 클레임</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Claim from Restaurant</masterLabel>
+        <translation>업체 클레임</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Claims Management</masterLabel>
+        <translation><!-- Claims Management --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Clone Request</masterLabel>
+        <translation><!-- Clone Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Closing Down</masterLabel>
+        <translation><!-- Closing Down --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Collecting Documents</masterLabel>
+        <translation><!-- Collecting Documents --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Collection Issue</masterLabel>
+        <translation>미수금</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Commission (Additional order)</masterLabel>
+        <translation>수수료 (추가 주문)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Commission (Current Billing Period)</masterLabel>
+        <translation>주문가 조정 (해당 기수)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Commission (Previous Billing Period)</masterLabel>
+        <translation>주문가 조정 (이전 기수)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Commission / Subscription to high</masterLabel>
+        <translation>높은 수수료</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Commission Fee / Contract</masterLabel>
+        <translation><!-- Commission Fee / Contract --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Commission Standardization</masterLabel>
+        <translation>수수료 단일화</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Company Information Change (Same Owner)</masterLabel>
+        <translation>업체정보변경</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Company number change (Same Owner)</masterLabel>
+        <translation>명의 변경 (동일 사업주)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Compensation refund</masterLabel>
+        <translation><!-- Compensation refund --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Complaint</masterLabel>
+        <translation><!-- Complaint --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Complaint Food Quality</masterLabel>
+        <translation><!-- Complaint Food Quality --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Compliance</masterLabel>
+        <translation><!-- Compliance --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Connect request</masterLabel>
+        <translation>개통 신청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Connectivity Issues</masterLabel>
+        <translation><!-- Connectivity Issues --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Contract Cancellation</masterLabel>
+        <translation>가맹 해지</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Contract Elements</masterLabel>
+        <translation><!-- Contract Elements --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Contract Update</masterLabel>
+        <translation><!-- Contract Update --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Contract request - Additional Rest from Non-contract</masterLabel>
+        <translation>가맹 문의 (비가맹 하위계정 연동)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Contract request - Registered</masterLabel>
+        <translation>가맹 문의 (기등록)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Contract request-NEW</masterLabel>
+        <translation>가맹 문의 (미등록)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Contract violation</masterLabel>
+        <translation>기타 계약 위반</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cost difference refund</masterLabel>
+        <translation>차액 환급</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Courier Wait Time</masterLabel>
+        <translation><!-- Courier Wait Time --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Customer Enquiry</masterLabel>
+        <translation><!-- Customer Enquiry --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Customer Membership Deletion Request</masterLabel>
+        <translation>회원 탈퇴 요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Customer Refund</masterLabel>
+        <translation><!-- Customer Refund --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Customer Survey Reply</masterLabel>
+        <translation><!-- Customer Survey Reply --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Customer change of mine</masterLabel>
+        <translation>고객 변심</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Customer fault</masterLabel>
+        <translation>고객 과실</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DH Delivery</masterLabel>
+        <translation><!-- DH Delivery --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Data Incomplete</masterLabel>
+        <translation>정보 부족</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Decision Maker Not Reached</masterLabel>
+        <translation><!-- Decision Maker Not Reached --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Decline</masterLabel>
+        <translation><!-- Decline --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivery Area change / Phone number out of Service</masterLabel>
+        <translation>(비가맹) 결번.오번.착신금지</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivery Areas</masterLabel>
+        <translation><!-- Delivery Areas --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivery Fees / Minimum Order Value</masterLabel>
+        <translation><!-- Delivery Fees / Minimum Order Value --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivery Time / Status Order</masterLabel>
+        <translation><!-- Delivery Time / Status Order --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Deposit Confirmation</masterLabel>
+        <translation>입금 확인 요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Development Proposal</masterLabel>
+        <translation><!-- Development Proposal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Disappointed by our business methods</masterLabel>
+        <translation>사업 방식 불만족</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Discount Change</masterLabel>
+        <translation>디스카운트 변경</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Dish Level Photoshoot</masterLabel>
+        <translation><!-- Dish Level Photoshoot --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Door Sticker Request</masterLabel>
+        <translation><!-- Door Sticker Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Duplicate</masterLabel>
+        <translation>중복</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Eat without money</masterLabel>
+        <translation>결제 없이 음식 수령</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Educate Partner Request</masterLabel>
+        <translation><!-- Educate Partner Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Email Forwarding</masterLabel>
+        <translation><!-- Email Forwarding --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Email Templates</masterLabel>
+        <translation><!-- Email Templates --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Error</masterLabel>
+        <translation>오류</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Exclusive with competitor</masterLabel>
+        <translation>경쟁사와 독점 계약</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Exclusivity</masterLabel>
+        <translation><!-- Exclusivity --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Expand target district / Opening time</masterLabel>
+        <translation>배달지역 / 영업시간 확장</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Failed Order</masterLabel>
+        <translation><!-- Failed Order --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Failed in Upgrade</masterLabel>
+        <translation>수수료 인상 실패</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fee Inquiry</masterLabel>
+        <translation>수수료 문의</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fee Inquiry (Terminal)</masterLabel>
+        <translation>수수료 문의 (단말기)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Feedback</masterLabel>
+        <translation>피드백 요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Follow-Up 15 Days</masterLabel>
+        <translation><!-- Follow-Up 15 Days --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Follow-Up 30 Day</masterLabel>
+        <translation><!-- Follow-Up 30 Day --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Follow-Up 90 Day</masterLabel>
+        <translation><!-- Follow-Up 90 Day --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Follow-Up Quarterly</masterLabel>
+        <translation><!-- Follow-Up Quarterly --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Format/Layout</masterLabel>
+        <translation><!-- Format/Layout --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fraud</masterLabel>
+        <translation>사기</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Full Menu</masterLabel>
+        <translation><!-- Full Menu --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>GDPR - Customer account deletion</masterLabel>
+        <translation><!-- GDPR - Customer account deletion --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>GDPR - Data protection inquiry</masterLabel>
+        <translation><!-- GDPR - Data protection inquiry --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>GDPR - Newsletter unsubscription</masterLabel>
+        <translation><!-- GDPR - Newsletter unsubscription --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>General Question</masterLabel>
+        <translation>엔트리 후 문의 (온보딩 이슈 없음)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>General Support Request</masterLabel>
+        <translation><!-- General Support Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Gift Voucher Query</masterLabel>
+        <translation><!-- Gift Voucher Query --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hacked Account</masterLabel>
+        <translation><!-- Hacked Account --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hardware Issues</masterLabel>
+        <translation><!-- Hardware Issues --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>High Failure Rate</masterLabel>
+        <translation>높은 주문 실패율</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>High Risk</masterLabel>
+        <translation>고위험</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Holiday Set</masterLabel>
+        <translation>휴무 설정</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hygiene Rating</masterLabel>
+        <translation><!-- Hygiene Rating --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Imagery only update</masterLabel>
+        <translation><!-- Imagery only update --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Incomplete Contract</masterLabel>
+        <translation>불완전 계약</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Incorrect Order Confirmation</masterLabel>
+        <translation><!-- Incorrect Order Confirmation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Information Change</masterLabel>
+        <translation><!-- Information Change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Interested in Promo</masterLabel>
+        <translation><!-- Interested in Promo --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Invoice Address Change</masterLabel>
+        <translation>청구지 주소 변경</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Invoice Payment Method</masterLabel>
+        <translation><!-- Invoice Payment Method --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Invoice Query</masterLabel>
+        <translation><!-- Invoice Query --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Invoice Request</masterLabel>
+        <translation>거래내역서 요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Invoicing / Payments</masterLabel>
+        <translation><!-- Invoicing / Payments --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Keyword Change</masterLabel>
+        <translation>검색 키워드 변경</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lack of Menu Information</masterLabel>
+        <translation>가격 관련 정보 부족</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lack of Rest. Information</masterLabel>
+        <translation>업체 정보 부족</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Language Support</masterLabel>
+        <translation><!-- Language Support --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Late Delivery</masterLabel>
+        <translation><!-- Late Delivery --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Late Payment</masterLabel>
+        <translation>미수금</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Late Payment Inquiry</masterLabel>
+        <translation>미수금 문의</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Legal Form Change</masterLabel>
+        <translation><!-- Legal Form Change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Legal Issue</masterLabel>
+        <translation>법적 문제</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Limit Target districts / Opening Time</masterLabel>
+        <translation>배달지역 / 영업지역 임의 축소</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Login / Sign-Up</masterLabel>
+        <translation><!-- Login / Sign-Up --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Logistics Issue</masterLabel>
+        <translation><!-- Logistics Issue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Logo</masterLabel>
+        <translation><!-- Logo --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Long-term absence</masterLabel>
+        <translation>장기 부재 (가맹)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Long-term holiday request</masterLabel>
+        <translation>장기 휴무 요청 (가맹)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lost to Competition</masterLabel>
+        <translation>경쟁사에 밀림</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Low Orders</masterLabel>
+        <translation><!-- Low Orders --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Manual Transmission</masterLabel>
+        <translation><!-- Manual Transmission --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Marketing Initiative</masterLabel>
+        <translation><!-- Marketing Initiative --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mass Update</masterLabel>
+        <translation><!-- Mass Update --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mass Upload</masterLabel>
+        <translation><!-- Mass Upload --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Meal Deals</masterLabel>
+        <translation><!-- Meal Deals --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Membership Withdraw</masterLabel>
+        <translation>회원 탈퇴 요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Menu Change</masterLabel>
+        <translation><!-- Menu Change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Menu Collected</masterLabel>
+        <translation>리서치 진행대기</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Menu Issues</masterLabel>
+        <translation><!-- Menu Issues --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Menu Printing</masterLabel>
+        <translation><!-- Menu Printing --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Menu Update</masterLabel>
+        <translation><!-- Menu Update --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Menu Update Major</masterLabel>
+        <translation><!-- Menu Update Major --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Menu Update Major with Images</masterLabel>
+        <translation><!-- Menu Update Major with Images --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Menu Update Minor</masterLabel>
+        <translation><!-- Menu Update Minor --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Missing Documents</masterLabel>
+        <translation><!-- Missing Documents --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Missing Items</masterLabel>
+        <translation><!-- Missing Items --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mixed</masterLabel>
+        <translation><!-- Mixed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mobile payment refund</masterLabel>
+        <translation>휴대폰 결제 환불</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Branch</masterLabel>
+        <translation><!-- New Branch --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Feature</masterLabel>
+        <translation><!-- New Feature --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Hardware</masterLabel>
+        <translation><!-- New Hardware --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Owner - New Contract</masterLabel>
+        <translation>새로운 대표 - 새로운 계약</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Owner - Will not continue contract</masterLabel>
+        <translation>새로운 대표 - 계약 실패</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Owner Known</masterLabel>
+        <translation><!-- New Owner Known --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Owner Unknown</masterLabel>
+        <translation><!-- New Owner Unknown --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Shipment</masterLabel>
+        <translation><!-- New Shipment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Sign Up</masterLabel>
+        <translation><!-- New Sign Up --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Validation</masterLabel>
+        <translation><!-- New Validation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New field</masterLabel>
+        <translation><!-- New field --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New items</masterLabel>
+        <translation><!-- New items --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No Deliveries</masterLabel>
+        <translation><!-- No Deliveries --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No Delivery Service</masterLabel>
+        <translation>배달 미실시</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Non Contracted Rest - 2nd rejection</masterLabel>
+        <translation>비가맹 - 2차 요기요 서비스 거부</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Enough Orders</masterLabel>
+        <translation>주문 수 부족</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Reachable</masterLabel>
+        <translation><!-- Not Reachable --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not able to receive orders</masterLabel>
+        <translation>주문 접수 불가능</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not enough capacity</masterLabel>
+        <translation>주문 수용 불가능</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not interested in product</masterLabel>
+        <translation>상품에 관심 없음</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not satisfied with our product</masterLabel>
+        <translation>상품 불만족</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Offline Duration</masterLabel>
+        <translation><!-- Offline Duration --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Onboarding</masterLabel>
+        <translation><!-- Onboarding --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Online Payment rejection</masterLabel>
+        <translation>온라인 결제 거부</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Online Status</masterLabel>
+        <translation><!-- Online Status --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Opening hours</masterLabel>
+        <translation><!-- Opening hours --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Options</masterLabel>
+        <translation><!-- Options --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Order</masterLabel>
+        <translation>주문</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Order Accepted/Rejected</masterLabel>
+        <translation><!-- Order Accepted/Rejected --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Order Cancellation</masterLabel>
+        <translation>주문 취소</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Order Change</masterLabel>
+        <translation><!-- Order Change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Order Inquiry</masterLabel>
+        <translation><!-- Order Inquiry --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Order Now Button</masterLabel>
+        <translation><!-- Order Now Button --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Order Reimbursement</masterLabel>
+        <translation><!-- Order Reimbursement --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Order Tracking</masterLabel>
+        <translation><!-- Order Tracking --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Order cancelation (All &amp; Partial)</masterLabel>
+        <translation>주문 취소 (전체 &amp; 부분)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Others</masterLabel>
+        <translation>기타</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Owner Phone number change</masterLabel>
+        <translation>업주 연락처 변경</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Owner&apos;s Request</masterLabel>
+        <translation>업주 요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Owners page ID Request</masterLabel>
+        <translation>사장님 페이지 ID 요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Paper Bag &amp; Paper Roll Request</masterLabel>
+        <translation><!-- Paper Bag &amp; Paper Roll Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Paper Bag Request</masterLabel>
+        <translation><!-- Paper Bag Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Paper Roll Request</masterLabel>
+        <translation><!-- Paper Roll Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Partial Refund</masterLabel>
+        <translation><!-- Partial Refund --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Partner Portal</masterLabel>
+        <translation><!-- Partner Portal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Partnership - 1st Warning</masterLabel>
+        <translation>제휴 - 1차 경고</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Partnership - 2nd Warning</masterLabel>
+        <translation>제휴 - 2차 경고</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Partnership - 3rd Warning</masterLabel>
+        <translation>제휴 - 3차 경고</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Partnership - 4th Warning</masterLabel>
+        <translation>제휴 - 4차 경고</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Partnership proposal</masterLabel>
+        <translation>제휴</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Password Forgotten/reset</masterLabel>
+        <translation>비밀번호 재설정</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pay Owed Amounts</masterLabel>
+        <translation><!-- Pay Owed Amounts --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Payment Issue</masterLabel>
+        <translation><!-- Payment Issue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Payment method change</masterLabel>
+        <translation>결제수단 변경</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Photographer Image Request</masterLabel>
+        <translation>메뉴사진 작업요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pick list Value</masterLabel>
+        <translation><!-- Pick list Value --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Poor Performance</masterLabel>
+        <translation><!-- Poor Performance --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Prank order</masterLabel>
+        <translation>장난 주문</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pre-warning</masterLabel>
+        <translation>예비경고</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Premium Placement</masterLabel>
+        <translation><!-- Premium Placement --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Premium Services</masterLabel>
+        <translation><!-- Premium Services --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Price Change</masterLabel>
+        <translation>가격 / 메뉴 변경</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Price Matching</masterLabel>
+        <translation><!-- Price Matching --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pricing - Admin Fee</masterLabel>
+        <translation><!-- Pricing - Admin Fee --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pricing - Commission</masterLabel>
+        <translation><!-- Pricing - Commission --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pricing - Merchant Fee</masterLabel>
+        <translation><!-- Pricing - Merchant Fee --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pricing - Setup Fee</masterLabel>
+        <translation><!-- Pricing - Setup Fee --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Printer Activation</masterLabel>
+        <translation><!-- Printer Activation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Printer Cancellation</masterLabel>
+        <translation><!-- Printer Cancellation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Printer Deposit Refund</masterLabel>
+        <translation><!-- Printer Deposit Refund --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Printer Exchange Request</masterLabel>
+        <translation><!-- Printer Exchange Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Printer Issues</masterLabel>
+        <translation><!-- Printer Issues --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Printer Request</masterLabel>
+        <translation><!-- Printer Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Process/Flow Change</masterLabel>
+        <translation><!-- Process/Flow Change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Product</masterLabel>
+        <translation><!-- Product --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Promotion Conditions Change</masterLabel>
+        <translation><!-- Promotion Conditions Change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Public Holiday Reply</masterLabel>
+        <translation>공휴일 회신</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Quality Concerns</masterLabel>
+        <translation><!-- Quality Concerns --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Quick Order Sticker</masterLabel>
+        <translation>빠른주문 스티커</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RFV</masterLabel>
+        <translation><!-- RFV --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RP Change (Need Image agreement)</masterLabel>
+        <translation>배경사진 작업요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ranking Information</masterLabel>
+        <translation><!-- Ranking Information --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rating On website / Reviews</masterLabel>
+        <translation><!-- Rating On website / Reviews --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Re-contract request</masterLabel>
+        <translation>재가맹 요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Recommendations</masterLabel>
+        <translation>추천</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Refund Change of Ownership</masterLabel>
+        <translation><!-- Refund Change of Ownership --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Refund Enquiry</masterLabel>
+        <translation>환급 요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Refund Incorrect Billing</masterLabel>
+        <translation><!-- Refund Incorrect Billing --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Refund Premium Placement</masterLabel>
+        <translation><!-- Refund Premium Placement --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Refund Tablink</masterLabel>
+        <translation><!-- Refund Tablink --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Refund Win back</masterLabel>
+        <translation><!-- Refund Win back --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Regional Tariff</masterLabel>
+        <translation><!-- Regional Tariff --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Reject SMS/Email</masterLabel>
+        <translation>SMS / Email 거부</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rejected the contract proposal from Sales team</masterLabel>
+        <translation>영업팀 컨택 거부</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rejects Online Payment</masterLabel>
+        <translation>온라인 결제 거부</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Removing Items</masterLabel>
+        <translation><!-- Removing Items --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Report Request</masterLabel>
+        <translation><!-- Report Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Research</masterLabel>
+        <translation><!-- Research --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Closed Permanently</masterLabel>
+        <translation>폐업</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Closed Temporarily</masterLabel>
+        <translation>임시 휴업</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Discount</masterLabel>
+        <translation><!-- Restaurant Discount --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Enquiry</masterLabel>
+        <translation><!-- Restaurant Enquiry --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Marketing</masterLabel>
+        <translation>레스토랑 마케팅</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Name Change</masterLabel>
+        <translation>상호명 변경</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Operations</masterLabel>
+        <translation>온보딩 요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Picture Change (No legal issue)</masterLabel>
+        <translation>대표사진 작업요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Portal</masterLabel>
+        <translation><!-- Restaurant Portal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Recommendation</masterLabel>
+        <translation>음식점 추천 (인센티브 전단지)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Suggestion</masterLabel>
+        <translation><!-- Restaurant Suggestion --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Website</masterLabel>
+        <translation><!-- Restaurant Website --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant fault</masterLabel>
+        <translation>업체 과실</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Result of Deposit Confirmation</masterLabel>
+        <translation><!-- Result of Deposit Confirmation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Retention</masterLabel>
+        <translation>리텐션</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Return Request</masterLabel>
+        <translation>반납 요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Return shippment</masterLabel>
+        <translation>터미널 반납</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Review Request</masterLabel>
+        <translation>리뷰 관련 요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Review reply</masterLabel>
+        <translation>리뷰 댓글 작성</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SF &amp; BE Restaurant Name Change</masterLabel>
+        <translation>SF &amp; BE 상호 변경</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SIM Activation</masterLabel>
+        <translation><!-- SIM Activation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SIM Deactivation</masterLabel>
+        <translation><!-- SIM Deactivation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SMS Activation</masterLabel>
+        <translation><!-- SMS Activation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SMS Issues</masterLabel>
+        <translation><!-- SMS Issues --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SMS Relay requested for Activation</masterLabel>
+        <translation>SMS Relay 신청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SMS Relay requested for De-activation</masterLabel>
+        <translation>SMS Relay 해지요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sales Request</masterLabel>
+        <translation>영업팀 요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Section Photos</masterLabel>
+        <translation><!-- Section Photos --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sign Up Voucher</masterLabel>
+        <translation><!-- Sign Up Voucher --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Software Activation</masterLabel>
+        <translation><!-- Software Activation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Software Issues</masterLabel>
+        <translation><!-- Software Issues --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Spam</masterLabel>
+        <translation>스팸</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Spelling Errors</masterLabel>
+        <translation><!-- Spelling Errors --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Successful</masterLabel>
+        <translation>성공적</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Successful in Upgrade</masterLabel>
+        <translation>수수료 인상 성공</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Suspect Account</masterLabel>
+        <translation><!-- Suspect Account --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Switch OD to VD</masterLabel>
+        <translation>OD → VD 전환 요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Switch VD to OD</masterLabel>
+        <translation>VD → OD 전환 요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>System error</masterLabel>
+        <translation>시스템 오류</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Take Offline</masterLabel>
+        <translation>오프라인 처리</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Take Out</masterLabel>
+        <translation>테이크아웃</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Target District - Polygon</masterLabel>
+        <translation>배달지역 / 폴리곤 수정</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Tax Invoice</masterLabel>
+        <translation><!-- Tax Invoice --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Technical Problems App</masterLabel>
+        <translation><!-- Technical Problems App --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Technical Problems Website</masterLabel>
+        <translation><!-- Technical Problems Website --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Temp Offline Waiting For Printer</masterLabel>
+        <translation><!-- Temp Offline Waiting For Printer --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Temporary Sales O.E</masterLabel>
+        <translation>영업팀 컨택 시도중</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Terminal Data Usage</masterLabel>
+        <translation><!-- Terminal Data Usage --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Terminal Issue</masterLabel>
+        <translation><!-- Terminal Issue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Terminal request</masterLabel>
+        <translation>단말기 신청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Terminal time-out</masterLabel>
+        <translation>터미널 - 시간 초과</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Termination</masterLabel>
+        <translation>해지</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Time To Respond</masterLabel>
+        <translation><!-- Time To Respond --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transaction Check</masterLabel>
+        <translation><!-- Transaction Check --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transmission Issue</masterLabel>
+        <translation><!-- Transmission Issue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transmission Method Change</masterLabel>
+        <translation><!-- Transmission Method Change --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unhappy With Service</masterLabel>
+        <translation><!-- Unhappy With Service --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unknown</masterLabel>
+        <translation><!-- Unknown --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unreachable</masterLabel>
+        <translation><!-- Unreachable --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unsubscribe</masterLabel>
+        <translation><!-- Unsubscribe --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Upgrade/Upsell</masterLabel>
+        <translation><!-- Upgrade/Upsell --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>User Activation</masterLabel>
+        <translation><!-- User Activation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>User Deactivation</masterLabel>
+        <translation><!-- User Deactivation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>User Permission</masterLabel>
+        <translation><!-- User Permission --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Visit Request</masterLabel>
+        <translation><!-- Visit Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Voucher Code</masterLabel>
+        <translation><!-- Voucher Code --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Voucher request</masterLabel>
+        <translation>쿠폰 요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Warning - Non-Contracted Rest.</masterLabel>
+        <translation>비가맹 경고</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Welcome Call Unsuccessful</masterLabel>
+        <translation><!-- Welcome Call Unsuccessful --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>White Label Website</masterLabel>
+        <translation><!-- White Label Website --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Wrong Information</masterLabel>
+        <translation>정보 오류</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Yogiyo Human error</masterLabel>
+        <translation>요기요 과실</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>hungryhouse Enquiry</masterLabel>
+        <translation><!-- hungryhouse Enquiry --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Site__c</fullName>
+    <description>Picklist valiue for Global support cases indicates which site (or location) made the request</description>
+    <externalId>false</externalId>
+    <label>Site</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Carriage</fullName>
+                <default>false</default>
+                <label>Carriage</label>
+            </value>
+            <value>
+                <fullName>Damejidlo</fullName>
+                <default>false</default>
+                <label>Damejidlo</label>
+            </value>
+            <value>
+                <fullName>Delivery Hero Austria</fullName>
+                <default>false</default>
+                <label>Delivery Hero Austria</label>
+            </value>
+            <value>
+                <fullName>Delivery Hero Finland</fullName>
+                <default>false</default>
+                <label>Delivery Hero Finland</label>
+            </value>
+            <value>
+                <fullName>Delivery Hero Germany</fullName>
+                <default>false</default>
+                <label>Delivery Hero Germany</label>
+            </value>
+            <value>
+                <fullName>Delivery Hero Greece</fullName>
+                <default>false</default>
+                <label>Delivery Hero Greece</label>
+            </value>
+            <value>
+                <fullName>Delivery Hero Korea</fullName>
+                <default>false</default>
+                <label>Delivery Hero Korea</label>
+            </value>
+            <value>
+                <fullName>Delivery Hero Sweden</fullName>
+                <default>false</default>
+                <label>Delivery Hero Sweden</label>
+            </value>
+            <value>
+                <fullName>Domicilios</fullName>
+                <default>false</default>
+                <label>Domicilios</label>
+            </value>
+            <value>
+                <fullName>Donesi</fullName>
+                <default>false</default>
+                <label>Donesi</label>
+            </value>
+            <value>
+                <fullName>Foodora Canada</fullName>
+                <default>false</default>
+                <label>Foodora Canada</label>
+            </value>
+            <value>
+                <fullName>Foodora Europe</fullName>
+                <default>false</default>
+                <label>Foodora Europe</label>
+            </value>
+            <value>
+                <fullName>Foodpanda APAC</fullName>
+                <default>false</default>
+                <label>Foodpanda APAC</label>
+            </value>
+            <value>
+                <fullName>Foodpanda Bangladesh</fullName>
+                <default>false</default>
+                <label>Foodpanda Bangladesh</label>
+            </value>
+            <value>
+                <fullName>Foodpanda Bulgaria</fullName>
+                <default>false</default>
+                <label>Foodpanda Bulgaria</label>
+            </value>
+            <value>
+                <fullName>Foodpanda Pakistan</fullName>
+                <default>false</default>
+                <label>Foodpanda Pakistan</label>
+            </value>
+            <value>
+                <fullName>Foodpanda Romania</fullName>
+                <default>false</default>
+                <label>Foodpanda Romania</label>
+            </value>
+            <value>
+                <fullName>Global</fullName>
+                <default>false</default>
+                <label>Global</label>
+            </value>
+            <value>
+                <fullName>HipMenu</fullName>
+                <default>false</default>
+                <label>HipMenu</label>
+            </value>
+            <value>
+                <fullName>Hungerstation</fullName>
+                <default>false</default>
+                <label>Hungerstation</label>
+            </value>
+            <value>
+                <fullName>Mjam</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Mjam</label>
+            </value>
+            <value>
+                <fullName>Netpincer</fullName>
+                <default>false</default>
+                <label>Netpincer</label>
+            </value>
+            <value>
+                <fullName>Otlob</fullName>
+                <default>false</default>
+                <label>Otlob</label>
+            </value>
+            <value>
+                <fullName>Pauza</fullName>
+                <default>false</default>
+                <label>Pauza</label>
+            </value>
+            <value>
+                <fullName>PedidosYa</fullName>
+                <default>false</default>
+                <label>PedidosYa</label>
+            </value>
+            <value>
+                <fullName>Talabat</fullName>
+                <default>false</default>
+                <label>Talabat</label>
+            </value>
+            <value>
+                <fullName>Yemeksepeti</fullName>
+                <default>false</default>
+                <label>Yemeksepeti</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

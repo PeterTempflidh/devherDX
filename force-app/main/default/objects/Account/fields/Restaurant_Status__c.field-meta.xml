@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Restaurant_Status__c</fullName>
+    <externalId>false</externalId>
+    <label>Restaurant Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>In Research</fullName>
+                <default>true</default>
+                <label>In Research</label>
+            </value>
+            <value>
+                <fullName>In Acquisition</fullName>
+                <color>#B6E32E</color>
+                <default>false</default>
+                <label>In Acquisition</label>
+            </value>
+            <value>
+                <fullName>Taking Restaurant Online</fullName>
+                <color>#78C953</color>
+                <default>false</default>
+                <label>Taking Restaurant Online</label>
+            </value>
+            <value>
+                <fullName>Restaurant Online</fullName>
+                <color>#419249</color>
+                <default>false</default>
+                <label>Restaurant Online</label>
+            </value>
+            <value>
+                <fullName>In Retention</fullName>
+                <color>#F3D904</color>
+                <default>false</default>
+                <label>In Retention</label>
+            </value>
+            <value>
+                <fullName>Restaurant Offline</fullName>
+                <color>#A53711</color>
+                <default>false</default>
+                <label>Restaurant Offline</label>
+            </value>
+            <value>
+                <fullName>In Winback</fullName>
+                <color>#E27001</color>
+                <default>false</default>
+                <label>In Winback</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <externalId>false</externalId>
+    <label>Status</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>New - Awaiting Installation</fullName>
+                <default>true</default>
+                <label>New - Awaiting Installation</label>
+            </value>
+            <value>
+                <fullName>Installed successfully</fullName>
+                <default>false</default>
+                <label>Installed successfully</label>
+            </value>
+            <value>
+                <fullName>Canceled</fullName>
+                <default>false</default>
+                <label>Canceled</label>
+            </value>
+            <value>
+                <fullName>Transferred</fullName>
+                <default>false</default>
+                <label>Transferred</label>
+            </value>
+            <value>
+                <fullName>Uninstalled</fullName>
+                <default>false</default>
+                <label>Uninstalled</label>
+            </value>
+            <value>
+                <fullName>New</fullName>
+                <default>false</default>
+                <label>New</label>
+            </value>
+            <value>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+                <label>Rejected</label>
+            </value>
+            <value>
+                <fullName>Approved</fullName>
+                <default>false</default>
+                <label>Approved</label>
+            </value>
+            <value>
+                <fullName>Design rejected</fullName>
+                <default>false</default>
+                <label>Design rejected</label>
+            </value>
+            <value>
+                <fullName>Pending final approval</fullName>
+                <default>false</default>
+                <label>Pending final approval</label>
+            </value>
+            <value>
+                <fullName>Pending design approval</fullName>
+                <default>false</default>
+                <label>Pending design approval</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

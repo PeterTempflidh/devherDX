@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>APAC_Lock_Bank_Detail_status_Active_Appr</fullName>
+    <active>true</active>
+    <description>Lock the active Bank account details record - SSC-1004</description>
+    <errorConditionFormula>AND(
+NOT(ISNEW()),
+OR(ISPICKVAL( Status__c, &apos;Active&apos;),ISPICKVAL( Status__c, &apos;Approved&apos;)),
+NOT($Permission.Exclude_from_Validation),
+$Profile.Name &lt;&gt;&apos;System Administrator&apos;,
+OR(ISCHANGED(Activation_Date__c),ISCHANGED(Bank_Name__c),ISCHANGED(Bank_Account_Number__c),ISCHANGED(Bank_Account_Owner__c),ISCHANGED(Swift_Code_BIC__c))
+)</errorConditionFormula>
+    <errorMessage>You cannot edit an active or approved bank detail record.</errorMessage>
+</ValidationRule>

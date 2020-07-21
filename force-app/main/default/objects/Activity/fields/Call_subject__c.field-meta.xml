@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Call_subject__c</fullName>
+    <description>Created as part of SP-4946 +SCC-358</description>
+    <externalId>false</externalId>
+    <label>Call subject</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>CS - Canceled order</fullName>
+                <default>false</default>
+                <label>CS - Canceled order</label>
+            </value>
+            <value>
+                <fullName>CS - Change order details</fullName>
+                <default>false</default>
+                <label>CS - Change order details</label>
+            </value>
+            <value>
+                <fullName>CS - Change unavailable item</fullName>
+                <default>false</default>
+                <label>CS - Change unavailable item</label>
+            </value>
+            <value>
+                <fullName>CS - Order status Inquiry</fullName>
+                <default>false</default>
+                <label>CS - Order status Inquiry</label>
+            </value>
+            <value>
+                <fullName>CS - Payment inquiries</fullName>
+                <default>false</default>
+                <label>CS - Payment inquiries</label>
+            </value>
+            <value>
+                <fullName>CS - Pick up issue - active order</fullName>
+                <default>false</default>
+                <label>CS - Pick up issue - active order</label>
+            </value>
+            <value>
+                <fullName>CS - Pick up issue - post pick up</fullName>
+                <default>false</default>
+                <label>CS - Pick up issue - post pick up</label>
+            </value>
+            <value>
+                <fullName>CS - Redelivery or Refund</fullName>
+                <default>false</default>
+                <label>CS - Redelivery or Refund</label>
+            </value>
+            <value>
+                <fullName>CS - Rider location inquiry</fullName>
+                <default>false</default>
+                <label>CS - Rider location inquiry</label>
+            </value>
+            <value>
+                <fullName>CS/OPT - Delay/ Delivery time not met, Vendor call</fullName>
+                <default>false</default>
+                <label>CS/OPT - Delay/ Delivery time not met, Vendor call</label>
+            </value>
+            <value>
+                <fullName>CS/OPT - Partner didn&apos;t answer</fullName>
+                <default>false</default>
+                <label>CS/OPT - Partner didn&apos;t answer</label>
+            </value>
+            <value>
+                <fullName>CS/OPT - Pre/Big order verification</fullName>
+                <default>false</default>
+                <label>CS/OPT - Pre/Big order verification</label>
+            </value>
+            <value>
+                <fullName>OPT - Customer did not answer</fullName>
+                <default>false</default>
+                <label>OPT - Customer did not answer</label>
+            </value>
+            <value>
+                <fullName>OPT - Driver behaviour</fullName>
+                <default>false</default>
+                <label>OPT - Driver behaviour</label>
+            </value>
+            <value>
+                <fullName>OPT - Duplicate order - accepted</fullName>
+                <default>false</default>
+                <label>OPT - Duplicate order - accepted</label>
+            </value>
+            <value>
+                <fullName>OPT - Duplicate order - cancelled</fullName>
+                <default>false</default>
+                <label>OPT - Duplicate order - cancelled</label>
+            </value>
+            <value>
+                <fullName>OPT - Operating hours incorrect</fullName>
+                <default>false</default>
+                <label>OPT - Operating hours incorrect</label>
+            </value>
+            <value>
+                <fullName>OPT - Order accepted</fullName>
+                <default>false</default>
+                <label>OPT - Order accepted</label>
+            </value>
+            <value>
+                <fullName>OPT - Ordered before partner is open</fullName>
+                <default>false</default>
+                <label>OPT - Ordered before partner is open</label>
+            </value>
+            <value>
+                <fullName>OPT - Partner number invalid</fullName>
+                <default>false</default>
+                <label>OPT - Partner number invalid</label>
+            </value>
+            <value>
+                <fullName>OPT - Partner too busy</fullName>
+                <default>false</default>
+                <label>OPT - Partner too busy</label>
+            </value>
+            <value>
+                <fullName>OPT - Product unavailable</fullName>
+                <default>false</default>
+                <label>OPT - Product unavailable</label>
+            </value>
+            <value>
+                <fullName>OPT - Technical issue</fullName>
+                <default>false</default>
+                <label>OPT - Technical issue</label>
+            </value>
+            <value>
+                <fullName>OPT - Validate customers delivery address</fullName>
+                <default>false</default>
+                <label>OPT - Validate customers delivery address</label>
+            </value>
+            <value>
+                <fullName>PC - Onb - Appointment made</fullName>
+                <default>false</default>
+                <label>PC - Onb - Appointment made</label>
+            </value>
+            <value>
+                <fullName>PC - Onb - Delayed delivery</fullName>
+                <default>false</default>
+                <label>PC - Onb - Delayed delivery</label>
+            </value>
+            <value>
+                <fullName>PC - Onb - Menu issues</fullName>
+                <default>false</default>
+                <label>PC - Onb - Menu issues</label>
+            </value>
+            <value>
+                <fullName>PC - Onb - Technical issues</fullName>
+                <default>false</default>
+                <label>PC - Onb - Technical issues</label>
+            </value>
+            <value>
+                <fullName>PC - Onb - Unreachable</fullName>
+                <default>false</default>
+                <label>PC - Onb - Unreachable</label>
+            </value>
+            <value>
+                <fullName>PC - Perf: Automation</fullName>
+                <default>false</default>
+                <label>PC - Perf: Automation</label>
+            </value>
+            <value>
+                <fullName>PC - Perf: Cancellations</fullName>
+                <default>false</default>
+                <label>PC - Perf: Cancellations</label>
+            </value>
+            <value>
+                <fullName>PC - Perf: Closed Hours</fullName>
+                <default>false</default>
+                <label>PC - Perf: Closed Hours</label>
+            </value>
+            <value>
+                <fullName>PC - Perf: Delays</fullName>
+                <default>false</default>
+                <label>PC - Perf: Delays</label>
+            </value>
+            <value>
+                <fullName>PC - Perf: Sales</fullName>
+                <default>false</default>
+                <label>PC - Perf: Sales</label>
+            </value>
+            <value>
+                <fullName>PC - Sales: Deal</fullName>
+                <default>false</default>
+                <label>PC - Sales: Deal</label>
+            </value>
+            <value>
+                <fullName>PS - Technical issue - Front end website</fullName>
+                <default>false</default>
+                <label>PS - Technical issue - Front end website</label>
+            </value>
+            <value>
+                <fullName>PS - Technical issue - Portal</fullName>
+                <default>false</default>
+                <label>PS - Technical issue - Portal</label>
+            </value>
+            <value>
+                <fullName>PS - Technical issue - Printer</fullName>
+                <default>false</default>
+                <label>PS - Technical issue - Printer</label>
+            </value>
+            <value>
+                <fullName>PS - Technical issue - Tablet</fullName>
+                <default>false</default>
+                <label>PS - Technical issue - Tablet</label>
+            </value>
+            <value>
+                <fullName>PS - Technical issue - Transmission or POS</fullName>
+                <default>false</default>
+                <label>PS - Technical issue - Transmission or POS</label>
+            </value>
+            <value>
+                <fullName>PS/Content - Address issues</fullName>
+                <default>false</default>
+                <label>PS/Content - Address issues</label>
+            </value>
+            <value>
+                <fullName>PS/Content - Case follow up</fullName>
+                <default>false</default>
+                <label>PS/Content - Case follow up</label>
+            </value>
+            <value>
+                <fullName>PS/Content - Contact information issues</fullName>
+                <default>false</default>
+                <label>PS/Content - Contact information issues</label>
+            </value>
+            <value>
+                <fullName>PS/Content - Menu issues</fullName>
+                <default>false</default>
+                <label>PS/Content - Menu issues</label>
+            </value>
+            <value>
+                <fullName>PS/Content - Offline payment methods issues</fullName>
+                <default>false</default>
+                <label>PS/Content - Offline payment methods issues</label>
+            </value>
+            <value>
+                <fullName>PS/Content - Operating hours issues</fullName>
+                <default>false</default>
+                <label>PS/Content - Operating hours issues</label>
+            </value>
+            <value>
+                <fullName>CS - Rider location inquiry (order status delivered)</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>CS - Rider location inquiry (order status delivered)</label>
+            </value>
+            <value>
+                <fullName>CS - Rider location inqury (order status delivered)</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>CS - Rider location inqury (order status delivered)</label>
+            </value>
+            <value>
+                <fullName>OPT - Partner didn&apos;t answer</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>OPT - Partner didn&apos;t answer</label>
+            </value>
+            <value>
+                <fullName>OPT - Pre order verification</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>OPT - Pre order verification</label>
+            </value>
+            <value>
+                <fullName>OPT - Tablet issue</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>OPT - Tablet issue</label>
+            </value>
+            <value>
+                <fullName>PC - Onb - Appointment to be made</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>PC - Onb - Appointment to be made</label>
+            </value>
+            <value>
+                <fullName>PS - Case follow up</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>PS - Case follow up</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

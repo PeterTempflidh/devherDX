@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Topics_Discussed__c</fullName>
+    <description>SP-4850 to flag what was discussed during performance calls</description>
+    <externalId>false</externalId>
+    <label>Topics Discussed</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <controllingField>Type</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Transmission Behaviour Issue</fullName>
+                <default>false</default>
+                <label>Transmission Behaviour Issue</label>
+            </value>
+            <value>
+                <fullName>Transmission Mobile Data Issue</fullName>
+                <default>false</default>
+                <label>Transmission Mobile Data Issue</label>
+            </value>
+            <value>
+                <fullName>Transmission WiFi Issue</fullName>
+                <default>false</default>
+                <label>Transmission WiFi Issue</label>
+            </value>
+            <value>
+                <fullName>Transmission Device Off</fullName>
+                <default>false</default>
+                <label>Transmission Device Off</label>
+            </value>
+            <value>
+                <fullName>Transmission App Logged Out</fullName>
+                <default>false</default>
+                <label>Transmission App Logged Out</label>
+            </value>
+            <value>
+                <fullName>Order Failure Offlining</fullName>
+                <default>false</default>
+                <label>Order Failure Offlining</label>
+            </value>
+            <value>
+                <fullName>Order Failure Penalties/Fees</fullName>
+                <default>false</default>
+                <label>Order Failure Penalties/Fees</label>
+            </value>
+            <value>
+                <fullName>Item Unavailable</fullName>
+                <default>false</default>
+                <label>Item Unavailable</label>
+            </value>
+            <value>
+                <fullName>Opening Times</fullName>
+                <default>false</default>
+                <label>Opening Times</label>
+            </value>
+            <value>
+                <fullName>Contact Details</fullName>
+                <default>false</default>
+                <label>Contact Details</label>
+            </value>
+            <value>
+                <fullName>Portal Usage</fullName>
+                <default>false</default>
+                <label>Portal Usage</label>
+            </value>
+            <value>
+                <fullName>Menu</fullName>
+                <default>false</default>
+                <label>Menu</label>
+            </value>
+            <value>
+                <fullName>Delivery Zones</fullName>
+                <default>false</default>
+                <label>Delivery Zones</label>
+            </value>
+            <value>
+                <fullName>Order Tracking</fullName>
+                <default>false</default>
+                <label>Order Tracking</label>
+            </value>
+            <value>
+                <fullName>Reviews Education</fullName>
+                <default>false</default>
+                <label>Reviews Education</label>
+            </value>
+            <value>
+                <fullName>Sales / AM Referral</fullName>
+                <default>false</default>
+                <label>Sales / AM Referral</label>
+            </value>
+            <value>
+                <fullName>Vendor Not Cooperative</fullName>
+                <default>false</default>
+                <label>Vendor Not Cooperative</label>
+            </value>
+            <value>
+                <fullName>Case Generation Review</fullName>
+                <default>false</default>
+                <label>Case Generation Review</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Performance</controllingFieldValue>
+            <valueName>Transmission Behaviour Issue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Performance</controllingFieldValue>
+            <valueName>Transmission Mobile Data Issue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Performance</controllingFieldValue>
+            <valueName>Transmission WiFi Issue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Performance</controllingFieldValue>
+            <valueName>Transmission Device Off</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Performance</controllingFieldValue>
+            <valueName>Transmission App Logged Out</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Performance</controllingFieldValue>
+            <valueName>Order Failure Offlining</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Performance</controllingFieldValue>
+            <valueName>Order Failure Penalties/Fees</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Performance</controllingFieldValue>
+            <valueName>Item Unavailable</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Performance</controllingFieldValue>
+            <valueName>Opening Times</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Performance</controllingFieldValue>
+            <valueName>Contact Details</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Performance</controllingFieldValue>
+            <valueName>Portal Usage</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Performance</controllingFieldValue>
+            <valueName>Menu</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Performance</controllingFieldValue>
+            <valueName>Delivery Zones</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Performance</controllingFieldValue>
+            <valueName>Order Tracking</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Performance</controllingFieldValue>
+            <valueName>Reviews Education</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Performance</controllingFieldValue>
+            <valueName>Sales / AM Referral</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Performance</controllingFieldValue>
+            <valueName>Vendor Not Cooperative</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Performance</controllingFieldValue>
+            <valueName>Case Generation Review</valueName>
+        </valueSettings>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

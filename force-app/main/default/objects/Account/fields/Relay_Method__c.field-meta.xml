@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Relay_Method__c</fullName>
+    <description>For the Order Transmission Method</description>
+    <externalId>false</externalId>
+    <label>Relay Method</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>9Cookies GO</fullName>
+                <default>false</default>
+                <label>9Cookies GO</label>
+            </value>
+            <value>
+                <fullName>9Cookies SideKick(iPad)</fullName>
+                <default>false</default>
+                <label>9Cookies SideKick(iPad)</label>
+            </value>
+            <value>
+                <fullName>9Cookies SMSKick</fullName>
+                <default>false</default>
+                <label>9Cookies SMSKick</label>
+            </value>
+            <value>
+                <fullName>9Cookies WebKick</fullName>
+                <default>false</default>
+                <label>9Cookies WebKick</label>
+            </value>
+            <value>
+                <fullName>Administrador</fullName>
+                <default>false</default>
+                <label>Administrador</label>
+            </value>
+            <value>
+                <fullName>Call Center</fullName>
+                <default>false</default>
+                <label>Call Center</label>
+            </value>
+            <value>
+                <fullName>DelySoft</fullName>
+                <default>false</default>
+                <label>DelySoft</label>
+            </value>
+            <value>
+                <fullName>Desktop Admin</fullName>
+                <default>false</default>
+                <label>Desktop Admin</label>
+            </value>
+            <value>
+                <fullName>Ecletica</fullName>
+                <default>false</default>
+                <label>Ecletica</label>
+            </value>
+            <value>
+                <fullName>Email</fullName>
+                <default>false</default>
+                <label>Email</label>
+            </value>
+            <value>
+                <fullName>Email - HTML</fullName>
+                <default>false</default>
+                <label>Email - HTML</label>
+            </value>
+            <value>
+                <fullName>Email - Text</fullName>
+                <default>false</default>
+                <label>Email - Text</label>
+            </value>
+            <value>
+                <fullName>Fax</fullName>
+                <default>false</default>
+                <label>Fax</label>
+            </value>
+            <value>
+                <fullName>GPRS</fullName>
+                <default>false</default>
+                <label>GPRS</label>
+            </value>
+            <value>
+                <fullName>ICKS</fullName>
+                <default>false</default>
+                <label>ICKS</label>
+            </value>
+            <value>
+                <fullName>Integracion</fullName>
+                <default>false</default>
+                <label>Integracion</label>
+            </value>
+            <value>
+                <fullName>Owners App</fullName>
+                <default>false</default>
+                <label>Owners App</label>
+            </value>
+            <value>
+                <fullName>Owners Web</fullName>
+                <default>false</default>
+                <label>Owners Web</label>
+            </value>
+            <value>
+                <fullName>Phone</fullName>
+                <default>false</default>
+                <label>Phone</label>
+            </value>
+            <value>
+                <fullName>Phone &amp; Email</fullName>
+                <default>false</default>
+                <label>Phone &amp; Email</label>
+            </value>
+            <value>
+                <fullName>POS</fullName>
+                <default>false</default>
+                <label>POS</label>
+            </value>
+            <value>
+                <fullName>POS Argentina</fullName>
+                <default>false</default>
+                <label>POS Argentina</label>
+            </value>
+            <value>
+                <fullName>Postnet</fullName>
+                <default>false</default>
+                <label>Postnet</label>
+            </value>
+            <value>
+                <fullName>POS Uruguay</fullName>
+                <default>false</default>
+                <label>POS Uruguay</label>
+            </value>
+            <value>
+                <fullName>SMS</fullName>
+                <default>false</default>
+                <label>SMS</label>
+            </value>
+            <value>
+                <fullName>Software</fullName>
+                <default>false</default>
+                <label>Software</label>
+            </value>
+            <value>
+                <fullName>Tablet+Printer</fullName>
+                <default>false</default>
+                <label>Tablet+Printer</label>
+            </value>
+            <value>
+                <fullName>Terminal</fullName>
+                <default>false</default>
+                <label>Terminal</label>
+            </value>
+            <value>
+                <fullName>Web</fullName>
+                <default>false</default>
+                <label>Web</label>
+            </value>
+            <value>
+                <fullName>Web Admin</fullName>
+                <default>false</default>
+                <label>Web Admin</label>
+            </value>
+            <value>
+                <fullName>Web API</fullName>
+                <default>false</default>
+                <label>Web API</label>
+            </value>
+            <value>
+                <fullName>Web API &amp; Device</fullName>
+                <default>false</default>
+                <label>Web API &amp; Device</label>
+            </value>
+            <value>
+                <fullName>WLA</fullName>
+                <default>false</default>
+                <label>WLA</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>6</visibleLines>
+</CustomField>

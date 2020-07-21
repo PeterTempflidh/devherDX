@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Australia_Rules</fullName>
+    <columns>NAME</columns>
+    <columns>Process_Name__c</columns>
+    <columns>Is_Active__c</columns>
+    <columns>Parent__c</columns>
+    <columns>Business_Rule_Name__c</columns>
+    <columns>Business_Rule_Value__c</columns>
+    <columns>Id_Country__c</columns>
+    <columns>Type__c</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Id_Country__c</field>
+        <operation>equals</operation>
+        <value>Australia</value>
+    </filters>
+    <filters>
+        <field>Parent__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Australia Rules</label>
+    <language>en_US</language>
+</ListView>

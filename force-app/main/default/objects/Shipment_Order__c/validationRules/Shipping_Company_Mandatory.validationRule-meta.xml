@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Shipping_Company_Mandatory</fullName>
+    <active>true</active>
+    <description>Shipping Company mandatory for  TW/SG/MY/HK/TH/PH</description>
+    <errorConditionFormula>AND( NOT( ISNEW() ), NOT( $Permission.Exclude_from_Validation ),ISBLANK(TEXT(Shipping_Company__c)) , OR( ISPICKVAL(Account_Country__c, &apos;Taiwan&apos;)  ,ISPICKVAL(Account_Country__c, &apos;Singapore&apos;),ISPICKVAL(Account_Country__c, &apos;Malaysia&apos;),ISPICKVAL(Account_Country__c, &apos;Hong Kong&apos;),
+ISPICKVAL(Account_Country__c, &apos;Thailand&apos;),ISPICKVAL(Account_Country__c, &apos;Philippines&apos;),ISPICKVAL(Account_Country__c, &apos;Japan&apos;)) )</errorConditionFormula>
+    <errorDisplayField>Shipping_Company__c</errorDisplayField>
+    <errorMessage>Shipping Company mandatory</errorMessage>
+</ValidationRule>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Knowledge_Base_Macros</fullName>
+    <columns>Name</columns>
+    <columns>Message</columns>
+    <columns>Channel</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Channel</field>
+        <operation>includes</operation>
+        <value>Knowledge</value>
+    </filters>
+    <label>Knowledge Base: Macros</label>
+</ListView>

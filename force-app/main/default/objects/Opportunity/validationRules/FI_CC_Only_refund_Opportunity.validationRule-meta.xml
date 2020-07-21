@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FI_CC_Only_refund_Opportunity</fullName>
+    <active>true</active>
+    <errorConditionFormula>( RecordTypeId  = &apos;012w0000000kc0c&apos;
+ &amp;&amp; 
+ NOT (ISPICKVAL(Business_Type__c, &apos;Refund&apos;))
+ &amp;&amp; 
+ $User.ProfileId  = &apos;00ew0000001pFc7&apos;)</errorConditionFormula>
+    <errorMessage>You can not create or edit this Opportunity.</errorMessage>
+</ValidationRule>

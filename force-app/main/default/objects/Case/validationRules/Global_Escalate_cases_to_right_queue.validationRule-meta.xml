@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_Escalate_cases_to_right_queue</fullName>
+    <active>true</active>
+    <description>This validation was created to avoid users escalating cases to the wrong queues.</description>
+    <errorConditionFormula>(ISCHANGED(OwnerId))
+&amp;&amp;
+((TEXT($User.Entity__c) = &quot;DE Lieferheld / Pizza.de&quot;
+&amp;&amp;
+(NOT(CONTAINS(Owner:Queue.DeveloperName,&quot;DE_&quot;))
+&amp;&amp;
+NOT(Owner:Queue.DeveloperName = &quot;AT_Accounting&quot;)))
+||
+(TEXT($User.Entity__c) = &quot;CO ClickDelivery&quot;
+&amp;&amp;
+NOT(CONTAINS(Owner:Queue.DeveloperName,&quot;CD_&quot;)))
+||
+(TEXT($User.Entity__c) = &quot;UAE Talabat&quot;
+&amp;&amp;
+NOT(CONTAINS(Owner:Queue.DeveloperName,&quot;Talabat_&quot;)))
+||
+(TEXT($User.Entity__c) = &quot;AT Mjam&quot;
+&amp;&amp;
+NOT(CONTAINS(Owner:Queue.DeveloperName,&quot;AT_&quot;)))
+||
+(TEXT($User.Entity__c) = &quot;UY Pedidosya&quot;
+&amp;&amp;
+NOT(CONTAINS(Owner:Queue.DeveloperName,&quot;PY_&quot;)))
+||
+(TEXT($User.Entity__c) = &quot;APAC Foodpanda&quot;
+&amp;&amp;
+NOT(CONTAINS(Owner:Queue.DeveloperName,&quot;FP_&quot;)))
+||
+(TEXT($User.Entity__c) = &quot;NetPincér.hu&quot;
+&amp;&amp;
+NOT(CONTAINS(Owner:Queue.DeveloperName,&quot;HU_&quot;)))
+||
+(TEXT($User.Entity__c) = &quot;Yemeksepeti&quot;
+&amp;&amp;
+NOT(CONTAINS(Owner:Queue.DeveloperName,&quot;YE_&quot;)))
+||
+(TEXT($User.Entity__c) = &quot;CZ Dame Jidlo&quot;
+&amp;&amp;
+NOT(CONTAINS(Owner:Queue.DeveloperName,&quot;CZ_&quot;)))
+||
+(TEXT($User.Entity__c) = &quot;RO FoodPanda&quot;
+&amp;&amp;
+NOT(CONTAINS(Owner:Queue.DeveloperName,&quot;RO_&quot;)))
+||
+(TEXT($User.Entity__c) = &quot;NO Foodora&quot;
+&amp;&amp;
+NOT(CONTAINS(Owner:Queue.DeveloperName,&quot;NO_&quot;)))
+)</errorConditionFormula>
+    <errorDisplayField>OwnerId</errorDisplayField>
+    <errorMessage>You can only assign cases to queues that belong to your Entity.</errorMessage>
+</ValidationRule>

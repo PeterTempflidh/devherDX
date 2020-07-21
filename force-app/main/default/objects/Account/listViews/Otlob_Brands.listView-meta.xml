@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Otlob_Brands</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>ACCOUNT.TYPE</columns>
+    <columns>Record_Country__c</columns>
+    <columns>PARENT_NAME</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>ACCOUNT.CREATED_DATE</columns>
+    <columns>Area__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Record_Country__c</field>
+        <operation>equals</operation>
+        <value>Egypt</value>
+    </filters>
+    <filters>
+        <field>ACCOUNT.TYPE</field>
+        <operation>equals</operation>
+        <value>Brand</value>
+    </filters>
+    <label>Otlob- Brands</label>
+    <language>en_US</language>
+    <sharedTo>
+        <roleAndSubordinates>Talabat_Management</roleAndSubordinates>
+    </sharedTo>
+</ListView>

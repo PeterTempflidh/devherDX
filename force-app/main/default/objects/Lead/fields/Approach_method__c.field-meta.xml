@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approach_method__c</fullName>
+    <externalId>false</externalId>
+    <label>Approach method</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Reveal Yogiyo</fullName>
+                <default>false</default>
+                <label>Reveal Yogiyo</label>
+            </value>
+            <value>
+                <fullName>Do NOT reveal Yogiyo</fullName>
+                <default>false</default>
+                <label>Do NOT reveal Yogiyo</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

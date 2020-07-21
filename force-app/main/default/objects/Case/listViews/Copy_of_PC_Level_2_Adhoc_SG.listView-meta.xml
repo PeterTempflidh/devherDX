@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Copy_of_PC_Level_2_Adhoc_SG</fullName>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>Case_Reason__c</columns>
+    <columns>CASES.CREATED_DATE_DATE_ONLY</columns>
+    <columns>Country__c</columns>
+    <columns>CASES.TYPE</columns>
+    <columns>OWNER_NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Vendor_Grade__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>equals</operation>
+        <value>FP SG Account Management</value>
+    </filters>
+    <filters>
+        <field>Country__c</field>
+        <operation>equals</operation>
+        <value>Singapore</value>
+    </filters>
+    <filters>
+        <field>CASES.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Owner/Legal Form Change,Retention,Sales Task</value>
+    </filters>
+    <filters>
+        <field>Case_Reason__c</field>
+        <operation>notEqual</operation>
+        <value>Clone Request,Dish Level Photoshoot,Marketing Initiative,Meal Deals,Premium Placement,Transmission Issue,Unknown</value>
+    </filters>
+    <filters>
+        <field>Vendor_Grade__c</field>
+        <operation>equals</operation>
+        <value>,C,D</value>
+    </filters>
+    <label>PC Level 2 - Adhoc (SG)</label>
+    <sharedTo>
+        <role>FP_Operations</role>
+        <role>FP_Sales</role>
+    </sharedTo>
+</ListView>

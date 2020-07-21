@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DH_AU_Stock_Item</fullName>
+    <active>true</active>
+    <description>Delivery Hero Australia Stock Items</description>
+    <label>DH AU Stock Item</label>
+    <picklistValues>
+        <picklist>Condition__c</picklist>
+        <values>
+            <fullName>A - New</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>B - Used</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>C - Testing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>D - Reparable</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>E - Dead</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N - Brand New</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>O - Ordered</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>U - Undefined</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Simcard_Provider__c</picklist>
+        <values>
+            <fullName>SKT</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Assigned</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Awaiting Delivery%2FIn Shipment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Stock</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lost</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pick-up Needed</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Stock_Item_Ownership__c</picklist>
+        <values>
+            <fullName>Field Agent</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HQ %2F office</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Key_VIP_Account__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>true --&gt; this means this a important account, is defined by each country</description>
+    <externalId>false</externalId>
+    <label>Key / VIP Account</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

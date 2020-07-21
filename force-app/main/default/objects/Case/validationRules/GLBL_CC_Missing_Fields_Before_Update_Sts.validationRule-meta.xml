@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GLBL_CC_Missing_Fields_Before_Update_Sts</fullName>
+    <active>true</active>
+    <description>Triggers an error whenever tries to update an Inbound Case status whenever there are either missing fields or open children (Excludes DE Inbound - see separate Validation)</description>
+    <errorConditionFormula>((
+(ISBLANK(TEXT(Type))||ISBLANK(TEXT(Case_Reason_Level_3__c))||ISBLANK(Country__c)||AND(ISBLANK(Customer_Email__c), NOT(ISPICKVAL(Origin,&apos;Facebook&apos;)),NOT(ISPICKVAL(Origin,&apos;Twitter&apos;)),NOT(ISPICKVAL(Origin,&apos;Instagram&apos;)))||
+ISBLANK(Subject)||ISBLANK(Description))
+&amp;&amp; (TEXT(Type)=&quot;Customer&quot; || ISBLANK(TEXT(Type)))
+&amp;&amp; TEXT(Status)=&quot;Resolved&quot;
+)
+||
+(
+(ISBLANK(TEXT(Type))||ISBLANK(TEXT(Case_Reason_Level_3__c))||ISBLANK(Country__c)|| AND(ISBLANK( Contact.Id ),NOT(RecordType.DeveloperName = &quot;YE_Inbound_Case&quot;))||ISBLANK(Subject)||ISBLANK(Description))
+&amp;&amp; (NOT ISPICKVAL(Case_Reason_Level_2__c, &quot;Onboarding and Sign up&quot;))
+&amp;&amp; (TEXT(Type)=&quot;Partner&quot; || ISBLANK(TEXT(Type)))
+&amp;&amp; TEXT(Status)=&quot;Resolved&quot;
+)
+||
+(
+(ISBLANK(TEXT(Type))||ISBLANK(TEXT(Case_Reason_Level_3__c))||ISBLANK(Subject)||ISBLANK(Description))
+&amp;&amp; (TEXT(Type)=&quot;Other&quot; || ISBLANK(TEXT(Type)))
+&amp;&amp; TEXT(Status)=&quot;Resolved&quot;
+))
+&amp;&amp;
+(
+RecordType.DeveloperName = &quot;CD_Inbound_Case&quot;
+||
+RecordType.DeveloperName = &quot;PY_Inbound_Case&quot;
+||
+RecordType.DeveloperName = &quot;Talabat_Inbound_Case&quot;
+||
+RecordType.DeveloperName = &quot;AT_Inbound_Case&quot;
+||
+RecordType.DeveloperName = &quot;FP_Inbound_Case&quot;
+||
+RecordType.DeveloperName = &quot;YE_Inbound_Case&quot;
+||
+RecordType.DeveloperName = &quot;HU_Inbound_Case&quot;
+)
+&amp;&amp;
+NOT($Permission.Exclude_from_Validation)</errorConditionFormula>
+    <errorMessage>Please check that the following fields are complete: Subject, Description, Type, Case Reason Level 3, Country. Additionally for Customer make sure Customer Email is complete, and for Restaurant contact and account</errorMessage>
+</ValidationRule>

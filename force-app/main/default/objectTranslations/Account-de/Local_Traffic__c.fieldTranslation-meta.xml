@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Volume of motor and pedestrian traffic nearby the restaurant to judge upon the value to offer branding to the restaurant. --></help>
+    <label>Lokales Verkehrsaufkommen</label>
+    <name>Local_Traffic__c</name>
+    <picklistValues>
+        <masterLabel>High Traffic</masterLabel>
+        <translation>Hohes Verkehrsaufkommen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Low Traffic</masterLabel>
+        <translation>Niedriges Verkehrsaufkommen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mid Traffic</masterLabel>
+        <translation>Normales Verkehrsaufkommen</translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Source_Asset__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Source Asset</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>Asset__c.Type__c</field>
+            <operation>equals</operation>
+            <value>Original</value>
+        </filterItems>
+        <filterItems>
+            <field>Asset__c.Status__c</field>
+            <operation>notEqual</operation>
+            <value>Taken Over</value>
+        </filterItems>
+        <isOptional>true</isOptional>
+    </lookupFilter>
+    <referenceTo>Asset__c</referenceTo>
+    <relationshipLabel>Assets</relationshipLabel>
+    <relationshipName>RelatedAssets</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validation_Rule_Sent_Status</fullName>
+    <active>false</active>
+    <errorConditionFormula>AND(  ISPICKVAL(Status__c , &quot;Sent - Awaiting Activation&quot;),
+OR( ISBLANK( Shipping_Company__c ) , ISBLANK( Tracking_Number__c ) , ISBLANK( Date_Shipped__c ), ISBLANK( Activation_Due_date__c )))</errorConditionFormula>
+    <errorMessage>Please fill out all required fields: &quot;Shipping Company&quot;, &quot;Tracking Number&quot;, &quot;Date Shipped&quot; and &quot;Activation Due Date&quot;</errorMessage>
+</ValidationRule>

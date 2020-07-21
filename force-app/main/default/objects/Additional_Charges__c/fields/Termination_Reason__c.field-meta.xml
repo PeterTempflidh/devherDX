@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Termination_Reason__c</fullName>
+    <externalId>false</externalId>
+    <label>Termination Reason</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>0% Commission Upselling</fullName>
+                <default>false</default>
+                <label>0% Commission Upselling</label>
+            </value>
+            <value>
+                <fullName>Bad debtor</fullName>
+                <default>false</default>
+                <label>Bad debtor</label>
+            </value>
+            <value>
+                <fullName>Best Price Guarantee</fullName>
+                <default>false</default>
+                <label>Best Price Guarantee</label>
+            </value>
+            <value>
+                <fullName>Business Closed</fullName>
+                <default>false</default>
+                <label>Business Closed</label>
+            </value>
+            <value>
+                <fullName>Business Temporarily out of service</fullName>
+                <default>false</default>
+                <label>Business Temporarily out of service</label>
+            </value>
+            <value>
+                <fullName>Cannot Contact</fullName>
+                <default>false</default>
+                <label>Cannot Contact</label>
+            </value>
+            <value>
+                <fullName>Capacity - Competitors</fullName>
+                <default>false</default>
+                <label>Capacity - Competitors</label>
+            </value>
+            <value>
+                <fullName>Capacity - Driver Issue</fullName>
+                <default>false</default>
+                <label>Capacity - Driver Issue</label>
+            </value>
+            <value>
+                <fullName>Capacity - Order Volume</fullName>
+                <default>false</default>
+                <label>Capacity - Order Volume</label>
+            </value>
+            <value>
+                <fullName>Capacity - Own Website</fullName>
+                <default>false</default>
+                <label>Capacity - Own Website</label>
+            </value>
+            <value>
+                <fullName>Change of Business Name</fullName>
+                <default>false</default>
+                <label>Change of Business Name</label>
+            </value>
+            <value>
+                <fullName>Comission too high</fullName>
+                <default>false</default>
+                <label>Comission too high</label>
+            </value>
+            <value>
+                <fullName>Commission Upselling</fullName>
+                <default>false</default>
+                <label>Commission Upselling</label>
+            </value>
+            <value>
+                <fullName>Contract never received</fullName>
+                <default>false</default>
+                <label>Contract never received</label>
+            </value>
+            <value>
+                <fullName>DH Delivery</fullName>
+                <default>false</default>
+                <label>DH Delivery</label>
+            </value>
+            <value>
+                <fullName>Does not accept Online Payment</fullName>
+                <default>false</default>
+                <label>Does not accept Online Payment</label>
+            </value>
+            <value>
+                <fullName>Downgrade</fullName>
+                <default>false</default>
+                <label>Downgrade</label>
+            </value>
+            <value>
+                <fullName>Duplicate</fullName>
+                <default>false</default>
+                <label>Duplicate</label>
+            </value>
+            <value>
+                <fullName>Exclusive with competitor</fullName>
+                <default>false</default>
+                <label>Exclusive with competitor</label>
+            </value>
+            <value>
+                <fullName>Franchise Contract - Commission Change</fullName>
+                <default>false</default>
+                <label>Franchise Contract - Commission Change</label>
+            </value>
+            <value>
+                <fullName>Fraud</fullName>
+                <default>false</default>
+                <label>Fraud</label>
+            </value>
+            <value>
+                <fullName>High Failure Rate</fullName>
+                <default>false</default>
+                <label>High Failure Rate</label>
+            </value>
+            <value>
+                <fullName>Invalid</fullName>
+                <default>false</default>
+                <label>Invalid</label>
+            </value>
+            <value>
+                <fullName>Issues with payments to restaurant</fullName>
+                <default>false</default>
+                <label>Issues with payments to restaurant</label>
+            </value>
+            <value>
+                <fullName>Language issues</fullName>
+                <default>false</default>
+                <label>Language issues</label>
+            </value>
+            <value>
+                <fullName>Legal Form Change</fullName>
+                <default>false</default>
+                <label>Legal Form Change</label>
+            </value>
+            <value>
+                <fullName>Legal Issue</fullName>
+                <default>false</default>
+                <label>Legal Issue</label>
+            </value>
+            <value>
+                <fullName>Logistics Issue</fullName>
+                <default>false</default>
+                <label>Logistics Issue</label>
+            </value>
+            <value>
+                <fullName>Lost to Competition</fullName>
+                <default>false</default>
+                <label>Lost to Competition</label>
+            </value>
+            <value>
+                <fullName>Low Rating</fullName>
+                <default>false</default>
+                <label>Low Rating</label>
+            </value>
+            <value>
+                <fullName>New Owner - New Contract</fullName>
+                <default>false</default>
+                <label>New Owner - New Contract</label>
+            </value>
+            <value>
+                <fullName>New Owner - No New Contract</fullName>
+                <default>false</default>
+                <label>New Owner - No New Contract</label>
+            </value>
+            <value>
+                <fullName>No Delivery Service</fullName>
+                <default>false</default>
+                <label>No Delivery Service</label>
+            </value>
+            <value>
+                <fullName>Not enough capacity</fullName>
+                <default>false</default>
+                <label>Not enough capacity</label>
+            </value>
+            <value>
+                <fullName>Not Enough Orders</fullName>
+                <default>false</default>
+                <label>Not Enough Orders</label>
+            </value>
+            <value>
+                <fullName>Not Interested in Product</fullName>
+                <default>false</default>
+                <label>Not Interested in Product</label>
+            </value>
+            <value>
+                <fullName>Not interested in Terminal</fullName>
+                <default>false</default>
+                <label>Not interested in Terminal</label>
+            </value>
+            <value>
+                <fullName>Not satisfied with our product</fullName>
+                <default>false</default>
+                <label>Not satisfied with our product</label>
+            </value>
+            <value>
+                <fullName>No willingness to talk</fullName>
+                <default>false</default>
+                <label>No willingness to talk</label>
+            </value>
+            <value>
+                <fullName>Onboarding Failure</fullName>
+                <default>false</default>
+                <label>Onboarding Failure</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Payment Issue</fullName>
+                <default>false</default>
+                <label>Payment Issue</label>
+            </value>
+            <value>
+                <fullName>Personal appointment requested</fullName>
+                <default>false</default>
+                <label>Personal appointment requested</label>
+            </value>
+            <value>
+                <fullName>Poor Performance</fullName>
+                <default>false</default>
+                <label>Poor Performance</label>
+            </value>
+            <value>
+                <fullName>Prefers Competition</fullName>
+                <default>false</default>
+                <label>Prefers Competition</label>
+            </value>
+            <value>
+                <fullName>Price too high</fullName>
+                <default>false</default>
+                <label>Price too high</label>
+            </value>
+            <value>
+                <fullName>Pricing - Admin Fee</fullName>
+                <default>false</default>
+                <label>Pricing - Admin Fee</label>
+            </value>
+            <value>
+                <fullName>Pricing - Commission</fullName>
+                <default>false</default>
+                <label>Pricing - Commission</label>
+            </value>
+            <value>
+                <fullName>Pricing - Merchant Fee</fullName>
+                <default>false</default>
+                <label>Pricing - Merchant Fee</label>
+            </value>
+            <value>
+                <fullName>Pricing - Premium Placement</fullName>
+                <default>false</default>
+                <label>Pricing - Premium Placement</label>
+            </value>
+            <value>
+                <fullName>Pricing - Setup Fee</fullName>
+                <default>false</default>
+                <label>Pricing - Setup Fee</label>
+            </value>
+            <value>
+                <fullName>Product Change</fullName>
+                <default>false</default>
+                <label>Product Change</label>
+            </value>
+            <value>
+                <fullName>Product Not Available</fullName>
+                <default>false</default>
+                <label>Product Not Available</label>
+            </value>
+            <value>
+                <fullName>Quick order sticker</fullName>
+                <default>false</default>
+                <label>Quick order sticker</label>
+            </value>
+            <value>
+                <fullName>Switch OD to VD</fullName>
+                <default>false</default>
+                <label>Switch OD to VD</label>
+            </value>
+            <value>
+                <fullName>Switch VD to OD</fullName>
+                <default>false</default>
+                <label>Switch VD to OD</label>
+            </value>
+            <value>
+                <fullName>Terminal Issue</fullName>
+                <default>false</default>
+                <label>Terminal Issue</label>
+            </value>
+            <value>
+                <fullName>Termination</fullName>
+                <default>false</default>
+                <label>Termination</label>
+            </value>
+            <value>
+                <fullName>Transmission Issue</fullName>
+                <default>false</default>
+                <label>Transmission Issue</label>
+            </value>
+            <value>
+                <fullName>Unhappy with service</fullName>
+                <default>false</default>
+                <label>Unhappy with service</label>
+            </value>
+            <value>
+                <fullName>Upgrade</fullName>
+                <default>false</default>
+                <label>Upgrade</label>
+            </value>
+            <value>
+                <fullName>Upgrade Failed</fullName>
+                <default>false</default>
+                <label>Upgrade Failed</label>
+            </value>
+            <value>
+                <fullName>Website issues</fullName>
+                <default>false</default>
+                <label>Website issues</label>
+            </value>
+            <value>
+                <fullName>Welcome call unsuccessful</fullName>
+                <default>false</default>
+                <label>Welcome call unsuccessful</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

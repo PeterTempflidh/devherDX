@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Only_one_active_bank_account</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF(AND(TEXT(Active_Bank_Account__c) == &apos;Yes&apos;, TEXT( Alternative_Bank_Account_Active__c ) == &apos;Yes&apos;),True,False)</errorConditionFormula>
+    <errorMessage>Only one Bank Account (Owner / Alternative) can be active at any given time.</errorMessage>
+</ValidationRule>

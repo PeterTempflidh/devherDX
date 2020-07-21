@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FI_Restaurant_Operations1</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7</booleanFilter>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.TYPE</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Opportunity__c</columns>
+    <columns>CASES.RECORDTYPE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.FI_Restaurant_Operations,Case.FI_Internal_Case</value>
+    </filters>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>notEqual</operation>
+        <value>Closed</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>notContain</operation>
+        <value>Account,jtuom,nfern,kniem,rkosk,Sales,Finance,mtaka,tdalt,vsair,asa,TiaLa</value>
+    </filters>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>notContain</operation>
+        <value>premium</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>notEqual</operation>
+        <value>Onboarding,Quality Check,Retention,Owner/Legal Form Change,Sales Task</value>
+    </filters>
+    <filters>
+        <field>CASES.REASON</field>
+        <operation>notContain</operation>
+        <value>Ownership,Change of ownership</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>notEqual</operation>
+        <value>jheli,jlaht,sjärv,AnnRa,gtoma,mjant,mpinn,ahele,jhell,janfo,tnurr,mleht</value>
+    </filters>
+    <label>FI - Restaurant Operations</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>SE_FI_Operations</group>
+        <group>SE_FI_Shared_Group</group>
+        <role>FI_Account_Management</role>
+        <role>FI_Customer_Care_Team</role>
+        <role>FI_Management</role>
+        <role>FI_Sales_Team</role>
+    </sharedTo>
+</ListView>

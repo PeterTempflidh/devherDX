@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>UK_Warm_Leads_to_be_qualified</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>LEAD.COMPANY</columns>
+    <columns>LEAD.ZIP</columns>
+    <columns>Vendor_Grade__c</columns>
+    <columns>Competitor_Notes__c</columns>
+    <columns>LEAD.CREATED_DATE</columns>
+    <columns>LEAD.LEAD_SOURCE</columns>
+    <columns>LEAD.STATUS</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>LEAD.EMAIL</columns>
+    <filterScope>Queue</filterScope>
+    <filters>
+        <field>LEAD.STATUS</field>
+        <operation>equals</operation>
+        <value>New,Contacted,Open</value>
+    </filters>
+    <filters>
+        <field>LEAD.LEAD_SOURCE</field>
+        <operation>equals</operation>
+        <value>Inbound,Own Research,Competitor</value>
+    </filters>
+    <filters>
+        <field>Recommended_Tariff__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>UK - Warm + Cold Leads to be rated</label>
+    <language>en_US</language>
+    <queue>UK_Sales_Team</queue>
+    <sharedTo>
+        <group>UK_Research_Team</group>
+    </sharedTo>
+</ListView>

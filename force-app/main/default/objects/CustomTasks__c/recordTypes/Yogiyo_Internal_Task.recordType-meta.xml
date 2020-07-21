@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Yogiyo_Internal_Task</fullName>
+    <active>true</active>
+    <label>Yogiyo Internal Task</label>
+    <picklistValues>
+        <picklist>CRM_P_I_C__c</picklist>
+        <values>
+            <fullName>CRM person in charge for Korea</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Offline_Reason__c</picklist>
+        <values>
+            <fullName>Best Price Guarantee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Collection Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commission %2F Subscription to high</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contract violation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Data incomplete</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Disappointed by our business methods</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Duplicate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Exclusive with competitor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Failed in Upgrade</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>High Failure Rate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Incomplete Contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lost to competition</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Owner - New Contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Owner - Will not continue contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No delievery Service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non Contracted Rest - 2nd rejection</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not able to receive orders</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not enough capacity</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not enough orders</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not interested in product%28영업팀 컨택 거부 O%2EE%2E 장기%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not satisfied with our product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quick Order Sticker</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejected the contract proposal from Sales team</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejects Online Payment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant Closed Permanently</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurant closed temporarily</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Successful in Upgrade</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Temporary Sales O%2EE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminal issues</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Termination</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Person_In_Charge_Take_Online__c</picklist>
+        <values>
+            <fullName>leeseul</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Person_In_Charge__c</picklist>
+        <values>
+            <fullName>leeseohyun</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>leeseul</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Person_in_Charge_Final_Check__c</picklist>
+        <values>
+            <fullName>leeseul</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Priority__c</picklist>
+        <values>
+            <fullName>High</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Normal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Urgent</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Request_Reason__c</picklist>
+        <values>
+            <fullName>1st Warning</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2nd Warning</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Back to Lead Research</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Billing %2F Invoice Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Business Licensee Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contract Cancellation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Expand Target District %2F Opening time</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Invoice Address Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Keyword Ad Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Late Payment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Menu Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Menu Processing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partnership - 1st Warning</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partnership - 2nd Warning</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partnership - 3rd Warning</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partnership - 4th Warning</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Result of Deposit Confirmation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Take Restaurant Offline</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminal Request</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Request_Source__c</picklist>
+        <values>
+            <fullName>Backend</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Call center</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fax</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Portal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Telephone</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Web</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>e-mail</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Result__c</picklist>
+        <values>
+            <fullName>Online</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Take online not possible</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>In progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Started</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Waiting for reply</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type__c</picklist>
+        <values>
+            <fullName>Call</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

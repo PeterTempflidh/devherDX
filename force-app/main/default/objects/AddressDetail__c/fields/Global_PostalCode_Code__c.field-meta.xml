@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_PostalCode_Code__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Model__c, 
+&quot;GPA&quot;,
+CASE(GPA_Country_short_name__c,
+&quot;DE&quot;,
+GPA_Postal_code_short_name__c,
+&quot;DO&quot;,
+GPA_Postal_code_short_name__c,
+&quot;VE&quot;,
+GPA_Postal_code_short_name__c,
+&quot;HU&quot;,
+GPA_Postal_code_short_name__c,
+&quot;AT&quot;,
+GPA_Postal_code_short_name__c,
+&quot;SE&quot;,
+GPA_Postal_code_short_name__c,
+&quot;FI&quot;,
+GPA_Postal_code_short_name__c,
+&quot;KR&quot;,
+GPA_Postal_code_short_name__c,
+&quot;UY&quot;,
+GPA_Postal_code_short_name__c,
+&quot;CZ&quot;,
+GPA_Postal_code_short_name__c,
+&quot;&quot;
+)
+,
+&quot;XAL&quot;,
+CASE(CountryCode__c,
+&quot;AR&quot;,
+PostalCodeName__c,
+&quot;CL&quot;,
+PostalCodeName__c,
+&quot;HK&quot;,
+&quot;X&quot;,
+&quot;LA&quot;,
+PostalCodeName__c,
+&quot;KH&quot;,
+PostalCodeName__c,
+&quot;MM&quot;,
+PostalCodeName__c,
+&quot;SG&quot;,
+PostalCodeName__c,
+&quot;PH&quot;,
+PostalCodeName__c,
+&quot;TH&quot;,
+PostalCodeName__c,
+&quot;BD&quot;,
+PostalCodeName__c,
+&quot;MY&quot;,
+PostalCodeName__c,
+&quot;TW&quot;,
+PostalCodeName__c,
+&quot;JP&quot;,
+PostalCodeName__c,
+&quot;CZ&quot;,
+PostalCodeName__c,
+&quot;&quot;
+),
+/* at this time XAL does not include postal codes */
+&quot;&quot;)</formula>
+    <label>Global PostalCode Code</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

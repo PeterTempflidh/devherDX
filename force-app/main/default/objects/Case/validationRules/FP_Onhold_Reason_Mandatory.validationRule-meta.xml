@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FP_Onhold_Reason_Mandatory</fullName>
+    <active>true</active>
+    <description>From SP-4727 - If Status of case moves to &apos;On Hold&apos;, field &apos;On Hold Reason&apos; must have an entry.</description>
+    <errorConditionFormula>AND(
+RecordType.DeveloperName = &quot;FP_Restaurant_Operations&quot;,
+ISPICKVAL(Status, &apos;On Hold&apos;),
+ISBLANK(On_Hold_Reason__c),
+NOT( $Permission.Exclude_from_Validation )
+)</errorConditionFormula>
+    <errorDisplayField>On_Hold_Reason__c</errorDisplayField>
+    <errorMessage>Please select an &quot;On Hold&quot; reason before putting the case On Hold.</errorMessage>
+</ValidationRule>

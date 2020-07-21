@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Estado de Devolución</label>
+    <name>Retour_Status__c</name>
+    <picklistValues>
+        <masterLabel>Arrange Pick up</masterLabel>
+        <translation><!-- Arrange Pick up --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Attempted Delivery</masterLabel>
+        <translation><!-- Attempted Delivery --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Awaiting Shipping</masterLabel>
+        <translation><!-- Awaiting Shipping --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivered to Warehouse</masterLabel>
+        <translation><!-- Delivered to Warehouse --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>En Route</masterLabel>
+        <translation><!-- En Route --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Owner sends Terminal</masterLabel>
+        <translation><!-- Owner sends Terminal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sales Rep Terminated</masterLabel>
+        <translation><!-- Sales Rep Terminated --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_products_active_can_be_selected</fullName>
+    <active>true</active>
+    <description>only products that are active can be selected in field &quot;Product__c&quot;</description>
+    <errorConditionFormula>Product__r.Is_Active__c = false</errorConditionFormula>
+    <errorDisplayField>Product__c</errorDisplayField>
+    <errorMessage>The product selected in the branding is inactive, please select an active product</errorMessage>
+</ValidationRule>

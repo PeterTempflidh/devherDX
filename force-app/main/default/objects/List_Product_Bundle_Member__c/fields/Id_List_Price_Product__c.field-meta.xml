@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Id_List_Price_Product__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <description>this holds the list price product Id</description>
+    <externalId>false</externalId>
+    <label>List Price Product</label>
+    <referenceTo>List_Product_Price__c</referenceTo>
+    <relationshipLabel>List Product Bundle Members</relationshipLabel>
+    <relationshipName>List_Product_Bundle_Members</relationshipName>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

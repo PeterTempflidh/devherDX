@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sent_Back_To_Level_1_Queue__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>For AU to track all Cases that were sent back to the Level 1 Queue. This is because agents should really be completing most, if not all Cases that they create themselves.</description>
+    <externalId>false</externalId>
+    <label>Sent Back To Level 1 Queue</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

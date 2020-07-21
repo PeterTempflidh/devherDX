@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Competitor_branding__c</fullName>
+    <externalId>false</externalId>
+    <label>Competitor branding</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Menulog / Eat Now</fullName>
+                <default>false</default>
+                <label>Menulog / Eat Now</label>
+            </value>
+            <value>
+                <fullName>Zomato</fullName>
+                <default>false</default>
+                <label>Zomato</label>
+            </value>
+            <value>
+                <fullName>Order Up</fullName>
+                <default>false</default>
+                <label>Order Up</label>
+            </value>
+            <value>
+                <fullName>Suppertime</fullName>
+                <default>false</default>
+                <label>Suppertime</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

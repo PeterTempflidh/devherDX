@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Weight__c</fullName>
+    <externalId>false</externalId>
+    <label>Weight</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>130g</fullName>
+                <default>false</default>
+                <label>130g</label>
+            </value>
+            <value>
+                <fullName>150g</fullName>
+                <default>false</default>
+                <label>150g</label>
+            </value>
+            <value>
+                <fullName>170g</fullName>
+                <default>false</default>
+                <label>170g</label>
+            </value>
+            <value>
+                <fullName>200g</fullName>
+                <default>false</default>
+                <label>200g</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

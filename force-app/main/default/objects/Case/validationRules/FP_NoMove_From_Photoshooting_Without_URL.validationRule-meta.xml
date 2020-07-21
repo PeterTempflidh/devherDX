@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FP_NoMove_From_Photoshooting_Without_URL</fullName>
+    <active>true</active>
+    <description>For APAC Case shouldn&apos;t proceed from &apos;In Photoshooting&apos; status without population of  Google_Drive_photo_URL__c field</description>
+    <errorConditionFormula>AND( RecordType.Name = &apos;FP Entry Case&apos;, ISBLANK( Google_Drive_photo_URL__c ), ISPICKVAL(PRIORVALUE( Status ),&apos;In Photoshooting&apos;),NOT(ISPICKVAL(Status,&apos;New&apos;)), NOT(ISPICKVAL(Status,&apos;In Photoshooting&apos;) ),ISBLANK(TEXT(Closed_Reason__c)))</errorConditionFormula>
+    <errorMessage>Please populate &apos;Google Drive photo URL&apos; field before move from &apos;In Photoshooting&apos; status.</errorMessage>
+</ValidationRule>

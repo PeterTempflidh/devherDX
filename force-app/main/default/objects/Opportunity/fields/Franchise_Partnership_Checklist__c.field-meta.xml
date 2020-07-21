@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Franchise_Partnership_Checklist__c</fullName>
+    <description>This field is to check whether all the checkpoints for the franchise partnership is done</description>
+    <externalId>false</externalId>
+    <label>Franchise Partnership Checklist</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Agreement Doc. for Image use made</fullName>
+                <default>false</default>
+                <label>Agreement Doc. for Image use made</label>
+            </value>
+            <value>
+                <fullName>All Franchise list received</fullName>
+                <default>false</default>
+                <label>All Franchise list received</label>
+            </value>
+            <value>
+                <fullName>Announced to Franchise Branches</fullName>
+                <default>false</default>
+                <label>Announced to Franchise Branches</label>
+            </value>
+            <value>
+                <fullName>Business Approval Set</fullName>
+                <default>false</default>
+                <label>Business Approval Set</label>
+            </value>
+            <value>
+                <fullName>Contact for Partnership</fullName>
+                <default>false</default>
+                <label>Contact for Partnership</label>
+            </value>
+            <value>
+                <fullName>Delivered Proposal Doc.</fullName>
+                <default>false</default>
+                <label>Delivered Proposal Doc.</label>
+            </value>
+            <value>
+                <fullName>Meeting Scheduled</fullName>
+                <default>false</default>
+                <label>Meeting Scheduled</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>10</visibleLines>
+</CustomField>

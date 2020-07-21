@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_Sales_cannot_set_status_to_Active</fullName>
+    <active>true</active>
+    <errorConditionFormula>$Profile.Name = &quot;DE Sales Team&quot; 
+&amp;&amp; 
+TEXT(Status__c)= &quot;Active&quot; 
+&amp;&amp; 
+ISCHANGED(Status__c)</errorConditionFormula>
+    <errorDisplayField>Status__c</errorDisplayField>
+    <errorMessage>You can not activate the Add on. Only the team in charge can activate them.</errorMessage>
+</ValidationRule>

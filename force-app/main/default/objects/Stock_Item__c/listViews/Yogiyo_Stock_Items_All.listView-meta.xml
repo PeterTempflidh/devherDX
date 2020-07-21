@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Yogiyo_Stock_Items_All</fullName>
+    <columns>Management_Number__c</columns>
+    <columns>NAME</columns>
+    <columns>Status__c</columns>
+    <columns>Condition__c</columns>
+    <columns>Id_Account__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Stock_Item__c.Yogiyo_Stock_Item</value>
+    </filters>
+    <label>Yogiyo - All</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>Yogiyo_CC_Fulltime</group>
+        <group>Yogiyo_CC_Parttime</group>
+        <role>Yogiyo_Customer_Car_Management</role>
+        <role>Yogiyo_Customer_Care_Team</role>
+        <role>Yogiyo_Local_Admin</role>
+    </sharedTo>
+</ListView>

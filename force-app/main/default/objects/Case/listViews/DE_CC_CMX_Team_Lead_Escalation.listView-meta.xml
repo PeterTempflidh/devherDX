@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DE_CC_CMX_Team_Lead_Escalation</fullName>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>NAME</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Case_Owner_Company__c</columns>
+    <filterScope>Queue</filterScope>
+    <filters>
+        <field>CASES.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Case_Owner_Company__c</field>
+        <operation>contains</operation>
+        <value>CMX,CMX - Skopje,CMX - Tbilisi</value>
+    </filters>
+    <label>DE - CMX - Team Lead Escalation</label>
+    <language>en_US</language>
+    <queue>DE_Team_Lead_Escalation</queue>
+    <sharedTo>
+        <group>DE_CMX_Team_Leaders</group>
+        <group>DE_General_Management</group>
+        <group>DE_Ops_Management</group>
+    </sharedTo>
+</ListView>

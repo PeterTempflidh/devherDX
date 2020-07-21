@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hungary_List_Product_Price_Records</fullName>
+    <columns>NAME</columns>
+    <columns>Displayed_Name__c</columns>
+    <columns>Product_Name__c</columns>
+    <columns>Product_Type__c</columns>
+    <columns>Company__c</columns>
+    <columns>CURRENCY_ISO_CODE</columns>
+    <columns>Id_List_Product_Group__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Id_Country__c</field>
+        <operation>equals</operation>
+        <value>Hungary</value>
+    </filters>
+    <label>Hungary List Product Price Records</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>Salesforce_Admin</group>
+    </sharedTo>
+</ListView>

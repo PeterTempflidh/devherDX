@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Státusz</label>
+    <name>Status__c</name>
+    <picklistValues>
+        <masterLabel>Accepted</masterLabel>
+        <translation>elfogadva</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Approval pending</masterLabel>
+        <translation>jóváhagyás függőben</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Approval pending - Regional HOS</masterLabel>
+        <translation><!-- Approval pending - Regional HOS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Approved</masterLabel>
+        <translation>jóváhagyva</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Declined</masterLabel>
+        <translation>elutasítva</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Draft</masterLabel>
+        <translation><!-- Draft --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Expired</masterLabel>
+        <translation><!-- Expired --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pending</masterLabel>
+        <translation><!-- Pending --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pending - legal</masterLabel>
+        <translation><!-- Pending - legal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rejected</masterLabel>
+        <translation>visszautasítva</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Signed</masterLabel>
+        <translation><!-- Signed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Waiting for answer</masterLabel>
+        <translation><!-- Waiting for answer --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

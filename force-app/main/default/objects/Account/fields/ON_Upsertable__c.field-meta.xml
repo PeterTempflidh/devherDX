@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ON_Upsertable__c</fullName>
+    <description>If checked, the Account can be transferred by the JustOn Connector.</description>
+    <externalId>false</externalId>
+    <formula>OR( RecordType.DeveloperName = &quot;SE_Account&quot;,RecordType.DeveloperName = &quot;FI_Account&quot;)
+&amp;&amp;
+(
+ISPICKVAL(Account_Status__c, &quot;Onboarding&quot;)
+||
+ISPICKVAL(Account_Status__c, &quot;Active&quot;)
+||
+ISPICKVAL(Account_Status__c, &quot;Terminated&quot;)
+)
+&amp;&amp; (NOT( Mark_for_Testing_Training__c ))
+&amp;&amp;
+Backend_ID__c &lt;&gt; NULL</formula>
+    <inlineHelpText>If checked, the Account can be transferred by the JustOn Connector.</inlineHelpText>
+    <label>Connector: Upsertable</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

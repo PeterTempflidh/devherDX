@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fields_Mandatory_for_Successful_MP</fullName>
+    <active>true</active>
+    <description>Certain fields are mandatory for successful menu processing, menu change cases</description>
+    <errorConditionFormula>And (
+  RecordType.DeveloperName = &apos;Yogiyo_Entry_Case&apos;, 
+  TEXT(Closed_Reason__c) = &apos;Take Online&apos;, 
+  OR(
+   ISBLANK(TEXT(Person_In_Charge__c)),
+   ISBLANK(Menu_Typed_Date__c),
+   ISBLANK(TEXT(Person_in_Charge_Final_Check__c)),
+   ISBLANK(Final_Check_Date__c),
+   ISBLANK(TEXT(Person_In_Charge_Take_Online__c)),
+   ISBLANK(Take_Online_Date__c)
+  )
+)</errorConditionFormula>
+    <errorMessage>Please fill out the following fields before closing the case:
+Person_In_Charge__c,Menu_Typed_Date__c,Person_in_Charge_Final_Check__c,Final_Check_Date__c,Person_In_Charge_Take_Online__c,Take_Online_Date__c</errorMessage>
+</ValidationRule>

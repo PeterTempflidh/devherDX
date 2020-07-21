@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Leads_in_44_45_58_auf_Dirk</fullName>
+    <booleanFilter>(1 AND 2 AND 3 AND 4 AND 5) OR (1 AND 3 AND 4 AND 5 AND 6)</booleanFilter>
+    <columns>FULL_NAME</columns>
+    <columns>LEAD.COMPANY</columns>
+    <columns>LEAD.STATE</columns>
+    <columns>LEAD.EMAIL</columns>
+    <columns>LEAD.STATUS</columns>
+    <columns>LEAD.CREATED_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>LEAD.UNREAD</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>LEAD.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Lead.DE_Lead</value>
+    </filters>
+    <filters>
+        <field>LEAD.STATUS</field>
+        <operation>equals</operation>
+        <value>New,Contacted,Long-term follow-up</value>
+    </filters>
+    <filters>
+        <field>LEAD.ZIP</field>
+        <operation>startsWith</operation>
+        <value>44,45</value>
+    </filters>
+    <filters>
+        <field>LEAD.LEAD_SOURCE</field>
+        <operation>notEqual</operation>
+        <value>Inbound</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>notEqual</operation>
+        <value>DE Sales Operations,D Sem</value>
+    </filters>
+    <filters>
+        <field>Migration_status__c</field>
+        <operation>notEqual</operation>
+        <value>Lost,Converted</value>
+    </filters>
+    <label>Leads in 44 / 45 / 58 auf Dirk</label>
+    <language>de</language>
+    <sharedTo>
+        <group>DE_Sales_Operations</group>
+    </sharedTo>
+</ListView>

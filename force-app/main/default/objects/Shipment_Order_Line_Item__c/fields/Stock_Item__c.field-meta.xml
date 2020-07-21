@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stock_Item__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>This field is to assing the stock item that should be deliver an copy on the asset</description>
+    <externalId>false</externalId>
+    <label>Stock Item</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>There is not stock Items available</errorMessage>
+        <filterItems>
+            <field>Stock_Item__c.Status__c</field>
+            <operation>equals</operation>
+            <value>New - In Stock, In Stock</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Stock_Item__c</referenceTo>
+    <relationshipLabel>Shipment Order Line Items</relationshipLabel>
+    <relationshipName>Shipment_Order_Line_Items</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

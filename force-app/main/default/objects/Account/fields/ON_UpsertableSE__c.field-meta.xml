@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ON_UpsertableSE__c</fullName>
+    <externalId>false</externalId>
+    <formula>OR( RecordType.DeveloperName = &quot;SE_Account&quot;,RecordType.DeveloperName = &quot;FI_Account&quot;)
+&amp;&amp;
+(
+ISPICKVAL( Account_Status__c , &quot;Menu Processing&quot;) 
+|| 
+ISPICKVAL(Account_Status__c, &quot;Onboarding&quot;) 
+|| 
+ISPICKVAL(Account_Status__c, &quot;Active&quot;) 
+|| 
+ISPICKVAL(Account_Status__c, &quot;Terminated&quot;)
+) 
+&amp;&amp; (NOT( Mark_for_Testing_Training__c ))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Connector: Upsertable SE</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

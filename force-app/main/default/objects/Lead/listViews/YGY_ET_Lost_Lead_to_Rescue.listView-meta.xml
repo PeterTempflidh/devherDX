@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>YGY_ET_Lost_Lead_to_Rescue</fullName>
+    <booleanFilter>1 AND 2 AND (3 OR 4)</booleanFilter>
+    <columns>LEAD.LAST_UPDATE</columns>
+    <columns>LEAD.STATUS</columns>
+    <columns>Person_in_Charge__c</columns>
+    <columns>Lost_Reason__c</columns>
+    <columns>LEAD.LAST_NAME</columns>
+    <columns>LEAD.PHONE</columns>
+    <columns>LEAD.STATE</columns>
+    <columns>LEAD.CITY</columns>
+    <columns>GunGu__c</columns>
+    <columns>Dong__c</columns>
+    <columns>Subdistrict__c</columns>
+    <columns>LEAD.LEAD_SOURCE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>LEAD.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Lead.Yogiyo_Lead</value>
+    </filters>
+    <filters>
+        <field>LEAD.STATUS</field>
+        <operation>equals</operation>
+        <value>Lost</value>
+    </filters>
+    <filters>
+        <field>Lost_Reason__c</field>
+        <operation>equals</operation>
+        <value>Changed to different cuisine,Not Interested,Not reached</value>
+    </filters>
+    <filters>
+        <field>Lost_Reason__c</field>
+        <operation>equals</operation>
+        <value>Target District adding not possible</value>
+    </filters>
+    <label>YGY - ET Lost Lead to Rescue</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Yogiyo_Local_Admin</role>
+        <role>Yogiyo_Operation_Management</role>
+        <role>Yogiyo_Operation_Team</role>
+    </sharedTo>
+</ListView>

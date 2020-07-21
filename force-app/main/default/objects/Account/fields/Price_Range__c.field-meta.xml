@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Price_Range__c</fullName>
+    <description>SP-3819</description>
+    <externalId>false</externalId>
+    <label>Price Range</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>$</fullName>
+                <default>false</default>
+                <label>$</label>
+            </value>
+            <value>
+                <fullName>$$</fullName>
+                <default>false</default>
+                <label>$$</label>
+            </value>
+            <value>
+                <fullName>$$$</fullName>
+                <default>false</default>
+                <label>$$$</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

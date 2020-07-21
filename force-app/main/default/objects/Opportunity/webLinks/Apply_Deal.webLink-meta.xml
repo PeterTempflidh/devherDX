@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Apply_Deal</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Apply Deal</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/xdomain/xdomain.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/26.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/support/console/30.0/integration.js&quot;)} 
+
+if(&quot;{!Opportunity.StageName}&quot; != &apos;Closed Won&apos;){
+   alert(&quot;Opportunity is not Closed Won. Please complete the Quality Check&quot;);
+}else{
+
+if (sforce.console.isInConsole()) { 
+    sforce.console.getFocusedPrimaryTabId(function(result){
+         sforce.console.openSubtab(result.id , &apos;/apex/ApplyChainOpportunityDeals?id={!Opportunity.Id}&apos;, true,
+                &apos;Apply Deals&apos;, null);
+    });
+}else{
+   window.open(&quot;/apex/ApplyChainOpportunityDeals?id={!Opportunity.Id}&quot;,&quot;Apply Deal&quot;,&quot;width=1000,height=1000&quot;);
+}
+}</url>
+</WebLink>

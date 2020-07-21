@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validation_Rule_Activated_Date</fullName>
+    <active>false</active>
+    <description>SFS-5432</description>
+    <errorConditionFormula>OR(RecordType.DeveloperName =&quot;UK_Asset&quot;,RecordType.DeveloperName =&quot;CZ_Asset&quot;)
+&amp;&amp;
+ISPICKVAL(Status__c, &quot;Activated Successfully&quot;)
+&amp;&amp;
+ISBLANK( Activation_Date__c )</errorConditionFormula>
+    <errorDisplayField>Activation_Date__c</errorDisplayField>
+    <errorMessage>Please fill out the &quot;Activation Date&quot;</errorMessage>
+</ValidationRule>

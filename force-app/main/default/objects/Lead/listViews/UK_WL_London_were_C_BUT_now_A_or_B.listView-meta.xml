@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>UK_WL_London_were_C_BUT_now_A_or_B</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>LEAD.COMPANY</columns>
+    <columns>LEAD.CITY</columns>
+    <columns>LEAD.LAST_UPDATE</columns>
+    <columns>LEAD.ZIP</columns>
+    <columns>Vendor_Grade__c</columns>
+    <columns>Competitor_Notes__c</columns>
+    <columns>LEAD.LEAD_SOURCE</columns>
+    <columns>External_Rating__c</columns>
+    <columns>LEAD.STATUS</columns>
+    <columns>LEAD.CREATED_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Lost_Reason__c</field>
+        <operation>equals</operation>
+        <value>Low Rating</value>
+    </filters>
+    <filters>
+        <field>Vendor_Grade__c</field>
+        <operation>equals</operation>
+        <value>AAA,A,B</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.LAST_NAME</field>
+        <operation>notEqual</operation>
+        <value>Sanchez</value>
+    </filters>
+    <filters>
+        <field>LEAD.LEAD_SOURCE</field>
+        <operation>equals</operation>
+        <value>Inbound</value>
+    </filters>
+    <label>UK - WLs were C BUT now A or B</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>UK_Research_Team</group>
+    </sharedTo>
+</ListView>

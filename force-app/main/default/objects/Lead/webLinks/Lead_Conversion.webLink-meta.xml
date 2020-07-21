@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lead_Conversion</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Convert</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/20.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/20.0/apex.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/support/console/30.0/integration.js&quot;)} 
+
+var leadId = &quot;{!Lead.Id}&quot;;
+var callResult = sforce.apex.execute(&quot;ClsLeadProcessor&quot;,&quot;processLeadConversion&quot;,{idOfLead:&quot;{!Lead.Id}&quot;, companyCodeLead:&quot;{!Lead.Company_Code__c}&quot;, future:true}); 
+ 
+if(callResult[0] == &apos;success&apos;){
+   if(callResult[1] == &apos;showConversionPage&apos;){
+       if (sforce.console.isInConsole()) {
+        
+      }
+      navigateToUrl(&apos;/apex/LeadConversion?id=&apos; + leadId+&apos;&amp;amp;isdtp=vw&apos;,&apos;DETAIL&apos;);     
+   }else{
+      if (sforce.console.isInConsole()) {
+        sforce.console.getEnclosingPrimaryTabId(showTab);
+      }
+   }
+} else {
+   alert(callResult[1]);
+}
+       
+function showTab(result) {
+  sforce.console.openPrimaryTab(result.id,&apos;/&apos; + callResult[1],true);
+}</url>
+</WebLink>

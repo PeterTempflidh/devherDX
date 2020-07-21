@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lost_Yogiyo</fullName>
+    <columns>NAME</columns>
+    <columns>Company_Number__c</columns>
+    <columns>Account__c</columns>
+    <columns>Retour_Date__c</columns>
+    <columns>Retour_Status__c</columns>
+    <columns>Stock_Item__c</columns>
+    <columns>Retour_Tracking_Number__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Lost</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset__c.Yogiyo_Asset</value>
+    </filters>
+    <label>YGY - 09. Lost</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Yogiyo_Local_Admin</role>
+        <roleAndSubordinates>Yogiyo_Customer_Car_Management</roleAndSubordinates>
+    </sharedTo>
+</ListView>

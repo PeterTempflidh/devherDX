@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mandatory_Source_Asset</fullName>
+    <active>true</active>
+    <description>Mandatory Source Asset field on Takeover/Sharing Assets before Activation</description>
+    <errorConditionFormula>AND
+((OR(TEXT(Type__c) = &apos;Takeover&apos;,
+TEXT(Type__c) = &apos;Sharing&apos;)),
+TEXT(Status__c) = &apos;Activated Successfully&apos;,
+ISBLANK(Source_Asset__c)
+)</errorConditionFormula>
+    <errorMessage>Please connect to the Source Asset</errorMessage>
+</ValidationRule>

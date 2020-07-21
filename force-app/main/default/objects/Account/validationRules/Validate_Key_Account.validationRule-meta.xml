@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validate_Key_Account</fullName>
+    <active>false</active>
+    <description>Allow marking of Account as Key/VIP account only if it has no parent Account associated to it.
+RT - Talabat_Account</description>
+    <errorConditionFormula>AND(RecordType.DeveloperName = &apos;Talabat_Account&apos;,TEXT(Type) = &apos;Branch - Main&apos;, ISCHANGED(Key_VIP_Account__c),NOT(ISCHANGED( Is_Apex__c)))</errorConditionFormula>
+    <errorDisplayField>Key_VIP_Account__c</errorDisplayField>
+    <errorMessage>The Key Account checkbox is controlled from the parent</errorMessage>
+</ValidationRule>

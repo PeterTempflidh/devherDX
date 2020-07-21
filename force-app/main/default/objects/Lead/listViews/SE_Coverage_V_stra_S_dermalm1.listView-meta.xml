@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SE_Coverage_V_stra_S_dermalm1</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>LEAD.COMPANY</columns>
+    <columns>Legal_Name__c</columns>
+    <columns>LEAD.STATE</columns>
+    <columns>LEAD.CITY</columns>
+    <columns>LEAD.ZIP</columns>
+    <columns>Vendor_Grade__c</columns>
+    <columns>Competitor__c</columns>
+    <columns>LEAD.STATUS</columns>
+    <columns>LEAD.CREATED_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <filterScope>Queue</filterScope>
+    <filters>
+        <field>LEAD.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Lead.SE_Lead</value>
+    </filters>
+    <filters>
+        <field>LEAD.STATUS</field>
+        <operation>equals</operation>
+        <value>New,Contacted,Open,Qualified,Long-term follow-up</value>
+    </filters>
+    <filters>
+        <field>LEAD.ZIP</field>
+        <operation>startsWith</operation>
+        <value>117</value>
+    </filters>
+    <label>SE - Coverage - STH - Västra Södermalm</label>
+    <language>en_US</language>
+    <queue>SE_Sales_Team</queue>
+    <sharedTo>
+        <group>SE_Team</group>
+    </sharedTo>
+</ListView>

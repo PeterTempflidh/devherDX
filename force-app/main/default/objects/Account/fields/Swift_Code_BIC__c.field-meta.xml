@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Swift_Code_BIC__c</fullName>
+    <description>Swift Code is a standard format of Bank Identifier Codes (BIC) and it is unique identification code for a particular bank. The Swift code consists of 8 or 11 characters.</description>
+    <externalId>false</externalId>
+    <label>Swift Code (BIC)</label>
+    <length>11</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

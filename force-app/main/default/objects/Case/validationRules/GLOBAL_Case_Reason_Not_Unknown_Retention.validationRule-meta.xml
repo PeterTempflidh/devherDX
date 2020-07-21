@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GLOBAL_Case_Reason_Not_Unknown_Retention</fullName>
+    <active>true</active>
+    <description>SP-1761
+SP-2737
+SP-2843
+SSC-1544</description>
+    <errorConditionFormula>(RecordType.DeveloperName=&quot;DE_Internal_Case&quot;
+||
+RecordType.DeveloperName=&quot;Talabat_Internal_Case&quot;
+||
+RecordType.DeveloperName=&quot;SE_Internal_Case&quot;
+||
+RecordType.DeveloperName=&quot;PY_Internal_Case&quot;
+||
+RecordType.DeveloperName=&quot;HU_Internal_Case&quot;
+||
+RecordType.DeveloperName=&quot;FI_Internal_Case&quot;
+||
+RecordType.DeveloperName=&quot;FP_Internal_Case&quot;
+||
+RecordType.DeveloperName=&quot;CZ_Internal_Case&quot;) 
+&amp;&amp; 
+TEXT(Status)=&quot;Closed&quot; 
+&amp;&amp; 
+TEXT(Case_Reason__c)=&apos;Unknown&apos; 
+&amp;&amp;  
+TEXT(Type)=&quot;Retention&quot;
+&amp;&amp;
+NOT( $Permission.Exclude_from_Validation )</errorConditionFormula>
+    <errorDisplayField>Case_Reason__c</errorDisplayField>
+    <errorMessage>You can not close a Retention Case with Case Reason &apos;Unknown&apos;</errorMessage>
+</ValidationRule>

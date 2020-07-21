@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TLB_Contact_Email_Validation</fullName>
+    <active>true</active>
+    <description>Contact Email mandatory if country not equal to Egypt.</description>
+    <errorConditionFormula>AND(
+RecordType.DeveloperName = &quot;Talabat_Contact&quot;,
+ISBLANK(Email),
+NOT( ISPICKVAL(  Account.Record_Country__c , &apos;Egypt&apos;))
+)</errorConditionFormula>
+    <errorDisplayField>Email</errorDisplayField>
+    <errorMessage>Please enter Email</errorMessage>
+</ValidationRule>

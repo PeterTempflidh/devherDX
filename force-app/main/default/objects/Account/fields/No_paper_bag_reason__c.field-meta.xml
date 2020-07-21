@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>No_paper_bag_reason__c</fullName>
+    <externalId>false</externalId>
+    <label>No paper bag reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Does Not Want to Pay</fullName>
+                <default>false</default>
+                <label>Does Not Want to Pay</label>
+            </value>
+            <value>
+                <fullName>No Storage Space</fullName>
+                <default>false</default>
+                <label>No Storage Space</label>
+            </value>
+            <value>
+                <fullName>Own Bags</fullName>
+                <default>false</default>
+                <label>Own Bags</label>
+            </value>
+            <value>
+                <fullName>Pizza Restaurant</fullName>
+                <default>false</default>
+                <label>Pizza Restaurant</label>
+            </value>
+            <value>
+                <fullName>Prefer Different Material</fullName>
+                <default>false</default>
+                <label>Prefer Different Material</label>
+            </value>
+            <value>
+                <fullName>Unsuitable Size</fullName>
+                <default>false</default>
+                <label>Unsuitable Size</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

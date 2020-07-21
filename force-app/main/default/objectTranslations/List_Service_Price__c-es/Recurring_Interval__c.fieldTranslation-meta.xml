@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Recurring Interval --></label>
+    <name>Recurring_Interval__c</name>
+    <picklistValues>
+        <masterLabel>Daily</masterLabel>
+        <translation><!-- Daily --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Monthly</masterLabel>
+        <translation><!-- Monthly --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>weekly</masterLabel>
+        <translation><!-- weekly --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

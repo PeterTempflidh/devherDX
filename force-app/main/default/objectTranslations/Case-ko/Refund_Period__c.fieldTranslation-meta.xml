@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>환불 기수</label>
+    <name>Refund_Period__c</name>
+    <picklistValues>
+        <masterLabel>1st Period</masterLabel>
+        <translation>1기</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2nd Period</masterLabel>
+        <translation>2기</translation>
+    </picklistValues>
+</CustomFieldTranslation>

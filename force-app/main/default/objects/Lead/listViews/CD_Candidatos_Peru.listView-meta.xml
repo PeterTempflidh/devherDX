@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CD_Candidatos_Peru</fullName>
+    <columns>Restaurant_Name__c</columns>
+    <columns>FULL_NAME</columns>
+    <columns>LEAD.COMPANY</columns>
+    <columns>LEAD.STATUS</columns>
+    <columns>Vendor_Grade__c</columns>
+    <columns>LEAD.CITY</columns>
+    <columns>Last_Call_Date__c</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Next_Call_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>LEAD.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Lead.CD_Lead</value>
+    </filters>
+    <filters>
+        <field>Record_Country__c</field>
+        <operation>equals</operation>
+        <value>Peru</value>
+    </filters>
+    <filters>
+        <field>LEAD.STATUS</field>
+        <operation>notEqual</operation>
+        <value>Lost</value>
+    </filters>
+    <label>CD - Candidatos Peru</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>CD_Management</role>
+        <role>Global_Admin</role>
+        <roleAndSubordinates>CD_Sales_Management_Peru</roleAndSubordinates>
+    </sharedTo>
+</ListView>

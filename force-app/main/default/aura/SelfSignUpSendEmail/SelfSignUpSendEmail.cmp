@@ -1,0 +1,62 @@
+<!--
+ - Created by danish.farooq on 6/3/20.
+ -->
+
+<aura:component description="SelfSignUpSendEmail" controller="SelfSignUpSendEmail_AuraController" implements="force:lightningQuickActionWithoutHeader,force:hasRecordId,flexipage:availableForAllPageTypes">
+
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="sendEmailObj" type="SelfSignUpSendEmail_AuraController"/>
+    <aura:attribute name="selectedValueFrom" type="string"/>
+    <!-- Create attribute to store lookup value as a sObject-->
+    <aura:attribute name="selectedLookUpRecords" type="sObject[]" default="[]"/>
+    <aura:attribute name="isLoading" type="Boolean" default="true" />
+    <aura:attribute name="isError" type="Boolean" default="false" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <lightning:notificationsLibrary aura:id="notifLib"/>
+    <!-- MODAL BODY / INPUT FORM -->
+    <div class="slds-form-element" >
+        <div class="loadingHolder">
+            <aura:if isTrue="{! v.isLoading }">
+                <lightning:spinner variant="brand" alternativeText="Loading" />
+            </aura:if>
+        </div>
+        <div class="slds-grid slds-wrap slds-m-around_x-small">
+            <div class="slds-col slds-form-element__control slds-size_1-of-1">
+                <lightning:select name="fromEmails" label="{!$Label.c.Quote_Email_From}" aura:id="fromEmails" value="{!v.selectedValueFrom}">
+                    <aura:iteration items="{!v.sendEmailObj.validFromEmails}" var="option">
+                        <option text="{!option.pickListLabel}" value="{!option.pickListValue}" />
+                    </aura:iteration>
+                </lightning:select>
+            </div>
+            <div class="slds-col slds-form-element__control slds-size_1-of-1">
+                <label class="slds-form-element__label" for="form-element-01">{!$Label.c.Quote_Email_To}</label>
+                <input type="text" id="txtEmailTo" class="slds-input"  value="{!v.sendEmailObj.toEmailAddress}" disabled="true" />
+            </div>
+            <div class="slds-col slds-form-element__control slds-size_1-of-1">
+                <label class="slds-form-element__label" for="form-element-01">{!$Label.c.Quote_Email_CC}</label>
+                <input type="text" id="txtEmailCC" class="slds-input"  value="{!v.sendEmailObj.ccEmailAddress}" disabled="true" />
+            </div>
+            <c:MultiSelectLookup objectAPIName="contact"
+                                 iconName="standard:contact"
+                                 lstSelectedRecords="{!v.selectedLookUpRecords}"
+                                 fieldToQuery="Email"
+                                 label="{!$Label.c.Quote_Email_BCC}"/>
+            <div class="slds-col slds-form-element__control slds-size_1-of-1">
+                <label class="slds-form-element__label" for="form-element-01">{!$Label.c.Quote_Email_Content}</label>
+                <lightning:inputRichText value="{!v.sendEmailObj.emailBody}"/>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- End of Modal Content -->
+    <!-- MODAL FOOTER -->
+    <footer>
+        <div class="slds-col modal-footer slds-modal__footer">
+                <lightning:button variant="brand" label="Send Email" disabled="{!v.isLoading || v.isError}" onclick="{!c.sendEmail}" />
+            </div>
+    </footer>
+
+
+</aura:component>

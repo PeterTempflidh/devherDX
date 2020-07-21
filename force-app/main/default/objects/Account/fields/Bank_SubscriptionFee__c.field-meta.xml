@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bank_SubscriptionFee__c</fullName>
+    <description>This field contains the subscription fee that the restaurant has to pay. It&apos;s synced from the backend and is needed for the billing.</description>
+    <externalId>false</externalId>
+    <label>Subscription Fee</label>
+    <precision>6</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

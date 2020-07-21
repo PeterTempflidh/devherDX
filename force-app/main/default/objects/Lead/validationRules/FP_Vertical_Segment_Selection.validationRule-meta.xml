@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FP_Vertical_Segment_Selection</fullName>
+    <active>true</active>
+    <description>Temporary solution for vertical segment selection.</description>
+    <errorConditionFormula>AND(
+RecordType.DeveloperName =&apos;FP_Lead&apos;,
+OR(ISPICKVAL(Record_Country__c, &apos;Laos&apos;),ISPICKVAL(Record_Country__c, &apos;Cambodia&apos;),ISPICKVAL(Record_Country__c, &apos;Myanmar&apos;)),
+OR(
+ISPICKVAL(Vertical_Segment__c, &apos;Automotive&apos;),
+ISPICKVAL(Vertical_Segment__c, &apos;Baby&apos;),
+ISPICKVAL(Vertical_Segment__c, &apos;Cosmetics&apos;),
+ISPICKVAL(Vertical_Segment__c, &apos;Darkstores&apos;),
+ISPICKVAL(Vertical_Segment__c, &apos;Electronics&apos;),
+ISPICKVAL(Vertical_Segment__c, &apos;Furniture&apos;),
+ISPICKVAL(Vertical_Segment__c, &apos;Toys&apos;),
+ISPICKVAL(Vertical_Segment__c, &apos;Flowers&apos;),
+ISPICKVAL(Vertical_Segment__c, &apos;Home &amp; Gifts&apos;),
+ISPICKVAL(Vertical_Segment__c, &apos;Party Supplies&apos;),
+ISPICKVAL(Vertical_Segment__c, &apos;Pets&apos;),
+ISPICKVAL(Vertical_Segment__c, &apos;Stationery&apos;),
+ISPICKVAL(Vertical_Segment__c, &apos;Healthcare &amp; Beauty&apos;)
+)
+)</errorConditionFormula>
+    <errorDisplayField>Vertical_Segment__c</errorDisplayField>
+    <errorMessage>This Vertical Segment is not allowed in your country.</errorMessage>
+</ValidationRule>

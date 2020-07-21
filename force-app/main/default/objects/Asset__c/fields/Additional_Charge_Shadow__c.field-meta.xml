@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Additional_Charge_Shadow__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Additional Charge Shadow</description>
+    <externalId>false</externalId>
+    <label>Additional Charges Shadow</label>
+    <referenceTo>Additional_Charge_Shadow__c</referenceTo>
+    <relationshipLabel>Assets</relationshipLabel>
+    <relationshipName>Assets</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Offline_Reason__c</fullName>
+    <externalId>false</externalId>
+    <label>Offline Reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Agreement issues</fullName>
+                <default>false</default>
+                <label>Agreement issues</label>
+            </value>
+            <value>
+                <fullName>Closed temporarily</fullName>
+                <default>false</default>
+                <label>Closed temporarily</label>
+            </value>
+            <value>
+                <fullName>Delivery area issues</fullName>
+                <default>false</default>
+                <label>Delivery area issues</label>
+            </value>
+            <value>
+                <fullName>Delivery hours issues</fullName>
+                <default>false</default>
+                <label>Delivery hours issues</label>
+            </value>
+            <value>
+                <fullName>Email issues</fullName>
+                <default>false</default>
+                <label>Email issues</label>
+            </value>
+            <value>
+                <fullName>Fax issues</fullName>
+                <default>false</default>
+                <label>Fax issues</label>
+            </value>
+            <value>
+                <fullName>Invoice issues</fullName>
+                <default>false</default>
+                <label>Invoice issues</label>
+            </value>
+            <value>
+                <fullName>Menu issues</fullName>
+                <default>false</default>
+                <label>Menu issues</label>
+            </value>
+            <value>
+                <fullName>No delivery service</fullName>
+                <default>false</default>
+                <label>No delivery service</label>
+            </value>
+            <value>
+                <fullName>Not enough orders</fullName>
+                <default>false</default>
+                <label>Not enough orders</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Terminal issues</fullName>
+                <default>false</default>
+                <label>Terminal issues</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

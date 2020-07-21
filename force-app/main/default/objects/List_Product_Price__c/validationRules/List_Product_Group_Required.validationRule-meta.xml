@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>List_Product_Group_Required</fullName>
+    <active>true</active>
+    <description>List product group is required</description>
+    <errorConditionFormula>ISBLANK( Id_List_Product_Group__c )</errorConditionFormula>
+    <errorDisplayField>Id_List_Product_Group__c</errorDisplayField>
+    <errorMessage>Product group required</errorMessage>
+</ValidationRule>

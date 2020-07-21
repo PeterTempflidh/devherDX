@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CD_Mandatory_fields_before_QA</fullName>
+    <active>true</active>
+    <errorConditionFormula>Account.RecordType.DeveloperName = &quot;CD_Account&quot;
+&amp;&amp;
+(
+ISBLANK(Account.Name)
+||
+ISBLANK(Account.Restaurant_Name__c)
+||
+ISBLANK(Account.ParentId)
+||
+ISBLANK(Account.Brand__c)
+||
+ISBLANK(Account.Payment_Method__c)
+||
+ISBLANK(Account.Minimum_order_value_Cash__c)
+||
+ISBLANK(( Account.Delivery_Service__c ))
+||
+ISBLANK(Account.Delivery_Zone__c)
+||
+ISBLANK(Account.Delivery_Fee__c)
+||
+ISBLANK(Account.Available_Delivery_Time_Comment__c)
+||
+ISBLANK(Account.Name)
+||
+ISBLANK(Account.Name)
+||
+ISBLANK(Account.Name))
+&amp;&amp;
+Probability=0.90
+&amp;&amp;TEXT(Account.Type)&lt;&gt;&quot;Client&quot;
+&amp;&amp;
+(TEXT(Business_Type__c)=&quot;New Business&quot;
+||
+TEXT(Business_Type__c)=&quot;Franchise Extension&quot;)</errorConditionFormula>
+    <errorMessage>Por Favor asegurese  los siguientes campos esten completos en la cuenta: Nombre del restaurante, Cuenta Principal, Marca, Metodo de pago, Valor minimo del Pedido, Entrega a Domicilio, Tarifa y zona de Reparto y horarios de apertura y disponibilidad.</errorMessage>
+</ValidationRule>

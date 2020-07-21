@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FI_Leads_New</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>Legal_Name__c</columns>
+    <columns>LEAD.LEAD_SOURCE</columns>
+    <columns>Delivery_ServicePicklist__c</columns>
+    <columns>Competitor__c</columns>
+    <columns>LEAD.CITY</columns>
+    <columns>LEAD.PHONE</columns>
+    <columns>Cuisine__c</columns>
+    <columns>LEAD.STATUS</columns>
+    <columns>LEAD.CREATED_DATE</columns>
+    <columns>LEAD.URL</columns>
+    <filterScope>Queue</filterScope>
+    <filters>
+        <field>LEAD.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Lead.FI_Lead</value>
+    </filters>
+    <filters>
+        <field>LEAD.STATUS</field>
+        <operation>equals</operation>
+        <value>New</value>
+    </filters>
+    <label>FI - All New Leads - to be assigned</label>
+    <language>en_US</language>
+    <queue>FI_Sales_Team</queue>
+    <sharedTo>
+        <role>FI_Account_Management</role>
+        <role>FI_Customer_Care_Team</role>
+        <role>FI_Management</role>
+        <role>FI_Sales_Team</role>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mandatory_Entry_Task_Result</fullName>
+    <active>true</active>
+    <description>Result field should be entered when completing the task</description>
+    <errorConditionFormula>AND( Id = &quot;01I11000000DGKv&quot;, ISPICKVAL( Result__c ,&quot;&quot;), ISPICKVAL ( Status__c , &quot;Completed&quot;))</errorConditionFormula>
+    <errorDisplayField>Result__c</errorDisplayField>
+    <errorMessage>Pleas enter the &apos;Result&apos; of this task</errorMessage>
+</ValidationRule>

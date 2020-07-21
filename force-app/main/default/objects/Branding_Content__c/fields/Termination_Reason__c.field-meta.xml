@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Termination_Reason__c</fullName>
+    <externalId>false</externalId>
+    <label>Termination Reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Business Closed</fullName>
+                <default>false</default>
+                <label>Business Closed</label>
+            </value>
+            <value>
+                <fullName>Cannot Contact</fullName>
+                <default>false</default>
+                <label>Cannot Contact</label>
+            </value>
+            <value>
+                <fullName>Capacity - Competitors</fullName>
+                <default>false</default>
+                <label>Capacity - Competitors</label>
+            </value>
+            <value>
+                <fullName>Capacity - Driver Issue</fullName>
+                <default>false</default>
+                <label>Capacity - Driver Issue</label>
+            </value>
+            <value>
+                <fullName>Capacity - Order Volume</fullName>
+                <default>false</default>
+                <label>Capacity - Order Volume</label>
+            </value>
+            <value>
+                <fullName>Capacity - Own Website</fullName>
+                <default>false</default>
+                <label>Capacity - Own Website</label>
+            </value>
+            <value>
+                <fullName>DH Delivery</fullName>
+                <default>false</default>
+                <label>DH Delivery</label>
+            </value>
+            <value>
+                <fullName>Downgrade</fullName>
+                <default>false</default>
+                <label>Downgrade</label>
+            </value>
+            <value>
+                <fullName>Duplicate</fullName>
+                <default>false</default>
+                <label>Duplicate</label>
+            </value>
+            <value>
+                <fullName>Fraud</fullName>
+                <default>false</default>
+                <label>Fraud</label>
+            </value>
+            <value>
+                <fullName>Invalid</fullName>
+                <default>false</default>
+                <label>Invalid</label>
+            </value>
+            <value>
+                <fullName>Legal Form Change</fullName>
+                <default>false</default>
+                <label>Legal Form Change</label>
+            </value>
+            <value>
+                <fullName>Legal Issue</fullName>
+                <default>false</default>
+                <label>Legal Issue</label>
+            </value>
+            <value>
+                <fullName>Logistics Issue</fullName>
+                <default>false</default>
+                <label>Logistics Issue</label>
+            </value>
+            <value>
+                <fullName>Lost to Competition</fullName>
+                <default>false</default>
+                <label>Lost to Competition</label>
+            </value>
+            <value>
+                <fullName>New Owner - New Contract</fullName>
+                <default>false</default>
+                <label>New Owner - New Contract</label>
+            </value>
+            <value>
+                <fullName>New Owner - No New Contract</fullName>
+                <default>false</default>
+                <label>New Owner - No New Contract</label>
+            </value>
+            <value>
+                <fullName>No Delivery Service</fullName>
+                <default>false</default>
+                <label>No Delivery Service</label>
+            </value>
+            <value>
+                <fullName>Not Enough Orders</fullName>
+                <default>false</default>
+                <label>Not Enough Orders</label>
+            </value>
+            <value>
+                <fullName>Not Interested in Product</fullName>
+                <default>false</default>
+                <label>Not Interested in Product</label>
+            </value>
+            <value>
+                <fullName>Onboarding Failure</fullName>
+                <default>false</default>
+                <label>Onboarding Failure</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Payment Issue</fullName>
+                <default>false</default>
+                <label>Payment Issue</label>
+            </value>
+            <value>
+                <fullName>Poor Performance</fullName>
+                <default>false</default>
+                <label>Poor Performance</label>
+            </value>
+            <value>
+                <fullName>Pricing - Admin Fee</fullName>
+                <default>false</default>
+                <label>Pricing - Admin fee</label>
+            </value>
+            <value>
+                <fullName>Pricing - Commission</fullName>
+                <default>false</default>
+                <label>Pricing - Commission</label>
+            </value>
+            <value>
+                <fullName>Pricing - Merchant Fee</fullName>
+                <default>false</default>
+                <label>Pricing - Merchant fee</label>
+            </value>
+            <value>
+                <fullName>Pricing - Premium Placement</fullName>
+                <default>false</default>
+                <label>Pricing - Premium Placement</label>
+            </value>
+            <value>
+                <fullName>Pricing - Setup Fee</fullName>
+                <default>false</default>
+                <label>Pricing - Setup Fee</label>
+            </value>
+            <value>
+                <fullName>Product Change</fullName>
+                <default>false</default>
+                <label>Product Change</label>
+            </value>
+            <value>
+                <fullName>Product Not Available</fullName>
+                <default>false</default>
+                <label>Product Not Available</label>
+            </value>
+            <value>
+                <fullName>Terminal Issue</fullName>
+                <default>false</default>
+                <label>Terminal Issue</label>
+            </value>
+            <value>
+                <fullName>Transmission Issue</fullName>
+                <default>false</default>
+                <label>Transmission Issue</label>
+            </value>
+            <value>
+                <fullName>Upgrade</fullName>
+                <default>false</default>
+                <label>Upgrade</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

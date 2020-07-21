@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Initiate Return --></label>
+    <name>Initiate_Return__c</name>
+    <picklistValues>
+        <masterLabel>Arrange Pick up</masterLabel>
+        <translation><!-- Arrange Pick up --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivered to Warehouse</masterLabel>
+        <translation><!-- Delivered to Warehouse --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Exchange Requested</masterLabel>
+        <translation><!-- Exchange Requested --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Owner sends Terminal</masterLabel>
+        <translation><!-- Owner sends Terminal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sales Rep Terminated</masterLabel>
+        <translation><!-- Sales Rep Terminated --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Takeover</masterLabel>
+        <translation><!-- Takeover --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>KR_Root_Cause_Mandatory</fullName>
+    <active>true</active>
+    <description>Root Cause should be mandatory for some types and case reasons when closing case as not successful.</description>
+    <errorConditionFormula>(((RecordType.DeveloperName = &quot;Yogiyo_Inbound&quot; 
+&amp;&amp; 
+((ISPICKVAL(Type, &quot;Data Change&quot;) 
+&amp;&amp; 
+ISPICKVAL(Case_Reason__c, &quot;Alcohol Listing Request&quot;)) 
+|| 
+(ISPICKVAL(Type, &quot;Partnership Franchise&quot;)))) 
+|| 
+
+(RecordType.DeveloperName = &quot;Yogiyo_Internal_Case&quot; 
+&amp;&amp; 
+((ISPICKVAL(Type, &quot;Recommendation&quot;) 
+&amp;&amp; 
+ISPICKVAL(Case_Reason__c, &quot;Restaurant Recommendation&quot;))) )
+ || 
+ISPICKVAL(Type, &quot;Quality Check&quot;))
+&amp;&amp; 
+ISPICKVAL(Closed_Reason__c, &quot;Not Successful&quot;) 
+&amp;&amp; 
+ISBLANK(Root_Cause__c)) 
+
+|| 
+
+(And ( 
+RecordType.DeveloperName = &apos;Yogiyo_Entry_Case&apos;, 
+TEXT(Closed_Reason__c) = &apos;Take Online is not possible&apos;, 
+ISBLANK(Root_Cause__c) 
+)) 
+
+|| 
+
+(RecordType.DeveloperName = &quot;Yogiyo_Inbound&quot; 
+&amp;&amp; 
+ISPICKVAL(Type, &quot;Restaurant Request&quot;) 
+&amp;&amp; 
+(ISPICKVAL(Case_Reason__c, &quot;Contract request-NEW&quot;) 
+|| 
+ISPICKVAL(Case_Reason__c, &quot;Contract request - Registered&quot;) 
+|| 
+ISPICKVAL(Case_Reason__c, &quot;Re-contract request&quot;) 
+|| 
+ISPICKVAL(Case_Reason__c, &quot;Business Licensee Change&quot;) 
+|| 
+ISPICKVAL(Case_Reason__c, &quot;Contract request - Additional Rest from Non-contract&quot;)) 
+&amp;&amp; 
+ISPICKVAL(Closed_Reason__c, &quot;Not Successful&quot;) 
+&amp;&amp; 
+ISBLANK(Root_Cause__c))</errorConditionFormula>
+    <errorDisplayField>Root_Cause__c</errorDisplayField>
+    <errorMessage>Please enter the Root Cause before closing the case as not successful</errorMessage>
+</ValidationRule>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_Case_Account_mandatory</fullName>
+    <active>true</active>
+    <description>Post-migration request: Account should not be mandatory for Internal Cases of the Type &apos;Fraud&apos;</description>
+    <errorConditionFormula>(CONTAINS(RecordType.DeveloperName, &apos;Rest&apos;)
+||
+CONTAINS(RecordType.DeveloperName, &apos;Internal&apos;)
+||
+CONTAINS(RecordType.DeveloperName, &apos;Entry&apos;)
+||
+CONTAINS(RecordType.DeveloperName, &apos;Finan&apos;))
+&amp;&amp;
+ISCHANGED(Status)
+&amp;&amp;
+ISBLANK(AccountId)
+&amp;&amp;
+(TEXT (Status) = &quot;Closed&quot;
+ || 
+TEXT (Status) = &quot;Resolved&quot;)
+&amp;&amp;
+NOT(ISCHANGED(ContactId))
+&amp;&amp;
+NOT(ISPICKVAL(Type,&apos;Fraud&apos;))
+&amp;&amp;
+NOT(ISPICKVAL(Origin,&apos;Enquiry&apos;))
+&amp;&amp;
+NOT(ISPICKVAL(Case_Reason__c,&apos;New Sign Up&apos;))
+&amp;&amp;
+NOT( $Permission.Exclude_from_Validation )</errorConditionFormula>
+    <errorDisplayField>AccountId</errorDisplayField>
+    <errorMessage>Please specify an Account for the Case</errorMessage>
+</ValidationRule>

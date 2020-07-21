@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>APAC_Approval_Rules_SG</fullName>
+    <columns>Country__c</columns>
+    <columns>NAME</columns>
+    <columns>Commission__c</columns>
+    <columns>Product__c</columns>
+    <columns>City__c</columns>
+    <columns>Vertical_Segment__c</columns>
+    <columns>Level1__c</columns>
+    <columns>Level1_Approver__c</columns>
+    <columns>Level2__c</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>Add_On__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Country__c</field>
+        <operation>equals</operation>
+        <value>singapore</value>
+    </filters>
+    <label>APAC - Approval Rules - SG</label>
+</ListView>

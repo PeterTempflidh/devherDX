@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_leads_excl_Lost_Competitor_Notes</fullName>
+    <booleanFilter>1 AND 2</booleanFilter>
+    <columns>LEAD.COMPANY</columns>
+    <columns>LEAD.PHONE</columns>
+    <columns>LEAD.STATUS</columns>
+    <columns>LEAD.LEAD_SOURCE</columns>
+    <columns>Lead_Data_Origin__c</columns>
+    <columns>LEAD.CITY</columns>
+    <columns>Target_Partner__c</columns>
+    <columns>Area__c</columns>
+    <columns>LEAD.ZIP</columns>
+    <columns>Competitor_Notes__c</columns>
+    <columns>LEAD.CREATED_DATE</columns>
+    <columns>LEAD.LAST_TRANSFER</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>LEAD.STATUS</field>
+        <operation>notEqual</operation>
+        <value>Lost,Perdido</value>
+    </filters>
+    <filters>
+        <field>Lead_Data_Origin__c</field>
+        <operation>contains</operation>
+        <value>Google</value>
+    </filters>
+    <label>My leads (excl. Lost) Competitor Notes</label>
+    <language>es</language>
+</ListView>

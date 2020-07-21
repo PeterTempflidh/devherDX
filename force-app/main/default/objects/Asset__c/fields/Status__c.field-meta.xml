@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <externalId>false</externalId>
+    <label>Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>New - Awaiting Shipping</fullName>
+                <default>false</default>
+                <label>New - Awaiting Shipping</label>
+            </value>
+            <value>
+                <fullName>Sent - Awaiting Activation</fullName>
+                <default>false</default>
+                <label>Sent - Awaiting Activation</label>
+            </value>
+            <value>
+                <fullName>Activated Successfully</fullName>
+                <default>false</default>
+                <label>Activated Successfully</label>
+            </value>
+            <value>
+                <fullName>Activated but not in use</fullName>
+                <default>false</default>
+                <label>Activated but not in use</label>
+            </value>
+            <value>
+                <fullName>Technical Issue</fullName>
+                <default>false</default>
+                <label>Technical Issue</label>
+            </value>
+            <value>
+                <fullName>Returned Shipment</fullName>
+                <default>false</default>
+                <label>Returned Shipment</label>
+            </value>
+            <value>
+                <fullName>Takeover</fullName>
+                <default>false</default>
+                <label>Takeover</label>
+            </value>
+            <value>
+                <fullName>Lost</fullName>
+                <default>false</default>
+                <label>Lost</label>
+            </value>
+            <value>
+                <fullName>Invalid</fullName>
+                <default>false</default>
+                <label>Invalid</label>
+            </value>
+            <value>
+                <fullName>Exchange Requested</fullName>
+                <default>false</default>
+                <label>Exchange Requested</label>
+            </value>
+            <value>
+                <fullName>Canceled</fullName>
+                <default>false</default>
+                <label>Canceled</label>
+            </value>
+            <value>
+                <fullName>New - Deposit awaited</fullName>
+                <default>false</default>
+                <label>New - Deposit awaited</label>
+            </value>
+            <value>
+                <fullName>Awaiting Delivery</fullName>
+                <default>false</default>
+                <label>Awaiting Delivery</label>
+            </value>
+            <value>
+                <fullName>Cancelled before Shipment</fullName>
+                <default>false</default>
+                <label>Cancelled before Shipment</label>
+            </value>
+            <value>
+                <fullName>Cancel Additional Charge</fullName>
+                <default>false</default>
+                <label>Cancel Additional Charge</label>
+            </value>
+            <value>
+                <fullName>Redeliver</fullName>
+                <default>false</default>
+                <label>Redeliver</label>
+            </value>
+            <value>
+                <fullName>Replacement Requested</fullName>
+                <default>false</default>
+                <label>Replacement Requested</label>
+            </value>
+            <value>
+                <fullName>Waiting For Replacement</fullName>
+                <default>false</default>
+                <label>Waiting For Replacement</label>
+            </value>
+            <value>
+                <fullName>Delivered - Activation Needed</fullName>
+                <default>false</default>
+                <label>Delivered - Activation Needed</label>
+            </value>
+            <value>
+                <fullName>Incomplete</fullName>
+                <default>false</default>
+                <label>Incomplete</label>
+            </value>
+            <value>
+                <fullName>Delivered</fullName>
+                <default>false</default>
+                <label>Delivered</label>
+            </value>
+            <value>
+                <fullName>Exception</fullName>
+                <default>false</default>
+                <label>Exception</label>
+            </value>
+            <value>
+                <fullName>InTransit</fullName>
+                <default>false</default>
+                <label>InTransit</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

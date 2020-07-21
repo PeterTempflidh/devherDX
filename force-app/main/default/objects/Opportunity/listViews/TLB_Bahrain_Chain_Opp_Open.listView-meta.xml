@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TLB_Bahrain_Chain_Opp_Open</fullName>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <columns>Record_Country__c</columns>
+    <columns>Business_Type__c</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Opportunity.Chain_Opportunity</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>notEqual</operation>
+        <value>Closed Won,Closed Lost</value>
+    </filters>
+    <filters>
+        <field>Record_Country__c</field>
+        <operation>equals</operation>
+        <value>Bahrain</value>
+    </filters>
+    <label>TLB - Bahrain - Chain Opp - Open</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Talabat_Management</role>
+        <role>Talabat_Sales_Management_Bahrain</role>
+        <role>Talabat_Sales_Team_Bahrain</role>
+    </sharedTo>
+</ListView>

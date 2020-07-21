@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Download_Attachments</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Download Attachments</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/support/console/30.0/integration.js&quot;)} 
+var url = &quot;/apex/DownloadAllAttachments?id={!Opportunity.Id}&amp;name={!Opportunity.Name}&quot;;
+if (sforce.console.isInConsole()) {
+	sforce.console.getEnclosingPrimaryTabId(function (res) {
+		sforce.console.openSubtab(res.id, url, true, &quot;Download Attachments&quot;);
+	});
+} else {
+	window.open(url, &quot;Download Attachments&quot;);
+}</url>
+</WebLink>

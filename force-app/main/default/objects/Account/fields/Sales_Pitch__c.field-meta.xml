@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Pitch__c</fullName>
+    <description>SP-2251: Information provided by Lead Organizer or other external systems on value of Restaurant and strategy to approach.</description>
+    <externalId>false</externalId>
+    <label>Sales Pitch</label>
+    <length>32768</length>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

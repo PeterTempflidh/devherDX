@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tax_Bill_Invoice_Consolidation__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <inlineHelpText>Indicates where in the hierarchy an Invoice / Tax Bill is aggregated. Normally, this is on Branch Level or done via &quot;Billable Account / Transfer to&quot; on Opportunity Level.</inlineHelpText>
+    <label>Tax Bill / Invoice Consolidation</label>
+    <lookupFilter>
+        <active>true</active>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <filterItems>
+            <field>Account.Id</field>
+            <operation>equals</operation>
+            <valueField>$Source.ParentId</valueField>
+        </filterItems>
+        <filterItems>
+            <field>Account.Id</field>
+            <operation>equals</operation>
+            <valueField>$Source.Franchise_Connection__c</valueField>
+        </filterItems>
+        <infoMessage>Indicates where in the hierarchy an Invoice / Tax Bill is aggregated. Normally, this is on Branch Level or done via &quot;Billable Account / Transfer to&quot; on Opportunity Level.</infoMessage>
+        <isOptional>true</isOptional>
+    </lookupFilter>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Accounts (Tax Bill / Invoice Consolidation)</relationshipLabel>
+    <relationshipName>TaxBillInvoiceConsolidation</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_City_Area_Code__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Model__c, 
+&quot;XAL&quot;,  
+CASE(CountryCode__c,
+&quot;BH&quot;,
+SubAdministrativeAreaCode__c,
+&quot;HK&quot;,
+SubAdministrativeAreaCode__c,
+&quot;PH&quot;,
+SubAdministrativeAreaCode__c,
+&quot;TH&quot;,
+SubAdministrativeAreaCode__c,
+&quot;BD&quot;,
+SubAdministrativeAreaCode__c,
+&quot;JO&quot;,
+SubAdministrativeAreaCode__c,
+&quot;SA&quot;,
+SubAdministrativeAreaCode__c,
+&quot;KW&quot;,
+SubAdministrativeAreaCode__c,
+&quot;LB&quot;,
+SubAdministrativeAreaCode__c,
+&quot;AR&quot;,
+SubAdministrativeAreaCode__c,
+&quot;CL&quot;,
+SubAdministrativeAreaCode__c,
+&quot;OM&quot;,
+SubAdministrativeAreaCode__c,
+&quot;EG&quot;,
+SubAdministrativeAreaCode__c,
+&quot;QA&quot;,
+SubAdministrativeAreaCode__c,
+&quot;AE&quot;,
+SubAdministrativeAreaCode__c,
+&quot;PA&quot;,
+SubAdministrativeAreaCode__c,
+&quot;PY&quot;,
+SubAdministrativeAreaCode__c,
+&quot;BO&quot;,
+SubAdministrativeAreaCode__c,
+&quot;&quot;
+),
+&quot;GPA&quot;, 
+CASE(GPA_Country_short_name__c,
+&quot;DO&quot;, 
+LocalityCode__c,
+&quot;VE&quot;,
+LocalityCode__c,
+&quot;KR&quot;, 
+LocalityCode__c,  
+&quot;UY&quot;, 
+LocalityCode__c,  
+&quot;CZ&quot;, 
+LocalityCode__c,
+&quot;HU&quot;,
+IF(Lower(GPA_Locality_short_name__c)= &quot;budapest&quot;, MID(GPA_Postal_code_long_name__c,2,2),&quot;&quot;),
+&quot;&quot; 
+),
+&quot;&quot;)</formula>
+    <label>Global City Area Code</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

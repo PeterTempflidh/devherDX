@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HU_Opp_Approval_Pending_All</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>Business_Type__c</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Opportunity.HU_Opportunity</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>Approval Pending</value>
+    </filters>
+    <label>HU Opp - Approval Pending(All)</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>HU_Account_Management</group>
+        <group>HU_Finance_Team</group>
+        <group>HU_Restaurant_Operations</group>
+        <group>HU_Sales_Operations</group>
+        <group>HU_Sales_Team</group>
+        <role>HU_Account_Manager</role>
+        <role>HU_Management</role>
+        <role>HU_Sales_Agent</role>
+        <role>HU_Sales_Management</role>
+    </sharedTo>
+</ListView>

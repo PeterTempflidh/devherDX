@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>마감 사유</label>
+    <name>Closed_Reason__c</name>
+    <picklistValues>
+        <masterLabel>Approved</masterLabel>
+        <translation>승인 완료</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Auto Closed</masterLabel>
+        <translation><!-- Auto Closed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Back Online</masterLabel>
+        <translation>재 온라인</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Call Scheduled</masterLabel>
+        <translation><!-- Call Scheduled --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Create Retention Task</masterLabel>
+        <translation>리텐션 테스크 생성</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Create Take Offline Task for Non Contracted</masterLabel>
+        <translation>비가맹 오프라인 테스크 생성</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Duplicated</masterLabel>
+        <translation><!-- Duplicated --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Escalated to AM</masterLabel>
+        <translation><!-- Escalated to AM --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Improvement on KPI’s (AM)</masterLabel>
+        <translation><!-- Improvement on KPI’s (AM) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Improvement on KPI’s (Agent)</masterLabel>
+        <translation><!-- Improvement on KPI’s (Agent) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Invalid</masterLabel>
+        <translation>효력 없음</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Reachable</masterLabel>
+        <translation>연결안됨</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Successful</masterLabel>
+        <translation>미완료</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Successful - Commission is not correct</masterLabel>
+        <translation>미완료 - 수수료 오입력</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Successful - Data Missing</masterLabel>
+        <translation>미완료 - 정보 부족</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rejected</masterLabel>
+        <translation>거부</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Taken Offline (1 st Incident)</masterLabel>
+        <translation><!-- Restaurant Taken Offline (1 st Incident) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Taken Offline (Permanent)</masterLabel>
+        <translation><!-- Restaurant Taken Offline (Permanent) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Retention</masterLabel>
+        <translation>리텐션</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Spam</masterLabel>
+        <translation><!-- Spam --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Successful</masterLabel>
+        <translation>완료</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Successful Call</masterLabel>
+        <translation><!-- Successful Call --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Take Offline</masterLabel>
+        <translation>오프라인 처리</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Take Online</masterLabel>
+        <translation>온라인 처리</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Take Online is not possible</masterLabel>
+        <translation>온라인 불가능</translation>
+    </picklistValues>
+</CustomFieldTranslation>

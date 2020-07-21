@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X0_All_Yogiyo_Asset</fullName>
+    <columns>NAME</columns>
+    <columns>Opportunity__c</columns>
+    <columns>Company_Number__c</columns>
+    <columns>Account__c</columns>
+    <columns>Terminal_PIC__c</columns>
+    <columns>Stock_Item__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset__c.Yogiyo_Asset</value>
+    </filters>
+    <label>YGY - 0. All Yogiyo Asset</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>Yogiyo_CC_Fulltime</group>
+        <group>Yogiyo_CC_Parttime</group>
+        <role>Yogiyo_Customer_Car_Management</role>
+        <role>Yogiyo_Customer_Care_Team</role>
+        <role>Yogiyo_Local_Admin</role>
+    </sharedTo>
+</ListView>

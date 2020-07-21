@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Menu_Upd_Mjr_Check__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Menu Update Major with Image Check if there is a parent on record avoid creating 2</description>
+    <externalId>false</externalId>
+    <label>Menu Upd Mjr Check</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

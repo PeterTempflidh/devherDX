@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_Cannot_edit_Closed_Opp</fullName>
+    <active>true</active>
+    <description>Opportunities after quality check can not be edited</description>
+    <errorConditionFormula>PRIORVALUE ( IsClosed ) = True 
+&amp;&amp; 
+NOT($Permission.Exclude_from_Validation) 
+ &amp;&amp; 
+NOT( $Permission.Edit_Opportunity_After_Closed  = true)
+&amp;&amp; 
+Is_DataLoaded__c = False 
+&amp;&amp; 
+NOT(ISCHANGED( Last_Call_Comments__c )) 
+&amp;&amp; 
+NOT(ISCHANGED( MidasAPIException__c ))
+&amp;&amp;
+NOT(ISCHANGED(AsynchJobId__c))
+&amp;&amp;
+NOT((RecordType.DeveloperName=&quot;Yogiyo_Opportunity&quot;) &amp;&amp; ISPICKVAL(StageName,&quot;Closed Won&quot;) &amp;&amp; ISCHANGED(OwnerId))</errorConditionFormula>
+    <errorMessage>You can not edit a Closed opportunity</errorMessage>
+</ValidationRule>

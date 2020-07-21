@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Request_Reason__c</fullName>
+    <description>this is the case reason for Internal Tasks</description>
+    <externalId>false</externalId>
+    <label>Request Reason</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Back to Lead Research</fullName>
+                <default>false</default>
+                <label>Back to Lead Research</label>
+            </value>
+            <value>
+                <fullName>Billing / Invoice Request</fullName>
+                <default>false</default>
+                <label>Billing / Invoice Request</label>
+            </value>
+            <value>
+                <fullName>Invoice Address Change</fullName>
+                <default>false</default>
+                <label>Invoice Address Change</label>
+            </value>
+            <value>
+                <fullName>Business Licensee Change</fullName>
+                <default>false</default>
+                <label>Business Licensee Change</label>
+            </value>
+            <value>
+                <fullName>Expand Target District / Opening time</fullName>
+                <default>false</default>
+                <label>Expand Target District / Opening time</label>
+            </value>
+            <value>
+                <fullName>Keyword Ad Change</fullName>
+                <default>false</default>
+                <label>Keyword Ad Change</label>
+            </value>
+            <value>
+                <fullName>Terminal Request</fullName>
+                <default>false</default>
+                <label>Terminal Request</label>
+            </value>
+            <value>
+                <fullName>Menu Processing</fullName>
+                <default>false</default>
+                <label>Menu Processing</label>
+            </value>
+            <value>
+                <fullName>Menu Change</fullName>
+                <default>false</default>
+                <label>Menu Change</label>
+            </value>
+            <value>
+                <fullName>Retention</fullName>
+                <default>false</default>
+                <label>Retention</label>
+            </value>
+            <value>
+                <fullName>Take Restaurant Offline</fullName>
+                <default>false</default>
+                <label>Take Restaurant Offline</label>
+            </value>
+            <value>
+                <fullName>Late Payment</fullName>
+                <default>false</default>
+                <label>Late Payment</label>
+            </value>
+            <value>
+                <fullName>1st Warning</fullName>
+                <default>false</default>
+                <label>1st Warning</label>
+            </value>
+            <value>
+                <fullName>2nd Warning</fullName>
+                <default>false</default>
+                <label>2nd Warning</label>
+            </value>
+            <value>
+                <fullName>Contract Cancellation</fullName>
+                <default>false</default>
+                <label>Contract Cancellation</label>
+            </value>
+            <value>
+                <fullName>Partnership - 1st Warning</fullName>
+                <default>false</default>
+                <label>Partnership - 1st Warning</label>
+            </value>
+            <value>
+                <fullName>Partnership - 2nd Warning</fullName>
+                <default>false</default>
+                <label>Partnership - 2nd Warning</label>
+            </value>
+            <value>
+                <fullName>Partnership - 3rd Warning</fullName>
+                <default>false</default>
+                <label>Partnership - 3rd Warning</label>
+            </value>
+            <value>
+                <fullName>Partnership - 4th Warning</fullName>
+                <default>false</default>
+                <label>Partnership - 4th Warning</label>
+            </value>
+            <value>
+                <fullName>Result of Deposit Confirmation</fullName>
+                <default>false</default>
+                <label>Result of Deposit Confirmation</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

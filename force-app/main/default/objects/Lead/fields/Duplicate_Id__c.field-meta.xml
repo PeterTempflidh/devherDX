@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Duplicate_Id__c</fullName>
+    <description>SP-3010</description>
+    <externalId>false</externalId>
+    <inlineHelpText>If a Lead is a duplicate, please fill out this field / add the GRID or Id.</inlineHelpText>
+    <label>Duplicate Id</label>
+    <length>30</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

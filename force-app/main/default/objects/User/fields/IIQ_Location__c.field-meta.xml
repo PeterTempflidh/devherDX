@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IIQ_Location__c</fullName>
+    <description>Field that stores the Location/Country of users to create a User Adoption Report. It gets populated from a file.</description>
+    <externalId>false</externalId>
+    <label>IIQ Location</label>
+    <length>30</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

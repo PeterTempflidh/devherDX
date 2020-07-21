@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Schnelltexte_Customer_Care</fullName>
+    <columns>Name</columns>
+    <columns>Message</columns>
+    <columns>Category</columns>
+    <columns>CurrencyIsoCode</columns>
+    <filterScope>Everything</filterScope>
+    <label>Schnelltexte Customer Care</label>
+    <sharedTo>
+        <group>FP_APAC_Customer_Refunds</group>
+        <group>FP_BD_Customer_Refunds</group>
+        <group>FP_PK_Customer_Refunds</group>
+        <role>DE_Customer_Care</role>
+        <role>DE_Customer_Care_Management</role>
+        <role>Global_Management</role>
+    </sharedTo>
+</ListView>

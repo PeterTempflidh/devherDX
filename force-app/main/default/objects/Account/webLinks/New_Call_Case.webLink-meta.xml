@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_Call_Case</fullName>
+    <availability>online</availability>
+    <description>Creates a Call Case for DE CC Module</description>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>New Call Case</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&apos;/soap/ajax/40.0/connection.js&apos;)} 
+
+var newCase = new sforce.SObject(&apos;Case&apos;); 
+newCase.AccountId = &apos;{!Account.Id}&apos;; 
+newCase.OwnerId = &quot;{!$User.Id}&quot;; 
+newCase.Origin = &apos;Phone&apos;; 
+
+newCase.Contact_Email__c= &apos;{!Account.Account_Email__c}&apos;;
+ 
+var btn = document.getElementsByName(&quot;new_call_case&quot;)[0]; 
+
+if(&quot;{!Account.RecordTypeId}&quot;==&apos;0121r000000V9wX&apos;){// check for the DE Account
+	newCase.RecordTypeId = &apos;0121r000000V9wgAAC&apos;; // set the DE_Inbound_Case
+
+	if (&quot;{!Account.Id}&quot;==&apos;0011r00001lGG13&apos;){ // DE Dummy Account
+		newCase.Type = &apos;Customer Request&apos;;newCase.Queue_ID__c = &apos;00G1r000003JwJpEAK&apos;;
+	} 
+	else{
+		newCase.Type = &apos;Restaurant Request&apos;;newCase.Queue_ID__c = &apos;00G1r000003JwK3EAK&apos;;}
+}else if(&quot;{!Account.RecordTypeId}&quot;==&apos;012w0000000R07J&apos;){
+	newCase.RecordTypeId = &apos;012w0000000R07QAAS&apos;; // set the CD_Inbound_Case
+	if (&quot;{!Account.Id}&quot;==&apos;0011r00001osxZ4&apos;){ // CD Dummy Account
+	newCase.Type = &apos;Customer Request&apos;;newCase.Queue_ID__c = &apos;00G1r000003Bza6&apos;;
+	} 
+	else {
+		newCase.Type = &apos;Restaurant Request&apos;;newCase.Queue_ID__c = &apos;00G1r000003BzaD&apos;;
+	}
+}else if(&quot;{!Account.RecordTypeId}&quot;==&apos;012w0000000MPcY&apos;){// check for the TALABAT Account
+	newCase.RecordTypeId = &apos;0121r0000007eRz&apos;; // set the Talabat_Inbound_Case
+	if (&quot;{!Account.Id}&quot;==&apos;0011r000020RcSQ&apos;){ // TALABAT Dummy Account
+	newCase.Type = &apos;Customer Request&apos;;newCase.Queue_ID__c = &apos;00G1r000003CWUH&apos;;
+	} 
+	else {
+		newCase.Type = &apos;Restaurant Request&apos;;newCase.Queue_ID__c = &apos;00G1r000003CWUH&apos;;
+	}
+
+}else if(&quot;{!Account.RecordTypeId}&quot;==&apos;0121r0000007eqL&apos;){// check for the PY Account
+	newCase.RecordTypeId = &apos;0121r0000007eqS&apos;; // set the PY_Inbound_Case
+	if (&quot;{!Account.Id}&quot;==&apos;0011r0000281aS7&apos;){ // PY Dummy Account
+	newCase.Type = &apos;Customer Request&apos;;newCase.Queue_ID__c = &apos;00G1r000003CelE&apos;;
+	} 
+	else {
+		newCase.Type = &apos;Restaurant Request&apos;;newCase.Queue_ID__c = &apos;00G1r000003CiIY&apos;;
+	}
+
+}
+
+var result = sforce.connection.create([newCase]); 
+
+
+if(result[0].success==&apos;true&apos;){ 
+alert(&apos;{!$Label.Case_Created}&apos;); 
+console.log(result[0].id);
+srcUp(result[0].id); 
+} 
+else{ 
+console.log(&apos;&apos;+ result[0].errors.message);
+alert(&apos;{!$Label.Case_not_created}&apos; + result[0].errors.message); 
+//srcUp(&apos;/&apos; + result[0].errors.message); 
+}</url>
+</WebLink>

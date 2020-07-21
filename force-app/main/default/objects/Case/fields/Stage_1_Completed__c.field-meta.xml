@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stage_1_Completed__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Used for Talabat Quality Check cases tracks when Legal team approve the documents</description>
+    <externalId>false</externalId>
+    <label>Stage 1 Completed</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Contract Channel --></label>
+    <name>Contract_Channel__c</name>
+    <picklistValues>
+        <masterLabel>01. Direct Call or Visit from Yogiyo (Only In Lead)</masterLabel>
+        <translation><!-- 01. Direct Call or Visit from Yogiyo (Only In Lead) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>02. Owner Change Case</masterLabel>
+        <translation><!-- 02. Owner Change Case --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>03. Contract Request Case</masterLabel>
+        <translation><!-- 03. Contract Request Case --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>04. Recommendation</masterLabel>
+        <translation><!-- 04. Recommendation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>05. Direct Contact from Rest. Owner (not case)</masterLabel>
+        <translation><!-- 05. Direct Contact from Rest. Owner (not case) --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

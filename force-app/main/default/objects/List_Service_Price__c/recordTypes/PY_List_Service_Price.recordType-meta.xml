@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PY_List_Service_Price</fullName>
+    <active>true</active>
+    <description>Record type for Pedidos Ya and in future to be global for all countries</description>
+    <label>PY List Service Price</label>
+    <picklistValues>
+        <picklist>Based_On__c</picklist>
+        <values>
+            <fullName>Monetary Amounts</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Orders</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Commission_Type__c</picklist>
+        <values>
+            <fullName>Per Order</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Percentage</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Recurring_Interval__c</picklist>
+        <values>
+            <fullName>Daily</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Monthly</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>weekly</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Requires_Esignature__c</picklist>
+        <values>
+            <fullName>Block</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mandatory</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Optional</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Service_Type__c</picklist>
+        <values>
+            <fullName>Commission Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Courier Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Logistics Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Online Payment Fee</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type__c</picklist>
+        <values>
+            <fullName>Commission</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Premium Placement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Recurring Fee</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

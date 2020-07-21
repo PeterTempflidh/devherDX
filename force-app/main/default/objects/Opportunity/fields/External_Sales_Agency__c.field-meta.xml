@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>External_Sales_Agency__c</fullName>
+    <description>This field is to clarify which External Sales Agency is the owner of this contract</description>
+    <externalId>false</externalId>
+    <label>External Sales Agency</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Y001 위져스프리</fullName>
+                <default>false</default>
+                <label>Y001 위져스프리</label>
+            </value>
+            <value>
+                <fullName>Y002 조은아파트강동</fullName>
+                <default>false</default>
+                <label>Y002 조은아파트강동</label>
+            </value>
+            <value>
+                <fullName>Y003 윤현기획</fullName>
+                <default>false</default>
+                <label>Y003 윤현기획</label>
+            </value>
+            <value>
+                <fullName>Y004 탑유통</fullName>
+                <default>false</default>
+                <label>Y004 탑유통</label>
+            </value>
+            <value>
+                <fullName>Y005 에스에이치테크(SH테크)</fullName>
+                <default>false</default>
+                <label>Y005 에스에이치테크(SH테크)</label>
+            </value>
+            <value>
+                <fullName>Y006 애니원기획</fullName>
+                <default>false</default>
+                <label>Y006 애니원기획</label>
+            </value>
+            <value>
+                <fullName>Y007 도남기획</fullName>
+                <default>false</default>
+                <label>Y007 도남기획</label>
+            </value>
+            <value>
+                <fullName>Y008 용오름기획</fullName>
+                <default>false</default>
+                <label>Y008 용오름기획</label>
+            </value>
+            <value>
+                <fullName>Y009 디에이치솔루션(DHSOLUTION)</fullName>
+                <default>false</default>
+                <label>Y009 디에이치솔루션(DHSOLUTION)</label>
+            </value>
+            <value>
+                <fullName>Y010 현대광고연합</fullName>
+                <default>false</default>
+                <label>Y010 현대광고연합</label>
+            </value>
+            <value>
+                <fullName>Y011 스마트애드</fullName>
+                <default>false</default>
+                <label>Y011 스마트애드</label>
+            </value>
+            <value>
+                <fullName>Y012 드림라이프</fullName>
+                <default>false</default>
+                <label>Y012 드림라이프</label>
+            </value>
+            <value>
+                <fullName>Y013 국민전화번호부 강동지점</fullName>
+                <default>false</default>
+                <label>Y013 국민전화번호부 강동지점</label>
+            </value>
+            <value>
+                <fullName>Y014 케이.엠.에스</fullName>
+                <default>false</default>
+                <label>Y014 케이.엠.에스</label>
+            </value>
+            <value>
+                <fullName>Y015 드림라이프서울</fullName>
+                <default>false</default>
+                <label>Y015 드림라이프서울</label>
+            </value>
+            <value>
+                <fullName>Y016 아이티기획</fullName>
+                <default>false</default>
+                <label>Y016 아이티기획</label>
+            </value>
+            <value>
+                <fullName>Y017 와와소프트</fullName>
+                <default>false</default>
+                <label>Y017 와와소프트</label>
+            </value>
+            <value>
+                <fullName>Y018 창조기획(함께가는길)</fullName>
+                <default>false</default>
+                <label>Y018 창조기획(함께가는길)</label>
+            </value>
+            <value>
+                <fullName>Y019 드림디자인</fullName>
+                <default>false</default>
+                <label>Y019 드림디자인</label>
+            </value>
+            <value>
+                <fullName>Y020 능수기획</fullName>
+                <default>false</default>
+                <label>Y020 능수기획</label>
+            </value>
+            <value>
+                <fullName>Y021 참D&amp;P</fullName>
+                <default>false</default>
+                <label>Y021 참D&amp;P</label>
+            </value>
+            <value>
+                <fullName>Y022 에스디피에이디(SDPAD)</fullName>
+                <default>false</default>
+                <label>Y022 에스디피에이디(SDPAD)</label>
+            </value>
+            <value>
+                <fullName>Y023 노랑디자인</fullName>
+                <default>false</default>
+                <label>Y023 노랑디자인</label>
+            </value>
+            <value>
+                <fullName>Y024 어플천국</fullName>
+                <default>false</default>
+                <label>Y024 어플천국</label>
+            </value>
+            <value>
+                <fullName>Y025 한빛광고기획</fullName>
+                <default>false</default>
+                <label>Y025 한빛광고기획</label>
+            </value>
+            <value>
+                <fullName>Y026 E.G.P편리한생활</fullName>
+                <default>false</default>
+                <label>Y026 E.G.P편리한생활</label>
+            </value>
+            <value>
+                <fullName>Y027 모아넷</fullName>
+                <default>false</default>
+                <label>Y027 모아넷</label>
+            </value>
+            <value>
+                <fullName>Y028 해피라이프</fullName>
+                <default>false</default>
+                <label>Y028 해피라이프</label>
+            </value>
+            <value>
+                <fullName>Y029 이배</fullName>
+                <default>false</default>
+                <label>Y029 이배</label>
+            </value>
+            <value>
+                <fullName>Y030 플러스기획</fullName>
+                <default>false</default>
+                <label>Y030 플러스기획</label>
+            </value>
+            <value>
+                <fullName>Y031 혜원디자인</fullName>
+                <default>false</default>
+                <label>Y031 혜원디자인</label>
+            </value>
+            <value>
+                <fullName>Y032 ㈜스마트월드</fullName>
+                <default>false</default>
+                <label>Y032 ㈜스마트월드</label>
+            </value>
+            <value>
+                <fullName>Y033 애드앱</fullName>
+                <default>false</default>
+                <label>Y033 애드앱</label>
+            </value>
+            <value>
+                <fullName>Y034 A&amp;C기획</fullName>
+                <default>false</default>
+                <label>Y034 A&amp;C기획</label>
+            </value>
+            <value>
+                <fullName>Y035 제이엠기획</fullName>
+                <default>false</default>
+                <label>Y035 제이엠기획</label>
+            </value>
+            <value>
+                <fullName>Y036 애드원</fullName>
+                <default>false</default>
+                <label>Y036 애드원</label>
+            </value>
+            <value>
+                <fullName>Y037 피플즈81</fullName>
+                <default>false</default>
+                <label>Y037 피플즈81</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

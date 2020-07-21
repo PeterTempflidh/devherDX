@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Germany</fullName>
+    <columns>NAME</columns>
+    <columns>Process_Name__c</columns>
+    <columns>Is_Active__c</columns>
+    <columns>Record_Type_Id__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Record_Type_Id__c</field>
+        <operation>startsWith</operation>
+        <value>DE_</value>
+    </filters>
+    <filters>
+        <field>Parent__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Germany - BConfigs</label>
+    <language>en_US</language>
+</ListView>

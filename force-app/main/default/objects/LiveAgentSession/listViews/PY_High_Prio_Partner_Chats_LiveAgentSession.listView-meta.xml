@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PY_High_Prio_Partner_Chats_LiveAgentSession</fullName>
+    <filterScope>Queue</filterScope>
+    <label>PY - High Prio Partner Chats</label>
+    <queue>PY_High_Prio_Partner_Chats</queue>
+    <sharedTo>
+        <allInternalUsers/>
+    </sharedTo>
+</ListView>

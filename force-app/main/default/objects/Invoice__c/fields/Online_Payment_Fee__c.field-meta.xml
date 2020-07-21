@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Online_Payment_Fee__c</fullName>
+    <description>Sums up the all invoice line item totals where the product group is &apos;PAYFEE&apos;.. was called SumPaymentFee__c in the old org</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Sum of the fee for all online paid orders</inlineHelpText>
+    <label>Online Payment Fee</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

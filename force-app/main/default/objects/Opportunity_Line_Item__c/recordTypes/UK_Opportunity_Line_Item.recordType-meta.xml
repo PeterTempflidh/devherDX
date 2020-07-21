@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>UK_Opportunity_Line_Item</fullName>
+    <active>true</active>
+    <label>UK Opportunity Line Item</label>
+    <picklistValues>
+        <picklist>Based_On__c</picklist>
+        <values>
+            <fullName>Monetary Amounts</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Orders</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Commission_Type_Picklist__c</picklist>
+        <values>
+            <fullName>Per Order</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Percentage</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Delivery__c</picklist>
+        <values>
+            <fullName>Sharing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shipment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Takeover</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Deposit_Method__c</picklist>
+        <values>
+            <fullName>Bank Transfer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cheque</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Credit Card</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Line_Item_Type__c</picklist>
+        <values>
+            <fullName>AddOn</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Migrated_From_Source_System__c</picklist>
+        <values>
+            <fullName>Salesforce PeYa</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Number_of_Copies__c</picklist>
+        <values>
+            <fullName>100K</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10K</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>125K</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>150K</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>175K</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>200K</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>25K</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>50K</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5K</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Size__c</picklist>
+        <values>
+            <fullName>A3</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A4</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A4 Extended</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A5</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>B4</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Sub_type__c</picklist>
+        <values>
+            <fullName>Ad Sales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Annual Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Apron</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Automatic</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Blade Sign</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Branding Discount</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Caps</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commission Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Exclusive Branding Discount</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fixed Amount</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Flat Commission</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Heating Bag</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Manual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Menu Printing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Monthly Box Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Monthly Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Notepads and Pens</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Online Payment Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Order Now Button Discount</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Order Now Button Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pizza Cartons</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Premium Placement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Promotions</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RFV Discount</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Recurring Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Renewal Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Replacement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Roofie</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Setup Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>T-shirt</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminal Box</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transmission Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Voucher</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Welcome Pack</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>White Label Website Discount</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>White Label Website Fee</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Weight__c</picklist>
+        <values>
+            <fullName>130g</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>150g</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>170g</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>200g</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

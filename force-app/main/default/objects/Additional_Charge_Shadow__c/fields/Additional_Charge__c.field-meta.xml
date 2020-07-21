@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Additional_Charge__c</fullName>
+    <description>Additional Charge Link</description>
+    <externalId>false</externalId>
+    <label>Additional Charge</label>
+    <referenceTo>Additional_Charges__c</referenceTo>
+    <relationshipName>Additional_Charges_Shadow</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

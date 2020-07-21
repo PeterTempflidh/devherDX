@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SE_Prevent_Close_Case_Manually</fullName>
+    <active>true</active>
+    <description>The User only can close the case throw the process with the button mark complet until they are in the last stage for the Dish level photo cases.</description>
+    <errorConditionFormula>AND(
+RecordType.DeveloperName = &quot;SE_Entry_Case&quot;,
+ISPICKVAL(Type,  &quot;Dish Level Photo&quot;),
+ISPICKVAL(Status, &quot;Closed&quot;),
+TEXT(PRIORVALUE(Status))!=&quot;Final Check&quot;
+)</errorConditionFormula>
+    <errorMessage>The case cannot be closed directly, continue with the normal flow.</errorMessage>
+</ValidationRule>

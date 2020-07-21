@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PY_Editorial_Data_Email_Total</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7 AND 8 AND 9 AND 10</booleanFilter>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>GRID_fm__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>Country__c</columns>
+    <columns>OWNER_NAME</columns>
+    <columns>Vertical_Segment__c</columns>
+    <columns>Key_VIP_Account__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.PY_Entry_Case</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Restaurant - Data</value>
+    </filters>
+    <filters>
+        <field>CASES.ORIGIN</field>
+        <operation>equals</operation>
+        <value>Customer Care,Email</value>
+    </filters>
+    <filters>
+        <field>CASES.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>notContain</operation>
+        <value>Restaurant Portal,Sin Tipo,SOPORTE PROD,SOPORTE STG,NUEVA INTEGRACIÓN</value>
+    </filters>
+    <filters>
+        <field>Case_Reason__c</field>
+        <operation>notEqual</operation>
+        <value>Restaurant Picture Change (No legal issue),Logo</value>
+    </filters>
+    <filters>
+        <field>EmailToAddress__c</field>
+        <operation>notContain</operation>
+        <value>contenido.nv@pedidosya.com,menudiario@pedidosya.com</value>
+    </filters>
+    <filters>
+        <field>EmailToAddress__c</field>
+        <operation>notContain</operation>
+        <value>pedidosya@diarco.com.ar,sistemas@rosental.com.ar,fmaissano@rosental.com.ar</value>
+    </filters>
+    <filters>
+        <field>EmailToAddress__c</field>
+        <operation>notContain</operation>
+        <value>pedidosya@rosental.com.ar</value>
+    </filters>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>notContain</operation>
+        <value>IMPLEMENTACIÓN,REPLICA STG,REPLICA PROD,ALERTAS</value>
+    </filters>
+    <label>PY Editorial - Data Email Total</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>PY_Editorial</role>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BE_Account_Errors__c</fullName>
+    <externalId>false</externalId>
+    <label>BE Account Errors</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Missing Details</fullName>
+                <default>false</default>
+                <label>Missing Details</label>
+            </value>
+            <value>
+                <fullName>Wrong Name of Restaurant</fullName>
+                <default>false</default>
+                <label>Wrong Name of Restaurant</label>
+            </value>
+            <value>
+                <fullName>Wrong Commission</fullName>
+                <default>false</default>
+                <label>Wrong Commission</label>
+            </value>
+            <value>
+                <fullName>Wrong Categories</fullName>
+                <default>false</default>
+                <label>Wrong Categories</label>
+            </value>
+            <value>
+                <fullName>Wrong Phone Numbers</fullName>
+                <default>false</default>
+                <label>Wrong Phone Numbers</label>
+            </value>
+            <value>
+                <fullName>Wrong Email/Transmission Method</fullName>
+                <default>false</default>
+                <label>Wrong Email/Transmission Method</label>
+            </value>
+            <value>
+                <fullName>Wrong Delivery Suburbs</fullName>
+                <default>false</default>
+                <label>Wrong Delivery Suburbs</label>
+            </value>
+            <value>
+                <fullName>Wrong Delivery Charges/Min</fullName>
+                <default>false</default>
+                <label>Wrong Delivery Charges/Min</label>
+            </value>
+            <value>
+                <fullName>Wrong Opening Hours</fullName>
+                <default>false</default>
+                <label>Wrong Opening Hours</label>
+            </value>
+            <value>
+                <fullName>Multiple Backend ID</fullName>
+                <default>false</default>
+                <label>Multiple Backend ID</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>10</visibleLines>
+</CustomField>

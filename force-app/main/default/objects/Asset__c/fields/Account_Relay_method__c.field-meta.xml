@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Relay_method__c</fullName>
+    <externalId>false</externalId>
+    <formula>INCLUDES(Account__r.Relay_Method__c, &quot;Terminal&quot;)</formula>
+    <label>Account Relay method</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Offline_Reason__c</fullName>
+    <externalId>false</externalId>
+    <label>Offline Reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>0% Contract Cancel request</fullName>
+                <default>false</default>
+                <label>0% Contract Cancel request</label>
+            </value>
+            <value>
+                <fullName>Best Price Guarantee</fullName>
+                <default>false</default>
+                <label>Best Price Guarantee</label>
+            </value>
+            <value>
+                <fullName>Collection Issue</fullName>
+                <default>false</default>
+                <label>Collection Issue</label>
+            </value>
+            <value>
+                <fullName>Commission / Subscription too high</fullName>
+                <default>false</default>
+                <label>Commission / Subscription too high</label>
+            </value>
+            <value>
+                <fullName>Contract violation</fullName>
+                <default>false</default>
+                <label>Contract violation</label>
+            </value>
+            <value>
+                <fullName>Data incomplete</fullName>
+                <default>false</default>
+                <label>Data incomplete</label>
+            </value>
+            <value>
+                <fullName>Disappointed by our business methods</fullName>
+                <default>false</default>
+                <label>Disappointed by our business methods</label>
+            </value>
+            <value>
+                <fullName>Duplicate</fullName>
+                <default>false</default>
+                <label>Duplicate</label>
+            </value>
+            <value>
+                <fullName>Exclusive with competitor</fullName>
+                <default>false</default>
+                <label>Exclusive with competitor</label>
+            </value>
+            <value>
+                <fullName>Failed in Upgrade</fullName>
+                <default>false</default>
+                <label>Failed in Upgrade</label>
+            </value>
+            <value>
+                <fullName>High Failure Rate</fullName>
+                <default>false</default>
+                <label>High Failure Rate</label>
+            </value>
+            <value>
+                <fullName>Incomplete Contract</fullName>
+                <default>false</default>
+                <label>Incomplete Contract</label>
+            </value>
+            <value>
+                <fullName>Legal Issue</fullName>
+                <default>false</default>
+                <label>Legal Issue</label>
+            </value>
+            <value>
+                <fullName>Lost to competition</fullName>
+                <default>false</default>
+                <label>Lost to competition</label>
+            </value>
+            <value>
+                <fullName>New Owner - New Contract</fullName>
+                <default>false</default>
+                <label>New Owner - New Contract</label>
+            </value>
+            <value>
+                <fullName>New Owner - Will not continue contract</fullName>
+                <default>false</default>
+                <label>New Owner - Will not continue contract</label>
+            </value>
+            <value>
+                <fullName>No delievery Service</fullName>
+                <default>false</default>
+                <label>No delievery Service</label>
+            </value>
+            <value>
+                <fullName>Non Contracted Rest. - Phone Order offline</fullName>
+                <default>false</default>
+                <label>Non Contracted Rest. - Phone Order offline</label>
+            </value>
+            <value>
+                <fullName>Non Contracted Rest - 2nd rejection</fullName>
+                <default>false</default>
+                <label>Non Contracted Rest - 2nd rejection</label>
+            </value>
+            <value>
+                <fullName>Not able to receive orders</fullName>
+                <default>false</default>
+                <label>Not able to receive orders</label>
+            </value>
+            <value>
+                <fullName>Not enough capacity</fullName>
+                <default>false</default>
+                <label>Not enough capacity</label>
+            </value>
+            <value>
+                <fullName>Not enough orders</fullName>
+                <default>false</default>
+                <label>Not enough orders</label>
+            </value>
+            <value>
+                <fullName>Not interested in product</fullName>
+                <default>false</default>
+                <label>Not interested in product</label>
+            </value>
+            <value>
+                <fullName>Not satisfied with our product</fullName>
+                <default>false</default>
+                <label>Not satisfied with our product</label>
+            </value>
+            <value>
+                <fullName>Quick Order Sticker</fullName>
+                <default>false</default>
+                <label>Quick Order Sticker</label>
+            </value>
+            <value>
+                <fullName>Rejected the contract proposal from Sales team</fullName>
+                <default>false</default>
+                <label>Rejected the contract proposal from Sales team</label>
+            </value>
+            <value>
+                <fullName>Rejected TTS(Text To Speech)</fullName>
+                <default>false</default>
+                <label>Rejected TTS(Text To Speech)</label>
+            </value>
+            <value>
+                <fullName>Rejects Online Payment</fullName>
+                <default>false</default>
+                <label>Rejects Online Payment</label>
+            </value>
+            <value>
+                <fullName>Restaurant Closed Permanently</fullName>
+                <default>false</default>
+                <label>Restaurant Closed Permanently</label>
+            </value>
+            <value>
+                <fullName>Restaurant closed temporarily</fullName>
+                <default>false</default>
+                <label>Restaurant closed temporarily</label>
+            </value>
+            <value>
+                <fullName>Service Closed</fullName>
+                <default>false</default>
+                <label>Service Closed</label>
+            </value>
+            <value>
+                <fullName>Successful in Upgrade</fullName>
+                <default>false</default>
+                <label>Successful in Upgrade</label>
+            </value>
+            <value>
+                <fullName>Temporary Sales O.E</fullName>
+                <default>false</default>
+                <label>Temporary Sales O.E</label>
+            </value>
+            <value>
+                <fullName>Terminal issues</fullName>
+                <default>false</default>
+                <label>Terminal issues</label>
+            </value>
+            <value>
+                <fullName>Termination</fullName>
+                <default>false</default>
+                <label>Termination</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

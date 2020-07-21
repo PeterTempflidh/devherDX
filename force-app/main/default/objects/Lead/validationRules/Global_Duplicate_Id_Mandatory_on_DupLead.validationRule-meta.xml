@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_Duplicate_Id_Mandatory_on_DupLead</fullName>
+    <active>true</active>
+    <description>Duplicate Id is mandatory If lead lost reason is a duplicate.</description>
+    <errorConditionFormula>AND(  ISPICKVAL(Lost_Reason__c , &apos;Duplicate&apos;), ISBLANK( Duplicate_Id__c ))
+&amp;&amp;
+NOT($Permission.Exclude_from_Validation)
+&amp;&amp;
+$User.FirstName  &lt;&gt; &apos;Phoenix&apos;</errorConditionFormula>
+    <errorDisplayField>Duplicate_Id__c</errorDisplayField>
+    <errorMessage>Please add the Id / GRID of the duplicate Lead in the field &quot;Duplicate Id&quot;.</errorMessage>
+</ValidationRule>

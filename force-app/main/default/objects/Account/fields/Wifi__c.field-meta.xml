@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Wifi__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Request from Head of Sales, need to track if there is wifi in restro or not</description>
+    <externalId>false</externalId>
+    <label>Wifi</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

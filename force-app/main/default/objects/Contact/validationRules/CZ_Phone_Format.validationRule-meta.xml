@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CZ_Phone_Format</fullName>
+    <active>true</active>
+    <description>Phone validation for CZ</description>
+    <errorConditionFormula>AND(
+  RecordType.DeveloperName = &apos;CZ_Contact&apos;,
+  OR(
+    AND(
+      NOT(ISBLANK(Phone)),
+      NOT(REGEX(Phone, &quot;^([+]420|[+]421)[0-9]{9}$&quot;))
+    ),
+    AND(
+      NOT(ISBLANK(MobilePhone)),
+      NOT(REGEX(MobilePhone, &quot;^([+]420|[+]421)[0-9]{9}$&quot;))
+    ),
+    AND(
+      NOT(ISBLANK(OtherPhone)),
+      NOT(REGEX(OtherPhone, &quot;^([+]420|[+]421)[0-9]{9}$&quot;))
+    )
+  )
+)</errorConditionFormula>
+    <errorMessage>Phone should start with +420 or +421 and be followed by 9 digits, without spaces.</errorMessage>
+</ValidationRule>

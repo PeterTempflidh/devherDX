@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_Validation_move_to_delivered</fullName>
+    <active>true</active>
+    <description>this validation is to avoid that the shipment is move to delivered with out already shipped(aftershipwebhook@deliveryheroholding.force.com)</description>
+    <errorConditionFormula>AND(NOT( $Permission.Exclude_from_Validation ),NOT(CONTAINS($User.Username,&quot;aftershipwebhook@deliveryheroholding.force.com&quot;)),
+ ISCHANGED(Status__c),
+ISPICKVAL(Status__c, &apos;Delivered&apos;),
+NOT (ISPICKVAL(PRIORVALUE (Status__c), &apos;Shipped&apos;)))</errorConditionFormula>
+    <errorMessage>The Shipment order should be first Shipped before that Delivered</errorMessage>
+</ValidationRule>

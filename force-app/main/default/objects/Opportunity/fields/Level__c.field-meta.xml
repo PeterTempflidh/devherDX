@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Level__c</fullName>
+    <description>This field is to check which level this restaurant is to reflect to Sales reps&apos; performance</description>
+    <externalId>false</externalId>
+    <label>Level</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Service A</fullName>
+                <default>false</default>
+                <label>Service A</label>
+            </value>
+            <value>
+                <fullName>Service AAA</fullName>
+                <default>false</default>
+                <label>Service AAA</label>
+            </value>
+            <value>
+                <fullName>Service B</fullName>
+                <default>false</default>
+                <label>Service B</label>
+            </value>
+            <value>
+                <fullName>Service C</fullName>
+                <default>false</default>
+                <label>Service C</label>
+            </value>
+            <value>
+                <fullName>Service D</fullName>
+                <default>false</default>
+                <label>Service D</label>
+            </value>
+            <value>
+                <fullName>Service R</fullName>
+                <default>false</default>
+                <label>Service R</label>
+            </value>
+            <value>
+                <fullName>Terminal</fullName>
+                <default>false</default>
+                <label>Terminal</label>
+            </value>
+            <value>
+                <fullName>Terminal A</fullName>
+                <default>false</default>
+                <label>Terminal A</label>
+            </value>
+            <value>
+                <fullName>Terminal B</fullName>
+                <default>false</default>
+                <label>Terminal B</label>
+            </value>
+            <value>
+                <fullName>Terminal T</fullName>
+                <default>false</default>
+                <label>Terminal T</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

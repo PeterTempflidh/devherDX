@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Voucher_Visibility__c</fullName>
+    <description>This field will be used to set voucher visibility if the case type is Customer or empty.</description>
+    <externalId>false</externalId>
+    <formula>IF( OR(ISPICKVAL(Type, &apos;Customer&apos;),ISBLANK(TEXT(Type))),True, False)</formula>
+    <label>Voucher Visibility</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

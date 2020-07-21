@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SE_Sales_emails</fullName>
+    <booleanFilter>(1 AND 2 AND 3 AND 4 AND 5) OR (1 AND 3 AND 6 AND 7)</booleanFilter>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Legal_Name__c</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.TYPE</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>Case_Reason__c</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.SE_Internal_Case,Case.SE_Inbound</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Sales Task</value>
+    </filters>
+    <filters>
+        <field>CASES.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.LAST_NAME</field>
+        <operation>notEqual</operation>
+        <value>,Petersén,Ljungberg,Berhame,Ersoz,Iseswärd,Lindberg,Kalderen,Sjoberg,Lövenhamn</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.LAST_NAME</field>
+        <operation>notEqual</operation>
+        <value>Andersson,Engvall,Hallin,Persson</value>
+    </filters>
+    <filters>
+        <field>Case_Reason__c</field>
+        <operation>equals</operation>
+        <value>Restaurant Recommendation,Restaurant Suggestion</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Customer Request</value>
+    </filters>
+    <label>SE - Sales</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>SE_Management</role>
+        <role>SE_Sales_Team</role>
+    </sharedTo>
+</ListView>

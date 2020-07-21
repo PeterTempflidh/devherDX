@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TLB_Photography_Photo_Check</fullName>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Account_Country__c</columns>
+    <columns>Opportunity__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.Talabat_Entry_Case</value>
+    </filters>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>equals</operation>
+        <value>Photo Upload from G-Drive</value>
+    </filters>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>equals</operation>
+        <value>Photo Check</value>
+    </filters>
+    <filters>
+        <field>ACCOUNT.NAME</field>
+        <operation>notContain</operation>
+        <value>test</value>
+    </filters>
+    <label>TLB Photography - Photo Check</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Global_Admin</role>
+        <role>Global_Management</role>
+        <roleAndSubordinates>Talabat_Management</roleAndSubordinates>
+        <roleAndSubordinates>Talabat_Operation_Management</roleAndSubordinates>
+        <roleAndSubordinates>Talabat_Operation_Team</roleAndSubordinates>
+    </sharedTo>
+</ListView>

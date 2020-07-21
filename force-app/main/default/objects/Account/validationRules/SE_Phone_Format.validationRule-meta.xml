@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SE_Phone_Format</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+    RecordType.DeveloperName = &apos;SE_Account&apos;,
+    NOT(ISBLANK(Phone)),
+    NOT(REGEX(Phone, &quot;^([+]47|[+]46)[0-9]{7,9}$&quot;))
+)</errorConditionFormula>
+    <errorMessage>Phone number must start with +46 or +47 followed by 7-9 digits.</errorMessage>
+</ValidationRule>

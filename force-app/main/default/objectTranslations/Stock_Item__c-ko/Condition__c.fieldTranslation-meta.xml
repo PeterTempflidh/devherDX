@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- A = New from manufacturer
+A1 = New used
+B = Used few scratches
+C = Used
+D = Damaged/No longer usable --></help>
+    <label>상태</label>
+    <name>Condition__c</name>
+    <picklistValues>
+        <masterLabel>A - New</masterLabel>
+        <translation>A-신규</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>A - New from manufacturer</masterLabel>
+        <translation><!-- A - New from manufacturer --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>A1 - New used</masterLabel>
+        <translation><!-- A1 - New used --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>B - Used</masterLabel>
+        <translation>B-재사용</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>B - Used few scratches</masterLabel>
+        <translation><!-- B - Used few scratches --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>C - Testing</masterLabel>
+        <translation>C-테스트</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>C - Used</masterLabel>
+        <translation><!-- C - Used --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>D - Damaged/No longer usable</masterLabel>
+        <translation><!-- D - Damaged/No longer usable --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>D - Reparable</masterLabel>
+        <translation>D-AS필요</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>E - Dead</masterLabel>
+        <translation>E-사용불가</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>N - Brand New</masterLabel>
+        <translation><!-- N - Brand New --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>O - Ordered</masterLabel>
+        <translation>O-AS요청</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>U - Undefined</masterLabel>
+        <translation>U-기타(위약금부과)</translation>
+    </picklistValues>
+</CustomFieldTranslation>

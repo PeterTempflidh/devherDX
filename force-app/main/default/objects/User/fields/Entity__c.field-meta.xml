@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Entity__c</fullName>
+    <description>Tracking the User&apos;s Entity to calculate User License Costs</description>
+    <externalId>false</externalId>
+    <label>Company</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>APAC FoodPanda</fullName>
+                <default>false</default>
+                <label>APAC FoodPanda</label>
+            </value>
+            <value>
+                <fullName>AT Mjam</fullName>
+                <default>false</default>
+                <label>AT Mjam</label>
+            </value>
+            <value>
+                <fullName>AU Delivery Hero</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>AU Delivery Hero</label>
+            </value>
+            <value>
+                <fullName>CH Foodarena</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>CH Foodarena</label>
+            </value>
+            <value>
+                <fullName>CO ClickDelivery</fullName>
+                <default>false</default>
+                <label>CO ClickDelivery</label>
+            </value>
+            <value>
+                <fullName>CZ Dame Jidlo</fullName>
+                <default>false</default>
+                <label>CZ Dame Jidlo</label>
+            </value>
+            <value>
+                <fullName>DE Lieferheld / Pizza.de</fullName>
+                <default>false</default>
+                <label>DE Lieferheld / Pizza.de</label>
+            </value>
+            <value>
+                <fullName>DHH Delivery Hero Holding</fullName>
+                <default>false</default>
+                <label>DHH Delivery Hero Holding</label>
+            </value>
+            <value>
+                <fullName>FI Pizza Online</fullName>
+                <default>false</default>
+                <label>FI Pizza Online</label>
+            </value>
+            <value>
+                <fullName>HS HungerStation</fullName>
+                <default>false</default>
+                <label>HS HungerStation</label>
+            </value>
+            <value>
+                <fullName>KR Yogiyo</fullName>
+                <default>false</default>
+                <label>KR Yogiyo</label>
+            </value>
+            <value>
+                <fullName>NetPincér.hu</fullName>
+                <default>false</default>
+                <label>NetPincér.hu</label>
+            </value>
+            <value>
+                <fullName>NO Foodora</fullName>
+                <default>false</default>
+                <label>NO Foodora</label>
+            </value>
+            <value>
+                <fullName>PL Pizza Portal</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>PL Pizza Portal</label>
+            </value>
+            <value>
+                <fullName>RO FoodPanda</fullName>
+                <default>false</default>
+                <label>RO FoodPanda</label>
+            </value>
+            <value>
+                <fullName>SE Online Pizza</fullName>
+                <default>false</default>
+                <label>SE Online Pizza</label>
+            </value>
+            <value>
+                <fullName>UAE Talabat</fullName>
+                <default>false</default>
+                <label>UAE Talabat</label>
+            </value>
+            <value>
+                <fullName>UK Hungryhouse</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>UK Hungryhouse</label>
+            </value>
+            <value>
+                <fullName>UY Pedidosya</fullName>
+                <default>false</default>
+                <label>UY Pedidosya</label>
+            </value>
+            <value>
+                <fullName>Yemeksepeti</fullName>
+                <default>false</default>
+                <label>Yemeksepeti</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

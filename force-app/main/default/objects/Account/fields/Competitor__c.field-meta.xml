@@ -1,0 +1,1655 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Competitor__c</fullName>
+    <externalId>false</externalId>
+    <label>Competitor</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <controllingField>Record_Country__c</controllingField>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>24h</fullName>
+                <default>false</default>
+                <label>24h</label>
+            </value>
+            <value>
+                <fullName>AIMNET/TCS (OrderMe)</fullName>
+                <default>false</default>
+                <label>AIMNET/TCS (OrderMe)</label>
+            </value>
+            <value>
+                <fullName>Akeed</fullName>
+                <default>false</default>
+                <label>Akeed</label>
+            </value>
+            <value>
+                <fullName>Akelni</fullName>
+                <default>false</default>
+                <label>Akelni</label>
+            </value>
+            <value>
+                <fullName>Akly</fullName>
+                <default>false</default>
+                <label>Akly</label>
+            </value>
+            <value>
+                <fullName>Alosra Market</fullName>
+                <default>false</default>
+                <label>Alosra Market</label>
+            </value>
+            <value>
+                <fullName>Aptit.se</fullName>
+                <default>false</default>
+                <label>Aptit.se</label>
+            </value>
+            <value>
+                <fullName>Baedal Tong</fullName>
+                <default>false</default>
+                <label>Baedal Tong</label>
+            </value>
+            <value>
+                <fullName>Bakawi</fullName>
+                <default>false</default>
+                <label>Bakawi</label>
+            </value>
+            <value>
+                <fullName>Baqaala</fullName>
+                <default>false</default>
+                <label>Baqaala</label>
+            </value>
+            <value>
+                <fullName>Baqala</fullName>
+                <default>false</default>
+                <label>Baqala</label>
+            </value>
+            <value>
+                <fullName>Baqalo</fullName>
+                <default>false</default>
+                <label>Baqalo</label>
+            </value>
+            <value>
+                <fullName>Bedal 114</fullName>
+                <default>false</default>
+                <label>Bedal 114</label>
+            </value>
+            <value>
+                <fullName>Bedal Call</fullName>
+                <default>false</default>
+                <label>Bedal Call</label>
+            </value>
+            <value>
+                <fullName>Bedal Minjok</fullName>
+                <default>false</default>
+                <label>Bedal Minjok</label>
+            </value>
+            <value>
+                <fullName>Bedal Tong</fullName>
+                <default>false</default>
+                <label>Bedal Tong</label>
+            </value>
+            <value>
+                <fullName>Bleems</fullName>
+                <default>false</default>
+                <label>Bleems</label>
+            </value>
+            <value>
+                <fullName>Bonapettite</fullName>
+                <default>false</default>
+                <label>Bonapettite</label>
+            </value>
+            <value>
+                <fullName>Booky</fullName>
+                <default>false</default>
+                <label>Booky</label>
+            </value>
+            <value>
+                <fullName>CareemNOW</fullName>
+                <default>false</default>
+                <label>CareemNOW</label>
+            </value>
+            <value>
+                <fullName>Carriage</fullName>
+                <default>false</default>
+                <label>Carriage</label>
+            </value>
+            <value>
+                <fullName>Carts</fullName>
+                <default>false</default>
+                <label>Carts</label>
+            </value>
+            <value>
+                <fullName>Chef Menú</fullName>
+                <default>false</default>
+                <label>Chef Menú</label>
+            </value>
+            <value>
+                <fullName>ChefsXP</fullName>
+                <default>false</default>
+                <label>ChefsXP</label>
+            </value>
+            <value>
+                <fullName>Cholgabang</fullName>
+                <default>false</default>
+                <label>Cholgabang</label>
+            </value>
+            <value>
+                <fullName>Chompa</fullName>
+                <default>false</default>
+                <label>Chompa</label>
+            </value>
+            <value>
+                <fullName>Close Eat</fullName>
+                <default>false</default>
+                <label>Close Eat</label>
+            </value>
+            <value>
+                <fullName>ComeYa</fullName>
+                <default>false</default>
+                <label>ComeYa</label>
+            </value>
+            <value>
+                <fullName>Cravez</fullName>
+                <default>false</default>
+                <label>Cravez</label>
+            </value>
+            <value>
+                <fullName>Craving</fullName>
+                <default>false</default>
+                <label>Craving</label>
+            </value>
+            <value>
+                <fullName>Cuisine Courier</fullName>
+                <default>false</default>
+                <label>Cuisine Courier</label>
+            </value>
+            <value>
+                <fullName>Daleel1010</fullName>
+                <default>false</default>
+                <label>Daleel1010</label>
+            </value>
+            <value>
+                <fullName>D-Delivery</fullName>
+                <default>false</default>
+                <label>D-Delivery</label>
+            </value>
+            <value>
+                <fullName>Delibirdy</fullName>
+                <default>false</default>
+                <label>Delibirdy</label>
+            </value>
+            <value>
+                <fullName>DeliverEat</fullName>
+                <default>false</default>
+                <label>DeliverEat</label>
+            </value>
+            <value>
+                <fullName>Deliveroo</fullName>
+                <default>false</default>
+                <label>Deliveroo</label>
+            </value>
+            <value>
+                <fullName>Delivery EC</fullName>
+                <default>false</default>
+                <label>Delivery EC</label>
+            </value>
+            <value>
+                <fullName>Delivery Food</fullName>
+                <default>false</default>
+                <label>Delivery Food</label>
+            </value>
+            <value>
+                <fullName>Delivery Guy</fullName>
+                <default>false</default>
+                <label>Delivery Guy</label>
+            </value>
+            <value>
+                <fullName>Demae-can</fullName>
+                <default>false</default>
+                <label>Demae-can</label>
+            </value>
+            <value>
+                <fullName>Detodito</fullName>
+                <default>false</default>
+                <label>Detodito</label>
+            </value>
+            <value>
+                <fullName>Didi</fullName>
+                <default>false</default>
+                <label>Didi</label>
+            </value>
+            <value>
+                <fullName>Dilo</fullName>
+                <default>false</default>
+                <label>Dilo</label>
+            </value>
+            <value>
+                <fullName>Domiclick</fullName>
+                <default>false</default>
+                <label>Domiclick</label>
+            </value>
+            <value>
+                <fullName>Eateasily</fullName>
+                <default>false</default>
+                <label>Eateasily</label>
+            </value>
+            <value>
+                <fullName>Eat Easy</fullName>
+                <default>false</default>
+                <label>Eat Easy</label>
+            </value>
+            <value>
+                <fullName>Eatnow</fullName>
+                <default>false</default>
+                <label>Eatnow</label>
+            </value>
+            <value>
+                <fullName>Eatojoy</fullName>
+                <default>false</default>
+                <label>Eatojoy</label>
+            </value>
+            <value>
+                <fullName>e-Gets</fullName>
+                <default>false</default>
+                <label>e-Gets</label>
+            </value>
+            <value>
+                <fullName>El grocer</fullName>
+                <default>false</default>
+                <label>El grocer</label>
+            </value>
+            <value>
+                <fullName>El menus</fullName>
+                <default>false</default>
+                <label>El menus</label>
+            </value>
+            <value>
+                <fullName>Entregados Quick</fullName>
+                <default>false</default>
+                <label>Entregados Quick</label>
+            </value>
+            <value>
+                <fullName>Feeh la</fullName>
+                <default>false</default>
+                <label>Feeh la</label>
+            </value>
+            <value>
+                <fullName>Food2U</fullName>
+                <default>false</default>
+                <label>Food2U</label>
+            </value>
+            <value>
+                <fullName>Food by Phone</fullName>
+                <default>false</default>
+                <label>Food by Phone</label>
+            </value>
+            <value>
+                <fullName>FoodFly</fullName>
+                <default>false</default>
+                <label>FoodFly</label>
+            </value>
+            <value>
+                <fullName>Foodie</fullName>
+                <default>false</default>
+                <label>Foodie</label>
+            </value>
+            <value>
+                <fullName>Foodio</fullName>
+                <default>false</default>
+                <label>Foodio</label>
+            </value>
+            <value>
+                <fullName>Foodonline.ae</fullName>
+                <default>false</default>
+                <label>Foodonline.ae</label>
+            </value>
+            <value>
+                <fullName>Foodora.se</fullName>
+                <default>false</default>
+                <label>Foodora.se</label>
+            </value>
+            <value>
+                <fullName>FoodPanda</fullName>
+                <default>false</default>
+                <label>FoodPanda</label>
+            </value>
+            <value>
+                <fullName>Foodtoday.se</fullName>
+                <default>false</default>
+                <label>Foodtoday.se</label>
+            </value>
+            <value>
+                <fullName>Foody</fullName>
+                <default>false</default>
+                <label>Foody</label>
+            </value>
+            <value>
+                <fullName>Foxcall</fullName>
+                <default>false</default>
+                <label>Foxcall</label>
+            </value>
+            <value>
+                <fullName>freshtohome.ae</fullName>
+                <default>false</default>
+                <label>freshtohome.ae</label>
+            </value>
+            <value>
+                <fullName>Geeb</fullName>
+                <default>false</default>
+                <label>Geeb</label>
+            </value>
+            <value>
+                <fullName>Get</fullName>
+                <default>false</default>
+                <label>Get</label>
+            </value>
+            <value>
+                <fullName>Ginja</fullName>
+                <default>false</default>
+                <label>Ginja</label>
+            </value>
+            <value>
+                <fullName>Glovo</fullName>
+                <default>false</default>
+                <label>Glovo</label>
+            </value>
+            <value>
+                <fullName>Gmarket/Auction</fullName>
+                <default>false</default>
+                <label>Gmarket/Auction</label>
+            </value>
+            <value>
+                <fullName>Godsmak.se</fullName>
+                <default>false</default>
+                <label>Godsmak.se</label>
+            </value>
+            <value>
+                <fullName>Good Taste</fullName>
+                <default>false</default>
+                <label>Good Taste</label>
+            </value>
+            <value>
+                <fullName>Google Places</fullName>
+                <default>false</default>
+                <label>Google Places</label>
+            </value>
+            <value>
+                <fullName>GoTasty</fullName>
+                <default>false</default>
+                <label>GoTasty</label>
+            </value>
+            <value>
+                <fullName>Goteddy</fullName>
+                <default>false</default>
+                <label>Goteddy</label>
+            </value>
+            <value>
+                <fullName>Grab</fullName>
+                <default>false</default>
+                <label>Grab</label>
+            </value>
+            <value>
+                <fullName>GrabFood</fullName>
+                <default>false</default>
+                <label>GrabFood</label>
+            </value>
+            <value>
+                <fullName>Gurunavi</fullName>
+                <default>false</default>
+                <label>Gurunavi</label>
+            </value>
+            <value>
+                <fullName>Happyfresh</fullName>
+                <default>false</default>
+                <label>Happyfresh</label>
+            </value>
+            <value>
+                <fullName>Hellofood</fullName>
+                <default>false</default>
+                <label>Hellofood</label>
+            </value>
+            <value>
+                <fullName>Hemkörtochklart.se</fullName>
+                <default>false</default>
+                <label>Hemkörtochklart.se</label>
+            </value>
+            <value>
+                <fullName>Homies</fullName>
+                <default>false</default>
+                <label>Homies</label>
+            </value>
+            <value>
+                <fullName>Honestbee</fullName>
+                <default>false</default>
+                <label>Honestbee</label>
+            </value>
+            <value>
+                <fullName>Hotmat.se</fullName>
+                <default>false</default>
+                <label>Hotmat.se</label>
+            </value>
+            <value>
+                <fullName>Hradecký kurýr</fullName>
+                <default>false</default>
+                <label>Hradecký kurýr</label>
+            </value>
+            <value>
+                <fullName>Hungerline</fullName>
+                <default>false</default>
+                <label>Hungerline</label>
+            </value>
+            <value>
+                <fullName>Hungerstation</fullName>
+                <default>false</default>
+                <label>Hungerstation</label>
+            </value>
+            <value>
+                <fullName>Hungrily</fullName>
+                <default>false</default>
+                <label>Hungrily</label>
+            </value>
+            <value>
+                <fullName>Hungry</fullName>
+                <default>false</default>
+                <label>Hungry</label>
+            </value>
+            <value>
+                <fullName>Hungry and lazy</fullName>
+                <default>false</default>
+                <label>Hungry and lazy</label>
+            </value>
+            <value>
+                <fullName>HungryNaki</fullName>
+                <default>false</default>
+                <label>HungryNaki</label>
+            </value>
+            <value>
+                <fullName>iMeal</fullName>
+                <default>false</default>
+                <label>iMeal</label>
+            </value>
+            <value>
+                <fullName>Instashop</fullName>
+                <default>false</default>
+                <label>Instashop</label>
+            </value>
+            <value>
+                <fullName>iTakeaway</fullName>
+                <default>false</default>
+                <label>iTakeaway</label>
+            </value>
+            <value>
+                <fullName>Jahez</fullName>
+                <default>false</default>
+                <label>Jahez</label>
+            </value>
+            <value>
+                <fullName>Jeebley</fullName>
+                <default>false</default>
+                <label>Jeebley</label>
+            </value>
+            <value>
+                <fullName>Jídlo domů Plzeň</fullName>
+                <default>false</default>
+                <label>Jídlo domů Plzeň</label>
+            </value>
+            <value>
+                <fullName>Jídlo na klik</fullName>
+                <default>false</default>
+                <label>Jídlo na klik</label>
+            </value>
+            <value>
+                <fullName>Jídlo pod nos</fullName>
+                <default>false</default>
+                <label>Jídlo pod nos</label>
+            </value>
+            <value>
+                <fullName>Just-Eat</fullName>
+                <default>false</default>
+                <label>Just-Eat</label>
+            </value>
+            <value>
+                <fullName>Kepido</fullName>
+                <default>false</default>
+                <label>Kepido</label>
+            </value>
+            <value>
+                <fullName>kibsons</fullName>
+                <default>false</default>
+                <label>kibsons</label>
+            </value>
+            <value>
+                <fullName>Lalamove</fullName>
+                <default>false</default>
+                <label>Lalamove</label>
+            </value>
+            <value>
+                <fullName>Lazada</fullName>
+                <default>false</default>
+                <label>Lazada</label>
+            </value>
+            <value>
+                <fullName>Lieferando</fullName>
+                <default>false</default>
+                <label>Lieferando</label>
+            </value>
+            <value>
+                <fullName>Lieferservice.at</fullName>
+                <default>false</default>
+                <label>Lieferservice.at</label>
+            </value>
+            <value>
+                <fullName>LINE Delima</fullName>
+                <default>false</default>
+                <label>LINE Delima</label>
+            </value>
+            <value>
+                <fullName>LineMan</fullName>
+                <default>false</default>
+                <label>LineMan</label>
+            </value>
+            <value>
+                <fullName>Lulu Hypermarket</fullName>
+                <default>false</default>
+                <label>Lulu Hypermarket</label>
+            </value>
+            <value>
+                <fullName>Machla</fullName>
+                <default>false</default>
+                <label>Machla</label>
+            </value>
+            <value>
+                <fullName>Mangan</fullName>
+                <default>false</default>
+                <label>Mangan</label>
+            </value>
+            <value>
+                <fullName>Marsool</fullName>
+                <default>false</default>
+                <label>Marsool</label>
+            </value>
+            <value>
+                <fullName>Matsugen</fullName>
+                <default>false</default>
+                <label>Matsugen</label>
+            </value>
+            <value>
+                <fullName>Meals on Wheels 4U</fullName>
+                <default>false</default>
+                <label>Meals on Wheels 4U</label>
+            </value>
+            <value>
+                <fullName>MealTemple</fullName>
+                <default>false</default>
+                <label>MealTemple</label>
+            </value>
+            <value>
+                <fullName>MegaBite</fullName>
+                <default>false</default>
+                <label>MegaBite</label>
+            </value>
+            <value>
+                <fullName>Meiz</fullName>
+                <default>false</default>
+                <label>Meiz</label>
+            </value>
+            <value>
+                <fullName>MenuBox (&amp;POT)</fullName>
+                <default>false</default>
+                <label>MenuBox (&amp;POT)</label>
+            </value>
+            <value>
+                <fullName>MenuExpress</fullName>
+                <default>false</default>
+                <label>MenuExpress</label>
+            </value>
+            <value>
+                <fullName>Menulog</fullName>
+                <default>false</default>
+                <label>Menulog</label>
+            </value>
+            <value>
+                <fullName>Miles</fullName>
+                <default>false</default>
+                <label>Miles</label>
+            </value>
+            <value>
+                <fullName>Moto Delivery</fullName>
+                <default>false</default>
+                <label>Moto Delivery</label>
+            </value>
+            <value>
+                <fullName>Mr Delivery</fullName>
+                <default>false</default>
+                <label>Mr Delivery</label>
+            </value>
+            <value>
+                <fullName>Mrsool</fullName>
+                <default>false</default>
+                <label>Mrsool</label>
+            </value>
+            <value>
+                <fullName>Munchy King</fullName>
+                <default>false</default>
+                <label>Munchy King</label>
+            </value>
+            <value>
+                <fullName>Muuve</fullName>
+                <default>false</default>
+                <label>Muuve</label>
+            </value>
+            <value>
+                <fullName>My food My Way</fullName>
+                <default>false</default>
+                <label>My food My Way</label>
+            </value>
+            <value>
+                <fullName>nham24</fullName>
+                <default>false</default>
+                <label>nham24</label>
+            </value>
+            <value>
+                <fullName>Oddle</fullName>
+                <default>false</default>
+                <label>Oddle</label>
+            </value>
+            <value>
+                <fullName>Onlinefood</fullName>
+                <default>false</default>
+                <label>Onlinefood</label>
+            </value>
+            <value>
+                <fullName>Otesánek</fullName>
+                <default>false</default>
+                <label>Otesánek</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Panda</fullName>
+                <default>false</default>
+                <label>Panda</label>
+            </value>
+            <value>
+                <fullName>Pandalivery</fullName>
+                <default>false</default>
+                <label>Pandalivery</label>
+            </value>
+            <value>
+                <fullName>Pathao</fullName>
+                <default>false</default>
+                <label>Pathao</label>
+            </value>
+            <value>
+                <fullName>Pideloya</fullName>
+                <default>false</default>
+                <label>Pideloya</label>
+            </value>
+            <value>
+                <fullName>Pizza24.se</fullName>
+                <default>false</default>
+                <label>Pizza24.se</label>
+            </value>
+            <value>
+                <fullName>PizzaHero.se</fullName>
+                <default>false</default>
+                <label>PizzaHero.se</label>
+            </value>
+            <value>
+                <fullName>Pizzanetti</fullName>
+                <default>false</default>
+                <label>Pizzanetti</label>
+            </value>
+            <value>
+                <fullName>Pizzaverkko</fullName>
+                <default>false</default>
+                <label>Pizzaverkko</label>
+            </value>
+            <value>
+                <fullName>Qoo10</fullName>
+                <default>false</default>
+                <label>Qoo10</label>
+            </value>
+            <value>
+                <fullName>Quick Delivery</fullName>
+                <default>false</default>
+                <label>Quick Delivery</label>
+            </value>
+            <value>
+                <fullName>Rafeeq</fullName>
+                <default>false</default>
+                <label>Rafeeq</label>
+            </value>
+            <value>
+                <fullName>Rakuten Delivery</fullName>
+                <default>false</default>
+                <label>Rakuten Delivery</label>
+            </value>
+            <value>
+                <fullName>Rappi</fullName>
+                <default>false</default>
+                <label>Rappi</label>
+            </value>
+            <value>
+                <fullName>RestaurangOnline/Hungrig.se</fullName>
+                <default>false</default>
+                <label>RestaurangOnline/Hungrig.se</label>
+            </value>
+            <value>
+                <fullName>Restaurant Express</fullName>
+                <default>false</default>
+                <label>Restaurant Express</label>
+            </value>
+            <value>
+                <fullName>Ritual</fullName>
+                <default>false</default>
+                <label>Ritual</label>
+            </value>
+            <value>
+                <fullName>Rouman.com</fullName>
+                <default>false</default>
+                <label>Rouman.com</label>
+            </value>
+            <value>
+                <fullName>Rozvoz Pardubice</fullName>
+                <default>false</default>
+                <label>Rozvoz Pardubice</label>
+            </value>
+            <value>
+                <fullName>RunningMan</fullName>
+                <default>false</default>
+                <label>RunningMan</label>
+            </value>
+            <value>
+                <fullName>Sambosa</fullName>
+                <default>false</default>
+                <label>Sambosa</label>
+            </value>
+            <value>
+                <fullName>Shoppee</fullName>
+                <default>false</default>
+                <label>Shoppee</label>
+            </value>
+            <value>
+                <fullName>Snoonu</fullName>
+                <default>false</default>
+                <label>Snoonu</label>
+            </value>
+            <value>
+                <fullName>Soopa</fullName>
+                <default>false</default>
+                <label>Soopa</label>
+            </value>
+            <value>
+                <fullName>Suppertime</fullName>
+                <default>false</default>
+                <label>Suppertime</label>
+            </value>
+            <value>
+                <fullName>Sváča z kola</fullName>
+                <default>false</default>
+                <label>Sváča z kola</label>
+            </value>
+            <value>
+                <fullName>Swift</fullName>
+                <default>false</default>
+                <label>Swift</label>
+            </value>
+            <value>
+                <fullName>Swyft</fullName>
+                <default>false</default>
+                <label>Swyft</label>
+            </value>
+            <value>
+                <fullName>Tastio</fullName>
+                <default>false</default>
+                <label>Tastio</label>
+            </value>
+            <value>
+                <fullName>Tauseel</fullName>
+                <default>false</default>
+                <label>Tauseel</label>
+            </value>
+            <value>
+                <fullName>The gulu</fullName>
+                <default>false</default>
+                <label>The gulu</label>
+            </value>
+            <value>
+                <fullName>The Market</fullName>
+                <default>false</default>
+                <label>The Market</label>
+            </value>
+            <value>
+                <fullName>Traetelo</fullName>
+                <default>false</default>
+                <label>Traetelo</label>
+            </value>
+            <value>
+                <fullName>Trip Advisor</fullName>
+                <default>false</default>
+                <label>Trip Advisor</label>
+            </value>
+            <value>
+                <fullName>tuordenexpress</fullName>
+                <default>false</default>
+                <label>tuordenexpress</label>
+            </value>
+            <value>
+                <fullName>Ubbigo</fullName>
+                <default>false</default>
+                <label>Ubbigo</label>
+            </value>
+            <value>
+                <fullName>UberEats</fullName>
+                <default>false</default>
+                <label>UberEats</label>
+            </value>
+            <value>
+                <fullName>Urgent Delivery</fullName>
+                <default>false</default>
+                <label>Urgent Delivery</label>
+            </value>
+            <value>
+                <fullName>wafi apps</fullName>
+                <default>false</default>
+                <label>wafi apps</label>
+            </value>
+            <value>
+                <fullName>Wajbah</fullName>
+                <default>false</default>
+                <label>Wajbah</label>
+            </value>
+            <value>
+                <fullName>Wasel</fullName>
+                <default>false</default>
+                <label>Wasel</label>
+            </value>
+            <value>
+                <fullName>Way to Go</fullName>
+                <default>false</default>
+                <label>Way to Go</label>
+            </value>
+            <value>
+                <fullName>WeServe</fullName>
+                <default>false</default>
+                <label>WeServe</label>
+            </value>
+            <value>
+                <fullName>WingSpoon</fullName>
+                <default>false</default>
+                <label>WingSpoon</label>
+            </value>
+            <value>
+                <fullName>Wishbox</fullName>
+                <default>false</default>
+                <label>Wishbox</label>
+            </value>
+            <value>
+                <fullName>Wolt</fullName>
+                <default>false</default>
+                <label>Wolt</label>
+            </value>
+            <value>
+                <fullName>Wow Pattaya</fullName>
+                <default>false</default>
+                <label>Wow Pattaya</label>
+            </value>
+            <value>
+                <fullName>Wssel</fullName>
+                <default>false</default>
+                <label>Wssel</label>
+            </value>
+            <value>
+                <fullName>YangonDoor2door</fullName>
+                <default>false</default>
+                <label>YangonDoor2door</label>
+            </value>
+            <value>
+                <fullName>Yelp</fullName>
+                <default>false</default>
+                <label>Yelp</label>
+            </value>
+            <value>
+                <fullName>YesPlate</fullName>
+                <default>false</default>
+                <label>YesPlate</label>
+            </value>
+            <value>
+                <fullName>Yolopido</fullName>
+                <default>false</default>
+                <label>Yolopido</label>
+            </value>
+            <value>
+                <fullName>Yummy</fullName>
+                <default>false</default>
+                <label>Yummy</label>
+            </value>
+            <value>
+                <fullName>Zitaat</fullName>
+                <default>false</default>
+                <label>Zitaat</label>
+            </value>
+            <value>
+                <fullName>Zomato</fullName>
+                <default>false</default>
+                <label>Zomato</label>
+            </value>
+            <value>
+                <fullName>Zwift</fullName>
+                <default>false</default>
+                <label>Zwift</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Paraguay</controllingFieldValue>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <controllingFieldValue>Egypt</controllingFieldValue>
+            <valueName>Glovo</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Paraguay</controllingFieldValue>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <valueName>Rappi</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Argentina</controllingFieldValue>
+            <controllingFieldValue>Czech Republic</controllingFieldValue>
+            <controllingFieldValue>Bolivia</controllingFieldValue>
+            <controllingFieldValue>Japan</controllingFieldValue>
+            <controllingFieldValue>Chile</controllingFieldValue>
+            <controllingFieldValue>Panamá</controllingFieldValue>
+            <controllingFieldValue>Paraguay</controllingFieldValue>
+            <controllingFieldValue>Uruguay</controllingFieldValue>
+            <controllingFieldValue>Thailand</controllingFieldValue>
+            <controllingFieldValue>Taiwan</controllingFieldValue>
+            <controllingFieldValue>Hong Kong</controllingFieldValue>
+            <controllingFieldValue>Dominican Republic</controllingFieldValue>
+            <controllingFieldValue>Egypt</controllingFieldValue>
+            <valueName>UberEats</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Czech Republic</controllingFieldValue>
+            <valueName>Hradecký kurýr</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Czech Republic</controllingFieldValue>
+            <valueName>Jídlo domů Plzeň</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Czech Republic</controllingFieldValue>
+            <valueName>Jídlo na klik</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Czech Republic</controllingFieldValue>
+            <valueName>Jídlo pod nos</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Czech Republic</controllingFieldValue>
+            <valueName>Otesánek</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Czech Republic</controllingFieldValue>
+            <valueName>Rozvoz Pardubice</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Czech Republic</controllingFieldValue>
+            <valueName>Sváča z kola</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Czech Republic</controllingFieldValue>
+            <controllingFieldValue>Japan</controllingFieldValue>
+            <controllingFieldValue>Hungary</controllingFieldValue>
+            <controllingFieldValue>Sweden</controllingFieldValue>
+            <controllingFieldValue>Finland</controllingFieldValue>
+            <valueName>Wolt</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Japan</controllingFieldValue>
+            <valueName>D-Delivery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Japan</controllingFieldValue>
+            <valueName>Demae-can</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Japan</controllingFieldValue>
+            <valueName>Didi</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Japan</controllingFieldValue>
+            <valueName>Gurunavi</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Japan</controllingFieldValue>
+            <valueName>LINE Delima</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Japan</controllingFieldValue>
+            <valueName>Rakuten Delivery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Singapore</controllingFieldValue>
+            <controllingFieldValue>Taiwan</controllingFieldValue>
+            <controllingFieldValue>Hong Kong</controllingFieldValue>
+            <controllingFieldValue>Austria</controllingFieldValue>
+            <controllingFieldValue>United Kingdom</controllingFieldValue>
+            <valueName>Deliveroo</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Singapore</controllingFieldValue>
+            <controllingFieldValue>Malaysia</controllingFieldValue>
+            <controllingFieldValue>Thailand</controllingFieldValue>
+            <controllingFieldValue>Philippines</controllingFieldValue>
+            <controllingFieldValue>Myanmar</controllingFieldValue>
+            <valueName>GrabFood</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Singapore</controllingFieldValue>
+            <controllingFieldValue>Malaysia</controllingFieldValue>
+            <valueName>Lazada</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Singapore</controllingFieldValue>
+            <valueName>Oddle</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Singapore</controllingFieldValue>
+            <valueName>Qoo10</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Singapore</controllingFieldValue>
+            <controllingFieldValue>Malaysia</controllingFieldValue>
+            <valueName>Shoppee</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Malaysia</controllingFieldValue>
+            <valueName>DeliverEat</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Malaysia</controllingFieldValue>
+            <valueName>Happyfresh</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Malaysia</controllingFieldValue>
+            <valueName>Hungry</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Malaysia</controllingFieldValue>
+            <valueName>RunningMan</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Thailand</controllingFieldValue>
+            <valueName>ChefsXP</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Thailand</controllingFieldValue>
+            <valueName>Food by Phone</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Thailand</controllingFieldValue>
+            <valueName>Foodio</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Thailand</controllingFieldValue>
+            <valueName>Get</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Thailand</controllingFieldValue>
+            <valueName>Ginja</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Thailand</controllingFieldValue>
+            <valueName>GoTasty</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Thailand</controllingFieldValue>
+            <valueName>Grab</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Thailand</controllingFieldValue>
+            <controllingFieldValue>Taiwan</controllingFieldValue>
+            <controllingFieldValue>Philippines</controllingFieldValue>
+            <valueName>Honestbee</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Thailand</controllingFieldValue>
+            <valueName>LineMan</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Thailand</controllingFieldValue>
+            <valueName>Meals on Wheels 4U</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Thailand</controllingFieldValue>
+            <valueName>Munchy King</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Thailand</controllingFieldValue>
+            <valueName>WeServe</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Thailand</controllingFieldValue>
+            <valueName>Wow Pattaya</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Qatar</controllingFieldValue>
+            <valueName>Akly</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Qatar</controllingFieldValue>
+            <controllingFieldValue>Bahrain</controllingFieldValue>
+            <valueName>Baqala</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Qatar</controllingFieldValue>
+            <valueName>Bleems</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Qatar</controllingFieldValue>
+            <valueName>Carts</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Qatar</controllingFieldValue>
+            <valueName>Delibirdy</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Qatar</controllingFieldValue>
+            <valueName>Foody</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Qatar</controllingFieldValue>
+            <valueName>Meiz</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Qatar</controllingFieldValue>
+            <valueName>Miles</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Qatar</controllingFieldValue>
+            <valueName>Mr Delivery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Qatar</controllingFieldValue>
+            <valueName>Rafeeq</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Qatar</controllingFieldValue>
+            <valueName>Snoonu</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Qatar</controllingFieldValue>
+            <valueName>The Market</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Qatar</controllingFieldValue>
+            <valueName>Urgent Delivery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Qatar</controllingFieldValue>
+            <valueName>Wishbox</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Qatar</controllingFieldValue>
+            <valueName>YesPlate</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Qatar</controllingFieldValue>
+            <controllingFieldValue>Philippines</controllingFieldValue>
+            <valueName>Zomato</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bangladesh</controllingFieldValue>
+            <valueName>HungryNaki</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bangladesh</controllingFieldValue>
+            <valueName>Pathao</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Kingdom of Saudi Arabia</controllingFieldValue>
+            <controllingFieldValue>Jordan</controllingFieldValue>
+            <controllingFieldValue>United Arab Emirates</controllingFieldValue>
+            <valueName>CareemNOW</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Kingdom of Saudi Arabia</controllingFieldValue>
+            <valueName>Hungerstation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Kingdom of Saudi Arabia</controllingFieldValue>
+            <valueName>Jahez</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Kingdom of Saudi Arabia</controllingFieldValue>
+            <valueName>Mrsool</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Kingdom of Saudi Arabia</controllingFieldValue>
+            <valueName>Swyft</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Kingdom of Saudi Arabia</controllingFieldValue>
+            <valueName>Wssel</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hong Kong</controllingFieldValue>
+            <valueName>Eatojoy</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hong Kong</controllingFieldValue>
+            <valueName>The gulu</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sweden</controllingFieldValue>
+            <valueName>Aptit.se</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sweden</controllingFieldValue>
+            <valueName>Close Eat</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sweden</controllingFieldValue>
+            <valueName>Foodtoday.se</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sweden</controllingFieldValue>
+            <valueName>Godsmak.se</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sweden</controllingFieldValue>
+            <valueName>Hemkörtochklart.se</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sweden</controllingFieldValue>
+            <valueName>Hotmat.se</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sweden</controllingFieldValue>
+            <valueName>Matsugen</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sweden</controllingFieldValue>
+            <valueName>Pizza24.se</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sweden</controllingFieldValue>
+            <valueName>PizzaHero.se</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sweden</controllingFieldValue>
+            <valueName>RestaurangOnline/Hungrig.se</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sweden</controllingFieldValue>
+            <valueName>Way to Go</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Philippines</controllingFieldValue>
+            <valueName>Booky</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Philippines</controllingFieldValue>
+            <valueName>Delivery Guy</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Philippines</controllingFieldValue>
+            <valueName>Hungrily</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Philippines</controllingFieldValue>
+            <valueName>Lalamove</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Philippines</controllingFieldValue>
+            <valueName>Mangan</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Philippines</controllingFieldValue>
+            <valueName>Pandalivery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Philippines</controllingFieldValue>
+            <valueName>Quick Delivery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Finland</controllingFieldValue>
+            <valueName>Onlinefood</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Austria</controllingFieldValue>
+            <valueName>Foodie</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Austria</controllingFieldValue>
+            <valueName>Lieferservice.at</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cambodia</controllingFieldValue>
+            <valueName>e-Gets</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cambodia</controllingFieldValue>
+            <controllingFieldValue>Laos</controllingFieldValue>
+            <valueName>MealTemple</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cambodia</controllingFieldValue>
+            <valueName>Muuve</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cambodia</controllingFieldValue>
+            <valueName>nham24</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>United Kingdom</controllingFieldValue>
+            <valueName>Google Places</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>United Kingdom</controllingFieldValue>
+            <valueName>Just-Eat</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>United Kingdom</controllingFieldValue>
+            <valueName>Trip Advisor</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>United Kingdom</controllingFieldValue>
+            <valueName>Yelp</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Myanmar</controllingFieldValue>
+            <valueName>Food2U</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Myanmar</controllingFieldValue>
+            <valueName>YangonDoor2door</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Korea</controllingFieldValue>
+            <valueName>AIMNET/TCS (OrderMe)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Korea</controllingFieldValue>
+            <valueName>Baedal Tong</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Korea</controllingFieldValue>
+            <valueName>Bedal 114</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Korea</controllingFieldValue>
+            <valueName>Bedal Call</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Korea</controllingFieldValue>
+            <valueName>Bedal Minjok</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Korea</controllingFieldValue>
+            <valueName>Cholgabang</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Korea</controllingFieldValue>
+            <valueName>Craving</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Korea</controllingFieldValue>
+            <controllingFieldValue>Australia</controllingFieldValue>
+            <valueName>Cuisine Courier</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Korea</controllingFieldValue>
+            <controllingFieldValue>Australia</controllingFieldValue>
+            <valueName>Eatnow</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Korea</controllingFieldValue>
+            <valueName>FoodFly</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Korea</controllingFieldValue>
+            <controllingFieldValue>Australia</controllingFieldValue>
+            <valueName>FoodPanda</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Korea</controllingFieldValue>
+            <valueName>Foxcall</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Korea</controllingFieldValue>
+            <valueName>Gmarket/Auction</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Korea</controllingFieldValue>
+            <valueName>Hungerline</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Korea</controllingFieldValue>
+            <controllingFieldValue>Australia</controllingFieldValue>
+            <valueName>Hungry and lazy</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Korea</controllingFieldValue>
+            <valueName>iMeal</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Korea</controllingFieldValue>
+            <valueName>iTakeaway</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Korea</controllingFieldValue>
+            <valueName>MenuBox (&amp;POT)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Korea</controllingFieldValue>
+            <controllingFieldValue>Australia</controllingFieldValue>
+            <valueName>Menulog</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Korea</controllingFieldValue>
+            <valueName>Other</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Korea</controllingFieldValue>
+            <controllingFieldValue>Australia</controllingFieldValue>
+            <valueName>Suppertime</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Korea</controllingFieldValue>
+            <controllingFieldValue>Australia</controllingFieldValue>
+            <valueName>Swift</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Korea</controllingFieldValue>
+            <valueName>WingSpoon</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Korea</controllingFieldValue>
+            <controllingFieldValue>Australia</controllingFieldValue>
+            <valueName>Zwift</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bahrain</controllingFieldValue>
+            <valueName>Alosra Market</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bahrain</controllingFieldValue>
+            <valueName>Feeh la</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bahrain</controllingFieldValue>
+            <valueName>Good Taste</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bahrain</controllingFieldValue>
+            <valueName>Homies</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bahrain</controllingFieldValue>
+            <controllingFieldValue>United Arab Emirates</controllingFieldValue>
+            <valueName>Instashop</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bahrain</controllingFieldValue>
+            <valueName>Lulu Hypermarket</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bahrain</controllingFieldValue>
+            <valueName>Machla</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bahrain</controllingFieldValue>
+            <valueName>My food My Way</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bahrain</controllingFieldValue>
+            <valueName>Panda</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bahrain</controllingFieldValue>
+            <valueName>Sambosa</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bahrain</controllingFieldValue>
+            <valueName>Tauseel</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bahrain</controllingFieldValue>
+            <valueName>Wasel</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>United Arab Emirates</controllingFieldValue>
+            <valueName>Bakawi</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>United Arab Emirates</controllingFieldValue>
+            <valueName>Baqalo</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>United Arab Emirates</controllingFieldValue>
+            <valueName>Eat Easy</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>United Arab Emirates</controllingFieldValue>
+            <valueName>El grocer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>United Arab Emirates</controllingFieldValue>
+            <valueName>Foodonline.ae</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>United Arab Emirates</controllingFieldValue>
+            <valueName>freshtohome.ae</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>United Arab Emirates</controllingFieldValue>
+            <valueName>kibsons</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>United Arab Emirates</controllingFieldValue>
+            <valueName>Soopa</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Kuwait</controllingFieldValue>
+            <valueName>Cravez</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Kuwait</controllingFieldValue>
+            <valueName>Jeebley</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Kuwait</controllingFieldValue>
+            <valueName>Zitaat</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Oman</controllingFieldValue>
+            <valueName>Akeed</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Oman</controllingFieldValue>
+            <valueName>Daleel1010</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Oman</controllingFieldValue>
+            <valueName>Geeb</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Oman</controllingFieldValue>
+            <valueName>Rouman.com</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Laos</controllingFieldValue>
+            <valueName>Chompa</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Laos</controllingFieldValue>
+            <valueName>Goteddy</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Egypt</controllingFieldValue>
+            <valueName>Akelni</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Egypt</controllingFieldValue>
+            <valueName>El menus</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Egypt</controllingFieldValue>
+            <valueName>Marsool</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Egypt</controllingFieldValue>
+            <valueName>Tastio</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>Delivery Food</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>Detodito</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>Entregados Quick</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>Kepido</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>Traetelo</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>Ubbigo</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>Yolopido</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Venezuela</controllingFieldValue>
+            <valueName>Yummy</valueName>
+        </valueSettings>
+    </valueSet>
+    <visibleLines>9</visibleLines>
+</CustomField>

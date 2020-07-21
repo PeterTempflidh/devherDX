@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PY_RetentionISTO_NotUpdateble</fullName>
+    <active>true</active>
+    <description>When the case is created lock the Field &quot;Is_the_restaurant_going_to_take_orders&quot; value, so it cant be edited by users.</description>
+    <errorConditionFormula>AND(ISCHANGED(Is_the_restaurant_going_to_take_orders__c),NOT(ISBLANK(PRIORVALUE(Is_the_restaurant_going_to_take_orders__c))),RecordType.DeveloperName=&quot;PY_Internal_Case&quot; ,ISPICKVAL(Type, &quot;Retention&quot;))</errorConditionFormula>
+    <errorDisplayField>Is_the_restaurant_going_to_take_orders__c</errorDisplayField>
+    <errorMessage>You cannot modify this field value.</errorMessage>
+</ValidationRule>

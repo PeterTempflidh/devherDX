@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_Block_Role_Changes</fullName>
+    <active>true</active>
+    <description>update name Global_Block_Specific_Changes</description>
+    <errorConditionFormula>$User.ProfileId  &lt;&gt; &quot;00ew0000001HfA4&quot; /*SysAdmin*/
+&amp;&amp;
+$User.ProfileId  &lt;&gt; &quot;00ew0000001Al2J&quot; /*Yogiyo Local Admin*/
+&amp;&amp;
+$UserRole.DeveloperName &lt;&gt; &quot;Global_Admin&quot;
+&amp;&amp;
+NOT(CONTAINS($User.Username,&quot;stephanie.cando@foodpanda.com&quot;)) /*APAC Local Admin*/
+&amp;&amp;
+NOT(CONTAINS($User.Username,&quot;application.manager@deliveryhero.com&quot;)) /*API IdM User*/
+&amp;&amp; 
+(ISCHANGED( UserRoleId )
+||
+ISCHANGED(Username)
+||
+ISCHANGED(Email)
+|| 
+ISCHANGED(FirstName)  
+|| 
+ISCHANGED(MiddleName)      
+||
+ISCHANGED(LastName)    
+||
+ISCHANGED(Suffix)      
+||
+ISCHANGED(Alias)      
+||
+ISCHANGED(CommunityNickname)        
+||
+ISNEW())</errorConditionFormula>
+    <errorMessage>You do not have permission to change this information. Please open a ticket to the central team.</errorMessage>
+</ValidationRule>

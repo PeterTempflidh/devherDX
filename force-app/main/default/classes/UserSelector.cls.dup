@@ -1,0 +1,71 @@
+/**
+ * Created by c.kumari on 31.07.2019.
+ */
+
+public with sharing class UserSelector {
+
+    private static Map<String, List<User>> findUsersByEmailResults = new Map<String, List<User>>();
+
+    /*******************************************************************************************************
+    * @description returns active Users based on email
+    * @param email - String
+    * @return List<User>
+    */
+    public static List<User> findUsersByEmail(String email) {
+        List<User> users = new List<User>();
+
+        if (!findUsersByEmailResults.containsKey(email)) {
+            users.addAll([SELECT Id, FirstName, LastName
+                        FROM User
+                        WHERE Email =: email
+                            AND IsActive = TRUE
+            ]);
+            findUsersByEmailResults.put(email, users);
+        }
+        
+        return findUsersByEmailResults.get(email);
+    }
+
+    /**
+     * @description returns a single user based on email
+     * @param email user email
+     * @return user record
+     */
+    public static User findUserByEmail(String email) {
+        List<User> users = findUsersByEmail(email);
+        return users == null || users.isEmpty() ? null: users.get(0);
+    }
+
+    /*******************************************************************************************************
+    * @description Queries to get the user record based on User Ids
+    * @param userIds - Set<Id>
+    * @return List<User>
+    */
+    public static List<User> getAllByUserId(Set<Id> userIds) {
+        return [SELECT Id, Email, UserRole.Name, UserRole.DeveloperName, Profile.Name FROM User WHERE Id = :userIds];
+    }
+
+    /*******************************************************************************************************
+    * @description Queries to get the Social Api user  by Name
+    * @return User
+    */
+    public static User getSocialApiUser() {
+        List<User> myUser = [SELECT Id FROM User WHERE Name = 'Social Studio Account' AND CommunityNickname = 'socialstudioDH' LIMIT 1];
+
+        return myUser == null || myUser.isEmpty() ? null: myUser[0];
+    }
+
+
+    /*******************************************************************************************************
+    * @description SCC-26: Get Logged in user's elastix extension details.
+    * @param fields - String
+    * @param whereClause - String
+    * @return Map<Id, User>
+    */
+    public static Map<Id, User> getUsersWithDynamicCondition(String fields, String whereClause) {
+        String query = 'SELECT ' + fields + ' FROM User WHERE '+whereClause;
+        List<User> users = (List<User>)Database.query(query);
+        
+        return users == null || users.isEmpty() ? null: new Map<Id, User>(users);
+    }
+}

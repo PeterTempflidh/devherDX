@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FP_List_Product_Price</fullName>
+    <active>true</active>
+    <label>FP List Product Price</label>
+    <picklistValues>
+        <picklist>Product_Type__c</picklist>
+        <values>
+            <fullName>Adjustment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Automatic</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Car Leasing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dish Level Photoshoot</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Exclusive Special Offer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hardware</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Manual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Menu Printing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Merchandise</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Online Marketing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Packaging</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Penalty</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Premium Listing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Premium placement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Premium placement - 1 Month</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Recurring Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Refund</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Renewal Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Replacement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Setup Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Software</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>White Label App</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>White Label Web</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Requires_Esignature__c</picklist>
+        <values>
+            <fullName>Block</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mandatory</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Optional</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

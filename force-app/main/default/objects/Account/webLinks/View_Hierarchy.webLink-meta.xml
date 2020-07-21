@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>View_Hierarchy</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>View Hierarchy</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/support/console/38.0/integration.js&quot;)}
+
+(function() {
+	var url = &quot;/apex/AccountHierarchy?id={!Account.Id}&quot;;
+
+	if (sforce.console.isInConsole()) {
+		sforce.console.getFocusedPrimaryTabId(function (res) {
+			sforce.console.openSubtab(res.id, url, true, &quot;Account Hierarchy&quot;);
+		});
+	} else {
+		window.location.href = url;
+	}
+
+})();</url>
+</WebLink>

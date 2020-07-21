@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Yogiyo_Opportunity_Product_Item</fullName>
+    <active>true</active>
+    <label>Yogiyo Opportunity Product Item</label>
+    <picklistValues>
+        <picklist>API_Type__c</picklist>
+        <values>
+            <fullName>Flat Commission</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

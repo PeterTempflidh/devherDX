@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HU_Restaurant_Data_Validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND (
+  RecordType.DeveloperName == &quot;HU_Entry_Case&quot;,
+  ISPICKVAL(Type, &quot;Restaurant - Data&quot;),
+  OR (
+    ISBLANK(Subject),
+    ISBLANK(Description)
+  )
+)</errorConditionFormula>
+    <errorMessage>Please enter Subject and Description</errorMessage>
+</ValidationRule>

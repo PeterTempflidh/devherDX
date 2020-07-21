@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Id_List_Service_Price__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <description>this is the relationship to the list service</description>
+    <externalId>false</externalId>
+    <label>Id List Service Price</label>
+    <referenceTo>List_Service_Price__c</referenceTo>
+    <relationshipLabel>Opportunity Service Items</relationshipLabel>
+    <relationshipName>Opportunity_Service_Items</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

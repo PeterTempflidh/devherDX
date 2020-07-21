@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contract_Type__c</fullName>
+    <description>This field is to check what kind of contract type this restaurant is</description>
+    <externalId>false</externalId>
+    <label>Contract Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>01. New - 0% (Rep)</fullName>
+                <default>false</default>
+                <label>01. New - 0% (Rep)</label>
+            </value>
+            <value>
+                <fullName>02. New - Commission (Rep)</fullName>
+                <default>false</default>
+                <label>02. New - Commission (Rep)</label>
+            </value>
+            <value>
+                <fullName>03. New - Commission (Agency)</fullName>
+                <default>false</default>
+                <label>03. New - Commission (Agency)</label>
+            </value>
+            <value>
+                <fullName>04. Re - 0% (Rep)</fullName>
+                <default>false</default>
+                <label>04. Re - 0% (Rep)</label>
+            </value>
+            <value>
+                <fullName>05. Re - Commission (Rep)</fullName>
+                <default>false</default>
+                <label>05. Re - Commission (Rep)</label>
+            </value>
+            <value>
+                <fullName>06. Re - Commission (Agency)</fullName>
+                <default>false</default>
+                <label>06. Re - Commission (Agency)</label>
+            </value>
+            <value>
+                <fullName>07. New - 0% (Etc)</fullName>
+                <default>false</default>
+                <label>07. New - 0% (Etc)</label>
+            </value>
+            <value>
+                <fullName>08. New - Commission (Etc)</fullName>
+                <default>false</default>
+                <label>08. New - Commission (Etc)</label>
+            </value>
+            <value>
+                <fullName>09. New - Franchise</fullName>
+                <default>false</default>
+                <label>09. New - Franchise</label>
+            </value>
+            <value>
+                <fullName>10. Re - Franchise</fullName>
+                <default>false</default>
+                <label>10. Re - Franchise</label>
+            </value>
+            <value>
+                <fullName>11. Re - 0% (Etc)</fullName>
+                <default>false</default>
+                <label>11. Re - 0% (Etc)</label>
+            </value>
+            <value>
+                <fullName>12. Re - Commission (Etc)</fullName>
+                <default>false</default>
+                <label>12. Re - Commission (Etc)</label>
+            </value>
+            <value>
+                <fullName>13. Re - Product Change (0%↔Commission)</fullName>
+                <default>false</default>
+                <label>13. Re - Product Change (0%↔Commission)</label>
+            </value>
+            <value>
+                <fullName>14. Re - Commission Change</fullName>
+                <default>false</default>
+                <label>14. Re - Commission Change</label>
+            </value>
+            <value>
+                <fullName>New Contract</fullName>
+                <default>false</default>
+                <label>New Contract</label>
+            </value>
+            <value>
+                <fullName>Product Change</fullName>
+                <default>false</default>
+                <label>Product Change</label>
+            </value>
+            <value>
+                <fullName>Recontract</fullName>
+                <default>false</default>
+                <label>Recontract</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

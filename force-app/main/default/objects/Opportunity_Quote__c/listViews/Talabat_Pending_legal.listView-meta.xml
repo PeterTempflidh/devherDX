@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Talabat_Pending_legal</fullName>
+    <columns>NAME</columns>
+    <columns>Status__c</columns>
+    <columns>Id_Account__c</columns>
+    <columns>Id_Opportunity__c</columns>
+    <columns>Approval_Comments__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>CURRENCY_ISO_CODE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Opportunity_Quote__c.Talabat_Opportunity_Quote</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>contains</operation>
+        <value>legal</value>
+    </filters>
+    <filters>
+        <field>Id_Account__c</field>
+        <operation>notContain</operation>
+        <value>test</value>
+    </filters>
+    <filters>
+        <field>CURRENCY_ISO_CODE</field>
+        <operation>notEqual</operation>
+        <value>AED,OMR</value>
+    </filters>
+    <label>TLB - Legal Approval</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Talabat_Management</role>
+        <role>Talabat_Sales_Management_UAE</role>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Topis_Discussed__c</fullName>
+    <description>when Decision Maker is reached sales agent has to choose the topics discussed in the call/visit</description>
+    <externalId>false</externalId>
+    <label>Topics Discussed</label>
+    <required>false</required>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <controllingField>Activity_Subject__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Premium Placement</fullName>
+                <default>false</default>
+                <label>Premium Placement</label>
+            </value>
+            <value>
+                <fullName>New Sign up</fullName>
+                <default>false</default>
+                <label>New Sign up</label>
+            </value>
+            <value>
+                <fullName>Menu Printing</fullName>
+                <default>false</default>
+                <label>Menu Printing</label>
+            </value>
+            <value>
+                <fullName>Loyalty Schemes</fullName>
+                <default>false</default>
+                <label>Loyalty Schemes</label>
+            </value>
+            <value>
+                <fullName>Upgrade</fullName>
+                <default>false</default>
+                <label>Upgrade</label>
+            </value>
+            <value>
+                <fullName>Account management</fullName>
+                <default>false</default>
+                <label>Account management</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Rest Ops. - Improvement</fullName>
+                <default>false</default>
+                <label>Rest Ops. - Improvement</label>
+            </value>
+            <value>
+                <fullName>Rest Ops. - No Improvement</fullName>
+                <default>false</default>
+                <label>Rest Ops. - No Improvement</label>
+            </value>
+            <value>
+                <fullName>Rest Ops. - follow-up required</fullName>
+                <default>false</default>
+                <label>Rest Ops. - follow-up required</label>
+            </value>
+            <value>
+                <fullName>Opening times</fullName>
+                <default>false</default>
+                <label>Opening times</label>
+            </value>
+            <value>
+                <fullName>Delivery areas</fullName>
+                <default>false</default>
+                <label>Delivery areas</label>
+            </value>
+            <value>
+                <fullName>Transmission problem</fullName>
+                <default>false</default>
+                <label>Transmission problem</label>
+            </value>
+            <value>
+                <fullName>Too busy during peak time</fullName>
+                <default>false</default>
+                <label>Too busy during peak time</label>
+            </value>
+            <value>
+                <fullName>Decline rate</fullName>
+                <default>false</default>
+                <label>Decline rate</label>
+            </value>
+            <value>
+                <fullName>Contract cancellation</fullName>
+                <default>false</default>
+                <label>Contract cancellation</label>
+            </value>
+            <value>
+                <fullName>Contract issues</fullName>
+                <default>false</default>
+                <label>Contract issues</label>
+            </value>
+            <value>
+                <fullName>Temporarily Deactivated</fullName>
+                <default>false</default>
+                <label>Temporarily Deactivated</label>
+            </value>
+            <value>
+                <fullName>Sales_Offer</fullName>
+                <default>false</default>
+                <label>Sales Offer</label>
+            </value>
+            <value>
+                <fullName>Reorder rate</fullName>
+                <default>false</default>
+                <label>Reorder rate</label>
+            </value>
+            <value>
+                <fullName>Reviews</fullName>
+                <default>false</default>
+                <label>Reviews</label>
+            </value>
+            <value>
+                <fullName>Merchandise</fullName>
+                <default>false</default>
+                <label>Merchandise</label>
+            </value>
+            <value>
+                <fullName>Branding</fullName>
+                <default>false</default>
+                <label>Branding</label>
+            </value>
+            <value>
+                <fullName>Deals</fullName>
+                <default>false</default>
+                <label>Deals</label>
+            </value>
+            <value>
+                <fullName>Onboarding/Wellcome Call</fullName>
+                <default>false</default>
+                <label>Onboarding/Wellcome Call</label>
+            </value>
+            <value>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+                <label>Marketing</label>
+            </value>
+            <value>
+                <fullName>Restaurant performance</fullName>
+                <default>false</default>
+                <label>Restaurant performance</label>
+            </value>
+            <value>
+                <fullName>Retention</fullName>
+                <default>false</default>
+                <label>Retention</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <valueName>Premium Placement</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <valueName>New Sign up</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <valueName>Menu Printing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <valueName>Loyalty Schemes</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <valueName>Upgrade</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <valueName>Account management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <valueName>Other</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <controllingFieldValue>High Failure Rate - Kick Out</controllingFieldValue>
+            <controllingFieldValue>High Failure Rate - Warning</controllingFieldValue>
+            <valueName>Rest Ops. - Improvement</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <controllingFieldValue>High Failure Rate - Kick Out</controllingFieldValue>
+            <controllingFieldValue>High Failure Rate - Warning</controllingFieldValue>
+            <valueName>Rest Ops. - No Improvement</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <controllingFieldValue>High Failure Rate - Kick Out</controllingFieldValue>
+            <controllingFieldValue>High Failure Rate - Warning</controllingFieldValue>
+            <valueName>Rest Ops. - follow-up required</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <valueName>Opening times</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <valueName>Delivery areas</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <valueName>Transmission problem</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <valueName>Too busy during peak time</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <valueName>Decline rate</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <valueName>Contract cancellation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <valueName>Contract issues</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <valueName>Temporarily Deactivated</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <valueName>Sales_Offer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <valueName>Reorder rate</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <valueName>Reviews</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <valueName>Merchandise</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <valueName>Branding</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <valueName>Deals</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <valueName>Onboarding/Wellcome Call</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <valueName>Marketing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <valueName>Restaurant performance</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Call - Decision maker reached</controllingFieldValue>
+            <valueName>Retention</valueName>
+        </valueSettings>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

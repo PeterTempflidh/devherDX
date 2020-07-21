@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_Lost_Reason_is_required</fullName>
+    <active>true</active>
+    <description>Lost Reason is required when an Opportunity is marked &quot;Closed-Lost&quot;</description>
+    <errorConditionFormula>AND(
+    ISPICKVAL(StageName,&quot;Closed Lost&quot;),
+ ($Profile.Name &lt;&gt; &apos;System Administrator&apos;),
+    ISBLANK (TEXT (Lost_Reason__c ) )
+    )</errorConditionFormula>
+    <errorDisplayField>Lost_Reason__c</errorDisplayField>
+    <errorMessage>Please select a lost reason</errorMessage>
+</ValidationRule>

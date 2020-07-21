@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CD_Charges_Peru</fullName>
+    <columns>NAME</columns>
+    <columns>Product__c</columns>
+    <columns>Id_Account__c</columns>
+    <columns>Id_Asset__c</columns>
+    <columns>Id_Opportunity__c</columns>
+    <columns>Start_Date__c</columns>
+    <columns>Status__c</columns>
+    <columns>Termination_Date__c</columns>
+    <columns>Termination_Reason__c</columns>
+    <columns>Total_Amount__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Additional_Charges__c.CD_Additional_Charges</value>
+    </filters>
+    <filters>
+        <field>CURRENCY_ISO_CODE</field>
+        <operation>equals</operation>
+        <value>PEN</value>
+    </filters>
+    <label>CD - Charges - Peru</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>CD_Management</role>
+        <roleAndSubordinates>CD_Customer_Care</roleAndSubordinates>
+        <roleAndSubordinates>CD_Sales_Management_Colombia</roleAndSubordinates>
+    </sharedTo>
+</ListView>

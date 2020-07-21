@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Attachment_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Attachment Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Bank Details</fullName>
+                <default>false</default>
+                <label>Bank Details</label>
+            </value>
+            <value>
+                <fullName>Cheque Copy</fullName>
+                <default>false</default>
+                <label>Cheque Copy</label>
+            </value>
+            <value>
+                <fullName>Contract</fullName>
+                <default>false</default>
+                <label>Contract</label>
+            </value>
+            <value>
+                <fullName>Contract Termination</fullName>
+                <default>false</default>
+                <label>Contract Termination</label>
+            </value>
+            <value>
+                <fullName>Deal Confirmation</fullName>
+                <default>false</default>
+                <label>Deal Confirmation</label>
+            </value>
+            <value>
+                <fullName>Exclusivity Agreement</fullName>
+                <default>false</default>
+                <label>Exclusivity Agreement</label>
+            </value>
+            <value>
+                <fullName>Delivery Area</fullName>
+                <default>false</default>
+                <label>Delivery Area</label>
+            </value>
+            <value>
+                <fullName>Menu Item Level Photos</fullName>
+                <default>false</default>
+                <label>Menu Item Level Photos</label>
+            </value>
+            <value>
+                <fullName>Halal Certification</fullName>
+                <default>false</default>
+                <label>Halal Certification</label>
+            </value>
+            <value>
+                <fullName>Logo</fullName>
+                <default>false</default>
+                <label>Logo</label>
+            </value>
+            <value>
+                <fullName>Menu</fullName>
+                <default>false</default>
+                <label>Menu</label>
+            </value>
+            <value>
+                <fullName>Tax Registration Form</fullName>
+                <default>false</default>
+                <label>Tax Registration Form</label>
+            </value>
+            <value>
+                <fullName>Business License</fullName>
+                <default>false</default>
+                <label>Business License</label>
+            </value>
+            <value>
+                <fullName>Opening Hours</fullName>
+                <default>false</default>
+                <label>Opening Hours</label>
+            </value>
+            <value>
+                <fullName>Photo Store Front</fullName>
+                <default>false</default>
+                <label>Photo Store Front</label>
+            </value>
+            <value>
+                <fullName>Food Licence Number</fullName>
+                <default>false</default>
+                <label>Food Licence Number</label>
+            </value>
+            <value>
+                <fullName>Account Set Up Form</fullName>
+                <default>false</default>
+                <label>Account Set Up Form</label>
+            </value>
+            <value>
+                <fullName>ID Card/Passport</fullName>
+                <default>false</default>
+                <label>ID Card/Passport</label>
+            </value>
+            <value>
+                <fullName>Cover Photo/Listing Hero Photo</fullName>
+                <default>false</default>
+                <label>Cover Photo/Listing Hero Photo</label>
+            </value>
+            <value>
+                <fullName>Food Photos</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Food Photos</label>
+            </value>
+            <value>
+                <fullName>a</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>a</label>
+            </value>
+            <value>
+                <fullName>b</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>b</label>
+            </value>
+            <value>
+                <fullName>d</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>d</label>
+            </value>
+            <value>
+                <fullName>sa</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>sa</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TLB_Addon_excl_GEM</fullName>
+    <columns>CREATED_DATE</columns>
+    <columns>NAME</columns>
+    <columns>Start_Date__c</columns>
+    <columns>Status__c</columns>
+    <columns>Account_Name__c</columns>
+    <columns>Type__c</columns>
+    <columns>Id_List_Add_On__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Id_List_Add_On__c</field>
+        <operation>notContain</operation>
+        <value>GEM</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Active,Terminated,Expired,Canceled</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Add_on_Service__c.Talabat_Add_On</value>
+    </filters>
+    <label>TLB - Addon - excl. GEM</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>Talabat_Content_Team</group>
+        <group>Talabat_Sales_Admin</group>
+        <role>Talabat_Customer_Care</role>
+        <role>Talabat_Customer_Care_Management</role>
+        <role>Talabat_Management</role>
+        <role>Talabat_Operation_Management</role>
+        <role>Talabat_Operation_Team</role>
+        <role>Talabat_Sales_Team_Bahrain</role>
+        <role>Talabat_Sales_Team_Jordan</role>
+        <role>Talabat_Sales_Team_Kuwait</role>
+        <role>Talabat_Sales_Team_Lebanon</role>
+        <role>Talabat_Sales_Team_Oman</role>
+        <role>Talabat_Sales_Team_Qatar</role>
+        <role>Talabat_Sales_Team_Saudi_Arabia</role>
+        <role>Talabat_Sales_Team_UAE</role>
+    </sharedTo>
+</ListView>

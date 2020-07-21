@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Austria_Configs</fullName>
+    <columns>NAME</columns>
+    <columns>Process_Name__c</columns>
+    <columns>Business_Rule_Name__c</columns>
+    <columns>Business_Rule_Value__c</columns>
+    <columns>Id_Country__c</columns>
+    <columns>Is_Active__c</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Id_Country__c</field>
+        <operation>equals</operation>
+        <value>Austria</value>
+    </filters>
+    <filters>
+        <field>Parent__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Austria - Configs</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Global_Admin</role>
+    </sharedTo>
+</ListView>

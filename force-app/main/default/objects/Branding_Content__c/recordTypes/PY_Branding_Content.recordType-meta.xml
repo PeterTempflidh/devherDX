@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PY_Branding_Content</fullName>
+    <active>true</active>
+    <label>PY Branding Content</label>
+    <picklistValues>
+        <picklist>Competitor_branding__c</picklist>
+        <values>
+            <fullName>Menulog %2F Eat Now</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Order Up</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Suppertime</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Zomato</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Deposit_Method__c</picklist>
+        <values>
+            <fullName>Bank Transfer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cheque</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Credit Card</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Location__c</picklist>
+        <values>
+            <fullName>Counter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Door</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Main window</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Secondary window</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vehicle</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wall</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Migrated_From_Source_System__c</picklist>
+        <values>
+            <fullName>Salesforce PeYa</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Number_of_Copies__c</picklist>
+        <values>
+            <fullName>100K</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10K</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>125K</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>150K</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>175K</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>200K</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>25K</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>50K</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5K</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Size__c</picklist>
+        <values>
+            <fullName>Extra Large</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Large</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Medium external</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Medium internal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Small</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Canceled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Installed successfully</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New - Awaiting Installation</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Rejected</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Uninstalled</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Template_Type__c</picklist>
+        <values>
+            <fullName>With Website</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Without Website</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Termination_Reason__c</picklist>
+        <values>
+            <fullName>Business Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cannot Contact</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Capacity - Driver Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Capacity - Order Volume</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DH Delivery</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Downgrade</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Duplicate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fraud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Invalid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legal Form Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Logistics Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lost to Competition</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Owner - New Contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Owner - No New Contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Delivery Service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Enough Orders</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Payment Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Poor Performance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pricing - Commission</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pricing - Premium Placement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pricing - Setup Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transmission Issue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Upgrade</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type__c</picklist>
+        <values>
+            <fullName>Apron</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Automatic</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Blade sign</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Flagship Store</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hats%2FCaps</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Heating Bag</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Manual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Menu Printing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Menu holder</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Notepads%2FPens</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Open and closed sign</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other branded consumables</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Roofie</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Starter Package</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sticker</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>T-shirts</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>White Label App</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>White Label Web</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Weight__c</picklist>
+        <values>
+            <fullName>130g</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>150g</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>170g</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>200g</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>250g</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

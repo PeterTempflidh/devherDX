@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ON_Upsertable__c</fullName>
+    <description>If checked, the Contact can be transferred by the JustOn Connector.</description>
+    <externalId>false</externalId>
+    <formula>IF( 
+OR( 
+ISPICKVAL(Contact_Role__c, &quot;Owner&quot;), 
+ISPICKVAL(Contact_Role__c, &quot;Billing Manager&quot;) 
+), 
+TRUE, 
+FALSE 
+) 
+&amp;&amp; 
+OR(RecordType.DeveloperName = &quot;SE_Contact&quot;,RecordType.DeveloperName = &quot;FI_Contact&quot;)
+&amp;&amp;
+NOT(ISNULL(Account.ON_LastUpsert__c))
+&amp;&amp;
+Account.ON_Upsertable__c</formula>
+    <inlineHelpText>If checked, the Contact can be transferred by the JustOn Connector.</inlineHelpText>
+    <label>Connector: Upsertable</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

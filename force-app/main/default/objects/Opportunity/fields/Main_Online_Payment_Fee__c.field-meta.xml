@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Main_Online_Payment_Fee__c</fullName>
+    <description>Holds the value of the &quot;Online Payment Fee&quot; in case there are more than one opportunity line items of type &quot;Online Payment Fee&quot; on the opportunity. Used in the Australian quote template</description>
+    <externalId>false</externalId>
+    <label>Main Online Payment Fee</label>
+    <precision>4</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

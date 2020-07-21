@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Platform_Relay_Method__c</fullName>
+    <description>SP-1730 Relay Method of the Platform</description>
+    <externalId>false</externalId>
+    <label>Platform Relay Method</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Fax</fullName>
+                <default>false</default>
+                <label>Fax</label>
+            </value>
+            <value>
+                <fullName>Email</fullName>
+                <default>false</default>
+                <label>Email</label>
+            </value>
+            <value>
+                <fullName>Box helicom</fullName>
+                <default>false</default>
+                <label>Box helicom</label>
+            </value>
+            <value>
+                <fullName>9cookies IOS</fullName>
+                <default>false</default>
+                <label>9cookies IOS</label>
+            </value>
+            <value>
+                <fullName>Acom</fullName>
+                <default>false</default>
+                <label>Acom</label>
+            </value>
+            <value>
+                <fullName>9cookies GO</fullName>
+                <default>false</default>
+                <label>9cookies GO</label>
+            </value>
+            <value>
+                <fullName>POS polling via device</fullName>
+                <default>false</default>
+                <label>POS polling via device</label>
+            </value>
+            <value>
+                <fullName>POS push</fullName>
+                <default>false</default>
+                <label>POS push</label>
+            </value>
+            <value>
+                <fullName>POS push REST</fullName>
+                <default>false</default>
+                <label>POS push REST</label>
+            </value>
+            <value>
+                <fullName>SMS Fallback</fullName>
+                <default>false</default>
+                <label>SMS Fallback</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

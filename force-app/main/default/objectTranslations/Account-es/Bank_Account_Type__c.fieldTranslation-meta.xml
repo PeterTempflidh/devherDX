@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Tipo de Cuenta Bancaria</label>
+    <name>Bank_Account_Type__c</name>
+    <picklistValues>
+        <masterLabel>Bank Account</masterLabel>
+        <translation><!-- Bank Account --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bank Giro</masterLabel>
+        <translation><!-- Bank Giro --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Current Account</masterLabel>
+        <translation>Cuenta Corriente</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Plus Giro</masterLabel>
+        <translation><!-- Plus Giro --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Savings Account</masterLabel>
+        <translation>Cuenta de Ahorro</translation>
+    </picklistValues>
+</CustomFieldTranslation>

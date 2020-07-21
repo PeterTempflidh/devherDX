@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Link_Action_Items</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Link Action Items</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>(function() {
+    var width = 900;
+    var height = 500;
+    var title = &quot;Link/De-Link Action Items&quot;;
+
+    var box = new SimpleDialog(&quot;salesforce&quot; + Math.random(), true);
+    box.setTitle(title);
+    box.displayX = true;
+    box.isMovable = false;
+    box.createDialog();
+    box.setWidth(width);
+    // set your html content here
+    box.setContentInnerHTML(
+      &apos;&lt;iframe src=&quot;/apex/LinkActionItems?Id={!Task.Id}&amp;Code={!Task.Code__c}&quot; style=&quot;border:none;&quot; width=&quot;100%&quot; height=&quot;&apos;+ (height - 10)+&apos;px&quot; /&gt;&apos;
+    );
+    //set the height of the modal
+    box.dialog.children[1].style.height = height + &apos;px&apos;;
+    box.show();
+
+    //if displayX is set to true, then override standard close event by this code
+    box.dialog.getElementsByClassName(&apos;dialogClose&apos;)[0].onclick = function() {
+      box.hide();
+      // you can add code to reload the page or redirect to another page 
+    };
+    //optional : add this to close the modal onclick of the overlay background
+    box.background.addEventListener(&apos;click&apos;, function() {
+      box.hide();
+    });
+    
+    // if you want to be able to close the modal from the Visualforce page
+    window.addEventListener(&apos;message&apos;, function(event){
+      if (event.data === &apos;close&apos;){
+        box.hide();
+      }
+    });
+})();</url>
+</WebLink>

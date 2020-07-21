@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Yogiyo_Marketing_Team_CustomTasks</fullName>
+    <filterScope>Queue</filterScope>
+    <label>Yogiyo Marketing Team</label>
+    <queue>Yogiyo_Marketing_Team</queue>
+    <sharedTo>
+        <allInternalUsers/>
+    </sharedTo>
+</ListView>

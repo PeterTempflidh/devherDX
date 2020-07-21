@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Template for SG Commission Negotiation Request</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>PC Level 2 - Commission Negotiation Request (SG)</name>
+    <style>freeForm</style>
+    <subject>foodpanda: Commission Negotiation Request</subject>
+    <textOnly>Dear {!Account.Name},
+
+Thank you for reaching out to foodpanda.
+
+We have reviewed &lt;Restaurant’s Name&gt; data and we regret to inform you that a lower commission rate is financially unsustainable for foodpanda.
+
+Please note that foodpanda needs to generate $11.40 (excluding delivery fee) from every order to break-even. According to your restaurant&apos;s data, the average amount that foodpanda generates from &lt;Restaurant Name&gt;, on a per order basis, is 35% X $25.00 (average basket size) = $8.75, representing a net loss of $2.64 on every order. Despite this ongoing loss, we invest most of our revenue back into our Marketing and Logistics systems to support the restaurants.
+
+We seek your kind understanding in the matter.
+
+Regards,
+&lt;Agent Name&gt;</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

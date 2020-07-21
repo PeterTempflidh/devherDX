@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TLB_My_Assets_Awaiting_Delivery</fullName>
+    <columns>NAME</columns>
+    <columns>Stock_Item_Serial_No__c</columns>
+    <columns>Account__c</columns>
+    <columns>Shipping_Address_Korea__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Awaiting Delivery</value>
+    </filters>
+    <label>TLB - My Assets - Awaiting Delivery</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Talabat_Sales_Team_Bahrain</role>
+        <role>Talabat_Sales_Team_Jordan</role>
+        <role>Talabat_Sales_Team_Kuwait</role>
+        <role>Talabat_Sales_Team_Lebanon</role>
+        <role>Talabat_Sales_Team_Qatar</role>
+        <role>Talabat_Sales_Team_Saudi_Arabia</role>
+        <role>Talabat_Sales_Team_UAE</role>
+    </sharedTo>
+</ListView>

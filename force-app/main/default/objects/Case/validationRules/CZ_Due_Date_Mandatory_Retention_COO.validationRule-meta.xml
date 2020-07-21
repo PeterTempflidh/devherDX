@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CZ_Due_Date_Mandatory_Retention_COO</fullName>
+    <active>true</active>
+    <description>SSC-1544, SSC-2255 Global VR is not applicable for CZ as it has the additional filter of Case reason - Not Successful</description>
+    <errorConditionFormula>RecordType.DeveloperName=&apos;CZ_Internal_Case&apos;
+&amp;&amp;
+TEXT(Status)=&quot;Closed&quot;
+&amp;&amp;
+ISBLANK(Due_Date__c)
+&amp;&amp;
+(TEXT(Type)=&quot;Owner/Legal Form Change&quot;
+||
+TEXT(Type)=&quot;Retention&quot;
+)
+&amp;&amp;
+NOT( $Permission.Exclude_from_Validation )</errorConditionFormula>
+    <errorDisplayField>Due_Date__c</errorDisplayField>
+    <errorMessage>Please enter a Due Date before closing the case</errorMessage>
+</ValidationRule>

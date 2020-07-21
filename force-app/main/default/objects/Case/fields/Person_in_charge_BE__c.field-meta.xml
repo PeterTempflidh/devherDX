@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Person_in_charge_BE__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Person in charge for Backend ID creation</inlineHelpText>
+    <label>Person in-charge BE</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>GVS</fullName>
+                <default>false</default>
+                <label>GVS</label>
+            </value>
+            <value>
+                <fullName>Amy</fullName>
+                <default>false</default>
+                <label>Amy</label>
+            </value>
+            <value>
+                <fullName>Aaron</fullName>
+                <default>false</default>
+                <label>Aaron</label>
+            </value>
+            <value>
+                <fullName>Jacky</fullName>
+                <default>false</default>
+                <label>Jacky</label>
+            </value>
+            <value>
+                <fullName>Editorial Management Team</fullName>
+                <default>false</default>
+                <label>Editorial Management Team</label>
+            </value>
+            <value>
+                <fullName>Andrea Walsh</fullName>
+                <default>false</default>
+                <label>Andrea Walsh</label>
+            </value>
+            <value>
+                <fullName>Christopher Tan</fullName>
+                <default>false</default>
+                <label>Christopher Tan</label>
+            </value>
+            <value>
+                <fullName>Debbie Yeung</fullName>
+                <default>false</default>
+                <label>Debbie Yeung</label>
+            </value>
+            <value>
+                <fullName>Derek Du</fullName>
+                <default>false</default>
+                <label>Derek Du</label>
+            </value>
+            <value>
+                <fullName>Diana Lee</fullName>
+                <default>false</default>
+                <label>Diana Lee</label>
+            </value>
+            <value>
+                <fullName>Gloria Siu</fullName>
+                <default>false</default>
+                <label>Gloria Siu</label>
+            </value>
+            <value>
+                <fullName>Henry Feng</fullName>
+                <default>false</default>
+                <label>Henry Feng</label>
+            </value>
+            <value>
+                <fullName>James Evans</fullName>
+                <default>false</default>
+                <label>James Evans</label>
+            </value>
+            <value>
+                <fullName>Joshua Jun</fullName>
+                <default>false</default>
+                <label>Joshua Jun</label>
+            </value>
+            <value>
+                <fullName>Olivia Jeon</fullName>
+                <default>false</default>
+                <label>Olivia Jeon</label>
+            </value>
+            <value>
+                <fullName>Paulus Poon</fullName>
+                <default>false</default>
+                <label>Paulus Poon</label>
+            </value>
+            <value>
+                <fullName>Shell Pandaeng</fullName>
+                <default>false</default>
+                <label>Shell Pandaeng</label>
+            </value>
+            <value>
+                <fullName>Stephen Sanjaya</fullName>
+                <default>false</default>
+                <label>Stephen Sanjaya</label>
+            </value>
+            <value>
+                <fullName>Steven Morrison</fullName>
+                <default>false</default>
+                <label>Steven Morrison</label>
+            </value>
+            <value>
+                <fullName>Tony Greig</fullName>
+                <default>false</default>
+                <label>Tony Greig</label>
+            </value>
+            <value>
+                <fullName>Wan Hoe Goh</fullName>
+                <default>false</default>
+                <label>Wan Hoe Goh</label>
+            </value>
+            <value>
+                <fullName>Arlene Salanguit</fullName>
+                <default>false</default>
+                <label>Arlene Salanguit</label>
+            </value>
+            <value>
+                <fullName>Timothy Reyes</fullName>
+                <default>false</default>
+                <label>Timothy Reyes</label>
+            </value>
+            <value>
+                <fullName>Mark Ong</fullName>
+                <default>false</default>
+                <label>Mark Ong</label>
+            </value>
+            <value>
+                <fullName>Sophia Alba</fullName>
+                <default>false</default>
+                <label>Sophia Alba</label>
+            </value>
+            <value>
+                <fullName>Tristan Guanco</fullName>
+                <default>false</default>
+                <label>Tristan Guanco</label>
+            </value>
+            <value>
+                <fullName>Nina Domingo</fullName>
+                <default>false</default>
+                <label>Nina Domingo</label>
+            </value>
+            <value>
+                <fullName>Clare Nicholl</fullName>
+                <default>false</default>
+                <label>Clare Nicholl</label>
+            </value>
+            <value>
+                <fullName>Madison Murphy</fullName>
+                <default>false</default>
+                <label>Madison Murphy</label>
+            </value>
+            <value>
+                <fullName>Arifin Tellegen</fullName>
+                <default>false</default>
+                <label>Arifin Tellegen</label>
+            </value>
+            <value>
+                <fullName>Robert Verdejo</fullName>
+                <default>false</default>
+                <label>Robert Verdejo</label>
+            </value>
+            <value>
+                <fullName>Jervis Jose</fullName>
+                <default>false</default>
+                <label>Jervis Jose</label>
+            </value>
+            <value>
+                <fullName>Maria Dena Jalipot</fullName>
+                <default>false</default>
+                <label>Maria Dena Jalipot</label>
+            </value>
+            <value>
+                <fullName>Leonell Banaag</fullName>
+                <default>false</default>
+                <label>Leonell Banaag</label>
+            </value>
+            <value>
+                <fullName>Michael Gavieres</fullName>
+                <default>false</default>
+                <label>Michael Gavieres</label>
+            </value>
+            <value>
+                <fullName>Cherry Torre</fullName>
+                <default>false</default>
+                <label>Cherry Torre</label>
+            </value>
+            <value>
+                <fullName>Genie Ooi</fullName>
+                <default>false</default>
+                <label>Genie Ooi</label>
+            </value>
+            <value>
+                <fullName>Zheng Hang Lee</fullName>
+                <default>false</default>
+                <label>Zheng Hang Lee</label>
+            </value>
+            <value>
+                <fullName>Jacqueline Wu</fullName>
+                <default>false</default>
+                <label>Jacqueline Wu</label>
+            </value>
+            <value>
+                <fullName>Ramon Pedroche</fullName>
+                <default>false</default>
+                <label>Ramon Pedroche</label>
+            </value>
+            <value>
+                <fullName>Elena Ogrimen</fullName>
+                <default>false</default>
+                <label>Elena Ogrimen</label>
+            </value>
+            <value>
+                <fullName>Josh Stevens</fullName>
+                <default>false</default>
+                <label>Josh Stevens</label>
+            </value>
+            <value>
+                <fullName>Allan Jose Bautista</fullName>
+                <default>false</default>
+                <label>Allan Jose Bautista</label>
+            </value>
+            <value>
+                <fullName>Katleen Capuno Morales</fullName>
+                <default>false</default>
+                <label>Katleen Capuno Morales</label>
+            </value>
+            <value>
+                <fullName>Myleen Arnaiz Siano</fullName>
+                <default>false</default>
+                <label>Myleen Arnaiz Siano</label>
+            </value>
+            <value>
+                <fullName>Maria Rizza Lacerna</fullName>
+                <default>false</default>
+                <label>Maria Rizza Lacerna</label>
+            </value>
+            <value>
+                <fullName>Aileen Masagca Romero</fullName>
+                <default>false</default>
+                <label>Aileen Masagca Romero</label>
+            </value>
+            <value>
+                <fullName>Karloe Magbanua Gayadan</fullName>
+                <default>false</default>
+                <label>Karloe Magbanua Gayadan</label>
+            </value>
+            <value>
+                <fullName>Kristoffer Ross Olino</fullName>
+                <default>false</default>
+                <label>Kristoffer Ross Olino</label>
+            </value>
+            <value>
+                <fullName>Princess Mendoza</fullName>
+                <default>false</default>
+                <label>Princess Mendoza</label>
+            </value>
+            <value>
+                <fullName>Thomas Fernando</fullName>
+                <default>false</default>
+                <label>Thomas Fernando</label>
+            </value>
+            <value>
+                <fullName>Lara Escano</fullName>
+                <default>false</default>
+                <label>Lara Escano</label>
+            </value>
+            <value>
+                <fullName>Marcelle Risonar</fullName>
+                <default>false</default>
+                <label>Marcelle Risonar</label>
+            </value>
+            <value>
+                <fullName>Paula Rodelle Rances</fullName>
+                <default>false</default>
+                <label>Paula Rodelle Rances</label>
+            </value>
+            <value>
+                <fullName>Diana Rose Fernando</fullName>
+                <default>false</default>
+                <label>Diana Rose Fernando</label>
+            </value>
+            <value>
+                <fullName>Jay-R Galpo</fullName>
+                <default>false</default>
+                <label>Jay-R Galpo</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

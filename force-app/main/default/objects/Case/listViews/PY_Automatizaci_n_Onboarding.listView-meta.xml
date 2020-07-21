@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PY_Automatizaci_n_Onboarding</fullName>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.TYPE</columns>
+    <columns>Asset__c</columns>
+    <columns>Asset_Status__c</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>OWNER_NAME</columns>
+    <columns>Country__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>notEqual</operation>
+        <value>Closed</value>
+    </filters>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.PY_Restaurant_Operations</value>
+    </filters>
+    <filters>
+        <field>CASES.TYPE</field>
+        <operation>equals</operation>
+        <value>Onboarding</value>
+    </filters>
+    <filters>
+        <field>Asset_Status__c</field>
+        <operation>contains</operation>
+        <value>Activated,Sent</value>
+    </filters>
+    <filters>
+        <field>Asset_Status__c</field>
+        <operation>notContain</operation>
+        <value>Ne,Delivered,Technical issue,Invalid,Incomplete,delivered</value>
+    </filters>
+    <label>PY - Automatización - Onboarding</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>PY_Logistics</group>
+        <group>PY_Restaurant_Operations</group>
+    </sharedTo>
+</ListView>

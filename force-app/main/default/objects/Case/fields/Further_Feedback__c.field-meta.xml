@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Further_Feedback__c</fullName>
+    <externalId>false</externalId>
+    <label>Further Feedback</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Educated on Invoices</fullName>
+                <default>false</default>
+                <label>Educated on Invoices</label>
+            </value>
+            <value>
+                <fullName>Educated on Partner Portal</fullName>
+                <default>false</default>
+                <label>Educated on Partner Portal</label>
+            </value>
+            <value>
+                <fullName>Educated on Ranking Score / Penalties</fullName>
+                <default>false</default>
+                <label>Educated on Ranking Score / Penalties</label>
+            </value>
+            <value>
+                <fullName>Educated on Reviews</fullName>
+                <default>false</default>
+                <label>Educated on Reviews</label>
+            </value>
+            <value>
+                <fullName>Educated on Terminal</fullName>
+                <default>false</default>
+                <label>Educated on Terminal</label>
+            </value>
+            <value>
+                <fullName>Fixed Account Issues</fullName>
+                <default>false</default>
+                <label>Fixed Account Issues</label>
+            </value>
+            <value>
+                <fullName>Fixed Technical Issues</fullName>
+                <default>false</default>
+                <label>Fixed Technical Issues</label>
+            </value>
+            <value>
+                <fullName>Happy with Competitor</fullName>
+                <default>false</default>
+                <label>Happy with Competitor</label>
+            </value>
+            <value>
+                <fullName>Menu Change</fullName>
+                <default>false</default>
+                <label>Menu Change</label>
+            </value>
+            <value>
+                <fullName>Offers Applied</fullName>
+                <default>false</default>
+                <label>Offers Applied</label>
+            </value>
+            <value>
+                <fullName>Opening Times Changed</fullName>
+                <default>false</default>
+                <label>Opening Times Changed</label>
+            </value>
+            <value>
+                <fullName>Restaurant Referred for Branding/Menu</fullName>
+                <default>false</default>
+                <label>Restaurant Referred for Branding/Menu</label>
+            </value>
+            <value>
+                <fullName>Restaurant Referred for PP</fullName>
+                <default>false</default>
+                <label>Restaurant Referred for PP</label>
+            </value>
+            <value>
+                <fullName>Terminal Support Requested</fullName>
+                <default>false</default>
+                <label>Terminal Support Requested</label>
+            </value>
+            <value>
+                <fullName>Restaurant Not Cooperative</fullName>
+                <default>false</default>
+                <label>Restaurant Not Cooperative</label>
+            </value>
+            <value>
+                <fullName>Updated Contact Details</fullName>
+                <default>false</default>
+                <label>Updated Contact Details</label>
+            </value>
+            <value>
+                <fullName>Educated on Commission/Set-Up Fee</fullName>
+                <default>false</default>
+                <label>Educated on Commission/Set-Up Fee</label>
+            </value>
+            <value>
+                <fullName>Educated on 9Cookies</fullName>
+                <default>false</default>
+                <label>Educated on 9Cookies</label>
+            </value>
+            <value>
+                <fullName>Commission changed</fullName>
+                <default>false</default>
+                <label>Commission changed</label>
+            </value>
+            <value>
+                <fullName>Order Transmission Method Change</fullName>
+                <default>false</default>
+                <label>Order Transmission Method Change</label>
+            </value>
+            <value>
+                <fullName>Educated on NPS</fullName>
+                <default>false</default>
+                <label>Educated on NPS</label>
+            </value>
+            <value>
+                <fullName>Referred to Sales</fullName>
+                <default>false</default>
+                <label>Referred to Sales</label>
+            </value>
+            <value>
+                <fullName>FSA Rating Requested</fullName>
+                <default>false</default>
+                <label>FSA Rating Requested</label>
+            </value>
+            <value>
+                <fullName>Delivery Zones Updated</fullName>
+                <default>false</default>
+                <label>Delivery Zones Updated</label>
+            </value>
+            <value>
+                <fullName>Updated Delivery Settings</fullName>
+                <default>false</default>
+                <label>Updated Delivery Settings</label>
+            </value>
+            <value>
+                <fullName>Educated on Order Tracking</fullName>
+                <default>false</default>
+                <label>Educated on Order Tracking</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>10</visibleLines>
+</CustomField>

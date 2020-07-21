@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Formatted_Shipping_Address__c</fullName>
+    <description>Set by Process builder GLOBAL - Address - Set Account Shipping Address, store formatted shipping address related to this account.
+This address comes from the new address model</description>
+    <externalId>false</externalId>
+    <label>Formatted Shipping Address</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>TextArea</type>
+</CustomField>

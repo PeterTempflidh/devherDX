@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Commission_Base__c</fullName>
+    <description>Field to track finance specifications (gross/net) in Sweden and Finland SP-4658</description>
+    <externalId>false</externalId>
+    <label>Commission Base</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>GROSS</fullName>
+                <default>false</default>
+                <label>Basket size calculation</label>
+            </value>
+            <value>
+                <fullName>INTAX</fullName>
+                <default>false</default>
+                <label>Order size calculation</label>
+            </value>
+            <value>
+                <fullName>comm1</fullName>
+                <default>false</default>
+                <label>Order Size including Packing</label>
+            </value>
+            <value>
+                <fullName>comm2</fullName>
+                <default>false</default>
+                <label>Basket Size including Packaging &amp; MOV residual</label>
+            </value>
+            <value>
+                <fullName>NMV</fullName>
+                <default>false</default>
+                <label>Net Merchandise Volume</label>
+            </value>
+            <value>
+                <fullName>GMV</fullName>
+                <default>false</default>
+                <label>Gross Merchandise Volume</label>
+            </value>
+            <value>
+                <fullName>NFV</fullName>
+                <default>false</default>
+                <label>Net Food Value</label>
+            </value>
+            <value>
+                <fullName>GFV</fullName>
+                <default>false</default>
+                <label>Gross Food Value</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

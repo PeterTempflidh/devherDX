@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_Cannot_Select_PP_Manually</fullName>
+    <active>false</active>
+    <description>Restrict users from selecting Premium placement products while saving products.</description>
+    <errorConditionFormula>AND(
+NOT($Permission.Exclude_from_Validation),
+NOT( ISPICKVAL(Id_Opportunity__r.Source_System__c, &apos;MIDAS&apos;)),
+OR(CONTAINS( Name,&apos;Premium&apos;),Name = &apos;Featured Product&apos;,Name = &apos;Advertising Clicks&apos;,Name = &apos;Joker&apos;,Name = &apos;Marketing Package&apos;)
+)</errorConditionFormula>
+    <errorMessage>You are not allowed to select Premium Placement as a product.</errorMessage>
+</ValidationRule>

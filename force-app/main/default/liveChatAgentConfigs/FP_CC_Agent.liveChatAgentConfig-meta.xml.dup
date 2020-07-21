@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LiveChatAgentConfig xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <profiles>
+            <profile>Global Customer Service</profile>
+            <profile>Global Customer Service Pilot</profile>
+        </profiles>
+        <users>
+            <user>nithin.lookose@deliveryhero.com</user>
+        </users>
+    </assignments>
+    <criticalWaitTime>30</criticalWaitTime>
+    <enableAgentFileTransfer>false</enableAgentFileTransfer>
+    <enableAgentSneakPeek>false</enableAgentSneakPeek>
+    <enableAssistanceFlag>false</enableAssistanceFlag>
+    <enableAutoAwayOnDecline>false</enableAutoAwayOnDecline>
+    <enableAutoAwayOnPushTimeout>false</enableAutoAwayOnPushTimeout>
+    <enableChatConferencing>false</enableChatConferencing>
+    <enableChatMonitoring>true</enableChatMonitoring>
+    <enableChatTransferToAgent>false</enableChatTransferToAgent>
+    <enableChatTransferToButton>true</enableChatTransferToButton>
+    <enableChatTransferToSkill>false</enableChatTransferToSkill>
+    <enableLogoutSound>true</enableLogoutSound>
+    <enableNotifications>true</enableNotifications>
+    <enableRequestSound>true</enableRequestSound>
+    <enableSneakPeek>false</enableSneakPeek>
+    <enableVisitorBlocking>false</enableVisitorBlocking>
+    <enableWhisperMessage>true</enableWhisperMessage>
+    <label>FP CC Agent</label>
+    <supervisorSkills>
+        <skill>FP_Skills</skill>
+    </supervisorSkills>
+    <transferableButtons>
+        <button>CS_BEN_Foodpanda</button>
+        <button>CS_CMN_FoodPanda</button>
+        <button>CS_ENG_FoodPanda</button>
+        <button>CS_THA_Foodpanda</button>
+        <button>CS_URD_FoodPanda</button>
+        <button>CS_YUE_Foodpanda</button>
+    </transferableButtons>
+    <transferableSkills>
+        <skill>FP_Skills</skill>
+    </transferableSkills>
+</LiveChatAgentConfig>

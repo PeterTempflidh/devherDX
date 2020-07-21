@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Yogiyo_Menu_Change_3_Take_Online</fullName>
+    <columns>NAME</columns>
+    <columns>RelatedAccount__c</columns>
+    <columns>RelatedOpportunity__c</columns>
+    <columns>Priority__c</columns>
+    <columns>Subject__c</columns>
+    <columns>Person_In_Charge__c</columns>
+    <columns>Person_in_Charge_Final_Check__c</columns>
+    <columns>Final_Check_Date__c</columns>
+    <columns>Person_In_Charge_Take_Online__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>CustomTasks__c.Yogiyo_Entry_Task</value>
+    </filters>
+    <filters>
+        <field>Request_Reason__c</field>
+        <operation>equals</operation>
+        <value>Menu Change</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Take online</value>
+    </filters>
+    <filters>
+        <field>Person_in_Charge_Final_Check__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>Final_Check_Date__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <label>Yogiyo Menu Change - 3. Take Online</label>
+    <language>en_US</language>
+</ListView>

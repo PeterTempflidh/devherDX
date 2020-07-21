@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GLBL_CC_Missing_Fields_New_Rest_Interest</fullName>
+    <active>true</active>
+    <errorConditionFormula>( 
+(ISBLANK(TEXT(Type))||ISBLANK(TEXT(Case_Reason_Level_3__c))||ISBLANK(Country__c)||ISBLANK(Subject)||ISBLANK(Description)||ISBLANK( Customer_Email__c )) 
+&amp;&amp; (ISPICKVAL(Case_Reason_Level_2__c, &quot;Onboarding and Sign up&quot;)) 
+&amp;&amp; (TEXT(Type)=&quot;Partner&quot; || ISBLANK(TEXT(Type))) 
+&amp;&amp; TEXT(Status)=&quot;Resolved&quot; 
+) 
+&amp;&amp; 
+( 
+RecordType.DeveloperName = &quot;CD_Inbound_Case&quot; 
+||  
+RecordType.DeveloperName = &quot;PY_Inbound_Case&quot;
+|| 
+RecordType.DeveloperName = &quot;Talabat_Inbound_Case&quot;
+||
+RecordType.DeveloperName = &quot;AT_Inbound_Case&quot; 
+|| 
+RecordType.DeveloperName = &quot;FP_Inbound_Case&quot; 
+||
+RecordType.DeveloperName = &quot;YE_Inbound_Case&quot;
+||
+RecordType.DeveloperName = &quot;HU_Inbound_Case&quot;
+)
+&amp;&amp; 
+NOT($Permission.Exclude_from_Validation)</errorConditionFormula>
+    <errorMessage>Please check that the following fields are complete: Subject, Description, Type, Case Reason Level 3, Country and Customer Email</errorMessage>
+</ValidationRule>

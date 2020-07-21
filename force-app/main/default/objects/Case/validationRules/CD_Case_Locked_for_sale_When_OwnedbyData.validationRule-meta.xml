@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CD_Case_Locked_for_sale_When_OwnedbyData</fullName>
+    <active>true</active>
+    <description>Case is Locked for Editing by Sales when it is owned by Data Team</description>
+    <errorConditionFormula>( (
+    RecordTypeId = &quot;012w0000000R07P&quot; 
+    || 
+    RecordTypeId = &quot;012w0000000R07R&quot; 
+    || 
+    RecordTypeId = &quot;012w0000000MSJM&quot;  
+   ) 
+  &amp;&amp; 
+  (
+    (
+   OwnerId = &quot;005w0000006hD7f&quot; 
+         || 
+         OwnerId = &quot;005w0000006h8AK&quot;
+    &amp;&amp;
+    (
+     (PRIORVALUE(OwnerId) = &quot;005w0000006hD7f&quot;) 
+           || 
+           (PRIORVALUE(OwnerId) = &quot;005w0000006h8AK&quot;)
+    )  
+     )
+    &amp;&amp;  
+    (
+    ISCHANGED(OwnerId)
+    &amp;&amp;
+    (
+     (PRIORVALUE(OwnerId) = &quot;005w0000006hD7f&quot;) 
+            || 
+           (PRIORVALUE(OwnerId) = &quot;005w0000006h8AK&quot;)
+    )
+    )           
+   ) 
+  &amp;&amp; 
+  ( 
+    ( 
+   ISCHANGED(OwnerId)
+  &amp;&amp;
+   (
+      $User.Id != &quot;005w0000006hD7f&quot; 
+    &amp;&amp; 
+      $User.Id != &quot;005w0000006h8AL&quot;
+    &amp;&amp;
+      $User.ProfileId != &quot;00ew0000001HfA4&quot;
+   )
+  )
+   ||
+   ( 
+      $User.Id != &quot;005w0000006hD7f&quot; 
+    &amp;&amp; 
+      $User.Id != &quot;005w0000006h8AK&quot;
+    &amp;&amp; 
+      $User.Id != &quot;005w0000006h8AL&quot;
+    &amp;&amp;
+      $User.ProfileId != &quot;00ew0000001HfA4&quot;
+   )    
+  )
+)</errorConditionFormula>
+    <errorMessage>No es posible Editar el Caso cuando esta asignado a Data Team</errorMessage>
+</ValidationRule>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsAlreadyResolved__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This field will be checked for the first time when Case will be set to resolved to disable the Voucher tool to ensure that even if the status is changed again from Resolved to different status then also Voucher request tool will remain disabled.</description>
+    <externalId>false</externalId>
+    <label>IsAlreadyResolved</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

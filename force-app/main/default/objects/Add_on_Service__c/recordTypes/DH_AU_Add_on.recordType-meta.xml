@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DH_AU_Add_on</fullName>
+    <active>true</active>
+    <label>DH AU Add on</label>
+    <picklistValues>
+        <picklist>Migrated_From_Source_System__c</picklist>
+        <values>
+            <fullName>Salesforce PeYa</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Active</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Termination_Reason__c</picklist>
+        <values>
+            <fullName>Fraud</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type__c</picklist>
+        <values>
+            <fullName>Deal %2F Promotion</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delivery Service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Driver App%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Phone Ordering Service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RFV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>White Label Pages</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Voucher_Restrictions__c</picklist>
+        <values>
+            <fullName>First time only</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Online payment only</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

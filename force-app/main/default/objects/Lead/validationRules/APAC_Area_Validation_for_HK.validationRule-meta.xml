@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>APAC_Area_Validation_for_HK</fullName>
+    <active>true</active>
+    <description>Area is mandatory for Hongkong
+(https://jira.deliveryhero.com/browse/SSC-607)</description>
+    <errorConditionFormula>AND(
+$RecordType.Name = &quot;FP Lead&quot;,
+ISPICKVAL(Record_Country__c, &quot;Hong Kong&quot;),NOT($Permission.Exclude_from_Validation), ISBLANK(Area__c))</errorConditionFormula>
+    <errorMessage>Please enter Area</errorMessage>
+</ValidationRule>

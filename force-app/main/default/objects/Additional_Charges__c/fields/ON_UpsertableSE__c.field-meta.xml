@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ON_UpsertableSE__c</fullName>
+    <externalId>false</externalId>
+    <formula>NOT(ISBLANK(Id_Account__c)) 
+&amp;&amp; 
+OR(RecordType.DeveloperName = &quot;SE_Additional_Charges&quot; ,RecordType.DeveloperName = &quot;FI_Additional_Charges&quot;)
+&amp;&amp; (ISPICKVAL(Status__c , &apos;Active&apos; )||ISPICKVAL(Status__c , &apos;Terminated&apos; )) 
+&amp;&amp;  Id_Account__r.ON_UpsertableSE__c
+&amp;&amp; CreatedDate &gt; DATETIMEVALUE(&quot;2018-01-01 00:00:00&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Connector: UpsertableSE</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

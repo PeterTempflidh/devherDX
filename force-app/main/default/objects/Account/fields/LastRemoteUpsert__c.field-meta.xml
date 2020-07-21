@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LastRemoteUpsert__c</fullName>
+    <description>Used to set a last successful upsert timestamp at the remote account.</description>
+    <externalId>false</externalId>
+    <formula>NOW()</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Used to set a last successful upsert timestamp at the remote account.</inlineHelpText>
+    <label>Last Remote Upsert</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>DateTime</type>
+</CustomField>

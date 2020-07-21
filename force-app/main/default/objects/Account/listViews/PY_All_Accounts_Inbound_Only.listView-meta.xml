@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PY_All_Accounts_Inbound_Only</fullName>
+    <columns>Inbound_Date__c</columns>
+    <columns>GRID__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Account_Status__c</columns>
+    <columns>Record_Country__c</columns>
+    <columns>ACCOUNT.ADDRESS1_CITY</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>ACCOUNT.CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ACCOUNT.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Account.PY_Account</value>
+    </filters>
+    <filters>
+        <field>Mark_for_Testing_Training__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Inbound_Date__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <label>PY - All Accounts - Inbound Only</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>PY_Access_to_all_countries</group>
+        <group>PY_Sales_Argentina</group>
+        <group>PY_Sales_Bolivia</group>
+        <group>PY_Sales_Chile</group>
+        <group>PY_Sales_Dominican_Republic</group>
+        <group>PY_Sales_Panama</group>
+        <group>PY_Sales_Paraguay</group>
+        <group>PY_Sales_Uruguay</group>
+        <group>PY_Sales_Venezuela</group>
+    </sharedTo>
+</ListView>

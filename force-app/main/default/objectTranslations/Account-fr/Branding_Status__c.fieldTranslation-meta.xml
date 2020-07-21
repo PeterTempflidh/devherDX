@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Branding Status --></label>
+    <name>Branding_Status__c</name>
+    <picklistValues>
+        <masterLabel>Branded</masterLabel>
+        <translation><!-- Branded --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Branded - Exclusive</masterLabel>
+        <translation><!-- Branded - Exclusive --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Branded - Non Exclusive</masterLabel>
+        <translation><!-- Branded - Non Exclusive --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Branding Refused</masterLabel>
+        <translation><!-- Branding Refused --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Exclusive with Competitor</masterLabel>
+        <translation><!-- Exclusive with Competitor --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>In Progress</masterLabel>
+        <translation><!-- In Progress --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not suitable for branding</masterLabel>
+        <translation><!-- Not suitable for branding --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

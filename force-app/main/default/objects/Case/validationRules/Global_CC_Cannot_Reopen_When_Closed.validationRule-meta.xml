@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Global_CC_Cannot_Reopen_When_Closed</fullName>
+    <active>true</active>
+    <description>Cannot Reopen a case that has been closed.</description>
+    <errorConditionFormula>ISPICKVAL(PRIORVALUE(Status),&quot;Closed&quot;)&amp;&amp;
+NOT($Profile.Name=&quot;System Administrator&quot;)&amp;&amp;
+NOT($Profile.Name=&quot;Global Salesforce Team&quot;)&amp;&amp;
+NOT($User.FirstName=&quot;Social Studio&quot;)&amp;&amp;
+NOT(ISCHANGED(Logo_Creation_Date__c))&amp;&amp;
+NOT($Profile.Name=&quot;UK Sales Management&quot;)&amp;&amp;
+NOT(ISCHANGED(Asset__c))&amp;&amp;
+NOT(ISCHANGED(Queue_ID__c))</errorConditionFormula>
+    <errorMessage>You are not allowed to edit a closed case.</errorMessage>
+</ValidationRule>

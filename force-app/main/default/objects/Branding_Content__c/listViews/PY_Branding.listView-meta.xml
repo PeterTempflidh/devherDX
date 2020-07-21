@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PY_Branding</fullName>
+    <columns>NAME</columns>
+    <columns>Product__c</columns>
+    <columns>Quantity__c</columns>
+    <columns>Restaurant_Name__c</columns>
+    <columns>CURRENCY_ISO_CODE</columns>
+    <columns>Type__c</columns>
+    <columns>Opportunity__c</columns>
+    <columns>Installation_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Branding_Content__c.PY_Branding_Content</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>New - Awaiting Installation</value>
+    </filters>
+    <label>PY Branding</label>
+    <language>en_US</language>
+    <sharedTo>
+        <roleAndSubordinates>PY_Management</roleAndSubordinates>
+    </sharedTo>
+</ListView>

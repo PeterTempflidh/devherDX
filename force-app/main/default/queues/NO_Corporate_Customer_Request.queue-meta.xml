@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>NO Corporate Customer Request</name>
+    <queueMembers>
+        <publicGroups>
+            <publicGroup>NO_Corporate_Customer_Request</publicGroup>
+        </publicGroups>
+    </queueMembers>
+    <queueRoutingConfig>Global_CC_High_Priority_Cases</queueRoutingConfig>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

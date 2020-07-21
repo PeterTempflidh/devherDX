@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FP_PS_SG_Cases_Case</fullName>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>NAME</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.CREATED_DATE_DATE_ONLY</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Case_Reason_Level_1__c</columns>
+    <columns>Case_Reason_Level_2__c</columns>
+    <columns>Case_Reason_Level_3__c</columns>
+    <columns>CASES.TYPE</columns>
+    <filterScope>Queue</filterScope>
+    <label>FP PS SG Cases</label>
+    <queue>FP_PS_SG_Cases</queue>
+    <sharedTo>
+        <role>FP_Partner_Service_Management</role>
+        <role>Global_Admin</role>
+        <role>Global_Management</role>
+    </sharedTo>
+</ListView>

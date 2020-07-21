@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Accept_on_behalf_of_Customer</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Accept on behalf of Customer</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/xdomain/xdomain.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/apex.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/support/console/30.0/integration.js&quot;)}
+{!REQUIRESCRIPT(&quot;/resource/jq211&quot;)}
+requireCssFile(&apos;/resource/bootbox/bootstrapV1.css&apos;);
+{!REQUIRESCRIPT(&quot;/resource/bootbox/bootstrap.min.js&quot;)}
+{!REQUIRESCRIPT(&quot;/resource/bootbox/bootbox.min.js&quot;)}
+
+
+
+function requireCssFile(filename){ 
+	var fileref = document.createElement(&apos;link&apos;);
+	fileref.setAttribute(&apos;rel&apos;, &apos;stylesheet&apos;);
+	fileref.setAttribute(&apos;type&apos;, &apos;text/css&apos;);
+	fileref.setAttribute(&apos;href&apos;, filename);
+	document.getElementsByTagName(&apos;head&apos;)[0].appendChild(fileref);
+}
+{!REQUIRESCRIPT(&quot;/resource/bootbox/utilityFunctions.js&quot;)}
+
+
+construct(this,&quot;{!$Label.Quote_Accepting}&quot;);
+
+var quoteAccepted = &apos;{!Opportunity_Quote__c.Status__c}&apos;;
+if(quoteAccepted==&apos;Accepted&apos;){
+	bootbox.alert(&apos;{!$Label.Quote_Accepted_Already}&apos;).find(&apos;.modal-content&apos;).addClass( &quot;info&quot; );
+	postAction();
+}else{
+	var callback = { onSuccess: function(resultData){
+	var result = &apos;&apos;+resultData;
+		if(result.indexOf(&apos;:&apos;)&gt; 0){
+			bootbox.alert(result, function() {
+			  refreshParent();
+			}).find(&apos;.modal-content&apos;).addClass( &quot;error&quot; );
+		}else{
+			bootbox.alert(result, function() {
+				refreshParent();
+			}).find(&apos;.modal-content&apos;).addClass( &quot;success&quot; );
+		}
+	}, onFailure: function(error){
+			bootbox.alert(error, function() {
+				refreshParent();
+			}).find(&apos;.modal-content&apos;).addClass( &quot;error&quot; );
+		}};
+
+	sforce.apex.execute(&quot;ClsRemoteController&quot;,&quot;acceptQuote&quot;,{quoteId:&quot;{!Opportunity_Quote__c.Id}&quot;},callback);
+	
+}</url>
+</WebLink>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>반납 사유</label>
+    <name>Returned_Reason__c</name>
+    <picklistValues>
+        <masterLabel>Cancelled</masterLabel>
+        <translation><!-- Cancelled --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Contract canceled</masterLabel>
+        <translation>계약 해지</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Defect</masterLabel>
+        <translation>결함</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Deliver refused</masterLabel>
+        <translation>수령 거절</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivery refused</masterLabel>
+        <translation><!-- Delivery refused --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Didn&apos;t pick up</masterLabel>
+        <translation><!-- Didn&apos;t pick up --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Exchanged</masterLabel>
+        <translation><!-- Exchanged --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fee burden</masterLabel>
+        <translation>이용료 부담</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Inconvenient to use</masterLabel>
+        <translation>불편</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No space for Terminal</masterLabel>
+        <translation>공간 협소</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not enough order</masterLabel>
+        <translation>주문수 저조</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rejection with no reason</masterLabel>
+        <translation>단순 반납</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Returned by restaurant</masterLabel>
+        <translation>업체로부터 반납</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Returned by the restaurant</masterLabel>
+        <translation><!-- Returned by the restaurant --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>System error</masterLabel>
+        <translation>시스템 오류</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Use POS</masterLabel>
+        <translation>POS 주문전달</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Wrong recipients</masterLabel>
+        <translation><!-- Wrong recipients --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

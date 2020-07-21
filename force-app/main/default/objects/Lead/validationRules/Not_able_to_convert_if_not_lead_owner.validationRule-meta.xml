@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Not_able_to_convert_if_not_lead_owner</fullName>
+    <active>true</active>
+    <description>agents can not convert leads that they do not own CD and UK</description>
+    <errorConditionFormula>IsConverted
+&amp;&amp; 
+(RecordType.DeveloperName = &quot;UK_Lead&quot; 
+||
+RecordType.DeveloperName = &quot;CD_Lead&quot; )
+&amp;&amp; 
+(OwnerId)&lt;&gt; $User.Id 
+&amp;&amp; 
+$Profile.Name &lt;&gt; &quot;UK Sales Management&quot; 
+&amp;&amp; 
+$Profile.Name &lt;&gt; &quot;Global API Only&quot;
+&amp;&amp; 
+$Profile.Name &lt;&gt; &quot;System Administrator&quot;
+&amp;&amp; 
+$Profile.Name &lt;&gt; &quot;CD Sales Management&quot;</errorConditionFormula>
+    <errorMessage>You have no permissions to convert a lead that you do not own</errorMessage>
+</ValidationRule>

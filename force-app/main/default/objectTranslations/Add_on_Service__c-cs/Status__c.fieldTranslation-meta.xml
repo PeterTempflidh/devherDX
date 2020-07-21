@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Stav</label>
+    <name>Status__c</name>
+    <picklistValues>
+        <masterLabel>Active</masterLabel>
+        <translation>Aktivní</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Canceled</masterLabel>
+        <translation>Zrušeno</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Expired</masterLabel>
+        <translation>Vypršelo</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Final Check</masterLabel>
+        <translation>Finální kontrola</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New</masterLabel>
+        <translation>Nový</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Please Check</masterLabel>
+        <translation>Nutná kontrola</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Terminated</masterLabel>
+        <translation>Ukončeno</translation>
+    </picklistValues>
+</CustomFieldTranslation>

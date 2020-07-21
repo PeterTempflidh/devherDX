@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>UK_Tablink_Sent</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Status__c</columns>
+    <columns>Activation_Due_date__c</columns>
+    <columns>Opportunity__c</columns>
+    <columns>Id_Opportunity_Quote_Line_Item__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset__c.UK_Asset</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>contains</operation>
+        <value>Tablink</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Sent - Awaiting Activation</value>
+    </filters>
+    <label>UK - Tablink - Sent</label>
+    <language>en_US</language>
+    <sharedTo/>
+</ListView>

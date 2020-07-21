@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Důvod uzavření</label>
+    <name>Closed_Reason__c</name>
+    <picklistValues>
+        <masterLabel>Approved</masterLabel>
+        <translation><!-- Approved --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Auto Closed</masterLabel>
+        <translation><!-- Auto Closed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Back Online</masterLabel>
+        <translation><!-- Back Online --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Call Scheduled</masterLabel>
+        <translation><!-- Call Scheduled --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Create Retention Task</masterLabel>
+        <translation><!-- Create Retention Task --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Create Take Offline Task for Non Contracted</masterLabel>
+        <translation><!-- Create Take Offline Task for Non Contracted --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Duplicated</masterLabel>
+        <translation><!-- Duplicated --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Escalated to AM</masterLabel>
+        <translation><!-- Escalated to AM --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Improvement on KPI’s (AM)</masterLabel>
+        <translation><!-- Improvement on KPI’s (AM) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Improvement on KPI’s (Agent)</masterLabel>
+        <translation><!-- Improvement on KPI’s (Agent) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Invalid</masterLabel>
+        <translation>Neplatné</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Reachable</masterLabel>
+        <translation><!-- Not Reachable --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Successful</masterLabel>
+        <translation>Neúspěšný</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Successful - Commission is not correct</masterLabel>
+        <translation><!-- Not Successful - Commission is not correct --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Successful - Data Missing</masterLabel>
+        <translation><!-- Not Successful - Data Missing --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rejected</masterLabel>
+        <translation><!-- Rejected --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Taken Offline (1 st Incident)</masterLabel>
+        <translation><!-- Restaurant Taken Offline (1 st Incident) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant Taken Offline (Permanent)</masterLabel>
+        <translation><!-- Restaurant Taken Offline (Permanent) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Retention</masterLabel>
+        <translation><!-- Retention --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Spam</masterLabel>
+        <translation><!-- Spam --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Successful</masterLabel>
+        <translation>Úspěšně</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Successful Call</masterLabel>
+        <translation><!-- Successful Call --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Take Offline</masterLabel>
+        <translation><!-- Take Offline --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Take Online</masterLabel>
+        <translation>Možné spustit</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Take Online is not possible</masterLabel>
+        <translation>Není možné spustit</translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Stock Item Ownership --></label>
+    <name>Stock_Item_Ownership__c</name>
+    <picklistValues>
+        <masterLabel>Field Agent</masterLabel>
+        <translation><!-- Field Agent --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>HQ / office</masterLabel>
+        <translation><!-- HQ / office --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Manufacturer</masterLabel>
+        <translation><!-- Manufacturer --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restaurant</masterLabel>
+        <translation><!-- Restaurant --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Warehouse ext.</masterLabel>
+        <translation><!-- Warehouse ext. --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Simcard_Provider__c</fullName>
+    <description>The provider of the SIM card</description>
+    <externalId>false</externalId>
+    <label>SIM Provider</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>SKT</fullName>
+                <default>false</default>
+                <label>SKT</label>
+            </value>
+            <value>
+                <fullName>A1</fullName>
+                <default>false</default>
+                <label>A1</label>
+            </value>
+            <value>
+                <fullName>T-Mobile</fullName>
+                <default>false</default>
+                <label>T-Mobile</label>
+            </value>
+            <value>
+                <fullName>LAN</fullName>
+                <default>false</default>
+                <label>LAN</label>
+            </value>
+            <value>
+                <fullName>Vodafone</fullName>
+                <default>false</default>
+                <label>Vodafone</label>
+            </value>
+            <value>
+                <fullName>D1</fullName>
+                <default>false</default>
+                <label>D1</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

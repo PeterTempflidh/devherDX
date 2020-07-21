@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CD_Quick_Text_Customer_Care</fullName>
+    <columns>Name</columns>
+    <columns>Message</columns>
+    <columns>Category</columns>
+    <columns>Channel</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CurrencyIsoCode</field>
+        <operation>contains</operation>
+        <value>COP</value>
+    </filters>
+    <label>CD Quick Text Customer Care</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>CD_Customer_Care_Management</role>
+        <roleAndSubordinates>CD_Management</roleAndSubordinates>
+    </sharedTo>
+</ListView>

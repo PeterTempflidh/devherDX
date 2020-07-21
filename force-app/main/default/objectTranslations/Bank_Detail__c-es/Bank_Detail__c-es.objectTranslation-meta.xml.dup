@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Bank Detail --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Bank Detail --></value>
+    </caseValues>
+    <fieldSets>
+        <label><!-- FPBT_Report --></label>
+        <name>FPBT_Report</name>
+    </fieldSets>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>Bank Detail Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Bank Detail Name --></nameFieldLabel>
+    <validationRules>
+        <errorMessage><!-- The bank account needs to be in the right format --></errorMessage>
+        <name>APAC_Account_Number_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot edit an active bank detail record. --></errorMessage>
+        <name>APAC_HK_Lock_Active_Bank_Detail</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot edit an active or approved bank detail record. --></errorMessage>
+        <name>APAC_Lock_Bank_Detail_status_Active_Appr</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please fill Swift Code/BIC --></errorMessage>
+        <name>APAC_Validate_SwiftCode_BIC</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Bank Account number is invalid, please enter in correct format and without spaces. --></errorMessage>
+        <name>CZ_Account_Number_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Bank Name, Bank Account Number, Bank Account Owner &amp; Activation Date are mandatory. --></errorMessage>
+        <name>CZ_Mandatory_fields</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Swift Code/BIC should be 8 OR 11 alphanumeric characters --></errorMessage>
+        <name>CZ_Validate_SwiftCode_BIC</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please Fill Account Number, Account Owner and Bank Name --></errorMessage>
+        <name>GLOBAL_Bank_Acount_Mandatory_Field</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This Payment Method Is Not Available For your Country --></errorMessage>
+        <name>GLOBAL_Payment_Method_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Account Number should not be blank and needs to be in the right format --></errorMessage>
+        <name>Global_Account_Number_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The country selected does not match the Account country, please double check --></errorMessage>
+        <name>Global_Country_Bank_Details</name>
+    </validationRules>
+    <quickActions>
+        <label><!-- Activate --></label>
+        <name>Activate</name>
+    </quickActions>
+</CustomObjectTranslation>

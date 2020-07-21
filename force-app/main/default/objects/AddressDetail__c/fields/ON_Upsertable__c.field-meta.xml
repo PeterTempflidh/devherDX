@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ON_Upsertable__c</fullName>
+    <description>Upsertable if the type of address is Billing Address</description>
+    <externalId>false</externalId>
+    <formula>IF( INClUDES(Type__c,&quot;Billing Address&quot;),TRUE, FALSE)
+&amp;&amp;
+OR(Account__r.RecordType.DeveloperName = &apos;FI_Account&apos;,Account__r.RecordType.DeveloperName = &apos;SE_Account&apos;)
+&amp;&amp;
+Account__r.ON_Upsertable__c
+&amp;&amp; 
+NOT(ISNULL(Account__r.ON_LastUpsert__c))</formula>
+    <inlineHelpText>Upsertable if the type of address is Billing Address</inlineHelpText>
+    <label>Connector: Upsertable</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

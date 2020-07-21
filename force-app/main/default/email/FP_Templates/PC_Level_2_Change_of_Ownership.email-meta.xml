@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Template for Change of Ownership</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>PC Level 2 - Change of Ownership</name>
+    <style>freeForm</style>
+    <subject>foodpanda: Change of Ownership</subject>
+    <textOnly>Dear {!Account.Name},
+
+Thank you for reaching out to foodpanda.
+
+Regarding your request to change ownership of &lt;restaurant code - restaurant name&gt;, please find attached a new agreement and I would need certain details (if any changes) such as:
+
+- Address of the outlet :
+- Person in charge name and number :
+- Outlet number :
+- Opening hours :
+- Official company name :
+- Bank Account Holder Name :
+- Bank Name :
+- Bank Account Number :
+- Menu (we need camera captured images of the menu):
+
+Kindly initials on every page. In case there are changes in bank details, please fill in the bank details form and include your company letterhead, valid signatures and company stamp. Once filled up, please scan all documents and send it back to us.
+
+Should you have any concern, please let us know.
+
+Thank you.
+
+Regards,
+&lt;Agent Name&gt;</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

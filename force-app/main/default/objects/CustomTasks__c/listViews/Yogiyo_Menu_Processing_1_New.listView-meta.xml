@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Yogiyo_Menu_Processing_1_New</fullName>
+    <columns>NAME</columns>
+    <columns>RelatedAccount__c</columns>
+    <columns>RelatedOpportunity__c</columns>
+    <columns>Priority__c</columns>
+    <columns>Subject__c</columns>
+    <columns>Person_In_Charge__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>CustomTasks__c.Yogiyo_Entry_Task</value>
+    </filters>
+    <filters>
+        <field>Request_Reason__c</field>
+        <operation>equals</operation>
+        <value>Menu Processing</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Not Started</value>
+    </filters>
+    <label>Yogiyo Menu Processing - 1. New</label>
+    <language>en_US</language>
+</ListView>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>List_price_shall_not_be_empty</fullName>
+    <active>true</active>
+    <description>List price shall not be empty</description>
+    <errorConditionFormula>ISBLANK( List_Price__c )</errorConditionFormula>
+    <errorDisplayField>List_Price__c</errorDisplayField>
+    <errorMessage>List price is required</errorMessage>
+</ValidationRule>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Partner Care TW template for Complete Email</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>FP_Letterhead</letterhead>
+    <name>PC - Complete Email TW</name>
+    <style>freeForm</style>
+    <subject>關於餐廳營運表現的加強計畫 Actions required to improve restaurant performance</subject>
+    <textOnly>親愛的foodpanda夥伴（店名），
+
+謝謝您剛才抽空與我們通話，我們感謝您有效的管理我們foodpanda的訂單。如同我們與（通話人名字）溝通的內容，您在(XX)星期成功獲得（XX）筆訂單，但同时也因下列原因&lt;店家餐點品項不足，店家無回應，店家已關閉，店家忙碌中&gt;流失了（XX）筆訂單，這導致您失去部分的盈收也會讓消費者對您產生負評，因此我們想與你攜手合作調整此狀況，讓客人的用餐體驗更加愉快。
+
+
+店家餐點品項不足，請您確認此菜單是否正確（菜單鏈接）
+
+倘若此菜單有需要任何的更改，請您填寫此表單:https://foodpandasg.formstack.com/forms/foodpanda_support_tw 將您最新需求填入表單中。
+
+倘若此菜單有需要任何的下架餐點的步驟如下:
+
+1. 首先，進入接單APP (GoDroid)
+
+2. 左上角會有三條白線，點進去
+
+3. 選擇菜單
+
+4. 在裡面選擇你們要下架的餐點 （請注意:您可選擇暫時關閉一天或是完全下架）
+
+店家無回應，請確認您的餐廳電話號碼是否正確（餐廳聯絡號碼)
+
+店家已關閉或店家忙碌中，請確認你的餐廳營業時間是否正確
+
+(時間) - （天）
+
+請注意，我們將使用你們提供的營業時間來確保準備接受訂單的時間。如果你們的餐廳太忙碌的話，你們可以隨時使用我們APP暫休你們的餐廳。
+
+暫休餐廳的步驟如下，
+
+1. 首先，進入接單APP (GoDroid)
+
+2. 點擊右上角的正常營業
+
+3. 選擇餐廳:您可以選擇【20分鐘】，【1個小時】或者【1天】來暫休您的餐廳.當您不再忙碌或者準備可以接收訂單的時候，你可以在同一個頁面選擇重新營業。
+
+取消訂單會影響你們餐廳在我們foodpanda平台上的排行。倘若沒有任何改善，您的訂單也會逐步的減少，因此希望我們能夠一起攜手讓您的客人體驗到最佳服務。
+
+如有任何的疑問，歡迎您透過以下連結聯絡我們，我們樂意協助您。
+
+TW:https://foodpandasg.formstack.com/forms/foodpanda_support_tw
+
+客服專線: +886255941115
+
+
+此致，
+
+（致函人名稱）</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

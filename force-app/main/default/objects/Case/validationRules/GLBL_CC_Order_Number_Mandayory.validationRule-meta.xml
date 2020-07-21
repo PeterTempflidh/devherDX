@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GLBL_CC_Order_Number_Mandayory</fullName>
+    <active>true</active>
+    <description>SP-4449: Validation rule that triggers an error whenever someone tries to update an Inbound Case status to Resolve and the Order Number is empty</description>
+    <errorConditionFormula>AND(
+	NOT($Permission.Exclude_from_Validation),
+	(
+		RecordType.DeveloperName = &quot;CD_Inbound_Case&quot;||
+		RecordType.DeveloperName = &quot;Talabat_Inbound_Case&quot;||
+		RecordType.DeveloperName = &quot;PY_Inbound_Case&quot;||
+		RecordType.DeveloperName = &quot;AT_Inbound_Case&quot;||
+		RecordType.DeveloperName = &quot;FP_Inbound_Case&quot; ||
+		RecordType.DeveloperName = &quot;HU_Inbound_Case&quot; ||
+		RecordType.DeveloperName = &quot;YE_Inbound_Case&quot; 
+	),
+	ISBLANK(Order_Number__c),
+	ISPICKVAL(Status,&quot;Resolved&quot;),
+	OR(
+		ISPICKVAL(Case_Reason_Level_1__c,&quot;Live order inquiries by restaurant&quot;),
+		ISPICKVAL(Case_Reason_Level_1__c,&quot;Live Order Process&quot;),
+		ISPICKVAL(Case_Reason_Level_1__c,&quot;Post-Delivery&quot;),
+		ISPICKVAL(Case_Reason_Level_1__c,&quot;Across Journey&quot;)
+	)
+)</errorConditionFormula>
+    <errorDisplayField>Order_Number__c</errorDisplayField>
+    <errorMessage>Please enter a Order Number before resolving the case</errorMessage>
+</ValidationRule>

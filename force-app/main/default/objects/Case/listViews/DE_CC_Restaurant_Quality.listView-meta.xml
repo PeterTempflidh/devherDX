@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DE_CC_Restaurant_Quality</fullName>
+    <booleanFilter>1 AND 5 and 6 and (2 or 3 or 4)</booleanFilter>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Restaurant_Name__c</columns>
+    <columns>Case_Reason__c</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>Due_Date__c</columns>
+    <columns>Next_Call_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.CLOSED</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Case_Reason__c</field>
+        <operation>equals</operation>
+        <value>Bad Restaurant Service,Complaint Food Quality,Decision Maker Not Reached</value>
+    </filters>
+    <filters>
+        <field>Case_Reason__c</field>
+        <operation>equals</operation>
+        <value>,Educate Partner Request,Online Payment rejection,Transmission Issue</value>
+    </filters>
+    <filters>
+        <field>Case_Reason__c</field>
+        <operation>equals</operation>
+        <value>Language Support,Others,Poor Performance,Not Reachable</value>
+    </filters>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.DE_Restaurant_Operations</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.FIRST_NAME</field>
+        <operation>notEqual</operation>
+        <value>phoenix</value>
+    </filters>
+    <label>DE - CC - Restaurant Quality</label>
+    <language>de</language>
+    <sharedTo>
+        <group>DE_General_Management</group>
+        <group>DE_Restaurant_Operations</group>
+        <role>DE_Restaurant_Operations</role>
+    </sharedTo>
+</ListView>

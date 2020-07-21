@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lead_Type__c</fullName>
+    <description>This field is to check what kind of lead type this restaurant is - To check whether it is a totally new lead or not</description>
+    <externalId>false</externalId>
+    <label>Lead Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>01. Winback - Contracted Churn</fullName>
+                <default>false</default>
+                <label>01. Winback - Contracted Churn</label>
+            </value>
+            <value>
+                <fullName>02. Winback - Non-contracted On Platform</fullName>
+                <default>false</default>
+                <label>02. Winback - Non-contracted On Platform</label>
+            </value>
+            <value>
+                <fullName>03. Normal - Non-contracted On Platform</fullName>
+                <default>false</default>
+                <label>03. Normal - Non-contracted On Platform</label>
+            </value>
+            <value>
+                <fullName>04. Normal - Lead Research</fullName>
+                <default>false</default>
+                <label>04. Normal - Lead Research</label>
+            </value>
+            <value>
+                <fullName>05. Normal - Sales Coverage Report</fullName>
+                <default>false</default>
+                <label>05. Normal - Sales Coverage Report</label>
+            </value>
+            <value>
+                <fullName>06. Normal - Wishlist</fullName>
+                <default>false</default>
+                <label>06. Normal - Wishlist</label>
+            </value>
+            <value>
+                <fullName>07. Similarity - BDMJ</fullName>
+                <default>false</default>
+                <label>07. Similarity - BDMJ</label>
+            </value>
+            <value>
+                <fullName>08. Similarity - BDT</fullName>
+                <default>false</default>
+                <label>08. Similarity - BDT</label>
+            </value>
+            <value>
+                <fullName>09. Not a Lead - Non-contracted On Platform</fullName>
+                <default>false</default>
+                <label>09. Not a Lead - Non-contracted On Platform</label>
+            </value>
+            <value>
+                <fullName>10. Not a Lead - Contracted On Platform</fullName>
+                <default>false</default>
+                <label>10. Not a Lead - Contracted On Platform</label>
+            </value>
+            <value>
+                <fullName>11. Not a Lead - Not on Platform</fullName>
+                <default>false</default>
+                <label>11. Not a Lead - Not on Platform</label>
+            </value>
+            <value>
+                <fullName>Already listed in Yogiyo (Not a lead)</fullName>
+                <default>false</default>
+                <label>Already listed in Yogiyo (Not a lead)</label>
+            </value>
+            <value>
+                <fullName>Lead (Target List)</fullName>
+                <default>false</default>
+                <label>Lead (Target List)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

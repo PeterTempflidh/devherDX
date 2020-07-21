@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Informed_about_Online_Payment_Period__c</fullName>
+    <defaultValue>false</defaultValue>
+    <externalId>false</externalId>
+    <inlineHelpText>By the offset disposal with commission and refund amount, we return the difference in 7 working days. (Fee from 1st to 15th refunds on 16th / Fee from 16th to the last day of the month refudns on the 1st day of the next month.)</inlineHelpText>
+    <label>Informed about Online Payment Period</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

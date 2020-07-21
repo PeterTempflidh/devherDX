@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Paper Bag Consumption --></label>
+    <name>Paper_Bag_Consumption__c</name>
+    <picklistValues>
+        <masterLabel>Above Average (1.5 Bags per Order)</masterLabel>
+        <translation><!-- Above Average (1.5 Bags per Order) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Average (1.1 Bags per Order)</masterLabel>
+        <translation><!-- Average (1.1 Bags per Order) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>High (2.0 Bags per Order)</masterLabel>
+        <translation><!-- High (2.0 Bags per Order) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Low (0.7 Bags per Order)</masterLabel>
+        <translation><!-- Low (0.7 Bags per Order) --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

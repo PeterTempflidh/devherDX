@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <externalId>false</externalId>
+    <label>Stage</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Ordered</fullName>
+                <default>false</default>
+                <label>Ordered</label>
+            </value>
+            <value>
+                <fullName>New - In Stock</fullName>
+                <default>false</default>
+                <label>New - In Stock</label>
+            </value>
+            <value>
+                <fullName>Assigned</fullName>
+                <default>false</default>
+                <label>Assigned</label>
+            </value>
+            <value>
+                <fullName>In Shipping</fullName>
+                <default>false</default>
+                <label>In Shipping</label>
+            </value>
+            <value>
+                <fullName>Delivered</fullName>
+                <default>false</default>
+                <label>Delivered</label>
+            </value>
+            <value>
+                <fullName>Retour in Progress</fullName>
+                <default>false</default>
+                <label>Retour in Progress</label>
+            </value>
+            <value>
+                <fullName>Lost</fullName>
+                <default>false</default>
+                <label>Lost</label>
+            </value>
+            <value>
+                <fullName>Returned - at Manufacturer</fullName>
+                <default>false</default>
+                <label>Returned - at Manufacturer</label>
+            </value>
+            <value>
+                <fullName>Recycled</fullName>
+                <default>false</default>
+                <label>Recycled</label>
+            </value>
+            <value>
+                <fullName>Damaged</fullName>
+                <default>false</default>
+                <label>Damaged</label>
+            </value>
+            <value>
+                <fullName>Writeoff</fullName>
+                <default>false</default>
+                <label>Writeoff</label>
+            </value>
+            <value>
+                <fullName>Tested</fullName>
+                <default>false</default>
+                <label>Tested</label>
+            </value>
+            <value>
+                <fullName>Returned - In Stock</fullName>
+                <default>false</default>
+                <label>Returned - In Stock</label>
+            </value>
+            <value>
+                <fullName>Awaiting Delivery/In Shipment</fullName>
+                <default>false</default>
+                <label>Awaiting Delivery/In Shipment</label>
+            </value>
+            <value>
+                <fullName>In Stock</fullName>
+                <default>false</default>
+                <label>In Stock</label>
+            </value>
+            <value>
+                <fullName>Technical Issue</fullName>
+                <default>false</default>
+                <label>Technical Issue</label>
+            </value>
+            <value>
+                <fullName>Exchange Requested</fullName>
+                <default>false</default>
+                <label>Exchange Requested</label>
+            </value>
+            <value>
+                <fullName>Takeover</fullName>
+                <default>false</default>
+                <label>Takeover</label>
+            </value>
+            <value>
+                <fullName>Shared</fullName>
+                <default>false</default>
+                <label>Shared</label>
+            </value>
+            <value>
+                <fullName>Pick-up Needed</fullName>
+                <default>false</default>
+                <label>Pick-up Needed</label>
+            </value>
+            <value>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+                <label>Unknown</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

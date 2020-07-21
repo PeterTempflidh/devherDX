@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Offene_Tickets</fullName>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>NAME</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
+    <columns>CASES.ORIGIN</columns>
+    <columns>CASES.TYPE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>equals</operation>
+        <value>New,In Progress</value>
+    </filters>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.DE_Inbound_Case</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>notEqual</operation>
+        <value>DE Customer Request,DE Cancellation/Preorders,DE Data Protection</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>notEqual</operation>
+        <value>Automatisierter Prozess,DE Special Cases,DE Team Lead Escalation,autoproc</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>notEqual</operation>
+        <value>DE Finance,DE Key Account Request,DE Lost &amp; Found</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>notEqual</operation>
+        <value>DE Transmission Requests,DE Restaurant Request,DE Restaurant Request - 2nd Level</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>notEqual</operation>
+        <value>nacco,DE Restaurant Partner Shop</value>
+    </filters>
+    <filters>
+        <field>CASES.LAST_UPDATE_DATE_ONLY</field>
+        <operation>notEqual</operation>
+        <value>TODAY</value>
+    </filters>
+    <label>Offene Tickets</label>
+    <language>de</language>
+    <sharedTo>
+        <group>DE_TL_Senior_Associate</group>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Termination_page_Vue</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Terminate Restaurant</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>var accId = &quot;{!Account.Id}&quot;; 
+navigateToUrl(&apos;/apex/VueTerminationPage?id=&apos; +accId+&apos;&amp;amp;isdtp=vw&apos;);</url>
+</WebLink>

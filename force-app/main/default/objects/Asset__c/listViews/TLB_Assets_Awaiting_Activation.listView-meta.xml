@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TLB_Assets_Awaiting_Activation</fullName>
+    <columns>NAME</columns>
+    <columns>Stock_Item_Serial_No__c</columns>
+    <columns>Account__c</columns>
+    <columns>Shipping_Address_Korea__c</columns>
+    <columns>OWNER.FIRST_NAME</columns>
+    <columns>OWNER.LAST_NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Asset__c.Talabat_Asset</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>contains</operation>
+        <value>Awaiting Activation</value>
+    </filters>
+    <label>TLB - Assets - Awaiting Activation</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Talabat_Operation_Management</role>
+        <role>Talabat_Operation_Team</role>
+        <roleAndSubordinates>Talabat_Sales_Management_Bahrain</roleAndSubordinates>
+        <roleAndSubordinates>Talabat_Sales_Management_Jordan</roleAndSubordinates>
+        <roleAndSubordinates>Talabat_Sales_Management_Kuwait</roleAndSubordinates>
+        <roleAndSubordinates>Talabat_Sales_Management_Lebanon</roleAndSubordinates>
+        <roleAndSubordinates>Talabat_Sales_Management_Oman</roleAndSubordinates>
+        <roleAndSubordinates>Talabat_Sales_Management_Qatar</roleAndSubordinates>
+        <roleAndSubordinates>Talabat_Sales_Management_Saudi_Arabia</roleAndSubordinates>
+        <roleAndSubordinates>Talabat_Sales_Management_UAE</roleAndSubordinates>
+    </sharedTo>
+</ListView>

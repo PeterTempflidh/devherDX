@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HU_List_Add_On</fullName>
+    <active>true</active>
+    <description>Hungary Add On</description>
+    <label>HU List Add On</label>
+    <picklistValues>
+        <picklist>Requires_Esignature__c</picklist>
+        <values>
+            <fullName>Block</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mandatory</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Optional</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type__c</picklist>
+        <values>
+            <fullName>Deal %2F Promotion</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Exclusivity</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Extra Terms and Conditions</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

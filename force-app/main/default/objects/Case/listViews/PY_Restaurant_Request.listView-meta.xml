@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PY_Restaurant_Request</fullName>
+    <booleanFilter>(1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7 AND 8  AND 9) OR (10)</booleanFilter>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>CASES.TYPE</columns>
+    <columns>CASES.ORIGIN</columns>
+    <filterScope>Queue</filterScope>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>notContain</operation>
+        <value>No country,Consulta por DOMICILIOS,Re: Boleta de Domicilios,DOMICILIOS</value>
+    </filters>
+    <filters>
+        <field>CASES.ORIGIN</field>
+        <operation>notEqual</operation>
+        <value>Chat</value>
+    </filters>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>notEqual</operation>
+        <value>Closed,Resolved</value>
+    </filters>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>notContain</operation>
+        <value>NDC AR VD,NDC UY VD,NDC CL VD,NDC PA VD,NDC BO VD,NDC PY VD</value>
+    </filters>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>notContain</operation>
+        <value>NDC AR OD,NDC UY OD,NDC CL OD,NDC PA OD,NDC BO OD,NDC PY OD</value>
+    </filters>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>notContain</operation>
+        <value>DP_UNIFINDABLE_VENDOR,DP_VENDOR_CLOSED,DP_VENDOR_LATE,DP_VENDOR_ISSUE_WITH_ORDER</value>
+    </filters>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>notContain</operation>
+        <value>DP_ORDER_DAMAGED,DP_CUSTOMER_CLAIM_ON_DOORSTEP,DP_UNREACHABLE_CUSTOMER</value>
+    </filters>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>notContain</operation>
+        <value>Consulta por PEDIDOS YA,DP_ORDER_CLICKED_THROUGH,Domicilios Número</value>
+    </filters>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>notContain</operation>
+        <value>Consulta por APPETITO 24</value>
+    </filters>
+    <filters>
+        <field>CASES.SUBJECT</field>
+        <operation>contains</operation>
+        <value>DP_DIRECCION_INCORRECTA</value>
+    </filters>
+    <label>PY Restaurant Request</label>
+    <language>en_US</language>
+    <queue>PY_Restaurant_Request</queue>
+    <sharedTo>
+        <role>PY_Customer_Care_Management</role>
+    </sharedTo>
+</ListView>

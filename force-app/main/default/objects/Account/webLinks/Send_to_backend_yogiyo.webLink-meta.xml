@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Send_to_backend_yogiyo</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Send to backend</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/38.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/38.0/apex.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/xdomain/xdomain.js&quot;)}
+
+// Merging logic with clickdelivery 
+// Check if reordtype is CD_delivery 
+var recType = sforce.connection.query(&quot;select id,DeveloperName from recordtype where id = &apos;{!Account.RecordTypeId}&apos;&quot;);
+
+if (recType.records.DeveloperName === &apos;CD_Account&apos;) {
+    // CD Code 
+    {!REQUIRESCRIPT(&quot;/resource/Jquery311&quot;)}
+    $(function() {
+        $(&apos;head&apos;).prepend(&apos;&lt;link rel=&quot;stylesheet&quot; href=&quot;/resource/SLDS220/assets/styles/salesforce-lightning-design-system.min.css&quot; type=&quot;text/css&quot; /&gt;&apos;);
+        $(&apos;body&apos;).delegate(&apos;div[role=&quot;alertdialog&quot;] :button&apos;, &apos;click&apos;, function() {
+            $(this).parents(&apos;div[role=&quot;alertdialog&quot;]&apos;).removeClass(&apos;slds-fade-in-open&apos;);
+            $(this).parents(&apos;div[role=&quot;alertdialog&quot;]&apos;).next().removeClass(&apos;slds-backdrop--open&apos;);
+        });
+    });
+
+    //Check if account type is populated 
+    (function() {
+        var _valMes = [];
+        //Check if account back end Id is already populated 
+        if ((&quot;{!Account.Backend_ID__c}&quot;)) {
+            _valMes.push({
+                account: &quot;{!Account.Name}&quot;,
+                message: [&quot;{!$Label.CD_GEN_VAL2}&quot;]
+            })
+            $(&apos;body&apos;).append(showModal(_valMes));
+            return;
+        }
+
+        if (!(&quot;{!Account.Type}&quot;)) {
+            _valMes.push({
+                account: &quot;{!Account.Name}&quot;,
+                message: [&quot;{!$Label.CD_GEN_VAL3}&quot;]
+            })
+            $(&apos;body&apos;).append(showModal(_valMes));
+            return;
+        }
+
+        // Account Type related validations - Company 
+        if (&quot;{!Account.Type}&quot; === &apos;Client&apos;) {
+            var _clntMess = [];
+            //Check if required fields for API call are populated 
+            if (!(&quot;{!Account.Company_Number__c}&quot;)) {
+                _clntMess.push(&quot;{!$Label.CD_CLNT_VAL_1}&quot;);
+            }
+            if (!(&quot;{!Account.Record_Country__c}&quot;)) {
+                _clntMess.push(&quot;{!$Label.CD_CLNT_VAL_2}&quot;);
+            }
+            if (!(&quot;{!Account.Restaurant_Name__c}&quot;)) {
+                _clntMess.push(&quot;{!$Label.CD_CLNT_VAL_3}&quot;);
+            }
+            // Company should at least have 1 contact associated with it. 
+            var hasCon = sforce.connection.query(&quot;select id from AccountContactRelation where accountid = &apos;{!Account.Id}&apos; limit 1&quot;);
+            console.log(hasCon);
+            if (hasCon.size === &apos;0&apos;) {
+                // display error message 
+                _clntMess.push(&quot;{!$Label.CD_CLNT_VAL_5}&quot;);
+            } else {
+                var _conDet = sforce.connection.query(&quot;select id from contact where email != null and phone != null and id in (select Contactid from AccountContactRelation where accountid = &apos;{!Account.Id}&apos;) limit 1&quot;);
+                console.log(_conDet);
+                if (_conDet.size === &apos;0&apos;) {
+                    _clntMess.push(&quot;{!$Label.CD_CLNT_VAL_4}&quot;)
+                }
+            }
+            if (!(`{!Account.BillingStreet}`) || !(&quot;{!Account.BillingCity}&quot;) || !(&quot;{!Account.BillingCountry}&quot;)) {
+                _clntMess.push(&quot;{!$Label.CD_CLNT_VAL_6}&quot;)
+            }
+
+            // validation complete.check if array populated and display in case. 
+            if (_clntMess.length &gt; 0) {
+                _valMes.push({
+                    account: &quot;{!Account.Name}&quot;,
+                    message: _clntMess
+                });
+                $(&apos;body&apos;).append(showModal(_valMes));
+                return;
+            }
+
+
+            // get the backend id 
+            $(&apos;body&apos;).append(showLoading());
+            sforce.apex.execute(&quot;ClsGetBackendIdAccount&quot;, &quot;getBackendIdAccount&quot;, {
+                accId: &quot;{!Account.Id}&quot;,
+                accType: &quot;{!Account.Type}&quot;
+            }, {
+                onSuccess: onSuccess,
+                onFailure: onFailure
+            });
+            return;
+        }
+
+        //Account Brand related validations 
+        if (&quot;{!Account.Type}&quot; === &apos;Franchise&apos;) {
+            var _clntMess = [];
+            var result;
+            //Get the backendId only if chainid is populated and account has a parent of type company and back-end id not is null. 
+            if (!(&apos;{!Account.ParentId}&apos;)) {
+                _clntMess.push(&quot;{!$Label.CD_FRNCH_VAL_1}&quot;);
+            }
+
+            if (!(&quot;{!Account.Brand__c}&quot;)) {
+                _clntMess.push(&quot;{!$Label.CD_FRNCH_VAL_4}&quot;);
+            }
+
+            //display error messages 
+            if (_clntMess.length &gt; 0) {
+                _valMes.push({
+                    account: &quot;{!Account.Name}&quot;,
+                    message: _clntMess
+                });
+                $(&apos;body&apos;).append(showModal(_valMes));
+                return;
+            }
+
+            var hasCon = sforce.connection.query(&quot;select id,Name,Type,Backend_ID__c from account where id = &apos;{!Account.ParentId}&apos; limit 1&quot;);
+            if (hasCon.records.Type !== &apos;Client&apos;) {
+                _valMes.push({
+                    account: &quot;{!Account.Name}&quot;,
+                    message: [&quot;{!$Label.CD_FRNCH_VAL_2}&quot;]
+                });
+                $(&apos;body&apos;).append(showModal(_valMes));
+                return;
+            }
+            if (!(hasCon.records.Backend_ID__c)) {
+                _valMes.push({
+                    account: &quot;{!Account.Name}&quot;,
+                    message: [&quot;{!$Label.CD_FRNCH_VAL_3}&quot;]
+                });
+                $(&apos;body&apos;).append(showModal(_valMes));
+                return;
+            }
+
+            // get the backend-id franchise 
+            $(&apos;body&apos;).append(showLoading());
+            sforce.apex.execute(&quot;ClsGetBackendIdAccount&quot;, &quot;getBackendIdAccount&quot;, {
+                accId: &quot;{!Account.Id}&quot;,
+                accType: &quot;{!Account.Type}&quot;
+            }, {
+                onSuccess: onSuccess,
+                onFailure: onFailure
+            });
+            return;
+        }
+
+        if (&quot;{!Account.Type}&quot; === &apos;Brand&apos;) {
+            $(&apos;body&apos;).append(showLoading());
+            sforce.apex.execute(&quot;ClsGetBackendIdAccount&quot;, &quot;getBackendIdAccount&quot;, {
+                accId: &quot;{!Account.Id}&quot;,
+                accType: &quot;{!Account.Type}&quot;
+            }, {
+                onSuccess: onSuccess,
+                onFailure: onFailure
+            });
+            return;
+        }
+
+        // Account Branch related validations 
+        if (&quot;{!Account.Type}&quot; === &apos;Branch&apos;) {
+            var _clntMess = [];
+            //first check if parent is of type &quot;Brand&quot; and Chain-Id and backend-Id are populated. 
+            if (!(&quot;{!Account.ParentId}&quot;)) {
+                _valMes.push({
+                    account: &quot;{!Account.Name}&quot;,
+                    message: [&quot;{!$Label.CD_FRNCH_VAL_1}&quot;]
+                });
+                $(&apos;body&apos;).append(showModal(_valMes));
+                return;
+            }
+
+            var hasCon = sforce.connection.query(&quot;select id,Type,ParentId,Backend_ID__c from account where id = &apos;{!Account.ParentId}&apos; limit 1&quot;);
+
+            if (hasCon.records.Type !== &apos;Franchise&apos;) {
+                _valMes.push({
+                    account: &quot;{!Account.Name}&quot;,
+                    message: [&quot;{!$Label.CD_BRNCH_VAL_1}&quot;]
+                });
+                $(&apos;body&apos;).append(showModal(_valMes));
+                return;
+            }
+
+            if (!(hasCon.records.Backend_ID__c)) {
+                _valMes.push({
+                    account: &quot;{!Account.Name}&quot;,
+                    message: [&quot;{!$Label.CD_BRNCH_VAL_2}&quot;]
+                });
+                $(&apos;body&apos;).append(showModal(_valMes));
+                return;
+            }
+
+            var hasRoot = sforce.connection.query(&quot;select Id,Type,Backend_ID__c from account where id = &apos;&quot; + hasCon.records.ParentId + &quot;&apos;&quot; + &quot;limit 1&quot;);
+            if (!(hasRoot.records.Id)) {
+                _valMes.push({
+                    account: &quot;{!Account.Name}&quot;,
+                    message: [&quot;{!$Label.CD_BRNCH_VAL_4}&quot;]
+                });
+                $(&apos;body&apos;).append(showModal(_valMes));
+                return;
+            }
+
+            if (hasRoot.records.Type !== &apos;Client&apos;) {
+                _valMes.push({
+                    account: &quot;{!Account.Name}&quot;,
+                    message: [&quot;{!$Label.CD_BRNCH_VAL_5}&quot;]
+                });
+                $(&apos;body&apos;).append(showModal(_valMes));
+                return;
+            }
+
+            if (!(hasRoot.records.Backend_ID__c)) {
+                _valMes.push({
+                    account: &quot;{!Account.Name}&quot;,
+                    message: [&quot;{!$Label.CD_BRNCH_VAL_6}&quot;]
+                });
+                $(&apos;body&apos;).append(showModal(_valMes));
+                return;
+            }
+
+            if (!(`{!Account.BillingStreet}`) || !(&quot;{!Account.BillingCity}&quot;) || !(&quot;{!Account.BillingCountry}&quot;)) {
+                _clntMess.push(&quot;{!$Label.CD_CLNT_VAL_6}&quot;)
+            }
+
+            if (!(&quot;{!Account.Phone}&quot;)) {
+                _clntMess.push(&quot;{!$Label.CD_BRNCH_VAL_3}&quot;)
+            }
+
+            //display error messages 
+            if (_clntMess.length &gt; 0) {
+                _valMes.push({
+                    account: &quot;{!Account.Name}&quot;,
+                    message: _clntMess
+                });
+                $(&apos;body&apos;).append(showModal(_valMes));
+                return;
+            }
+
+
+            // get the backend-id brand 
+            $(&apos;body&apos;).append(showLoading());
+            sforce.apex.execute(&quot;ClsGetBackendIdAccount&quot;, &quot;getBackendIdAccount&quot;, {
+                accId: &quot;{!Account.Id}&quot;,
+                accType: &quot;{!Account.Type}&quot;
+            }, {
+                onSuccess: onSuccess,
+                onFailure: onFailure
+            });
+            return;
+        }
+
+        function updateBackDom(result) {
+            var res = result[0].split(&apos;:&apos;);
+            // update the dom; 
+            $(&apos;table.detailList td.labelCol&apos;).each(function(index) {
+                if ($(this).text() === res[1]) {
+                    //update the value of next 
+                    $(this).closest(&apos;td&apos;).next().children().html(res[2]);
+                    //console.log($(this).closest(&apos;td&apos;).next().children()); 
+                    return false;
+                }
+            })
+        }
+
+        //callback On Succes 
+        function onSuccess(result) {
+            if (!(result[0].toLowerCase().startsWith(&quot;success&quot;)) &amp;&amp; !(result[0].toLowerCase().startsWith(&quot;warning&quot;))) {
+                // display error. 
+                $(&apos;div.slds-spinner_container&apos;).remove();
+                $(&apos;body&apos;).append(showError(result[0].toLowerCase()));
+                return;
+            } else if ((result[0].toLowerCase().startsWith(&quot;warning&quot;))) {
+                var _valMesC = [];
+                $(&apos;div.slds-spinner_container&apos;).remove();
+                _valMesC.push({
+                    account: &quot;{!Account.Name}&quot;,
+                    message: [&quot;{!$Label.CD_GEN_VAL7}&quot;]
+                });
+                $(&apos;body&apos;).append(showModal(_valMesC));
+                return;
+            } else {
+                $(&apos;div.slds-spinner_container&apos;).remove();
+                window.location.reload(true);
+                return;
+            }
+        }
+        //callBack on Failure 
+        function onFailure(result) {
+            $(&apos;div.slds-spinner_container&apos;).remove();
+            $(&apos;body&apos;).append(showError(result[0].toLowerCase()));
+            return;
+        }
+
+        function showModal(messageArr) {
+            //function for showing the modal. 
+            var _med = &apos;&apos;;
+            var _mes = &apos;&apos;;
+            var _head = &apos;&lt;div role=&quot;alertdialog&quot; tabindex=&quot;-1&quot; aria-labelledby=&quot;prompt-heading-id&quot; aria-describedby=&quot;prompt-message-wrapper&quot; class=&quot;slds-modal slds-fade-in-open slds-modal--prompt&quot;&gt;&apos; +
+                &apos;&lt;div class=&quot;slds-modal__container&quot;&gt;&apos; +
+                &apos;&lt;div class=&quot;slds-modal__header slds-theme--warning slds-theme--alert-texture&quot;&gt;&apos; +
+                &apos;&lt;h2 class=&quot;slds-text-heading--medium&quot; id=&quot;prompt-heading-id&quot;&gt;&apos; + &apos;{!$Label.CD_GEN_VAL1}&apos; + &apos;&lt;/h2&gt;&apos; +
+                &apos;&lt;/div&gt;&apos; +
+                &apos;&lt;div class=&quot;slds-modal__content slds-p-around--medium slds-text-align--center&quot;&gt;&apos;;
+            for (var i = 0; i &lt; messageArr.length; i++) {
+                _med = _med + &apos;&lt;h3 class=&quot;slds-text-heading--small color-text-default&quot;&gt;&apos; + messageArr[i].account + &apos;&lt;/h3&gt;&apos;;
+                for (var j = 0; j &lt; messageArr[i].message.length; j++) {
+                    _mes = _mes + &apos;&lt;p&gt;[&apos; + (1 + j) + &apos;] &apos; + messageArr[i].message[j] + &apos;&lt;/p&gt;&apos;;
+                }
+                _med = _med + _mes;
+            }
+            return _head + _med +
+                &apos;&lt;/div&gt;&apos; +
+                &apos;&lt;div class=&quot;slds-modal__footer slds-theme--default&quot;&gt;&apos; +
+                &apos;&lt;button class=&quot;slds-button slds-button--neutral&quot;&gt;Okay&lt;/button&gt;&apos; +
+                &apos;&lt;/div&gt;&apos; +
+                &apos;&lt;/div&gt;&apos; +
+                &apos;&lt;/div&gt;&apos; +
+                &apos;&lt;div class=&quot;slds-backdrop slds-backdrop--open&quot;&gt;&lt;/div&gt;&apos;;
+        }
+
+        function showLoading() {
+
+            return &apos;&lt;div class=&quot;slds-spinner_container&quot;&gt;&apos; +
+                &apos;&lt;div role=&quot;status&quot; class=&quot;slds-spinner slds-spinner--large slds-spinner--brand&quot;&gt;&apos; +
+                &apos;&lt;span class=&quot;slds-assistive-text&quot;&gt;&apos; + &apos;{!$Label.CD_GEN_VAL6}&apos; + &apos;&lt;/span&gt;&apos; +
+                &apos;&lt;div class=&quot;slds-spinner__dot-a&quot;&gt;&lt;/div&gt;&apos; +
+                &apos;&lt;div class=&quot;slds-spinner__dot-b&quot;&gt;&lt;/div&gt;&apos; +
+                &apos;&lt;/div&gt;&apos; + &apos;&lt;/div&gt;&apos;;
+        }
+
+        function showError(message) {
+            return &apos;&lt;div role=&quot;alertdialog&quot; tabindex=&quot;-1&quot; aria-labelledby=&quot;prompt-heading-id&quot; aria-describedby=&quot;prompt-message-wrapper&quot; class=&quot;slds-modal slds-fade-in-open slds-modal--prompt&quot;&gt;&apos; +
+                &apos;&lt;div class=&quot;slds-modal__container&quot;&gt;&apos; +
+                &apos;&lt;div class=&quot;slds-modal__header slds-theme--error slds-theme--alert-texture&quot;&gt;&apos; +
+                &apos;&lt;h2 class=&quot;slds-text-heading--medium&quot; id=&quot;prompt-heading-id&quot;&gt;&apos; + &apos;{!$Label.CD_GEN_VAL5}&apos; + &apos;&lt;/h2&gt;&apos; +
+                &apos;&lt;/div&gt;&apos; +
+                &apos;&lt;div class=&quot;slds-modal__content slds-p-around--medium slds-text-align--center&quot;&gt;&apos; +
+                &apos;&lt;p&gt;&apos; + message + &apos;&lt;/p&gt;&apos; +
+                &apos;&lt;/div&gt;&apos; +
+                &apos;&lt;div class=&quot;slds-modal__footer slds-theme--default&quot;&gt;&apos; +
+                &apos;&lt;button class=&quot;slds-button slds-button--neutral&quot;&gt;Okay&lt;/button&gt;&apos; +
+                &apos;&lt;/div&gt;&apos; +
+                &apos;&lt;/div&gt;&apos; +
+                &apos;&lt;/div&gt;&apos; +
+                &apos;&lt;div class=&quot;slds-backdrop slds-backdrop--open&quot;&gt;&lt;/div&gt;&apos;;
+
+        }
+
+
+
+    }())
+
+} else if (recType.records.DeveloperName === &apos;Talabat_Account&apos;) {
+    {!REQUIRESCRIPT(&quot;/xdomain/xdomain.js&quot;)} 
+    {!REQUIRESCRIPT(&quot;/support/console/38.0/integration.js&quot;)} 
+    {!REQUIRESCRIPT(&quot;/resource/jq211&quot;)}
+    requireCssFile(&apos;/resource/bootbox/bootstrapV1.css&apos;); 
+    {!REQUIRESCRIPT(&quot;/resource/bootbox/bootstrap.min.js&quot;)} 
+    {!REQUIRESCRIPT(&quot;/resource/bootbox/bootbox.min.js&quot;)}
+
+
+
+    function requireCssFile(filename) {
+        var fileref = document.createElement(&apos;link&apos;);
+        fileref.setAttribute(&apos;rel&apos;, &apos;stylesheet&apos;);
+        fileref.setAttribute(&apos;type&apos;, &apos;text/css&apos;);
+        fileref.setAttribute(&apos;href&apos;, filename);
+        document.getElementsByTagName(&apos;head&apos;)[0].appendChild(fileref);
+    } 
+    {!REQUIRESCRIPT(&quot;/resource/bootbox/utilityFunctions.js&quot;)}
+    var btn = document.getElementsByName(&apos;send_to_backend_yogiyo&apos;)[0];
+    construct(btn, &quot;{!$Label.Sending_to_backend_KR}&quot;);
+
+    var backendId = &apos;{!Account.Backend_ID__c}&apos;;
+    var hasCon = sforce.connection.query(&quot;select id,Type,ParentId,Backend_ID__c from account where id = &apos;{!Account.ParentId}&apos; limit 1&quot;);
+    var restaurantAddress = sforce.connection.query(&quot;select SubAdministrativeAreaCode__c From AddressDetail__c Where Account__c = &apos;{!Account.Id}&apos; and Type__c INCLUDES (&apos;Restaurant Address&apos;)&quot;);
+    var areaCode = restaurantAddress.size &gt; 0 ? restaurantAddress.records.SubAdministrativeAreaCode__c : &quot;&quot;;
+    
+    if (backendId.length &gt; 0) {
+        bootbox.alert(&apos;{!$Label.Already_exist_in_backend_KR}&apos;).find(&apos;.modal-content&apos;).addClass(&quot;info&quot;);
+        postAction();
+    } else if (!(&quot;{!Account.Type}&quot;)) {
+        bootbox.alert(&apos;{!$Label.CD_GEN_VAL3}&apos;).find(&apos;.modal-content&apos;).addClass(&quot;error&quot;);
+        postAction();
+    } else if (&quot;{!Account.Type}&quot; !== &apos;Group&apos; &amp;&amp; !(&quot;{!Account.ParentId}&quot;)) {
+        bootbox.alert(&apos;Parent Account is missing&apos;).find(&apos;.modal-content&apos;).addClass(&quot;error&quot;);
+        postAction();
+    } else if (&quot;{!Account.Type}&quot; !== &apos;Group&apos; &amp;&amp; &quot;{!Account.Type}&quot; == &apos;Brand&apos; &amp;&amp; hasCon.records.Type != &apos;Group&apos;) {
+        bootbox.alert(&apos;Parent should be of the type Group&apos;).find(&apos;.modal-content&apos;).addClass(&quot;error&quot;);
+        postAction();
+    } else if (&quot;{!Account.Type}&quot; !== &apos;Group&apos; &amp;&amp; &quot;{!Account.Type}&quot; == &apos;Branch&apos; &amp;&amp; hasCon.records.Type != &apos;Brand&apos;) {
+        bootbox.alert(&apos;Parent should be of the type Brand&apos;).find(&apos;.modal-content&apos;).addClass(&quot;error&quot;);
+        postAction();
+    } else if (&quot;{!Account.Type}&quot; !== &apos;Group&apos; &amp;&amp; !(hasCon.records.Backend_ID__c)) {
+        bootbox.alert(&apos;Parent has no Backend Id&apos;).find(&apos;.modal-content&apos;).addClass(&quot;error&quot;);
+        postAction();
+    } else if (!areaCode &amp;&amp; &quot;{!Account.Type}&quot; == &apos;Branch&apos;) {
+        bootbox.alert(&apos;Restaurant address is missing!&apos;).find(&apos;.modal-content&apos;).addClass(&quot;error&quot;);
+        postAction();
+    } else if (!(&quot;{!Account.Record_Country__c}&quot;)) {
+        bootbox.alert(&apos;Record country is missing&apos;).find(&apos;.modal-content&apos;).addClass(&quot;error&quot;);
+        postAction();
+
+    } else if (!(&quot;{!Account.Platform__c}&quot;)) {
+        bootbox.alert(&apos;Platform is missing&apos;).find(&apos;.modal-content&apos;).addClass(&quot;error&quot;);
+        postAction();
+
+    } else {
+        console.log(&apos;calling apex....&apos;)
+        var callback = {
+            onSuccess: function(resultData) {
+                var result = &apos;&apos; + resultData;
+
+                if (result.startsWith(&apos;Error&apos;)) {
+                    bootbox.alert(result, function() {
+                        refreshParent();
+                    }).find(&apos;.modal-content&apos;).addClass(&quot;error&quot;);
+                } else {
+                    bootbox.alert(result, function() {
+                        refreshParent();
+                    }).find(&apos;.modal-content&apos;).addClass(&quot;success&quot;);
+                }
+            },
+            onFailure: function(error) {
+                bootbox.alert(error, function() {
+                    refreshParent();
+                }).find(&apos;.modal-content&apos;).addClass(&quot;error&quot;);
+            }
+        };
+        var callResult = sforce.apex.execute(&quot;ClsGetBackendIdAccount&quot;, &quot;getBackendIdTalabat&quot;, {
+            accId: &quot;{!Account.Id}&quot;,
+            accType: &quot;{!Account.Type}&quot;
+        }, callback);
+    }
+
+
+} else if (recType.records.DeveloperName === &apos;SE_Account&apos;) {
+    {!REQUIRESCRIPT(&quot;/xdomain/xdomain.js&quot;)} 
+    {!REQUIRESCRIPT(&quot;/support/console/38.0/integration.js&quot;)} 
+    {!REQUIRESCRIPT(&quot;/resource/jq211&quot;)}
+    requireCssFile(&apos;/resource/bootbox/bootstrapV1.css&apos;); 
+    {!REQUIRESCRIPT(&quot;/resource/bootbox/bootstrap.min.js&quot;)} 
+    {!REQUIRESCRIPT(&quot;/resource/bootbox/bootbox.min.js&quot;)}
+    console.log(&apos;SE Account....&apos;);
+
+
+    function requireCssFile(filename) {
+        var fileref = document.createElement(&apos;link&apos;);
+        fileref.setAttribute(&apos;rel&apos;, &apos;stylesheet&apos;);
+        fileref.setAttribute(&apos;type&apos;, &apos;text/css&apos;);
+        fileref.setAttribute(&apos;href&apos;, filename);
+        document.getElementsByTagName(&apos;head&apos;)[0].appendChild(fileref);
+    } 
+    {!REQUIRESCRIPT(&quot;/resource/bootbox/utilityFunctions.js&quot;)}
+    var btn = document.getElementsByName(&apos;send_to_backend_yogiyo&apos;)[0];
+    construct(btn, &quot;{!$Label.Sending_to_backend_KR}&quot;);
+
+    var backendId = &apos;{!Account.Backend_ID__c}&apos;;
+
+    if (backendId.length &gt; 0) {
+        bootbox.alert(&apos;{!$Label.Already_exist_in_backend_KR}&apos;).find(&apos;.modal-content&apos;).addClass(&quot;info&quot;);
+        postAction();
+
+    } else {
+        console.log(&apos;calling apex....&apos;)
+        var callback = {
+            onSuccess: function(resultData) {
+                var result = &apos;&apos; + resultData;
+
+                if (result.startsWith(&apos;Error&apos;)) {
+                    bootbox.alert(result, function() {
+                        refreshParent();
+                    }).find(&apos;.modal-content&apos;).addClass(&quot;error&quot;);
+                } else {
+                    bootbox.alert(result, function() {
+                        refreshParent();
+                    }).find(&apos;.modal-content&apos;).addClass(&quot;success&quot;);
+                }
+            },
+            onFailure: function(error) {
+                bootbox.alert(error, function() {
+                    refreshParent();
+                }).find(&apos;.modal-content&apos;).addClass(&quot;error&quot;);
+            }
+        };
+        var callResult = sforce.apex.execute(&quot;ClsGetBackendIdAccount&quot;, &quot;createBackendIDSweden&quot;, {
+            accId: &quot;{!Account.Id}&quot;,
+            accName: &quot;{!Account.Name}&quot;
+        }, callback);
+    }
+
+
+} else {
+
+    /*{!REQUIRESCRIPT(&quot;/soap/ajax/38.0/connection.js&quot;)} 
+    var opp = new sforce.SObject(&quot;Opportunity&quot;); 
+    opp.id = &quot;{!Opportunity.Id}&quot;; 
+    opp.Quality_Check__c = new Date(); 
+    opp.StageName = (&quot;Closed Won&quot;); 
+    opp.Probability = 100; 
+    opp.Quality_Check_By__c = &quot;{!$User.Id}&quot;; 
+    result = sforce.connection.update([opp]); 
+    window.parent.location.reload();*/
+
+    {!REQUIRESCRIPT(&quot;/xdomain/xdomain.js&quot;)} 
+    {!REQUIRESCRIPT(&quot;/support/console/38.0/integration.js&quot;)} 
+    {!REQUIRESCRIPT(&quot;/resource/jq211&quot;)}
+    requireCssFile(&apos;/resource/bootbox/bootstrapV1.css&apos;); 
+    {!REQUIRESCRIPT(&quot;/resource/bootbox/bootstrap.min.js&quot;)} 
+    {!REQUIRESCRIPT(&quot;/resource/bootbox/bootbox.min.js&quot;)}
+
+
+
+    function requireCssFile(filename) {
+        var fileref = document.createElement(&apos;link&apos;);
+        fileref.setAttribute(&apos;rel&apos;, &apos;stylesheet&apos;);
+        fileref.setAttribute(&apos;type&apos;, &apos;text/css&apos;);
+        fileref.setAttribute(&apos;href&apos;, filename);
+        document.getElementsByTagName(&apos;head&apos;)[0].appendChild(fileref);
+    } 
+    {!REQUIRESCRIPT(&quot;/resource/bootbox/utilityFunctions.js&quot;)}
+
+
+    var btn = document.getElementsByName(&apos;send_to_backend_yogiyo&apos;)[0];
+    construct(btn, &quot;{!$Label.Sending_to_backend_KR}&quot;);
+
+    var backendId = &apos;{!Account.Backend_ID__c}&apos;;
+
+    if (backendId.length &gt; 0) {
+        bootbox.alert(&apos;{!$Label.Already_exist_in_backend_KR}&apos;).find(&apos;.modal-content&apos;).addClass(&quot;info&quot;);
+        postAction();
+    } else {
+        var callback = {
+            onSuccess: function(resultData) {
+                var result = &apos;&apos; + resultData;
+
+                if (result == &apos;{!$Label.Backend_creation_failed}&apos; || result == &apos;{!$Label.Profile_not_allowed_for_backend_creation_KR}&apos; || result == &apos;{!$Label.Account_type_not_allowed_for_backend_creation_KR}&apos;) {
+                    bootbox.alert(result, function() {
+                        refreshParent();
+                    }).find(&apos;.modal-content&apos;).addClass(&quot;error&quot;);
+                } else {
+                    bootbox.alert(result, function() {
+                        refreshParent();
+                    }).find(&apos;.modal-content&apos;).addClass(&quot;success&quot;);
+                }
+            },
+            onFailure: function(error) {
+                bootbox.alert(error, function() {
+                    refreshParent();
+                }).find(&apos;.modal-content&apos;).addClass(&quot;error&quot;);
+            }
+        };
+        var callResult = sforce.apex.execute(&quot;ClsRemoteController&quot;, &quot;createBackendAccountKR&quot;, {
+            restaurantName: &quot;{!Account.Restaurant_Name__c}&quot;,
+            salesforceId: &apos;{!Account.Id}&apos;,
+            salesRep: &apos;{!$User.FirstName} {!$User.LastName}&apos;,
+            accountType: &apos;{!Account.Type}&apos;
+        }, callback);
+    }
+}</url>
+</WebLink>

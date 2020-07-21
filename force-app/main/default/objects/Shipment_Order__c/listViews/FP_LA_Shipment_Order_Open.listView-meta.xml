@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FP_LA_Shipment_Order_Open</fullName>
+    <columns>CREATED_DATE</columns>
+    <columns>NAME</columns>
+    <columns>Type__c</columns>
+    <columns>Status__c</columns>
+    <columns>Aftership_ID__c</columns>
+    <columns>Date_Shipped__c</columns>
+    <columns>Tracking_Number__c</columns>
+    <columns>Account__c</columns>
+    <columns>CURRENCY_ISO_CODE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CURRENCY_ISO_CODE</field>
+        <operation>equals</operation>
+        <value>LAK</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Delivered,Canceled,Shipped</value>
+    </filters>
+    <label>FP-LA - Shipment Order - Open</label>
+    <sharedTo>
+        <group>FP_Laos_Users</group>
+    </sharedTo>
+</ListView>

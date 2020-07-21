@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mark_as_Complete</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Mark as Complete</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>/* This code allows the javascript to access the API and push data into the Org.*/
+{!requireScript(&quot;/soap/ajax/20.0/connection.js&quot;)};
+sforce.connection.session = &quot;{!$Api.Session_ID}&quot;;
+
+function updateTask( )
+{
+	try
+	{
+	var task = new sforce.SObject(&quot;CustomTasks__c&quot;);
+	task.Id = &quot;{!CustomTasks__c.Id}&quot;;
+	task.Status__c = &quot;{!CustomTasks__c.Status__c}&quot;;
+	
+
+	if(task.Status__c != &quot;Completed&quot;){
+		console.log(&apos;not completed&apos;);
+		task.Status__c = &quot;Completed&quot;;
+		task.Closed_Date__c = new Date().toISOString();
+		var result = sforce.connection.update([task]);
+                
+		if(result[0].getBoolean(&quot;success&quot;)){
+			window.top.location.href=window.top.location.href;
+		}else{
+		alert(result[0].errors.message);
+		}
+		
+	}else{
+		console.log(&apos;completed&apos;);
+		alert(&quot;The status is already marked as Completed&quot;);
+	}
+
+	}catch (e) {
+		alert(e);
+	}	
+}
+
+updateTask();</url>
+</WebLink>

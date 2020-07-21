@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>반납 상태</label>
+    <name>Return_Status__c</name>
+    <picklistValues>
+        <masterLabel>Arrange Pick up</masterLabel>
+        <translation><!-- Arrange Pick up --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Collected</masterLabel>
+        <translation><!-- Collected --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivered to Warehouse</masterLabel>
+        <translation><!-- Delivered to Warehouse --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No Return Needed</masterLabel>
+        <translation><!-- No Return Needed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Owner sends Terminal</masterLabel>
+        <translation><!-- Owner sends Terminal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sales Rep Terminated</masterLabel>
+        <translation><!-- Sales Rep Terminated --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

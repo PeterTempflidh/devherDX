@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CustomClone</fullName>
+    <availability>online</availability>
+    <description>Custom clone button for opty</description>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Clone</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>/{!Opportunity.Id}/e?clone=1&amp;retURL=%2F{!Opportunity.Id}&amp;00N11000000v932=&amp;00N11000000v934=&amp;00N11000000v933=&amp;opp11=&amp;opp12=&amp;opp14=&amp;00Nw0000008Q74O=&amp;00Nw0000008OfRa=&amp;00Nw0000008nQXQ={!IF(Opportunity.RecordType =&apos;012w0000000MREO&apos;,&apos;Owner Change&apos;,&apos;&apos;)}&amp;opp9=</url>
+</WebLink>

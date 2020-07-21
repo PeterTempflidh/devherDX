@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Entry_case</fullName>
+    <fields>CaseNumber</fields>
+    <fields>Priority</fields>
+    <fields>Type</fields>
+    <fields>Case_Reason__c</fields>
+    <fields>Due_Date__c</fields>
+    <fields>Status</fields>
+    <fields>Closed_Reason__c</fields>
+    <label>Entry case</label>
+</CompactLayout>
