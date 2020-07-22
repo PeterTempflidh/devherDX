@@ -55,7 +55,7 @@ public with sharing class ScheduleDelTranscriptRelated_Batch implements Schedula
         Loggingutility.createLog(ScheduleDelTranscriptRelated_Batch.class.getName(),
                 'BATCH',
                 'DELETE objectType',
-                deleteResultList[0].getId()
+                null
             );
 
         for (Database.DeleteResult res : deleteResultList) {
