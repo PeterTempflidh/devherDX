@@ -9,15 +9,19 @@
 * Tests in UnitTestScheduleDeleteChatTranscript
 */
 
-public with sharing class ScheduleDeleteChatTranscriptRelated implements Schedulable, Database.Batchable<SObject> {
+public with sharing class ScheduleDelTranscriptRelated_Batch implements Schedulable, Database.Batchable<SObject> {
     
     private String q;
 
-    public ScheduleDeleteChatTranscriptRelated() {}
+    public ScheduleDelTranscriptRelated_Batch() {}
 
-    public ScheduleDeleteChatTranscriptRelated(Schema.SObjectType soType, Integer lastNDays) {
-        if (soType != ConversationContextEntry.SObjectType && soType != LiveChatTranscriptEvent.SObjectType) system.assert(false, 'This SObject is not allowed to delete.');
-        if (lastNDays != 30 && lastNDays != 180) system.assert(false, 'This time range is not allowed.');
+    public ScheduleDelTranscriptRelated_Batch(Schema.SObjectType soType, Integer lastNDays) {
+        if (soType != ConversationContextEntry.SObjectType && soType != LiveChatTranscriptEvent.SObjectType) {
+            system.assert(false, 'This SObject is not allowed to delete.');
+        }
+        if (lastNDays != 30 && lastNDays != 180) {
+            system.assert(false, 'This time range is not allowed.');
+        }
 
         this.q = 'SELECT Id FROM '
                 + soType.getDescribe().getName()
@@ -25,8 +29,8 @@ public with sharing class ScheduleDeleteChatTranscriptRelated implements Schedul
     }
 
     public void execute(SchedulableContext sc) {
-        Database.executeBatch(new ScheduleDeleteChatTranscriptRelated(ConversationContextEntry.SObjectType, 30));  
-        Database.executeBatch(new ScheduleDeleteChatTranscriptRelated(LiveChatTranscriptEvent.SObjectType, 180));  
+        Database.executeBatch(new ScheduleDelTranscriptRelated_Batch(ConversationContextEntry.SObjectType, 30));  
+        Database.executeBatch(new ScheduleDelTranscriptRelated_Batch(LiveChatTranscriptEvent.SObjectType, 180));  
     }
 
     public Database.QueryLocator start(Database.BatchableContext BC) {
@@ -34,8 +38,9 @@ public with sharing class ScheduleDeleteChatTranscriptRelated implements Schedul
     }
 
     public void execute(Database.BatchableContext BC, List<sObject> scope) {
+        if (scope.isEmpty()) return;
         Database.DeleteResult[] deleteResultList = Database.delete(scope, false);
-        logError(deleteResultList);
+        logError(deleteResultList, scope[0].getSObjectType().getDescribe().getName());
     }
 
     public void finish(Database.BatchableContext BC) {
@@ -45,16 +50,23 @@ public with sharing class ScheduleDeleteChatTranscriptRelated implements Schedul
     /*
     * Logs errors if there are any, returns true if there is an error
     */
-    private static void logError(Database.DeleteResult[] deleteResultList) {
+    private static void logError(Database.DeleteResult[] deleteResultList, String objectType) {
+
+        Loggingutility.createLog(ScheduleDelTranscriptRelated_Batch.class.getName(),
+                'BATCH',
+                'DELETE objectType',
+                deleteResultList[0].getId()
+            );
 
         for (Database.DeleteResult res : deleteResultList) {
+
             if (!res.isSuccess()) {
                 String errorMessages = '';
                 for (Database.Error err : res.getErrors()) {
                     errorMessages += ' ' + err.getMessage();
                 }
 
-                LoggingUtility.logError(ScheduleDeleteChatTranscriptRelated.class.getName(), 
+                LoggingUtility.logError(ScheduleDelTranscriptRelated_Batch.class.getName(), 
                                         String.format('Can not delete record {0}; Error message: {1}', new String[]{res.getId(), errorMessages})
                     );
             }

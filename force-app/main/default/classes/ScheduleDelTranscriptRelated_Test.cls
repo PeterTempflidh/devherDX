@@ -1,7 +1,7 @@
 @isTest
-public with sharing class UnitTestScheduleDeleteChatTranscript {
+public with sharing class ScheduleDelTranscriptRelated_Test {
     @isTest
-    public static void UnitTestScheduleDeleteChatTranscriptRelated_remove1() {
+    public static void UnitTestScheduleDelTranscriptRelated_Batch_remove1() {
         
         LiveChatVisitor vis = new LiveChatVisitor();
         insert vis;
@@ -15,14 +15,14 @@ public with sharing class UnitTestScheduleDeleteChatTranscript {
         Test.setCreatedDate(ctr.Id, System.now().addDays(-45));
         Test.startTest();
             system.assertEquals(1, [SELECT COUNT() FROM ConversationContextEntry]);
-            new ScheduleDeleteChatTranscriptRelated().execute(null);
+            new ScheduleDelTranscriptRelated_Batch().execute(null);
         Test.stopTest();
 
         system.assertEquals(0, [SELECT COUNT() FROM ConversationContextEntry]);
     }
 
     @isTest
-    public static void UnitTestScheduleDeleteChatTranscriptRelated_remove2() {
+    public static void UnitTestScheduleDelTranscriptRelated_Batch_remove2() {
         
         LiveChatVisitor vis = new LiveChatVisitor();
         insert vis;
@@ -41,7 +41,7 @@ public with sharing class UnitTestScheduleDeleteChatTranscript {
         Test.startTest();
         system.assertEquals(1, [SELECT COUNT() FROM ConversationContextEntry]);
         system.assertEquals(1, [SELECT COUNT() FROM LiveChatTranscriptEvent]);
-            new ScheduleDeleteChatTranscriptRelated().execute(null);
+            new ScheduleDelTranscriptRelated_Batch().execute(null);
         Test.stopTest();
 
         system.assertEquals(0, [SELECT COUNT() FROM ConversationContextEntry]);
@@ -49,7 +49,7 @@ public with sharing class UnitTestScheduleDeleteChatTranscript {
     }
 
     @isTest
-    public static void UnitTestScheduleDeleteChatTranscriptRelated_keep() {
+    public static void UnitTestScheduleDelTranscriptRelated_Batch_keep() {
 
         LiveChatVisitor vis = new LiveChatVisitor();
         insert vis;
@@ -68,7 +68,7 @@ public with sharing class UnitTestScheduleDeleteChatTranscript {
         Test.startTest();
             system.assertEquals(1, [SELECT COUNT() FROM ConversationContextEntry]);
             system.assertEquals(1, [SELECT COUNT() FROM LiveChatTranscriptEvent]);
-            new ScheduleDeleteChatTranscriptRelated().execute(null);
+            new ScheduleDelTranscriptRelated_Batch().execute(null);
         Test.stopTest();
 
         system.assertEquals(1, [SELECT COUNT() FROM ConversationContextEntry]);
