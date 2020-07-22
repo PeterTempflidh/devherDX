@@ -1,0 +1,37 @@
+Query for getting the record:
+=============================
+
+SELECT Id 
+FROM Business_Config__c
+WHERE Process_Name__c = 'PostChatSurvey' 
+AND Business_Rule_Name__c = '<MY BUSINESS RULE NAME>'
+ 
+Record updates
+==============
+
+1. Business_Rule_Name__c = Carriage_STG
+
+New value for field Business_Rule_Value__c :
+
+{ "app_group_id":"5cd83efb-5b4f-4627-95f4-984ebd7ff34c", "campaign_id":"5e2b6522-7899-a90e-00b1-e04cafdeb5af", "platform_push":"Android=android_push,iOS=apple_push", "message_variation_id":"Android=androidPush-6454,iOS=iosPush-6458", "surveyURL":"carriageweb://deliveryhub.eu.qualtrics.com/jfe/form/SV_bOcmGwP0y0M4U2F" }
+----------------------------------------
+
+2. Business_Rule_Name__c = Carriage
+
+New value for field Business_Rule_Value__c :
+
+{ "app_group_id":"31b68d2b-d500-4486-b141-9c9ed3e51eb8", "campaign_id":"5eba9230-a9b5-acb3-8ecf-52f33978d63c", "platform_push":"Android=android_push,iOS=apple_push", "message_variation_id":"Android=androidPush-5176,iOS=iosPush-5180", "surveyURL":"carriageweb://deliveryhub.eu.qualtrics.com/jfe/form/SV_bOcmGwP0y0M4U2F" }
+----------------------------------------
+
+3. Business_Rule_Name__c = Talabat_STG
+
+New value for field Business_Rule_Value__c :
+
+{ "app_group_id":"989fc322-d7f7-44cb-9248-b98fe9c7620d", "campaign_id":"c0cd87a5-36af-6543-099f-3fff4a8d22eb", "platform_push":"Android=android_push,iOS=apple_push", "message_variation_id":"Android=androidPush-652,iOS=iosPush-656", "surveyURL":"talabatweb://deliveryhub.eu.qualtrics.com/jfe/form/SV_50hKCwzl53AvT9P" }
+----------------------------------------
+
+4. Business_Rule_Name__c = Talabat
+
+New value for field Business_Rule_Value__c :
+
+{ "app_group_id":"b2815b88-2743-4291-aa2d-c3a114df898c", "campaign_id":"98ef526b-8bb8-f3d7-1ba8-28112b704176", "platform_push":"Android=android_push,iOS=apple_push", "message_variation_id":"Android=androidPush-2287,iOS=iosPush-2281", "surveyURL":"talabatweb://deliveryhub.eu.qualtrics.com/jfe/form/SV_50hKCwzl53AvT9P" }
