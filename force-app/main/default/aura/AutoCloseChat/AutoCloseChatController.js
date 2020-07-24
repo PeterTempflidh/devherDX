@@ -8,6 +8,10 @@
     },
 
     onCloseTabButtonPressed : function(component, event, helper) {
-        console.log('>......');
-    }
+        helper.closeTabButtonPressed(component);
+    },
+
+    onCancelButtonPressed : function(component, event, helper) {
+        component.set('v.showCloseModal', false); 
+    }    
 })
