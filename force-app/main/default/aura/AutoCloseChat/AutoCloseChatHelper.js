@@ -4,7 +4,10 @@
         const WAIT = 10;
         let chatRecordId = event.getParam('recordId');
         
-        let closeCurrentTab = () => {
+        /*
+        * Asks the user if close the current tab
+        */
+        let askIfcloseCurrentTab = () => {
             let workspaceAPI = component.find("workspace");
             workspaceAPI.getAllTabInfo().then(res => {
                 console.log(JSON.stringify(res));
@@ -14,7 +17,7 @@
     
                 if (chatTabData) {
                     console.log('current currentTabData ', JSON.stringify(chatTabData ));
-                    this.closeTab(component, chatTabData.tabId);
+                    this.showAskModal(component, chatTabData.tabId);
                 }
     
             }).catch(tabData => {
@@ -50,7 +53,7 @@
 
         let isActiveTab = this.isActiveTab(component, chatRecordId);
         isActiveTab.then(currentTabData => { // the tab is focused
-            window.setTimeout($A.getCallback( closeCurrentTab ), WAIT);
+            window.setTimeout($A.getCallback( askIfcloseCurrentTab ), WAIT);
         }).catch(currentTabData => { // the tab is not focused
             if (currentTabData) {
                 changeLabelOnTab(currentTabData.tabId);
@@ -62,31 +65,22 @@
     * Closes the selected tabId
     */
     closeTab : function(component, tabId) {
-        this.showModal(component).then(r => {
-            let workspaceAPI = component.find("workspace");
-            workspaceAPI.closeTab({tabId : tabId}).then(closeTabRes => {
-                console.log('### closeTab success', JSON.stringify(closeTabRes));
-            }).catch(error => {
-                console.log('### closeTab error ', error);
-            });
-        });
-        
+        console.log('closeTab');
 
+        let workspaceAPI = component.find("workspace");
+        workspaceAPI.closeTab({tabId : component.get('v.tabId')}).then(closeTabRes => {
+            console.log('### closeTab success', JSON.stringify(closeTabRes));
+        })
     },
     
     /*
     * Asks the user on a model if he wants to close the current tab.
-    * Returns a promise which resolves if user clicks Yes
     */
-    showModal : function(component) {
-        let modalPromise = new Promise(
-            $A.getCallback((resolve, reject) => {
-                component.set('v.closeModalPromiseResolve', resolve);
-            })
-        );
-        
+   showAskModal : function(component, tabId) {
+        console.log('showAskModal');
+        component.set('v.tabId',tabId);        
         component.set('v.showCloseModal',true);        
-        return modalPromise;
+        // return modalPromise;
     },
     
     /*
@@ -129,12 +123,13 @@
     ////////////////////
 
     /*
-    * If the user wants to close the tab, resolves the `closeModalPromiseResolve` promise
+    * If the user wants to close the tab, closes the tab
     */
     closeTabButtonPressed : function(component) {
-        component.set('v.showCloseModal', false);     
-        let closeResolve = component.get('v.closeModalPromiseResolve');
-        closeResolve('1');
+        console.log('closeTabButtonPressed');
+        window.setTimeout($A.getCallback(() => {
+            this.closeTab(component, component.get('v.tabId'));
+        }), 1400);
     },
 
 })

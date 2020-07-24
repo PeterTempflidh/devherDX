@@ -8,6 +8,7 @@
     },
 
     onCloseTabButtonPressed : function(component, event, helper) {
+        component.set('v.showCloseModal', false);
         helper.closeTabButtonPressed(component);
     },
 
