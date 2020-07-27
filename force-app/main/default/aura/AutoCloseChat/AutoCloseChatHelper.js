@@ -27,33 +27,7 @@
             });    
         };
 		
-		/*
-		* changes the labes of a given tab
-		*/
-        let changeLabelOnTab = (tabId) => {
-            let workspaceAPI = component.find("workspace");
-            
-            let setTabLabelPromise = workspaceAPI.setTabLabel({
-                tabId : tabId,
-                label : 'Time out warning'
-            });
-
-            let setTabHighlightedPromise = workspaceAPI.setTabHighlighted({
-                tabId: tabId,
-                highlighted: true,
-                options: {
-                    pulse: true,
-                    state: "error"
-                }
-            });
-            
-            Promise.all([setTabLabelPromise, setTabHighlightedPromise]).then(r => {
-            }).catch(r => {
-                console.log('setTabLabelPromise, setTabHighlightedPromise', r);
-            });
-
-        };
- 		
+		
 		/*
 		* Closes a tab in N seconds
 		*/
@@ -71,11 +45,16 @@
             window.setTimeout($A.getCallback( askIfcloseCurrentTab ), WAIT_POPUP);
         }).catch(currentTabData => { // the tab is not focused
             if (currentTabData) {
-                changeLabelOnTab(currentTabData.tabId);
+                this.changeLabelOnTab(component, currentTabData.tabId, 'Time out Warning');
                 scheduleCloseTab(currentTabData.recordId);
             }
         });
     },
+
+	onTabFocused : function(component, event, tabId) {
+    	this.changeLabelOnTab(component, tabId, 'IM FOCUSED');
+    	//////////////// ...................>>>>>> askIfcloseCurrentTab
+	},
 
     /*
     * Closes the selected tabId
@@ -171,4 +150,27 @@
     	this.closeTab(component, component.get('v.tabId'));
     },
 
+	changeLabelOnTab : function(component, tabId, label) {
+            let workspaceAPI = component.find("workspace");
+            
+            let setTabLabelPromise = workspaceAPI.setTabLabel({
+                tabId : tabId,
+                label : label
+            });
+
+            let setTabHighlightedPromise = workspaceAPI.setTabHighlighted({
+                tabId: tabId,
+                highlighted: true,
+                options: {
+                    pulse: true,
+                    state: "error"
+                }
+            });
+            
+            Promise.all([setTabLabelPromise, setTabHighlightedPromise]).then(r => {
+            }).catch(r => {
+                console.log('setTabLabelPromise, setTabHighlightedPromise', r);
+            });
+
+	}
 })

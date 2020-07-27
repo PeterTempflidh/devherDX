@@ -13,6 +13,7 @@
 					console.log('IM HAPPY', chatTabData.tabId, chatTabData.recordId);
 					component.set('v.isFocused', true);
 					console.log('##### ', component.get('v.isFocused'));
+					helper.onTabFocused(component, event, chatTabData.tabId);
 				}
 			}
 		});
