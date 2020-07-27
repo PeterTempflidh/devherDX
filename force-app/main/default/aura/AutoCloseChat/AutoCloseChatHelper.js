@@ -23,9 +23,10 @@
             }).catch(tabData => {
                 console.log('### workspaceAPI.getAllTabInfo error ', error);
             });    
-        }
+        };
 
         let changeLabelOnTab = (tabId) => {
+			console.log('##### CHANGE LABEL ON TAB ', tabId);
             let workspaceAPI = component.find("workspace");
             
             let setTabLabelPromise = workspaceAPI.setTabLabel({
@@ -48,17 +49,27 @@
                 console.log('setTabLabelPromise, setTabHighlightedPromise', r);
             });
 
-        }
-
-
+        };
+ 			
+		let scheduleCloseTab = (recordId) => {
+			console.log('##### Schedule close record id ', recordId);
+			window.setTimeout($A.getCallback(() => {
+				console.log('##### CLOSING TAB recordId ', recordId);
+				this.closeTab2(component, recordId);
+			}), 5000);
+		};
+		
         let isActiveTab = this.isActiveTab(component, chatRecordId);
         isActiveTab.then(currentTabData => { // the tab is focused
             window.setTimeout($A.getCallback( askIfcloseCurrentTab ), WAIT);
         }).catch(currentTabData => { // the tab is not focused
+			
+			console.log('##### NOT CURRENT TAB FLOW ', currentTabData);
             if (currentTabData) {
                 changeLabelOnTab(currentTabData.tabId);
+                scheduleCloseTab(currentTabData.recordId);
             }
-        })
+        });
     },
 
     /*
@@ -73,6 +84,42 @@
         })
     },
     
+	/*
+            let workspaceAPI = component.find("workspace");
+            workspaceAPI.getAllTabInfo().then(res => {
+                console.log(JSON.stringify(res));
+                let chatTabData = res.find(el => {
+                        return el.recordId.substring(0, 15) == chatRecordId}                
+	* close a tab base on recordId
+	*/
+    closeTab2 : function(component, recordId) {
+        console.log('### CLOSE TAB2', recordId);
+		
+
+    	let workspaceAPI = component.find("workspace");
+        workspaceAPI.getAllTabInfo().then(res => {
+        	console.log('## close tab all tab data' , JSON.stringify(res));
+            let chatTabData = res.find(el => {
+            	return el.recordId == recordId;                
+			});
+			console.log('### found the tab to close base on record id ', chatTabData );
+       		if (chatTabData) { 
+				workspaceAPI.closeTab({tabId : chatTabData.tabId} ).then(closeTabRes => {
+           			console.log('### closeTab success', JSON.stringify(closeTabRes));
+        		}).catch(err => {
+					console.log('#### CLOSETAB2 closeTab error ', err);
+				});
+			}
+        }).catch(err => {
+			console.log('### getAllTabInfo error ', err);
+		});
+
+		//let workspaceAPI = component.find("workspace");
+        //workspaceAPI.closeTab({tabId : component.get('v.tabId')}).then(closeTabRes => {
+        //    console.log('### closeTab success', JSON.stringify(closeTabRes));
+        //})
+    },
+
     /*
     * Asks the user on a model if he wants to close the current tab.
     */

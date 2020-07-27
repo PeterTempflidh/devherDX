@@ -13,6 +13,6 @@
     },
 
     onCancelButtonPressed : function(component, event, helper) {
-        component.set('v.showCloseModal', false); 
+        component.set('v.showCloseModal', false);
     }    
 })
