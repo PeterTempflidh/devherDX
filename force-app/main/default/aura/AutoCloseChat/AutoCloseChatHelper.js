@@ -3,28 +3,37 @@
     onChatEnded : function(component, event) {
         const WAIT = 10;
         let chatRecordId = event.getParam('recordId');
+
+		/////////////////////////
+		// all the possible behavior functions
+		///////////////////////////
         
         /*
         * Asks the user if close the current tab
         */
         let askIfcloseCurrentTab = () => {
-            let workspaceAPI = component.find("workspace");
-            workspaceAPI.getAllTabInfo().then(res => {
-                console.log(JSON.stringify(res));
-                let chatTabData = res.find(el => {
-                        return el.recordId.substring(0, 15) == chatRecordId}                
-                    );
-    
-                if (chatTabData) {
-                    console.log('current currentTabData ', JSON.stringify(chatTabData ));
-                    this.showAskModal(component, chatTabData.tabId);
-                }
-    
-            }).catch(tabData => {
+			let workspaceAPI = component.find("workspace");
+        	
+			workspaceAPI.getFocusedTabInfo().then(chatTabData => {
+   				if (!component.get('v.recordId')) return;
+				if (!chatTabData.recordId) return;
+
+				console.log('current chat id: ', chatRecordId.substring(0, 15));
+				console.log('focused tab  id: ', chatTabData.recordId.substring(0, 15)); 
+				console.log('chat         id: ', component.get('v.recordId')); 
+          		
+							
+				if (component.get('v.recordId').substring(0, 15) == chatTabData.recordId.substring(0, 15)) {
+					this.showAskModal(component, chatTabData.tabId);
+				}  
+			}).catch(tabData => {
                 console.log('### workspaceAPI.getAllTabInfo error ', error);
             });    
         };
-
+		
+		/*
+		* changes the labes of a given tab
+		*/
         let changeLabelOnTab = (tabId) => {
 			console.log('##### CHANGE LABEL ON TAB ', tabId);
             let workspaceAPI = component.find("workspace");
@@ -50,7 +59,10 @@
             });
 
         };
- 			
+ 		
+		/*
+		* Closes a tab in N seconds
+		*/
 		let scheduleCloseTab = (recordId) => {
 			console.log('##### Schedule close record id ', recordId);
 			window.setTimeout($A.getCallback(() => {
@@ -58,9 +70,13 @@
 				this.closeTab2(component, recordId);
 			}), 5000);
 		};
-		
+
+		///////////////////
+		// decide what to do
+		/////////////////		
         let isActiveTab = this.isActiveTab(component, chatRecordId);
         isActiveTab.then(currentTabData => { // the tab is focused
+			console.log('### ACTIVE TAB CLOSE EVENT');
             window.setTimeout($A.getCallback( askIfcloseCurrentTab ), WAIT);
         }).catch(currentTabData => { // the tab is not focused
 			
@@ -124,11 +140,15 @@
     * Asks the user on a model if he wants to close the current tab.
     */
    showAskModal : function(component, tabId) {
-        console.log('showAskModal');
+     	component.set('v.tabId',tabId);        
+       	component.set('v.showCloseModal',true);        
+	},
+
+/*
+        console.log('### SHOW ASK MODAL', tabId, recordId);
         component.set('v.tabId',tabId);        
         component.set('v.showCloseModal',true);        
-        // return modalPromise;
-    },
+*/
     
     /*
     * Returns a Promise. 
@@ -173,7 +193,7 @@
     * If the user wants to close the tab, closes the tab
     */
     closeTabButtonPressed : function(component) {
-        console.log('closeTabButtonPressed');
+		console.log('closeTabButtonPressed');
         window.setTimeout($A.getCallback(() => {
             this.closeTab(component, component.get('v.tabId'));
         }), 1400);

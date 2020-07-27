@@ -1,6 +1,5 @@
 ({
     onInit : function(component,event,helper){
-        console.log('AUTO CLOSE TAB');
     },
 
     onChatEnded : function(component, event, helper) {
@@ -13,6 +12,6 @@
     },
 
     onCancelButtonPressed : function(component, event, helper) {
-        component.set('v.showCloseModal', false);
+        component.set('v.showCloseModal', false); 
     }    
 })
