@@ -59,6 +59,7 @@
 		*/
 		let scheduleCloseTab = (recordId) => {
 			window.setTimeout($A.getCallback(() => {
+				console.log('#### executing');
 				this.closeTab2(component, recordId);
 			}), WAIT_CLOSE);
 		};
@@ -66,8 +67,7 @@
 		///////////////////
 		// decide what to do
 		/////////////////		
-        let isActiveTab = this.isActiveTab(component, chatRecordId);
-        isActiveTab.then(currentTabData => { // the tab is focused
+       	this.isActiveTab(component, chatRecordId).then(currentTabData => { // the tab is focused
             window.setTimeout($A.getCallback( askIfcloseCurrentTab ), WAIT_POPUP);
         }).catch(currentTabData => { // the tab is not focused
             if (currentTabData) {
@@ -91,6 +91,15 @@
 	* close a tab base on recordId
 	*/
     closeTab2 : function(component, recordId) {
+		let chatRecordId = component.get('v.recordId');
+		console.log('..... ' + chatRecordId);
+		if (chatRecordId.substring(0, 15) != recordId.substring(0, 15)) return;	
+
+
+	
+		let isFocused = component.get('v.isFocused');
+		console.log('7777 ##### isFocused ', isFocused, recordId);
+		if (isFocused == true) return;
 
     	let workspaceAPI = component.find("workspace");
         workspaceAPI.getAllTabInfo().then(res => {
