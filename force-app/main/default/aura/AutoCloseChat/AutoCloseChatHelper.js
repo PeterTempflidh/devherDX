@@ -1,7 +1,7 @@
 ({
     onChatEnded : function(component, event) {
-        const WAIT_CLOSE = 6000;
-		const WAIT_POPUP = 10
+        const INACTIVE_CLOSE_WAIT = component.get('v.INACTIVE_CLOSE_WAIT');
+		const POPUP_WAIT = component.get('v.POPUP_WAIT');
         let chatRecordId = event.getParam('recordId');
         let pageRecordId = component.get('v.recordId');
 
@@ -14,39 +14,26 @@
         */
         let askIfcloseCurrentTab = () => {
 			this.askIfCloseCurrentTab(component);
-			/*
-			let workspaceAPI = component.find("workspace");
-        	
-			workspaceAPI.getFocusedTabInfo().then(chatTabData => {
-   				if (!component.get('v.recordId')) return;
-				if (!chatTabData.recordId) return;
-							
-				if (component.get('v.recordId').substring(0, 15) == chatTabData.recordId.substring(0, 15)) {
-					this.showAskModal(component, chatTabData.tabId);
-				}  
-			}).catch(tabData => {
-                console.log('### workspaceAPI.getAllTabInfo error ', error);
-            });
-			*/    
         };
 		
 		
 		/*
 		* Closes a tab in N seconds
 		*/
+		/*
 		let scheduleCloseTab = (recordId) => {
 			let timeoutId = window.setTimeout($A.getCallback(() => {
 				console.log('#### executing');
 				this.closeTab2(component, recordId);
-			}), WAIT_CLOSE);
+			}), INACTIVE_CLOSE_WAIT);
 			//component.set('v.timeoutId', timeoutId);
 		};
-
+		*/
 		///////////////////
 		// decide what to do
 		/////////////////		
        	this.isActiveTab(component, chatRecordId).then(currentTabData => { // the tab is focused
-            window.setTimeout($A.getCallback( askIfcloseCurrentTab ), WAIT_POPUP);
+            window.setTimeout($A.getCallback( askIfcloseCurrentTab ), POPUP_WAIT);
         }).catch(currentTabData => { // the tab is not focused
             if (currentTabData) {
 				if (currentTabData.recordId.substring(0,15) == pageRecordId.substring(0,15)) { 
@@ -56,11 +43,17 @@
 					component.set('v.isHl', true); // hl property means it is higlighted
 					component.set('v.originalTitle', title); // save the original tab title
 					this.changeLabelOnTab(component, currentTabData.tabId, 'Time out Warning', true);
-                	scheduleCloseTab(currentTabData.recordId);
+                	this.scheduleCloseTab(component, currentTabData.recordId, INACTIVE_CLOSE_WAIT);
 				}
             }
         });
     },
+
+	scheduleCloseTab : function(component, recordId, wait) {
+		let timeoutId = window.setTimeout($A.getCallback(() => {
+			this.closeTab2(component, recordId);
+		}), wait);
+	},
 
 	askIfCloseCurrentTab : function(component) {
 		let workspaceAPI = component.find("workspace");
@@ -80,9 +73,6 @@
 
 	onTabFocused : function(component, event, tabId) {
 		let isHl = component.get('v.isHl');
-		let timeoutId = component.get('v.timeoutId');
-		//console.log('#### TIMOUT ID ',timeoutId);
-		//window.clearTimout(timeoutId);
 		if (isHl == true) { // the logic starts only if the tab was highlighted
     		this.changeLabelOnTab(component, tabId, component.get('v.originalTitle'), false);
 			this.askIfCloseCurrentTab(component);
@@ -101,19 +91,20 @@
     },
     
 	/*	
-	* close a tab base on recordId
+	* close a tab based on recordId
 	*/
     closeTab2 : function(component, recordId) {
 		let chatRecordId = component.get('v.recordId');
 		if (!chatRecordId) return; // this means the tab is already closed -- STOP!
-		console.log('..... ' + chatRecordId);
 		if (chatRecordId.substring(0, 15) != recordId.substring(0, 15)) return;	
 
+		// closeCancelled -- indicates that the user clicked Cancel on the close tab modal
+		// isFocused -- indicates that the user focused the tab, so no need to finish the scheduled close
+        let closeCancelled = component.get('v.closeCancelled'); 
+		console.log('CLOSE CANCELLED ', closeCancelled );
 
-	
 		let isFocused = component.get('v.isFocused');
-		console.log('7777 ##### isFocused ', isFocused, recordId);
-		if (isFocused == true) return;
+		if (isFocused == true || closeCancelled) return;
 
     	let workspaceAPI = component.find("workspace");
         workspaceAPI.getAllTabInfo().then(res => {
@@ -135,9 +126,23 @@
     /*
     * Asks the user on a model if he wants to close the current tab.
     */
-   showAskModal : function(component, tabId) {
-     	component.set('v.tabId',tabId);        
+    showAskModal : function(component, tabId) {
+		const CLOSE_MODAL_WAIT = component.get('v.CLOSE_MODAL_WAIT');
+        const INACTIVE_CLOSE_WAIT = component.get('v.INACTIVE_CLOSE_WAIT');
+		const recordId = component.get('v.recordId');
+		component.set('v.tabId',tabId);        
        	component.set('v.showCloseModal',true);        
+
+		var that = this;	
+		// close model after N seconds
+		window.setTimeout($A.getCallback(() => {
+			that.closeModal(component);
+			window.setTimeout($A.getCallback(() => {
+				component.set('v.isFocused', false); // this will let closeTab2 to close
+				console.log('########## CLOSE THE TaB!!!!');
+				that.closeTab2(component, recordId);
+			}), INACTIVE_CLOSE_WAIT);
+		}), CLOSE_MODAL_WAIT);
 	},
 
     /*
@@ -180,7 +185,13 @@
 
     /*
     * If the user wants to close the tab, closes the tab
-    */
+    *
+	*/
+
+	closeModal : function(component) {
+        component.set('v.showCloseModal', false);
+	},
+
     closeTabButtonPressed : function(component) {
     	this.closeTab(component, component.get('v.tabId'));
     },
