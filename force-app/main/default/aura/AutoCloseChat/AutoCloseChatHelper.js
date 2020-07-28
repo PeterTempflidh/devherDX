@@ -1,5 +1,4 @@
 ({
-
     onChatEnded : function(component, event) {
         const WAIT_CLOSE = 6000;
 		const WAIT_POPUP = 10
