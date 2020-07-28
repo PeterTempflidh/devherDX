@@ -83,6 +83,7 @@
 		if (isHl == true) { // the logic starts only if the tab was highlighted
     		this.changeLabelOnTab(component, tabId, component.get('v.originalTitle'), false);
 			this.askIfCloseCurrentTab(component);
+			component.set('v.isHl', false); // setting the is highlighted property to false, so not firing this logic again
 		}
 	},
 
