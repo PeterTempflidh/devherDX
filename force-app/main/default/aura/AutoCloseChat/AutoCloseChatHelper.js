@@ -14,6 +14,8 @@
         * Asks the user if close the current tab
         */
         let askIfcloseCurrentTab = () => {
+			this.askIfCloseCurrentTab(component);
+			/*
 			let workspaceAPI = component.find("workspace");
         	
 			workspaceAPI.getFocusedTabInfo().then(chatTabData => {
@@ -25,7 +27,8 @@
 				}  
 			}).catch(tabData => {
                 console.log('### workspaceAPI.getAllTabInfo error ', error);
-            });    
+            });
+			*/    
         };
 		
 		
@@ -59,12 +62,28 @@
         });
     },
 
+	askIfCloseCurrentTab : function(component) {
+		let workspaceAPI = component.find("workspace");
+        	
+		workspaceAPI.getFocusedTabInfo().then(chatTabData => {
+   				if (!component.get('v.recordId')) return;
+				if (!chatTabData.recordId) return;
+							
+				if (component.get('v.recordId').substring(0, 15) == chatTabData.recordId.substring(0, 15)) {
+					console.log('%%%% showing modal for record ', component.get('v.recordId')); 
+					this.showAskModal(component, chatTabData.tabId);
+				}  
+		}).catch(tabData => {
+               console.log('### workspaceAPI.getAllTabInfo error ', error);
+        });    
+	},
+
 	onTabFocused : function(component, event, tabId) {
 		let isHl = component.get('v.isHl');
 		if (isHl == true) { // the logic starts only if the tab was highlighted
     		this.changeLabelOnTab(component, tabId, component.get('v.originalTitle'), false);
+			this.askIfCloseCurrentTab(component);
 		}
-    	//////////////// ...................>>>>>> askIfcloseCurrentTab
 	},
 
     /*
