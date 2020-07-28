@@ -4,6 +4,7 @@
         const WAIT_CLOSE = 6000;
 		const WAIT_POPUP = 10
         let chatRecordId = event.getParam('recordId');
+        let pageRecordId = component.get('v.recordId');
 
 		/////////////////////////
 		// all the possible behavior functions
@@ -45,14 +46,24 @@
             window.setTimeout($A.getCallback( askIfcloseCurrentTab ), WAIT_POPUP);
         }).catch(currentTabData => { // the tab is not focused
             if (currentTabData) {
-                this.changeLabelOnTab(component, currentTabData.tabId, 'Time out Warning');
-                scheduleCloseTab(currentTabData.recordId);
+				if (currentTabData.recordId.substring(0,15) == pageRecordId.substring(0,15)) { 
+					
+					let title = currentTabData.title;
+
+					component.set('v.isHl', true); // hl property means it is higlighted
+					component.set('v.originalTitle', title); // save the original tab title
+					this.changeLabelOnTab(component, currentTabData.tabId, 'Time out Warning', true);
+                	scheduleCloseTab(currentTabData.recordId);
+				}
             }
         });
     },
 
 	onTabFocused : function(component, event, tabId) {
-    	this.changeLabelOnTab(component, tabId, 'IM FOCUSED');
+		let isHl = component.get('v.isHl');
+		if (isHl == true) { // the logic starts only if the tab was highlighted
+    		this.changeLabelOnTab(component, tabId, component.get('v.originalTitle'), false);
+		}
     	//////////////// ...................>>>>>> askIfcloseCurrentTab
 	},
 
@@ -150,7 +161,7 @@
     	this.closeTab(component, component.get('v.tabId'));
     },
 
-	changeLabelOnTab : function(component, tabId, label) {
+	changeLabelOnTab : function(component, tabId, label, hl) {
             let workspaceAPI = component.find("workspace");
             
             let setTabLabelPromise = workspaceAPI.setTabLabel({
@@ -160,7 +171,7 @@
 
             let setTabHighlightedPromise = workspaceAPI.setTabHighlighted({
                 tabId: tabId,
-                highlighted: true,
+                highlighted: hl,
                 options: {
                     pulse: true,
                     state: "error"
