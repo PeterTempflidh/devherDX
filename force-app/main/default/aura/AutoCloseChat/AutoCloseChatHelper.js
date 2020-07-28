@@ -36,10 +36,11 @@
 		* Closes a tab in N seconds
 		*/
 		let scheduleCloseTab = (recordId) => {
-			window.setTimeout($A.getCallback(() => {
+			let timeoutId = window.setTimeout($A.getCallback(() => {
 				console.log('#### executing');
 				this.closeTab2(component, recordId);
 			}), WAIT_CLOSE);
+			//component.set('v.timeoutId', timeoutId);
 		};
 
 		///////////////////
@@ -80,6 +81,9 @@
 
 	onTabFocused : function(component, event, tabId) {
 		let isHl = component.get('v.isHl');
+		let timeoutId = component.get('v.timeoutId');
+		//console.log('#### TIMOUT ID ',timeoutId);
+		//window.clearTimout(timeoutId);
 		if (isHl == true) { // the logic starts only if the tab was highlighted
     		this.changeLabelOnTab(component, tabId, component.get('v.originalTitle'), false);
 			this.askIfCloseCurrentTab(component);
@@ -102,6 +106,7 @@
 	*/
     closeTab2 : function(component, recordId) {
 		let chatRecordId = component.get('v.recordId');
+		if (!chatRecordId) return; // this means the tab is already closed -- STOP!
 		console.log('..... ' + chatRecordId);
 		if (chatRecordId.substring(0, 15) != recordId.substring(0, 15)) return;	
 
