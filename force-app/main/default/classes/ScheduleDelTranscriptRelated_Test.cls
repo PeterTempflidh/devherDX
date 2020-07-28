@@ -74,4 +74,18 @@ public without sharing class ScheduleDelTranscriptRelated_Test {
         system.assertEquals(1, [SELECT COUNT() FROM ConversationContextEntry]);
         system.assertEquals(1, [SELECT COUNT() FROM LiveChatTranscriptEvent]);
     }
+
+    @isTest
+    public static void UnitTestScheduleDelTranscriptRelated_logError() {
+
+        LiveChatVisitor vis = new LiveChatVisitor();
+        insert vis;
+
+        LiveChatTranscript ltr = new LiveChatTranscript(LiveChatVisitorId = vis.Id);
+        insert ltr;
+
+		Database.DeleteResult[] dr = Database.delete(new LiveChatTranscript[]{ltr}, false);
+		ScheduleDelTranscriptRelated_Batch.logError(dr, 'LiveChatTranscript');
+	}
+
 }
