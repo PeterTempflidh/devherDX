@@ -1,10 +1,12 @@
 ({
     onInit : function(component,event,helper){
    		var action = component.get("c.getTimes");
+		action.setParams({'recordId' : component.get('v.recordId')});
         action.setCallback(this, function(response) {
 			let state = response.getState();
             if (state === "SUCCESS") {
                 let res = response.getReturnValue();
+				console.log('time', res);
 				component.set('v.POPUP_WAIT', res[0]);				
 				component.set('v.CLOSE_MODAL_WAIT', res[1]);				
 				component.set('v.INACTIVE_CLOSE_WAIT', res[2]);				
