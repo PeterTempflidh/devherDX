@@ -17,18 +17,6 @@
         };
 		
 		
-		/*
-		* Closes a tab in N seconds
-		*/
-		/*
-		let scheduleCloseTab = (recordId) => {
-			let timeoutId = window.setTimeout($A.getCallback(() => {
-				console.log('#### executing');
-				this.closeTab2(component, recordId);
-			}), INACTIVE_CLOSE_WAIT);
-			//component.set('v.timeoutId', timeoutId);
-		};
-		*/
 		///////////////////
 		// decide what to do
 		/////////////////		
@@ -63,11 +51,10 @@
 				if (!chatTabData.recordId) return;
 							
 				if (component.get('v.recordId').substring(0, 15) == chatTabData.recordId.substring(0, 15)) {
-					console.log('%%%% showing modal for record ', component.get('v.recordId')); 
 					this.showAskModal(component, chatTabData.tabId);
 				}  
-		}).catch(tabData => {
-               console.log('### workspaceAPI.getAllTabInfo error ', error);
+		}).catch(err => {
+			console.log('### getFocusedTabInfo error ', err);
         });    
 	},
 
@@ -86,7 +73,6 @@
     closeTab : function(component, tabId) {
         let workspaceAPI = component.find("workspace");
         workspaceAPI.closeTab({tabId : component.get('v.tabId')}).then(closeTabRes => {
-            console.log('### closeTab success', JSON.stringify(closeTabRes));
         })
     },
     
@@ -101,7 +87,6 @@
 		// closeCancelled -- indicates that the user clicked Cancel on the close tab modal
 		// isFocused -- indicates that the user focused the tab, so no need to finish the scheduled close
         let closeCancelled = component.get('v.closeCancelled'); 
-		console.log('CLOSE CANCELLED ', closeCancelled );
 
 		let isFocused = component.get('v.isFocused');
 		if (isFocused == true || closeCancelled) return;
@@ -139,7 +124,6 @@
 			that.closeModal(component);
 			window.setTimeout($A.getCallback(() => {
 				component.set('v.isFocused', false); // this will let closeTab2 to close
-				console.log('########## CLOSE THE TaB!!!!');
 				that.closeTab2(component, recordId);
 			}), INACTIVE_CLOSE_WAIT);
 		}), CLOSE_MODAL_WAIT);
@@ -215,7 +199,7 @@
             
             Promise.all([setTabLabelPromise, setTabHighlightedPromise]).then(r => {
             }).catch(r => {
-                console.log('setTabLabelPromise, setTabHighlightedPromise', r);
+                console.log('setTabLabelPromise, setTabHighlightedPromise error', r);
             });
 
 	}
