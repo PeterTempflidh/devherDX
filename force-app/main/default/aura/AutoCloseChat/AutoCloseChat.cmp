@@ -23,10 +23,9 @@
     <lightning:conversationToolkitAPI aura:id="conversationKit" />
     <lightning:workspaceAPI aura:id="workspace" />
 
-    <aura:if isTrue="{!v.showCloseModal}">
 
-        <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true"
-            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+    <aura:if isTrue="{!v.showCloseModal}">
+        <div style="position: relative; z-index: 999; margin-top: -500px; background-color: pink;">
             <div class="slds-modal__container">
                 <header class="slds-modal__header slds-modal__header_empty">
                     <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
@@ -50,9 +49,8 @@
                     <button class="slds-button slds-button_neutral" onclick="{!c.onCancelButtonPressed}">Cancel</button>
                     <button class="slds-button slds-button_brand" onclick="{!c.onCloseTabButtonPressed}">Close Tab</button>
                 </footer>
-            </div>
-        </section>
-        <div class="slds-backdrop slds-backdrop_open"></div>
+            </div>        
+        </div>
     </aura:if>
 
 </aura:component>
