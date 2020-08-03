@@ -1,2 +1,8 @@
-.THIS {
+.THIS.modal {
+    position: relative;
+    z-index: 999;
+    margin-top: -500px;
+    background-color: rgb(10, 10, 10, 0.2);
+    padding-top: 90px;
+    padding-bottom: 90px;    
 }
